@@ -20,7 +20,7 @@ class TestValidation extends UnitTestCase {
 
 		$hierarchy = new Hierarchy();
 		$hierarchy->create();
-		
+
 		$frame = new Frame();
 		$frame->setHierarchyId($hierarchy->getId());
 		$frame->save();
@@ -37,13 +37,13 @@ class TestValidation extends UnitTestCase {
 		$page->setTitle('Test page for validation');
 		$page->setLanguage('en');
 		$page->create();
-		
+
 		$page->publish();
 		$this->assertFalse(PageService::isChanged($page->getId()));
 
 		$loaded = Page::load($page->getId());
 		$this->assertNotNull($loaded);
-				
+
 		$designs = DesignService::getAvailableDesigns();
 		foreach ($designs as $name => $info) {
 			$url = ConfigurationService::getCompleteBaseUrl().'?id='.$page->getId().'&design='.$name.'&dev=false';
@@ -55,28 +55,36 @@ class TestValidation extends UnitTestCase {
 			$this->assertFalse(strpos($html, 'http://uri.in2isoft.com')!==false,'The design "'.$name.'" may contain xml namespaces');
 			$this->assertTrue(strpos($html, 'Test page for validation')!==false,'The design "'.$name.'" does not contain the title');
 			if (isset($info->build)) {
-                $this->assertTrue(strpos($html, '/js/script.js')!==false,'The design "'.$name.'" does not include scripts');
-                if ($name!=='in2isoft') {
-                  $this->assertTrue(strpos($html, '/css/style.css')!==false,'The design "'.$name.'" does not include css');			  
-                }
+        $this->assertTrue(strpos($html, '/js/script.js')!==false,'The design "'.$name.'" does not include scripts');
+        if ($name!=='in2isoft') {
+          $this->assertTrue(strpos($html, '/css/style.css')!==false,'The design "'.$name.'" does not include css');
+        }
 			} else {
-                $this->assertTrue(strpos($html, '/bin/minimized.site.js')!==false,'The design "'.$name.'" does not include minimized site scripts');
-                $this->assertTrue(strpos($html, '/bin/minimized.site.css')!==false,'The design "'.$name.'" does not include minimized site css');			    
+        if (isset($info->js)) {
+          $this->assertTrue(strpos($html, '/api/style/' . $name . '.js')!==false,'The design "'.$name.'" does not include JS from API');
+        } else {
+          $this->assertTrue(strpos($html, '/bin/minimized.site.js')!==false,'The design "'.$name.'" does not include minimized site scripts');
+        }
+        if (isset($info->css)) {
+          $this->assertTrue(strpos($html, '/api/style/' . $name . '.css')!==false,'The design "'.$name.'" does not include css from API');
+        } else {
+          $this->assertTrue(strpos($html, '/bin/minimized.site.css')!==false,'The design "'.$name.'" does not include minimized site css');
+        }
 			}
 			$this->assertTrue(XmlService::validateSnippet($html),'The design "'.$name.'" is not valid xml');
 		}
-		
+
 		$page->delete();
-		
+
 		// Test that it is gone
 		$loaded = Page::load($page->getId());
 		$this->assertNull($loaded);
-		
+
 		$this->assertTrue($design->canRemove());
 		$this->assertTrue($design->remove());
 		$this->assertTrue($frame->canRemove());
-		$this->assertTrue($frame->remove());		
-		$this->assertTrue($hierarchy->delete());		
+		$this->assertTrue($frame->remove());
+		$this->assertTrue($hierarchy->delete());
 	}
 }
 ?>
