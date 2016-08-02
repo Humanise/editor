@@ -51,7 +51,11 @@ class RemoteDataService {
       //curl_setopt($ch, CURLOPT_POST, 1);
       //curl_setopt($ch, CURLOPT_FORBID_REUSE, 1);
       //curl_setopt($ch, CURLOPT_FRESH_CONNECT, 1);
-      curl_setopt($ch, CURLOPT_HTTPHEADER, ["Cache-Control: no-cache", "Pragma: no-cache"]);
+      $headers = ["Cache-Control: no-cache", "Pragma: no-cache"];
+      if (strpos($url, 'https://api.github.com') === 0) {
+        $headers[] = 'User-Agent: Humanise Editor';
+      }
+      curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
       if ($file = fopen($path, "wb")) {
         curl_setopt($ch, CURLOPT_FILE, $file);
         $success = curl_exec($ch);
