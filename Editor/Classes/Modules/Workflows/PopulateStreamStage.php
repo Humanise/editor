@@ -41,32 +41,45 @@ class PopulateStreamStage extends WorkflowStage {
     }
     $now = time();
     $obj = $state->getData();
-    $items = WorkflowService::evaluate($obj, $this->itemPath);
-    foreach ($items as $item) {
-      $data = Strings::toJSON($item);
-      $identity = WorkflowService::evaluate($item, $this->identityProperty);
-      if (!$identity) {
-        $identity = $hash;
+    if ($this->itemPath) {
+      $items = WorkflowService::evaluate($obj, $this->itemPath);
+    } else {
+      $items = $obj;
+    }
+    if (is_array($items)) {
+      foreach ($items as $item) {
+        $data = Strings::toJSON($item);
+        $identity = WorkflowService::evaluate($item, $this->identityProperty);
+        if (!$identity) {
+          $identity = $hash;
+        }
+        $hash = md5($data);
+        $streamItem = Query::after('streamitem')
+          ->withProperty(Streamitem::$IDENTITY, $identity)
+          ->withProperty(Streamitem::$STREAM_ID, $stream->getId())
+          ->first();
+        if (!$streamItem) {
+          $streamItem = new Streamitem();
+        }
+        $streamItem->setStreamId($stream->getId());
+        $streamItem->setData($data);
+        $timeValue = WorkflowService::evaluate($item, $this->timeProperty);
+        Log::debug(Dates::parse($timeValue));
+        $time = 0;
+        if (is_numeric($timeValue)) {
+          $time = intval($timeValue);
+        } else {
+          $time = Dates::parse($timeValue);
+        }
+        if ($time > 0) {
+          $streamItem->setOriginalDate($time);
+        }
+        $streamItem->setIdentity($identity);
+        $streamItem->setRetrievalDate($now);
+        $streamItem->setHash($hash);
+        $streamItem->save();
+        $streamItem->publish();
       }
-      $hash = md5($data);
-      $streamItem = Query::after('streamitem')
-        ->withProperty(Streamitem::$IDENTITY, $identity)
-        ->withProperty(Streamitem::$STREAM_ID, $stream->getId())
-        ->first();
-      if (!$streamItem) {
-        $streamItem = new Streamitem();
-      }
-      $streamItem->setStreamId($stream->getId());
-      $streamItem->setData($data);
-      $time = intval(WorkflowService::evaluate($item, $this->timeProperty));
-      if ($time > 0) {
-        $streamItem->setOriginalDate($time);
-      }
-      $streamItem->setIdentity($identity);
-      $streamItem->setRetrievalDate($now);
-      $streamItem->setHash($hash);
-      $streamItem->save();
-      $streamItem->publish();
     }
     $state->setObjectData($stream);
   }
