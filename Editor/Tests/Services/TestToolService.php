@@ -10,13 +10,13 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 class TestToolService extends UnitTestCase {
-    
-    function testIt() {
+
+  function testIt() {
 		$tools = ToolService::getAvailable();
 		$this->assertTrue(count($tools)>0);
 		$this->assertTrue(is_array($tools));
-        $this->assertTrue(in_array('System',$tools),"The system tool is not present");
-    }
+    $this->assertTrue(in_array('System',$tools),"The system tool is not present");
+  }
 
 	function testValid() {
 		$tools = ToolService::getAvailable();

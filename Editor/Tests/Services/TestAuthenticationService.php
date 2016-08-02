@@ -10,14 +10,14 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 class TestAuthenticationService extends UnitTestCase {
-    
-    function testIt() {
+
+  function testIt() {
 		$this->assertTrue(AuthenticationService::isValidUsername('jonasmunk'));
 		$this->assertTrue(AuthenticationService::isValidUsername('Jonas_munk0'));
 		$this->assertTrue(AuthenticationService::isValidUsername('ab'));
 
 		$this->assertFalse(AuthenticationService::isValidUsername(' '));
 		$this->assertFalse(AuthenticationService::isValidUsername('a'));
-    }
+  }
 }
 ?>

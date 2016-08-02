@@ -11,15 +11,16 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestWorkflowService extends UnitTestCase {
 
-    function testEvaluate() {
-      $data = ['first' => ['second' => ['third' => 'value']]];
+  function testEvaluate() {
+    $data = ['first' => ['second' => ['third' => 'value']]];
 
-      $this->assertEqual('value',WorkflowService::evaluate($data,'first.second.third'));
+    $this->assertEqual('value',WorkflowService::evaluate($data,'first.second.third'));
 
-      $data = new stdClass();
-      $data->first = ['second' => ['third' => 'value']];
-      $this->assertEqual('value',WorkflowService::evaluate($data,'first.second.third'));
-      $this->assertNull(WorkflowService::evaluate($data,'nowhere'));
-    }
+    $data = new stdClass();
+    $data->first = ['second' => ['third' => 'value']];
+    $this->assertEqual('value',WorkflowService::evaluate($data,'first.second.third'));
+    $this->assertNull(WorkflowService::evaluate($data,'nowhere'));
+  }
+
 }
 ?>

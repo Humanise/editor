@@ -10,12 +10,12 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 class TestImageService extends UnitTestCase {
-    
+
   function testCreateImageFromBase64() {
     $result = ImageService::createImageFromBase64(null,null,null);
     $this->assertFalse($result['success']);
     $this->assertNull($result['image']);
-    
+
     $data = "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAHUlEQVR42mNgoAewJg5QpoEkNlkaRp1EfScNMgAAFZU9ipnkh/gAAAAASUVORK5CYII=";
     $result = ImageService::createImageFromBase64($data,'myfile.png','My file');
     $this->assertTrue($result['success']);
@@ -28,7 +28,7 @@ class TestImageService extends UnitTestCase {
     $this->assertEqual($image->getWidth(),16);
     $this->assertEqual($image->getMimetype(),'image/png');
     $this->assertEqual($image->getTitle(),'My file');
-    
+
     $image->remove();
   }
 
@@ -39,9 +39,9 @@ class TestImageService extends UnitTestCase {
     $result = ImageService::createImageFromFile($path);
 
     $this->assertNotNull($result);
-    
+
     $image = $result->getObject();
-    
+
     $this->assertEqual($image->getWidth(),548);
     $this->assertEqual($image->getHeight(),448);
     $this->assertEqual($image->getMimetype(),'image/jpeg');
@@ -62,9 +62,9 @@ class TestImageService extends UnitTestCase {
     $result = ImageService::createImageFromFile($path);
 
     $this->assertNotNull($result);
-    
+
     $image = $result->getObject();
-    
+
     $this->assertEqual($image->getWidth(),548);
     $this->assertEqual($image->getHeight(),448);
     $this->assertEqual($image->getMimetype(),'image/jpeg');
@@ -88,7 +88,7 @@ class TestImageService extends UnitTestCase {
 
     $this->assertNotNull($result);
     $this->assertTrue($result->getSuccess());
-    
+
     $image = $result->getObject();
     $this->assertNotNull($image);
     if ($image) {
@@ -99,7 +99,7 @@ class TestImageService extends UnitTestCase {
 
       $this->assertEqual($image->getFilename(),$unique.'.jpg');
 
-      $image->remove();     
+      $image->remove();
     }
   }
 }

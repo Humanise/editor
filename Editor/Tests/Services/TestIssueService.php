@@ -10,12 +10,12 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 class TestIssueService extends UnitTestCase {
-    
-    function testTranslateKind() {
+
+  function testTranslateKind() {
 		$this->assertEqual(IssueService::translateKind('error','da'),"Fejl");
 		$this->assertEqual(IssueService::translateKind('error','en'),"Error");
 
 		$this->assertEqual(IssueService::translateKind('hoppaloopa','en'),"hoppaloopa");
-    }
+  }
 }
 ?>

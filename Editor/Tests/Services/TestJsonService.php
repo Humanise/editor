@@ -10,15 +10,15 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 class TestJsonService extends UnitTestCase {
-    
-    function testDecode() {
+
+  function testDecode() {
 		$json = '{"a":"b"}';
 		$obj = JsonService::decode($json);
-        $this->assertEqual("b",$obj->a);
+    $this->assertEqual("b",$obj->a);
 
 		$json = "{\n\t\"name\" : \"the name\"\n}";
 		$obj = JsonService::decode($json);
-        $this->assertEqual("the name",$obj->name);
-    }
+    $this->assertEqual("the name",$obj->name);
+  }
 }
 ?>

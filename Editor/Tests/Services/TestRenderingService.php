@@ -10,18 +10,18 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 class TestRenderingService extends UnitTestCase {
-    
-    function testPreview() {
+
+  function testPreview() {
 		$page = TestService::createTestPage();
-		
+
 		$preview = RenderingService::previewPage(array(
 			'pageId' => $page->getId(),
 			'relativePath' => '../../../../'
 		));
-		
+
 		$this->assertTrue(Strings::isNotBlank($preview));
-		
+
 		TestService::removeTestPage($page);
-    }
+  }
 }
 ?>
