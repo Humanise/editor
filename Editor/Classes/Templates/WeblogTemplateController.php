@@ -26,14 +26,14 @@ class WeblogTemplateController extends TemplateController
 		Database::delete($sql);
 	}
 
-    function build($id) {
+  function build($id) {
 		$sql="select * from weblog where page_id=".Database::int($id);
 		$row = Database::selectFirst($sql);
 		$data = '<weblog xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/weblog/1.0/">';
 		$data .= '<title>'.Strings::escapeXML($row['title']).'</title>';
 		$data.= '<!--dynamic--></weblog>';
-        return array('data' => $data, 'dynamic' => true, 'index' => '');
-    }
+    return array('data' => $data, 'dynamic' => true, 'index' => '');
+  }
 
 	function dynamic($id,&$state) {
 		$xml = $this->_listEntries($id);
