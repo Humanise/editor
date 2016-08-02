@@ -21,6 +21,7 @@ class CustomPartController extends PartController
 	}
 
 	function display($part,$context) {
+    // TODO: output CSS + maybe JS
 		return $this->render($part,$context);
 	}
 
@@ -55,11 +56,16 @@ class CustomPartController extends PartController
       if ($desc) {
         $result = $desc->run();
         $path = $view->getPath();
-
-        $rendered = RenderingService::applyTwigTemplate([
-          'path' => FileSystemService::join($path, 'template.twig'),
-          'variables' => ['data' => $result]
-        ]);
+        $twigTemplate = FileSystemService::join($path, 'template.twig');
+        if (file_exists($twigTemplate)) {
+          $rendered = RenderingService::applyTwigTemplate([
+            'path' => $twigTemplate,
+            'variables' => ['data' => $result]
+          ]);
+        } else {
+          // TODO: Output <error> instead
+          $rendered = '<span>Template not found: ' . Strings::escapeXML($twigTemplate) . '</span>';
+        }
         $inlineCSS = FileSystemService::join($path, 'inline.css');
         $asyncCSS = FileSystemService::join($path, 'async.css');
         $xml.= '<css xmlns="http://uri.in2isoft.com/onlinepublisher/resource/"';
@@ -70,6 +76,11 @@ class CustomPartController extends PartController
           $xml.= ' async="' . Strings::escapeXML($asyncCSS) . '"';
         }
         $xml.= '/>';
+        // TODO: optimize performance + maybe handle invalid XML
+        if (!DomUtils::isValidFragment($rendered)) {
+          // TODO: Output <error> instead
+          $rendered = '';
+        }
         $xml.= '<rendered xmlns="http://www.w3.org/1999/xhtml">' . $rendered . '</rendered>';
       }
     }
