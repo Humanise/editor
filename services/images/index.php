@@ -20,6 +20,10 @@ $recipe = array(
 	'background' => Request::getString('background'),
 	'filters' => array()
 );
+// TODO: This should be more robust: Handled in the ImageTransformationService
+if ($recipe['format'] != 'png' && $recipe['format'] != 'jpg') {
+  $recipe['format'] = 'jpg';
+}
 if (!$recipe['method']) {
 	$recipe['method'] = 'fit';
 }
