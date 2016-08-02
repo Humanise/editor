@@ -259,6 +259,7 @@ class ImageTransformationService {
   static function optimizeFile($file) {
     if (file_exists($file)) {
       $size = filesize($file);
+      // TODO: Use image info instead of extension to determine this
       $ext = strtolower(FileSystemService::getFileExtension($file));
       $file = str_replace("'", "\'", $file);
       if ($ext == 'png') {
@@ -272,7 +273,7 @@ class ImageTransformationService {
       } else if ($ext == 'jpg' || $ext == 'jpeg') {
         ShellService::execute('jpegoptim "' . $file . '"');
       } else {
-        Log::warn('Unable to optimize unknow file format: ' . $file);
+        Log::warn('Unable to optimize unknown file format: ' . $file);
       }
       clearstatcache(); // Important to make filesize give new values
     }
