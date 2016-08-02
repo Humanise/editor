@@ -9,6 +9,8 @@
     "style/janemunk/css/overwrite.css",
     "style/janemunk/css/front.css"
   ],
+  "js" : [
+  ],
 	"parameters" : [
 		{"key" : "theme", "type" : "selection", "label" : "Theme", "options" : [
 			{"label" : "Full screen", "value" : "full"}
