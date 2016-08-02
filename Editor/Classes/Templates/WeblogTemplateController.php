@@ -39,18 +39,18 @@ class WeblogTemplateController extends TemplateController
 		$xml = $this->_listEntries($id);
 		$state['data'] = str_replace("<!--dynamic-->", $xml, $state['data']);
 	}
-	
+
 	function _listEntries($id) {
 		$xml='';
 		$sql="select webloggroup_id as id from weblog_webloggroup where page_id=".Database::int($id);
 		$selectedGroups = Database::getIds($sql);
-		
+
 		$groups = Webloggroup::search(array('page'=>$id));
 		foreach ($groups as $group) {
 			$xml.='<group id="'.$group->getId().'" title="'.Strings::escapeXML($group->getTitle()).'" />';
 		}
 		$xml .= '<list>';
-		
+
 		$sql="select distinct object.id,object.data as object_data,page.data as page_data,page.id as page_id,page.path from object,webloggroup_weblogentry,weblog_webloggroup,weblogentry left join page on weblogentry.page_id=page.id where weblog_webloggroup.page_id=".Database::int($id)." and weblog_webloggroup.webloggroup_id=webloggroup_weblogentry.webloggroup_id and webloggroup_weblogentry.weblogentry_id=weblogentry.object_id and object.id=weblogentry.object_id order by weblogentry.date desc";
 		$result = Database::select($sql);
 		while ($row = Database::next($result)) {
@@ -72,7 +72,7 @@ class WeblogTemplateController extends TemplateController
 			$xml.='</entry>';
 		}
 		Database::free($result);
-		
+
 		$xml .= '</list>';
 		return $xml;
 	}
@@ -119,7 +119,7 @@ class WeblogTemplateController extends TemplateController
 		$entry->setTitle($title);
 		$entry->setText($text);
 		$entry->setDate($date);
-		
+
 		if ($blueprint = $this->getBlueprint($id)) {
 			$page = new Page();
 			$page->setTitle($title);
@@ -138,7 +138,7 @@ class WeblogTemplateController extends TemplateController
 		$entry->publish();
 		$entry->changeGroups($groups);
 	}
-	
+
 	function getBlueprint($id) {
 		$sql = "select pageblueprint_id from weblog where pageblueprint_id>0 and page_id = ".Database::int($id);
 		if ($row = Database::selectFirst($sql)) {
@@ -161,7 +161,7 @@ class WeblogTemplateController extends TemplateController
 			$entry->save();
 			$entry->changeGroups($groups);
 			$entry->publish();
-			
+
 			if ($page = Page::load($entry->getPageId())) {
 				if ($page->getTemplateUnique()=='html') {
 					$sql = "update html set html=".Database::text($text).",title=".Database::text($title).",valid=0 where page_id=".$page->getId();
