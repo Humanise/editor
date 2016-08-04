@@ -429,8 +429,6 @@
       fill: #aaa; }
     .scroll .layout_head .layout_search_icon:hover > path {
       fill: #333; }
-  .scroll .layout_body {
-    min-height: 500px; }
 
   @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
     .layout_head {

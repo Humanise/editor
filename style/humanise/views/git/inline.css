@@ -1,0 +1,19 @@
+.gitlog_items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gitlog_item {
+  padding: 5px 0;
+}
+
+.gitlog_message {
+  margin: 0;
+  font-family: monospace;
+}
+
+.gitlog_date {
+  font-size: .8em;
+  color: #999;
+}

@@ -179,7 +179,8 @@ p.common, ul.common {
     float: right; }
 
   .layout_body {
-    overflow: hidden; }
+    overflow: hidden;
+    min-height: 500px; }
 
   .layout {
     padding-top: 54px; }

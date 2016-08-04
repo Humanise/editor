@@ -77,6 +77,7 @@
 
   .layout_body {
     overflow: hidden;
+    min-height: 500px;
   }
 
   .layout {
@@ -116,10 +117,6 @@
       .layout_search_icon:hover > path {
         fill: #333;
       }
-    }
-
-    .layout_body {
-      min-height: 500px;
     }
   }
 

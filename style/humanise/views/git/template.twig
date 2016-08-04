@@ -1,0 +1,10 @@
+<div class="gitlog">
+  <ul class="gitlog_items">
+  {% for item in data %}
+    <li class="gitlog_item">
+      <div class="gitlog_message">{{item.commit.message}}</div>
+      <div class="gitlog_date">{{item.commit.author.date}}</div>
+    </li>
+  {% endfor %}
+  </ul>
+</div>

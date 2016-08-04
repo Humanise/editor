@@ -85,7 +85,7 @@ module.exports = function(grunt) {
         options : {sourcemap:'none'},
         files: [{
           expand: true,
-          cwd: 'style/humanise/sass',
+          cwd: 'style/humanise/scss',
           src: ['*.scss'],
           dest: 'style/humanise/css',
           ext: '.css'
