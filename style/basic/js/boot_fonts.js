@@ -28,9 +28,9 @@
           var currentWidth = dummy.clientWidth;
           if (width==0 || (width != currentWidth && !sizes[currentWidth])) {
             count--;
-            console.log('found: '+weight+','+width+'/'+dummy.clientWidth);
+            //console.log('found: '+weight+','+width+'/'+dummy.clientWidth);
             if (count==0) {
-              console.log('finished: '+options.family);
+              //console.log('finished: '+options.family);
               document.body.className += ' ' + options.cls;
               window.localStorage && localStorage.setItem(options.href,'1');
             }
