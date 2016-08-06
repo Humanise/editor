@@ -8,9 +8,11 @@
   .part_text
   {
     font-size: 12pt;
+    word-spacing: 1px;
+    line-height: 1.4;
+    color: #000;
     font-weight: 300;
     word-spacing: 1px;
-    color: #000;
   }
 }
 
@@ -86,9 +88,6 @@
   .part_richtext
   {
     font-size: 12pt;
-    font-weight: 300;
-    /*letter-spacing: 1px;*/
-    word-spacing: 1px;
   }
 
   .part_text strong,

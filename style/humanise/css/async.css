@@ -53,10 +53,7 @@
 /*************** text *************/
 .part_text,
 .part_richtext {
-  font-size: 12pt;
-  font-weight: 300;
-  /*letter-spacing: 1px;*/
-  word-spacing: 1px; }
+  font-size: 12pt; }
 
 .part_text strong,
 .part_richtext strong {

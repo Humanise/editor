@@ -182,9 +182,11 @@ p.common, ul.common {
 
 .part_text {
   font-size: 12pt;
-  font-weight: 300;
   word-spacing: 1px;
-  color: #000; }
+  line-height: 1.4;
+  color: #000;
+  font-weight: 300;
+  word-spacing: 1px; }
 
 /************ Headers ***********/
 .part_header-1 {
@@ -229,10 +231,7 @@ p.common, ul.common {
 /*************** text *************/
 .part_text,
 .part_richtext {
-  font-size: 12pt;
-  font-weight: 300;
-  /*letter-spacing: 1px;*/
-  word-spacing: 1px; }
+  font-size: 12pt; }
 
 .part_text strong,
 .part_richtext strong {

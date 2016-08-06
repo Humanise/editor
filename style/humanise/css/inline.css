@@ -54,9 +54,11 @@ p.common, ul.common {
 
 .part_text {
   font-size: 12pt;
-  font-weight: 300;
   word-spacing: 1px;
-  color: #000; }
+  line-height: 1.4;
+  color: #000;
+  font-weight: 300;
+  word-spacing: 1px; }
 
 .layout_menu {
   margin: 0;
