@@ -57,13 +57,14 @@ class MapStage extends WorkflowStage {
       $input = $property['input'];
       $name = $property['name'];
       $flow = $property['workflow'];
-      $val = null;
+      $val = WorkflowService::evaluate($item, $input);
+      /*
       if (is_array($item) && isset($item[$input])) {
         $val = $item[$input];
       }
       else if (is_object($item) && isset($item->$input)) {
         $val = $item->$input;
-      }
+      }*/
 
       $state = new WorkflowState();
       $state->setStringData($val);

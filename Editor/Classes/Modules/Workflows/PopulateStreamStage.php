@@ -50,10 +50,10 @@ class PopulateStreamStage extends WorkflowStage {
       foreach ($items as $item) {
         $data = Strings::toJSON($item);
         $identity = WorkflowService::evaluate($item, $this->identityProperty);
+        $hash = md5($data);
         if (!$identity) {
           $identity = $hash;
         }
-        $hash = md5($data);
         $streamItem = Query::after('streamitem')
           ->withProperty(Streamitem::$IDENTITY, $identity)
           ->withProperty(Streamitem::$STREAM_ID, $stream->getId())
@@ -64,7 +64,6 @@ class PopulateStreamStage extends WorkflowStage {
         $streamItem->setStreamId($stream->getId());
         $streamItem->setData($data);
         $timeValue = WorkflowService::evaluate($item, $this->timeProperty);
-        Log::debug(Dates::parse($timeValue));
         $time = 0;
         if (is_numeric($timeValue)) {
           $time = intval($timeValue);
