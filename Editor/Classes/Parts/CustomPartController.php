@@ -57,7 +57,7 @@ class CustomPartController extends PartController
         $result = $desc->run();
         $path = $view->getPath();
         $twigTemplate = FileSystemService::join($path, 'template.twig');
-        if (file_exists($twigTemplate)) {
+        if (file_exists(FileSystemService::getFullPath($twigTemplate))) {
           $rendered = RenderingService::applyTwigTemplate([
             'path' => $twigTemplate,
             'variables' => ['data' => $result]
