@@ -18,10 +18,10 @@
 
 <xsl:template name="c:views">
 	<div class="views">
-		<a href="?id={//p:page/@id}&amp;date={//c:state/c:date/@year}{//c:state/c:date/@month}{//c:state/c:date/@day}&amp;view=list" class="common"><span>Liste</span></a> &#183; 
-		<a href="?id={//p:page/@id}&amp;date={//c:state/c:date/@year}{//c:state/c:date/@month}{//c:state/c:date/@day}&amp;view=week" class="common"><span>Uge</span></a> &#183; 
-		<a href="?id={//p:page/@id}&amp;date={//c:state/c:date/@year}{//c:state/c:date/@month}{//c:state/c:date/@day}&amp;view=month" class="common"><span>Måned</span></a> &#183; 
-		<a href="?id={//p:page/@id}&amp;date={//c:state/c:date/@year}{//c:state/c:date/@month}{//c:state/c:date/@day}&amp;view=agenda" class="common"><span>Agenda</span></a>
+		<a href="{$path}?id={//p:page/@id}&amp;date={//c:state/c:date/@year}{//c:state/c:date/@month}{//c:state/c:date/@day}&amp;view=list" class="common" rel="nofollow"><span>Liste</span></a> &#183; 
+		<a href="{$path}?id={//p:page/@id}&amp;date={//c:state/c:date/@year}{//c:state/c:date/@month}{//c:state/c:date/@day}&amp;view=week" class="common" rel="nofollow"><span>Uge</span></a> &#183; 
+		<a href="{$path}?id={//p:page/@id}&amp;date={//c:state/c:date/@year}{//c:state/c:date/@month}{//c:state/c:date/@day}&amp;view=month" class="common" rel="nofollow"><span>Måned</span></a> &#183; 
+		<a href="{$path}?id={//p:page/@id}&amp;date={//c:state/c:date/@year}{//c:state/c:date/@month}{//c:state/c:date/@day}&amp;view=agenda" class="common" rel="nofollow"><span>Agenda</span></a>
 	</div>
 </xsl:template>
 
@@ -30,9 +30,9 @@
 		<div class="navigation">
 			<xsl:call-template name="c:views"/>
 			<div class="jumps">
-			<a href="?id={//p:page/@id}&amp;date={../c:state/c:previous/@year}{../c:state/c:previous/@month}{../c:state/c:previous/@day}&amp;view=week" class="common"><span>Forrige uge</span></a>
-			 &#183; <a href="?id={//p:page/@id}&amp;date={../c:state/c:today/@year}{../c:state/c:today/@month}{../c:state/c:today/@day}&amp;view=week" class="common"><span>Idag</span></a>
-			 &#183; <a href="?id={//p:page/@id}&amp;date={../c:state/c:next/@year}{../c:state/c:next/@month}{../c:state/c:next/@day}&amp;view=week" class="common"><span>Naeste uge</span></a>
+			<a href="{$path}?id={//p:page/@id}&amp;date={../c:state/c:previous/@year}{../c:state/c:previous/@month}{../c:state/c:previous/@day}&amp;view=week" class="common" rel="nofollow"><span>Forrige uge</span></a>
+			 &#183; <a href="{$path}?id={//p:page/@id}&amp;date={../c:state/c:today/@year}{../c:state/c:today/@month}{../c:state/c:today/@day}&amp;view=week" class="common" rel="nofollow"><span>Idag</span></a>
+			 &#183; <a href="{$path}?id={//p:page/@id}&amp;date={../c:state/c:next/@year}{../c:state/c:next/@month}{../c:state/c:next/@day}&amp;view=week" class="common" rel="nofollow"><span>Naeste uge</span></a>
 		</div>
 	</div>
 	<table cellspacing="0" cellpadding="0" class="calendar_weekview">
@@ -44,7 +44,7 @@
 		<xsl:if test="@date=concat(../../c:state/c:date/@year,../../c:state/c:date/@month,../../c:state/c:date/@day)">
 		<xsl:attribute name="class">selected</xsl:attribute>
 		</xsl:if>
-		<a href="?id={//p:page/@id}&amp;date={@date}"><span><xsl:value-of select="@title"/></span></a></th>
+		<a href="{$path}?id={//p:page/@id}&amp;date={@date}" rel="nofollow"><span><xsl:value-of select="@title"/></span></a></th>
 		</xsl:for-each>
 		</tr>
 	</thead>
@@ -95,9 +95,9 @@
 		<div class="navigation">
 			<xsl:call-template name="c:views"/>
 			<div class="jumps">
-				<a href="?id={//p:page/@id}&amp;date={../c:state/c:previous/@year}{../c:state/c:previous/@month}{../c:state/c:previous/@day}&amp;view=month" class="common"><span>Forrige måned</span></a>
-				 &#183; <a href="?id={//p:page/@id}&amp;date={../c:state/c:today/@year}{../c:state/c:today/@month}{../c:state/c:today/@day}&amp;view=month#calendar" class="common"><span>Idag</span></a>
-				 &#183; <a href="?id={//p:page/@id}&amp;date={../c:state/c:next/@year}{../c:state/c:next/@month}{../c:state/c:next/@day}&amp;view=month" class="common"><span>Næste måned</span></a>
+				<a href="{$path}?id={//p:page/@id}&amp;date={../c:state/c:previous/@year}{../c:state/c:previous/@month}{../c:state/c:previous/@day}&amp;view=month" class="common" rel="nofollow"><span>Forrige måned</span></a>
+				 &#183; <a href="{$path}?id={//p:page/@id}&amp;date={../c:state/c:today/@year}{../c:state/c:today/@month}{../c:state/c:today/@day}&amp;view=month#calendar" class="common" rel="nofollow"><span>Idag</span></a>
+				 &#183; <a href="{$path}?id={//p:page/@id}&amp;date={../c:state/c:next/@year}{../c:state/c:next/@month}{../c:state/c:next/@day}&amp;view=month" class="common" rel="nofollow"><span>Næste måned</span></a>
 			</div>
 		</div>
 		<table cellspacing="0" cellpadding="0">
@@ -144,7 +144,7 @@
 <xsl:template match="c:monthview/c:week/c:day">
 	<td>
 		<xsl:attribute name="class">day <xsl:if test="@selected='true'">selected</xsl:if></xsl:attribute>
-		<a href="?id={//p:page/@id}&amp;date={@date}&amp;view=month" class="monthday"><span><xsl:value-of select="c:date/@day"/></span></a>
+		<a href="{$path}?id={//p:page/@id}&amp;date={@date}&amp;view=month" class="monthday" rel="nofollow"><span><xsl:value-of select="c:date/@day"/></span></a>
 		<xsl:apply-templates select="c:event"/>
 	</td>
 </xsl:template>
@@ -166,9 +166,9 @@
 	<div class="navigation">
 	<xsl:call-template name="c:views"/>
 	<div class="jumps">
-	<a href="?id={//p:page/@id}&amp;date={../c:state/c:previous/@year}{../c:state/c:previous/@month}{../c:state/c:previous/@day}&amp;view=list" class="common"><span>Forrige måned</span></a>
-	 &#183; <a href="?id={//p:page/@id}&amp;date={../c:state/c:today/@year}{../c:state/c:today/@month}{../c:state/c:today/@day}&amp;view=list#selected" class="common"><span>Idag</span></a>
-	 &#183; <a href="?id={//p:page/@id}&amp;date={../c:state/c:next/@year}{../c:state/c:next/@month}{../c:state/c:next/@day}&amp;view=list" class="common"><span>Næste måned</span></a>
+	<a href="{$path}?id={//p:page/@id}&amp;date={../c:state/c:previous/@year}{../c:state/c:previous/@month}{../c:state/c:previous/@day}&amp;view=list" class="common" rel="nofollow"><span>Forrige måned</span></a>
+	 &#183; <a href="{$path}?id={//p:page/@id}&amp;date={../c:state/c:today/@year}{../c:state/c:today/@month}{../c:state/c:today/@day}&amp;view=list#selected" class="common" rel="nofollow"><span>Idag</span></a>
+	 &#183; <a href="{$path}?id={//p:page/@id}&amp;date={../c:state/c:next/@year}{../c:state/c:next/@month}{../c:state/c:next/@day}&amp;view=list" class="common" rel="nofollow"><span>Næste måned</span></a>
 	</div>
 	</div>
 	<table cellspacing="0" cellpadding="0">
@@ -183,7 +183,7 @@
 <xsl:if test="@selected='true'">selected</xsl:if>
 <xsl:if test="@today='true'"> today</xsl:if>
 </xsl:attribute>
-	<th><a href="?id={//p:page/@id}&amp;date={@date}&amp;view=list#calendar">
+	<th><a href="{$path}?id={//p:page/@id}&amp;date={@date}&amp;view=list#calendar" rel="nofollow">
 		<xsl:if test="@selected='true'"><xsl:attribute name="name">selected</xsl:attribute></xsl:if>
 		<xsl:value-of select="@title"/>
 		</a>
@@ -213,9 +213,9 @@
 <div class="navigation">
 <xsl:call-template name="c:views"/>
 <div class="jumps">
-<a href="?id={//p:page/@id}&amp;date={../c:state/c:previous/@year}{../c:state/c:previous/@month}{../c:state/c:previous/@day}&amp;view=agenda" class="common"><span>Forrige måned</span></a>
- &#183; <a href="?id={//p:page/@id}&amp;date={../c:state/c:today/@year}{../c:state/c:today/@month}{../c:state/c:today/@day}&amp;agenda=list#selected" class="common"><span>Idag</span></a>
- &#183; <a href="?id={//p:page/@id}&amp;date={../c:state/c:next/@year}{../c:state/c:next/@month}{../c:state/c:next/@day}&amp;view=agenda" class="common"><span>Næste måned</span></a>
+<a href="{$path}?id={//p:page/@id}&amp;date={../c:state/c:previous/@year}{../c:state/c:previous/@month}{../c:state/c:previous/@day}&amp;view=agenda" class="common" rel="nofollow"><span>Forrige måned</span></a>
+ &#183; <a href="{$path}?id={//p:page/@id}&amp;date={../c:state/c:today/@year}{../c:state/c:today/@month}{../c:state/c:today/@day}&amp;agenda=list#selected" class="common" rel="nofollow"><span>Idag</span></a>
+ &#183; <a href="{$path}?id={//p:page/@id}&amp;date={../c:state/c:next/@year}{../c:state/c:next/@month}{../c:state/c:next/@day}&amp;view=agenda" class="common" rel="nofollow"><span>Næste måned</span></a>
 </div>
 </div>
 <table cellspacing="0" cellpadding="0">
