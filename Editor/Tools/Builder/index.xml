@@ -121,22 +121,28 @@
     </formula>
   </window>
 
-  <window title="{Stream; da:Strøm}" name="streamWindow" width="400" padding="5">
-    <formula name="streamFormula">
-      <fields labels="above">
-        <field label="{Title; da:Titel}">
-          <text-input key="title"/>
-        </field>
-      </fields>
-      <buttons>
-        <button name="cancelStream" title="{Cancel; da:Annuller}"/>
-        <button name="deleteStream" title="{Delete; da:Slet}">
-          <confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete; da:Ja, slet}" cancel="{Cancel; da:Annuller}"/>
-        </button>
-        <button name="saveStream" title="{Save; da:Gem}" highlighted="true"/>
-      </buttons>
-    </formula>
-  </window>
+  <managed name="streamEditor"
+    save-url="actions/SaveStream.php"
+    read-url="../../Services/Model/LoadObject.php"
+    delete-url="../../Services/Model/DeleteObject.php"
+  >
+    <window title="{Stream; da:Strøm}" width="400" padding="5">
+      <formula>
+        <fields labels="above">
+          <field label="{Title; da:Titel}">
+            <text-input key="title"/>
+          </field>
+        </fields>
+        <buttons>
+          <button title="{Cancel; da:Annuller}" role="cancel"/>
+          <button title="{Delete; da:Slet}" role="delete">
+            <confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete; da:Ja, slet}" cancel="{Cancel; da:Annuller}"/>
+          </button>
+          <button title="{Save; da:Gem}" highlighted="true" role="save" submit="true"/>
+        </buttons>
+      </formula>
+    </window>
+  </managed>
 
   <managed name="viewEditor"
     save-url="actions/SaveView.php"
