@@ -563,12 +563,12 @@ class DesignService {
     $valid = $valid && file_exists($basePath."style/".$name."/info/Preview128.png");
     $valid = $valid && file_exists($basePath."style/".$name."/info/Preview64.png");
     $valid = $valid && file_exists($basePath."style/".$name."/xslt/main.xsl");
-    if ($info!==null && !isset($info->build)) {
-        $valid = $valid && file_exists($basePath."style/".$name."/css/style.php");
-        } else {
-            $valid = $valid && !file_exists($basePath."style/".$name."/css/style.php");
-        }
-        // TODO (jm)
+    if ($info!==null && !(isset($info->build) || isset($info->js) || isset($info->css))) {
+      $valid = $valid && file_exists($basePath."style/".$name."/css/style.php");
+    } else {
+      $valid = $valid && !file_exists($basePath."style/".$name."/css/style.php");
+    }
+    // TODO (jm)
     $valid = $valid && file_exists($basePath."style/".$name."/css/editor.css");
     return $valid;
   }
