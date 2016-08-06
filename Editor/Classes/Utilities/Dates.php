@@ -36,8 +36,14 @@ class Dates {
 
   /** The goal of this method is to parse anything */
   static function parse($str) {
+    if ($time = Dates::parseRFC3339($str)) {
+      return $time;
+    }
+    else if ($time = Dates::parseRFC822($str)) {
+      return $time;
+    }
     // DD-MM-YYYY
-    if (preg_match("/([0-9]{2})[-\/\.]([0-9]{2})[-\/\.]([0-9]{4})/mi",$str, $matches)) {
+    else if (preg_match("/([0-9]{2})[-\/\.]([0-9]{2})[-\/\.]([0-9]{4})/mi",$str, $matches)) {
       return mktime( 0,0, 0, $matches[2],$matches[1], $matches[3]);
     }
     // YYYY-MM-DD
