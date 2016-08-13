@@ -13,12 +13,12 @@ class HeaderPartController extends PartController
 	function HeaderPartController() {
 		parent::PartController('header');
 	}
-	
+
 	function isLiveEnabled() {
 		return true;
 	}
 
-	
+
 	static function createPart() {
 		$part = new HeaderPart();
 		$part->setText('Velkommen');
@@ -26,7 +26,7 @@ class HeaderPartController extends PartController
 		$part->save();
 		return $part;
 	}
-	
+
 	function _transfer($object,$keys) {
 		foreach ($keys as $key=>$type) {
 			if (is_int($key)) {
@@ -45,7 +45,7 @@ class HeaderPartController extends PartController
 			}
 		}
 	}
-	
+
 	function getFromRequest($id) {
 		$part = HeaderPart::load($id);
 		$this->_transfer($part,array(
@@ -67,14 +67,14 @@ class HeaderPartController extends PartController
 		));
 		return $part;
 	}
-	
+
 	function display($part,$context) {
 		return $this->render($part,$context);
 	}
-	
+
 	function editor($part,$context) {
 		return
-		'<textarea class="part_header common_font part_header-'.$part->getLevel().'" name="text" id="part_header_textarea" style="border: 1px solid lightgrey; width: 100%; background: transparent; padding: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; '.$this->buildCSSStyle($part).'">'.
+		'<textarea class="part_header common_font common_header common_header-'.$part->getLevel().' part_header-'.$part->getLevel().'" name="text" id="part_header_textarea" style="border: 1px solid lightgrey; width: 100%; background: transparent; padding: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; '.$this->buildCSSStyle($part).'">'.
         Strings::escapeEncodedXML($part->getText()).
 		'</textarea>'.
 		'<input type="hidden" name="level" value="'.$part->getLevel().'"/>'.
@@ -93,35 +93,35 @@ class HeaderPartController extends PartController
 		'<input type="hidden" name="textDecoration" value="'.Strings::escapeEncodedXML($part->getTextDecoration()).'"/>'.
 		'<script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/header/script.js" type="text/javascript" charset="utf-8"></script>';
 	}
-	
+
 	function getIndex($part) {
 		$context = new PartContext();
 		$text = $part->getText();
 		$text = $context->decorateForIndex($text);
 		return $text;
 	}
-	
+
 	function getSectionClass($part) {
 		return 'part_section_header-'.$part->getLevel();
 	}
-	
+
 	function buildSub($part,$context) {
 		$text = $part->getText();
 		$text = Strings::escapeSimpleXML($text);
 		$text = $context->decorateForBuild($text,$part->getId());
 		$text = Strings::insertLineBreakTags($text,'<break/>');
-		return 
+		return
 			'<header level="'.$part->getLevel().'" xmlns="'.$this->getNamespace().'">'.
 			$this->buildXMLStyle($part).
 			$text.
 			'</header>';
 	}
-	
+
 	function importSub($node,$part) {
 		$xml = '<?xml version="1.0" encoding="ISO-8859-1"?>'.DOMUtils::getInnerXML($node);
 		$xsl = '<?xml version="1.0" encoding="ISO-8859-1"?>
 		<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-		 xmlns:t="http://uri.in2isoft.com/onlinepublisher/part/header/1.0/" exclude-result-prefixes="t">
+      xmlns:t="http://uri.in2isoft.com/onlinepublisher/part/header/1.0/" exclude-result-prefixes="t">
 		<xsl:output method="text" encoding="ISO-8859-1"/>
 
 		<xsl:template match="t:header"><xsl:apply-templates/></xsl:template>
@@ -141,10 +141,10 @@ class HeaderPartController extends PartController
 		}
 		$part->setLevel($level);
 		$this->parseXMLStyle($part,DOMUtils::getFirstDescendant($node,'style'));
-		
+
 		$part->setText($text);
 	}
-	
+
 	function getUI() {
 		return array(
 			array(
@@ -198,7 +198,7 @@ class HeaderPartController extends PartController
 			)
 		);
 	}
-		
+
 	function getToolbars() {
 		return array(
 			GuiUtils::getTranslated(array('Header','da'=>'Overskrift')) =>
