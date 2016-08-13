@@ -17,12 +17,13 @@ if (Request::exists('section')) {
 
 $pageId = InternalSession::getPageId();
 
-$stamp = ConfigurationService::getDeploymentTime();
-$cacheUrl = 'version'.$stamp.'/';
-$cachePrefix = '?version='.$stamp;
-if (ConfigurationService::isUrlRewrite()) {
-    $cachePrefix = '';
+$stylesheets = ['hui/bin/minimized.css', 'style/basic/css/parts.php', 'style/basic/css/document.css'];
+if (FileSystemService::canRead('style/'.$design.'/css/editor.css')) {
+  $stylesheets[] = 'style/'.$design.'/css/editor.css';
+} else if (FileSystemService::canRead('style/'.$design.'/css/overwrite.css')) {
+  $stylesheets[] = 'style/'.$design.'/css/overwrite.css';
 }
+$stylesheets[] = 'Editor/Template/document/css/stylesheet.css';
 
 echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 	<html>
@@ -30,22 +31,15 @@ echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.or
 		<title>Editor</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8">
 		';
-		echo '<link rel="stylesheet" type="text/css" href="../../../hui/'.$cacheUrl.'bin/minimized.css'.$cachePrefix.'" />
-		<link rel="stylesheet" type="text/css" href="../../../style/'.$cacheUrl.'basic/css/parts.php'.$cachePrefix.'" />
-		<link rel="stylesheet" type="text/css" href="../../../style/'.$cacheUrl.'basic/css/document.css'.$cachePrefix.'" />';
-		if (file_exists($basePath.'style/'.$design.'/css/editor.css')) {
-			echo '<link rel="stylesheet" type="text/css" href="../../../style/'.$cacheUrl.$design.'/css/editor.css'.$cachePrefix.'" />';
-		}
-		else if (file_exists($basePath.'style/'.$design.'/css/overwrite.css')) {
-			echo '<link rel="stylesheet" type="text/css" href="../../../style/'.$cacheUrl.$design.'/css/overwrite.css'.$cachePrefix.'" />';
-		}
+    foreach ($stylesheets as $stylesheet) {
+      echo '<link rel="stylesheet" type="text/css" href="' . ConfigurationService::getCachedUrl('../../../', $stylesheet) . '" />';
+    }
     echo '
-		<link rel="stylesheet" type="text/css" href="css/stylesheet.css'.$cachePrefix.'" />
-		<!--[if IE 8]><link rel="stylesheet" type="text/css" href="../../../hui/'.$cacheUrl.'css/msie8.css'.$cachePrefix.'"></link><![endif]-->
-		<!--[if lt IE 7]><link rel="stylesheet" type="text/css" href="../../../hui/'.$cacheUrl.'css/msie6.css'.$cachePrefix.'"></link><![endif]-->
-		<!--[if IE 7]><link rel="stylesheet" type="text/css" href="../../../hui/'.$cacheUrl.'css/msie7.css'.$cachePrefix.'"></link><![endif]-->
-		<!--[if lt IE 9]><script type="text/javascript" src="../../../hui/'.$cacheUrl.'bin/compatibility.min.js'.$cachePrefix.'" charset="UTF-8"></script><![endif]-->
-		<script type="text/javascript" src="'.$cacheUrl.'js/combined.php'.$cachePrefix.'" charset="UTF-8"></script>
+		<!--[if IE 8]><link rel="stylesheet" type="text/css" href="' . ConfigurationService::getCachedUrl('../../../', 'hui/css/msie8.css') . '"></link><![endif]-->
+		<!--[if lt IE 7]><link rel="stylesheet" type="text/css" href="' . ConfigurationService::getCachedUrl('../../../', 'hui/css/msie6.css') . '"></link><![endif]-->
+		<!--[if IE 7]><link rel="stylesheet" type="text/css" href="' . ConfigurationService::getCachedUrl('../../../', 'hui/css/msie7.css') . '"></link><![endif]-->
+		<!--[if lt IE 9]><script type="text/javascript" src="' . ConfigurationService::getCachedUrl('../../../', 'hui/bin/compatibility.min.js') . '" charset="UTF-8"></script><![endif]-->
+		<script type="text/javascript" src="' . ConfigurationService::getCachedUrl('../../../', 'Editor/Template/document/js/combined.php') . '" charset="UTF-8"></script>
 		<script type="text/javascript">
 			op.context = "../../../";
 			hui.ui.context = "../../../";
