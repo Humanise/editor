@@ -21,19 +21,25 @@
   .focus {
     margin: 40px 0;
     overflow: hidden;
-    padding: 0 20px; }
+    padding: 0 20px;
+    font-size: 0; }
     .focus_hand {
-      float: left; }
+      display: inline-block;
+      vertical-align: middle;
+      width: 30%;
+      height: 200px; }
     .focus_text {
+      display: inline-block;
+      vertical-align: middle;
+      width: 70%;
       font-size: 24px;
-      font-weight: 300;
-      margin-left: 240px; } }
+      font-weight: 300; } }
 @media screen and (min-width: 900px) {
   .focus {
-    margin: 40px 0; }
+    margin: 40px 0;
+    padding: 0; }
     .focus_hand {
-      float: left; }
+      height: 240px; }
     .focus_text {
       font-size: 32px;
-      font-weight: 300;
-      margin-left: 240px; } }
+      font-weight: 300; } }

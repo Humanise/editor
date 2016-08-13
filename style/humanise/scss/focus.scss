@@ -34,15 +34,21 @@ $target: async;
     margin: 40px 0;
     overflow: hidden;
     padding: 0 20px;
+    font-size: 0;
 
     &_hand {
-      float: left;
+      display: inline-block;
+      vertical-align: middle;
+      width: 30%;
+      height: 200px;
     }
 
     &_text {
+      display: inline-block;
+      vertical-align: middle;
+      width: 70%;
       font-size: 24px;
       font-weight: 300;
-      margin-left: 240px;
     }
   }
 }
@@ -50,15 +56,15 @@ $target: async;
 @include if ((width: 900px)) {
   .focus {
     margin: 40px 0;
+    padding: 0;
 
     &_hand {
-      float: left;
+      height: 240px;
     }
 
     &_text {
       font-size: 32px;
       font-weight: 300;
-      margin-left: 240px;
     }
   }
 }

@@ -3,7 +3,7 @@ $target: 'editor';
 
 body.editor,
 .editor .common_font,
-.editor p.common, 
+.editor p.common,
 .editor ul.common,
 .editor h1.common,.editor h2.common,.editor h3.common,.editor h4.common,.editor h5.common,.editor h6.common,
 .editor .part_header,
@@ -15,5 +15,6 @@ body.editor,
 @import "tools";
 @import "parts/call_to_action";
 @import "parts/layout_placards";
+@import "parts/hero";
 @import "parts/common";
 @import "parts/part";

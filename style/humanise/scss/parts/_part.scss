@@ -5,7 +5,8 @@
     font-weight: 300;
   }
 
-  .part_text
+  .part_text,
+  .part_richtext
   {
     font-size: 12pt;
     word-spacing: 1px;
@@ -17,8 +18,8 @@
 }
 
 @include if {
-  /************ Headers ***********/
 
+  /************ Headers ***********/
 
   .part_header-1
   {
@@ -83,12 +84,6 @@
 
 
   /*************** text *************/
-
-  .part_text,
-  .part_richtext
-  {
-    font-size: 12pt;
-  }
 
   .part_text strong,
   .part_richtext strong

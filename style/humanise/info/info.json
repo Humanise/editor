@@ -12,7 +12,6 @@
 
   "js" : [
     {"file" : "style/humanise/js/inline.js", "inline" : true},
-    "style/humanise/js/poster.js",
     "style/humanise/js/layout.js"
   ],
 

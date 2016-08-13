@@ -1,8 +1,3 @@
-@include if((target:inline)) {
-  .hero {
-  }
-}
-
 @include if {
   .hero {
     @include radial-gradient(#b34884,#00a8e6);

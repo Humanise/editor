@@ -51,10 +51,6 @@
   font-weight: 400; }
 
 /*************** text *************/
-.part_text,
-.part_richtext {
-  font-size: 12pt; }
-
 .part_text strong,
 .part_richtext strong {
   color: #000;

@@ -52,7 +52,8 @@ p.common, ul.common {
   color: #000;
   font-weight: 300; }
 
-.part_text {
+.part_text,
+.part_richtext {
   font-size: 12pt;
   word-spacing: 1px;
   line-height: 1.4;
