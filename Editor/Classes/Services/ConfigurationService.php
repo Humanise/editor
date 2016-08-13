@@ -40,6 +40,16 @@ class ConfigurationService {
     return $time;
 	}
 
+  static function getCachedUrl($relative, $path) {
+    $stamp = ConfigurationService::getDeploymentTime();
+    if (ConfigurationService::isUrlRewrite()) {
+      return $relative . 'version' . $stamp . '/' . $path;
+    } else {
+      // TODO What if $path already has '?'
+      return $relative . $path . '?version=' . $stamp;
+    }
+  }
+
 	static function isCachePages() {
 		return ConfigurationService::_getConfig('cachepages',!true);
 	}

@@ -21,12 +21,32 @@ class CustomPartController extends PartController
 	}
 
 	function display($part,$context) {
-    // TODO: output CSS + maybe JS
-		return $this->render($part,$context);
+		return $this->render($part,$context) . $this->resources($part);
 	}
 
+  private function resources($part) {
+    $view = View::load($part->getViewId());
+    $css = '';
+    if ($view) {
+      $path = $view->getPath();
+      $cssFiles = ['inline.css','async.css'];
+      foreach ($cssFiles as $file) {
+        $fullPath = FileSystemService::join($path, $file);
+        if (FileSystemService::canRead($fullPath)) {
+          $url = ConfigurationService::getCachedUrl('../../../', $fullPath);
+          $css .= '<link rel="stylesheet" type="text/css" href="' . $url . '"/>';
+        }
+      }
+    } else {
+      Log::debug('No view');
+    }
+    return $css;
+  }
+
 	function editor($part,$context) {
-		return '<div id="part_custom_container">'.$this->render($part,$context).'</div>'.
+
+		return '<div id="part_custom_container">' . $this->render($part,$context) . '</div>' .
+      $this->resources($part) .
 
     $this->buildHiddenFields([
 			'workflowId' => $part->getWorkflowId(),
