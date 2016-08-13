@@ -131,16 +131,16 @@ $databaseTables = array(
       array("class","varchar(255)","YES","","","")
     ),
   'email_validation_session' => array(
-            array("id","int(11)","","PRI","","auto_increment"),
-            array("unique","varchar(255)","","","",""),
-            array("user_id","int(11)","","","0",""),
-            array("email","varchar(255)","","","",""),
-            array("timelimit","datetime","","","0000-00-00 00:00:00","")
-      ),
+      array("id","int(11)","","PRI","","auto_increment"),
+      array("unique","varchar(255)","","","",""),
+      array("user_id","int(11)","","","0",""),
+      array("email","varchar(255)","","","",""),
+      array("timelimit","datetime","","","0000-00-00 00:00:00","")
+    ),
   'emailaddress' => array(
       array("object_id","int(11)","","","0",""),
-            array("address","varchar(255)","YES","","",""),
-            array("containing_object_id","int(11)","","","0","")
+      array("address","varchar(255)","YES","","",""),
+      array("containing_object_id","int(11)","","","0","")
     ),
   'event' => array(
       array("object_id","int(11)","YES","","",""),
@@ -271,10 +271,10 @@ $databaseTables = array(
       array("page_id","int(11)","","PRI","0",""),
       array("title","varchar(255)","","","",""),
       array("text","text","YES","","",""),
-            array("imagesize","int(11)","","","48",""),
-            array("showtitle","tinyint(1)","","","1",""),
-            array("shownote","tinyint(1)","","","1",""),
-            array("rotate","int(11)","","","0","")
+      array("imagesize","int(11)","","","48",""),
+      array("showtitle","tinyint(1)","","","1",""),
+      array("shownote","tinyint(1)","","","1",""),
+      array("rotate","int(11)","","","0","")
     ),
   'imagegallery_custom_info' => array(
       array("id","int(11)","","PRI","","auto_increment"),
