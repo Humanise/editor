@@ -43,12 +43,11 @@
 
 <xsl:template match="txt:image">
 	<xsl:variable name="src"><xsl:call-template name="txt:buildsrc"/></xsl:variable>
-	
 	<img src="{$src}">
 	<xsl:attribute name="class">
 		<xsl:choose>
-			<xsl:when test="@float='left'"><xsl:text>part_text_image_left</xsl:text></xsl:when>
-			<xsl:otherwise><xsl:text>part_text_image_right</xsl:text></xsl:otherwise>
+			<xsl:when test="@float='left'"><xsl:text>part_text_image-left</xsl:text></xsl:when>
+			<xsl:otherwise><xsl:text>part_text_image-right</xsl:text></xsl:otherwise>
 		</xsl:choose>
 	</xsl:attribute>
 	</img>

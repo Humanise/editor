@@ -5,15 +5,8 @@
 
 .part_text
 {
-	font-size: 9pt;
 	line-height: 1.4em;
-	color: #333;
   word-break: break-word;
-}
-
-.part_text_image
-{
-	overflow: hidden;
 }
 
 .part_text p
@@ -26,13 +19,18 @@ p.part_text_first
 	margin: 0;
 }
 
-.part_text_image_right
+.part_text_image
+{
+	overflow: hidden;
+}
+
+.part_text_image-right
 {
 	float: right;
 	margin: 0px 0px 10px 10px;
 }
 
-.part_text_image_left
+.part_text_image-left
 {
 	float: left;
 	margin: 0px 10px 10px 0px;
