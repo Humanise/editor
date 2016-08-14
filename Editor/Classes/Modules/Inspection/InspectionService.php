@@ -20,6 +20,7 @@ class InspectionService {
     InspectionService::checkEnvironment($inspections);
     InspectionService::checkLinks($inspections);
     InspectionService::checkObjects($inspections);
+    InspectionService::checkImages($inspections);
 
     $inspectors = ClassService::getByInterface('Inspector');
     foreach ($inspectors as $inspectorClass) {
@@ -149,6 +150,21 @@ class InspectionService {
       $inspection->setEntity($entity);
       $inspection->setStatus('error');
       $inspection->setText('Siden har intet design');
+      $inspections[] = $inspection;
+    }
+    Database::free($result);
+  }
+
+  static function checkImages(&$inspections) {
+    $sql = "select object.title,object.id from image, object where object.id=image.object_id and image.type not in ('image/png','image/jpeg','image/gif')";
+    $result = Database::select($sql);
+    while ($row = Database::next($result)) {
+      $entity = ['type'=>'image','title'=>$row['title'],'id'=>$row['id'],'icon'=>'common/image'];
+      $inspection = new Inspection();
+      $inspection->setCategory('model');
+      $inspection->setEntity($entity);
+      $inspection->setStatus('error');
+      $inspection->setText('The image has an unknown type');
       $inspections[] = $inspection;
     }
     Database::free($result);
