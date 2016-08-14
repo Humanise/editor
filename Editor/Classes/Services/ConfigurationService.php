@@ -54,6 +54,10 @@ class ConfigurationService {
 		return ConfigurationService::_getConfig('cachepages',!true);
 	}
 
+	static function isPublicSession() {
+		return ConfigurationService::_getConfig('publicsession',true);
+	}
+
 	static function getShellPath() {
 		return ConfigurationService::_getConfig('shellpath','');
 	}
