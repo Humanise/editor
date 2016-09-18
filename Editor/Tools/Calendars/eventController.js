@@ -11,10 +11,9 @@ hui.ui.listen({
 		}
 	},
 	$select$list : function(value) {
-		if (value.kind=='event') {
-			deleteItem.setEnabled(true);
-			editItem.setEnabled(true);
-		}
+		var enabled = value && value.kind=='event';
+		deleteItem.setEnabled(enabled);
+		editItem.setEnabled(enabled);
 	},
 	$selectionReset$list : function() {
 		deleteItem.setEnabled(false);
