@@ -21,8 +21,10 @@ require_once 'Editor/Classes/Services/ConfigurationService.php';
 require_once 'Editor/Classes/Services/CacheService.php';
 
 // TODO Is it necessary to start the session each time?
-session_set_cookie_params(0);
-session_start();
+if (ConfigurationService::isPublicSession()) {
+  session_set_cookie_params(0);
+  session_start();
+}
 
 if (!Database::testConnection()) {
   RenderingService::displayMessage([
