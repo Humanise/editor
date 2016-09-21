@@ -1,12 +1,12 @@
 hui.ui.listen({
-	
+
 	dragDrop : [
 		{drag:'news',drop:'newsgroup'}
 	],
 	uploadWindow : null,
 	groupId : null,
 	fileId : null,
-	
+
 	$ready : function() {
 		hui.ui.tellContainers('changeSelection','tool:News');
 		var newsInfo = hui.location.getInt('newsInfo');
@@ -14,27 +14,21 @@ hui.ui.listen({
 			this.loadNews(newsInfo);
 		}
 	},
-	
+
 	$select$list : function(item) {
-		if (item.kind=='news') {
-			hui.ui.get('delete').setEnabled(true);
-			hui.ui.get('info').setEnabled(true);
-			hui.ui.get('duplicate').setEnabled(true);
-		}
-	},
-	$selectionReset$list : function() {
-		hui.ui.get('delete').setEnabled(false);
-		hui.ui.get('info').setEnabled(false);
-		hui.ui.get('duplicate').setEnabled(false);
+    var enabled = item && item.kind=='news';
+		hui.ui.get('delete').setEnabled(enabled);
+		hui.ui.get('info').setEnabled(enabled);
+		hui.ui.get('duplicate').setEnabled(enabled);
 	},
 	$open$list : function(obj) {
 		this.loadNews(obj.id);
 	},
-	
+
 	$valueChanged$search : function() {
 		list.resetState();
 	},
-	
+
 	$select$selector : function(item) {
 		list.resetState();
 		if (item.kind=='newssource') {
@@ -46,9 +40,9 @@ hui.ui.listen({
 			hui.ui.changeState('default');
 		}
 	},
-	
+
 	//////////////////////// Dragging ////////////////////////
-	
+
 	$drop$news$newsgroup : function(dragged,dropped) {
 		hui.ui.request({
 			url : 'actions/AddNewsToGroup.php',
@@ -60,9 +54,9 @@ hui.ui.listen({
 			}
 		});
 	},
-	
+
 	//////////////////////// Actions /////////////////////////
-	
+
 	$click$delete : function() {
 		var obj = list.getFirstSelection();
 		if (obj.id===this.newsId) {
@@ -87,10 +81,10 @@ hui.ui.listen({
 		var obj = list.getFirstSelection();
 		this.loadNews(obj.id);
 	},
-	
+
 	//////////////////////// Properties //////////////////////
-	
-	
+
+
 	$click$duplicate : function(id) {
 		var obj = list.getFirstSelection();
 		hui.ui.request({
@@ -121,7 +115,7 @@ hui.ui.listen({
 		newsWindow.show();
 		newsFormula.focus();
 	},
-	
+
 	loadNews : function(id) {
 		hui.ui.request({
 			url:'data/LoadNews.php',
@@ -130,7 +124,7 @@ hui.ui.listen({
 			message:{start:{en:'Loading news item...',da:'Åbner nyhed...'},delay:300}
 		});
 	},
-	
+
 	$success$newsLoaded : function(data) {
 		this.newsId = data.news.id;
 		newsFormula.setValues(data.news);
@@ -182,10 +176,10 @@ hui.ui.listen({
 		newsSource.refresh();
 		groupSource.refresh();
 	},
-	
+
 	////////////////////////// Group /////////////////////////
-	
-	
+
+
 	$click$newGroup : function() {
 		this.groupId = null;
 		deleteGroup.setEnabled(false);
@@ -264,9 +258,9 @@ hui.ui.listen({
 		var item = selector.getValue();
 		window.open('../../../services/news/rss/?group='+item.value);
 	},
-	
+
 	////////////////////// Articles /////////////////////
-	
+
 	$click$newArticle : function() {
 		newArticleBox.show();
 		articleFormula.setValues({

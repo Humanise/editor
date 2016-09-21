@@ -2,23 +2,18 @@ hui.ui.listen({
 	//dragDrop : [
 	//	{drag:'event',drop:'calendar'}
 	//],
-	
+
 	//////// List ////////
-	
+
 	$open$list : function(item) {
 		if (item.kind=='event') {
 			this.loadEvent(item.id);
 		}
 	},
 	$select$list : function(value) {
-		if (value.kind=='event') {
-			deleteItem.setEnabled(true);
-			editItem.setEnabled(true);
-		}
-	},
-	$selectionReset$list : function() {
-		deleteItem.setEnabled(false);
-		editItem.setEnabled(false);
+		var enabled = value && value.kind=='event';
+		deleteItem.setEnabled(enabled);
+		editItem.setEnabled(enabled);
 	},
 	$click$editItem : function() {
 		var obj  = list.getFirstSelection();
@@ -32,13 +27,13 @@ hui.ui.listen({
 			this.deleteEvent(obj.id);
 		}
 	},
-	
+
 	///////////// Other ///////////
-	
+
 	loadEvent : function(id) {
 		hui.ui.request({parameters:{id:id},url:'data/LoadEvent.php',$success:'loadEvent'});
 	},
-	
+
 	$drop$event$calendar : function(dragged,dropped) {
 		//alert(Object.toJSON(dragged));
 		//alert(Object.toJSON(dropped));
@@ -51,7 +46,7 @@ hui.ui.listen({
 		eventWindow.show();
 		eventFormula.focus();
 	},
-	
+
 	$click$cancelEvent : function() {
 		this.eventId = null;
 		eventFormula.reset();
@@ -87,7 +82,7 @@ hui.ui.listen({
 		eventWindow.hide();
 		list.refresh();
 	},
-	
+
 	$click$newEvent : function() {
 		this.eventId = null;
 		eventFormula.reset();
@@ -111,5 +106,5 @@ hui.ui.listen({
 		eventWindow.hide();
 		list.refresh();
 	}
-	
+
 });

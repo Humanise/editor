@@ -1,4 +1,8 @@
 hui.ui.listen({
+  $ready : function() {
+		hui.ui.tellContainers('changeSelection','tool:Builder');
+	},
+
   $click$heartbeat : function(icon) {
     icon.setEnabled(false);
     hui.ui.request({
