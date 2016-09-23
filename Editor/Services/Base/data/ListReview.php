@@ -10,10 +10,7 @@ $query = array($subset => true);
 
 $list = ReviewService::search($query);
 
-
 $writer = new ListWriter();
-	
-
 
 $writer->startList()->
 	startHeaders()->
@@ -28,6 +25,6 @@ foreach ($list as $review) {
 	endRow();
 }
 
-$writer->endList();	
+$writer->endList();
 
 ?>
