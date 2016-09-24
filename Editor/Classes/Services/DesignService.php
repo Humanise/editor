@@ -240,7 +240,7 @@ class DesignService {
       } else {
         $folder = FileSystemService::folderOfPath($file);
         $css = DesignService::_read($file);
-        $out .= DesignService::fixUrls($css, $folder, '../../');
+        $out .= DesignService::fixUrls($css, $folder, '../../../');
       }
     }
     return $out;
@@ -254,7 +254,7 @@ class DesignService {
       $local = rtrim($matches[2],"'\"");
       $joined = FileSystemService::join($context,$local);
 
-      return 'url(\'' . $prefix . DesignService::normalizePath($joined) . '\'';
+      return 'url(\'' . $prefix . 'version' . ConfigurationService::getDeploymentTime() . '/' .  DesignService::normalizePath($joined) . '\'';
     }, $css);
   }
 
