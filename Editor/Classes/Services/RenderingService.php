@@ -126,7 +126,13 @@ class RenderingService {
     $templatePath = $incPath.'style/'.$contentDesign.'/xslt/'.$template.'.xsl';
     $encoding = ConfigurationService::isUnicode() ? 'UTF-8' : 'ISO-8859-1';
 
-    $absolutePath = 'http://' . @$_SERVER['HTTP_HOST'];
+    $secure = Request::isSecure();
+    $protocol = $secure ? 'https' : 'http';
+    if ($secure) {
+      $urlPath = str_replace('http:', 'https:', $urlPath);
+    }
+
+    $absolutePath = $protocol . '://' . @$_SERVER['HTTP_HOST'];
     $absolutePagePath = $absolutePath . @$_SERVER['REQUEST_URI'];
     $absolutePath .= '/';
 
@@ -143,6 +149,7 @@ class RenderingService {
       'template' => $template,
       'userid' => $userId,
       'username' => $userName,
+      'protocol' => $protocol,
       'usertitle' => $userTitle,
       'internal-logged-in' => InternalSession::isLoggedIn() ? 'true' : 'false',
       'preview' => $preview ? 'true' : 'false',

@@ -115,6 +115,7 @@ class PartController
     '<xsl:variable name="path">../../../</xsl:variable>'.
     '<xsl:variable name="navigation-path"></xsl:variable>'.
     '<xsl:variable name="page-path"></xsl:variable>'.
+    '<xsl:variable name="protocol">' . (Request::isSecure() ? 'https' : 'http') . '</xsl:variable>'.
     '<xsl:variable name="data-path">' . ConfigurationService::getDataUrl() . '</xsl:variable>'.
     '<xsl:variable name="template"></xsl:variable>'.
     '<xsl:variable name="userid"></xsl:variable>'.
