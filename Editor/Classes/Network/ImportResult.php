@@ -4,40 +4,40 @@ if (!isset($GLOBALS['basePath'])) {
 	exit;
 }
 class ImportResult {
-	
+
 	var $success = false;
 	var $message = null;
 	var $object = null;
-	
+
 	static function fail($message) {
 		$result = new ImportResult();
 		$result->setMessage($message);
 		return $result;
 	}
-	
+
 	function setSuccess($success) {
-	    $this->success = $success;
+    $this->success = $success;
 	}
 
 	function getSuccess() {
-	    return $this->success;
+    return $this->success;
 	}
-	
+
 	function setMessage($message) {
-	    $this->message = $message;
+    $this->message = $message;
 	}
 
 	function getMessage() {
-	    return $this->message;
+    return $this->message;
 	}
-	
+
 	function setObject($object) {
-	    $this->object = $object;
+    $this->object = $object;
 	}
 
 	function getObject() {
-	    return $this->object;
+    return $this->object;
 	}
-	
+
 }
 ?>
