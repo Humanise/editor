@@ -125,11 +125,13 @@ class RenderingService {
     $mainPath = $incPath.'style/'.$mainDesign.'/xslt/'.$mainFile.'.xsl';
     $templatePath = $incPath.'style/'.$contentDesign.'/xslt/'.$template.'.xsl';
     $encoding = ConfigurationService::isUnicode() ? 'UTF-8' : 'ISO-8859-1';
-
+    $dataUrl = ConfigurationService::getDataUrl();
     $secure = Request::isSecure();
     $protocol = $secure ? 'https' : 'http';
     if ($secure) {
+      // TODO more robust way of doing this
       $urlPath = str_replace('http:', 'https:', $urlPath);
+      $dataUrl = str_replace('http:', 'https:', $dataUrl);
     }
 
     $absolutePath = $protocol . '://' . @$_SERVER['HTTP_HOST'];
@@ -144,7 +146,7 @@ class RenderingService {
       'navigation-path' => $navigationPath,
       'page-path' => $pagePath,
       'absolute-path' => $absolutePath,
-      'data-path' => ConfigurationService::getDataUrl(),
+      'data-path' => $dataUrl,
       'absolute-page-path' => $absolutePagePath,
       'template' => $template,
       'userid' => $userId,
