@@ -128,11 +128,6 @@ class RenderingService {
     $dataUrl = ConfigurationService::getDataUrl();
     $secure = Request::isSecure();
     $protocol = $secure ? 'https' : 'http';
-    if ($secure) {
-      // TODO more robust way of doing this
-      $urlPath = str_replace('http:', 'https:', $urlPath);
-      $dataUrl = str_replace('http:', 'https:', $dataUrl);
-    }
 
     $absolutePath = $protocol . '://' . @$_SERVER['HTTP_HOST'];
     $absolutePagePath = $absolutePath . @$_SERVER['REQUEST_URI'];
