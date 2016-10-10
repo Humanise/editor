@@ -30,17 +30,27 @@ class ApiService {
 	}
 
   static function appPost() {
+    $text = Request::getString('text');
     if (isset($_FILES['file'])) {
       $fileName = $_FILES['file']['name'];
       $tempFile = $_FILES['file']['tmp_name'];
       $title = 'Photo from app';
       $result = ImageService::createImageFromFile($tempFile,$fileName,$title);
       if ($result->getSuccess()) {
-        $image = $result->getObject();
-        $image->setNote(Request::getString('text'));
-        $image->save();
-        $image->publish();
+        if (Strings::isNotBlank($text)) {
+          $image = $result->getObject();
+          $image->setNote($text);
+          $image->save();
+          $image->publish();
+        }
       }
+    }
+    else if (Strings::isNotBlank($text)) {
+      $news = new News();
+      $news->setTitle(Strings::shortenString($text, 20));
+      $news->setNote($text);
+      $news->save();
+      $news->publish();
     }
   }
 }
