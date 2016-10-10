@@ -278,7 +278,7 @@ class DesignService {
     foreach ($files as $file) {
       $folder = FileSystemService::folderOfPath($file);
       $str = DesignService::_read($file);
-      $css .= DesignService::fixUrls($str, $folder, '/');
+      $css .= DesignService::fixUrls($str, $folder, '/version' . ConfigurationService::getDeploymentTime() . '/');
     }
     return $css;
   }
