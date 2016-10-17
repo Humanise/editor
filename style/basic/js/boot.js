@@ -1,7 +1,7 @@
 /* require & define https://curiosity-driven.org/minimal-loader#final*/
 !function(){function n(n,e){e in r?n(e,r[e]):i[e]?i[e].push(n):i[e]=[n]}function e(n,e){r[n]=e;var t=i[n];t&&(t.forEach(function(t){t(n,e)}),i[n]=0)}function t(e,t){var i=e.length;if(i){var r=[],f=0;e.forEach(n.bind(0,function(n,o){r[e.indexOf(n)]=o,++f>=i&&t.apply(0,r)}))}else t()}var i={},r={};require=t,define=function(n,i,r){r?t(i,function(){e(n,r.apply(0,arguments))}):e(n,i)}}();
 
-(function(window,document) {    
+(function(window,document) {
   window._editor = {
     ready : function(delegate) {
       if (document.readyState == 'complete') {
@@ -51,7 +51,7 @@
         for (variable in attributes) {
           e.setAttribute(variable,attributes[variable]);
         }
-        return e;        
+        return e;
     },
     inject : function(node) {
         var h = document.getElementsByTagName('head')[0];

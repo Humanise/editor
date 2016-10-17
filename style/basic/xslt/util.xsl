@@ -676,14 +676,15 @@ i.parentNode.insertBefore(o,i)}}}})}},_editor.processNoscript()}(window,document
     <xsl:param name="class" select="'font'"/>
     <xsl:call-template name="util:script-inline">
         <xsl:with-param name="file" select="'style/basic/js/boot_fonts.js'"/>
-        <xsl:with-param name="compiled"><![CDATA[!function(e,t,l){l.loadFont=function(o){for(var n=o.weights||["normal"],i={},a=n.length,s=function(l){var n=t.createElement("div")
-n.style.position="absolute",n.style.whiteSpace="nowrap",n.style.top="-9999px",n.style.left="-9999px",n.style.font="999px fantasy",n.style.fontWeight=l,n.innerHTML="Am-i#w^o",t.body.appendChild(n)
-var s=n.clientWidth
-n.style.fontFamily="'"+o.family+"',fantasy"
-var r,c=.01;(r=function(){c*=1.5
-var f=n.clientWidth
-0==s||s!=f&&!i[f]?(a--,console.log("found: "+l+","+s+"/"+n.clientWidth),0==a&&(console.log("finished: "+o.family),t.body.className+=" "+o.cls,e.localStorage&&localStorage.setItem(o.href,"1")),i[f]=1,n.parentNode.removeChild(n)):e.setTimeout(r,c)})()},r=0;r<n.length;r++)s(n[r])
-l.inject(l._build("link",{rel:"stylesheet",type:"text/css",href:o.href}))}}(window,document,_editor)
+        <xsl:with-param name="compiled"><![CDATA[!function(e,t,s){s.loadFont=function(n){if(e.sessionStorage&&sessionStorage.getItem(n.href))t.body.className+=" "+n.cls
+else for(var o=n.weights||["normal"],i={},l=o.length,a=function(s){var o=t.createElement("div")
+o.style.position="absolute",o.style.whiteSpace="nowrap",o.style.top="-9999px",o.style.left="-9999px",o.style.font="999px fantasy",o.style.fontWeight=s,o.innerHTML="Am-i#w^o",t.body.appendChild(o)
+var a=o.clientWidth
+o.style.fontFamily="'"+n.family+"',fantasy"
+var r,f=.01;(r=function(){f*=1.5
+var s=o.clientWidth
+0==a||a!=s&&!i[s]?(l--,0==l&&(t.body.className+=" "+n.cls,e.sessionStorage&&sessionStorage.setItem(n.href,"1")),i[s]=1,o.parentNode.removeChild(o)):e.setTimeout(r,f)})()},r=0;r<o.length;r++)a(o[r])
+s.inject(s._build("link",{rel:"stylesheet",type:"text/css",href:n.href}))}}(window,document,_editor)
 ]]></xsl:with-param>
     </xsl:call-template>
     <script>_editor.loadFont({href:'<xsl:value-of select="$href"/>',family:'<xsl:value-of select="$family"/>',cls:'<xsl:value-of select="$class"/>'<xsl:if test="$weights!=''">,weights:'<xsl:value-of select="$weights"/>'.split(',')</xsl:if>});</script>

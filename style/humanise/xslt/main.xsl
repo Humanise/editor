@@ -52,7 +52,7 @@
     </xsl:if>
 
     <xsl:call-template name="util:load-font">
-      <xsl:with-param name="href" select="'http://fonts.googleapis.com/css?family=Lato:300,400,700,900'"/>
+      <xsl:with-param name="href" select="'//fonts.googleapis.com/css?family=Lato:300,400,700,900'"/>
       <xsl:with-param name="family" select="'Lato'"/>
       <xsl:with-param name="weights" select="'300,400,700'"/>
     </xsl:call-template>

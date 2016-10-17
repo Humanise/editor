@@ -19,37 +19,37 @@
   <xsl:template match="p:page">
     <xsl:call-template name="util:doctype"/>
     <html>
-    	<xsl:call-template name="util:html-attributes"/>
+      <xsl:call-template name="util:html-attributes"/>
       <head>
-      	<title>
-      		<xsl:if test="not(//p:page/@id=//p:context/p:home/@page)"> 
-      			<xsl:value-of select="@title"/>
-      			<xsl:text> - </xsl:text>
-      		</xsl:if>
-      		<xsl:value-of select="f:frame/@title"/>
-      	</title>
-      	<xsl:call-template name="util:metatags"/>
+        <title>
+          <xsl:if test="not(//p:page/@id=//p:context/p:home/@page)">
+            <xsl:value-of select="@title"/>
+            <xsl:text> - </xsl:text>
+          </xsl:if>
+          <xsl:value-of select="f:frame/@title"/>
+        </title>
+        <xsl:call-template name="util:metatags"/>
+        <xsl:call-template name="util:js"/>
         <link href='https://fonts.googleapis.com/css?family=Neuton:400,300,500,600' rel='stylesheet' type='text/css'/>
         <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,100,700' rel='stylesheet' type='text/css'/>
-      	<xsl:if test="//p:design/p:parameter[@key='theme']">
-      		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,600,300,200' rel='stylesheet' type='text/css'/>
-      		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200' rel='stylesheet' type='text/css'/>
-      	</xsl:if>
-      	<xsl:call-template name="util:style"/>
-      	<xsl:call-template name="util:scripts"/>
+        <xsl:if test="//p:design/p:parameter[@key='theme']='cv'">
+          <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,600,300,200' rel='stylesheet' type='text/css'/>
+          <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200' rel='stylesheet' type='text/css'/>
+        </xsl:if>
+        <xsl:call-template name="util:css"/>
       </head>
       <body>
-      	<xsl:if test="//p:design/p:parameter[@key='theme']">
-      		<xsl:attribute name="class">
-      			<xsl:text>theme_</xsl:text><xsl:value-of select="//p:design/p:parameter[@key='theme']"/>
-      		</xsl:attribute>
-      	</xsl:if>
-      	<xsl:choose>
-      		<xsl:when test="//html:html">
-      			<xsl:apply-templates select="p:content"/>
-      		</xsl:when>
-      		<xsl:otherwise>
-      			<div class="layout">
+        <xsl:if test="//p:design/p:parameter[@key='theme']">
+          <xsl:attribute name="class">
+            <xsl:text>theme_</xsl:text><xsl:value-of select="//p:design/p:parameter[@key='theme']"/>
+          </xsl:attribute>
+        </xsl:if>
+        <xsl:choose>
+          <xsl:when test="//html:html">
+            <xsl:apply-templates select="p:content"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <div class="layout">
               <div class="layout_header">
                 <a class="layout_logo">
                   <xsl:attribute name="href">
@@ -60,97 +60,97 @@
                   </xsl:attribute>
                   <xsl:text>Jonas Munk</xsl:text>
                 </a>
-    					<xsl:call-template name="navigation-first-level"/>
+              <xsl:call-template name="navigation-first-level"/>
               </div>
-      				<div class="layout_content">
-      					<xsl:call-template name="navigation-second-level"/>
-      					<xsl:apply-templates select="p:content"/>
-      					<xsl:comment/>
-      				</div>
-      				<div class="layout_footer">
-      					<a href="http://www.humanise.dk/" class="layout_designed">Designet og udviklet af Humanise</a>
-      				</div>
-      			</div>
-      		</xsl:otherwise>
-      	</xsl:choose>
-      	<xsl:call-template name="util:googleanalytics"/>
+              <div class="layout_content">
+                <xsl:call-template name="navigation-second-level"/>
+                <xsl:apply-templates select="p:content"/>
+                <xsl:comment/>
+              </div>
+              <div class="layout_footer">
+                <a href="http://www.humanise.dk/" class="layout_designed">Designet og udviklet af Humanise</a>
+              </div>
+            </div>
+          </xsl:otherwise>
+        </xsl:choose>
+        <xsl:call-template name="util:googleanalytics"/>
       </body>
     </html>
   </xsl:template>
 
   <xsl:template name="navigation-first-level">
-  	<xsl:if test="//f:frame/h:hierarchy/h:item[not(@hidden='true')]">
-  		<ul class="layout_menu">
-  			<xsl:for-each select="//f:frame/h:hierarchy/h:item">
-  				<xsl:if test="not(@hidden='true')">
-  					<li class="layout_menu_item">
-  						<a>
+    <xsl:if test="//f:frame/h:hierarchy/h:item[not(@hidden='true')]">
+      <ul class="layout_menu">
+        <xsl:for-each select="//f:frame/h:hierarchy/h:item">
+          <xsl:if test="not(@hidden='true')">
+            <li class="layout_menu_item">
+              <a>
                 <xsl:attribute name="class">
                   <xsl:text>layout_menu_link</xsl:text>
-      						<xsl:choose>
-      							<xsl:when test="//p:page/@id=@page"><xsl:text> is-selected</xsl:text></xsl:when>
-      							<xsl:when test="descendant-or-self::*/@page=//p:page/@id"><xsl:text> is-active</xsl:text></xsl:when>
-      						</xsl:choose>
+                  <xsl:choose>
+                    <xsl:when test="//p:page/@id=@page"><xsl:text> is-selected</xsl:text></xsl:when>
+                    <xsl:when test="descendant-or-self::*/@page=//p:page/@id"><xsl:text> is-active</xsl:text></xsl:when>
+                  </xsl:choose>
                 </xsl:attribute>
-  							<xsl:call-template name="util:link"/>
-  							<xsl:value-of select="@title"/>
-  						</a>
-  					</li>
-  				</xsl:if>
-  			</xsl:for-each>
-  		</ul>
-  	</xsl:if>
+                <xsl:call-template name="util:link"/>
+                <xsl:value-of select="@title"/>
+              </a>
+            </li>
+          </xsl:if>
+        </xsl:for-each>
+      </ul>
+    </xsl:if>
   </xsl:template>
-  
+
   <xsl:template name="navigation-second-level">
-  	<xsl:if test="//f:frame/h:hierarchy/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item[not(@hidden='true')]">
-  		<ul class="layout_submenu">
-  			<xsl:for-each select="//f:frame/h:hierarchy/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item">
-  				<xsl:if test="not(@hidden='true')">
-  					<li class="layout_submenu_item">
-  						<a>
+    <xsl:if test="//f:frame/h:hierarchy/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item[not(@hidden='true')]">
+      <ul class="layout_submenu">
+        <xsl:for-each select="//f:frame/h:hierarchy/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item">
+          <xsl:if test="not(@hidden='true')">
+            <li class="layout_submenu_item">
+              <a>
                 <xsl:attribute name="class">
                   <xsl:text>layout_submenu_link</xsl:text>
-      						<xsl:choose>
-      							<xsl:when test="//p:page/@id=@page"><xsl:text> is-selected</xsl:text></xsl:when>
-      							<xsl:when test="descendant-or-self::*/@page=//p:page/@id"><xsl:text> is-active</xsl:text></xsl:when>
-      						</xsl:choose>
+                  <xsl:choose>
+                    <xsl:when test="//p:page/@id=@page"><xsl:text> is-selected</xsl:text></xsl:when>
+                    <xsl:when test="descendant-or-self::*/@page=//p:page/@id"><xsl:text> is-active</xsl:text></xsl:when>
+                  </xsl:choose>
                 </xsl:attribute>
-  							<xsl:call-template name="util:link"/>
-  							<xsl:value-of select="@title"/>
-  						</a>
-  					</li>
-  				</xsl:if>
-  			</xsl:for-each>
-  		</ul>
-  	</xsl:if>
+                <xsl:call-template name="util:link"/>
+                <xsl:value-of select="@title"/>
+              </a>
+            </li>
+          </xsl:if>
+        </xsl:for-each>
+      </ul>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="widget:bio">
     <ul class="bio">
       <xsl:for-each select="widget:event">
-      	<li class="bio_event">
-      		<span class="bio_time">
+        <li class="bio_event">
+          <span class="bio_time">
             <xsl:value-of select="@from"/>
             <span class="bio_time_divider"> &#8594; </span>
             <xsl:value-of select="@to"/>
           </span>
           <strong class="bio_title"><xsl:value-of select="widget:title"/></strong>, <span class="bio_place"><xsl:value-of select="widget:place"/></span>
           <xsl:if test="widget:link or widget:point">
-      		<ol class="bio_points">
+          <ol class="bio_points">
             <xsl:for-each select="widget:point">
-        			<li class="bio_point"><strong><xsl:value-of select="@prefix"/>: </strong><xsl:value-of select="."/></li>
+              <li class="bio_point"><strong><xsl:value-of select="@prefix"/>: </strong><xsl:value-of select="."/></li>
             </xsl:for-each>
             <xsl:if test="widget:link">
-        			<li class="bio_point">
+              <li class="bio_point">
                 <xsl:for-each select="widget:link">
-            			<a href="{@href}" class="common_link"><span class="common_link_text"><xsl:value-of select="."/></span></a><xsl:text> </xsl:text>
+                  <a href="{@href}" class="common_link"><span class="common_link_text"><xsl:value-of select="."/></span></a><xsl:text> </xsl:text>
                 </xsl:for-each>
               </li>
             </xsl:if>
-      		</ol>
+          </ol>
           </xsl:if>
-      	</li>
+        </li>
       </xsl:for-each>
     </ul>
   </xsl:template>

@@ -5,7 +5,7 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 class Request {
-  
+
   static function getParameters() {
     $query = $_SERVER['QUERY_STRING'];
     $parameters = array();
@@ -15,6 +15,16 @@ class Request {
       $parameters[] = array('name' => @$pair[0] , 'value' => @$pair[1]);
     }
     return $parameters;
+  }
+
+  static function isSecure() {
+    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+        return true;
+    }
+    elseif (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on') {
+        return true;
+    }
+    return false;
   }
 
   /**

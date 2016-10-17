@@ -10,8 +10,6 @@ if ($calendarId>0) {
 	listEvents($calendarId,$force);
 }
 
-$events = Event::search($query);
-
 function listEvents($id,$force) {
 
 	$query = array('calendarId'=>$id);

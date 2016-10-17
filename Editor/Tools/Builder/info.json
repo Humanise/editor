@@ -1,8 +1,8 @@
 {
 	"key" : "Builder",
-	"icon" : "application/calendars",
+	"icon" : "common/tools",
 	"name" : {"da" : "Bygger", "en" : "Builder"},
 	"description" : {"da" : "Byg noget", "en" : "Build something"},
-	"category" : "edit",
+	"category" : "setup",
 	"priority" : 99
 }
