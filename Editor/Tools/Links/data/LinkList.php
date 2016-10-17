@@ -43,7 +43,8 @@ $icons = array(
 	'url' => 'monochrome/globe',
 	'email' => 'monochrome/email',
 	'page' => 'common/page',
-	'news' => 'common/news'
+	'news' => 'common/news',
+	'image' => 'common/image'
 );
 
 foreach ($links as $link) {

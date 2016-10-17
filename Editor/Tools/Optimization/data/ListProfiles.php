@@ -21,7 +21,7 @@ $writer->startList()->
 
 if (is_array($settings->profiles)) {
 	foreach ($settings->profiles as $profile) {
-	
+
 		$writer->startRow()->
 			startCell(array('icon'=>'common/page'))->text($profile->name)->endCell()->
 			startCell()->
