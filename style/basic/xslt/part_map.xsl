@@ -26,7 +26,7 @@
         <xsl:with-param name="content">
           <xsl:call-template name="map:internal"/>
         </xsl:with-param>
-      </xsl:call-template>            
+      </xsl:call-template>
 		</span>
 	</xsl:template>
 
@@ -37,14 +37,14 @@
 	<xsl:template name="map:internal">
 		<xsl:choose>
 			<xsl:when test="@provider='google-interactive'">
-				<xsl:call-template name="map:google-interactive"/>			
+				<xsl:call-template name="map:google-interactive"/>
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:call-template name="map:google-static"/>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
-	
+
 	<xsl:template name="map:google-static">
 		<xsl:variable name="height">
 			<xsl:choose>
@@ -76,18 +76,21 @@
 				<xsl:otherwise>640</xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
+    <xsl:variable name="url">
+      <xsl:value-of select="concat('http://maps.googleapis.com/maps/api/staticmap?center=',@latitude,',',@longitude,'&amp;zoom=',@zoom,'&amp;size=',$width,'x',$fake-height,'&amp;sensor=false&amp;maptype=',@maptype)"/>
+    </xsl:variable>
 		<span class="part_map_static">
 			<a class="part_map_static_pin"><xsl:comment/></a>
 			<span class="part_map_static_effect"><xsl:comment/></span>
 			<span class="part_map_static_content" style="height: {$height}px;">
-				<img src="http://maps.googleapis.com/maps/api/staticmap?center={@latitude},{@longitude}&amp;zoom={@zoom}&amp;size={$width}x{$fake-height}&amp;sensor=false&amp;maptype={@maptype}" style="width: {$width}px; height: {$fake-height}px;"/>
+				<img src="{$url}" srcset="{$url} 1x, {$url}&amp;scale=2 2x" style="width: {$width}px; height: {$fake-height}px;"/>
 			</span>
 			<xsl:if test="map:text">
 				<span class="part_map_static_text"><xsl:value-of select="map:text"/></span>
 			</xsl:if>
 		</span>
 	</xsl:template>
-	
+
 	<xsl:template name="map:google-interactive">
 		<span class="part_map_interactive" id="map_{../../@id}">
 			<xsl:attribute name="style">
