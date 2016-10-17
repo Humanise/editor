@@ -33,7 +33,7 @@ $writer->startHeaders();
 $writer->header(array('title'=>array('Source','da'=>'Kilde')));
 $writer->header(array('width'=>1));
 $writer->header();
-$writer->header(array('title'=>array('Target','da'=>'Mål')));
+$writer->header(array('title'=>array('Target','da'=>'MÃ¥l')));
 $writer->header(array('title'=>'Status'));
 $writer->endHeaders();
 
@@ -57,7 +57,7 @@ foreach ($links as $link) {
 		if ($link->getSourceType()=='news') {
 			$writer->startIcons()->
 				icon(array('icon'=>'monochrome/info','action'=>true,'revealing'=>true,'data'=>array('action'=>'newsInfo','id'=>$link->getSourceId())))->
-			endIcons();			
+			endIcons();
 		}
 		if ($link->getSourceType()=='page') {
 			$writer->startIcons()->
@@ -99,7 +99,6 @@ foreach ($links as $link) {
 		$writer->endCell();
 	$writer->endRow();
 }
-Database::free($result);
 
 $writer->endList();
 ?>
