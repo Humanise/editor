@@ -1,11 +1,10 @@
 (function(window,document,tool) {
   tool.loadFont = function(options) {
-    if (false && window.localStorage && localStorage.getItem(options.href)) {
+    if (window.sessionStorage && sessionStorage.getItem(options.href)) {
       document.body.className += ' ' + options.cls;
     } else {
       var weights = options.weights || ['normal'];
       var sizes = {};
-      //weights = ['300','400','700'];
       var count = weights.length;
       var operation = function(weight) {
         var dummy = document.createElement('div');
@@ -32,7 +31,7 @@
             if (count==0) {
               //console.log('finished: '+options.family);
               document.body.className += ' ' + options.cls;
-              window.localStorage && localStorage.setItem(options.href,'1');
+              window.sessionStorage && sessionStorage.setItem(options.href,'1');
             }
             sizes[currentWidth] = 1;
             dummy.parentNode.removeChild(dummy);
