@@ -348,7 +348,7 @@ class DesignService {
     if ($preview) {
       $files[] = 'hui/bin/minimized.css';
     } else {
-      $components = ['icon', 'curtain', 'imageviewer', 'overlay', 'box', 'button', 'formula', 'message'];
+      $components = ['icon', 'curtain', 'imageviewer', 'overlay', 'box', 'button', 'formula', 'message', 'textinput'];
       foreach ($components as $name) {
         $files[] = 'hui/css/' . $name . '.css';
       }
