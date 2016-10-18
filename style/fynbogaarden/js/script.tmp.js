@@ -962,10 +962,8 @@ hui.find = function(selector,context) {
 }
 
 hui.findAll = function(selector,context) {
-  var nl = (context || document).querySelectorAll(selector),
-    l=[];
-  for(var i=0, ll=nl.length; i!=ll; l.push(nl[i++]));
-  return l;
+  var nl = (context || document).querySelectorAll(selector);
+  return Array.prototype.slice.call(nl);
 }
 
 if (!document.querySelector) {
@@ -3183,114 +3181,121 @@ hui.define && hui.define('hui.animation',hui.animation);
  * @param str The color like red or rgb(255, 0, 0) or #ff0000 or rgb(100%, 0%, 0%)
  */
 hui.Color = function(str) {
-    this.ok = false;
-  if (hui.isBlank(str)) {
+  this.ok = false;
+  if (hui.isArray(str) && str.length==3) {
+    this.r = str[0];
+    this.g = str[1];
+    this.b = str[2];
+  }
+  if (hui.isBlank(str) || !hui.isString(str)) {
     return;
   }
-    // strip any leading #
-    if (str.charAt(0) == '#') { // remove # if any
-        str = str.substr(1,6);
+  // strip any leading #
+  if (str.charAt(0) == '#') { // remove # if any
+    str = str.substr(1,6);
+  }
+
+  str = str.replace(/ /g,'');
+  str = str.toLowerCase();
+
+  for (var key in hui.Color.table) {
+    if (str == key) {
+      str = hui.Color.table[key];
     }
+  }
+  // emd of simple type-in colors
 
-    str = str.replace(/ /g,'');
-    str = str.toLowerCase();
-    
-    for (var key in hui.Color.table) {
-        if (str == key) {
-            str = hui.Color.table[key];
-        }
+  // array of color definition objects
+  var color_defs = [
+    {
+      re: /^rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)$/,
+      process: function (bits){
+        return [
+          parseInt(bits[1]),
+          parseInt(bits[2]),
+          parseInt(bits[3])
+        ];
+      }
+    },
+    {
+      re: /^rgb\((\d{1,3})%,\s*(\d{1,3})%,\s*(\d{1,3})%\)$/,
+      process: function (bits) {
+        return [
+          Math.round(parseInt(bits[1])/100*255),
+          Math.round(parseInt(bits[2])/100*255),
+          Math.round(parseInt(bits[3])/100*255)
+        ];
+      }
+    },
+    {
+      re: /^(\w{2})(\w{2})(\w{2})$/,
+      process: function (bits){
+        return [
+          parseInt(bits[1], 16),
+          parseInt(bits[2], 16),
+          parseInt(bits[3], 16)
+        ];
+      }
+    },
+    {
+      re: /^(\w{1})(\w{1})(\w{1})$/,
+      process: function (bits){
+        return [
+          parseInt(bits[1] + bits[1], 16),
+          parseInt(bits[2] + bits[2], 16),
+          parseInt(bits[3] + bits[3], 16)
+        ];
+      }
     }
-    // emd of simple type-in colors
+  ];
 
-    // array of color definition objects
-    var color_defs = [
-        {
-            re: /^rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)$/,
-            process: function (bits){
-                return [
-                    parseInt(bits[1]),
-                    parseInt(bits[2]),
-                    parseInt(bits[3])
-                ];
-            }
-        },
-        {
-            re: /^rgb\((\d{1,3})%,\s*(\d{1,3})%,\s*(\d{1,3})%\)$/ ,
-            process: function (bits){
-                return [
-                    Math.round(parseInt(bits[1])/100*255),
-                    Math.round(parseInt(bits[2])/100*255),
-                    Math.round(parseInt(bits[3])/100*255)
-                ];
-            }
-        },
-        {
-            re: /^(\w{2})(\w{2})(\w{2})$/,
-            process: function (bits){
-                return [
-                    parseInt(bits[1], 16),
-                    parseInt(bits[2], 16),
-                    parseInt(bits[3], 16)
-                ];
-            }
-        },
-        {
-            re: /^(\w{1})(\w{1})(\w{1})$/,
-            process: function (bits){
-                return [
-                    parseInt(bits[1] + bits[1], 16),
-                    parseInt(bits[2] + bits[2], 16),
-                    parseInt(bits[3] + bits[3], 16)
-                ];
-            }
-        }
-    ];
-
-    // search through the definitions to find a match
-    for (var i = 0; i < color_defs.length; i++) {
-        var re = color_defs[i].re,
-      processor = color_defs[i].process,
-      bits = re.exec(str);
-        if (bits) {
-            var channels = processor(bits);
-            this.r = channels[0];
-            this.g = channels[1];
-            this.b = channels[2];
-            this.ok = true;
+  // search through the definitions to find a match
+  for (var i = 0; i < color_defs.length; i++) {
+    var re = color_defs[i].re,
+    processor = color_defs[i].process,
+    bits = re.exec(str);
+    if (bits) {
+      var channels = processor(bits);
+      this.r = channels[0];
+      this.g = channels[1];
+      this.b = channels[2];
+      this.ok = true;
       break;
-        }
     }
+  }
 
-    // validate/cleanup values
-    this.r = (this.r < 0 || isNaN(this.r)) ? 0 : ((this.r > 255) ? 255 : this.r);
-    this.g = (this.g < 0 || isNaN(this.g)) ? 0 : ((this.g > 255) ? 255 : this.g);
-    this.b = (this.b < 0 || isNaN(this.b)) ? 0 : ((this.b > 255) ? 255 : this.b);
+  // validate/cleanup values
+  this.r = (this.r < 0 || isNaN(this.r)) ? 0 : ((this.r > 255) ? 255 : this.r);
+  this.g = (this.g < 0 || isNaN(this.g)) ? 0 : ((this.g > 255) ? 255 : this.g);
+  this.b = (this.b < 0 || isNaN(this.b)) ? 0 : ((this.b > 255) ? 255 : this.b);
 };
 
 hui.Color.prototype = {
+  r : 0, g: 0, b: 0,
+
   /** Get the color as rgb(255,0,0) */
   toRGB : function () {
-        return 'rgb(' + this.r + ', ' + this.g + ', ' + this.b + ')';
-    },
+    return 'rgb(' + this.r + ',' + this.g + ',' + this.b + ')';
+  },
   isDefined : function() {
     return !(this.r===undefined || this.g===undefined || this.b===undefined);
   },
   /** Get the color as #ff0000 */
   toHex : function() {
     if (!this.isDefined()) {return null;}
-        var r = this.r.toString(16);
-        var g = this.g.toString(16);
-        var b = this.b.toString(16);
-        if (r.length == 1) {
+    var r = this.r.toString(16);
+    var g = this.g.toString(16);
+    var b = this.b.toString(16);
+    if (r.length == 1) {
       r = '0' + r;
     }
-        if (g.length == 1) {
+    if (g.length == 1) {
       g = '0' + g;
     }
-        if (b.length == 1) {
+    if (b.length == 1) {
       b = '0' + b;
     }
-        return '#' + r + g + b;
+    return '#' + r + g + b;
   }
 };
 
@@ -5850,7 +5855,7 @@ hui.ui.Button.prototype = {
    * @param
    */
   setText : function(text) {
-    hui.dom.setText(this.element.getElementsByTagName('span')[1], hui.ui.getTranslated(text));
+    hui.dom.setText(this.element, hui.ui.getTranslated(text));
   },
   /**
    * Get the data object for the button
@@ -6325,7 +6330,7 @@ op.part.Map.onReady = function(callback) {
       window.opMapReady = null;
       this.loaded = true;
     }.bind(this)
-    hui.require('https://maps.googleapis.com/maps/api/js?sensor=false&callback=opMapReady');
+    hui.require('https://maps.googleapis.com/maps/api/js?callback=opMapReady&key=AIzaSyBToLasfCj-kpsD-mGsimi1P32emIJeG-U');
   }
 }
 
@@ -6385,48 +6390,54 @@ window.define && define('op.part.Map');
 op.part.Movie = function(options) {
   this.options = options;
   this.element = hui.get(options.element);
-    this._attach();
+  this._attach();
 }
 
 op.part.Movie.prototype = {
-    _attach : function() {
-        hui.listen(this.element,'click',this._activate.bind(this));
-        var poster = hui.get.firstByClass(this.element,'part_movie_poster');
-        if (poster) {
-            var id = poster.getAttribute('data-id');
-            if (id) {
+  _attach : function() {
+    hui.listen(this.element,'click',this._activate.bind(this));
+    var poster = hui.get.firstByClass(this.element,'part_movie_poster');
+    if (poster) {
+      var id = poster.getAttribute('data-id');
+      if (id) {
         // TODO listen for event when ayc style is loaded (or make css inline)
         window.setTimeout(function() {
-              var x = window.devicePixelRatio || 1;
-              var url = op.context + 'services/images/?id=' + id + '&width=' + (poster.clientWidth * x) + '&height=' + (poster.clientHeight * x);
-                  poster.style.backgroundImage = 'url(' + url + ')';
+          var x = window.devicePixelRatio || 1;
+          var url = op.context + 'services/images/?id=' + id + '&width=' + (poster.clientWidth * x) + '&height=' + (poster.clientHeight * x);
+            poster.style.backgroundImage = 'url(' + url + ')';
         },500)
-            } else {
-                var vimeoId = poster.getAttribute('data-vimeo-id');
-                if (vimeoId) {
-                    this._vimeo(vimeoId,poster);
-                }
-            }
+      } else {
+        var vimeoId = poster.getAttribute('data-vimeo-id');
+        if (vimeoId) {
+          this._vimeo(vimeoId,poster);
         }
-    },
-    _activate : function() {
-        var body = hui.get.firstByClass(this.element,'part_movie_body');
-        var code = hui.get.firstByTag(this.element,'noscript');
-        if (code) {
-            body.innerHTML = hui.dom.getText(code);
-        }
-        body.style.background='';
-    },
-    _vimeo : function(id,poster) {
-        var cb = 'callback_' + id;
-
-        var url = "http://vimeo.com/api/v2/video/" + id + ".json?callback=" + cb;
-
-        window[cb] = function(data) {
-            poster.style.backgroundImage = 'url(' + data[0].thumbnail_large + ')';
-        }
-        var script = hui.build('script',{type:'text/javascript',src:url,parent:document.head});
+      }
     }
+  },
+  _activate : function() {
+    var body = hui.get.firstByClass(this.element,'part_movie_body');
+    var code = hui.get.firstByTag(this.element,'noscript');
+    if (code) {
+      body.innerHTML = hui.dom.getText(code);
+      var iframe = hui.get.firstByTag(body,'iframe');
+      if (iframe) {
+        iframe.setAttribute('allowfullscreen','allowfullscreen');
+        iframe.setAttribute('mozallowfullscreen','mozallowfullscreen');
+        iframe.setAttribute('webkitallowfullscreen','webkitallowfullscreen');
+      }
+    }
+    body.style.background='';
+  },
+  _vimeo : function(id,poster) {
+    var cb = 'callback_' + id;
+
+    var url = "http://vimeo.com/api/v2/video/" + id + ".json?callback=" + cb;
+
+    window[cb] = function(data) {
+      poster.style.backgroundImage = 'url(' + data[0].thumbnail_large + ')';
+    }
+    var script = hui.build('script',{type:'text/javascript',src:url,parent:document.head});
+  }
 }
 
 window.define && define('op.part.Movie');

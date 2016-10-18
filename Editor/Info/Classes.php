@@ -35,6 +35,7 @@ $HUMANISE_EDITOR_CLASSES = array (
     'TemplateController' => 'Templates/TemplateController.php',
     'WeblogTemplate' => 'Templates/WeblogTemplate.php',
     'WeblogTemplateController' => 'Templates/WeblogTemplateController.php',
+    'ApiService' => 'Services/ApiService.php',
     'AuthenticationService' => 'Services/AuthenticationService.php',
     'CacheService' => 'Services/CacheService.php',
     'ClassService' => 'Services/ClassService.php',
