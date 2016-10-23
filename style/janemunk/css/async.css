@@ -14,6 +14,33 @@ body, html {
 form {
   margin: 0px; }
 
+@media screen and (max-width: 700px) {
+  .document_table,
+  .document_table_body,
+  .document_table_column {
+    display: block !important; }
+
+  .document_table_column {
+    width: auto !important;
+    padding: 0 !important; }
+
+  .document_table_container {
+    margin: 0 !important; }
+
+  .part_image_image {
+    max-width: 100%;
+    height: auto; } }
+@media screen and (min-width: 700px) {
+  .document_table {
+    display: table;
+    width: 100%; }
+
+  .document_table_body {
+    display: table-row; }
+
+  div.document_table_column {
+    display: table-cell;
+    vertical-align: top; } }
 body.is-front {
   background: #666; }
 
@@ -290,6 +317,128 @@ body.exhibit {
       right: auto; }
     .exhibit_painting-right {
       right: 5%; } }
+.contact {
+  font-size: 0;
+  text-align: center; }
+  .contact_profile {
+    width: 33.33333%;
+    display: inline-block;
+    text-decoration: none; }
+    .contact_profile-facebook {
+      color: #254e8c;
+      font-family: "Indie Flower", cursive; }
+      .contact_profile-facebook .contact_profile_icon {
+        fill: #254e8c; }
+    .contact_profile-pinterest {
+      color: #be091c;
+      font-family: "Indie Flower", cursive; }
+      .contact_profile-pinterest .contact_profile_icon {
+        fill: #be091c;
+        width: 75px;
+        height: 75px; }
+    .contact_profile-tumblr {
+      color: #37465d;
+      font-family: "Indie Flower", cursive; }
+      .contact_profile-tumblr .contact_profile_icon {
+        fill: #37465d; }
+    .contact_profile_icon {
+      display: inline-block;
+      width: 80px;
+      height: 80px; }
+    .contact_profile_label {
+      display: block;
+      font-size: 20px; }
+  .contact_items {
+    display: inline-block;
+    text-align: left;
+    margin-top: 20px; }
+  .contact_item {
+    font-size: 20px;
+    text-decoration: none;
+    position: relative;
+    padding-left: 50px;
+    display: inline-block;
+    margin: 10px 0;
+    float: left;
+    clear: left; }
+    .contact_item-phone {
+      color: #69b51d; }
+      .contact_item-phone .contact_item_icon {
+        fill: #69b51d; }
+    .contact_item-address {
+      color: #7a71c8; }
+      .contact_item-address .contact_item_icon {
+        fill: #7a71c8; }
+    .contact_item-mail {
+      color: #3e8bd4; }
+      .contact_item-mail .contact_item_icon {
+        fill: #3e8bd4; }
+    .contact_item_icon {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 40px;
+      height: 40px;
+      fill: #999;
+      margin-top: -20px; }
+
+.hue_rotation .part_image_image {
+  -webkit-animation-name: hue;
+  -webkit-animation-duration: 10s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-name: hue;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; }
+
+@-webkit-keyframes hue {
+  0% {
+    filter: hue-rotate(0deg); }
+  100% {
+    filter: hue-rotate(360deg); } }
+@keyframes hue {
+  0% {
+    filter: hue-rotate(0deg); }
+  100% {
+    filter: hue-rotate(360deg); } }
+@media screen and (min-width: 600px) {
+  .contact_profile {
+    width: 33.33333%;
+    display: inline-block; }
+    .contact_profile_icon {
+      display: inline-block;
+      width: 150px;
+      height: 150px; }
+    .contact_profile-pinterest .contact_profile_icon {
+      width: 130px;
+      height: 130px; }
+    .contact_profile_label {
+      font-size: 32px; } }
+@media screen and (min-width: 700px) {
+  .contact_items {
+    display: block;
+    text-align: left;
+    margin-top: 20px; }
+  .contact_item {
+    display: inline-block;
+    float: none;
+    width: 33.33333%;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 16px;
+    padding: 0;
+    vertical-align: top; }
+    .contact_item_icon {
+      position: static;
+      left: 0;
+      width: 50px;
+      height: 50px;
+      fill: #999;
+      margin-top: 0; }
+    .contact_item_label {
+      display: block;
+      margin-top: 5px; } }
 /*************** Header *************/
 .part_section_header-1 {
   padding-bottom: 15px; }
@@ -320,9 +469,16 @@ body.exhibit {
   border: none;
   background: url("../gfx/stroke_2.svg") 50% no-repeat;
   background-size: contain;
-  padding-bottom: 3%; }
+  padding-bottom: 3%;
+  margin: 20px 0; }
+
+.part_imagegallery {
+  text-align: center; }
 
 @media screen and (min-width: 700px) {
+  .part_horizontalrule {
+    margin: 40px 0; }
+
   .part_header-1 {
     font-size: 70pt; }
   .part_header-2 {

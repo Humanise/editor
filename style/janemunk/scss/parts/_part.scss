@@ -52,10 +52,19 @@
     background: url('../gfx/stroke_2.svg') 50% no-repeat;
     background-size: contain;
     padding-bottom: 3%;
+    margin: 20px 0;
+  }
+
+  .part_imagegallery {
+    text-align: center;
   }
 }
 
 @include if(( width: 700px)) {
+
+  .part_horizontalrule {
+    margin: 40px 0;
+  }
 
   .part_header {
 

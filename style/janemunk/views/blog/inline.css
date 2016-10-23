@@ -21,23 +21,26 @@
   background: url('../../gfx/splash_1.svg') 50% no-repeat;
   background-size: contain;
   position: absolute;
-  width: 4em;
-  height: 4em;
+  width: 5em;
+  height: 5em;
   left: 50%;
-  margin-left: -2em;
-  top: -1.8em;
+  margin-left: -2.5em;
+  top: -2.5em;
   z-index: 1;
   color: #fff;
   text-align: center;
-  padding: 1.1em 0 0 .2em;
+  padding: 1.7em 0 0 .2em;
   font-size: 20px;
   box-sizing: border-box;
 }
 
 .blog_badge-2 {
   background-image: url('../../gfx/splash_2.svg');
-  padding: .9em 0.3em 0 0;
-  top: -1.5em;
+  padding: 1.6em 0.3em 0 0;
+  top: -2.3em;
+  width: 5.4em;
+  height: 5.4em;
+  margin-left: -2.7em;
 }
 
 .blog_badge_date {
@@ -47,7 +50,7 @@
 }
 
 .blog_badge_month {
-  font-size: .4em;
+  font-size: .5em;
   display: block;
 }
 
