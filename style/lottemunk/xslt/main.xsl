@@ -40,7 +40,7 @@
 		<xsl:call-template name="util:style-ie8"/>
 		<xsl:call-template name="util:scripts-build"/>
 		<xsl:call-template name="util:style-build">
-        <xsl:with-param name="async" select="'false'"/>
+      <xsl:with-param name="async" select="'false'"/>
     </xsl:call-template>
     <!--
 		<xsl:call-template name="util:lazy-style">
@@ -83,18 +83,18 @@
 					<xsl:otherwise>/</xsl:otherwise>
 				</xsl:choose>
       </xsl:attribute>
-  		<h1 id="title" class="header_title">Lotte Munk</h1>
-  		<p id="job" class="header_job">
-  			<xsl:choose>
-  				<xsl:when test="//p:page/p:meta/p:language='en'"><xsl:text>Actress</xsl:text></xsl:when>
-  				<xsl:otherwise><xsl:text>Skuespiller</xsl:text></xsl:otherwise>
-  			</xsl:choose>
-  		</p>
+      <h1 id="title" class="header_title">Lotte Munk</h1>
+      <p id="job" class="header_job">
+        <xsl:choose>
+          <xsl:when test="//p:page/p:meta/p:language='en'"><xsl:text>Actress</xsl:text></xsl:when>
+          <xsl:otherwise><xsl:text>Skuespiller</xsl:text></xsl:otherwise>
+        </xsl:choose>
+      </p>
     </a>
 		<nav class="header_navigation">
 			<ul class="header_menu">
 				<xsl:apply-templates select="f:frame/h:hierarchy/h:item"/>
-			</ul>				
+			</ul>
 		</nav>
 	</header>
 </xsl:template>
