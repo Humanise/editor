@@ -14,6 +14,11 @@
         .contact_profile_icon {
           fill: #254e8c;
         }
+        &:hover {
+          .contact_profile_icon {
+            fill: lighten(#254e8c, 10%);
+          }
+        }
       }
 
       &-pinterest {
@@ -24,6 +29,11 @@
           width: 75px;
           height: 75px;
         }
+        &:hover {
+          .contact_profile_icon {
+            fill: lighten(#be091c, 10%);
+          }
+        }
       }
 
       &-tumblr {
@@ -31,6 +41,11 @@
         font-family: $alt-font;
         .contact_profile_icon {
           fill: #37465d;
+        }
+        &:hover {
+          .contact_profile_icon {
+            fill: lighten(#37465d, 10%);
+          }
         }
       }
 
@@ -61,25 +76,33 @@
       margin: 10px 0;
       float: left;
       clear: left;
+      color: #666;
+
+      &:hover {
+        color: #333;
+        .contact_item_icon {
+          fill: #333;
+        }
+      }
 
       &-phone {
-        color: #69b51d;
+        //color: #69b51d;
         .contact_item_icon {
-          fill: #69b51d;
+          //fill: #69b51d;
         }
       }
 
       &-address {
-        color: #7a71c8;
+        //color: #7a71c8;
         .contact_item_icon {
-          fill: #7a71c8;
+          //fill: #7a71c8;
         }
       }
 
       &-mail {
-        color: #3e8bd4;
+        //color: #3e8bd4;
         .contact_item_icon {
-          fill: #3e8bd4;
+          //fill: #3e8bd4;
         }
       }
 
@@ -89,7 +112,7 @@
         left: 0;
         width: 40px;
         height: 40px;
-        fill: #999;
+        fill: #666;
         margin-top: -20px;
       }
     }

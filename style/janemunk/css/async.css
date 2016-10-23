@@ -329,6 +329,8 @@ body.exhibit {
       font-family: "Indie Flower", cursive; }
       .contact_profile-facebook .contact_profile_icon {
         fill: #254e8c; }
+      .contact_profile-facebook:hover .contact_profile_icon {
+        fill: #3064b4; }
     .contact_profile-pinterest {
       color: #be091c;
       font-family: "Indie Flower", cursive; }
@@ -336,11 +338,15 @@ body.exhibit {
         fill: #be091c;
         width: 75px;
         height: 75px; }
+      .contact_profile-pinterest:hover .contact_profile_icon {
+        fill: #ef0b23; }
     .contact_profile-tumblr {
       color: #37465d;
       font-family: "Indie Flower", cursive; }
       .contact_profile-tumblr .contact_profile_icon {
         fill: #37465d; }
+      .contact_profile-tumblr:hover .contact_profile_icon {
+        fill: #4a5e7d; }
     .contact_profile_icon {
       display: inline-block;
       width: 80px;
@@ -360,26 +366,19 @@ body.exhibit {
     display: inline-block;
     margin: 10px 0;
     float: left;
-    clear: left; }
-    .contact_item-phone {
-      color: #69b51d; }
-      .contact_item-phone .contact_item_icon {
-        fill: #69b51d; }
-    .contact_item-address {
-      color: #7a71c8; }
-      .contact_item-address .contact_item_icon {
-        fill: #7a71c8; }
-    .contact_item-mail {
-      color: #3e8bd4; }
-      .contact_item-mail .contact_item_icon {
-        fill: #3e8bd4; }
+    clear: left;
+    color: #666; }
+    .contact_item:hover {
+      color: #333; }
+      .contact_item:hover .contact_item_icon {
+        fill: #333; }
     .contact_item_icon {
       position: absolute;
       top: 50%;
       left: 0;
       width: 40px;
       height: 40px;
-      fill: #999;
+      fill: #666;
       margin-top: -20px; }
 
 .hue_rotation .part_image_image {
