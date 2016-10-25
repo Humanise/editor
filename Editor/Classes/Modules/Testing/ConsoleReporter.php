@@ -7,9 +7,9 @@ if (!isset($GLOBALS['basePath'])) {
 	header('HTTP/1.1 403 Forbidden');
 	exit;
 }
-  
+
 class ConsoleReporter extends SimpleReporter {
-    
+
     /**
      *    Does nothing yet. The first output will
      *    be sent on the first test start.
@@ -18,7 +18,7 @@ class ConsoleReporter extends SimpleReporter {
     function TextReporter() {
         $this->SimpleReporter();
     }
-    
+
     /**
      *    Paints the title only.
      *    @param string $test_name        Name class of test.
@@ -28,7 +28,7 @@ class ConsoleReporter extends SimpleReporter {
         echo "$test_name\n";
         flush();
     }
-    
+
     /**
      *    Paints the end of the test with a summary of
      *    the passes and failures.
@@ -46,19 +46,19 @@ class ConsoleReporter extends SimpleReporter {
                 ", Passes: " . $this->getPassCount() .
                 ", Failures: " . $this->getFailCount() .
                 ", Exceptions: " . $this->getExceptionCount() . "\n";
-                
+
     }
-    
+
     function paintCaseStart($test_name) {
       parent::paintCaseStart($test_name);
       echo 'Running... ' . $test_name . "\n";
     }
-    
+
     function paintMethodStart($test_name) {
       parent::paintMethodStart($test_name);
       echo ' · ' . $test_name . "\n";
     }
-        
+
     /**
      *    Paints the test failure as a stack trace.
      *    @param string $message        Failure message displayed in
@@ -73,7 +73,7 @@ class ConsoleReporter extends SimpleReporter {
         print "\tin " . implode("\n\tin ", array_reverse($breadcrumb));
         print "\n";
     }
-    
+
     /**
      *    Paints a PHP error or exception.
      *    @param string $message        Message is ignored.
@@ -84,7 +84,7 @@ class ConsoleReporter extends SimpleReporter {
         parent::paintException($message);
         print "Exception " . $this->getExceptionCount() . "!\n$message\n";
     }
-    
+
     /**
      *    Paints formatted text such as dumped variables.
      *    @param string $message        Text to show.

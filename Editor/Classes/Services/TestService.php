@@ -46,6 +46,21 @@ class TestService {
 		$test->run($reporter);
 	}
 
+	static function runTestByName($name, $reporter = null) {
+    if ($reporter == null) {
+      $reporter = new HtmlReporter();
+    }
+		$groups = TestService::getGroups();
+    $test = new TestSuite($name);
+		foreach ($groups as $group) {
+			$path = FileSystemService::getFullPath('Editor/Tests/'.$group.'/'.$name.'.php');
+      if (file_exists($path)) {
+        $test->addFile($path);
+      }
+    }
+    $test->run($reporter);
+  }
+
 	static function runTestsInGroup($group,$reporter = null) {
 		$paths = array();
 

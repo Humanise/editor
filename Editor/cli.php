@@ -41,10 +41,16 @@ class Commander {
     }
 
     if (isset($args[2])) {
-      if (strpos($args[2],'/')!==false) {
-        TestService::runTest($args[2],new ConsoleReporter());
+      $name = $args[2];
+      if (strpos($name,'/') !== false) {
+        TestService::runTest($name,new ConsoleReporter());
       } else {
-        TestService::runTestsInGroup($args[2],new ConsoleReporter());
+        if (strpos($name, 'Test') === 0) {
+          echo "Runnig single test: $name\n";
+          TestService::runTestByName($name,new ConsoleReporter());
+        } else {
+          TestService::runTestsInGroup($name,new ConsoleReporter());
+        }
       }
     } else {
       TestService::runAllTests(new ConsoleReporter());
