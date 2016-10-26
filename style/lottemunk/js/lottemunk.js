@@ -1,4 +1,4 @@
-hui.onReady(function() {
+require(['hui'],function(hui) {
 
 	var paths = {
 		'/' : 'top',
@@ -7,7 +7,7 @@ hui.onReady(function() {
 		'/fotografier/' : 'photos',
 		'/kommunikation/' : 'communication',
 		'/film/' : 'movies',
-		
+
 
 		'/en/' : 'top',
 		'/en/cv/' : 'about',
@@ -16,7 +16,7 @@ hui.onReady(function() {
 		'/en/communication-training/' : 'communication',
 		'/en/movie-clips/' : 'movies'
 	};
-	
+
 	var nav = hui.find('nav');
 	hui.listen(nav,'click',function(e) {
 		e = hui.event(e);
@@ -49,5 +49,5 @@ hui.onReady(function() {
 			hui.cls.add(hum,'visible');
 		})
 	})
-  
+
 });
