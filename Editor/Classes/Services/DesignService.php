@@ -118,17 +118,27 @@ class DesignService {
     $dev = Request::getBoolean('development');
     $preview = Request::getBoolean('preview');
 
-    $files = DesignService::getJS($design, 'async');
+    $files = [];
 
     if ($preview) {
       $files[] = 'hui/bin/minimized.js';
       $files[] = 'hui/js/Editor.js';
       $files[] = 'hui/js/Pages.js';
     } else {
-      // TODO: Use list of files
-      $files[] = 'hui/bin/joined.site.js';
+
+      $files[] = 'hui/js/hui.js';
+      $files[] = 'hui/js/hui_animation.js';
+      $files[] = 'hui/js/hui_color.js';
+      $files[] = 'hui/js/hui_require.js';
+      $files[] = 'hui/js/ui.js';
+      $files[] = 'hui/js/ImageViewer.js';
+      $files[] = 'hui/js/Box.js';
+      $files[] = 'hui/js/SearchField.js';
+      $files[] = 'hui/js/Overlay.js';
+      $files[] = 'hui/js/Button.js';
     }
     $files[] = 'style/basic/js/OnlinePublisher.js';
+    $files = array_merge($files, DesignService::getJavaScriptFiles($design, 'async'));
 
     $key = sha1(join($files,'|').'|'.ConfigurationService::getDeploymentTime());
     $cachedFile = FileSystemService::getFullPath('local/cache/temp/' . $key . '.js');
@@ -153,7 +163,10 @@ class DesignService {
     }
   }
 
-  private static function getJS($design,$target='async') {
+  /**
+   * Get a list of JavaScript files for a design
+   */
+  private static function getJavaScriptFiles($design,$target='async') {
     $info = DesignService::getInfo($design);
     $files = [];
     if (isset($info) && isset($info->js)) {
@@ -285,7 +298,7 @@ class DesignService {
 
   private static function loadInlineJS($design) {
     $files = ['style/basic/js/boot.js'];
-    $files = array_merge($files, DesignService::getJS($design, 'inline'));
+    $files = array_merge($files, DesignService::getJavaScriptFiles($design, 'inline'));
     $js = '';
     foreach ($files as $file) {
       $path = FileSystemService::getFullPath($file);
