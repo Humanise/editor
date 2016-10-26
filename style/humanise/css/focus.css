@@ -23,8 +23,7 @@
     .focus_text > p {
       margin: 10px 0; }
       .focus_text > p > strong {
-        font-weight: 400;
-        color: red; }
+        font-weight: 400; }
 
 @-webkit-keyframes hue {
   0% {

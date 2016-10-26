@@ -249,7 +249,7 @@ class DesignService {
     $out = '';
     foreach ($files as $file) {
       if ($developmentMode) {
-        $out .= '@import url(../../../' . $file . ');' . PHP_EOL;
+        $out .= '@import url(../../' . $file . ');' . PHP_EOL;
       } else {
         $folder = FileSystemService::folderOfPath($file);
         $css = DesignService::_read($file);
@@ -291,7 +291,7 @@ class DesignService {
     foreach ($files as $file) {
       $folder = FileSystemService::folderOfPath($file);
       $str = DesignService::_read($file);
-      $css .= DesignService::fixUrls($str, $folder, '/version' . ConfigurationService::getDeploymentTime() . '/');
+      $css .= DesignService::fixUrls($str, $folder, '/');
     }
     return $css;
   }
