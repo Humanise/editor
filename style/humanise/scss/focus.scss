@@ -14,6 +14,16 @@ $target: async;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: 50%;
+
+    -webkit-animation-name: hue;
+    -webkit-animation-duration: 10s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+
+    animation-name: hue;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
   }
 
   &_text {
@@ -24,8 +34,26 @@ $target: async;
       margin: 10px 0;
       > strong {
         font-weight: 400;
+        color: red;
       }
     }
+  }
+}
+
+@-webkit-keyframes hue {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+@keyframes hue {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
   }
 }
 

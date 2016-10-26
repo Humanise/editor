@@ -2,7 +2,7 @@
 
   .layout_menu {
     margin: 0;
-    padding: 5px 10px 10px;
+    padding: 5px 5px 10px;
     list-style: none;
   }
 
@@ -11,7 +11,7 @@
   }
 
   .layout_menu_link {
-    padding: 0 5px;
+    padding: 0 10px;
     height: 30px;
     line-height: 30px;
     text-decoration: none;
@@ -31,7 +31,7 @@
 
   .layout_menu_item-first {
     display: block;
-    //padding-left: 5px;
+    padding-left: 5px;
   }
 
   .layout_menu_link-first {
@@ -80,9 +80,10 @@
   }
 
   .layout_menu_link {
-    font-size: 20px;
+    font-size: 22px;
     line-height: 44px;
     padding: 0 10px;
+    font-weight: 100;
   }
 
   .layout_menu_item-first {

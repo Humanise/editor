@@ -13,9 +13,10 @@
     vertical-align: top; }
 
 .layout_menu_link {
-  font-size: 20px;
+  font-size: 22px;
   line-height: 44px;
-  padding: 0 10px; }
+  padding: 0 10px;
+  font-weight: 100; }
 
 .layout_menu_item-first {
   display: inline-block; }
@@ -25,6 +26,12 @@
 
 .layout_search_icon:hover > path {
   fill: #333; }
+
+.layout_search_active {
+  background: none;
+  border-bottom: none;
+  height: 46px;
+  left: auto; }
 
 .layout_search_body {
   overflow: hidden;

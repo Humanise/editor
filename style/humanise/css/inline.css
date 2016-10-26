@@ -63,14 +63,14 @@ p.common, ul.common {
 
 .layout_menu {
   margin: 0;
-  padding: 5px 10px 10px;
+  padding: 5px 5px 10px;
   list-style: none; }
 
 .layout_menu_item {
   display: inline-block; }
 
 .layout_menu_link {
-  padding: 0 5px;
+  padding: 0 10px;
   height: 30px;
   line-height: 30px;
   text-decoration: none;
@@ -84,7 +84,8 @@ p.common, ul.common {
     font-weight: 400; }
 
 .layout_menu_item-first {
-  display: block; }
+  display: block;
+  padding-left: 5px; }
 
 .layout_menu_link-first {
   background: url("../gfx/graphics.png") 0 -636px;
@@ -113,9 +114,10 @@ p.common, ul.common {
       vertical-align: top; }
 
   .layout_menu_link {
-    font-size: 20px;
+    font-size: 22px;
     line-height: 44px;
-    padding: 0 10px; }
+    padding: 0 10px;
+    font-weight: 100; }
 
   .layout_menu_item-first {
     display: inline-block; } }
@@ -133,11 +135,12 @@ p.common, ul.common {
 
 .layout_search_icon {
   position: absolute;
-  top: 14px;
-  right: 12px;
+  top: 3px;
+  right: 0px;
   display: inline-block;
   width: 24px;
-  height: 24px; }
+  height: 24px;
+  padding: 12px; }
   .layout_search_icon > path {
     fill: #aaa; }
 
@@ -163,6 +166,9 @@ p.common, ul.common {
           background-position: 0 -636px; }
     .layout_head-hero .layout_search_icon > path {
       fill: #fff; }
+
+.layout_body {
+  padding-bottom: 40px; }
 
 .layout_content-sidebar {
   max-width: 980px;
