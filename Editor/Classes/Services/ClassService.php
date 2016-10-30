@@ -13,6 +13,7 @@ class ClassService {
   static function getClassInfo() {
     $infos = array();
     $files = ClassService::_getFiles();
+
     foreach ($files as $path) {
       preg_match('/([A-Za-z0-9]+)\.php/i', $path,$matches);
       $name = $matches[1];
@@ -22,16 +23,17 @@ class ClassService {
       $info->setPath($path);
       $info->setName($name);
       $relations = array();
-
+      $properties = array();
       if (class_exists($name)) {
         $parent = get_parent_class($name);
         $info->setParent($parent);
-        $instance = @new $name;
-        $vars = get_object_vars($instance);
+        $reflection = new ReflectionClass($name);
         $hierarchy = ClassService::_getHierarchy($name);
         $info->setHierarchy($hierarchy);
-        $properties = array();
-        foreach ($vars as $key => $value) {
+        if ($reflection->isInstantiable()) {
+          $instance = @new $name;
+          $vars = get_object_vars($instance);
+          foreach ($vars as $key => $value) {
           $property = new ClassPropertyInfo();
           $property->setName($key);
           $property->setValue($value);
@@ -67,15 +69,17 @@ class ClassService {
           }
           $properties[] = $property;
         }
-        $info->setProperties($properties);
+        }
       } else {
         $info->setHierarchy(array($name));
         Log::debug('Class '.$name.' does not exist');
       }
+      $info->setProperties($properties);
       $info->setRelations($relations);
 
       $infos[] = $info;
     }
+      Log::debug('End');
     return $infos;
   }
 
