@@ -49,7 +49,7 @@
 	<div class="part_news_item_title">
 		<xsl:value-of select="o:title"/>
 	</div>
-	<xsl:if test="o:note">
+	<xsl:if test="o:note/text()!=''">
 		<div class="part_news_item_description">
 			<xsl:apply-templates select="o:note"/>
 			<xsl:comment/>

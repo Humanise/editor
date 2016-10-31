@@ -47,15 +47,15 @@
 {
 	font-size: 12pt;
 	color: #333;
-	padding-bottom: 3px;
+  margin-bottom: 5px;
 }
 
 .part_news_item
 {
 	font-size: 9pt;
-	line-height: 13pt;
+	line-height: 1.3;
 	border-top: 1px solid #eee;
-	padding: 6px 0px;
+	padding: 5px 0px;
 	overflow: hidden;
 }
 
@@ -79,7 +79,6 @@
 
 .part_news_item_links
 {
-	color: #7894a5;
 	text-align: right;
 }
 
