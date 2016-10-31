@@ -17,10 +17,10 @@
     display: inline-block;
     width: 24px;
     height: 24px;
-    padding: 8px 10px 12px;
+    padding: 10px 12px 12px;
 
     > path {
-      fill: #aaa;
+      fill: #999;
     }
   }
 }
@@ -157,7 +157,11 @@
     border: 1px solid #eee;
     height: 36px;
     font-size: 16px;
-    padding: 0 4px 0 30px;
+    padding: 0 4px 3px 30px;
+
+    &::-webkit-input-placeholder {
+      font-weight: 300;
+    }
 
     &:focus {
       outline: none;
@@ -200,12 +204,16 @@
   }
 }
 
-@include if((width:760px)) {
-  .layout_search_body {
-    top: 9px;
-  }
+@include if((width:760px, target:inline)) {
   .layout_search_icon {
     top: 5px;
+  }
+}
+
+@include if((width:760px)) {
+
+  .layout_search_body {
+    top: 9px;
   }
 }
 

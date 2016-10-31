@@ -36,19 +36,22 @@
   }
 
   .layout_menu_link-first {
-    background: url("../gfx/graphics.png") -42px -636px;
     display: inline-block;
     width: 115px;
     height: 40px;
     > span {
       display: none;
     }
-  }
-
-  @media  (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .layout_menu_link-first {
-      background-image: url('../gfx/graphics_2x.png');
-      background-size: 400px 907px;
+    > svg {
+      width: 115px;
+      height: 40px;
+      fill: #444;
+      color: #999;
+    }
+    &:hover {
+      > svg {
+        fill: #007AC5;
+      }
     }
   }
 
@@ -83,7 +86,7 @@
 
   .layout_menu_item-first {
     display: inline-block;
-    margin-left: 50px;
+    margin-left: 40px;
   }
 
 }

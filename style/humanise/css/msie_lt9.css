@@ -17,7 +17,7 @@
 
 .layout_menu_item-first {
   display: inline-block;
-  margin-left: 50px; }
+  margin-left: 40px; }
 
 .layout_search_icon:hover > path {
   fill: #333; }
@@ -51,7 +51,9 @@
   border: 1px solid #eee;
   height: 36px;
   font-size: 16px;
-  padding: 0 4px 0 30px; }
+  padding: 0 4px 3px 30px; }
+  .layout_search_text::-webkit-input-placeholder {
+    font-weight: 300; }
   .layout_search_text:focus {
     outline: none; }
 
@@ -83,11 +85,11 @@
   width: 200px;
   opacity: 1; }
 
-.layout_search_body {
-  top: 9px; }
-
 .layout_search_icon {
   top: 5px; }
+
+.layout_search_body {
+  top: 9px; }
 
 .layout_search_icon {
   background: url("../gfx/search.png");

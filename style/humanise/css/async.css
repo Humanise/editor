@@ -227,7 +227,9 @@
     border: 1px solid #eee;
     height: 36px;
     font-size: 16px;
-    padding: 0 4px 0 30px; }
+    padding: 0 4px 3px 30px; }
+    .layout_search_text::-webkit-input-placeholder {
+      font-weight: 300; }
     .layout_search_text:focus {
       outline: none; }
 
@@ -260,10 +262,7 @@
     opacity: 1; } }
 @media screen and (min-width: 760px) {
   .layout_search_body {
-    top: 9px; }
-
-  .layout_search_icon {
-    top: 5px; } }
+    top: 9px; } }
 .layout_info {
   overflow: hidden;
   padding: 15px;
@@ -381,17 +380,17 @@
   height: 120px;
   color: #567;
   font-weight: 300;
-  background: url("../gfx/graphics.png") 0 0 no-repeat; }
+  background: url("../gfx/placards.png") 0 0 no-repeat; }
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
   .layout_placards_text {
-    background-image: url("../gfx/graphics_2x.png");
-    background-size: 400px 907px; } }
+    background-image: url("../gfx/placards_2x.png");
+    background-size: 170px 584px; } }
 .layout_placards_text_hui {
   background-position: -44px -420px; }
 
 .layout_placards_text_editor {
-  background-position: -40px -5px; }
+  background-position: -30px 0px; }
 
 .layout_placards_text_objects {
   background-position: -44px -200px; }
@@ -426,7 +425,7 @@
   .layout_placards_text {
     margin-left: 0; } }
 .layout_design {
-  background: url("../gfx/graphics.png") -172px -709px;
+  background: url("../gfx/footer.png") 50% no-repeat;
   text-indent: -10000px;
   width: 177px;
   height: 191px;
@@ -435,8 +434,8 @@
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
   .layout_design {
-    background-image: url("../gfx/graphics_2x.png");
-    background-size: 400px 907px; } }
+    background-image: url("../gfx/footer_2x.png");
+    background-size: 162px 181px; } }
 @media screen and (min-width: 760px) {
   .layout_head {
     transition: background-color .3s;
