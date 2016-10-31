@@ -51,6 +51,12 @@
       </xsl:call-template>
     </xsl:if>
 
+    <xsl:if test="//widget:focus">
+      <xsl:call-template name="util:inline-css">
+        <xsl:with-param name="file" select="'style/humanise/css/focus.css'"/>
+      </xsl:call-template>
+    </xsl:if>
+
     <xsl:call-template name="util:load-font">
       <xsl:with-param name="href" select="'//fonts.googleapis.com/css?family=Lato:300,400,700,900'"/>
       <xsl:with-param name="family" select="'Lato'"/>
@@ -577,9 +583,6 @@
       <p>Vi tror på at maskinen skal arbejde for <strong>mennesket</strong>. Vi mener at <strong>viden</strong> bør være <strong>fri</strong> og <strong>tilgængelig</strong> for <strong>alle</strong>.</p>
     </div>
   </div>
-  <xsl:call-template name="util:inline-css">
-    <xsl:with-param name="file" select="'style/humanise/css/focus.css'"/>
-  </xsl:call-template>
 </xsl:template>
 
 
