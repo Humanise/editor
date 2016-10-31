@@ -63,8 +63,9 @@ p.common, ul.common {
 
 .layout_menu {
   margin: 0;
-  padding: 5px 5px 10px;
-  list-style: none; }
+  padding: 0 5px 10px;
+  list-style: none;
+  text-align: center; }
 
 .layout_menu_item {
   display: inline-block; }
@@ -85,12 +86,12 @@ p.common, ul.common {
 
 .layout_menu_item-first {
   display: block;
-  padding-left: 5px; }
+  text-align: center; }
 
 .layout_menu_link-first {
-  background: url("../gfx/graphics.png") 0 -636px;
+  background: url("../gfx/graphics.png") -42px -636px;
   display: inline-block;
-  width: 160px;
+  width: 115px;
   height: 40px; }
   .layout_menu_link-first > span {
     display: none; }
@@ -103,9 +104,6 @@ p.common, ul.common {
   .layout_menu_link {
     letter-spacing: 0;
     padding: 0 5px; } }
-@media screen and (min-width: 500px) {
-  .layout_menu {
-    text-align: center; } }
 @media screen and (min-width: 760px) {
   .layout_menu {
     padding: 5px 10px;
@@ -117,13 +115,11 @@ p.common, ul.common {
     font-size: 22px;
     line-height: 44px;
     padding: 0 10px;
-    font-weight: 100; }
+    font-weight: 300; }
 
   .layout_menu_item-first {
-    display: inline-block; } }
-@media screen and (min-width: 1000px) {
-  .layout_menu {
-    padding: 5px 0; } }
+    display: inline-block;
+    margin-left: 50px; } }
 .layout_search {
   margin: 0;
   font-size: 0;
@@ -135,23 +131,24 @@ p.common, ul.common {
 
 .layout_search_icon {
   position: absolute;
-  top: 3px;
-  right: 0px;
+  top: 0;
+  right: 0;
   display: inline-block;
   width: 24px;
   height: 24px;
-  padding: 12px; }
+  padding: 8px 10px 12px; }
   .layout_search_icon > path {
     fill: #aaa; }
 
-.layout_head_body,
 .layout_base {
   position: relative;
   max-width: 980px;
   margin: 0 auto; }
 
 .layout_head_body {
-  position: relative; }
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto; }
 
 .layout_head {
   background: #f6f6f9; }
@@ -161,11 +158,23 @@ p.common, ul.common {
       color: #fff;
       outline-color: #fff; }
       .layout_head-hero .layout_menu_link-first {
-        background-position: -200px -636px; }
+        background-position: -242px -636px; }
         .scroll .layout_head-hero .layout_menu_link-first {
-          background-position: 0 -636px; }
+          background-position: -42px -636px; }
     .layout_head-hero .layout_search_icon > path {
       fill: #fff; }
+    .layout_head-hero .layout_head_logo > svg {
+      fill: #fff; }
+      .scroll .layout_head-hero .layout_head_logo > svg {
+        fill: rgba(0, 0, 0, 0.3); }
+  .layout_head_logo {
+    position: absolute;
+    left: 10px;
+    top: 5px; }
+    .layout_head_logo > svg {
+      width: 32px;
+      height: 32px;
+      fill: #999; }
 
 .layout_body {
   padding-bottom: 40px; }
@@ -198,7 +207,13 @@ p.common, ul.common {
     top: 0;
     position: fixed;
     width: 100%;
-    z-index: 10; } }
+    z-index: 10; }
+    .layout_head_logo {
+      left: 15px;
+      top: 7px; }
+      .layout_head_logo > svg {
+        width: 36px;
+        height: 36px; } }
 .submenu {
   margin: 0 auto;
   padding: 5px 10px 5px;

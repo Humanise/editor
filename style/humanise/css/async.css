@@ -131,7 +131,7 @@
   background: #fff;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
   display: block;
-  height: 46px;
+  height: 42px;
   position: absolute;
   top: 0;
   right: 0;
@@ -148,9 +148,11 @@
   right: -145px;
   width: 38px;
   height: 38px;
-  top: 4px;
+  top: 2px;
   background: none;
   padding: 0;
+  outline: none;
+  cursor: pointer;
   -webkit-appearance: none;
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent; }
@@ -164,7 +166,7 @@
   display: block;
   width: 100%;
   box-sizing: border-box;
-  height: 46px;
+  height: 42px;
   border: none;
   padding: 0 0 0 15px;
   font-size: 16px;
@@ -185,7 +187,7 @@
   color: #fff;
   position: absolute;
   right: -100px;
-  top: 9px;
+  top: 7px;
   border: none;
   font-size: 16px;
   border-radius: 3px;
@@ -215,7 +217,7 @@
     left: auto;
     width: 0px;
     height: auto;
-    top: 9px;
+    top: 6px;
     right: 8px;
     background: none;
     padding: 0; }
@@ -256,6 +258,12 @@
   .layout_search_active .layout_search_body {
     width: 200px;
     opacity: 1; } }
+@media screen and (min-width: 760px) {
+  .layout_search_body {
+    top: 9px; }
+
+  .layout_search_icon {
+    top: 5px; } }
 .layout_info {
   overflow: hidden;
   padding: 15px;

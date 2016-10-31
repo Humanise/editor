@@ -1,5 +1,4 @@
 @include if((target: inline)) {
-  .layout_head_body,
   .layout_base {
     position: relative;
     max-width: 980px;
@@ -8,6 +7,8 @@
 
   .layout_head_body {
     position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
   }
 
   .layout_head {
@@ -21,15 +22,34 @@
         outline-color: #fff;
 
         &-first {
-          background-position: -200px -636px;
+          background-position: -242px -636px;
           .scroll & {
-            background-position: 0 -636px;
+            background-position: -42px -636px;
           }
         }
       }
 
       .layout_search_icon > path {
         fill: #fff;
+      }
+      .layout_head_logo {
+        > svg {
+          fill: #fff;
+          .scroll & {
+            fill: rgba(0,0,0,.3);
+          }
+        }
+      }
+    }
+
+    &_logo {
+      position: absolute;
+      left: 10px;
+      top: 5px;
+      > svg {
+        width: 32px;
+        height: 32px;
+        fill: #999;
       }
     }
   }
@@ -93,6 +113,16 @@
     position: fixed;
     width: 100%;
     z-index: 10;
+
+    &_logo {
+      left: 15px;
+      top: 7px;
+
+      > svg {
+        width: 36px;
+        height: 36px;
+      }
+    }
   }
 }
 

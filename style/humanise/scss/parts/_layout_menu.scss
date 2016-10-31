@@ -2,8 +2,9 @@
 
   .layout_menu {
     margin: 0;
-    padding: 5px 5px 10px;
+    padding: 0 5px 10px;
     list-style: none;
+    text-align: center;
   }
 
   .layout_menu_item {
@@ -31,13 +32,13 @@
 
   .layout_menu_item-first {
     display: block;
-    padding-left: 5px;
+    text-align: center;
   }
 
   .layout_menu_link-first {
-    background: url("../gfx/graphics.png") 0 -636px;
+    background: url("../gfx/graphics.png") -42px -636px;
     display: inline-block;
-    width: 160px;
+    width: 115px;
     height: 40px;
     > span {
       display: none;
@@ -62,12 +63,6 @@
 }
 
 
-@include if((width: 500px, target: inline)) {
-  .layout_menu {
-    text-align: center;
-  }
-}
-
 @include if((width: 760px, target: inline)) {
 
   .layout_menu {
@@ -83,11 +78,12 @@
     font-size: 22px;
     line-height: 44px;
     padding: 0 10px;
-    font-weight: 100;
+    font-weight: 300;
   }
 
   .layout_menu_item-first {
     display: inline-block;
+    margin-left: 50px;
   }
 
 }
@@ -95,7 +91,7 @@
 @include if((width: 1000px, target: inline)) {
 
   .layout_menu {
-    padding: 5px 0;
+    //padding: 5px 0;
   }
 
 }
