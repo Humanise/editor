@@ -37,6 +37,7 @@
         <xsl:text> part_image-</xsl:text><xsl:value-of select="img:style/@align"/>
       </xsl:if>
     </xsl:attribute>
+
     <xsl:choose>
       <xsl:when test="$editor='true' and not(o:object)">
         <div>
@@ -93,14 +94,19 @@
   <xsl:variable name="width"><xsl:call-template name="img:buildwidth"/></xsl:variable>
   <xsl:variable name="height"><xsl:call-template name="img:buildheight"/></xsl:variable>
   <xsl:variable name="ratio"><xsl:value-of select="$height div $width * 100"/></xsl:variable>
-    
+
+  <xsl:if test="img:style/@adaptive='true' and img:style/@frame!=''">
+    <xsl:attribute name="style">
+      <xsl:value-of select="concat('max-width:',$width,'px;')"/>
+    </xsl:attribute>
+  </xsl:if>
   <xsl:call-template name="util:wrap-in-frame">
     <xsl:with-param name="variant" select="img:style/@frame"/>
       <xsl:with-param name="adaptive" select="img:style/@adaptive"/>
       <xsl:with-param name="content">
         <xsl:choose>
           <xsl:when test="img:style/@adaptive='true'">
-            <span style="max-width: {$width}px;" class="">
+            <span style="max-width: {$width}px;">
               <xsl:attribute name="class">
                 <xsl:text>part_image_adaptive_container</xsl:text>
                 <xsl:if test="img:style/@align">
@@ -108,12 +114,12 @@
                 </xsl:if>
               </xsl:attribute>
               <span class="part_image_adaptive_inner" style="padding-bottom: {$ratio}%;">
-              <img src="{$src}" width="{round($width)}"  height="{round($height)}" alt="" class="part_image_image part_image_adaptive" id="part_image_{generate-id()}"/>        
+              <img src="{$src}" width="{round($width)}"  height="{round($height)}" alt="" class="part_image_image part_image_adaptive" id="part_image_{generate-id()}"/>
               </span>
             </span>
           </xsl:when>
           <xsl:otherwise>
-              <img src="{$src}" width="{round($width)}"  height="{round($height)}" alt="" class="part_image_image" id="part_image_{generate-id()}"/>        
+              <img src="{$src}" width="{round($width)}"  height="{round($height)}" alt="" class="part_image_image" id="part_image_{generate-id()}"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:with-param>
