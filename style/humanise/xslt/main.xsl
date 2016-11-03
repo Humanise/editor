@@ -65,7 +65,7 @@
           <xsl:if test="//widget:hero"><xsl:text> layout_head-hero</xsl:text></xsl:if>
         </xsl:attribute>
         <div class="layout_head_body">
-          <a href="/" class="layout_head_logo"><svg><use xlink:href="#icon-hand"></use></svg></a>
+          <a href="/" class="layout_head_logo"><svg xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="#icon-hand"></use></svg></a>
           <ul class="layout_menu">
             <xsl:apply-templates select="f:frame/h:hierarchy/h:item"/>
           </ul>
