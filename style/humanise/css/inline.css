@@ -89,17 +89,19 @@ p.common, ul.common {
   text-align: center; }
 
 .layout_menu_link-first {
-  background: url("../gfx/graphics.png") -42px -636px;
   display: inline-block;
   width: 115px;
   height: 40px; }
   .layout_menu_link-first > span {
     display: none; }
+  .layout_menu_link-first > svg {
+    width: 115px;
+    height: 40px;
+    fill: #444;
+    color: #999; }
+  .layout_menu_link-first:hover > svg {
+    fill: #007AC5; }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .layout_menu_link-first {
-    background-image: url("../gfx/graphics_2x.png");
-    background-size: 400px 907px; } }
 @media screen and (min-width: 370px) {
   .layout_menu_link {
     letter-spacing: 0;
@@ -119,7 +121,7 @@ p.common, ul.common {
 
   .layout_menu_item-first {
     display: inline-block;
-    margin-left: 50px; } }
+    margin-left: 40px; } }
 .layout_search {
   margin: 0;
   font-size: 0;
@@ -136,10 +138,13 @@ p.common, ul.common {
   display: inline-block;
   width: 24px;
   height: 24px;
-  padding: 8px 10px 12px; }
+  padding: 10px 12px 12px; }
   .layout_search_icon > path {
-    fill: #aaa; }
+    fill: #999; }
 
+@media screen and (min-width: 760px) {
+  .layout_search_icon {
+    top: 5px; } }
 .layout_base {
   position: relative;
   max-width: 980px;
@@ -152,21 +157,25 @@ p.common, ul.common {
 
 .layout_head {
   background: #f6f6f9; }
-  .layout_head-hero {
+  .layout_head.is-hero {
     background: #00a8e6; }
-    .layout_head-hero .layout_menu_link {
+    .layout_head.is-hero .layout_menu_link {
       color: #fff;
       outline-color: #fff; }
-      .layout_head-hero .layout_menu_link-first {
-        background-position: -242px -636px; }
-        .scroll .layout_head-hero .layout_menu_link-first {
-          background-position: -42px -636px; }
-    .layout_head-hero .layout_search_icon > path {
+      .layout_head.is-hero .layout_menu_link-first > svg {
+        fill: #fff;
+        color: #fff; }
+      .scroll .layout_head.is-hero .layout_menu_link-first > svg {
+        fill: #444;
+        color: #999; }
+    .layout_head.is-hero .layout_search_icon > path {
       fill: #fff; }
-    .layout_head-hero .layout_head_logo > svg {
+    .layout_head.is-hero .layout_head_logo > svg {
       fill: #fff; }
-      .scroll .layout_head-hero .layout_head_logo > svg {
+      .scroll .layout_head.is-hero .layout_head_logo > svg {
         fill: rgba(0, 0, 0, 0.3); }
+    .scroll .layout_head.is-hero .layout_head_logo:hover > svg {
+      fill: #666; }
   .layout_head_logo {
     position: absolute;
     left: 10px;
@@ -175,6 +184,8 @@ p.common, ul.common {
       width: 32px;
       height: 32px;
       fill: #999; }
+    .layout_head_logo:hover > svg {
+      fill: #666; }
 
 .layout_body {
   padding-bottom: 40px; }

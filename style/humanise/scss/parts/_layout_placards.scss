@@ -54,14 +54,14 @@
     height: 120px;
     color: #567;
     font-weight: 300;
-    background: url('../gfx/graphics.png') 0 0 no-repeat;
+    background: url('../gfx/placards.png') 0 0 no-repeat;
 
   }
 
   @include retina {
     .layout_placards_text {
-      background-image: url('../gfx/graphics_2x.png');
-      background-size: 400px 907px;
+      background-image: url('../gfx/placards_2x.png');
+      background-size: 170px 584px;
     }
   }
 
@@ -72,7 +72,7 @@
 
   .layout_placards_text_editor
   {
-    background-position: -40px -5px;
+    background-position: -30px 0px;
   }
 
   .layout_placards_text_objects

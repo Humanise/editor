@@ -14,7 +14,7 @@
   .layout_head {
     background: #f6f6f9;
 
-    &-hero {
+    &.is-hero {
       background: #00a8e6;
 
       .layout_menu_link {
@@ -22,9 +22,15 @@
         outline-color: #fff;
 
         &-first {
-          background-position: -242px -636px;
+          > svg {
+            fill: #fff;
+            color: #fff;
+          }
           .scroll & {
-            background-position: -42px -636px;
+            > svg {
+              fill: #444;
+              color: #999;
+            }
           }
         }
       }
@@ -39,6 +45,11 @@
             fill: rgba(0,0,0,.3);
           }
         }
+        .scroll &:hover {
+          > svg {
+            fill: #666;
+          }
+        }
       }
     }
 
@@ -50,6 +61,11 @@
         width: 32px;
         height: 32px;
         fill: #999;
+      }
+      &:hover {
+        > svg {
+          fill: #666;
+        }
       }
     }
   }
@@ -70,7 +86,7 @@
 
 @include if {
   .layout_design {
-    background: url('../gfx/graphics.png') -172px -709px;
+    background: url('../gfx/footer.png') 50% no-repeat;
     text-indent: -10000px;
     width: 177px;
     height: 191px;
@@ -80,8 +96,8 @@
 
   @include retina {
     .layout_design {
-      background-image: url('../gfx/graphics_2x.png');
-      background-size: 400px 907px;
+      background-image: url('../gfx/footer_2x.png');
+      background-size: 162px 181px;
     }
   }
 }
