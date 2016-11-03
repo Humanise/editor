@@ -1,11 +1,9 @@
 var controller = {
 	pageId : null,
-	
+
 	$ready : function() {
 		hui.ui.tellContainers('changeSelection','service:preview');
 		this._refreshBase();
-	},
-	pageDidLoad : function(id) {
 	},
 	$pageLoaded : function(id) {
 		this.pageId = id;
@@ -31,7 +29,7 @@ var controller = {
 	$pageChanged : function() {
 		publish.setEnabled(true);
 	},
-	
+
 	$click$close : function() {
 		this.getFrame().location='../../Tools/Sites/';
 	},
@@ -66,16 +64,16 @@ var controller = {
 	$click$viewHistory : function() {
 		window.frames[0].location = '../PageHistory/';
 	},
-	
+
 	///////////// Design /////////////
-	
+
 	$click$design : function() {
 		var frame = window.frames[0];
 		frame.op.Editor.editDesign();
 	},
-	
+
 	///////////// Notes //////////////
-	
+
 	$click$addNote : function() {
 		notePanel.show();
 		noteFormula.focus();
@@ -98,9 +96,9 @@ var controller = {
 		noteFormula.reset();
 		notePanel.hide();
 	},
-	
+
 	//////////// Review //////////////
-	
+
 	$click$review : function() {
 		reviewPanel.show();
 		reviewList.setUrl('data/ListReviews.php?pageId='+this.pageId);
@@ -123,34 +121,34 @@ var controller = {
 			}.bind(this)
 		});
 	},
-    
-    ////////////////// New page /////////////////
-    
-    $click$newPage : function() {
-		newPagePanel.show();
-        newPageFormula.focus();
-    },
-    $click$cancelNewPage : function() {
-        newPagePanel.hide();
-    },
-    $submit$newPageFormula : function(form) {
-        var values = form.getValues();
-        if (hui.isBlank(values.title)) {
-            newPageFormula.focus();
-            return;
-        }
-		hui.ui.request({
-			url : 'data/CreatePage.php',
-			parameters : {
-                pageId : this.pageId, 
-                title : values.title, 
-                placement : values.placement
-            },
-			$object : function(response) {
-                document.location = 'index.php?id=' + response.id;
-            }
-        });
+
+  ////////////////// New page /////////////////
+
+  $click$newPage : function() {
+    newPagePanel.show();
+    newPageFormula.focus();
+  },
+  $click$cancelNewPage : function() {
+    newPagePanel.hide();
+  },
+  $submit$newPageFormula : function(form) {
+    var values = form.getValues();
+    if (hui.isBlank(values.title)) {
+      newPageFormula.focus();
+      return;
     }
+    hui.ui.request({
+      url : 'data/CreatePage.php',
+      parameters : {
+        pageId : this.pageId,
+        title : values.title,
+        placement : values.placement
+      },
+      $object : function(response) {
+        document.location = 'index.php?id=' + response.id;
+      }
+    });
+  }
 };
 
 hui.ui.listen(controller);
