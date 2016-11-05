@@ -158,7 +158,7 @@ class RenderingService {
       'language' => $language,
       'statistics' => ($statistics ? 'true' : 'false')
     ];
-//    print_r($variables); exit;
+
     $xsl = '<?xml version="1.0" encoding="'.$encoding.'"?>'.
       '<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">'.
       '<xsl:output method="html" indent="no" encoding="'.$encoding.'"/>'.
@@ -172,6 +172,7 @@ class RenderingService {
     $xsl.=
       '<xsl:template match="/"><xsl:apply-templates/></xsl:template>'.
       '</xsl:stylesheet>';
+
     return XslService::transform($xmlData,$xsl);
   }
 

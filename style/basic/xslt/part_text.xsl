@@ -15,7 +15,7 @@
 			<xsl:text>part_text common_font</xsl:text>
 			<xsl:if test="txt:image"> part_text_image</xsl:if>
 		</xsl:attribute>
-		<xsl:apply-templates/>
+		<xsl:apply-templates select="*"/>
 	</div>
 </xsl:template>
 

@@ -1,5 +1,5 @@
 op.DocumentEditor = {
-	
+
 	part : null,
 	section : null,
 
@@ -21,7 +21,7 @@ op.DocumentEditor = {
 			}.bind(this)
 		})
 	},
-	
+
 	$editPart$huiEditor : function(part) {
 		this.part = part;
 		this.originalStyle = this.part.element.getAttribute('style');
@@ -31,8 +31,9 @@ op.DocumentEditor = {
 	},
 	_initiatePartWindow : function() {
 		hui.ui.get('layoutFormula').setValues(this.section);
+		hui.ui.get('advancedFormula').setValues(this.section);
 		if (this.part.$partWindowLoaded) {
-			this.part.$partWindowLoaded()			
+			this.part.$partWindowLoaded()
 		}
 		// Select the current page
 		hui.ui.get('bar').select(hui.ui.get('pages').getPageKey());
@@ -55,6 +56,9 @@ op.DocumentEditor = {
 		this._updateSection(values);
 		hui.override(this.section,values);
 	},
+  $valuesChanged$advancedFormula : function(values) {
+    hui.override(this.section,values);
+  },
 	_updateSection : function(values) {
 		hui.style.set(this.part.element,{
 			paddingTop : values.top,
@@ -66,23 +70,23 @@ op.DocumentEditor = {
 		});
 	},
 	$toggleInfo$huiEditor : function() {
-        if (this._loadingPartWindow) {
-            return;
-        }
+    if (this._loadingPartWindow) {
+      return;
+    }
 		if (hui.ui.get('partWindow')) {
 			this._initiatePartWindow();
 			return;
 		}
-        this._loadingPartWindow = true;
+    this._loadingPartWindow = true;
 		hui.ui.include({
 			url : op.context+'Editor/Template/document/live/gui/properties.php?type=' + this.part.type,
 			$success : function() {
-                this._initiatePartWindow();
-                this._loadingPartWindow = false;
-            }.bind(this)
-		})		
+        this._initiatePartWindow();
+        this._loadingPartWindow = false;
+      }.bind(this)
+		})
 	},
-	
+
 	loadPart : function(options) {
 		this.section = {};
 		hui.ui.request({
@@ -91,10 +95,6 @@ op.DocumentEditor = {
 			$object : function(data) {
 				options.$success(data.part);
 				this.section = data.section;
-				var form = hui.ui.get('layoutFormula');
-				if (form) {
-					form.setValues(this.section)
-				}
 				options.callback();
 			}.bind(this),
 			$failure : function() {
@@ -141,7 +141,7 @@ op.FieldResizer = function(options) {
 
 op.FieldResizer.prototype = {
 	resize : function(instantly,focused) {
-				
+
 		var field = this.options.field;
 		hui.style.copy(field,this.dummy,[
 			'font-size','line-height','font-weight','letter-spacing','word-spacing','font-family','text-transform','font-variant','text-indent'

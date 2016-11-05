@@ -11,8 +11,9 @@
  xmlns:movie="http://uri.in2isoft.com/onlinepublisher/part/movie/1.0/"
  xmlns:util="http://uri.in2isoft.com/onlinepublisher/util/"
  xmlns:part="http://uri.in2isoft.com/onlinepublisher/part/1.0/"
+ xmlns:style="http://uri.in2isoft.com/onlinepublisher/style/1.0/"
  xmlns:php="http://php.net/xsl"
- exclude-result-prefixes="p f h header text util part movie php res"
+ exclude-result-prefixes="p f h header text util part movie php res style"
  >
 
 <xsl:variable name="only-inline" select="'!true'" />
@@ -163,6 +164,28 @@
 </xsl:template>
 
 
+<!-- Style -->
+
+
+<xsl:template name="util:media">
+  <xsl:if test="@min-width">and (min-width: <xsl:value-of select="@min-width"/>)</xsl:if>
+    <xsl:if test="@width-is-above">and (min-width: <xsl:value-of select="@width-is-above"/>)</xsl:if>
+  <xsl:if test="@max-width">and (max-width: <xsl:value-of select="@max-width"/>)</xsl:if>
+    <xsl:if test="@width-less-than">and (max-width: <xsl:value-of select="@width-less-than"/>)</xsl:if>
+</xsl:template>
+
+<xsl:template name="util:rules">
+  <xsl:value-of select="@css"/>
+  <xsl:for-each select="rule">
+    <xsl:value-of select="@name"/><xsl:text>:</xsl:text><xsl:value-of select="@value"/><xsl:text>;</xsl:text>
+  </xsl:for-each>
+  <xsl:for-each select="*[not(name()='rule')]">
+    <xsl:value-of select="concat(name(),':',text(),@of,';')"/>
+  </xsl:for-each>
+  <xsl:for-each select="@*[not(name()='name' or name()='css')]">
+    <xsl:value-of select="concat(name(), ': ', ., ';')"/>
+  </xsl:for-each>
+</xsl:template>
 
 
 <!-- Uncategorized -->

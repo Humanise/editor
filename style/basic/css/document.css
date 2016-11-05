@@ -20,3 +20,13 @@
 	display: table-cell;
 	vertical-align: top;
 }
+
+.document_row-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.document_column-flex {
+  flex: 1;
+  outline: 1px dashed #eee;
+}

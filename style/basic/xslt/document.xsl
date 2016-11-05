@@ -8,8 +8,10 @@
  xmlns:i="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/"
  xmlns:o="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/"
  xmlns:part="http://uri.in2isoft.com/onlinepublisher/part/1.0/"
+ xmlns:style="http://uri.in2isoft.com/onlinepublisher/style/1.0/"
  xmlns:ph="http://uri.in2isoft.com/onlinepublisher/part/header/1.0/"
- exclude-result-prefixes="doc n p i o part ph"
+ xmlns:util="http://uri.in2isoft.com/onlinepublisher/util/"
+ exclude-result-prefixes="doc n p i o part ph style"
  >
 
   <xsl:include href="part_header.xsl"/>
@@ -72,6 +74,8 @@
       <xsl:comment/>
     </div>
   </xsl:template>
+
+  <!-- table layout -->
 
   <xsl:template match="doc:row[count(doc:column)>1]">
     <div class="document_row">
@@ -149,7 +153,65 @@
     </div>
   </xsl:template>
 
+
+  <!-- Flex layout -->
+
+  <xsl:template match="doc:row[@layout='flex']">
+    <xsl:variable name="id" select="concat('document_row-',generate-id())" />
+    <div class="document_row document_row-flex {$id}">
+      <xsl:apply-templates/>
+      <xsl:comment/>
+    </div>
+
+    <xsl:for-each select="style:style">
+    <style>
+      <xsl:for-each select="style:if">
+        <xsl:text>@media screen </xsl:text>
+        <xsl:call-template name="util:media"/>
+        <xsl:text> {</xsl:text>
+        <xsl:for-each select="style:feature[@name='reverse']">
+          <xsl:value-of select="concat('.', $id, '{flex-wrap: wrap-reverse;}')"/>
+        </xsl:for-each>
+        <xsl:for-each select="style:component[@name='row']">
+          <xsl:value-of select="concat('.', $id, '{')"/>
+            <xsl:call-template name="util:rules"/>
+          <xsl:text>}</xsl:text>
+        </xsl:for-each>
+        <xsl:text>}</xsl:text>
+      </xsl:for-each>
+    </style>
+    </xsl:for-each>
+
+  </xsl:template>
+
+  <xsl:template match="doc:row[@layout='flex']/doc:column">
+    <xsl:variable name="id" select="concat('document_column-',generate-id())" />
+    <div class="document_column document_column-flex {$id}">
+      <xsl:apply-templates/>
+      <xsl:comment/>
+    </div>
+
+    <xsl:for-each select="style:style">
+    <style>
+      <xsl:for-each select="style:if">
+        <xsl:text>@media screen </xsl:text>
+        <xsl:call-template name="util:media"/>
+        <xsl:text> {</xsl:text>
+        <xsl:for-each select="style:component[@name='column']">
+          <xsl:value-of select="concat('.', $id, '{')"/>
+            <xsl:call-template name="util:rules"/>
+          <xsl:text>}</xsl:text>
+        </xsl:for-each>
+        <xsl:text>}</xsl:text>
+      </xsl:for-each>
+    </style>
+    </xsl:for-each>
+  </xsl:template>
+
+  <!-- sections -->
+
   <xsl:template match="doc:section">
+    <xsl:variable name="id" select="concat('part_section-',generate-id())" />
     <xsl:variable name="style">
       <xsl:if test="@left"> padding-left: <xsl:value-of select="@left"/>;</xsl:if>
       <xsl:if test="@right"> padding-right: <xsl:value-of select="@right"/>;</xsl:if>
@@ -178,10 +240,29 @@
           <xsl:if test="@class!=''"><xsl:text> </xsl:text><xsl:value-of select="@class"/></xsl:if>
         </xsl:when>
         </xsl:choose>
+        <xsl:if test="style:style">
+          <xsl:value-of select="concat(' ', $id)"/>
+        </xsl:if>
       </xsl:attribute>
-      <xsl:apply-templates/>
+      <xsl:apply-templates select="*[not(self::style:style)]"/>
       <xsl:comment/>
     </div>
+
+    <xsl:if test="style:style/style:if">
+    <style>
+      <xsl:for-each select="style:style/style:if">
+        <xsl:text>@media screen </xsl:text>
+        <xsl:call-template name="util:media"/>
+        <xsl:text> {</xsl:text>
+        <xsl:for-each select="style:component[@name='section']">
+          <xsl:value-of select="concat('.', $id, '{')"/>
+            <xsl:call-template name="util:rules"/>
+          <xsl:text>}</xsl:text>
+        </xsl:for-each>
+        <xsl:text>}</xsl:text>
+      </xsl:for-each>
+    </style>
+    </xsl:if>
   </xsl:template>
 
 

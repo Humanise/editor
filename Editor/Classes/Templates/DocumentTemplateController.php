@@ -111,8 +111,8 @@ class DocumentTemplateController extends TemplateController
 
 	function build($id) {
 		$out = $this->getData($id);
-        return array('data' => $out['xml'], 'dynamic' => $out['dynamic'], 'index' => $out['index']);
-    }
+    return array('data' => $out['xml'], 'dynamic' => $out['dynamic'], 'index' => $out['index']);
+  }
 
 	function getData($id) {
 		$context = $this->buildPartContext($id);
@@ -150,6 +150,13 @@ class DocumentTemplateController extends TemplateController
             }
           }
           $output.= '>';
+          if (!empty($sec['style'])) {
+            if (DOMUtils::isValidFragment($sec['style'])) {
+              $output.= '<style xmlns="http://uri.in2isoft.com/onlinepublisher/style/1.0/">';
+              $output.= $sec['style'];
+              $output.= '</style>';
+            }
+          }
 					$partArr = $this->partPublish($sec['type'],$sec['id'],$id,$sec['part_id'],$sec['part_type'],$context);
 					$output.= $partArr['output'];
 					$index.= ' '.$partArr['index']."\n";

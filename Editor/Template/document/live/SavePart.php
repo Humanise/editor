@@ -13,13 +13,15 @@ $section = Request::getObject('section');
 
 
 $sql="update document_section set".
-" `left`=".Database::text($section->left).
-",`right`=".Database::text($section->right).
-",`top`=".Database::text($section->top).
-",`bottom`=".Database::text($section->bottom).
-",`float`=".Database::text($section->float).
-",`width`=".Database::text($section->width).
-" where id=".Database::int($section->id);
+" `left`=" . Database::text($section->left) .
+",`right`=" . Database::text($section->right) .
+",`top`=" . Database::text($section->top) .
+",`bottom`=" . Database::text($section->bottom) .
+",`float`=" . Database::text($section->float) .
+",`width`=" . Database::text($section->width) .
+",`class`=" . Database::text($section->class) .
+",`style`=" . Database::text($section->style) .
+" where id=" . Database::int($section->id);
 Database::update($sql);
 
 if ($ctrl = PartService::getController($type)) {

@@ -60,10 +60,10 @@
 				<formula name="advancedFormula" padding="10">
 					<fields>
 						<field label="Class">
-							<text-input/>
+							<text-input key="class"/>
 						</field>
 						<field label="Style">
-							<text-input breaks="true"/>
+							<text-input breaks="true" key="style"/>
 						</field>
 					</fields>
 				</formula>
