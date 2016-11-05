@@ -11,10 +11,6 @@ if (!isset($GLOBALS['basePath'])) {
 class ApiService {
 
 	static function handle() {
-    if (!AuthenticationService::isInternalUser(Request::getString('username'),Request::getString('password'))) {
-      Response::badRequest();
-      return;
-    }
     $path = Request::getString('path');
     if (preg_match('/api((\/[a-z]+)+)/', $path, $matches)) {
       $sub = substr($matches[1], 1);
@@ -26,10 +22,16 @@ class ApiService {
     }
     if (method_exists('ApiService', $method)) {
       ApiService::$method();
+    } else {
+      echo $method;
     }
 	}
 
   static function appPost() {
+    if (!AuthenticationService::isInternalUser(Request::getString('username'),Request::getString('password'))) {
+      Response::badRequest();
+      return;
+    }
     $text = Request::getString('text');
     if (isset($_FILES['file'])) {
       $fileName = $_FILES['file']['name'];
@@ -51,6 +53,31 @@ class ApiService {
       $news->setNote($text);
       $news->save();
       $news->publish();
+    }
+  }
+
+  static function prototype() {
+    $name = Request::getString('name');
+    $parts = explode('/', $name);
+    if (count($parts) == 2) {
+      $design = $parts[0];
+      $prototype = FileSystemService::getFullPath('style/' . $design . '/prototype/' . $parts[1] . '.xml');
+      $page = [
+        'xml' => file_get_contents($prototype),
+        'design' => $design,
+        'template' => 'document',
+        'language' => 'en',
+        'published' => 0,
+        'secure' => false,
+        'dynamic' => false,
+        'framedynamic' => false,
+        'id' => 0
+      ];
+      $id = 0;
+      $path = '/';
+      $relative = '/';
+      $samePageBaseUrl = '/';
+      RenderingService::writePage($id,$path,$page,$relative,$samePageBaseUrl);
     }
   }
 }

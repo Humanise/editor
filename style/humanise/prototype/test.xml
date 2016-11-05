@@ -1,0 +1,887 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/page/1.0/" id="8" title="Humanise Editor">
+  <meta>
+    <keywords/>
+    <published unix="1429948734" day="25" weekday="25" yearday="114" month="04" year="2015" hour="09" minute="58" second="54" offset="7200" timezone="CEST"/>
+    <language/>
+    <analytics key="UA-420000-2"/>
+  </meta>
+  <context>
+    <home page="1" path="/"/>
+  </context>
+  <parameters/>
+  <design/>
+  <frame xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/frame/1.0/" title="Humanise">
+    <hierarchy xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/hierarchy/1.0/">
+      <item title="Forside" alternative="" page="1" path="/">
+        <item title="Om Humanise" alternative="" page="53" path="om/" target="_self" hidden="true"/>
+      </item>
+      <item title="Produkter" alternative="" page="2" path="produkter/">
+        <item title="Humanise Editor" alternative="" page="8" path="produkter/onlinepublisher/">
+          <item title="Skærmbilleder" alternative="" page="156" path="produkter/onlinepublisher/skaermbilleder.html"/>
+          <item title="Designs" alternative="" page="92" path="produkter/onlinepublisher/designs.html"/>
+          <item title="Skabeloner" alternative="" page="93" path="produkter/onlinepublisher/skabeloner.html"/>
+          <item title="Værktøjer" alternative="" page="98" path="produkter/onlinepublisher/vaerktoejer.html"/>
+          <item title="Brugergrænsefladen" alternative="" page="39" path="produkter/onlinepublisher/brugergraensefladen.html" target="_self"/>
+          <item title="Billedhåndtering" alternative="" page="86" path="produkter/onlinepublisher/billedhaandtering.html"/>
+          <item title="Priser" alternative="" page="95" path="produkter/onlinepublisher/priser.html"/>
+          <item title="Muligheder" alternative="" page="96" path="produkter/onlinepublisher/muligheder/"/>
+          <item title="Samarbejde" alternative="" page="91" path="produkter/onlinepublisher/samarbejde/">
+            <item title="Forløb" alternative="" page="94" path="produkter/onlinepublisher/samarbejde/forloeb/">
+              <item title="Projektplan" alternative="" page="100" path="produkter/onlinepublisher/samarbejde/forloeb/projektplan.html"/>
+            </item>
+            <item title="Opagver" alternative="" page="97" path="produkter/onlinepublisher/samarbejde/kunde.html"/>
+            <item title="Startguide" alternative="" page="123" path="produkter/onlinepublisher/startguide/" target="_self"/>
+          </item>
+        </item>
+        <item title="OnlineObjects" alternative="" page="4" path="produkter/onlineobjects/"/>
+      </item>
+      <item title="Teknologi" alternative="" page="11" path="teknologi/">
+        <item title="Humanise UI" alternative="" page="12" path="teknologi/hui/" target="_self"/>
+      </item>
+      <item title="Hjælp" alternative="" page="132" path="support/"/>
+      <item title="Referencer" alternative="Kunde referencer" page="51" path="referencer/"/>
+      <item title="Kontakt" alternative="" page="3" path="kontakt/"/>
+    </hierarchy>
+    <search page="38">
+      <button title="Søg"/>
+      <types>
+        <type unique="page"/>
+      </types>
+    </search>
+    <text>
+      <bottom/>
+    </text>
+    <links>
+      <top>
+        <link title="Forsiden" alternative="" page="1"/>
+        <link title="Kontakt" alternative="" page="3"/>
+        <link title="Søgning" alternative="" page="38"/>
+      </top>
+      <bottom/>
+    </links>
+  </frame>
+  <content>
+    <content xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/document/1.0/">
+      <row layout="flex">
+        <style xmlns="http://uri.in2isoft.com/onlinepublisher/style/1.0/">
+          <if max-width="600px">
+            <!--<feature name="reverse"/>-->
+            <component name="row">
+              <flex-direction of="column-reverse"/>
+              <align-items of="center"/>
+              <justify-content of="center"/>
+            </component>
+          </if>
+        </style>
+        <column>
+          <style xmlns="http://uri.in2isoft.com/onlinepublisher/style/1.0/">
+            <if>
+              <component name="column">
+                <min-width of="270px"/>
+              </component>
+            </if>
+          </style>
+          <section id="2224">
+            <style xmlns="http://uri.in2isoft.com/onlinepublisher/style/1.0/">
+              <if min-width="600px">
+                <component name="section">
+                  <margin-bottom of="20px"/>
+                </component>
+              </if>
+            </style>
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="header" id="1744">
+              <sub>
+                <header xmlns="http://uri.in2isoft.com/onlinepublisher/part/header/1.0/" level="1"><style color="#555555" font-size="54px"/>Humanise <strong>Editor</strong></header>
+              </sub>
+            </part>
+          </section>
+          <section id="1162">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="624">
+              <sub>
+                <text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">
+                  <style text-align="left"/>
+                  <p>Et <strong>simpelt</strong> system til redigering af websteder. Med systemet kan man fra enhver computer på Internettet ændre sit websted.</p>
+                </text>
+              </sub>
+            </part>
+          </section>
+          <section id="1180" top="5pt">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="642">
+              <sub>
+                <text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">
+                  <style font-size="12pt" text-align="left"/>
+                  <p>Systemet · <link page="96" path="produkter/onlinepublisher/muligheder/" id="114">Muligheder</link> · <link page="91" path="produkter/onlinepublisher/samarbejde/" id="111">Samarbejde</link></p>
+                </text>
+              </sub>
+            </part>
+          </section>
+        </column>
+        <column>
+          <style xmlns="http://uri.in2isoft.com/onlinepublisher/style/1.0/">
+            <if>
+              <component name="column">
+                <max-width of="218px"/>
+                <min-width of="218px"/>
+              </component>
+            </if>
+          </style>
+          <section id="1161">
+            <style xmlns="http://uri.in2isoft.com/onlinepublisher/style/1.0/">
+              <if max-width="600px">
+                <component name="section">
+                  <margin-bottom of="20px"/>
+                </component>
+              </if>
+            </style>
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="image" id="623">
+              <sub>
+                <image xmlns="http://uri.in2isoft.com/onlinepublisher/part/image/1.0/">
+                  <style align="right" adaptive="true"/>
+                  <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="5223" type="image">
+                    <title>Humanise editor</title>
+                    <note/>
+                    <created unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <updated unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <published unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <sub>
+                      <image xmlns="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/">
+                        <filename>humanise_editor.png</filename>
+                        <size>38125</size>
+                        <width>218</width>
+                        <height>259</height>
+                        <mimetype>image/png</mimetype>
+                      </image>
+                    </sub>
+                  </object>
+                </image>
+              </sub>
+            </part>
+          </section>
+        </column>
+      </row>
+      <row>
+        <column>
+          <section id="2306" top="30px" bottom="30px">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="movie" id="1826">
+              <sub>
+                <movie xmlns="http://uri.in2isoft.com/onlinepublisher/part/movie/1.0/">
+                  <style width="100%" height="56.25%"/>
+                  <url>https://www.youtube.com/watch?v=XqJU6PQM0_Q</url>
+                  <image id="8737"/>
+                  <poster>
+                    <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="8737" type="image">
+                      <title>Poster</title>
+                      <note/>
+                      <created unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                      <updated unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                      <published unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                      <sub>
+                        <image xmlns="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/">
+                          <filename>Poster.png</filename>
+                          <size>829795</size>
+                          <width>2462</width>
+                          <height>1384</height>
+                          <mimetype>image/png</mimetype>
+                        </image>
+                      </sub>
+                    </object>
+                  </poster>
+                  <source type="youtube" id="XqJU6PQM0_Q"/>
+                </movie>
+              </sub>
+            </part>
+          </section>
+        </column>
+      </row>
+      <row layout="flex">
+        <column>
+          <section id="2069" top="5px">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="header" id="1589">
+              <sub>
+                <header xmlns="http://uri.in2isoft.com/onlinepublisher/part/header/1.0/" level="2"><style font-size="18pt" font-weight="normal"/>God support</header>
+              </sub>
+            </part>
+          </section>
+          <section id="2071">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="1591">
+              <sub>
+                <text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">
+                  <style/>
+                  <p>Vi har brugt rigtig lang tid på vejledninger i systemet. Desuden har vi skrevet artikler om hvordan man bedre kan opbygge sin hjemmeside.</p>
+                </text>
+              </sub>
+            </part>
+          </section>
+          <section id="2070">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="1590">
+              <sub>
+                <text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">
+                  <style/>
+                  <p>
+                    <link page="16" path="support/onlinepublisher/" id="206" part-id="1590">Gå til support...</link>
+                  </p>
+                </text>
+              </sub>
+            </part>
+          </section>
+        </column>
+        <column width="min">
+          <style xmlns="http://uri.in2isoft.com/onlinepublisher/style/1.0/">
+            <if>
+              <component name="column">
+                <display of="flex"/>
+                <flex-direction of="column"/>
+                <justify-content of="center"/>
+              </component>
+            </if>
+            <if max-width="400px">
+              <component name="column">
+                <max-width of="25%"/>
+                <padding-left of="10px"/>
+              </component>
+            </if>
+            <if min-width="400px">
+              <component name="column">
+                <max-width of="121px"/>
+                <padding-left of="20px"/>
+              </component>
+            </if>
+          </style>
+          <section id="2068" bottom="50px">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="image" id="1588">
+              <sub>
+                <image xmlns="http://uri.in2isoft.com/onlinepublisher/part/image/1.0/">
+                  <style adaptive="true"/>
+                  <transform display-width="121" display-height="121" scale-method="max" scale-width="0" scale-height="0"/>
+                  <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="2369" type="image">
+                    <title>Udklipsholder</title>
+                    <note/>
+                    <created unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <updated unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <published unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <sub>
+                      <image xmlns="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/">
+                        <filename>untitled45.png</filename>
+                        <size>14137</size>
+                        <width>121</width>
+                        <height>121</height>
+                        <mimetype>image/png</mimetype>
+                      </image>
+                    </sub>
+                  </object>
+                </image>
+              </sub>
+            </part>
+          </section>
+        </column>
+      </row>
+      <row bottom="30px">
+        <column width="260px">
+          <section id="1975" bottom="30px">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="imagegallery" id="1495">
+              <sub>
+                <imagegallery xmlns="http://uri.in2isoft.com/onlinepublisher/part/imagegallery/1.0/" image-group="2620">
+                  <display height="190" variant="changing" framed="false" show-title="false"/>
+                  <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="2621" type="image">
+                    <title>Screen1</title>
+                    <note/>
+                    <created unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <updated unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <published unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <sub>
+                      <image xmlns="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/">
+                        <filename>Screen1.png</filename>
+                        <size>259281</size>
+                        <width>1042</width>
+                        <height>786</height>
+                        <mimetype>image/png</mimetype>
+                      </image>
+                    </sub>
+                  </object>
+                  <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="2632" type="image">
+                    <title>Screen10</title>
+                    <note/>
+                    <created unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <updated unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <published unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <sub>
+                      <image xmlns="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/">
+                        <filename>Screen10.png</filename>
+                        <size>411872</size>
+                        <width>1042</width>
+                        <height>786</height>
+                        <mimetype>image/png</mimetype>
+                      </image>
+                    </sub>
+                  </object>
+                  <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="2630" type="image">
+                    <title>Screen11</title>
+                    <note/>
+                    <created unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <updated unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <published unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <sub>
+                      <image xmlns="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/">
+                        <filename>Screen11.png</filename>
+                        <size>308980</size>
+                        <width>1042</width>
+                        <height>786</height>
+                        <mimetype>image/png</mimetype>
+                      </image>
+                    </sub>
+                  </object>
+                  <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="2633" type="image">
+                    <title>Screen121</title>
+                    <note/>
+                    <created unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <updated unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <published unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <sub>
+                      <image xmlns="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/">
+                        <filename>Screen121.png</filename>
+                        <size>353405</size>
+                        <width>1042</width>
+                        <height>786</height>
+                        <mimetype>image/png</mimetype>
+                      </image>
+                    </sub>
+                  </object>
+                  <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="2622" type="image">
+                    <title>Screen2</title>
+                    <note/>
+                    <created unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <updated unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <published unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <sub>
+                      <image xmlns="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/">
+                        <filename>Screen2.png</filename>
+                        <size>302367</size>
+                        <width>1042</width>
+                        <height>786</height>
+                        <mimetype>image/png</mimetype>
+                      </image>
+                    </sub>
+                  </object>
+                  <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="2627" type="image">
+                    <title>Screen3</title>
+                    <note/>
+                    <created unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <updated unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <published unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <sub>
+                      <image xmlns="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/">
+                        <filename>Screen3.png</filename>
+                        <size>395428</size>
+                        <width>1042</width>
+                        <height>786</height>
+                        <mimetype>image/png</mimetype>
+                      </image>
+                    </sub>
+                  </object>
+                  <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="2625" type="image">
+                    <title>Screen4</title>
+                    <note/>
+                    <created unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <updated unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <published unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <sub>
+                      <image xmlns="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/">
+                        <filename>Screen4.png</filename>
+                        <size>336927</size>
+                        <width>1042</width>
+                        <height>786</height>
+                        <mimetype>image/png</mimetype>
+                      </image>
+                    </sub>
+                  </object>
+                  <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="2624" type="image">
+                    <title>Screen5</title>
+                    <note/>
+                    <created unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <updated unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <published unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <sub>
+                      <image xmlns="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/">
+                        <filename>Screen5.png</filename>
+                        <size>325411</size>
+                        <width>1042</width>
+                        <height>786</height>
+                        <mimetype>image/png</mimetype>
+                      </image>
+                    </sub>
+                  </object>
+                  <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="2623" type="image">
+                    <title>Screen6</title>
+                    <note/>
+                    <created unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <updated unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <published unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <sub>
+                      <image xmlns="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/">
+                        <filename>Screen6.png</filename>
+                        <size>345928</size>
+                        <width>1042</width>
+                        <height>786</height>
+                        <mimetype>image/png</mimetype>
+                      </image>
+                    </sub>
+                  </object>
+                  <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="2629" type="image">
+                    <title>Screen7</title>
+                    <note/>
+                    <created unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <updated unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <published unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <sub>
+                      <image xmlns="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/">
+                        <filename>Screen7.png</filename>
+                        <size>333987</size>
+                        <width>1042</width>
+                        <height>786</height>
+                        <mimetype>image/png</mimetype>
+                      </image>
+                    </sub>
+                  </object>
+                  <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="2626" type="image">
+                    <title>Screen8</title>
+                    <note/>
+                    <created unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <updated unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <published unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <sub>
+                      <image xmlns="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/">
+                        <filename>Screen8.png</filename>
+                        <size>270723</size>
+                        <width>1042</width>
+                        <height>786</height>
+                        <mimetype>image/png</mimetype>
+                      </image>
+                    </sub>
+                  </object>
+                  <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="2631" type="image">
+                    <title>Screen9</title>
+                    <note/>
+                    <created unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <updated unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <published unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <sub>
+                      <image xmlns="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/">
+                        <filename>Screen9.png</filename>
+                        <size>396054</size>
+                        <width>1042</width>
+                        <height>786</height>
+                        <mimetype>image/png</mimetype>
+                      </image>
+                    </sub>
+                  </object>
+                </imagegallery>
+              </sub>
+            </part>
+          </section>
+        </column>
+        <column>
+          <section id="1976" top="0px">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="header" id="1496">
+              <sub>
+                <header xmlns="http://uri.in2isoft.com/onlinepublisher/part/header/1.0/" level="2"><style font-size="18pt" font-weight="normal"/>Skærmbilleder</header>
+              </sub>
+            </part>
+          </section>
+          <section id="1977">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="1497">
+              <sub>
+                <text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">
+                  <style/>
+                  <p>Disse skærmbilleder giver indblik i hvordan systemet fungerer. </p>
+                </text>
+              </sub>
+            </part>
+          </section>
+          <section id="1978">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="1498">
+              <sub>
+                <text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">
+                  <style/>
+                  <p>
+                    <link page="156" path="produkter/onlinepublisher/skaermbilleder.html" id="190" part-id="1498">Se flere skærmbilleder...</link>
+                  </p>
+                </text>
+              </sub>
+            </part>
+          </section>
+        </column>
+      </row>
+      <row bottom="30px">
+        <column>
+          <section id="1172" top="0pt">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="header" id="634">
+              <sub>
+                <header xmlns="http://uri.in2isoft.com/onlinepublisher/part/header/1.0/" level="2"><style font-size="18pt" font-weight="normal"/>Fleksible designs</header>
+              </sub>
+            </part>
+          </section>
+          <section id="1174">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="636">
+              <sub>
+                <text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">
+                  <style text-align="left"/>
+                  <p>Sidernes indhold er fuldt adskilt fra hvordan de præsenteres. Dermed er der ingen begrænsninger i designet af webstedets udseende. Systemet kan således imødekomme de mest alsidige og krævende visuelle designs.</p>
+                </text>
+              </sub>
+            </part>
+          </section>
+          <section id="1175">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="637">
+              <sub>
+                <text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">
+                  <style/>
+                  <p>
+                    <link page="92" path="produkter/onlinepublisher/designs.html" id="112">Læs mere om designs...</link>
+                  </p>
+                </text>
+              </sub>
+            </part>
+          </section>
+        </column>
+        <column width="min">
+          <section id="1173" left="15pt" bottom="25px">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="image" id="635">
+              <sub>
+                <image xmlns="http://uri.in2isoft.com/onlinepublisher/part/image/1.0/">
+                  <style align="center" adaptive="false"/>
+                  <transform display-width="260" display-height="171" scale-method="max" scale-width="0" scale-height="0"/>
+                  <link page="92" path="produkter/onlinepublisher/designs.html"/>
+                  <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="268" type="image">
+                    <title>LayeredPages</title>
+                    <note/>
+                    <created unix="" day="01" weekday="01" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <updated unix="" day="01" weekday="01" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <published unix="" day="01" weekday="01" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <sub>
+                      <image xmlns="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/">
+                        <filename>LayeredPages.png</filename>
+                        <size>14722</size>
+                        <width>260</width>
+                        <height>171</height>
+                        <mimetype>image/png</mimetype>
+                      </image>
+                    </sub>
+                  </object>
+                </image>
+              </sub>
+            </part>
+          </section>
+        </column>
+      </row>
+      <row bottom="30px">
+        <column width="min">
+          <section id="1177" right="15pt" bottom="25pt">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="image" id="639">
+              <sub>
+                <image xmlns="http://uri.in2isoft.com/onlinepublisher/part/image/1.0/">
+                  <style align="center" adaptive="false"/>
+                  <transform display-width="237" display-height="158" scale-method="max" scale-width="0" scale-height="0"/>
+                  <link page="93" path="produkter/onlinepublisher/skabeloner.html"/>
+                  <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="271" type="image">
+                    <title>Templates</title>
+                    <note/>
+                    <created unix="" day="01" weekday="01" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <updated unix="" day="01" weekday="01" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <published unix="" day="01" weekday="01" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <sub>
+                      <image xmlns="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/">
+                        <filename>Templates.png</filename>
+                        <size>10898</size>
+                        <width>237</width>
+                        <height>158</height>
+                        <mimetype>image/png</mimetype>
+                      </image>
+                    </sub>
+                  </object>
+                </image>
+              </sub>
+            </part>
+          </section>
+        </column>
+        <column>
+          <section id="1176" top="0pt">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="header" id="638">
+              <sub>
+                <header xmlns="http://uri.in2isoft.com/onlinepublisher/part/header/1.0/" level="2"><style font-size="18pt" font-weight="normal"/>Specialiserede skabeloner</header>
+              </sub>
+            </part>
+          </section>
+          <section id="1179">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="641">
+              <sub>
+                <text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">
+                  <style text-align="left"/>
+                  <p>Humanise Editor kommer med flere forskellige skabeloner til at opbygge sider med. Nogle skabeloner er fokuseret på en bestemt opgave mens andre er yderst fleksible. Der findes skabeloner til dokumenter, forsider, billedgallerier, søgesider mm.</p>
+                </text>
+              </sub>
+            </part>
+          </section>
+          <section id="1178">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="640">
+              <sub>
+                <text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">
+                  <style/>
+                  <p>
+                    <link page="93" path="produkter/onlinepublisher/skabeloner.html" id="113">Læs mere om skabeloner...</link>
+                  </p>
+                </text>
+              </sub>
+            </part>
+          </section>
+        </column>
+      </row>
+      <row bottom="30px">
+        <column>
+          <section id="1197" top="0pt">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="header" id="659">
+              <sub>
+                <header xmlns="http://uri.in2isoft.com/onlinepublisher/part/header/1.0/" level="2"><style font-size="18pt" font-weight="normal"/>Fokuserede værktøjer</header>
+              </sub>
+            </part>
+          </section>
+          <section id="1198">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="660">
+              <sub>
+                <text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">
+                  <style text-align="left"/>
+                  <p>Humanise Editor indeholder en lang række værktøjer der er fokuseret på at håndtere bestemte typer information. Der findes bl.a. værktøjer til sider, billeder, filer, personer og produkter. Dermed kan man få et samlet overblik over den enkelte type information. Når informationen ændres i værktøjet opdateres den automatisk på alle sider der indeholder informationen.</p>
+                </text>
+              </sub>
+            </part>
+          </section>
+          <section id="1199" bottom="50px">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="661">
+              <sub>
+                <text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">
+                  <style/>
+                  <p>
+                    <link page="98" path="produkter/onlinepublisher/vaerktoejer.html" id="120">Læs mere om værktøjer...</link>
+                  </p>
+                </text>
+              </sub>
+            </part>
+          </section>
+        </column>
+        <column width="min">
+          <section id="1196" left="15pt" bottom="25px">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="image" id="658">
+              <sub>
+                <image xmlns="http://uri.in2isoft.com/onlinepublisher/part/image/1.0/">
+                  <style align="center" adaptive="false"/>
+                  <transform display-width="118" display-height="150" scale-method="max" scale-width="0" scale-height="0"/>
+                  <link page="98" path="produkter/onlinepublisher/vaerktoejer.html"/>
+                  <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="278" type="image">
+                    <title>LargeTool</title>
+                    <note/>
+                    <created unix="1153422670" day="20" weekday="20" yearday="200" month="07" year="2006" hour="21" minute="11" second="10" offset="7200" timezone="CEST"/>
+                    <updated unix="1153422670" day="20" weekday="20" yearday="200" month="07" year="2006" hour="21" minute="11" second="10" offset="7200" timezone="CEST"/>
+                    <published unix="1153422670" day="20" weekday="20" yearday="200" month="07" year="2006" hour="21" minute="11" second="10" offset="7200" timezone="CEST"/>
+                    <sub>
+                      <image xmlns="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/">
+                        <filename>LargeTool1.png</filename>
+                        <size>5778</size>
+                        <width>118</width>
+                        <height>150</height>
+                        <mimetype>image/png</mimetype>
+                      </image>
+                    </sub>
+                  </object>
+                </image>
+              </sub>
+            </part>
+          </section>
+        </column>
+      </row>
+      <row bottom="30px">
+        <column>
+          <section id="1164" right="15pt">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="image" id="626">
+              <sub>
+                <image xmlns="http://uri.in2isoft.com/onlinepublisher/part/image/1.0/">
+                  <style align="right" adaptive="false"/>
+                  <link page="39" path="produkter/onlinepublisher/brugergraensefladen.html"/>
+                  <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="269" type="image">
+                    <title>GUI</title>
+                    <note/>
+                    <created unix="" day="01" weekday="01" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <updated unix="" day="01" weekday="01" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <published unix="" day="01" weekday="01" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <sub>
+                      <image xmlns="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/">
+                        <filename>GUI.jpg</filename>
+                        <size>16382</size>
+                        <width>218</width>
+                        <height>203</height>
+                        <mimetype>image/jpeg</mimetype>
+                      </image>
+                    </sub>
+                  </object>
+                </image>
+              </sub>
+            </part>
+          </section>
+        </column>
+        <column width="max">
+          <section id="1165" top="0pt">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="header" id="627">
+              <sub>
+                <header xmlns="http://uri.in2isoft.com/onlinepublisher/part/header/1.0/" level="2"><style font-size="18pt" font-weight="normal"/>Avanceret brugergrænseflade</header>
+              </sub>
+            </part>
+          </section>
+          <section id="1166">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="628">
+              <sub>
+                <text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">
+                  <style text-align="left"/>
+                  <p>Humanise Editor gør brug af vores unikke brugerflade kaldet "Humanise UI". Den er designet så brugerfladen ligner og føles som et normalt styresystem med vinduer, ikoner, lister mm.</p>
+                </text>
+              </sub>
+            </part>
+          </section>
+          <section id="1167">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="629">
+              <sub>
+                <text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">
+                  <style text-align="left"/>
+                  <p>
+                    <link page="39" path="produkter/onlinepublisher/brugergraensefladen.html" id="104">Læs mere om brugergrænsefladen...</link>
+                  </p>
+                </text>
+              </sub>
+            </part>
+          </section>
+        </column>
+      </row>
+      <row bottom="30px">
+        <column>
+          <section id="1168" top="0pt">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="header" id="630">
+              <sub>
+                <header xmlns="http://uri.in2isoft.com/onlinepublisher/part/header/1.0/" level="2"><style font-size="18pt" font-weight="normal"/>Billedhåndtering</header>
+              </sub>
+            </part>
+          </section>
+          <section id="1169">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="631">
+              <sub>
+                <text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">
+                  <style text-align="left"/>
+                  <p>Et område der er fokuseret meget på er billedhåndtering. En meget anvendelig feature er at man ikke behøver at skalere billedet inden det tilføjes til systemet. I stedet skaleres billedet først når det indsættes i siden.</p>
+                </text>
+              </sub>
+            </part>
+          </section>
+          <section id="1171">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="633">
+              <sub>
+                <text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">
+                  <style/>
+                  <p>
+                    <link page="86" path="produkter/onlinepublisher/billedhaandtering.html" id="105">Læs mere om billedhåndtering...</link>
+                  </p>
+                </text>
+              </sub>
+            </part>
+          </section>
+        </column>
+        <column>
+          <section id="1170" left="15pt" bottom="25px">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="image" id="632">
+              <sub>
+                <image xmlns="http://uri.in2isoft.com/onlinepublisher/part/image/1.0/">
+                  <style adaptive="false"/>
+                  <link page="86" path="produkter/onlinepublisher/billedhaandtering.html"/>
+                  <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="279" type="image">
+                    <title>Photos</title>
+                    <note/>
+                    <created unix="1153424155" day="20" weekday="20" yearday="200" month="07" year="2006" hour="21" minute="35" second="55" offset="7200" timezone="CEST"/>
+                    <updated unix="1153552495" day="22" weekday="22" yearday="202" month="07" year="2006" hour="09" minute="14" second="55" offset="7200" timezone="CEST"/>
+                    <published unix="1153552495" day="22" weekday="22" yearday="202" month="07" year="2006" hour="09" minute="14" second="55" offset="7200" timezone="CEST"/>
+                    <sub>
+                      <image xmlns="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/">
+                        <filename>ImageHandling.jpg</filename>
+                        <size>7823</size>
+                        <width>245</width>
+                        <height>173</height>
+                        <mimetype>image/jpeg</mimetype>
+                      </image>
+                    </sub>
+                  </object>
+                </image>
+              </sub>
+            </part>
+          </section>
+        </column>
+      </row>
+      <row>
+        <column>
+          <section id="1340" left="20pt" right="20pt" bottom="20pt">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="image" id="802">
+              <sub>
+                <image xmlns="http://uri.in2isoft.com/onlinepublisher/part/image/1.0/">
+                  <style adaptive="false"/>
+                  <transform display-width="102" display-height="167" scale-method="percent" scale-width="0" scale-height="0" scale-percent="50"/>
+                  <link page="95" path="produkter/onlinepublisher/priser.html"/>
+                  <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="357" type="image">
+                    <title>Silhouette_agreement</title>
+                    <note/>
+                    <created unix="1157393854" day="04" weekday="04" yearday="246" month="09" year="2006" hour="20" minute="17" second="34" offset="7200" timezone="CEST"/>
+                    <updated unix="1157393854" day="04" weekday="04" yearday="246" month="09" year="2006" hour="20" minute="17" second="34" offset="7200" timezone="CEST"/>
+                    <published unix="1157393854" day="04" weekday="04" yearday="246" month="09" year="2006" hour="20" minute="17" second="34" offset="7200" timezone="CEST"/>
+                    <sub>
+                      <image xmlns="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/">
+                        <filename>silhouette_agreement1.gif</filename>
+                        <size>3756</size>
+                        <width>203</width>
+                        <height>334</height>
+                        <mimetype>image/gif</mimetype>
+                      </image>
+                    </sub>
+                  </object>
+                </image>
+              </sub>
+            </part>
+          </section>
+        </column>
+        <column width="max">
+          <section id="1341" top="0pt">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="header" id="803">
+              <sub>
+                <header xmlns="http://uri.in2isoft.com/onlinepublisher/part/header/1.0/" level="2"><style font-size="18pt" font-weight="normal"/>Priser</header>
+              </sub>
+            </part>
+          </section>
+          <section id="1342">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="804">
+              <sub>
+                <text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">
+                  <style text-align="left"/>
+                  <p>Prisen på et websted afhænger meget af kravene dertil og hvor meget af arbejdet der skal udføres af os. Vi kan derfor ikke sige præcis hvad prisen er før vi har har fået overblik over kravene til webstedet. Vi kan derimod klarlægge hvordan vi kommer frem til prisen.</p>
+                </text>
+              </sub>
+            </part>
+          </section>
+          <section id="1343">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="805">
+              <sub>
+                <text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">
+                  <style/>
+                  <p>
+                    <link page="95" path="produkter/onlinepublisher/priser.html" id="129">Læs mere om hvordan prisen på et website fastsættes...</link>
+                  </p>
+                </text>
+              </sub>
+            </part>
+          </section>
+        </column>
+      </row>
+    </content>
+  </content>
+</page>
