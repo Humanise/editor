@@ -115,6 +115,7 @@ $databaseTables = array(
       array("bottom","varchar(10)","YES","","",""),
       array("spacing","varchar(10)","YES","","",""),
       array("class","varchar(255)","YES","","",""),
+      array("layout","varchar(255)","YES","","",""),
       array("style","text","YES","","","")
     ),
   'document_section' => array(

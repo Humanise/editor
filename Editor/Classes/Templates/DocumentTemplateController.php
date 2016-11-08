@@ -119,26 +119,28 @@ class DocumentTemplateController extends TemplateController
 		$dynamic=false;
 		$index = '';
 		$output = '<content xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/document/1.0/">';
-		$sql = "select * from document_row where page_id=@int(id) order by `index`";
+		$sql = "select `id`, `top`, `bottom`, `spacing`, `class`, `style`,`layout` from document_row where page_id=@int(id) order by `index`";
 		$result_row = Database::select($sql, ['id' => $id]);
 		while ($row = Database::next($result_row)) {
-			$output.= '<row';
-      foreach (['top','bottom','spacing','class'] as $key) {
+			$output.= '<row id="' . $row['id'] . '"';
+      foreach (['top','bottom','spacing','class','layout'] as $key) {
         if (!empty($row[$key])) {
           $output.= ' ' . $key . '="' . Strings::escapeXML($row[$key]) . '"';
         }
       }
 			$output.= '>';
-			$sql="select * from document_column where row_id=@int(id) order by `index`";
+      $output.= DocumentTemplateController::_getStyle($row['style']);
+			$sql="select `id`, `top`, `bottom`, `left`, `right`, `width`, `class`, `style` from document_column where row_id=@int(id) order by `index`";
 			$result_col = Database::select($sql, ['id' => $row['id']]);
 			while ($col = Database::next($result_col)) {
-				$output.= '<column';
+				$output.= '<column id="' . $col['id'] . '"';
         foreach (['width','left','right','top','bottom','class'] as $key) {
           if (!empty($col[$key])) {
             $output.= ' ' . $key . '="' . Strings::escapeXML($col[$key]) . '"';
           }
         }
 				$output.= '>';
+        $output.= DocumentTemplateController::_getStyle($col['style']);
 				$sql="select document_section.*,part.type as part_type from document_section left join part on part.id = document_section.part_id where document_section.column_id=@int(id) order by document_section.`index`";
 				$result_sec = Database::select($sql, ['id' => $col['id']]);
 				while ($sec = Database::next($result_sec)) {
@@ -150,13 +152,7 @@ class DocumentTemplateController extends TemplateController
             }
           }
           $output.= '>';
-          if (!empty($sec['style'])) {
-            if (DOMUtils::isValidFragment($sec['style'])) {
-              $output.= '<style xmlns="http://uri.in2isoft.com/onlinepublisher/style/1.0/">';
-              $output.= $sec['style'];
-              $output.= '</style>';
-            }
-          }
+          $output.= DocumentTemplateController::_getStyle($sec['style']);
 					$partArr = $this->partPublish($sec['type'],$sec['id'],$id,$sec['part_id'],$sec['part_type'],$context);
 					$output.= $partArr['output'];
 					$index.= ' '.$partArr['index']."\n";
@@ -175,6 +171,15 @@ class DocumentTemplateController extends TemplateController
 		$output.= '</content>';
 		return array('xml'=>$output,'index'=>$index,'dynamic'=>$dynamic);
 	}
+
+  static function _getStyle($xml) {
+    if (Strings::isNotBlank($xml)) {
+      if (DOMUtils::isValidFragment($xml)) {
+        return '<style xmlns="http://uri.in2isoft.com/onlinepublisher/style/1.0/">' . $xml . '</style>';
+      }
+    }
+    return '';
+  }
 
 	static function buildPartContext($pageId) {
 		$context = new PartContext();

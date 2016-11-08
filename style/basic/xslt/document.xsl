@@ -45,6 +45,7 @@
   </xsl:template>
 
   <xsl:template match="doc:row">
+    <xsl:variable name="id" select="concat('document_row-',position())" />
     <xsl:variable name="style">
       <xsl:if test="@top!=''">
         <xsl:text>margin-top:</xsl:text><xsl:value-of select="@top"/><xsl:text>;</xsl:text>
@@ -53,9 +54,10 @@
         <xsl:text>margin-bottom:</xsl:text><xsl:value-of select="@bottom"/><xsl:text>;</xsl:text>
       </xsl:if>
     </xsl:variable>
-    <div>
+    <div data-id="{@id}">
       <xsl:attribute name="class">
-        <xsl:text>document_row</xsl:text>
+        <xsl:text>document_row </xsl:text>
+        <xsl:value-of select="$id"/>
         <xsl:if test="@class!=''">
           <xsl:text> </xsl:text><xsl:value-of select="@class"/>
         </xsl:if>
@@ -63,14 +65,15 @@
       <xsl:if test="$style!=''">
         <xsl:attribute name="style"><xsl:value-of select="$style"/></xsl:attribute>
       </xsl:if>
-      <xsl:apply-templates/>
+      <xsl:apply-templates select="*[not(self::style:style)]"/>
       <xsl:comment/>
     </div>
+    <xsl:call-template name="doc:row-style"/>
   </xsl:template>
 
   <xsl:template match="doc:column">
-    <div class="document_column">
-      <xsl:apply-templates/>
+    <div class="document_column" data-id="{@id}">
+      <xsl:apply-templates select="*[not(self::style:style)]"/>
       <xsl:comment/>
     </div>
   </xsl:template>
@@ -78,7 +81,9 @@
   <!-- table layout -->
 
   <xsl:template match="doc:row[count(doc:column)>1]">
-    <div class="document_row">
+
+    <xsl:variable name="id" select="concat('document_row-',position())" />
+    <div class="document_row {$id}" data-id="{@id}">
       <div class="document_table_container">
         <xsl:if test="@spacing!=''">
           <xsl:attribute name="style">
@@ -108,6 +113,7 @@
         </div>
       </div>
     </div>
+    <xsl:call-template name="doc:row-style"/>
   </xsl:template>
 
   <xsl:template match="doc:row[count(doc:column)>1]/doc:column">
@@ -139,7 +145,7 @@
           <xsl:text>padding-right: </xsl:text><xsl:value-of select="@right"/><xsl:text>;</xsl:text>
         </xsl:if>
     </xsl:variable>
-    <div>
+    <div data-id="{@id}">
       <xsl:if test="$style!=''">
         <xsl:attribute name="style"><xsl:value-of select="$style"/></xsl:attribute>
       </xsl:if>
@@ -148,7 +154,7 @@
         <xsl:if test="position()=1"> document_column_first</xsl:if>
       </xsl:attribute>
 
-      <xsl:apply-templates/>
+      <xsl:apply-templates select="*[not(self::style:style)]"/>
       <xsl:comment/>
     </div>
   </xsl:template>
@@ -156,19 +162,12 @@
 
   <!-- Flex layout -->
 
-  <xsl:template match="doc:row[@layout='flex']">
-    <xsl:variable name="id" select="concat('document_row-',generate-id())" />
-    <div class="document_row document_row-flex {$id}">
-      <xsl:apply-templates/>
-      <xsl:comment/>
-    </div>
-
-    <xsl:for-each select="style:style">
+  <xsl:template name="doc:row-style">
+    <xsl:variable name="id" select="concat('document_row-',position())" />
+    <xsl:if test="style:style/style:if">
     <style>
-      <xsl:for-each select="style:if">
-        <xsl:text>@media screen </xsl:text>
-        <xsl:call-template name="util:media"/>
-        <xsl:text> {</xsl:text>
+      <xsl:for-each select="style:style/style:if">
+        <xsl:call-template name="util:media-before"/>
         <xsl:for-each select="style:feature[@name='reverse']">
           <xsl:value-of select="concat('.', $id, '{flex-wrap: wrap-reverse;}')"/>
         </xsl:for-each>
@@ -177,35 +176,47 @@
             <xsl:call-template name="util:rules"/>
           <xsl:text>}</xsl:text>
         </xsl:for-each>
-        <xsl:text>}</xsl:text>
+        <xsl:call-template name="util:media-after"/>
       </xsl:for-each>
     </style>
-    </xsl:for-each>
-
+    </xsl:if>
   </xsl:template>
 
-  <xsl:template match="doc:row[@layout='flex']/doc:column">
+  <xsl:template name="doc:column-style">
     <xsl:variable name="id" select="concat('document_column-',generate-id())" />
-    <div class="document_column document_column-flex {$id}">
-      <xsl:apply-templates/>
-      <xsl:comment/>
-    </div>
-
-    <xsl:for-each select="style:style">
+    <xsl:if test="style:style/style:if">
     <style>
-      <xsl:for-each select="style:if">
-        <xsl:text>@media screen </xsl:text>
-        <xsl:call-template name="util:media"/>
-        <xsl:text> {</xsl:text>
+      <xsl:for-each select="style:style/style:if">
+        <xsl:call-template name="util:media-before"/>
         <xsl:for-each select="style:component[@name='column']">
           <xsl:value-of select="concat('.', $id, '{')"/>
             <xsl:call-template name="util:rules"/>
           <xsl:text>}</xsl:text>
         </xsl:for-each>
-        <xsl:text>}</xsl:text>
+        <xsl:call-template name="util:media-after"/>
       </xsl:for-each>
     </style>
-    </xsl:for-each>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="doc:row[@layout='flexible']">
+    <xsl:variable name="id" select="concat('document_row-',position())" />
+    <div class="document_row document_row-flexible {$id}" data-id="{@id}">
+      <xsl:apply-templates select="*[not(self::style:style)]"/>
+      <xsl:comment/>
+    </div>
+    <xsl:call-template name="doc:row-style"/>
+
+  </xsl:template>
+
+  <xsl:template match="doc:row[@layout='flexible']/doc:column">
+    <xsl:variable name="id" select="concat('document_column-',generate-id())" />
+    <div class="document_column document_column-flexible {$id}" data-id="{@id}">
+      <xsl:apply-templates select="*[not(self::style:style)]"/>
+      <xsl:comment/>
+    </div>
+
+    <xsl:call-template name="doc:column-style"/>
   </xsl:template>
 
   <!-- sections -->
@@ -251,15 +262,13 @@
     <xsl:if test="style:style/style:if">
     <style>
       <xsl:for-each select="style:style/style:if">
-        <xsl:text>@media screen </xsl:text>
-        <xsl:call-template name="util:media"/>
-        <xsl:text> {</xsl:text>
+        <xsl:call-template name="util:media-before"/>
         <xsl:for-each select="style:component[@name='section']">
           <xsl:value-of select="concat('.', $id, '{')"/>
             <xsl:call-template name="util:rules"/>
           <xsl:text>}</xsl:text>
         </xsl:for-each>
-        <xsl:text>}</xsl:text>
+        <xsl:call-template name="util:media-after"/>
       </xsl:for-each>
     </style>
     </xsl:if>

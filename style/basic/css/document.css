@@ -21,12 +21,12 @@
 	vertical-align: top;
 }
 
-.document_row-flex {
+.document_row-flexible {
   display: flex;
   flex-wrap: wrap;
 }
 
-.document_column-flex {
+.document_column-flexible {
   flex: 1;
-  outline: 1px dashed #eee;
+  /*outline: 1px dashed #eee;*/
 }

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subgui xmlns="uri:hui" padding="10" title="Editor row" globals="false">
+
+	<window width="500" name="rowWindow" title="Row" icon="monochrome/info_light" variant="light">
+		<bar variant="window_mini" name="bar">
+			<button icon="monochrome/layout" key="layout"/>
+			<button icon="monochrome/info" key="info"/>
+			<button icon="monochrome/gear" key="advanced"/>
+		</bar>
+		<pages name="rowPages">
+			<page key="layout">
+				<formula name="rowFormula" padding="10">
+					<fields>
+						<field label="Layout">
+							<dropdown key="layout" value="">
+                <item value="" text="Automatic"/>
+                <item value="flexible" text="Flexible"/>
+              </dropdown>
+						</field>
+						<field label="Class">
+							<text-input key="class"/>
+						</field>
+						<field label="Style">
+							<code-input key="style"/>
+						</field>
+					</fields>
+				</formula>
+			</page>
+			<page key="info">
+				<space height="200"/>
+			</page>
+			<page key="advanced">
+			</page>
+		</pages>
+    <buttons padding="10" top="0" align="right">
+      <button text="Save" highlighted="true" name="saveRow"/>
+    </buttons>
+	</window>
+
+	<window width="500" name="columnWindow" title="Column" icon="monochrome/info_light" variant="light">
+		<bar variant="window_mini" name="bar">
+			<button icon="monochrome/layout" key="layout"/>
+			<button icon="monochrome/info" key="info"/>
+			<button icon="monochrome/gear" key="advanced"/>
+		</bar>
+		<pages name="columnPages">
+			<page key="layout">
+				<formula name="columnFormula" padding="10">
+					<fields>
+						<field label="Class">
+							<text-input key="class"/>
+						</field>
+						<field label="Style">
+							<code-input key="style"/>
+						</field>
+					</fields>
+				</formula>
+			</page>
+			<page key="info">
+				<space height="200"/>
+			</page>
+			<page key="advanced">
+			</page>
+		</pages>
+    <fragment name="columnStyle"/>
+    <buttons padding="10" top="0" align="right">
+      <button text="Save" highlighted="true" name="saveColumn"/>
+    </buttons>
+	</window>
+
+</subgui>

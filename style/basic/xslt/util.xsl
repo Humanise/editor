@@ -167,11 +167,17 @@
 <!-- Style -->
 
 
-<xsl:template name="util:media">
+<xsl:template name="util:media-before">
+  <xsl:text>@media screen </xsl:text>
   <xsl:if test="@min-width">and (min-width: <xsl:value-of select="@min-width"/>)</xsl:if>
-    <xsl:if test="@width-is-above">and (min-width: <xsl:value-of select="@width-is-above"/>)</xsl:if>
+  <xsl:if test="@width-is-above">and (min-width: <xsl:value-of select="@width-is-above"/>)</xsl:if>
   <xsl:if test="@max-width">and (max-width: <xsl:value-of select="@max-width"/>)</xsl:if>
-    <xsl:if test="@width-less-than">and (max-width: <xsl:value-of select="@width-less-than"/>)</xsl:if>
+  <xsl:if test="@width-less-than">and (max-width: <xsl:value-of select="@width-less-than"/>)</xsl:if>
+  <xsl:text>{</xsl:text>
+</xsl:template>
+
+<xsl:template name="util:media-after">
+  <xsl:text>}</xsl:text>
 </xsl:template>
 
 <xsl:template name="util:rules">
