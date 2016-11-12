@@ -13,6 +13,7 @@ Entity::$schema['Part'] = [
 	'properties' => [
 		'id' => ['type' => 'int'],
 		'type' => ['type' => 'string'],
+		'style' => ['type' => 'string'],
 		'dynamic' => ['type' => 'boolean']
 	]
 ];
@@ -21,6 +22,7 @@ class Part extends Entity
 {
 	var $type;
 	var $dynamic;
+	var $style;
 
 	function Part($type) {
 		$this->type = $type;
@@ -40,6 +42,14 @@ class Part extends Entity
 
   function getDynamic() {
       return $this->isDynamic();
+  }
+
+  function setStyle($style) {
+      $this->style = $style;
+  }
+
+  function getStyle() {
+      return $this->style;
   }
 
 	function save() {

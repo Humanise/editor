@@ -63,8 +63,9 @@ class PartService {
         } else {
             $schema = PartService::getSchema($part->getType());
 
-            $sql = "insert into part (type,dynamic,created,updated) values (".
+            $sql = "insert into part (type,style,dynamic,created,updated) values (".
             Database::text($part->getType()).",".
+            Database::text($part->getStyle()).",".
             Database::boolean($part->isDynamic()).",".
             "now(),now()".
             ")";
@@ -106,8 +107,8 @@ class PartService {
     }
 
     static function update($part) {
-        $sql = "update part set updated=now(),dynamic=".Database::boolean($part->isDynamic())." where id=".Database::int($part->getId());
-        Database::update($sql);
+        $sql = "update part set updated=now(),dynamic=@boolean(dynamic),style=@text(style) where id=@int(id)";
+        Database::update($sql,['id' => $part->getId(), 'style' => $part->getStyle(), 'dynamic' => $part->isDynamic()]);
 
 
         $schema = PartService::getSchema($part->getType());

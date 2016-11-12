@@ -459,6 +459,7 @@ $databaseTables = array(
       array("type","varchar(50)","","","",""),
       array("created","datetime","","","0000-00-00 00:00:00",""),
       array("updated","datetime","","","0000-00-00 00:00:00",""),
+      array("style","text","YES","","",""),
       array("dynamic","tinyint(4)","","","0","")
     ),
   'part_authentication' => array(
