@@ -22,38 +22,38 @@ class FormulaPart extends Part
 	var $receiverName;
 	var $receiverEmail;
 	var $recipe;
-	
+
 	function FormulaPart() {
 		parent::Part('formula');
 	}
-	
+
 	static function load($id) {
 		return Part::get('formula',$id);
 	}
-	
+
 	function setReceiverName($receiverName) {
-	    $this->receiverName = $receiverName;
+    $this->receiverName = $receiverName;
 	}
 
 	function getReceiverName() {
 	    return $this->receiverName;
 	}
-	
+
 	function setReceiverEmail($receiverEmail) {
-	    $this->receiverEmail = $receiverEmail;
+    $this->receiverEmail = $receiverEmail;
 	}
 
 	function getReceiverEmail() {
 	    return $this->receiverEmail;
 	}
-	
+
 	function setRecipe($recipe) {
-	    $this->recipe = $recipe;
+    $this->recipe = $recipe;
 	}
 
 	function getRecipe() {
 	    return $this->recipe;
 	}
-	
+
 }
 ?>

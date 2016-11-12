@@ -18,22 +18,22 @@ Entity::$schema['HtmlPart'] = [
 class HtmlPart extends Part
 {
 	var $html;
-	
+
 	function HtmlPart() {
 		parent::Part('html');
 	}
-	
+
 	static function load($id) {
 		return Part::get('html',$id);
 	}
 
 	function setHtml($html) {
-	    $this->html = $html;
+    $this->html = $html;
 	}
 
 	function getHtml() {
-	    return $this->html;
+    return $this->html;
 	}
-	
+
 }
 ?>

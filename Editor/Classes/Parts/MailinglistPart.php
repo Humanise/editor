@@ -20,22 +20,22 @@ Entity::$schema['MailinglistPart'] = array(
 class MailinglistPart extends Part
 {
 	var $mailinglistIds;
-	
+
 	function MailinglistPart() {
 		parent::Part('mailinglist');
 	}
-	
+
 	static function load($id) {
 		return Part::get('mailinglist',$id);
 	}
-	
+
 	function setMailinglistIds($mailinglistIds) {
-	    $this->mailinglistIds = $mailinglistIds;
+    $this->mailinglistIds = $mailinglistIds;
 	}
 
 	function getMailinglistIds() {
-	    return $this->mailinglistIds;
+    return $this->mailinglistIds;
 	}
-	
+
 }
 ?>

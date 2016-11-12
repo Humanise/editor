@@ -18,22 +18,22 @@ Entity::$schema['TablePart'] = array(
 class TablePart extends Part
 {
 	var $html;
-	
+
 	function TablePart() {
 		parent::Part('table');
 	}
-	
+
 	static function load($id) {
 		return Part::get('table',$id);
 	}
 
 	function setHtml($html) {
-	    $this->html = $html;
+    $this->html = $html;
 	}
 
 	function getHtml() {
-	    return $this->html;
+    return $this->html;
 	}
-	
+
 }
 ?>

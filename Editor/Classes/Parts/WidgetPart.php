@@ -19,31 +19,31 @@ Entity::$schema['WidgetPart'] = [
 class WidgetPart extends Part
 {
 	var $key;
-    var $data;
-	
+  var $data;
+
 	function WidgetPart() {
 		parent::Part('widget');
 	}
-	
+
 	static function load($id) {
 		return Part::get('widget',$id);
 	}
-  
-    function setKey($key) {
-      $this->key = $key;
-    }
 
-    function getKey() {
-      return $this->key;
-    }
+  function setKey($key) {
+    $this->key = $key;
+  }
 
-    function setData($data) {
-      $this->data = $data;
-    }
+  function getKey() {
+    return $this->key;
+  }
 
-    function getData() {
-      return $this->data;
-    }
-  
+  function setData($data) {
+    $this->data = $data;
+  }
+
+  function getData() {
+    return $this->data;
+  }
+
 }
 ?>

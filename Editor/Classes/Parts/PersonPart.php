@@ -14,7 +14,7 @@ Entity::$schema['PersonPart'] = array(
 		'align' => array( 'type' => 'string' ),
 		'personId' => array( 'type' => 'int', 'column' => 'person_id',
 			'relation'=>['class'=>'Person','property'=>'id']
-		 ),
+    ),
 		'showFirstName' => array( 'type' => 'boolean', 'column' => 'show_firstname' ),
 		'showMiddleName' => array( 'type' => 'boolean', 'column' => 'show_middlename' ),
 		'showLastName' => array( 'type' => 'boolean', 'column' => 'show_surname' ),
@@ -56,167 +56,167 @@ class PersonPart extends Part
 	var $showCountry;
 	var $showWebAddress;
 	var $showImage;
-	
+
 	function PersonPart() {
 		parent::Part('person');
 	}
-	
+
 	static function load($id) {
 		return Part::get('person',$id);
 	}
 
 	function setAlign($align) {
-	    $this->align = $align;
+    $this->align = $align;
 	}
 
 	function getAlign() {
-	    return $this->align;
+    return $this->align;
 	}
-	
+
 	function setPersonId($personId) {
-	    $this->personId = $personId;
+    $this->personId = $personId;
 	}
 
 	function getPersonId() {
-	    return $this->personId;
+    return $this->personId;
 	}
-	
+
 	function setShowFirstName($showFirstName) {
-	    $this->showFirstName = $showFirstName;
+    $this->showFirstName = $showFirstName;
 	}
 
 	function getShowFirstName() {
-	    return $this->showFirstName;
+    return $this->showFirstName;
 	}
-	
+
 	function setShowMiddleName($showMiddleName) {
-	    $this->showMiddleName = $showMiddleName;
+    $this->showMiddleName = $showMiddleName;
 	}
 
 	function getShowMiddleName() {
-	    return $this->showMiddleName;
+    return $this->showMiddleName;
 	}
-	
+
 	function setShowLastName($showLastName) {
-	    $this->showLastName = $showLastName;
+    $this->showLastName = $showLastName;
 	}
 
 	function getShowLastName() {
-	    return $this->showLastName;
+    return $this->showLastName;
 	}
-	
+
 	function setShowInitials($showInitials) {
-	    $this->showInitials = $showInitials;
+    $this->showInitials = $showInitials;
 	}
 
 	function getShowInitials() {
-	    return $this->showInitials;
+    return $this->showInitials;
 	}
-	
+
 	function setShowNickname($showNickname) {
-	    $this->showNickname = $showNickname;
+    $this->showNickname = $showNickname;
 	}
 
 	function getShowNickname() {
-	    return $this->showNickname;
+    return $this->showNickname;
 	}
-	
+
 	function setShowJobTitle($showJobTitle) {
-	    $this->showJobTitle = $showJobTitle;
+    $this->showJobTitle = $showJobTitle;
 	}
 
 	function getShowJobTitle() {
-	    return $this->showJobTitle;
+    return $this->showJobTitle;
 	}
-	
+
 	function setShowSex($showSex) {
-	    $this->showSex = $showSex;
+    $this->showSex = $showSex;
 	}
 
 	function getShowSex() {
-	    return $this->showSex;
+    return $this->showSex;
 	}
-	
+
 	function setShowEmailJob($showEmailJob) {
-	    $this->showEmailJob = $showEmailJob;
+    $this->showEmailJob = $showEmailJob;
 	}
 
 	function getShowEmailJob() {
-	    return $this->showEmailJob;
+    return $this->showEmailJob;
 	}
-	
+
 	function setShowEmailPrivate($showEmailPrivate) {
-	    $this->showEmailPrivate = $showEmailPrivate;
+    $this->showEmailPrivate = $showEmailPrivate;
 	}
 
 	function getShowEmailPrivate() {
-	    return $this->showEmailPrivate;
+    return $this->showEmailPrivate;
 	}
-	
+
 	function setShowPhoneJob($showPhoneJob) {
-	    $this->showPhoneJob = $showPhoneJob;
+    $this->showPhoneJob = $showPhoneJob;
 	}
 
 	function getShowPhoneJob() {
-	    return $this->showPhoneJob;
+    return $this->showPhoneJob;
 	}
-	
+
 	function setShowPhonePrivate($showPhonePrivate) {
-	    $this->showPhonePrivate = $showPhonePrivate;
+    $this->showPhonePrivate = $showPhonePrivate;
 	}
 
 	function getShowPhonePrivate() {
-	    return $this->showPhonePrivate;
+    return $this->showPhonePrivate;
 	}
-	
+
 	function setShowStreetname($showStreetname) {
-	    $this->showStreetname = $showStreetname;
+    $this->showStreetname = $showStreetname;
 	}
 
 	function getShowStreetname() {
-	    return $this->showStreetname;
+    return $this->showStreetname;
 	}
-	
+
 	function setShowCity($showCity) {
-	    $this->showCity = $showCity;
+    $this->showCity = $showCity;
 	}
 
 	function getShowCity() {
-	    return $this->showCity;
+    return $this->showCity;
 	}
-	
+
 	function setShowZipcode($showZipcode) {
-	    $this->showZipcode = $showZipcode;
+    $this->showZipcode = $showZipcode;
 	}
 
 	function getShowZipcode() {
-	    return $this->showZipcode;
+    return $this->showZipcode;
 	}
-	
+
 	function setShowCountry($showCountry) {
-	    $this->showCountry = $showCountry;
+    $this->showCountry = $showCountry;
 	}
 
 	function getShowCountry() {
-	    return $this->showCountry;
+    return $this->showCountry;
 	}
-	
+
 	function setShowWebAddress($showWebAddress) {
-	    $this->showWebAddress = $showWebAddress;
+    $this->showWebAddress = $showWebAddress;
 	}
 
 	function getShowWebAddress() {
-	    return $this->showWebAddress;
+    return $this->showWebAddress;
 	}
-	
-	
+
+
 	function setShowImage($showImage) {
-	    $this->showImage = $showImage;
+    $this->showImage = $showImage;
 	}
 
 	function getShowImage() {
-	    return $this->showImage;
+    return $this->showImage;
 	}
-	
+
 }
 ?>

@@ -15,12 +15,12 @@ Entity::$schema['NewsPart'] = [
 		'width' => [ 'type' => 'string' ],
 		'newsId' => ['type'=>'int', 'column' => 'news_id','relation'=>['class'=>'News','property'=>'id']],
 		'mode' => [ 'type' => 'string' ],
-  		'title' => [ 'type' => 'string' ],
+    'title' => [ 'type' => 'string' ],
 		'sortBy' => [ 'type' => 'string', 'column' => 'sortby' ],
-  		'sortDir' => [ 'type' => 'string', 'column' => 'sortdir' ],
+    'sortDir' => [ 'type' => 'string', 'column' => 'sortdir' ],
 		'maxItems' => [ 'type' => 'int', 'column' => 'maxitems' ],
 		'timeType' => [ 'type' => 'string', 'column' => 'timetype' ],
-  		'timeCount' => [ 'type' => 'int', 'column' => 'timecount' ],
+    'timeCount' => [ 'type' => 'int', 'column' => 'timecount' ],
 		'startDate' => [ 'type' => 'datetime', 'column' => 'startdate' ],
 		'endDate' => [ 'type' => 'datetime', 'column' => 'enddate' ],
 		'variant' => [ 'type' => 'string' ]
@@ -46,127 +46,127 @@ class NewsPart extends Part
 	var $endDate;
 	var $variant;
 	var $newsGroupIds;
-	
+
 	function NewsPart() {
 		parent::Part('news');
 	}
-	
+
 	static function load($id) {
 		return Part::get('news',$id);
 	}
-	
+
 	function setAlign($align) {
-	    $this->align = $align;
+    $this->align = $align;
 	}
 
 	function getAlign() {
-	    return $this->align;
+    return $this->align;
 	}
-	
+
 	function setWidth($width) {
-	    $this->width = $width;
+    $this->width = $width;
 	}
 
 	function getWidth() {
-	    return $this->width;
+    return $this->width;
 	}
-	
+
 	function setNewsId($newsId) {
-	    $this->newsId = $newsId;
+    $this->newsId = $newsId;
 	}
 
 	function getNewsId() {
-	    return $this->newsId;
+    return $this->newsId;
 	}
-	
+
 	function setMode($mode) {
-	    $this->mode = $mode;
+    $this->mode = $mode;
 	}
 
 	function getMode() {
-	    return $this->mode;
+    return $this->mode;
 	}
-	
+
 	function setTitle($title) {
-	    $this->title = $title;
+    $this->title = $title;
 	}
 
 	function getTitle() {
-	    return $this->title;
+    return $this->title;
 	}
-	
+
 	function setSortBy($sortBy) {
-	    $this->sortBy = $sortBy;
+    $this->sortBy = $sortBy;
 	}
 
 	function getSortBy() {
-	    return $this->sortBy;
+    return $this->sortBy;
 	}
-	
+
 	function setSortDir($sortDir) {
-	    $this->sortDir = $sortDir;
+    $this->sortDir = $sortDir;
 	}
 
 	function getSortDir() {
-	    return $this->sortDir;
+    return $this->sortDir;
 	}
-	
+
 	function setMaxItems($maxItems) {
-	    $this->maxItems = $maxItems;
+    $this->maxItems = $maxItems;
 	}
 
 	function getMaxItems() {
-	    return $this->maxItems;
+    return $this->maxItems;
 	}
-	
+
 	function setTimeType($timeType) {
-	    $this->timeType = $timeType;
+    $this->timeType = $timeType;
 	}
 
 	function getTimeType() {
-	    return $this->timeType;
+    return $this->timeType;
 	}
-	
+
 	function setTimeCount($timeCount) {
-	    $this->timeCount = $timeCount;
+    $this->timeCount = $timeCount;
 	}
 
 	function getTimeCount() {
-	    return $this->timeCount;
+    return $this->timeCount;
 	}
-	
+
 	function setStartDate($startDate) {
-	    $this->startDate = $startDate;
+    $this->startDate = $startDate;
 	}
 
 	function getStartDate() {
-	    return $this->startDate;
+    return $this->startDate;
 	}
-	
+
 	function setEndDate($endDate) {
-	    $this->endDate = $endDate;
+    $this->endDate = $endDate;
 	}
 
 	function getEndDate() {
-	    return $this->endDate;
+    return $this->endDate;
 	}
-	
+
 	function setVariant($variant) {
-	    $this->variant = $variant;
+    $this->variant = $variant;
 	}
 
 	function getVariant() {
-	    return $this->variant;
+    return $this->variant;
 	}
-	
+
 	function setNewsGroupIds($newsGroupIds) {
-	    $this->newsGroupIds = $newsGroupIds;
+    $this->newsGroupIds = $newsGroupIds;
 	}
 
 	function getNewsGroupIds() {
-	    return $this->newsGroupIds;
+    return $this->newsGroupIds;
 	}
-	
-	
+
+
 }
 ?>

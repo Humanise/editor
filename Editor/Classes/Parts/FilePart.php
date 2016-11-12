@@ -20,29 +20,29 @@ class FilePart extends Part
 {
 	var $fileId;
 	var $text;
-	
+
 	function FilePart() {
 		parent::Part('file');
 	}
-	
+
 	static function load($id) {
 		return Part::get('file',$id);
 	}
-	
+
 	function setFileId($fileId) {
-	    $this->fileId = $fileId;
+    $this->fileId = $fileId;
 	}
 
 	function getFileId() {
 	    return $this->fileId;
 	}
-	
+
 	function setText($text) {
-	    $this->text = $text;
+    $this->text = $text;
 	}
 
 	function getText() {
-	    return $this->text;
+    return $this->text;
 	}
 }
 ?>

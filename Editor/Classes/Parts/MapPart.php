@@ -36,94 +36,94 @@ class MapPart extends Part
 	var $width;
 	var $height;
 	var $frame;
-	
+
 	function MapPart() {
 		parent::Part('map');
 	}
-	
+
 	static function load($id) {
 		return Part::get('map',$id);
 	}
-	
+
 	function setLatitude($latitude) {
-	    $this->latitude = $latitude;
+    $this->latitude = $latitude;
 	}
 
 	function getLatitude() {
-	    return $this->latitude;
+    return $this->latitude;
 	}
-	
+
 	function setLongitude($longitude) {
-	    $this->longitude = $longitude;
+    $this->longitude = $longitude;
 	}
 
 	function getLongitude() {
-	    return $this->longitude;
+    return $this->longitude;
 	}
-	
+
 	function setText($text) {
-	    $this->text = $text;
+    $this->text = $text;
 	}
 
 	function getText() {
-	    return $this->text;
+    return $this->text;
 	}
-	
+
 	function setMaptype($maptype) {
-	    $this->maptype = $maptype;
+    $this->maptype = $maptype;
 	}
 
 	function getMaptype() {
-	    return $this->maptype;
+    return $this->maptype;
 	}
-	
+
 	function setMarkers($markers) {
-	    $this->markers = $markers;
+    $this->markers = $markers;
 	}
 
 	function getMarkers() {
-	    return $this->markers;
+    return $this->markers;
 	}
-	
+
 	function setZoom($zoom) {
-	    $this->zoom = $zoom;
+    $this->zoom = $zoom;
 	}
 
 	function getZoom() {
-	    return $this->zoom;
+    return $this->zoom;
 	}
-	
+
 	function setProvider($provider) {
-	    $this->provider = $provider;
+    $this->provider = $provider;
 	}
 
 	function getProvider() {
-	    return $this->provider;
+    return $this->provider;
 	}
-	
+
 	function setWidth($width) {
-	    $this->width = $width;
+    $this->width = $width;
 	}
 
 	function getWidth() {
-	    return $this->width;
+    return $this->width;
 	}
-	
+
 	function setHeight($height) {
-	    $this->height = $height;
+    $this->height = $height;
 	}
 
 	function getHeight() {
-	    return $this->height;
+    return $this->height;
 	}
-	
+
 	function setFrame($frame) {
-	    $this->frame = $frame;
+    $this->frame = $frame;
 	}
 
 	function getFrame() {
-	    return $this->frame;
+    return $this->frame;
 	}
-	
+
 }
 ?>

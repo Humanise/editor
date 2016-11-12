@@ -18,21 +18,21 @@ Entity::$schema['PosterPart'] = array(
 class PosterPart extends Part
 {
 	var $recipe;
-	
+
 	function PosterPart() {
 		parent::Part('poster');
 	}
-	
+
 	static function load($id) {
 		return Part::get('poster',$id);
 	}
 
 	function setRecipe($recipe) {
-	    $this->recipe = $recipe;
+    $this->recipe = $recipe;
 	}
 
 	function getRecipe() {
-	    return $this->recipe;
+	  return $this->recipe;
 	}
 }
 ?>

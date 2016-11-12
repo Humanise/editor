@@ -11,14 +11,14 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['MoviePart'] = [
 	'table' => 'part_movie',
     'properties' => [
-    	'fileId' => [ 'type' => 'int', 'column' => 'file_id'],
-    	'imageId' => [ 'type' => 'int', 'column' => 'image_id' ],
-    	'text' => [ 'type' => 'string' ],
-    	'url' => [ 'type' => 'string' ],
-    	'code' => [ 'type' => 'string' ],
-    	'width' => [ 'type' => 'string' ],
-    	'height' => [ 'type' => 'string' ]
-    ]
+    'fileId' => [ 'type' => 'int', 'column' => 'file_id'],
+    'imageId' => [ 'type' => 'int', 'column' => 'image_id' ],
+    'text' => [ 'type' => 'string' ],
+    'url' => [ 'type' => 'string' ],
+    'code' => [ 'type' => 'string' ],
+    'width' => [ 'type' => 'string' ],
+    'height' => [ 'type' => 'string' ]
+  ]
 ];
 class MoviePart extends Part
 {
@@ -27,72 +27,72 @@ class MoviePart extends Part
 	var $text;
 	var $url;
 	var $code;
-    var $width;
-    var $height;
-	
+  var $width;
+  var $height;
+
 	function MoviePart() {
 		parent::Part('movie');
 	}
-	
+
 	static function load($id) {
 		return Part::get('movie',$id);
 	}
-	
+
 	function setFileId($fileId) {
-	    $this->fileId = $fileId;
+    $this->fileId = $fileId;
 	}
 
 	function getFileId() {
-	    return $this->fileId;
+    return $this->fileId;
 	}
-	
+
 	function setImageId($imageId) {
-	    $this->imageId = $imageId;
+    $this->imageId = $imageId;
 	}
 
 	function getImageId() {
-	    return $this->imageId;
+    return $this->imageId;
 	}
-	
+
 	function setText($text) {
-	    $this->text = $text;
+    $this->text = $text;
 	}
 
 	function getText() {
-	    return $this->text;
+    return $this->text;
 	}
-	
+
 	function setUrl($url) {
-	    $this->url = $url;
+    $this->url = $url;
 	}
 
 	function getUrl() {
-	    return $this->url;
+    return $this->url;
 	}
-	
+
 	function setCode($code) {
-	    $this->code = $code;
+    $this->code = $code;
 	}
 
 	function getCode() {
-	    return $this->code;
+    return $this->code;
 	}
-  
+
 	function setWidth($width) {
-	    $this->width = $width;
+    $this->width = $width;
 	}
 
 	function getWidth() {
-	    return $this->width;
+    return $this->width;
 	}
-  
+
 	function setHeight($height) {
-	    $this->height = $height;
+    $this->height = $height;
 	}
 
 	function getHeight() {
-	    return $this->height;
+    return $this->height;
 	}
-  
+
 }
 ?>

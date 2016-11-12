@@ -36,97 +36,97 @@ class ImagePart extends Part
 	var $scaleWidth;
 	var $scaleHeight;
 	var $frame;
-	
+
 	function ImagePart() {
 		parent::Part('image');
 	}
-	
+
 	static function load($id) {
 		return Part::get('image',$id);
 	}
-	
+
 	function setImageId($imageId) {
-	    $this->imageId = $imageId;
+    $this->imageId = $imageId;
 	}
 
 	function getImageId() {
 	    return $this->imageId;
 	}
-	
+
 	function setText($text) {
-	    $this->text = $text;
+    $this->text = $text;
 	}
 
 	function getText() {
-	    return $this->text;
+    return $this->text;
 	}
-	
+
 	function setAlign($align) {
-	    $this->align = $align;
+    $this->align = $align;
 	}
 
 	function getAlign() {
-	    return $this->align;
+    return $this->align;
 	}
-	
-	
+
+
 	function setGreyscale($greyscale) {
-	    $this->greyscale = $greyscale;
+    $this->greyscale = $greyscale;
 	}
 
 	function getGreyscale() {
-	    return $this->greyscale;
+    return $this->greyscale;
 	}
-    
-    function setAdaptive($adaptive) {
-        $this->adaptive = $adaptive;
-    }
-    
-    function getAdaptive() {
-        return $this->adaptive;
-    }
-    
-	
+
+  function setAdaptive($adaptive) {
+    $this->adaptive = $adaptive;
+  }
+
+  function getAdaptive() {
+    return $this->adaptive;
+  }
+
+
 	function setScaleMethod($scaleMethod) {
-	    $this->scaleMethod = $scaleMethod;
+    $this->scaleMethod = $scaleMethod;
 	}
-	
+
 	function getScaleMethod() {
-	    return $this->scaleMethod;
+    return $this->scaleMethod;
 	}
 
 	function setScalePercent($scalePercent) {
-	    $this->scalePercent = $scalePercent;
+    $this->scalePercent = $scalePercent;
 	}
 
 	function getScalePercent() {
-	    return $this->scalePercent;
+    return $this->scalePercent;
 	}
-	
+
 	function setScaleWidth($scaleWidth) {
-	    $this->scaleWidth = $scaleWidth;
+    $this->scaleWidth = $scaleWidth;
 	}
 
 	function getScaleWidth() {
-	    return $this->scaleWidth;
+    return $this->scaleWidth;
 	}
-	
+
 	function setScaleHeight($scaleHeight) {
-	    $this->scaleHeight = $scaleHeight;
+    $this->scaleHeight = $scaleHeight;
 	}
 
 	function getScaleHeight() {
-	    return $this->scaleHeight;
+    return $this->scaleHeight;
 	}
-	
+
 	function setFrame($frame) {
-	    $this->frame = $frame;
+    $this->frame = $frame;
 	}
 
 	function getFrame() {
-	    return $this->frame;
+    return $this->frame;
 	}
-	
-	
+
+
 }
 ?>

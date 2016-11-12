@@ -18,22 +18,22 @@ Entity::$schema['RichtextPart'] = [
 class RichtextPart extends Part
 {
 	var $html;
-	
+
 	function RichtextPart() {
 		parent::Part('richtext');
 	}
-	
+
 	static function load($id) {
 		return Part::get('richtext',$id);
 	}
 
 	function setHtml($html) {
-	    $this->html = $html;
+    $this->html = $html;
 	}
 
 	function getHtml() {
-	    return $this->html;
+    return $this->html;
 	}
-	
+
 }
 ?>

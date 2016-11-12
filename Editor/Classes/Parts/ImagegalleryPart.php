@@ -11,13 +11,13 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['ImagegalleryPart'] = [
 	'table' => 'part_imagegallery',
 	'properties' => [
-		'variant'   	=> [ 'type' => 'string' ],
-		'height'		=> [ 'type' => 'int' ],
-		'width'		    => [ 'type' => 'int' ],
+		'variant' => [ 'type' => 'string' ],
+		'height'  => [ 'type' => 'int' ],
+		'width' => [ 'type' => 'int' ],
 		'imageGroupId' => ['type'=>'int', 'column' => 'imagegroup_id','relation'=>['class'=>'Imagegroup','property'=>'id']],
-		'framed'		=> [ 'type' => 'boolean' ],
-		'frame'         => [ 'type' => 'string' ],
-		'showTitle'		=> [ 'type' => 'boolean', 'column' => 'show_title' ]
+    'framed' => [ 'type' => 'boolean' ],
+		'frame' => [ 'type' => 'string' ],
+		'showTitle' => [ 'type' => 'boolean', 'column' => 'show_title' ]
 	]
 ];
 
@@ -30,69 +30,69 @@ class ImagegalleryPart extends Part
 	var $framed;
 	var $frame;
 	var $showTitle;
-	
+
 	function ImagegalleryPart() {
 		parent::Part('imagegallery');
 	}
-	
+
 	static function load($id) {
 		return Part::get('imagegallery',$id);
 	}
-	
+
 	function setVariant($variant) {
-	    $this->variant = $variant;
+    $this->variant = $variant;
 	}
 
 	function getVariant() {
-	    return $this->variant;
+    return $this->variant;
 	}
-	
+
 	function setHeight($height) {
-	    $this->height = $height;
+    $this->height = $height;
 	}
 
 	function getHeight() {
-	    return $this->height;
+    return $this->height;
 	}
-	
+
 	function setWidth($width) {
-	    $this->width = $width;
+    $this->width = $width;
 	}
 
 	function getWidth() {
-	    return $this->width;
+    return $this->width;
 	}
-	
+
 	function setImageGroupId($imageGroupId) {
-	    $this->imageGroupId = $imageGroupId;
+    $this->imageGroupId = $imageGroupId;
 	}
 
 	function getImageGroupId() {
-	    return $this->imageGroupId;
+    return $this->imageGroupId;
 	}
-	
+
 	function setFramed($framed) {
-	    $this->framed = $framed;
+    $this->framed = $framed;
 	}
 
 	function getFramed() {
-	    return $this->framed;
+    return $this->framed;
 	}
-	
+
 	function setFrame($frame) {
-	    $this->frame = $frame;
+    $this->frame = $frame;
 	}
 
 	function getFrame() {
-	    return $this->frame;
+    return $this->frame;
 	}
-	
+
 	function setShowTitle($showTitle) {
-	    $this->showTitle = $showTitle;
+    $this->showTitle = $showTitle;
 	}
 
 	function getShowTitle() {
-	    return $this->showTitle;
+    return $this->showTitle;
 	}
 }
 ?>

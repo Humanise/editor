@@ -42,132 +42,131 @@ class ListPart extends Part
 	var $showSource;
 	var $objectIds;
 	var $sortDirection;
-	
+
 	var $showText;
 	var $showTimeZone;
 	var $timezone;
 	var $maxTextLength;
-	
+
 	function ListPart() {
 		parent::Part('list');
 	}
-	
+
 	static function load($id) {
 		return Part::get('list',$id);
 	}
-	
+
 	function setAlign($align) {
-	    $this->align = $align;
+    $this->align = $align;
 	}
 
 	function getAlign() {
-	    return $this->align;
+    return $this->align;
 	}
-	
+
 	function setWidth($width) {
-	    $this->width = $width;
+    $this->width = $width;
 	}
 
 	function getWidth() {
-	    return $this->width;
+    return $this->width;
 	}
-	
+
 	function setTitle($title) {
-	    $this->title = $title;
+    $this->title = $title;
 	}
 
 	function getTitle() {
-	    return $this->title;
+    return $this->title;
 	}
-	
+
 	function setMaxItems($maxItems) {
-	    $this->maxItems = $maxItems;
+    $this->maxItems = $maxItems;
 	}
-	
+
 	function setVariant($variant) {
-	    $this->variant = $variant;
+    $this->variant = $variant;
 	}
 
 	function getVariant() {
-	    return $this->variant;
+    return $this->variant;
 	}
-	
+
 	function setTimeCount($timeCount) {
-	    $this->timeCount = $timeCount;
+    $this->timeCount = $timeCount;
 	}
 
 	function getTimeCount() {
-	    return $this->timeCount;
+    return $this->timeCount;
 	}
-	
+
 	function setTimeType($timeType) {
-	    $this->timeType = $timeType;
+    $this->timeType = $timeType;
 	}
 
 	function getTimeType() {
-	    return $this->timeType;
+    return $this->timeType;
 	}
-	
+
 	function getMaxItems() {
-	    return $this->maxItems;
+    return $this->maxItems;
 	}
-	
+
 	function setShowSource($showSource) {
-	    $this->showSource = $showSource;
+    $this->showSource = $showSource;
 	}
 
 	function getShowSource() {
-	    return $this->showSource;
+    return $this->showSource;
 	}
-	
+
 	function setObjectIds($objectIds) {
-	    $this->objectIds = $objectIds;
+    $this->objectIds = $objectIds;
 	}
 
 	function getObjectIds() {
-	    return $this->objectIds;
+    return $this->objectIds;
 	}
-	
+
 	function setShowText($showText) {
-	    $this->showText = $showText;
+    $this->showText = $showText;
 	}
 
 	function getShowText() {
-	    return $this->showText;
+    return $this->showText;
 	}
-	
+
 	function setShowTimeZone($showTimeZone) {
-	    $this->showTimeZone = $showTimeZone;
+    $this->showTimeZone = $showTimeZone;
 	}
 
 	function getShowTimeZone() {
-	    return $this->showTimeZone;
+    return $this->showTimeZone;
 	}
-	
+
 	function setTimezone($timezone) {
-	    $this->timezone = $timezone;
+    $this->timezone = $timezone;
 	}
 
 	function getTimezone() {
-	    return $this->timezone;
+    return $this->timezone;
 	}
 
 	function setMaxTextLength($maxTextLength) {
-	    $this->maxTextLength = $maxTextLength;
+    $this->maxTextLength = $maxTextLength;
 	}
 
 	function getMaxTextLength() {
-	    return $this->maxTextLength;
+    return $this->maxTextLength;
 	}
-	
+
 	function setSortDirection($sortDirection) {
-	    $this->sortDirection = $sortDirection;
+    $this->sortDirection = $sortDirection;
 	}
 
 	function getSortDirection() {
-	    return $this->sortDirection;
+    return $this->sortDirection;
 	}
-	
-	
+
 }
 ?>
