@@ -61,23 +61,23 @@
   @include retina {
     .layout_placards_text {
       background-image: url('../gfx/placards_2x.png');
-      background-size: 170px 584px;
+      background-size: 120px 390px;
     }
   }
 
   .layout_placards_text_hui
   {
-    background-position: -44px -420px;
+    background-position: 0 -265px;
   }
 
   .layout_placards_text_editor
   {
-    background-position: -30px 0px;
+    background-position: 0px -5px;
   }
 
   .layout_placards_text_objects
   {
-    background-position: -44px -200px;
+    background-position: 0 -135px
   }
 }
 
