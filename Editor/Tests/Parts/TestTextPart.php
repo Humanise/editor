@@ -10,33 +10,33 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 class TestTextPart extends UnitTestCase {
-    
-    function testLoad() {
-        $this->assertNull(TextPart::load(0));
-    }
 
-    function testCreate() {
-        $obj = new TextPart();
-		$this->assertFalse($obj->isPersistent());
-		$obj->save();
-		$this->assertTrue($obj->isPersistent());
-		$id = $obj->getId();
-        $this->assertNotNull(TextPart::load($id));
-		$obj->remove();
-        $this->assertNull(TextPart::load($id));
-    }
+  function testLoad() {
+    $this->assertNull(TextPart::load(0));
+  }
+
+  function testCreate() {
+    $obj = new TextPart();
+    $this->assertFalse($obj->isPersistent());
+    $obj->save();
+    $this->assertTrue($obj->isPersistent());
+    $id = $obj->getId();
+    $this->assertNotNull(TextPart::load($id));
+    $obj->remove();
+    $this->assertNull(TextPart::load($id));
+  }
 
 	function testProperties() {
 		$obj = new TextPart();
 		$obj->setText('This is the text');
 		$obj->save();
-		
+
 		$obj2 = TextPart::load($obj->getId());
 		$this->assertEqual($obj2->getText(),'This is the text');
-		
+
 		$obj2->remove();
 	}
-	
+
 	function testBuild() {
 		$obj = new TextPart();
 		$obj->setId(20);
@@ -55,7 +55,7 @@ class TestTextPart extends UnitTestCase {
 			'</part>';
 		$this->assertEqual($xml,$expected);
 	}
-	
+
 	function testBuildWithLinks() {
 		$obj = new TextPart();
 		$obj->setId(20);
@@ -76,10 +76,10 @@ class TestTextPart extends UnitTestCase {
 			'</part>';
 		$this->assertEqual($xml,$expected);
 	}
-	
+
 	/**
-	 * Check that the longest link wins
-	 */
+   * Check that the longest link wins
+   */
 	function testBuildWithLinks2() {
 		$obj = new TextPart();
 		$obj->setId(20);
@@ -98,10 +98,9 @@ class TestTextPart extends UnitTestCase {
 		$this->assertEqual($xml,$expected);
 	}
 
-	
 	/**
-	 * Check that the longest link wins
-	 */
+   * Check that the longest link wins
+   */
 	function testBuildWithLinks3() {
 		Log::debug('---------------- testBuildWithLinks3 -----------------');
 		$obj = new TextPart();
@@ -121,7 +120,7 @@ class TestTextPart extends UnitTestCase {
 			'</part>';
 		$this->assertEqual($xml,$expected);
 	}
-	
+
 	function testIndex() {
 		$obj = new TextPart();
 		$obj->setText("Lorem [s]ipsum[s] dolor [e]sit[e] amet,\n consectetur<tag> [slet]adipisicing[slet] elit\n\nNew paragraph\n\n\nThree & new lines");
@@ -137,13 +136,13 @@ class TestTextPart extends UnitTestCase {
 		$obj->setColor('#eee');
 		$obj->setFontFamily('Verdana');
 		$ctrl = new TextPartController();
-		
+
 		$xml = $ctrl->build($obj,new PartContext());
-		
+
 		$this->assertNull($ctrl->importFromString(null));
-		
+
 		$imported = $ctrl->importFromString($xml);
-		
+
 		$this->assertNotNull($imported);
 		$this->assertIdentical($imported->getText(),$obj->getText());
 		$this->assertIdentical($imported->getColor(),$obj->getColor());
