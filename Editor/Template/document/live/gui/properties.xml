@@ -62,8 +62,11 @@
 						<field label="Class">
 							<text-input key="class"/>
 						</field>
-						<field label="Style">
-							<text-input breaks="true" key="style"/>
+						<field label="Section style">
+							<code-input key="sectionStyle" height="120"/>
+						</field>
+						<field label="Part style">
+							<code-input key="partStyle" height="120"/>
 						</field>
 					</fields>
 				</formula>

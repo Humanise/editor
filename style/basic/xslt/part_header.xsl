@@ -5,32 +5,48 @@
  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
  xmlns:h="http://uri.in2isoft.com/onlinepublisher/part/header/1.0/"
  xmlns:util="http://uri.in2isoft.com/onlinepublisher/util/"
- exclude-result-prefixes="h util"
+ xmlns:style="http://uri.in2isoft.com/onlinepublisher/style/1.0/"
+ exclude-result-prefixes="h util style"
  >
 
-	<xsl:template match="h:header[@level=1]">
-		<h1 class="part_header part_header-1 common common_header common_header-1"><xsl:apply-templates/><xsl:comment/></h1>
-	</xsl:template>
+  <xsl:template match="h:header">
+    <xsl:variable name="id" select="concat('part_header-', generate-id())" />
+    <xsl:variable name="level">
+      <xsl:choose>
+        <xsl:when test="@level='1' or @level='2' or @level='3' or @level='4' or @level='5' or @level='6'">
+          <xsl:value-of select="@level"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>1</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:element name="{concat('h',$level)}">
+      <xsl:attribute name="class">
+        <xsl:text>part_header common common_header</xsl:text>
+        <xsl:value-of select="concat(' part_header-', $level, ' common_header-', $level)"/>
+        <xsl:if test="../../style:style/style:if">
+          <xsl:value-of select="concat(' ', $id)"/>
+        </xsl:if>
+      </xsl:attribute>
+      <xsl:apply-templates/>
+      <xsl:comment/>
+    </xsl:element>
 
-	<xsl:template match="h:header[@level=2]">
-		<h2 class="part_header part_header-2 common common_header common_header-2"><xsl:apply-templates/><xsl:comment/></h2>
-	</xsl:template>
-
-	<xsl:template match="h:header[@level=3]">
-		<h3 class="part_header part_header-3 common common_header common_header-3"><xsl:apply-templates/><xsl:comment/></h3>
-	</xsl:template>
-
-	<xsl:template match="h:header[@level=4]">
-		<h4 class="part_header part_header-4 common common_header common_header-4"><xsl:apply-templates/><xsl:comment/></h4>
-	</xsl:template>
-
-	<xsl:template match="h:header[@level=5]">
-		<h5 class="part_header part_header-5 common common_header common_header-5"><xsl:apply-templates/><xsl:comment/></h5>
-	</xsl:template>
-
-	<xsl:template match="h:header[@level=6]">
-		<h6 class="part_header part_header-6 common common_header common_header-6"><xsl:apply-templates/><xsl:comment/></h6>
-	</xsl:template>
+    <xsl:if test="../../style:style/style:if">
+    <style>
+      <xsl:for-each select="../../style:style/style:if">
+        <xsl:call-template name="util:media-before"/>
+        <xsl:for-each select="style:component[@name='base']">
+          <xsl:value-of select="concat('.', $id, '{')"/>
+            <xsl:call-template name="util:rules"/>
+          <xsl:text>}</xsl:text>
+        </xsl:for-each>
+        <xsl:call-template name="util:media-after"/>
+      </xsl:for-each>
+    </style>
+    </xsl:if>
+  </xsl:template>
 
 	<xsl:template match="h:style">
 		<xsl:attribute name="style">

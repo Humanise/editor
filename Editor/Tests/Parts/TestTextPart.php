@@ -135,6 +135,7 @@ class TestTextPart extends UnitTestCase {
 		$obj->setText('Lorem [s]ipsum[s] dolor [e]sit[e] amet,\n consectetur<tag> [slet]adipisicing[slet] elit\n\nNew paragraph\n\n\nThree & new lines');
 		$obj->setColor('#eee');
 		$obj->setFontFamily('Verdana');
+    $obj->setStyle('<if><component name="base"><color of="red"/></component></if>');
 		$ctrl = new TextPartController();
 
 		$xml = $ctrl->build($obj,new PartContext());
@@ -144,9 +145,10 @@ class TestTextPart extends UnitTestCase {
 		$imported = $ctrl->importFromString($xml);
 
 		$this->assertNotNull($imported);
-		$this->assertIdentical($imported->getText(),$obj->getText());
-		$this->assertIdentical($imported->getColor(),$obj->getColor());
-		$this->assertIdentical($imported->getFontFamily(),$obj->getFontFamily());
+		$this->assertIdentical($imported->getText(), $obj->getText());
+		$this->assertIdentical($imported->getColor(), $obj->getColor());
+		$this->assertIdentical($imported->getFontFamily(), $obj->getFontFamily());
+		$this->assertIdentical($imported->getStyle(), $obj->getStyle());
 	}
 }
 ?>

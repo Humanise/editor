@@ -383,6 +383,8 @@ class Database {
             $value = Database::int($value);
           } else if ($type=='text') {
             $value = Database::text($value);
+          } else if ($type=='boolean') {
+            $value = Database::boolean($value);
           } else {
             continue;
           }

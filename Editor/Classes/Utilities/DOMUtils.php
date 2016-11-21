@@ -154,7 +154,6 @@ class DOMUtils {
 			$doc->documentElement->appendChild($clone);
 		}
 		$xml = $doc->saveXML();
-
 		return substr($xml, 27, -7);
 	}
 
