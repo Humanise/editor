@@ -7,6 +7,7 @@
     "style/basic/css/shared.css",
     "@parts",
     "style/humanise/css/async.css",
+    {"file" : "style/basic/css/document.css", "inline" : true},
     {"file" : "style/humanise/css/inline.css", "inline" : true}
   ],
 
