@@ -78,30 +78,27 @@ class MarkupUtils {
 	}
 
 	static function moveStyleToHead($html) {
-		if (strpos($html,'</head>') === false) {
+    $start = strpos($html,'</head>');
+		if ($start === false) {
 			return $html;
 		}
 
-		$moved = [];
-
-    preg_match_all("/(<!--\\[if[\s\S]*endif\\]-->)|(<style[^>]+\\/>|<style[^>]*>[\s\S]*<\\/style>)/uU", $html, $matches);
+    preg_match_all("/(<!--\\[if[\s\S]*endif\\]-->)|(<style[^>]+\\/>|<style[^>]*>[\s\S]*<\\/style>)/uU", $html, $matches, PREG_PATTERN_ORDER, $start);
 		$found = $matches[0];
     $filtered = array();
-    foreach ($found as $script) {
-			if (strpos($script,'<style') === false) {
+    foreach ($found as $snippet) {
+			if (strpos($snippet,'<style') === false) {
 				continue;
 			}
-      if (strpos($script,'data-movable="false"')===false) {
-        $filtered[] = $script;
+      if (strpos($snippet,'data-movable="false"')===false) {
+        $filtered[] = $snippet;
       }
     }
 
 		$html = str_replace($filtered, '', $html);
 		$pos = strpos($html, '</head>');
 
-		$moved = array_merge($moved, $filtered);
-
-		$html = substr($html,0,$pos) . join($moved,'') . substr($html,$pos);
+		$html = substr($html,0,$pos) . join($filtered,'') . substr($html,$pos);
 		return $html;
 	}
 }
