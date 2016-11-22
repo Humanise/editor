@@ -4,8 +4,8 @@
  * @subpackage Classes.Services
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 class ModelService {
@@ -59,25 +59,25 @@ class ModelService {
                     $column = isset($fieldInfo['column']) ? $fieldInfo['column'] : $field;
                     $method = 'set' . ucfirst($field);
                     $raw = $row[$info['table'] . '_' . $column];
-					if ($fieldInfo['type']=='int') {
-						$raw = intval($raw);
-					} else if ($fieldInfo['type']=='float') {
-						$raw = floatval($raw);
-					} else if ($fieldInfo['type']=='datetime') {
-						$raw = $raw ? intval($raw) : null;
-					} else if ($fieldInfo['type']=='boolean') {
-						$raw = $raw==1 ? true : false;
+          if ($fieldInfo['type']=='int') {
+            $raw = intval($raw);
+          } else if ($fieldInfo['type']=='float') {
+            $raw = floatval($raw);
+          } else if ($fieldInfo['type']=='datetime') {
+            $raw = $raw ? intval($raw) : null;
+          } else if ($fieldInfo['type']=='boolean') {
+            $raw = $raw==1 ? true : false;
                     }
                     $obj->$method($raw);
                 }
-    			if (isset($info['relations']) && is_array($info['relations'])) {
-    				foreach ($info['relations'] as $field => $info) {
-    					$setter = 'set'.ucfirst($field);
-    					$sql = "select `".$info['toColumn']."` as id from `".$info['table']."` where `".$info['fromColumn']."`=@int(id)";
-    					$ids = Database::getIds($sql,['id' => $id]);
-    					$obj->$setter($ids);
-    				}
-    			}
+          if (isset($info['relations']) && is_array($info['relations'])) {
+            foreach ($info['relations'] as $field => $info) {
+              $setter = 'set'.ucfirst($field);
+              $sql = "select `".$info['toColumn']."` as id from `".$info['table']."` where `".$info['fromColumn']."`=@int(id)";
+              $ids = Database::getIds($sql,['id' => $id]);
+              $obj->$setter($ids);
+            }
+          }
 
             }
             return $obj;

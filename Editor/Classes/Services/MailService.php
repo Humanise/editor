@@ -9,15 +9,15 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 class MailService {
-	
+
 	static function sendToStandard($subject,$body) {
 		return MailService::send(MailService::getStandardEmail(), MailService::getStandardName(),$subject,$body);
 	}
-	
+
 	static function sendToFeedback($subject,$body) {
 		return MailService::send(MailService::getFeedbackEmail(), MailService::getFeedbackName(),$subject,$body);
 	}
-	
+
 	static function send($email,$name,$subject,$body,$html=null) {
         global $basePath;
         require_once($basePath.'Editor/Include/Zend.php');
@@ -54,81 +54,81 @@ class MailService {
 		try {
 			$mail->send();
 			return true;
-		} catch (Zend_Exception $e) {  
+		} catch (Zend_Exception $e) {
 			Log::debug($e->getMessage());
 			return false;
 		}
-		
+
 	}
-	
+
 	static function getEnabled() {
 		return SettingService::getSetting('system','mail','enabled')=='true';
 	}
-	
+
 	static function setEnabled($value) {
 		SettingService::setSetting('system','mail','enabled',$value ? 'true' : 'false');
 	}
-	
+
 	static function getServer() {
 		return SettingService::getSetting('system','mail','server');
 	}
-	
+
 	static function setServer($value) {
 		SettingService::setSetting('system','mail','server',$value);
 	}
-	
+
 	static function getPort() {
 		return SettingService::getSetting('system','mail','port');
 	}
-	
+
 	static function setPort($value) {
 		SettingService::setSetting('system','mail','port',$value);
 	}
-	
+
 	static function getUsername() {
 		return SettingService::getSetting('system','mail','username');
 	}
-	
+
 	static function setUsername($value) {
 		SettingService::setSetting('system','mail','username',$value);
 	}
-	
+
 	static function getPassword() {
 		return SettingService::getSetting('system','mail','password');
 	}
-	
+
 	static function setPassword($value) {
 		SettingService::setSetting('system','mail','password',$value);
 	}
-	
+
 	static function getStandardEmail() {
 		return SettingService::getSetting('system','mail','standard-email');
 	}
-	
+
 	static function setStandardEmail($value) {
 		SettingService::setSetting('system','mail','standard-email',$value);
 	}
-	
+
 	static function getStandardName() {
 		return SettingService::getSetting('system','mail','standard-name');
 	}
-	
+
 	static function setStandardName($value) {
 		SettingService::setSetting('system','mail','standard-name',$value);
 	}
-	
+
 	static function getFeedbackEmail() {
 		return SettingService::getSetting('system','mail','feedback-email');
 	}
-	
+
 	static function setFeedbackEmail($value) {
 		SettingService::setSetting('system','mail','feedback-email',$value);
 	}
-	
+
 	static function getFeedbackName() {
 		return SettingService::getSetting('system','mail','feedback-name');
 	}
-	
+
 	static function setFeedbackName($value) {
 		SettingService::setSetting('system','mail','feedback-name',$value);
 	}

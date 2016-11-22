@@ -9,7 +9,7 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 class NewsService {
-	
+
 	static function synchronizeSource($id,$force=false) {
 		// TODO: Dont remove old items, only update existing
 		$source = Newssource::load($id);
@@ -40,14 +40,14 @@ class NewsService {
 		$sql = 'update newssource set synchronized=now() where object_id='.Database::int($id);
 		Database::update($sql);
 	}
-	
+
 	static function clearSource($id) {
 		$items = Query::after('newssourceitem')->withProperty('newssource_id',$id)->get();
 		foreach ($items as $item) {
 			$item->remove();
 		}
 	}
-	
+
 	static function createArticle($article) {
 		$blueprint = Pageblueprint::load($article->getPageBlueprintId());
 		if (!$blueprint) {
@@ -60,7 +60,7 @@ class NewsService {
 		$page->setFrameId($blueprint->getFrameId());
 		$page->setTitle($article->getTitle());
 		$page->save();
-		
+
 		$news = new News();
 		$news->setTitle($article->getTitle());
 		$news->setNote($article->getSummary());
@@ -68,7 +68,7 @@ class NewsService {
 		$news->setEnddate($article->getEnddate());
 		$news->save();
 		$news->updateGroupIds($article->getGroupIds());
-		
+
 		$header = new HeaderPart();
 		$header->setLevel(1);
 		$header->setText($article->getTitle());
@@ -79,11 +79,11 @@ class NewsService {
 		$text->setText($article->getText());
 		$text->save();
 		DocumentTemplateEditor::addPartAtEnd($page->getId(),$text);
-		
+
 		$page->publish();
-		
+
 		ObjectLinkService::addPageLink($news,$page,$article->getLinkText());
-		
+
 		return array('page' => $page, 'news' => $news);
 	}
 }

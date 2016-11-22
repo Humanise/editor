@@ -9,7 +9,7 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 class SchemaService {
-	
+
 	static function buildSqlSetters($obj,$schema,$exclude=[]) {
 		$sql = '';
 		$fields = $schema;
@@ -38,7 +38,7 @@ class SchemaService {
 		}
 		return $sql;
 	}
-    	
+
 	static function _formatValue($type,$value) {
 		if ($type == 'int') {
 			return Database::int($value);
@@ -51,7 +51,7 @@ class SchemaService {
 		}
 		return Database::text($value);
 	}
-	
+
 	static function getRowValue($type,$value) {
 		if ($type == 'int') {
 			return intval($value);
@@ -64,7 +64,7 @@ class SchemaService {
 		}
 		return $value;
 	}
-	
+
 	static function getColumn($property,$info) {
 		if (isset($info['column'])) {
 			return $info['column'];
@@ -89,7 +89,7 @@ class SchemaService {
 		}
 		return $sql;
 	}
-	
+
 	static function buildSqlValues($obj,$schema,$exclude=[]) {
 		$sql = '';
 		foreach ($schema['properties'] as $field => $info) {
@@ -112,12 +112,12 @@ class SchemaService {
 		}
 		return $sql;
 	}
-    
+
     static function getDatabaseSchema() {
         $schema = ['tables' => []];
-        
+
         $tables = DatabaseUtil::getTables();
-        
+
         foreach ($tables as $table) {
             $tableInfo = [];
             $tableInfo['name'] = $table;
@@ -133,12 +133,12 @@ class SchemaService {
                     'extra' => $column['Extra'],
                 ];
             }
-            
+
             $tableInfo['columns'] = $columnsInfo;
             $schema['tables'][] = $tableInfo;
-            
+
         }
-        
+
         return $schema;
     }
 }

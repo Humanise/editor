@@ -9,11 +9,11 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 class JsonService {
-	
+
 	static function decode($data) {
 		return Strings::fromJSON($data);
 	}
-	
+
 	static function readFile($path) {
 		if (file_exists($path)) {
 			$json = file_get_contents($path);

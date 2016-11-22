@@ -9,7 +9,7 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 class HierarchyService {
-	    	
+
 	static function createHierarchy($hierarchy) {
 		if (!$hierarchy) {
 			Log::debug('No hierarchy');
@@ -25,7 +25,7 @@ class HierarchyService {
 		")";
 		$hierarchy->setId(Database::insert($sql));
     }
-    
+
     static function getHierarchyItemForPage($page) {
         $sql="select * from hierarchy_item where target_type='page' and target_id = @int(id)";
         return Database::selectFirst($sql,['id' => $page->getId()]);
@@ -54,7 +54,7 @@ class HierarchyService {
         }
         return false;
     }
-    
+
 	static function getLatestId() {
 		$sql = "select max(id) as id from hierarchy";
 		if ($row = Database::selectFirst($sql)) {
@@ -62,7 +62,7 @@ class HierarchyService {
 		}
 		return null;
 	}
-    
+
     static function getItemByPageId($id) {
         $sql = "select id from `hierarchy_item` where `target_type`='page' and target_id=@int(id)";
         $result = Database::selectFirst($sql,['id'=>$id]);
@@ -71,7 +71,7 @@ class HierarchyService {
         }
         return null;
     }
-    
+
     static function findItems($query = array()) {
         $params = [];
 		$sql = "SELECT id,title,hidden,target_type,target_value,target_id,hierarchy_id,parent,`index` from hierarchy_item";
@@ -88,7 +88,7 @@ class HierarchyService {
 		Database::free($result);
         return $items;
     }
-    
+
 	static function loadItem($id) {
 		$sql = "SELECT id,title,hidden,target_type,target_value,target_id,hierarchy_id,parent,`index` from hierarchy_item where id=@int(id)";
 		if ($row = Database::selectFirst($sql,['id' => $id])) {
@@ -186,7 +186,7 @@ class HierarchyService {
 		} else {
 			$target_value = $options['targetValue'];
 		}
-		
+
 		$sql="insert into hierarchy_item (title,hidden,type,hierarchy_id,parent,`index`,target_type,target_id,target_value) values (".
 		Database::text($options['title']).
 		",".Database::boolean($options['hidden']).
@@ -203,7 +203,7 @@ class HierarchyService {
 		EventService::fireEvent('update','hierarchy',null,$options['hierarchyId']);
 		return $id;
 	}
-    
+
     static function deleteItem($id) {
 
         // Load info about item
@@ -241,7 +241,7 @@ class HierarchyService {
         // Mark hierarchy as changed
         $sql="update hierarchy set changed=now() where id=".Database::int($hierarchyId);
         Database::update($sql);
-	
+
 		EventService::fireEvent('update','hierarchy',null,$hierarchyId);
         return $hierarchyId;
     }
@@ -294,5 +294,5 @@ class HierarchyService {
     	Database::free($result);
     	return $output;
     }
-	
+
 }

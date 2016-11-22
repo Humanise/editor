@@ -9,8 +9,8 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 class FontService {
-	
-	
+
+
 	static function getFontItems() {
 		return '<item value="" title=""/>
 				<item value="sans-serif" title="*Sans-serif*"/>

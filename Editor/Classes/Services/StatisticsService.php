@@ -5,7 +5,7 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 class StatisticsService {
-	
+
 	static function registerPage($options) {
 		$ip = getenv("REMOTE_ADDR");
 		$method = 'GET';//getenv('REQUEST_METHOD');
@@ -22,14 +22,14 @@ class StatisticsService {
 		"now(),'page',".Database::int($options['id']).",".Database::text($ip).",".Database::text($country).",".Database::text($agent).",".Database::text($method).",".Database::text($options['uri']).",".Database::text($language).",".Database::text($session).",".Database::text($options['referrer']).",".Database::text($userhost).")";
 		Database::insert($sql);
 	}
-	
+
 	static function getPageHits($rows) {
 		$ids = array();
 		$counts = array();
 		foreach ($rows as $row) {
 			$ids[] = $row['id'];
 		}
-		if (count($ids) > 0) {			
+		if (count($ids) > 0) {
 			$sql = "select count(id) as hits,value as id from statistics where type='page' and value in (".join($ids,',').") group by value";
 			$result = Database::selectAll($sql);
 			foreach ($result as $row) {
@@ -38,7 +38,7 @@ class StatisticsService {
 		}
 		return $counts;
 	}
-	
+
 	static function searchVisits($query) {
 		$sql = 'SELECT count(distinct statistics.session) as sessions, count(distinct statistics.ip) as ips, count(statistics.id) as hits,date_format(statistics.time, "%Y%m%d") as `key`,date_format(statistics.time, "%d-%m-%Y") as label';
 		$sql.= ' FROM statistics';
@@ -46,28 +46,28 @@ class StatisticsService {
 		$sql.= ' group by label order by `key` desc limit 500';
 		return Database::selectAll($sql);
 	}
-	
+
 	static function searchAgents($query) {
 		$sql = "SELECT UNIX_TIMESTAMP(max(statistics.time)) as lasttime,UNIX_TIMESTAMP(min(statistics.time)) as firsttime, count(distinct id) as visits,count(distinct ip) as ips,count(distinct session) as sessions,agent from statistics";
 		$sql.= StatisticsService::_buildWhere($query);
 		$sql.= " group by agent order by lasttime desc";
 		return Database::selectAll($sql);
 	}
-	
+
 	static function searchPages($query) {
 		$sql = "select UNIX_TIMESTAMP(max(statistics.time)) as lasttime,UNIX_TIMESTAMP(min(statistics.time)) as firsttime,count(distinct statistics.id) as visits,count(distinct statistics.session) as sessions,count(distinct statistics.ip) as ips,page.title as page_title,page.id as page_id from statistics left join page on statistics.value=page.id where statistics.type='page'";
 		$sql.= StatisticsService::_buildWhere($query,false);
 		$sql.= " group by statistics.value order by visits desc";
 	 	return Database::select($sql);
 	}
-	
+
 	static function searchPaths($query) {
 		$sql = "select UNIX_TIMESTAMP(max(statistics.time)) as lasttime,UNIX_TIMESTAMP(min(statistics.time)) as firsttime,count(distinct statistics.id) as visits,count(distinct statistics.session) as sessions,count(distinct statistics.ip) as ips,statistics.uri,page.title as page_title,page.id as page_id from statistics left join page on statistics.value=page.id where statistics.type='page'";
 		$sql.= StatisticsService::_buildWhere($query,false);
 		$sql.= " group by statistics.uri order by visits desc limit 100";
 		return Database::select($sql);
 	}
-	
+
 	static function _buildWhere($query,$prepend=true) {
 		$where = array();
 		if ($query->getStartTime()) {
@@ -81,7 +81,7 @@ class StatisticsService {
 		}
 		return '';
 	}
-	
+
 	static function getVisitsChart($query) {
 		$patterns = array(
 			'daily' => array('sql' => '%Y%m%d','php' => 'Ymd', 'div' => 60*60*24),
@@ -89,7 +89,7 @@ class StatisticsService {
 			'monthly' => array('sql' => '%Y%m','php' => 'Ym', 'div' => 60*60*24*31),
 			'yearly' => array('sql' => '%Y','php' => 'Y', 'div' => 60*60*24*365)
 		);
-		
+
 		$days = 100;
 
 		$resolution = $query->getResolution();
@@ -98,7 +98,7 @@ class StatisticsService {
 		$sql.= StatisticsService::_buildWhere($query);
 		$sql.= '  group by `key` order by `key`';
 		$rows = Database::selectAll($sql,'key');
-		
+
 		if ($query->getStartTime()) {
 			$start = $query->getStartTime();
 		} else {
@@ -107,13 +107,13 @@ class StatisticsService {
 			$start = intval($row['min']);
 		}
 		$end = Dates::getDayEnd();
-		
+
 		$days = floor(($end-$start)/$patterns[$resolution]['div']);
-		
+
 		$rows = StatisticsService::_fillGaps($rows,$days,$patterns,$resolution);
 		$sets = [];
 		$dimensions = array('sessions','ips','hits');
-        
+
         $labels = [];
 		foreach ($rows as $row) {
 			$labels[] = ['key' => $row['key'], 'label' => $row['label']];
@@ -128,19 +128,19 @@ class StatisticsService {
 		}
 		return ['sets' => $sets,'axis' => ['x' => ['labels' => $labels]]];
 	}
-	
+
 	static function getPagesChart($query) {
 		$sql = "select UNIX_TIMESTAMP(max(statistics.time)) as lasttime,UNIX_TIMESTAMP(min(statistics.time)) as firsttime,count(distinct statistics.id) as visits,count(distinct statistics.session) as sessions,count(distinct statistics.ip) as ips,page.title as page_title,page.id as page_id from statistics left join page on statistics.value=page.id where statistics.type='page'";
 		$sql.= StatisticsService::_buildWhere($query,false);
 		$sql.= " group by statistics.value order by visits desc limit 20";
-		
+
 		$rows = Database::selectAll($sql);
-		
+
 		$entries = array();
 		foreach ($rows as $row) {
 			$entries[$row['page_title']] = intval($row['visits']);
 		}
-		
+
 		return array('sets' => array(array('type'=>'column','entries'=>$entries)));
 	}
 

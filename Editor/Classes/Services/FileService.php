@@ -9,7 +9,7 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 class FileService {
-	
+
 	public static $types = array(
 		 array('kind' => 'unknown.any', 'label' => 'Ukendt', 'category' => 'unknown',
 			'mimetypes' => array('application/octet-stream'),
@@ -96,7 +96,7 @@ class FileService {
 			'extensions'=>array('ibooks')
 		)
 	);
-	
+
 	public static $categories = array(
 		 'document' => 'Dokument'
 		,'image' => 'Billede'
@@ -104,7 +104,7 @@ class FileService {
 		,'movie' => 'Film'
 		,'text' => 'Tekst'
 	);
-	
+
 	static function mimeTypeToInfo($mime) {
 		foreach (FileService::$types as $type) {
 			foreach ($type['mimetypes'] as $mimeType) {
@@ -115,7 +115,7 @@ class FileService {
 		}
 		return null;
 	}
-	
+
 	static function extensionToInfo($ext) {
 		foreach (FileService::$types as $type) {
 			foreach ($type['extensions'] as $extension) {
@@ -126,21 +126,21 @@ class FileService {
 		}
 		return null;
 	}
-	
+
 	static function mimeTypeToLabel($mime) {
 		if ($info = FileService::mimeTypeToInfo($mime)) {
 			return $info['label'];
 		}
 		return $mime;
 	}
-	
+
 	static function mimeTypeToKind($mime) {
 		if ($info = FileService::mimeTypeToInfo($mime)) {
 			return $info['kind'];
 		}
 		return '';
 	}
-	
+
 	static function mimeTypeToExtension($mime) {
 		if ($info = FileService::mimeTypeToInfo($mime)) {
 			$ext = $info['extensions'];
@@ -150,7 +150,7 @@ class FileService {
 		}
 		return '';
 	}
-	
+
 	static function kindToMimeTypes($kind) {
 		foreach (FileService::$types as $type) {
 			if ($type['kind']===$kind) {
@@ -159,7 +159,7 @@ class FileService {
 		}
 		return null;
 	}
-	
+
 	static function extensionToMimeType($ext) {
 		if ($info = FileService::extensionToInfo($ext)) {
 			$mimes = $info['mimetypes'];
@@ -169,7 +169,7 @@ class FileService {
 		}
 		return '';
 	}
-	
+
 	static function fileNameToMimeType($filename) {
 		$ext = FileSystemService::getFileExtension($filename);
 		return FileService::extensionToMimeType($ext);
@@ -203,12 +203,12 @@ class FileService {
 		}
 
 		if (!$errorMessage) {
-		
+
 			$file = File::load($id);
 			if ($file) {
 				// Delete old file
 				$oldFilename = $file->getFilename();
-		
+
 				if (!unlink ($basePath.'files/'.$oldFilename)) {
 					$errorMessage='Kunne ikke slette alt fra serveren';
 				}
@@ -223,7 +223,7 @@ class FileService {
 		}
 		return array('success' => ($errorMessage===false),'errorMessage' => $errorMessage,'errorDetails' => $errorDetails);
 	}
-	
+
 	/**
 	 * Creates a new file object based on an uploaded file
 	 * @param string $title The title of the uploaded file
@@ -236,7 +236,7 @@ class FileService {
 		$fileType = $_FILES["file"]["type"];
 		$tempFile = $_FILES['file']['tmp_name'];
 		$fileSize = $_FILES["file"]["size"];
-		
+
 		if ($fileType=='application/octet-stream') {
 			$fileType = FileService::fileNameToMimeType($fileName);
 		}
@@ -283,7 +283,7 @@ class FileService {
 		}
 		return $result;
 	}
-	
+
 	static function createFromUrl($url) {
 		global $basePath;
 		$remote = new RemoteFile($url);
@@ -309,7 +309,7 @@ class FileService {
 		if (!@rename($path,$newPath)) {
 			return array('success' => false,'message' => 'Der skete en uventet fejl ');
 		}
-		
+
 		$title = FileSystemService::filenameToTitle($filename);
 
 		$file = new File();
@@ -321,7 +321,7 @@ class FileService {
 		$file->publish();
 		return array('success' => true);
 	}
-	
+
 	static function getLatestFileId() {
 		$sql = "select max(object_id) as id from file";
 		if ($row = Database::selectFirst($sql)) {
@@ -329,12 +329,12 @@ class FileService {
 		}
 		return null;
 	}
-	
+
 	static function getPath($path) {
 		global $basePath;
 		return Strings::concatUrl($basePath,$path);
 	}
-    
+
 	static function getFileFilename($id) {
 		$sql = "select filename from file where object_id=".Database::int($id);
 		if ($row = Database::selectFirst($sql)) {
@@ -342,7 +342,7 @@ class FileService {
 		}
 		return NULL;
 	}
-	
+
 	static function getGroupCounts() {
 		$out = array();
 		$sql="select distinct object.id,object.title,count(file.object_id) as filecount from filegroup, filegroup_file, file,object  where filegroup_file.filegroup_id=filegroup.object_id and filegroup_file.file_id = file.object_id and object.id=filegroup.object_id group by filegroup.object_id union select object.id,object.title,'0' from object left join filegroup_file on filegroup_file.filegroup_id=object.id where object.type='filegroup' and filegroup_file.file_id is null order by title";

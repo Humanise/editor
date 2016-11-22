@@ -20,7 +20,7 @@ class ToolService {
 		Database::free($result);
 		return $arr;
 	}
-	
+
 	static function getAvailable() {
 		global $basePath;
 		$arr = FileSystemService::listDirs($basePath."Editor/Tools/");
@@ -31,7 +31,7 @@ class ToolService {
 		}
 		return $arr;
 	}
-	
+
 	static function getCategorized() {
 		$categorized = array();
 		$installed = ToolService::getInstalled();
@@ -51,7 +51,7 @@ class ToolService {
 		}
 		return $categorized;
 	}
-	
+
 	static function _priorityComparator($toolA, $toolB) {
 		$a = $toolA->priority;
 		$b = $toolB->priority;
@@ -66,7 +66,7 @@ class ToolService {
 		$path = $basePath."Editor/Tools/".$key."/info.json";
 		return Strings::toUnicode(JsonService::readFile($path));
 	}
-	
+
 	static function install($key) {
 		$sql = "select id from `tool` where `unique`=".Database::text($key);
 		if (Database::isEmpty($sql)) {
@@ -74,7 +74,7 @@ class ToolService {
 			Database::insert($sql);
 		}
 	}
-	
+
 	static function uninstall($key) {
 		$sql = "delete from `tool` where `unique`=".Database::text($key);
 		Database::delete($sql);

@@ -12,7 +12,7 @@ class ObjectLinkService {
 
 	static function search($query = array()) {
 		$sql = "select object_link.*,page.title as page_title, object.title as file_title from object_link ".
-		 		"left join page on page.id=object_link.target_value ".
+        "left join page on page.id=object_link.target_value ".
 				"left join object on object.id=object_link.target_value and object.type='file'";
 		if ($query['objectId']) {
 			$sql.=" where object_id=".$query['objectId'];
@@ -38,11 +38,11 @@ class ObjectLinkService {
 		}
 		return $list;
 	}
-	
+
 	static function getLinks($object) {
 		return ObjectLinkService::search(array('objectId'=>$object->getId()));
 	}
-	
+
 	static function updateLinks($id,$links) {
 		$sql = "delete from object_link where object_id=".$id;
 		Database::delete($sql);
@@ -54,7 +54,7 @@ class ObjectLinkService {
 			$position++;
 		}
 	}
-	
+
 	static function getLinkCounts($objects) {
 		if (count($objects)==0) {
 			return array();
@@ -70,7 +70,7 @@ class ObjectLinkService {
 		}
 		return $counts;
 	}
-	
+
 	static function deleteLink($object,$linkId) {
 
 		// Delete item
@@ -87,11 +87,11 @@ class ObjectLinkService {
 			$pos++;
 		}
 		Database::free($result);
-		
+
 		$sql = "update `object` set updated=now() where id=".Database::int($object->id);
 		Database::update($sql);
 	}
-	
+
 	static function moveLink($object,$linkId,$dir) {
 
 		$sql="select * from object_link where id=".Database::int($linkId);
@@ -110,11 +110,11 @@ class ObjectLinkService {
 			Database::update($sql);
 		}
 		Database::free($result);
-		
+
 		$sql = "update `object` set updated=now() where id=".Database::int($object->id);
 		Database::update($sql);
 	}
-	
+
 	static function addPageLink($object,$page,$linkText) {
 		ObjectLinkService::addLink($object,$linkText,'','','page',$page->getId());
 	}
@@ -126,7 +126,7 @@ class ObjectLinkService {
 		} else {
 			$pos=1;
 		}
-		
+
 		$sql="insert into object_link (object_id,title,alternative,target,position,target_type,target_value) values (".
 		Database::int($object->id).
 		",".Database::text($title).
@@ -137,13 +137,13 @@ class ObjectLinkService {
 		",".Database::text($targetValue).
 		")";
 		Database::insert($sql);
-		
+
 		$sql = "update `object` set updated=now() where id=".Database::int($object->id);
 		Database::update($sql);
 	}
 
 	static function updateLink($object,$id,$title,$alternative,$target,$targetType,$targetValue) {
-		
+
 		$sql="update object_link set title=".Database::text($title).
 		",alternative=".Database::text($alternative).
 		",target_type=".Database::text($targetType).
@@ -151,10 +151,10 @@ class ObjectLinkService {
 		",target_value=".Database::text($targetValue).
 		" where id = ".$id;
 		Database::update($sql);
-		
-		$sql = "update `object` set updated=now() where id=".$this->id;		
+
+		$sql = "update `object` set updated=now() where id=".$this->id;
 		Database::update($sql);
-		
+
 	}
 
 }

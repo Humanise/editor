@@ -9,7 +9,7 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 class OnlineObjectsService {
-	
+
 	static function analyseText($text) {
 		$url = OnlineObjectsService::getServiceUrl('language','analyse');
 		$request = new WebRequest($url);
@@ -21,14 +21,14 @@ class OnlineObjectsService {
 		}
 		return Strings::fromJSON($response->getBody());
 	}
-	
+
 	static function getServiceUrl($service,$method,$baseUrl=null) {
 		if ($baseUrl==null) {
 			$baseUrl = SettingService::getOnlineObjectsUrl();
 		}
 		return Strings::concatUrl($baseUrl,'v1.0/'.$service.'/'.$method);
 	}
-	
+
 	static function test($url) {
 		$serviceUrl = OnlineObjectsService::getServiceUrl('language','analyse',$url);
 		$request = new WebRequest($serviceUrl);

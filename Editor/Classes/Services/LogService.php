@@ -19,7 +19,7 @@ class LogService {
     if (isset($query['size'])) {
       $size = $query['size'];
     }
-    
+
     $sql = "select UNIX_TIMESTAMP(`time`) as `time`,`category`,`event`,`entity`,`message`,`user_id`,`ip`,`session`,user.username from log left join `user` on object_id=log.user_id";
     $where = '';
     if (isset($query['category']) && $query['category'] != 'all') {
@@ -42,7 +42,7 @@ class LogService {
     }
     $sql.= " order by time desc,log.id desc";
     $sql.= " limit ".($page * $size).",".$size;
-    
+
     $countSql = "select count(id) as num from log".($where!='' ? ' where '.$where : '');
     $result = new SearchResult();
     $result->setWindowSize($size);
@@ -50,10 +50,10 @@ class LogService {
     $result->setList(Database::selectAll($sql));
     $row = Database::selectFirst($countSql);
     $result->setTotal(intval($row['num']));
-    
+
     return $result;
   }
-  
+
   static function getPageNotFoundOverview($query = []) {
     $order = 'last';
     if (isset($query['sort']) && in_array($query['sort'],['count','last','first','message'])) {
@@ -63,13 +63,13 @@ class LogService {
     if (isset($query['direction']) && $query['direction']=='ascending') {
       $dir = 'asc';
     }
-    
+
     $sql = "select count(id) as `count`,UNIX_TIMESTAMP(min(time)) as first,UNIX_TIMESTAMP(max(time)) as last,message from log where event='pagenotfound' group by message order by " . $order . ' ' . $dir;
     $result = new SearchResult();
     $result->setList(Database::selectAll($sql));
     return $result;
   }
-  
+
   static function getUsedCategories() {
     return Database::selectArray("select distinct category from log order by category");
   }

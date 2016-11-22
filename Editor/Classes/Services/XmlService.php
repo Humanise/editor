@@ -9,7 +9,7 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 class XmlService {
-	
+
 	static function validateSnippet($data) {
 		$code=0;
 		$parser = xml_parser_create();
@@ -25,7 +25,7 @@ class XmlService {
 			return false;
 		}
 	}
-	
+
 	static function readFile($path) {
 		return simplexml_load_file($path);
 	}

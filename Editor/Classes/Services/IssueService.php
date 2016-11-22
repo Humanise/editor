@@ -9,7 +9,7 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 class IssueService {
-	
+
 	private static $KINDS = array(
 		'unknown' => array('da'=>'Ukendt','en' => 'Unknown'),
 		'improvement' => array('da' => 'Forbedring','en' => 'Improvement'),
@@ -17,11 +17,11 @@ class IssueService {
 		'feedback' => array('da' => 'Tilbagemelding', 'en' => 'Feedback'),
 		'error' => array('da' => 'Fejl', 'en' => 'Error')
 	);
-	
+
 	static function getKinds() {
 		return IssueService::$KINDS;
 	}
-	
+
 	static function translateKind($kind,$lang=null) {
 		if ($lang==null) {
 			$lang = InternalSession::getLanguage();
@@ -37,17 +37,17 @@ class IssueService {
 		$row = Database::selectFirst($sql);
 		return intval($row['count']);
 	}
-	
+
 	static function getKindCounts() {
 		$sql = "select count(object_id) as count,kind from issue group by kind";
 		return Database::selectAll($sql);
 	}
-	
+
 	static function getStatusCounts() {
 		$sql = "select count(issue.object_id) as count,object.title,object.id from issue left join object on issue.issuestatus_id=object.id group by object.id order by object.title";
 		return Database::selectAll($sql);
 	}
-	
+
 	static function getStatusMap() {
 		$map = array();
 		$sql = "select id,title from object where type='issuestatus' order by title";
@@ -58,5 +58,5 @@ class IssueService {
 		Database::free($result);
 		return $map;
 	}
-	
+
 }
