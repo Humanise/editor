@@ -10,14 +10,14 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 class PublishingService {
-	
+
 	static function publishPage($id) {
-		
+
 		$result = PublishingService::buildPage($id);
 		if (!$result) {
 			return;
 		}
-		
+
 		$sql="update page set".
 			" data=".Database::text($result['data']).
 			",`index`=".Database::text($result['index']).
@@ -25,31 +25,31 @@ class PublishingService {
 			",published=now()".
 			" where id=".Database::int($id);
 		Database::update($sql);
-		$sql="insert into page_history (page_id,user_id,data,time) values (".$id.",".InternalSession::getUserId().",".Database::text($result['data']).",now())";
+		$sql="insert into page_history (page_id,user_id,data,time) values (".Database::int($id).",".InternalSession::getUserId().",".Database::text($result['data']).",now())";
 		Database::insert($sql);
 
-		EventService::fireEvent('publish','page',null,$id);		
+		EventService::fireEvent('publish','page',null,$id);
 	}
-	
+
 	static function reIndexPage($id) {
-		
+
 		$result = PublishingService::buildPage($id);
 		if (!$result) {
 			return;
 		}
-		
+
 		$sql="update page set `index`=".Database::text($result['index'])." where id=".Database::int($id);
 		Database::update($sql);
 	}
-	
+
 	static function buildPage($id) {
 		$sql="select template.unique from page,template where page.template_id=template.id and page.id=".Database::int($id);
 		if ($row = Database::selectFirst($sql)) {
 			if ($controller = TemplateService::getController($row['unique'])) {
 				if (method_exists($controller,'build')) {
-			        $result = $controller->build($id);
-			        return $result;
-				}	
+          $result = $controller->build($id);
+          return $result;
+				}
 			}
 		}
 		return null;
@@ -61,7 +61,7 @@ class PublishingService {
 		foreach ($pages as $page) {
 			PublishingService::publishPage($page['id']);
 		}
-		
+
 		$hierarchies = PublishingService::getUnpublishedHierarchies();
 		foreach ($hierarchies as $hierarchy) {
 			$obj = Hierarchy::load($hierarchy['id']);
@@ -69,16 +69,16 @@ class PublishingService {
 				$obj->publish();
 			}
 		}
-		
+
 		$objects = PublishingService::getUnpublishedObjects();
 		foreach ($objects as $object) {
 			if ($object) {
 				$object->publish();
 			}
 		}
-		
+
 	}
-	
+
 	static function getTotalUnpublishedCount() {
 		$count = 0;
 		$sql = "select count(page.id) as `count`,'page' from page where page.changed>page.published
@@ -92,17 +92,17 @@ class PublishingService {
 		}
 		return $count;
 	}
-	
+
 	static function getUnpublishedPages() {
 		$sql="select page.id,page.title,template.unique as template from page,template where page.template_id=template.id and changed>published";
 		return Database::selectAll($sql);
 	}
-	
+
 	static function getUnpublishedHierarchies() {
 		$sql="select id,name from hierarchy where changed>published";
 		return Database::selectAll($sql);
 	}
-	
+
 	static function getUnpublishedObjects() {
 		$result = array();
 		$sql = "select id from object where updated>published";
@@ -115,14 +115,14 @@ class PublishingService {
 				$notFound[] = $id;
 				Log::debug('Unable to load object: '.$id);
 			}
-			
+
 		}
 		if ($notFound) {
 			Log::debug('Not found:'.join($notFound,','));
 		}
 		return $result;
 	}
-	
+
 	static function publishFrame($id) {
 		$sql="select * from frame where id=@int(id)";
 		$row = Database::selectFirst($sql,['id'=>$id]);
@@ -164,15 +164,15 @@ class PublishingService {
 		if (strlen($news)>0) {
 			$dynamic=1;
 		}
-		$sql="update frame set data=".Database::text($data).",published=now(),dynamic=".$dynamic." where id=".$id;
+		$sql="update frame set data=".Database::text($data).",published=now(),dynamic=".$dynamic." where id=".Database::int($id);
 		Database::update($sql);
-	
-        EventService::fireEvent('publish','frame',null,$id);
+
+    EventService::fireEvent('publish','frame',null,$id);
 	}
-	
+
 	static function buildFrameLinks($id,$position) {
 		$out='';
-		$sql="select * from frame_link where position='".$position."' and frame_id=".$id." order by `index`";
+		$sql="select * from frame_link where position='".$position."' and frame_id=".Database::int($id)." order by `index`";
 		$result = Database::select($sql);
 		while ($row = Database::next($result)) {
 			$out.='<link title="'.Strings::escapeEncodedXML($row['title']).'" alternative="'.Strings::escapeEncodedXML($row['alternative']).'"';
@@ -196,7 +196,7 @@ class PublishingService {
 
 	static function buildFrameNews($id) {
 		$out='';
-		$sql="select * from frame_newsblock where frame_id=".$id." order by `index`";
+		$sql="select * from frame_newsblock where frame_id=".Database::int($id)." order by `index`";
 		$result = Database::select($sql);
 		while ($row = Database::next($result)) {
 			$out.='<newsblock title="'.Strings::escapeEncodedXML($row['title']).'">'.

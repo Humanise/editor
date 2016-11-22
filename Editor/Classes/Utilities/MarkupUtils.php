@@ -77,16 +77,31 @@ class MarkupUtils {
 		return $html;
 	}
 
-	static function _moveScriptsToBottom($html) {
-		$result = MarkupUtils::findScriptSegments($html);
-		$found = array();
-		foreach ($result as $row) {
-			$found[] = substr($html,$row['from'],$row['to']-$row['from']);
+	static function moveStyleToHead($html) {
+		if (strpos($html,'</head>') === false) {
+			return $html;
 		}
-		$html = str_replace($found,'<!-- moved script -->',$html);
-		$pos = strpos($html,'</body>');
 
-		$html = substr($html,0,$pos) . join($found,'') . substr($html,$pos);
+		$moved = [];
+
+    preg_match_all("/(<!--\\[if[\s\S]*endif\\]-->)|(<style[^>]+\\/>|<style[^>]*>[\s\S]*<\\/style>)/uU", $html, $matches);
+		$found = $matches[0];
+    $filtered = array();
+    foreach ($found as $script) {
+			if (strpos($script,'<style') === false) {
+				continue;
+			}
+      if (strpos($script,'data-movable="false"')===false) {
+        $filtered[] = $script;
+      }
+    }
+
+		$html = str_replace($filtered, '', $html);
+		$pos = strpos($html, '</head>');
+
+		$moved = array_merge($moved, $filtered);
+
+		$html = substr($html,0,$pos) . join($moved,'') . substr($html,$pos);
 		return $html;
 	}
 }

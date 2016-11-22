@@ -26,6 +26,7 @@ Database::update($sql);
 
 if ($ctrl = PartService::getController($type)) {
 	$part = $ctrl->getFromRequest($id);
+  $part->setStyle(Request::getString('style'));
 	$part->save();
 
 	PageService::markChanged($pageId);

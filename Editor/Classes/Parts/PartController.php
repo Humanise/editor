@@ -53,6 +53,7 @@ class PartController
     }
     $xml.=
     '</sub>'.
+    DocumentTemplateController::_getStyle($part->getStyle()).
     '</part>';
     return $xml;
   }
@@ -76,6 +77,11 @@ class PartController
       }
     } else {
       Log::debug('The node has no "sub" element');
+    }
+    if ($style = DOMUtils::getFirstChildElement($node,'style')) {
+      $xml = DOMUtils::getInnerXML($style);
+      $xml = DOMUtils::stripNamespaces($xml);
+      $part->setStyle($xml);
     }
     return $part;
   }
