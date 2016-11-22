@@ -31,6 +31,31 @@ class TestMarkupUtils extends UnitTestCase {
     $this->assertEqual($expected,$result);
   }
 
+	function testStyleToHead() {
+		$html = '<html><head></head>' .
+      '<body>' .
+        '<h1>Test</h1>' .
+        '<style>.myclass{color:red;}</style>' .
+        '<!--[if lt IE 7]><style>.hello {color: blue;}</style><![endif]-->' .
+        '<!-- simple comment -->' .
+        '<!--[if lt IE 7]>I should not be moved<![endif]-->' .
+      '</body></html>';
+
+    $result = MarkupUtils::moveStyleToHead($html);
+
+    $expected = '<html>' .
+      '<head>' .
+        '<style>.myclass{color:red;}</style>' .
+        '<!--[if lt IE 7]><style>.hello {color: blue;}</style><![endif]-->' .
+      '</head>' .
+      '<body><h1>Test</h1>' .
+      '<!-- simple comment -->' .
+      '<!--[if lt IE 7]>I should not be moved<![endif]-->' .
+      '</body></html>';
+
+    $this->assertEqual($expected,$result);
+  }
+
 	function testConvertToXHTML() {
 		$tests = [
 			'<p><br></p>' => '<p><br/></p>',

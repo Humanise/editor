@@ -477,6 +477,7 @@ class RenderingService {
       $html = RenderingService::applyStylesheet($page['xml'],RenderingService::getDesign($page['design']),$page['template'],'',$relative,$relative,$samePageBaseUrl,false,$page['language']);
       if (ConfigurationService::isOptimizeHTML()) {
         $html = MarkupUtils::moveScriptsToBottom($html);
+        $html = MarkupUtils::moveStyleToHead($html);
       }
       $output = $html;
       if (Request::supportsGzip()) {
@@ -561,6 +562,7 @@ class RenderingService {
       $html = RenderingService::applyStylesheet($xml,$design,$template,$options['relativePath'],$relativeUrl,'','?id='.$id.'&amp;',true,strtolower($row['language']));
       if (ConfigurationService::isOptimizeHTML()) {
         $html = MarkupUtils::moveScriptsToBottom($html);
+        $html = MarkupUtils::moveStyleToHead($html);
       }
       return $html;
     }

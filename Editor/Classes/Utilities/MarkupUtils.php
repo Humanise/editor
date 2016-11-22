@@ -76,4 +76,32 @@ class MarkupUtils {
 		$html = substr($html,0,$pos) . join($moved,'') . substr($html,$pos);
 		return $html;
 	}
+
+	static function moveStyleToHead($html) {
+		if (strpos($html,'</head>') === false) {
+			return $html;
+		}
+
+		$moved = [];
+
+    preg_match_all("/(<!--\\[if[\s\S]*endif\\]-->)|(<style[^>]+\\/>|<style[^>]*>[\s\S]*<\\/style>)/uU", $html, $matches);
+		$found = $matches[0];
+    $filtered = array();
+    foreach ($found as $script) {
+			if (strpos($script,'<style') === false) {
+				continue;
+			}
+      if (strpos($script,'data-movable="false"')===false) {
+        $filtered[] = $script;
+      }
+    }
+
+		$html = str_replace($filtered, '', $html);
+		$pos = strpos($html, '</head>');
+
+		$moved = array_merge($moved, $filtered);
+
+		$html = substr($html,0,$pos) . join($moved,'') . substr($html,$pos);
+		return $html;
+	}
 }
