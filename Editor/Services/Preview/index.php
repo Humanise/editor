@@ -13,7 +13,7 @@ $edit = Request::getBoolean('edit');
 $gui='
 <gui xmlns="uri:hui" title="OnlinePublisher editor">
   <controller source="controller.js"/>
-  <dock url="viewer/'.($edit ? '#edit' : '').'" name="dock" position="top" frame-name="Preview">
+  <dock url="viewer/'.($edit ? '#edit' : '').'" name="dock" position="top" frame-name="Preview" devices="true">
     <tabs small="true" below="true">
       <tab title="{View changes; da:Vis ændringer}" background="light">
         <toolbar>
