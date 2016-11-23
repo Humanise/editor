@@ -1,6 +1,6 @@
 var baseController = {
 	$ready : function() {
-		
+
 	},
 	$changeSelection : function(key) {
 		if (window['editToolbar']) {
@@ -35,8 +35,6 @@ var baseController = {
 			}
 		})
 	},
-	changeSelection : function(key) {
-	},
 	$modelChanged : function() {
 		this._updateStatus();
 	},
@@ -47,11 +45,11 @@ var baseController = {
 		list.refresh();
 		this._clearIssue();
 	},
-	
+
 	goPublish : function() {
 		dock.setUrl('Services/Publish/?close=../../Services/Start/');
 	},
-	
+
 	$click$navNotes : function() {
 		navPages.setSelected(!true);
 		navNotes.setSelected(true);
@@ -63,7 +61,7 @@ var baseController = {
 		list.show();
 		list.setSource(issueSource);
 	},
-	
+
 	$click$navPages : function() {
 		navPages.setSelected(true);
 		navNotes.setSelected(!true);
@@ -80,7 +78,7 @@ var baseController = {
 		}
 		list.setSource(searchSource);
 	},
-	
+
 	$click$navReview : function() {
 		navPages.setSelected(!true);
 		navNotes.setSelected(!true);
@@ -92,8 +90,8 @@ var baseController = {
 		list.show();
 		list.setSource(reviewSource);
 	},
-	
-	
+
+
 	$select$selector : function(item) {
 		if (item.kind=='page') {
 			dock.setUrl('Services/Preview/?id='+item.value);
@@ -108,7 +106,7 @@ var baseController = {
 			list.show();
 		}
 	},
-	
+
 	$clickIcon$list : function(item) {
 		if (item.row.kind=='page') {
 			dock.setUrl('Template/Edit.php?id='+item.row.id);
@@ -118,22 +116,22 @@ var baseController = {
 			this._loadIssue(item.row.id);
 		}
 	},
-	
+
 	$select$list : function() {
 		var row = list.getFirstSelection();
 		if (row && row.kind=='page') {
 			dock.setUrl('Services/Preview/?id='+row.id);
 		}
 	},
-	
+
 	///////////////// Notes ////////////////
-	
+
 	issueId : null,
-	
+
 	$click$cancelIssue : function() {
 		this._clearIssue();
 	},
-	
+
 	_clearIssue : function() {
 		this.issueId = null;
 		issueFormula.reset();
@@ -141,7 +139,7 @@ var baseController = {
 		saveIssue.setEnabled(false);
 		deleteIssue.setEnabled(false);
 	},
-	
+
 	_loadIssue : function(id) {
 		this.issueId = null;
 		issueFormula.reset();
@@ -172,7 +170,7 @@ var baseController = {
 		})
 		this._clearIssue();
 	},
-	
+
 	$click$deleteIssue : function() {
 		hui.ui.request({
 			message : {start:'Sletter note...',delay:300},
