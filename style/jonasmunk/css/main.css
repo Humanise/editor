@@ -8,7 +8,7 @@ body {
 .layout {
   margin: 0 auto;
   max-width: 990px;
-  padding: 0 20px;
+  padding: 0 10px;
   text-align: left; }
   .layout_content {
     padding: 20px 0 20px 0;
@@ -27,7 +27,9 @@ body {
 
 .layout_header {
   font-size: 0;
-  position: relative; }
+  position: relative;
+  padding-bottom: 10px;
+  text-align: center; }
   .layout_header:after {
     content: '';
     position: absolute;
@@ -35,13 +37,13 @@ body {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(#fff 0%, #fff 50%, #666 50%, #666 100%); }
+    background: linear-gradient(#fff 0%, #fff 50%, #bbb 50%, #bbb 100%); }
 
 .layout_logo {
   display: inline-block;
-  height: 60px;
-  line-height: 60px;
-  font-size: 28px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 24px;
   font-weight: bold;
   text-decoration: none;
   color: #333;
@@ -52,15 +54,16 @@ body {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: inline-block; }
+  display: inline-block;
+  text-align: center; }
   .layout_menu_item {
     display: inline-block; }
   .layout_menu_link {
     display: inline-block;
-    font-size: 18px;
-    height: 60px;
-    line-height: 60px;
-    padding: 0 10px;
+    font-size: 14px;
+    height: 24px;
+    line-height: 24px;
+    padding: 0 5px;
     color: #333;
     text-decoration: none; }
     .layout_menu_link.is-selected, .layout_menu_link.is-active {
@@ -68,3 +71,55 @@ body {
       color: #000; }
     .layout_menu_link:hover {
       text-decoration: underline; }
+
+.layout_submenu {
+  list-style: none;
+  margin: -15px -20px 20px -5px;
+  padding: 0 5px 8px;
+  position: relative;
+  text-align: center; }
+  .layout_submenu:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(#fff 0%, #fff 50%, #bbb 50%, #bbb 100%); }
+  .layout_submenu_item {
+    display: inline-block; }
+  .layout_submenu_link {
+    text-decoration: none;
+    color: #333;
+    font-size: 12px;
+    padding: 0 5px;
+    font-weight: 300;
+    height: 24px;
+    line-height: 24px;
+    display: inline-block;
+    border-radius: 5px; }
+    .layout_submenu_link:hover {
+      color: #000; }
+    .layout_submenu_link.is-selected {
+      font-weight: 400;
+      color: #000; }
+
+@media screen and (min-width: 500px) {
+  .layout_header {
+    text-align: left; }
+
+  .layout_submenu {
+    text-align: left; } }
+@media screen and (min-width: 600px) {
+  .layout {
+    padding: 0 20px; }
+    .layout_header {
+      padding-top: 10px; } }
+@media screen and (min-width: 760px) {
+  .layout_menu_link {
+    font-size: 18px;
+    padding: 0 10px; }
+
+  .layout_submenu_link {
+    font-size: 14px;
+    padding: 0 10px; } }

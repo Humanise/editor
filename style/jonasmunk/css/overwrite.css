@@ -11,10 +11,10 @@
   font-weight: normal;
   font-family: "Roboto Slab", Georgia, "Palatino", "Book Antiqua", serif; }
   .part_header-1 {
-    font-size: 42px;
+    font-size: 28px;
     font-weight: 100; }
   .part_header-2 {
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 300; }
   .part_header-3 {
     font-size: 16px;
@@ -45,3 +45,23 @@
     color: #ccc; }
   .part_listing_text {
     color: #333; }
+
+@media screen and (min-width: 600px) {
+  .part_header-1 {
+    font-size: 42px;
+    font-weight: 100; }
+  .part_header-2 {
+    font-size: 32px;
+    font-weight: 300; }
+  .part_header-3 {
+    font-size: 16px;
+    font-weight: bold; }
+  .part_header-4 {
+    font-size: 16px;
+    font-weight: bold; }
+  .part_header-5 {
+    font-size: 16px;
+    font-weight: bold; }
+  .part_header-6 {
+    font-size: 16px;
+    font-weight: bold; } }
