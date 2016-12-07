@@ -80,18 +80,23 @@
     padding: 0; }
     .header:before {
       width: 113px;
-      height: 102px;
+      height: 95px;
       bottom: 1px;
       top: auto;
-      left: 10px;
-      margin: 0; }
+      right: 10px;
+      left: auto;
+      margin: 0;
+      transition: height 2s; }
+    .header:hover:before {
+      height: 40px;
+      transition-duration: .3s; }
     .header:after {
       display: none; }
 
   .header_logo {
     position: absolute;
     bottom: 60px;
-    left: 248px; }
+    left: 122px; }
     .header_logo:before {
       width: 122px;
       height: 60px;
@@ -104,9 +109,21 @@
       left: 10px; }
 
   .header_menu {
-    padding-top: 66px;
+    padding-top: 64px;
     text-align: left;
-    padding-left: 150px; } }
+    padding-left: 30px; }
+    .header_menu_link.is-selected, .header_menu_link.is-active {
+      position: relative; }
+      .header_menu_link.is-selected:after, .header_menu_link.is-active:after {
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: #000;
+        border-radius: 50%;
+        bottom: -12px;
+        left: 50%;
+        margin-left: -2.5px; } }
 /*
 &:after {
   content: '';
@@ -128,15 +145,17 @@
   margin: -15px -20px 20px -5px;
   padding: 0 5px 8px;
   position: relative;
-  text-align: center; }
-  .submenu:after {
+  text-align: center;
+  /*
+  &:after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(#fff 0%, #fff 50%, #bbb 50%, #bbb 100%); }
+    background: linear-gradient(#fff 0%, #fff 50%, #bbb 50%, #bbb 100%);
+  };*/ }
   .submenu_item {
     display: inline-block; }
   .submenu_link {
@@ -155,6 +174,12 @@
       font-weight: 400;
       color: #000; }
 
+@media screen and (min-width: 760px) {
+  .submenu {
+    margin: -5px -20px 20px -15px;
+    text-align: left; }
+    .submenu_link {
+      padding: 0 10px; } }
 body {
   margin: 0;
   padding: 0;
@@ -164,7 +189,7 @@ body {
 
 .layout {
   margin: 0 auto;
-  max-width: 990px;
+  max-width: 1004px;
   padding: 0 10px;
   text-align: left; }
   .layout_content {
