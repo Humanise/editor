@@ -1,6 +1,9 @@
 $target: async;
 @import 'shared';
 
+@import 'parts/header';
+@import 'parts/submenu';
+
 @include if {
   body
   {
@@ -37,120 +40,6 @@ $target: async;
       font-weight: 400;
     }
   }
-
-  .layout_header {
-    font-size: 0;
-    position: relative;
-    padding-bottom: 10px;
-    text-align: center;
-
-    &:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(#fff 0%, #fff 50%, #bbb 50%, #bbb 100%);
-    };
-  }
-
-  .layout_logo {
-    display: inline-block;
-    height: 40px;
-    line-height: 40px;
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #333;
-    padding: 0 10px;
-    margin-left: -10px;
-  }
-
-  .layout_menu {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    text-align: center;
-
-    &_item {
-      display: inline-block;
-    }
-
-    &_link {
-      display: inline-block;
-      font-size: 14px;
-      height: 24px;
-      line-height: 24px;
-      padding: 0 5px;
-      color: #333;
-      text-decoration: none;
-
-      &.is-selected,&.is-active {
-        font-weight: 400;
-        color: #000;
-      }
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-
-  .layout_submenu {
-    list-style: none;
-    margin: -15px -20px 20px -5px;
-    padding: 0 5px 8px;
-    position: relative;
-    text-align: center;
-
-    &:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(#fff 0%, #fff 50%, #bbb 50%, #bbb 100%);
-    };
-
-    &_item {
-      display: inline-block;
-    }
-
-    &_link {
-      text-decoration: none;
-      color: #333;
-      font-size: 12px;
-      padding: 0 5px;
-      font-weight: 300;
-      height: 24px;
-      line-height: 24px;
-      display: inline-block;
-      border-radius: 5px;
-
-      &:hover {
-        color: #000;
-      }
-
-      &.is-selected {
-        font-weight: 400;
-        color: #000;
-      }
-    }
-  }
-}
-
-@include if (( width: 500px )) {
-
-  .layout_header {
-    text-align: left;
-  }
-  .layout_submenu {
-    text-align: left;
-  }
-
 }
 
 
@@ -158,28 +47,6 @@ $target: async;
 
   .layout {
     padding: 0 20px;
-
-    &_header {
-      padding-top: 10px;
-    }
-  }
-
-}
-
-@include if (( width: 760px )) {
-
-  .layout_menu {
-    &_link {
-      font-size: 18px;
-      padding: 0 10px;
-    }
-  }
-
-  .layout_submenu {
-    &_link {
-      font-size: 14px;
-      padding: 0 10px;
-    }
   }
 
 }

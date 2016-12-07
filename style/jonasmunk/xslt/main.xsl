@@ -51,8 +51,8 @@
           </xsl:when>
           <xsl:otherwise>
             <div class="layout">
-              <div class="layout_header">
-                <a class="layout_logo">
+              <div class="header">
+                <a class="header_logo">
                   <xsl:attribute name="href">
                     <xsl:choose>
                       <xsl:when test="//p:context/p:home/@path"><xsl:value-of select="//p:context/p:home/@path"/></xsl:when>
@@ -81,13 +81,13 @@
 
   <xsl:template name="navigation-first-level">
     <xsl:if test="//f:frame/h:hierarchy/h:item[not(@hidden='true')]">
-      <ul class="layout_menu">
+      <ul class="header_menu">
         <xsl:for-each select="//f:frame/h:hierarchy/h:item">
           <xsl:if test="not(@hidden='true')">
-            <li class="layout_menu_item">
+            <li class="header_menu_item">
               <a>
                 <xsl:attribute name="class">
-                  <xsl:text>layout_menu_link</xsl:text>
+                  <xsl:text>header_menu_link</xsl:text>
                   <xsl:choose>
                     <xsl:when test="//p:page/@id=@page"><xsl:text> is-selected</xsl:text></xsl:when>
                     <xsl:when test="descendant-or-self::*/@page=//p:page/@id"><xsl:text> is-active</xsl:text></xsl:when>
@@ -105,13 +105,13 @@
 
   <xsl:template name="navigation-second-level">
     <xsl:if test="//f:frame/h:hierarchy/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item[not(@hidden='true')]">
-      <ul class="layout_submenu">
+      <ul class="submenu">
         <xsl:for-each select="//f:frame/h:hierarchy/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item">
           <xsl:if test="not(@hidden='true')">
-            <li class="layout_submenu_item">
+            <li class="submenu_item">
               <a>
                 <xsl:attribute name="class">
-                  <xsl:text>layout_submenu_link</xsl:text>
+                  <xsl:text>submenu_link</xsl:text>
                   <xsl:choose>
                     <xsl:when test="//p:page/@id=@page"><xsl:text> is-selected</xsl:text></xsl:when>
                     <xsl:when test="descendant-or-self::*/@page=//p:page/@id"><xsl:text> is-active</xsl:text></xsl:when>
