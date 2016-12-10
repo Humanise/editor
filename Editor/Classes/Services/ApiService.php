@@ -12,6 +12,7 @@ class ApiService {
 
 	static function handle() {
     $path = Request::getString('path');
+    $method = '';
     if (preg_match('/api((\/[a-z]+)+)/', $path, $matches)) {
       $sub = substr($matches[1], 1);
       $parts = explode('/',$sub);
@@ -54,6 +55,15 @@ class ApiService {
       $news->save();
       $news->publish();
     }
+  }
+
+  static function images() {
+    $query = Query::after('image')->withWindowSize(100)->withDirection('ascending')->orderBy('title');
+    $result = $query->search();
+
+    $objects = $result->getList();
+
+    Response::sendObject($objects);
   }
 
   static function prototype() {
