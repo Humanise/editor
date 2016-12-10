@@ -58,6 +58,10 @@ class ApiService {
   }
 
   static function images() {
+    if (!AuthenticationService::isInternalUser(Request::getString('username'),Request::getString('password'))) {
+      Response::badRequest();
+      return;
+    }
     $query = Query::after('image')->withWindowSize(100)->withDirection('ascending')->orderBy('title');
     $result = $query->search();
 
