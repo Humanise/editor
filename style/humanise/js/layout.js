@@ -24,24 +24,19 @@ require(['hui'],function() {
     _toggle : function(e) {
       e.preventDefault();
       hui.cls.toggle(this.element,'layout_search_active');
-      console.log('toggle')
       try {
         this.nodes.text.focus();
-        console.log('focus')
       } catch (e) {
-        console.log(e)
+        hui.log(e)
       }
     },
     _focus : function() {
       hui.cls.add(this.element,'layout_search_active');
-      console.log('focused')
     },
     _blur : function() {
-      console.log('blur')
       var self = this;
       window.setTimeout(function() {
         hui.cls.remove(self.element,'layout_search_active');
-        console.log('remove active')
       },200)
     }
   }
