@@ -76,22 +76,26 @@ class ApiService {
     if (count($parts) == 2) {
       $design = $parts[0];
       $prototype = FileSystemService::getFullPath('style/' . $design . '/prototype/' . $parts[1] . '.xml');
-      $page = [
-        'xml' => file_get_contents($prototype),
-        'design' => $design,
-        'template' => 'document',
-        'language' => 'en',
-        'published' => 0,
-        'secure' => false,
-        'dynamic' => false,
-        'framedynamic' => false,
-        'id' => 0
-      ];
-      $id = 0;
-      $path = '/';
-      $relative = '/';
-      $samePageBaseUrl = '/';
-      RenderingService::writePage($id,$path,$page,$relative,$samePageBaseUrl);
+      if (is_file($prototype)) {
+        $page = [
+          'xml' => file_get_contents($prototype),
+          'design' => $design,
+          'template' => 'document',
+          'language' => 'en',
+          'published' => 0,
+          'secure' => false,
+          'dynamic' => false,
+          'framedynamic' => false,
+          'id' => 0
+        ];
+        $id = 0;
+        $path = '/';
+        $relative = '/';
+        $samePageBaseUrl = '/';
+        RenderingService::writePage($id,$path,$page,$relative,$samePageBaseUrl);
+      } else {
+        Response::notFound($prototype . ' does not exist');
+      }
     }
   }
 }
