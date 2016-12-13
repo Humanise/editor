@@ -12,11 +12,20 @@
     line-height: 20px;
     color: #333;
     margin-bottom: 10px;
+    position: relative;
+    &:before {
+      content: '';
+      left: 46px;
+      top: 25px;
+      border-left: 1px dotted #ddd;
+      bottom: 0;
+      position: absolute;
+    };
   }
 
   &_time {
     font-weight: 200;
-    margin-right: 30px;
+    float: left;
 
     &_divider {
       font-weight: 200;
@@ -25,8 +34,17 @@
     }
   }
 
+  &_content {
+    margin-left: 120px;
+  }
+
   &_title {
     font-weight: 400;
+  }
+
+  &_text {
+    font-size: 14px;
+    margin: 0;
   }
 
   &_place {
@@ -36,8 +54,9 @@
   &_points
   {
     list-style: none;
-    margin: 0 0 10px 110px;
+    margin: 5px 0 0 20px;
     font-size: 10pt;
+    padding: 0;
   }
 
   &_point

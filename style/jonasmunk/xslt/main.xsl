@@ -128,32 +128,38 @@
   </xsl:template>
 
   <xsl:template match="widget:bio">
-    <ul class="bio">
+    <div class="bio">
       <xsl:for-each select="widget:event">
-        <li class="bio_event">
+        <div class="bio_event">
           <span class="bio_time">
             <xsl:value-of select="@from"/>
             <span class="bio_time_divider"> &#8594; </span>
             <xsl:value-of select="@to"/>
           </span>
-          <strong class="bio_title"><xsl:value-of select="widget:title"/></strong>, <span class="bio_place"><xsl:value-of select="widget:place"/></span>
-          <xsl:if test="widget:link or widget:point">
-          <ol class="bio_points">
-            <xsl:for-each select="widget:point">
-              <li class="bio_point"><strong><xsl:value-of select="@prefix"/>: </strong><xsl:value-of select="."/></li>
+          <div class="bio_content">
+            <strong class="bio_title"><xsl:value-of select="widget:title"/></strong>
+            <xsl:for-each select="widget:place">
+              , <a class="bio_place common_link" href="{@url}"><span class="common_link_text"><xsl:value-of select="."/></span></a>
             </xsl:for-each>
-            <xsl:if test="widget:link">
-              <li class="bio_point">
-                <xsl:for-each select="widget:link">
-                  <a href="{@href}" class="common_link"><span class="common_link_text"><xsl:value-of select="."/></span></a><xsl:text> </xsl:text>
+            <p class="bio_text"><xsl:value-of select="widget:text"/></p>
+            <xsl:if test="widget:link or widget:point">
+              <ol class="bio_points">
+                <xsl:for-each select="widget:point">
+                  <li class="bio_point"><strong><xsl:value-of select="@prefix"/>: </strong><xsl:value-of select="."/></li>
                 </xsl:for-each>
-              </li>
+                <xsl:if test="widget:link">
+                  <li class="bio_point">
+                    <xsl:for-each select="widget:link">
+                      <a href="{@href}" class="common_link"><span class="common_link_text"><xsl:value-of select="."/></span></a><xsl:text> </xsl:text>
+                    </xsl:for-each>
+                  </li>
+                </xsl:if>
+              </ol>
             </xsl:if>
-          </ol>
-          </xsl:if>
-        </li>
+          </div>
+        </div>
       </xsl:for-each>
-    </ul>
+    </div>
   </xsl:template>
 
 </xsl:stylesheet>
