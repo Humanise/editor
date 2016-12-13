@@ -81,9 +81,9 @@
     .bio_event:before {
       content: '';
       left: 46px;
-      top: 25px;
-      border-left: 1px dotted #ddd;
-      bottom: 0;
+      top: 27px;
+      border-left: 1px solid #eee;
+      bottom: -5px;
       position: absolute; }
   .bio_time {
     font-weight: 200;

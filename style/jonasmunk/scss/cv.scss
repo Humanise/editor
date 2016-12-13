@@ -12,7 +12,11 @@ $target : async;
       background: #fff;
       box-shadow: 0 0 3px rgba(0,0,0,.2);
       padding: 5px 15px 20px;
-      margin: 20px -5px;
+      margin: 5px -5px;
+    }
+
+    .header {
+      display: none;
     }
 
     .layout_footer
@@ -32,7 +36,7 @@ $target : async;
 
     .submenu {
       font-family: $cv-font;
-      margin: 0 -30px 20px -20px;
+      margin: -2px -30px 20px -20px;
       padding: 8px 0 15px 15px;
       text-align: left;
 
@@ -144,26 +148,36 @@ $target : async;
 
   .theme_cv {
     .layout_content {
-      margin: 20px 0;
+      margin: 10px 0;
       padding: 10px 20px 20px;
     }
+
+    .submenu {
+      &_link {
+        padding: 0 6px;
+        text-transform: uppercase;
+      }
+    }
+
   }
 
 }
 
 @include if ((width: 600px)) {
   .theme_cv {
+    .layout_content {
+      margin: 20px 0;
+    }
+
     .submenu {
-      font-family: $cv-font;
       margin: 0 -20px 20px -20px;
-      padding: 8px 0 15px 15px;
+      padding: 10px 0 15px 15px;
 
       &_link {
         border-radius: 4px;
         font-size: 13px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
         padding: 0 10px;
+        letter-spacing: 1px;
         height: 26px;
         line-height: 26px;
       }
@@ -174,7 +188,7 @@ $target : async;
 @include if (( width: 1048px )) {
   .theme_cv {
 
-    .header {
+/*    .header {
       opacity: .3;
       transition: opacity .3s;
       &:hover {
@@ -188,7 +202,7 @@ $target : async;
           display: none;
         }
       }
-    }
+    }*/
 
     .layout_content {
       margin: 40px 0;
