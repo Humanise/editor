@@ -10,7 +10,11 @@ $settings = OptimizationService::getSettings();
 $name = Request::getString('name');
 $url = Request::getString('url');
 
-if (!is_array($settings->profiles)) {
+if (!is_object($settings)) {
+  $settings = new stdClass();
+}
+
+if (!is_array(@$settings->profiles)) {
 	$settings->profiles = array();
 }
 
