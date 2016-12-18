@@ -117,8 +117,8 @@
 </xsl:template>
 
 <xsl:template match="widget:contact">
-  <div class="contact">
-    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <div class="contact" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <defs>
     <symbol id="icon-facebook" viewBox="0 0 29 32">
     <title>facebook</title>
