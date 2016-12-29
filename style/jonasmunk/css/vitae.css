@@ -111,18 +111,18 @@
     padding: 0; }
   .theme_vitae .submenu {
     font-family: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
-    margin: -2px -30px 20px -15px;
-    padding: 8px 0 15px 15px;
+    margin: 0 -30px 20px -15px;
+    padding: 10px 0 15px 15px;
     text-align: left; }
     .theme_vitae .submenu_item {
       display: inline-block; }
     .theme_vitae .submenu_link {
       text-decoration: none;
-      color: #888;
+      color: #666;
       font-weight: 300;
       display: inline-block;
       border-radius: 4px;
-      font-size: 12px;
+      font-size: 13px;
       padding: 0 5px;
       height: 22px;
       line-height: 22px;
@@ -189,7 +189,11 @@
       padding: 0 10px;
       letter-spacing: 1px;
       height: 26px;
-      line-height: 26px; } }
+      line-height: 26px; }
+  .theme_vitae .part_header-1 {
+    font-size: 42pt; }
+  .theme_vitae .part_header-2 {
+    font-size: 28pt; } }
 @media screen and (min-width: 1000px) {
   .vitae_hero_body {
     padding-bottom: 400px; }
@@ -200,8 +204,3 @@
 
   .theme_vitae .layout {
     margin-top: 350px; } }
-@media screen and (min-width: 1048px) {
-  .theme_vitae .part_header-1 {
-    font-size: 42pt; }
-  .theme_vitae .part_header-2 {
-    font-size: 28pt; } }

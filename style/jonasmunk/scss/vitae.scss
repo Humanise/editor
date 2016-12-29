@@ -95,8 +95,8 @@ $target : async;
 
     .submenu {
       font-family: $cv-font;
-      margin: -2px -30px 20px -15px;
-      padding: 8px 0 15px 15px;
+      margin: 0 -30px 20px -15px;
+      padding: 10px 0 15px 15px;
       text-align: left;
 
       &_item {
@@ -105,11 +105,11 @@ $target : async;
 
       &_link {
         text-decoration: none;
-        color: #888;
+        color: #666;
         font-weight: 300;
         display: inline-block;
         border-radius: 4px;
-        font-size: 12px;
+        font-size: 13px;
         padding: 0 5px;
         height: 22px;
         line-height: 22px;
@@ -235,6 +235,19 @@ $target : async;
         line-height: 26px;
       }
     }
+
+    .part {
+      &_header {
+
+        &-1 {
+          font-size: 42pt;
+        }
+
+        &-2 {
+          font-size: 28pt;
+        }
+      }
+    }
   }
 }
 
@@ -257,25 +270,4 @@ $target : async;
       margin-top: 350px;
     }
   }
-}
-
-@include if (( width: 1048px )) {
-  .theme_vitae {
-
-    .part {
-      &_header {
-
-        &-1 {
-          font-size: 42pt;
-        }
-
-        &-2 {
-          font-size: 28pt;
-        }
-      }
-    }
-
-
-  }
-
 }
