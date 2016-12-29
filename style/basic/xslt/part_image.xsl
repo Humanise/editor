@@ -7,7 +7,8 @@
  xmlns:o="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/"
  xmlns:i="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/"
  xmlns:util="http://uri.in2isoft.com/onlinepublisher/util/"
- exclude-result-prefixes="img o i"
+ xmlns:style="http://uri.in2isoft.com/onlinepublisher/style/1.0/"
+ exclude-result-prefixes="img o i style"
  >
 
 <xsl:template match="img:image[img:link]">
@@ -27,6 +28,7 @@
     <xsl:apply-templates select="img:text"/>
   </div>
   <xsl:call-template name="img:script"/>
+  <xsl:call-template name="img:style"/>
 </xsl:template>
 
 <xsl:template match="img:image">
@@ -60,6 +62,25 @@
     <xsl:apply-templates select="img:text"/>
   </div>
   <xsl:call-template name="img:script"/>
+  <xsl:call-template name="img:style"/>
+</xsl:template>
+
+<xsl:template name="img:style">
+  <!--
+  <xsl:if test="../../style:style/style:if">
+  <style>
+    <xsl:for-each select="../../style:style/style:if">
+      <xsl:call-template name="util:media-before"/>
+      <xsl:for-each select="style:component[@name='image']">
+        <xsl:value-of select="concat('.', $id, '{')"/>
+          <xsl:call-template name="util:rules"/>
+        <xsl:text>}</xsl:text>
+      </xsl:for-each>
+      <xsl:call-template name="util:media-after"/>
+    </xsl:for-each>
+  </style>
+  </xsl:if>
+    -->
 </xsl:template>
 
 <xsl:template name="img:script">

@@ -33,16 +33,18 @@ class ImagePartController extends PartController
 
   function getFromRequest($id) {
     $part = ImagePart::load($id);
-    $part->setImageId(Request::getInt('imageId'));
-    $part->setText(Request::getString('text'));
-    $part->setAlign(Request::getString('align'));
-    $part->setScaleMethod(Request::getString('scalemethod'));
-    $part->setScalePercent(Request::getInt('scalepercent'));
-    $part->setScaleWidth(Request::getInt('scalewidth'));
-    $part->setScaleHeight(Request::getInt('scaleheight'));
-    $part->setGreyscale(Request::getBoolean('greyscale'));
-    $part->setAdaptive(Request::getBoolean('adaptive'));
-    $part->setFrame(Request::getString('frame'));
+    if (Request::exists('imageId')) {
+      $part->setImageId(Request::getInt('imageId'));
+      $part->setText(Request::getString('text'));
+      $part->setAlign(Request::getString('align'));
+      $part->setScaleMethod(Request::getString('scalemethod'));
+      $part->setScalePercent(Request::getInt('scalepercent'));
+      $part->setScaleWidth(Request::getInt('scalewidth'));
+      $part->setScaleHeight(Request::getInt('scaleheight'));
+      $part->setGreyscale(Request::getBoolean('greyscale'));
+      $part->setAdaptive(Request::getBoolean('adaptive'));
+      $part->setFrame(Request::getString('frame'));
+    }
     return $part;
   }
 
@@ -68,6 +70,10 @@ class ImagePartController extends PartController
         " values (".Database::text($linkType).",".Database::text($linkValue).",'entireimage',".Database::int($part->getId()).")";
       Database::insert($sql);
     }
+  }
+
+  function isLiveEnabled() {
+    return true;
   }
 
   function editor($part,$context) {
