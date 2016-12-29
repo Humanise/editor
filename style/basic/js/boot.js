@@ -88,3 +88,5 @@
 
   _editor.processNoscript();
 })(window,document);
+
+hui = {_:[],onReady:function(f) {this._.push(f)}}
