@@ -52,14 +52,19 @@
   animation-timing-function: linear; }
   .vitae_hero_body {
     position: fixed;
-    background-image: url("../gfx/hero.jpg");
-    background-size: cover;
+    background-color: #96aeb7;
+    background-image: url("../gfx/hero_2.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: 50%;
     padding-bottom: 40%;
     /*transition: filter .3s;*/
     top: -20px;
     left: -20px;
-    right: -20px; }
+    right: -20px;
+    top: 0;
+    left: 0;
+    right: 0; }
   .vitae_hero_text {
     position: fixed;
     left: 10px;
@@ -79,18 +84,20 @@
   100% {
     filter: hue-rotate(360deg); } }
 .theme_vitae {
-  background: #666; }
+  background: #777; }
   .theme_vitae .layout {
     margin-top: 35%;
     position: absolute;
     left: 0;
     right: 0;
     background: #fff;
-    max-width: none; }
+    max-width: none;
+    overflow: hidden; }
   .theme_vitae .layout_content {
     padding: 0;
     margin: 0 auto;
-    max-width: 960px; }
+    max-width: 960px;
+    overflow: visible; }
   .theme_vitae .header {
     display: none; }
   .theme_vitae .layout_footer {
@@ -137,7 +144,6 @@
     font-weight: 200;
     color: #333;
     letter-spacing: 0px;
-    text-indent: -2px;
     line-height: 1em; }
   .theme_vitae .part_header-1 {
     font-size: 34px; }
@@ -162,7 +168,7 @@
     font-size: 12pt;
     font-weight: 400; }
   .theme_vitae .part_horizontalrule {
-    margin: 10px -38px; }
+    margin: 10px 0px; }
   .theme_vitae strong {
     font-weight: 400; }
 
@@ -184,9 +190,17 @@
       letter-spacing: 1px;
       height: 26px;
       line-height: 26px; } }
+@media screen and (min-width: 1000px) {
+  .vitae_hero_body {
+    padding-bottom: 400px; }
+  .vitae_hero_text {
+    font-size: 100px;
+    top: 120px;
+    letter-spacing: 10px; }
+
+  .theme_vitae .layout {
+    margin-top: 350px; } }
 @media screen and (min-width: 1048px) {
-  .theme_vitae .part_header-1, .theme_vitae .part_header-2 {
-    text-indent: -2px; }
   .theme_vitae .part_header-1 {
     font-size: 42pt; }
   .theme_vitae .part_header-2 {

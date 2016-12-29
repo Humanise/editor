@@ -16,14 +16,19 @@ $target : async;
 
     &_body {
       position: fixed;
-      background-image: url('../gfx/hero.jpg');
-      background-size: cover;
+      background-color: #96aeb7;
+      background-image: url('../gfx/hero_2.jpg');
+      background-size: contain;
+      background-repeat: no-repeat;
       background-position: 50%;
       padding-bottom: 40%;
       /*transition: filter .3s;*/
       top: -20px;
       left: -20px;
       right: -20px;
+      top: 0;
+      left: 0;
+      right: 0;
     }
     &_text {
       position: fixed;
@@ -50,7 +55,7 @@ $target : async;
   }
 
   .theme_vitae {
-    background: #666;
+    background: #777;
 
     .layout {
       margin-top: 35%;
@@ -59,12 +64,14 @@ $target : async;
       right: 0;
       background: #fff;
       max-width: none;
+      overflow: hidden;
     }
 
     .layout_content {
       padding: 0;
       margin: 0 auto;
       max-width: 960px;
+      overflow: visible;
     }
 
     .header {
@@ -135,7 +142,6 @@ $target : async;
           font-weight: 200;
           color: #333;
           letter-spacing: 0px;
-          text-indent: -2px;
           line-height: 1em;
         }
 
@@ -184,7 +190,7 @@ $target : async;
     }
     .part {
       &_horizontalrule {
-        margin: 10px -38px;
+        margin: 10px 0px;
       }
     }
 
@@ -232,14 +238,32 @@ $target : async;
   }
 }
 
+@include if (( width: 1000px )) {
+
+  .vitae_hero {
+
+    &_body {
+      padding-bottom: 400px;
+    }
+    &_text {
+      font-size: 100px;
+      top: 120px;
+      letter-spacing: 10px;
+    }
+  }
+
+  .theme_vitae {
+    .layout {
+      margin-top: 350px;
+    }
+  }
+}
+
 @include if (( width: 1048px )) {
   .theme_vitae {
 
     .part {
       &_header {
-        &-1, &-2 {
-          text-indent: -2px;
-        }
 
         &-1 {
           font-size: 42pt;
