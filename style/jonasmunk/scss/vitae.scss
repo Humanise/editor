@@ -1,0 +1,257 @@
+$target : async;
+@import 'shared';
+@import 'parts/bio';
+
+@include if {
+
+
+  .vitae_hero {
+
+    background: #666;
+    transform-origin: 50% 0;
+    animation-name: hue;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+    &_body {
+      position: fixed;
+      background-image: url('../gfx/hero.jpg');
+      background-size: cover;
+      background-position: 50%;
+      padding-bottom: 40%;
+      /*transition: filter .3s;*/
+      top: -20px;
+      left: -20px;
+      right: -20px;
+    }
+    &_text {
+      position: fixed;
+      left: 10px;
+      top: 12vw;
+      right: 10px;
+      text-align: center;
+      color: #fff;
+      font-family: 'Raleway';
+      font-size: 10vw;
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 1vw;
+    }
+  }
+
+  @keyframes hue {
+    0% {
+      filter: hue-rotate(0deg);
+    }
+    100% {
+      filter: hue-rotate(360deg);
+    }
+  }
+
+  .theme_vitae {
+    background: #666;
+
+    .layout {
+      margin-top: 35%;
+      position: absolute;
+      left: 0;
+      right: 0;
+      background: #fff;
+      max-width: none;
+    }
+
+    .layout_content {
+      padding: 0;
+      margin: 0 auto;
+      max-width: 960px;
+    }
+
+    .header {
+      display: none;
+    }
+
+    .layout_footer
+    {
+      padding: 60px 0;
+      height: auto;
+    }
+
+    .layout_designed
+    {
+      height: 181px;
+      width: 162px;
+      background: url('../gfx/handmade.png');
+      font-size: 0;
+      padding: 0;
+    }
+
+    .submenu {
+      font-family: $cv-font;
+      margin: -2px -30px 20px -15px;
+      padding: 8px 0 15px 15px;
+      text-align: left;
+
+      &_item {
+        display: inline-block;
+      }
+
+      &_link {
+        text-decoration: none;
+        color: #888;
+        font-weight: 300;
+        display: inline-block;
+        border-radius: 4px;
+        font-size: 12px;
+        padding: 0 5px;
+        height: 22px;
+        line-height: 22px;
+        border: 1px solid #fff;
+
+        &:hover {
+          color: #000;
+          background: #f6f6f6;
+        }
+
+        &.is-selected {
+          font-weight: 400;
+          color: #000;
+          border: 1px solid #ddd;
+        }
+      }
+    }
+
+    .document,
+    .part_header,
+    .part_text,
+    .part_listing,
+    .part_poster {
+      font-family: 'Open Sans','Helvetica Neue','Helvetica',Arial,sans-serif;
+    }
+
+    .part {
+      &_header {
+        &-1, &-2 {
+          font-weight: 200;
+          color: #333;
+          letter-spacing: 0px;
+          text-indent: -2px;
+          line-height: 1em;
+        }
+
+        &-1 {
+          font-size: 34px;
+        }
+
+        &-2 {
+          font-size: 24px;
+        }
+      }
+    }
+
+
+    .part_poster_title
+    {
+      font-weight: 200;
+      font-size: 18pt;
+    }
+
+    .part_poster_text
+    {
+      font-weight: 200;
+      font-size: 12pt;
+    }
+
+    .part_section_header-2
+    {
+      padding-top: 20px;
+      padding-bottom: 10px;
+    }
+
+    .part_text,
+    .part_listing
+    {
+      font-weight: 300;
+      font-size: 12pt;
+      line-height: 1.4em;
+      color: #333;
+    }
+
+    .part_listing_first
+    {
+      font-size: 12pt;
+      font-weight: 400;
+    }
+    .part {
+      &_horizontalrule {
+        margin: 10px -38px;
+      }
+    }
+
+    strong
+    {
+      font-weight: 400;
+    }
+
+  }
+}
+
+@include if (( width: 400px )) {
+
+  .theme_vitae {
+
+    .submenu {
+      margin-top: 0;
+      padding-top: 10px;
+      &_link {
+        padding: 0 6px;
+        text-transform: uppercase;
+      }
+    }
+
+  }
+
+}
+
+@include if ((width: 600px)) {
+  .theme_vitae {
+
+    .submenu {
+      margin: 0 -20px 20px -15px;
+      padding: 20px 0 15px 15px;
+
+      &_link {
+        border-radius: 4px;
+        font-size: 13px;
+        padding: 0 10px;
+        letter-spacing: 1px;
+        height: 26px;
+        line-height: 26px;
+      }
+    }
+  }
+}
+
+@include if (( width: 1048px )) {
+  .theme_vitae {
+
+    .part {
+      &_header {
+        &-1, &-2 {
+          text-indent: -2px;
+        }
+
+        &-1 {
+          font-size: 42pt;
+        }
+
+        &-2 {
+          font-size: 28pt;
+        }
+      }
+    }
+
+
+  }
+
+}

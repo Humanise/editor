@@ -4,7 +4,8 @@
 	"owner" : "Property of Marianne",
 	"parameters" : [
 		{"key" : "theme", "type" : "selection", "label" : "Theme", "options" : [
-			{"label" : "CV", "value" : "cv"}
+			{"label" : "CV", "value" : "cv"},
+			{"label" : "Vital", "value" : "vitae"}
 		]}
 	],
   "css" : [
@@ -13,7 +14,10 @@
     "style/jonasmunk/css/overwrite.css",
     "style/jonasmunk/css/main.css",
     "style/jonasmunk/css/cv.css",
+    "style/jonasmunk/css/vitae.css",
     "style/jonasmunk/css/front.css"
   ],
-  "js" : []
+  "js" : [
+    "style/jonasmunk/js/vitae.js"
+  ]
 }

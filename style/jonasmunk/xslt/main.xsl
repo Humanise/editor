@@ -37,6 +37,9 @@
           <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,600,300,200' rel='stylesheet' type='text/css'/>
           <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200' rel='stylesheet' type='text/css'/>
         </xsl:if>
+        <xsl:if test="//p:design/p:parameter[@key='theme']='vitae'">
+          <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet"/>
+        </xsl:if>
         <xsl:call-template name="util:css"/>
       </head>
       <body>
@@ -50,6 +53,13 @@
             <xsl:apply-templates select="p:content"/>
           </xsl:when>
           <xsl:otherwise>
+            <xsl:if test="//p:design/p:parameter[@key='theme']='vitae'">
+              <div class="vitae_hero">
+              <div class="vitae_hero_body"><xsl:comment/>
+              </div>
+              </div>
+              <div class="vitae_hero_text">Jonas Munk</div>
+            </xsl:if>
             <div class="layout">
               <div class="header">
                 <a class="header_logo">
