@@ -89,4 +89,4 @@
   _editor.processNoscript();
 })(window,document);
 
-hui = {_:[],onReady:function(f) {this._.push(f)}}
+hui = window.hui || {_:[],onReady:function(f) {this._.push(f)}}
