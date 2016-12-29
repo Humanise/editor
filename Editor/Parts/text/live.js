@@ -10,9 +10,9 @@ op.Editor.Text = function(options) {
 }
 
 op.Editor.Text.prototype = {
-	
+
 	type : 'text',
-	
+
 	activate : function(callback) {
 		this._load(callback);
 	},
@@ -55,7 +55,6 @@ op.Editor.Text.prototype = {
 		}
 	},
 	cancel : function() {
-		
 	},
 	deactivate : function(callback) {
 		this.header.style.display='';
@@ -67,8 +66,6 @@ op.Editor.Text.prototype = {
 	getValue : function() {
 		return this.value;
 	},
-	
-	
 	_updateFieldStyle : function() {
 		hui.style.set(this.field,{width:this.header.clientWidth+'px',height:this.header.clientHeight+'px'});
 		hui.style.copy(this.header,this.field,['font-size','line-height','margin-top','font-weight','font-family','text-align','color','font-style']);
