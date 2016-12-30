@@ -8,30 +8,24 @@
  exclude-result-prefixes="map"
  >
 
-	<xsl:template match="map:map[@frame]">
-		<span>
-			<xsl:attribute name="class">
-        <xsl:text>part_map</xsl:text>
-			</xsl:attribute>
-      <xsl:variable name="adaptive">
-        <xsl:choose>
-          <xsl:when test="not(@width) and @provider='google-interactive'">
-            <xsl:text>true</xsl:text>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:variable>
+	<xsl:template match="map:map">
+		<span class="part_map">
+      <xsl:if test="@width!=''">
+        <xsl:attribute name="style">
+          <xsl:text>max-width:</xsl:text>
+          <xsl:value-of select="@width"/>
+          <xsl:text>px;</xsl:text>
+        </xsl:attribute>
+      </xsl:if>
+
       <xsl:call-template name="util:wrap-in-frame">
         <xsl:with-param name="variant" select="@frame"/>
-        <xsl:with-param name="adaptive" select="$adaptive"/>
+        <xsl:with-param name="adaptive" select="'true'"/>
         <xsl:with-param name="content">
           <xsl:call-template name="map:internal"/>
         </xsl:with-param>
       </xsl:call-template>
 		</span>
-	</xsl:template>
-
-	<xsl:template match="map:map">
-		<xsl:call-template name="map:internal"/>
 	</xsl:template>
 
 	<xsl:template name="map:internal">
@@ -79,12 +73,9 @@
     <xsl:variable name="url">
       <xsl:value-of select="concat($protocol,'://maps.googleapis.com/maps/api/staticmap?center=',@latitude,',',@longitude,'&amp;zoom=',@zoom,'&amp;size=',$width,'x',$fake-height,'&amp;sensor=false&amp;maptype=',@maptype)"/>
     </xsl:variable>
-		<span class="part_map_static">
+		<span class="part_map_static" style="padding-bottom: {$height div $width * 100}%;">
 			<a class="part_map_static_pin"><xsl:comment/></a>
-			<span class="part_map_static_effect"><xsl:comment/></span>
-			<span class="part_map_static_content" style="height: {$height}px;">
-				<img src="{$url}" srcset="{$url} 1x, {$url}&amp;scale=2 2x" style="width: {$width}px; height: {$fake-height}px;"/>
-			</span>
+			<img class="part_map_static_image" src="{$url}" srcset="{$url} 1x, {$url}&amp;scale=2 2x" style="width: {$width}px; height: {$fake-height}px;"/>
 			<xsl:if test="map:text">
 				<span class="part_map_static_text"><xsl:value-of select="map:text"/></span>
 			</xsl:if>

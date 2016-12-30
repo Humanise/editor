@@ -1082,9 +1082,10 @@ Y.prototype.load=function(a){a(this.p)};function Z(a,b){this.d=a;this.f=b}Z.prot
 
 
 <xsl:template name="util:wrap-in-frame">
-    <xsl:param name="variant"/>
-    <xsl:param name="adaptive"/>
-    <xsl:param name="content"/>
+  <xsl:param name="variant"/>
+  <xsl:param name="adaptive"/>
+  <xsl:param name="content"/>
+  <xsl:param name="max-width"/>
 
   <xsl:choose>
     <xsl:when test="$variant!=''">
@@ -1093,15 +1094,16 @@ Y.prototype.load=function(a){a(this.p)};function Z(a,b){this.d=a;this.f=b}Z.prot
           <xsl:text>shared_frame shared_frame_</xsl:text><xsl:value-of select="$variant"/>
           <xsl:if test="$adaptive='true'"> shared_frame-adaptive</xsl:if>
         </xsl:attribute>
-        <span class="shared_frame_{$variant}_top"><span class="shared_frame_{$variant}_top_inner"><span class="shared_frame_{$variant}_top_innermost"><xsl:comment/></span></span></span>
-        <span class="shared_frame_{$variant}_middle">
-          <span class="shared_frame_{$variant}_middle_inner">
-            <span class="shared_frame_{$variant}_content">
-              <xsl:copy-of select="$content"/>
-            </span>
-          </span>
+        <xsl:if test="$max-width!=''">
+          <xsl:attribute name="style">
+            <xsl:text>max-width:</xsl:text>
+            <xsl:value-of select="$max-width"/>
+            <xsl:text>;</xsl:text>
+          </xsl:attribute>
+        </xsl:if>
+        <span class="shared_frame_{$variant}_content">
+          <xsl:copy-of select="$content"/>
         </span>
-        <span class="shared_frame_{$variant}_bottom"><span class="shared_frame_{$variant}_bottom_inner"><span class="shared_frame_{$variant}_bottom_innermost"><xsl:comment/></span></span></span>
       </span>
     </xsl:when>
     <xsl:otherwise>
