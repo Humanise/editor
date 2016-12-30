@@ -149,7 +149,8 @@
           <div class="bio_content">
             <strong class="bio_title"><xsl:value-of select="widget:title"/></strong>
             <xsl:for-each select="widget:place">
-              , <a class="bio_place common_link" href="{@url}"><span class="common_link_text"><xsl:value-of select="."/></span></a>
+              <xsl:text>, </xsl:text>
+              <a class="bio_place common_link" href="{@url}"><span class="common_link_text"><xsl:value-of select="."/></span></a>
             </xsl:for-each>
             <p class="bio_text"><xsl:value-of select="widget:text"/></p>
             <xsl:if test="widget:link or widget:point">

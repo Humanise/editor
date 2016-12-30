@@ -12,37 +12,45 @@
     position: relative; }
     .bio_event:before {
       content: '';
-      left: 46px;
+      left: 38px;
       top: 27px;
       border-left: 1px solid #eee;
       bottom: -5px;
       position: absolute; }
   .bio_time {
     font-weight: 200;
-    float: left; }
+    float: left;
+    font-size: 13px; }
     .bio_time_divider {
       font-weight: 200;
       color: #aaa;
       font-size: 12px; }
   .bio_content {
-    margin-left: 120px; }
+    margin-left: 90px; }
   .bio_title {
     font-weight: 400; }
   .bio_text {
     font-size: 14px;
     margin: 0; }
-  .bio_place {
-    margin-left: 10px; }
   .bio_points {
     list-style: none;
     margin: 5px 0 0 20px;
     font-size: 10pt;
     padding: 0; }
   .bio_point {
-    margin: 0; }
+    margin: 0 0 5px;
+    line-height: 1.3;
+    text-indent: -10px; }
     .bio_point strong {
       font-weight: 600; }
 
+@media screen and (min-width: 460px) {
+  .bio_time {
+    font-size: 16px; }
+  .bio_content {
+    margin-left: 120px; }
+  .bio_event:before {
+    left: 45px; } }
 .vitae_hero {
   background: #666;
   transform-origin: 50% 0;
