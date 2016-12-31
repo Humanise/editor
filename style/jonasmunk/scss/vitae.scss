@@ -8,13 +8,13 @@ $target : async;
   .vitae_hero {
 
     background: #666;
-    transform-origin: 50% 0;
     animation-name: hue;
     animation-duration: 10s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 
     &_body {
+      transform-origin: 50% 0;
       position: fixed;
       background-color: #96aeb7;
       background-image: url('../gfx/hero_2.jpg');
@@ -151,6 +151,7 @@ $target : async;
 
         &-2 {
           font-size: 24px;
+          font-weight: 600;
         }
       }
     }
@@ -245,6 +246,7 @@ $target : async;
 
         &-2 {
           font-size: 28pt;
+          font-weight: 200;
         }
       }
     }

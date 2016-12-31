@@ -53,12 +53,12 @@
     left: 45px; } }
 .vitae_hero {
   background: #666;
-  transform-origin: 50% 0;
   animation-name: hue;
   animation-duration: 10s;
   animation-iteration-count: infinite;
   animation-timing-function: linear; }
   .vitae_hero_body {
+    transform-origin: 50% 0;
     position: fixed;
     background-color: #96aeb7;
     background-image: url("../gfx/hero_2.jpg");
@@ -156,7 +156,8 @@
   .theme_vitae .part_header-1 {
     font-size: 34px; }
   .theme_vitae .part_header-2 {
-    font-size: 24px; }
+    font-size: 24px;
+    font-weight: 600; }
   .theme_vitae .part_poster_title {
     font-weight: 200;
     font-size: 18pt; }
@@ -201,7 +202,8 @@
   .theme_vitae .part_header-1 {
     font-size: 42pt; }
   .theme_vitae .part_header-2 {
-    font-size: 28pt; } }
+    font-size: 28pt;
+    font-weight: 200; } }
 @media screen and (min-width: 1000px) {
   .vitae_hero_body {
     padding-bottom: 400px; }
