@@ -333,7 +333,12 @@ op.part.Poster.prototype = {
   _buildNavigator : function() {
     this.navigator = hui.build('div',{'class':'part_poster_navigator',parent:this.element});
     for (var i=0; i < this.pages.length; i++) {
-      this.indicators.push(hui.build('a',{parent:this.navigator,data:i,href:'javascript://','class' : i==0 ? 'part_poster_current' : ''}));
+      this.indicators.push(hui.build('a',{
+        parent : this.navigator,
+        data : i,
+        href : 'javascript://',
+        'class' : 'part_poster_point' + (i==0 ? ' is-current' : '')
+      }));
     };
   },
   next : function() {
@@ -358,7 +363,7 @@ op.part.Poster.prototype = {
     this.pages[index].style.display = 'block';
     this.index = index;
     for (var i=0; i < this.indicators.length; i++) {
-      hui.cls.set(this.indicators[i],'part_poster_current',i==index);
+      hui.cls.set(this.indicators[i],'is-current',i==index);
     };
   },
   goToPage : function(index) {
@@ -366,10 +371,10 @@ op.part.Poster.prototype = {
     window.clearTimeout(this.timer);
     var recipe = {container:this.container,duration:this.options.duration};
     recipe.hide = {element:this.pages[this.index],effect:'slideLeft'};
-    hui.cls.remove(this.indicators[this.index],'part_poster_current');
+    hui.cls.remove(this.indicators[this.index],'is-current');
     this.index = index;
     recipe.show = {element : this.pages[this.index],effect:'slideRight'};
-    hui.cls.add(this.indicators[this.index],'part_poster_current');
+    hui.cls.add(this.indicators[this.index],'is-current');
     hui.transition(recipe);
     if (!this.options.editmode) {
       this._callNext();
