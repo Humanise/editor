@@ -34,16 +34,15 @@ var controller = {
 		this.getFrame().location='../../Tools/Sites/';
 	},
 	$click$edit : function() {
-		var frame = window.frames[0];
+		var frame = this.getFrame();
 		if (frame.templateController!==undefined) {
 			frame.templateController.edit();
 		} else {
-			this.getFrame().location='../../Template/Edit.php';
+			document.location='../../Template/Edit.php';
 		}
 	},
 	$click$properties : function() {
-		var frame = window.frames[0];
-		frame.op.Editor.editProperties(hui.ui.language);
+		this.getFrame().op.Editor.editProperties(hui.ui.language);
 	},
 	$click$view : function() {
 		window.parent.location='ViewPublished.php';
@@ -59,17 +58,16 @@ var controller = {
 		});
 	},
 	getFrame : function() {
-		return window.parent.frames[0];
+		return hui.ui.get('simulator').getFrameWindow();
 	},
 	$click$viewHistory : function() {
-		window.frames[0].location = '../PageHistory/';
+		this.getFrame().location = '../PageHistory/';
 	},
 
 	///////////// Design /////////////
 
 	$click$design : function() {
-		var frame = window.frames[0];
-		frame.op.Editor.editDesign();
+		this.getFrame().op.Editor.editDesign();
 	},
 
 	///////////// Notes //////////////
@@ -152,3 +150,13 @@ var controller = {
 };
 
 hui.ui.listen(controller);
+
+hui.ui.listen({
+  $editPart : function(event) {
+    hui.log('edit part',event)
+    hui.ui.get('partWindow').show();
+  },
+  $cancelPart : function(event) {
+    hui.ui.get('partWindow').hide();
+  }
+})

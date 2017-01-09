@@ -26,6 +26,7 @@ op.DocumentEditor = {
   $editPart$huiEditor : function(part) {
     this.part = part;
     this.originalStyle = this.part.element.getAttribute('style');
+    hui.ui.tellContainers('editPart',{id:part.id});
   },
   $cancelPart$huiEditor : function(part) {
     this.part.element.setAttribute('style',this.originalStyle);
@@ -52,6 +53,7 @@ op.DocumentEditor = {
       hui.ui.destroyDescendants(partWindow);
       hui.dom.remove(partWindow.element);
     }
+    hui.ui.tellContainers('cancelPart');
   },
   $clickButton$bar : function(button) {
     hui.ui.get('pages').goTo(button.getKey());

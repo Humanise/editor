@@ -13,7 +13,8 @@ $edit = Request::getBoolean('edit');
 $gui='
 <gui xmlns="uri:hui" title="OnlinePublisher editor">
   <controller source="controller.js"/>
-  <dock url="viewer/'.($edit ? '#edit' : '').'" name="dock" position="top" frame-name="Preview" devices="true">
+  <rows>
+  <row height="content">
     <tabs small="true" below="true">
       <tab title="{View changes; da:Vis ændringer}" background="light">
         <toolbar>
@@ -40,7 +41,14 @@ $gui='
         </toolbar>
       </tab>
     </tabs>
-  </dock>
+  </row>
+  <row>
+    <media-simulator name="simulator" url="viewer/'.($edit ? '#edit' : '').'"/>
+  </row>
+  </rows>
+  <!--
+  <dock name="dock" position="top" frame-name="Preview" devices="true">
+  </dock>-->
 
   <boundpanel target="addNote" name="notePanel" width="200">
     <formula name="noteFormula">
@@ -91,6 +99,15 @@ $gui='
       </buttons>
     </formula>
   </boundpanel>
+
+  <window name="partWindow" width="300">
+    <formula name="partFormula">
+      <buttons>
+        <button text="{Save; da:Gem}" highlighted="true" submit="true" small="true"/>
+      </buttons>
+    </formula>
+  </window>
+
 </gui>';
 
 UI::render($gui);
