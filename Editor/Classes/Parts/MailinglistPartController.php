@@ -13,35 +13,35 @@ class MailinglistPartController extends PartController
 	function MailinglistPartController() {
 		parent::PartController('mailinglist');
 	}
-	
+
 	function getFromRequest($id) {
 		$part = MailinglistPart::load($id);
 		$lists = explode(',',Request::getString('mailinglists'));
 		$part->setMailinglistIds($lists);
 		return $part;
 	}
-	
+
 	function editor($part,$context) {
 		$ids = $part->getMailinglistIds();
 		return
 		$this->render($part,$context).
 		'<input type="hidden" name="mailinglists" value="'.implode(',',$ids).'"/>';
 	}
-	
+
 	function display($part,$context) {
 		return $this->render($part,$context);
 	}
-		
+
 	function createPart() {
 		$part = new MailinglistPart();
 		$part->save();
 		return $part;
 	}
-	
+
 	function isDynamic($part) {
 		return true;
 	}
-	
+
 	function buildSub($part,$context) {
 		$action = Request::getString($part->getId().'_action');
 		$name = Request::getString($part->getId().'_name');
@@ -82,7 +82,7 @@ class MailinglistPartController extends PartController
 			}
 		}
 		$ids = $part->getMailinglistIds();
-		$xml = 
+		$xml =
 		'<mailinglist xmlns="'.$this->getNamespace().'">'.
 		'<lists>';
 		foreach ($ids as $id) {
@@ -100,7 +100,7 @@ class MailinglistPartController extends PartController
 		'</mailinglist>';
 		return $xml;
 	}
-	
+
 	function importSub($node,$part) {
 		$mailinglistIds = array();
 		if ($lists = DOMUtils::getFirstDescendant($node,'lists')) {
@@ -112,7 +112,7 @@ class MailinglistPartController extends PartController
 		}
 		$part->setMailinglistIds($mailinglistIds);
 	}
-	
+
 	function subscribe($part,$name,$address) {
 		$person = new Person();
 		$person->setFullName($name);
@@ -124,19 +124,19 @@ class MailinglistPartController extends PartController
 		$email->setContainingObjectId($person->getId());
 		$email->save();
 		$email->publish();
-		
+
 		$lists = $part->getMailinglistIds();
 		foreach ($lists as $list) {
 			$sql = "insert into person_mailinglist (person_id,mailinglist_id) values (".Database::int($person->getId()).",".Database::int($list).")";
 			Database::insert($sql);
 		}
 	}
-	
+
 	function unsubscribe($part,$address) {
 		$lists = $part->getMailingListIds();
-		
+
 		$sql = "delete from person_mailinglist using person_mailinglist,emailaddress where emailaddress.containing_object_id=person_mailinglist.person_id and emailaddress.address=".Database::text($address)." and (";
-		for ($i=0; $i < count($lists); $i++) { 
+		for ($i=0; $i < count($lists); $i++) {
 			if ($i>0) $sql.=' or ';
 			$sql.='person_mailinglist.mailinglist_id='.$lists[$i];
 		}
@@ -148,11 +148,11 @@ class MailinglistPartController extends PartController
 	function getToolbars() {
 		return array(
 			GuiUtils::getTranslated(array('Mailing list','da'=>'Postliste')) => '
-				<field label="{Mailing lists; da:Postlister}">
+				<item label="{Mailing lists; da:Postlister}">
 					<checkboxes name="lists">
-					'.GuiUtils::buildObjectItems('mailinglist').'
+					'.UI::buildOptions('mailinglist').'
 					</checkboxes>
-				</field>
+				</item>
 			'
 		);
 	}

@@ -7,7 +7,7 @@ require_once '../../Include/Private.php';
 
 $gui='
 <gui xmlns="uri:hui" padding="10" title="{Shop; da:Butik}">
-	<controller source="controller.js"/>
+	<controller url="controller.js"/>
 	<source name="productListSource" url="data/ListProducts.php"/>
 	<source name="groupSource" url="../../Services/Model/Items.php?type=productgroup"/>
 	<source name="typeSource" url="../../Services/Model/Items.php?type=producttype"/>
@@ -126,15 +126,15 @@ $gui='
 					</columns>
 					<columns flexible="true" space="5">
 						<column>
-							<field label="{Description; da:Beskrivelse}:">				
-								<text-input name="productNote" multiline="true"/>
+							<field label="{Description; da:Beskrivelse}:">
+								<text-input name="productNote" breaks="true"/>
 							</field>
 						</column>
 						<column width="60px">
 							<field label="{Image; da:Billede}:">
 								<image-input name="productImage">
-                                    <finder url="../../Services/Finder/Images.php"/>
-                                </image-input>
+                  <finder url="../../Services/Finder/Images.php"/>
+                </image-input>
 							</field>
 						</column>
 					</columns>

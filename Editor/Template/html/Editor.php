@@ -7,7 +7,7 @@ require_once '../../Include/Private.php';
 
 $gui='
 <gui xmlns="uri:hui" padding="10">
-	<controller source="controller.js"/>
+	<controller url="controller.js"/>
 	<script>
 		controller.id = '.Request::getId().';
 	</script>
@@ -18,7 +18,7 @@ $gui='
 					<text-input key="title"/>
 				</field>
 				<field label="HTML:">
-					<text-input key="html" multiline="true"/>
+					<text-input key="html" breaks="true"/>
 				</field>
 			</fields>
 			<buttons>

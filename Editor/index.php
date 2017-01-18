@@ -40,7 +40,7 @@ $gui='
     <parameter key="subset" value="@reviewSubset.value"/>
   </source>
 
-  <controller source="Services/Base/controller.js"/>
+  <controller url="Services/Base/controller.js"/>
 
   <dock url="'.$start.'" name="dock" position="bottom" frame-name="Desktop">
     <sidebar collapsed="true">
@@ -55,22 +55,22 @@ $gui='
       </bar>
       <bar variant="layout" name="reviewBar" visible="false">
         <dropdown value="unreviewed" name="reviewSubset">
-          <item text="Ikke revideret" value="unreviewed"/>
-          <item text="Godkendte" value="accepted"/>
-          <item text="Afviste" value="rejected"/>
+          <option text="Ikke revideret" value="unreviewed"/>
+          <option text="Godkendte" value="accepted"/>
+          <option text="Afviste" value="rejected"/>
         </dropdown>
         <!--
         <segmented value="day" name="reviewSpan">
-          <item text="Vis alle" value="all"/>
-          <item text="Et døgn" value="day"/>
-          <item text="7 dage" value="week"/>
+          <option text="Vis alle" value="all"/>
+          <option text="Et døgn" value="day"/>
+          <option text="7 dage" value="week"/>
         </segmented>
         -->
       </bar>
       <overflow>
         <list name="list" source="searchSource" visible="false"/>
         <selection value="all" name="selector">
-          <items source="hierarchySource"/>
+          <options source="hierarchySource"/>
         </selection>
       </overflow>
     </sidebar>
@@ -83,18 +83,16 @@ $gui='
           $gui.='<tab title="'.$tabTitle.'" background="light"><toolbar name="'.$tab.'Toolbar" left="5">';
           foreach ($tools as $key => $tool) {
             $deprecated = $tool->key == 'Pages';
-            $gui.='<icon title="'.$tool->name->$lang.'" icon="'.$tool->icon.'" click="dock.setUrl(\'Tools/'.$tool->key.'/\')" key="tool:'.$tool->key.'"'.($deprecated ? ' overlay="warning"' : '').'/>';
+            $gui.='<icon text="'.$tool->name->$lang.'" icon="'.$tool->icon.'" click="dock.setUrl(\'Tools/'.$tool->key.'/\')" key="tool:'.$tool->key.'"'.($deprecated ? ' overlay="warning"' : '').'/>';
           }
           $gui.='
           <right>
-          <icon title="{ View ; da:Vis }" icon="common/view" click="dock.setUrl(\'Services/Preview/\')" key="service:preview"/>
-          <icon title="{ Edit ; da:Rediger }" icon="common/edit" click="dock.setUrl(\'Template/Edit.php/\')" key="service:edit"/>
-          <icon title="{ Publish ; da:Udgiv }" icon="common/internet" overlay="upload" click="baseController.goPublish()" badge="'.$unpublished.'" key="service:publish"/>
-          <!--<divider/>
-          <search title="Søgning"/>-->
+          <icon text="{ View ; da:Vis }" icon="common/view" click="dock.setUrl(\'Services/Preview/\')" key="service:preview"/>
+          <icon text="{ Edit ; da:Rediger }" icon="common/edit" click="dock.setUrl(\'Template/Edit.php/\')" key="service:edit"/>
+          <icon text="{ Publish ; da:Udgiv }" icon="common/internet" overlay="upload" click="baseController.goPublish()" badge="'.$unpublished.'" key="service:publish"/>
           <divider/>
-          <icon title="Start" icon="common/play" click="dock.setUrl(\'Services/Start/\')" key="service:start"/>
-          <icon title="{ Exit ; da: Log ud }" icon="common/stop" click="document.location=\'Authentication.php?logout=true\'"/>
+          <icon text="Start" icon="common/play" click="dock.setUrl(\'Services/Start/\')" key="service:start"/>
+          <icon text="{ Exit ; da: Log ud }" icon="common/stop" click="document.location=\'Authentication.php?logout=true\'"/>
           </right>
           </toolbar></tab>';
         }
@@ -107,13 +105,13 @@ $gui='
     <formula name="issueFormula">
       <fields labels="above">
         <field label="Note:">
-          <text-input key="text" multiline="true"/>
+          <text-input key="text" breaks="true"/>
         </field>
         <field label="Type">
           <radiobuttons value="improvement" key="kind">
-            <item value="improvement" text="{Improvement; da:Forbedring}"/>
-            <item value="error" text="{Error; da:Fejl}"/>
-            <item value="unknown" text="{Unknown; da:Ukendt}"/>
+            <option value="improvement" text="{Improvement; da:Forbedring}"/>
+            <option value="error" text="{Error; da:Fejl}"/>
+            <option value="unknown" text="{Unknown; da:Ukendt}"/>
           </radiobuttons>
         </field>
       </fields>

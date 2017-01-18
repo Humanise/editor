@@ -7,7 +7,7 @@ require_once '../../Include/Private.php';
 
 $gui='
 <gui xmlns="uri:hui" title="Links" padding="30">
-	<controller source="js/Links.js"/>
+	<controller url="js/Links.js"/>
 	<source name="linksSource" url="data/LinksList.php"/>
 	<box width="700" title="Links">
 		<toolbar>

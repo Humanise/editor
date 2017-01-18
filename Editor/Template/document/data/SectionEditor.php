@@ -11,7 +11,7 @@ $sectionId = Request::getInt('id');
 $sql = "select part.type,document_section.page_id,part.id as part_id,document_section.left,document_section.right,document_section.bottom,document_section.top,document_section.width,document_section.float from document_section,part where part.id = document_section.part_id and document_section.id=".Database::int($sectionId);
 if ($row = Database::selectFirst($sql)) {
 	$out = array();
-	
+
 	$partType = $row['type'];
 	$pageId = $row['page_id'];
 	$partId = $row['part_id'];
@@ -41,10 +41,11 @@ if ($row = Database::selectFirst($sql)) {
 	'<input type="hidden" name="float" value="'.Strings::escapeXML($row['float']).'"/>';
 	$html.= $ctrl->editor($part,$partContext);
 	$html.= '</form>';
-	if (method_exists($ctrl,'editorGui')) {
-		$html.=$ctrl->editorGui($part,$partContext);
-	}
-	Response::sendObject(array(
+  $ui = $ctrl->getEditorUI($part,$partContext);
+  if (!empty($ui)) {
+    $html.=UI::renderFragment($ui);
+  }
+  Response::sendObject(array(
 		'html' => Strings::fromUnicode($html),
 		'partType' => $partType,
 		'partId' => $partId,

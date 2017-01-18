@@ -11,7 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestValidation extends UnitTestCase {
 
-	function testValidate() {
+	function testValidateDesigns() {
 		$template = TemplateService::getTemplateByUnique('document');
 		if (!$template) {
 			Log::debug('Skipping test since no document template exists');

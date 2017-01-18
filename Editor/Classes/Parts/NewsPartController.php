@@ -13,7 +13,7 @@ class NewsPartController extends PartController
 	function NewsPartController() {
 		parent::PartController('news');
 	}
-	
+
 	function createPart() {
 		$part = new NewsPart();
 		$part->setTitle(GuiUtils::getTranslated(array('Seneste nyt','da'=>'Latest news')));
@@ -25,7 +25,7 @@ class NewsPartController extends PartController
 		$part->save();
 		return $part;
 	}
-	
+
 	function buildSub($part,$context) {
 		$data='<news xmlns="'.$this->getNamespace().'">';
 		if (Strings::isNotBlank($part->getVariant())) {
@@ -50,11 +50,11 @@ class NewsPartController extends PartController
 		$data.='</news>';
 		return $data;
 	}
-	
+
 	function isDynamic($part) {
 		return true;
 	}
-	
+
 	function getFromRequest($id) {
 		$part = NewsPart::load($id);
 		$part->setTitle(Request::getString('title'));
@@ -69,15 +69,15 @@ class NewsPartController extends PartController
 		$part->setNewsGroupIds(Request::getIntArrayComma('groups'));
 		return $part;
 	}
-	
+
 	function display($part,$context) {
 		return $this->render($part,$context);
 	}
-	
+
 	function getIndex($part) {
 		return $part->getTitle();
 	}
-	
+
 	function editor($part,$context) {
 
 		$groups = $part->getNewsGroupIds();
@@ -99,9 +99,9 @@ class NewsPartController extends PartController
 		'</div>'.
 		'<script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/news/editor.js"></script>';
 	}
-	
-	function editorGui($part,$context) {
-		$gui='
+
+	function getEditorUI($part,$context) {
+		return '
 		<window title="{News; da:Nyheder}" name="newsWindow" width="300">
 			<tabs small="true" centered="true">
 				<tab title="{Settings; da:Indstillinger}" padding="10">
@@ -112,16 +112,16 @@ class NewsPartController extends PartController
 							</field>
 							<field label="Variant">
 								<radiobuttons value="'.$part->getVariant().'" name="newsVariant">
-									<item label="{List; da:Liste}" value="list"/>
-									<item label="{Box; da:Boks}" value="box"/>
+									<option text="{List; da:Liste}" value="list"/>
+									<option text="{Box; da:Boks}" value="box"/>
 								</radiobuttons>
 							</field>
 							<!--
 							<field label="{Alignment; da:Justering}">
 								<radiobuttons value="'.$part->getAlign().'" name="newsAlign">
-									<item label="{Left; da:Venstre}" value="left"/>
-									<item label="{Center; da:Midte}" value="center"/>
-									<item label="{Right; da:Højre}" value="right"/>
+									<option text="{Left; da:Venstre}" value="left"/>
+									<option text="{Center; da:Midte}" value="center"/>
+									<option text="{Right; da:Højre}" value="right"/>
 								</radiobuttons>
 							</field>
 							-->
@@ -132,15 +132,15 @@ class NewsPartController extends PartController
 								<field label="{Groups; da:Grupper}">
 									<checkboxes name="newsGroups">
 									'.
-                                    GuiUtils::buildObjectItems('newsgroup').
-                                    '
+                  UI::buildOptions('newsgroup').
+                  '
 									</checkboxes>
 								</field>
 								<field label="{News; da:Nyheder}">
 									<dropdown name="newsNews">
 									'.
-                                    GuiUtils::buildObjectItems('news').
-                                    '
+                  UI::buildOptions('news').
+                  '
 									</dropdown>
 								</field>
 							</fields>
@@ -152,15 +152,15 @@ class NewsPartController extends PartController
 						<fields labels="above">
 							<field label="{Direction; da:Retning}">
 								<radiobuttons value="'.$part->getSortDir().'" name="newsSortDir">
-									<item label="{Descending; da:Faldende}" value="descending"/>
-									<item label="{Ascending; da:Stigende}" value="ascending"/>
+									<option text="{Descending; da:Faldende}" value="descending"/>
+									<option text="{Ascending; da:Stigende}" value="ascending"/>
 								</radiobuttons>
 							</field>
 							<field label="{Ordering; da:Sortering}">
 								<radiobuttons value="'.$part->getSortBy().'" name="newsSortBy">
-									<item label="{Start date; da:Startdato}" value="startdate"/>
-									<item label="{End date; da:Slutdato}" value="enddate"/>
-									<item label="{Title; da:Titel}" value="title"/>
+									<option text="{Start date; da:Startdato}" value="startdate"/>
+									<option text="{End date; da:Slutdato}" value="enddate"/>
+									<option text="{Title; da:Titel}" value="title"/>
 								</radiobuttons>
 							</field>
 							<field label="{Maximum number of items; da:Maksimalt antal}">
@@ -168,13 +168,13 @@ class NewsPartController extends PartController
 							</field>
 							<field label="{Time; da:Tid}">
 								<dropdown name="newsTimeType" value="'.$part->getTimeType().'">
-									<item label="{Always; da:Altid}" value="always"/>
-									<item label="{Now; da:Lige nu}" value="now"/>
-									<item label="{Latest hours...; da:Seneste timer...}" value="hours"/>
-									<item label="{Latest days...; da:Seneste dage...}" value="days"/>
-									<item label="{Latest weeks...; da:Seneste uger...}" value="weeks"/>
-									<item label="{Latest months...; da:Seneste måneder...}" value="months"/>
-									<item label="{Latest years...; da:Seneste år...}" value="years"/>
+									<option text="{Always; da:Altid}" value="always"/>
+									<option text="{Now; da:Lige nu}" value="now"/>
+									<option text="{Latest hours...; da:Seneste timer...}" value="hours"/>
+									<option text="{Latest days...; da:Seneste dage...}" value="days"/>
+									<option text="{Latest weeks...; da:Seneste uger...}" value="weeks"/>
+									<option text="{Latest months...; da:Seneste måneder...}" value="months"/>
+									<option text="{Latest years...; da:Seneste år...}" value="years"/>
 								</dropdown>
 							</field>
 							<field label="{Count; da:Antal}">
@@ -186,9 +186,8 @@ class NewsPartController extends PartController
 			</tabs>
 		</window>
 		';
-		return UI::renderFragment($gui);
 	}
-	
+
 	function buildSql($part) {
 		$sql = '';
 		if ($part->getMode() == 'single' && $part->getNewsId()!='') {

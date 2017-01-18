@@ -7,7 +7,7 @@ require_once '../../Include/Private.php';
 
 $gui='
 <gui xmlns="uri:hui" padding="10">
-	<controller source="js/controller.js"/>
+	<controller url="js/controller.js"/>
 	<source name="listSource" url="data/List.php">
 		<parameter key="id" value="'.Request::getId().'"/>
 	</source>
@@ -24,7 +24,7 @@ $gui='
 					<text-input key="title"/>
 				</field>
 				<field label="Tekst">
-					<text-input multiline="true" key="text"/>
+					<text-input breaks="true" key="text"/>
 				</field>
 			</fields>
 			<overflow max-height="200">

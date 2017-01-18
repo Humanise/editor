@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gui xmlns="uri:hui" padding="10" title="Developer" state="settings">
+  <controller url="controller.js"/>
+  <source name="testsSource" url="data/TestSelection.php"/>
+  <source name="graphSource" url="data/GraphData.php"/>
+  <source name="diagramSource" url="data/DiagramData.php">
+    <parameter key="parent" value="@diagramSubset.value"/>
+  </source>
+  <source name="classesSource" url="data/ListClasses.php"/>
+  <structure>
+    <top>
+      <toolbar>
+        <!--divider/-->
+      </toolbar>
+    </top>
+    <middle>
+      <left>
+        <overflow>
+          <selection value="settings" name="selector" top="5">
+            <option icon="common/info" text="PHP info" value="phpInfo"/>
+            <option icon="common/time" text="Session" value="session"/>
+            <option icon="common/time" text="Report" value="report"/>
+            <option icon="common/tools" text="Settings" value="settings"/>
+            <option icon="common/object" text="Classes" value="classes"/>
+            <option icon="common/search" text="Query" value="queries"/>
+            <title>UI</title>
+            <option icon="common/search" text="Finders" value="finders"/>
+            <option icon="monochrome/nuclear" text="Graph" value="graph"/>
+            <option icon="common/hierarchy" text="Diagram" value="diagram"/>
+            <title>Tests</title>
+            <options name="testSelection" source="testsSource"/>
+          </selection>
+        </overflow>
+      </left>
+      <center>
+        <overflow state="list">
+          <list name="list" source="classesSource"/>
+        </overflow>
+        <overflow state="settings">
+          <fragment height="full" background="wood">
+            <box width="300" top="30" title="Settings" padding="10">
+              <formula name="settingsFormula">
+                <fields>
+                  <field label="Simulate network latency:">
+                    <checkbox key="simulateLatency"/>
+                  </field>
+                  <field label="Log database queries:">
+                    <checkbox key="logDatabaseQueries"/>
+                  </field>
+                </fields>
+                <buttons>
+                  <button text="Rebuild classes" name="rebuildClasses"/>
+                </buttons>
+              </formula>
+            </box>
+          </fragment>
+        </overflow>
+        <bar variant="layout" state="graph">
+          <button small="true" text="Test"/>
+        </bar>
+        <overflow state="graph">
+          <graph source="graphSource" name="graph" layout="d3"/>
+        </overflow>
+        <overflow state="queries">
+          <split>
+            <row height="50%">
+              <code-input name="queryInput" height="full"/>
+            </row>
+            <row height="50%">
+              <code-input name="queryOutput" height="full"/>
+            </row>
+          </split>
+        </overflow>
+        <bar variant="layout" state="diagram">
+          <segmented value="Entity" name="diagramSubset" variant="inset">
+            <option value="all" text="All"/>
+            <option value="Entity" text="Entity"/>
+            <option value="Object" text="Objects"/>
+            <option value="Part" text="Parts"/>
+            <option value="TemplateController" text="Template controllers"/>
+          </segmented>
+          <right>
+            <button text="Play" name="playDiagram" small="true"/>
+            <button text="Expand" name="expandDiagram" small="true"/>
+            <button text="Contract" name="contractDiagram" small="true"/>
+          </right>
+        </bar>
+        <overflow state="diagram">
+          <diagram source="diagramSource" name="diagram"/>
+        </overflow>
+        <iframe url="data/PhpInfo.php" name="iframe" state="frame"/>
+      </center>
+    </middle>
+    <bottom/>
+  </structure>
+</gui>

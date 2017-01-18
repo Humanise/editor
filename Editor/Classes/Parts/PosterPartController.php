@@ -13,7 +13,7 @@ class PosterPartController extends PartController
 	function PosterPartController() {
 		parent::PartController('poster');
 	}
-	
+
 	/** This function creates a new part */
 	function createPart() {
 		$part = new PosterPart();
@@ -34,14 +34,14 @@ class PosterPartController extends PartController
 		$part->save();
 		return $part;
 	}
-	
+
 	function updateAdditional($part) {
 		PartService::removeLinks($part);
 		$recipe = $part->getRecipe();
 		$dom = DOMUtils::parse($recipe);
 		if ($dom) {
 			$links = $dom->getElementsByTagName('link');
-			for ($i=0; $i < $links->length; $i++) { 
+			for ($i=0; $i < $links->length; $i++) {
 				$node = $links->item($i);
 				$link = new PartLink();
 				$link->setPartId($part->getId());
@@ -58,11 +58,11 @@ class PosterPartController extends PartController
 			}
 		}
 	}
-	
+
 	function display($part,$context) {
 		return $this->render($part,$context);
 	}
-	
+
 	function editor($part,$context) {
 		$html =
 		$this->buildHiddenFields(array(
@@ -87,19 +87,10 @@ class PosterPartController extends PartController
 				'
 			);
 	}
-	
-	function editorGui($part,$context) {
-		$gui='
+
+	function getEditorUI($part,$context) {
+		return '
 			<window title="{Poster;da:Plakat}" name="posterWindow" width="300">
-			<!--
-				<toolbar variant="window">
-					<icon icon="common/previous" text="{Previous ; da:Forrige}" name="goPrevious"/>
-					<icon icon="common/next" text="{Next ; da:Næste}" name="goNext"/>
-					<divider/>
-					<icon icon="common/info" text="{Page ; da:Side}" name="showPages"/>
-					<icon icon="file/text" overlay="edit" text="{Source ; da:Kilde}" name="showSource"/>
-				</toolbar>
-				-->
 				<formula name="posterFormula" padding="10">
 					<fields labels="above">
 						<field label="{Højde; da:Height}">
@@ -107,9 +98,9 @@ class PosterPartController extends PartController
 						</field>
 						<field label="{Appearance; da:Udseende}">
 							<dropdown key="variant">
-								<item value="" text="Standard"/>
-								<item value="light" text="{Lys; da:Light}"/>
-								<item value="inset" text="{Nedsunket; da:Inset}"/>
+								<option value="" text="Standard"/>
+								<option value="light" text="{Lys; da:Light}"/>
+								<option value="inset" text="{Nedsunket; da:Inset}"/>
 							</dropdown>
 						</field>
 					</fields>
@@ -117,7 +108,7 @@ class PosterPartController extends PartController
 			</window>
 
 			<window title="{Page; da:Side}" name="pageWindow" width="300">
-				<toolbar variant="window">
+				<toolbar>
 					<icon icon="common/move_left" text="{Move left; da:Flyt til venstre}" name="moveLeft"/>
 					<icon icon="common/move_right" text="{Move right; da:Flyt til højre}" name="moveRight"/>
 					<right>
@@ -133,11 +124,11 @@ class PosterPartController extends PartController
 							<text-input key="title"/>
 						</field>
 						<field label="{Text; da:Tekst}">
-							<text-input multiline="true" key="text" max-height="500"/>
+							<text-input breaks="true" key="text" max-height="500"/>
 						</field>
 						<field label="{Image; da:Billede}">
 							<image-input key="image">
-                                <finder url="../../Services/Finder/Images.php"/>
+                <finder url="../../Services/Finder/Images.php"/>
 							</image-input>
 						</field>
 						<field label="{Link text; da:Link tekst}:">
@@ -157,7 +148,7 @@ class PosterPartController extends PartController
 									/>
 								</type>
 								<type key="file" label="{File; da:Fil}" icon="file/generic" lookup-url="../../Services/Model/LoadObject.php">
-									<finder title="{Select file; da:Vælg fil}" 
+									<finder title="{Select file; da:Vælg fil}"
 										list-url="../../Services/Finder/FilesList.php"
 										selection-url="../../Services/Finder/FilesSelection.php"
 										selection-value="all"
@@ -171,22 +162,21 @@ class PosterPartController extends PartController
 					</fields>
 				</formula>
 			</window>
-			
+
 			<window title="{Source; da:Kilde}" name="sourceWindow" width="600">
 				<formula name="sourceFormula">
-					<code-input key="recipe"/>
-				</formula>			
+					<fields labels="above"><field><code-input key="recipe"/></field></fields>
+				</formula>
 			</window>
 			';
-		return UI::renderFragment($gui);
 	}
-	
+
 	function getFromRequest($id) {
 		$part = PosterPart::load($id);
 		$part->setRecipe(Request::getString('recipe')); // do not use getEncodedString
 		return $part;
 	}
-	
+
 	function buildSub($part,$context) {
 		// Important to convert to unicode before validating
 		$valid = DOMUtils::isValidFragment(Strings::toUnicode($part->getRecipe()));
@@ -196,7 +186,7 @@ class PosterPartController extends PartController
 		'</poster>';
 		return $xml;
 	}
-	
+
 	function importSub($node,$part) {
 		$recipe = DOMUtils::getFirstDescendant($node,'recipe');
 		$xml = DOMUtils::getInnerXML($recipe);

@@ -10,7 +10,7 @@ $pageId = InternalSession::getPageId();
 $gui='
 
 <gui xmlns="uri:hui" padding="10" title="History" state="list">
-	<controller source="js/controller.js"/>
+	<controller url="js/controller.js"/>
 	<source name="listSource" url="data/HistoryList.php">
 		<parameter key="pageId" value="'.$pageId.'"/>
 	</source>
@@ -29,15 +29,14 @@ $gui='
 			<left>
 				<overflow>
 				<selection name="selector" value="list">
-					<item icon="view/list" title="{Overview; da:Oversigt}" value="list"/>
+					<option icon="view/list" text="{Overview; da:Oversigt}" value="list"/>
 					<title>{Versions: da:Versioner}</title>
-					<items source="selectionSource"/>
+					<options source="selectionSource"/>
 				</selection>
 				</overflow>
 			</left>
 			<center>
 				<bar state="viewer" variant="layout">
-					<text name="viewerHeader" variant="header"/>
 					<right>
 						<button small="true" name="closeViewer" text="{Close; da:Luk}"/>
 					</right>
@@ -57,7 +56,7 @@ $gui='
 		<formula name="messageFormula">
 			<fields labels="above">
 				<field>
-					<text-input multiline="true" key="message" value="animate-value-change"/>
+					<text-input breaks="true" key="message" value="animate-value-change"/>
 				</field>
 			</fields>
 			<buttons>

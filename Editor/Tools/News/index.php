@@ -8,12 +8,12 @@ require_once '../../Include/Private.php';
 $maxUploadSize = GuiUtils::bytesToString(FileSystemService::getMaxUploadSize());
 
 $blueprints = PageService::getBlueprintsByTemplate('document');
-$blueprintItems = GuiUtils::buildObjectItems($blueprints);
+$blueprintItems = UI::buildOptions($blueprints);
 
 $gui='
 <gui xmlns="uri:hui" title="{News; da:Nyheder}" padding="10">
-	<controller source="controller.js"/>
-	<controller source="sources.js"/>
+	<controller url="controller.js"/>
+	<controller url="sources.js"/>
 	<source name="pageItems" url="../../Services/Model/Items.php?type=page"/>
 	<source name="fileItems" url="../../Services/Model/Items.php?type=file"/>
 	<source name="groupSource" url="data/GroupItems.php"/>
@@ -27,24 +27,24 @@ $gui='
 		<parameter key="main" value="@selector.value"/>
 		<parameter key="source" value="@sourceSelection.value"/>
 	</source>
-	
+
 	<structure>
 		<top>
 			<toolbar>
-				<icon icon="common/news" title="{New news item; da:Ny nyhed}" name="newNews" overlay="new"/>
-				'.($blueprintItems ? '<icon icon="common/page" title="{New article; da:Ny artikel}" name="newArticle" overlay="new"/>' : '').'
-				<icon icon="common/folder" title="{New group; da:Ny gruppe}" name="newGroup" overlay="new"/>
-				<icon icon="common/internet" title="{New source; da:Ny kilde}" name="newSource" overlay="new"/>
+				<icon icon="common/news" text="{New news item; da:Ny nyhed}" name="newNews" overlay="new"/>
+				'.($blueprintItems ? '<icon icon="common/page" text="{New article; da:Ny artikel}" name="newArticle" overlay="new"/>' : '').'
+				<icon icon="common/folder" text="{New group; da:Ny gruppe}" name="newGroup" overlay="new"/>
+				<icon icon="common/internet" text="{New source; da:Ny kilde}" name="newSource" overlay="new"/>
 				<divider/>
-				<icon icon="common/info" title="Info" name="info" disabled="true"/>
-				<icon icon="common/delete" title="{Delete; da:Slet}" name="delete" disabled="true">
+				<icon icon="common/info" text="Info" name="info" disabled="true"/>
+				<icon icon="common/delete" text="{Delete; da:Slet}" name="delete" disabled="true">
 					<confirm text="{Are yu sure?; da:Er du sikker?}" ok="{Yes, delete news; da:Ja, slet nyheden}" cancel="{Cancel; da:Annuller}"/>
 				</icon>
-				<icon icon="common/duplicate" title="{Duplicate; da:Dubler}" name="duplicate" disabled="true"/>
+				<icon icon="common/duplicate" text="{Duplicate; da:Dubler}" name="duplicate" disabled="true"/>
 				<right>
-					<field label="{Search; da:Søgning}">
+					<item label="{Search; da:Søgning}">
 						<searchfield name="search" expanded-width="200"/>
-					</field>
+					</item>
 				</right>
 			</toolbar>
 		</top>
@@ -52,17 +52,17 @@ $gui='
 			<left>
 				<overflow>
 				<selection value="all" name="selector" top="5">
-					<item icon="common/files" title="{All; da:Alle}" value="all"/>
-					<item icon="common/time" title="{Latest 24 hours; da:Seneste døgn}" value="latest"/>
-					<item icon="common/play" title="{Active; da:Aktive}" value="active"/>
-					<item icon="common/stop" title="{Inactive; da:Inaktive}" value="inactive"/>
+					<option icon="common/files" text="{All; da:Alle}" value="all"/>
+					<option icon="common/time" text="{Latest 24 hours; da:Seneste døgn}" value="latest"/>
+					<option icon="common/play" text="{Active; da:Aktive}" value="active"/>
+					<option icon="common/stop" text="{Inactive; da:Inaktive}" value="inactive"/>
 					<title>Links</title>
-					<item icon="monochrome/globe" title="{External; da:Eksterne}" value="url"/>
-					<item icon="monochrome/file" title="{Page; da:Sider}" value="page"/>
-					<item icon="monochrome/file" title="{Files; da:Filer}" value="file"/>
-					<item icon="monochrome/email" title="{E-mail; da:E-post}" value="email"/>
-					<items source="groupSource" name="groupSelection" title="{Groups; da:Grupper}"/>
-					<items source="sourcesSource" name="sourceSelection" title="{Sources; da:Kilder}"/>
+					<option icon="monochrome/globe" text="{External; da:Eksterne}" value="url"/>
+					<option icon="monochrome/file" text="{Page; da:Sider}" value="page"/>
+					<option icon="monochrome/file" text="{Files; da:Filer}" value="file"/>
+					<option icon="monochrome/email" text="{E-mail; da:E-post}" value="email"/>
+					<options source="groupSource" name="groupSelection" title="{Groups; da:Grupper}"/>
+					<options source="sourcesSource" name="sourceSelection" title="{Sources; da:Kilder}"/>
 				</selection>
 				</overflow>
 			</left>
@@ -71,15 +71,15 @@ $gui='
 					<text name="sourceHeader" variant="header"/>
 					<text name="sourceText"/>
 					<right>
-						<button text="Info" name="sourceInfo" small="true" rounded="true"/>
-						<button text="{Synchronize; da:Synkroniser}" name="synchronize" small="true" rounded="true"/>
+						<button text="Info" name="sourceInfo" small="true"/>
+						<button text="{Synchronize; da:Synkroniser}" name="synchronize" small="true"/>
 					</right>
 				</bar>
 				<bar variant="layout" state="group">
 					<text name="groupHeader" variant="header"/>
 					<right>
-						<button text="Info" name="groupInfo" small="true" rounded="true"/>
-						<button text="{RSS-address; da:RSS-adresse}" name="groupRSS" small="true" rounded="true"/>
+						<button text="Info" name="groupInfo" small="true"/>
+						<button text="{RSS-address; da:RSS-adresse}" name="groupRSS" small="true"/>
 					</right>
 				</bar>
 				<overflow>
@@ -89,7 +89,7 @@ $gui='
 		</middle>
 		<bottom/>
 	</structure>
-	
+
 	<window title="{Group; da:Gruppe}" name="groupWindow" icon="common/folder" width="300" padding="5">
 		<space left="5" right="5" bottom="3">
 			<formula name="groupFormula">
@@ -97,14 +97,14 @@ $gui='
 					<field label="{Title; da:Titel}">
 						<text-input key="title"/>
 					</field>
-					<buttons>
-						<button name="cancelGroup" title="{Cancel; da:Annuller}"/>
-						<button name="deleteGroup" title="{Delete; da:Slet}">
-							<confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete group; da:Ja, slet gruppen}" cancel="{No; da:Nej}"/>
-						</button>
-						<button name="saveGroup" title="{Save; da:Gem}" highlighted="true"/>
-					</buttons>
 				</fields>
+				<buttons>
+					<button name="cancelGroup" text="{Cancel; da:Annuller}"/>
+					<button name="deleteGroup" text="{Delete; da:Slet}">
+						<confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete group; da:Ja, slet gruppen}" cancel="{No; da:Nej}"/>
+					</button>
+					<button name="saveGroup" text="{Save; da:Gem}" highlighted="true"/>
+				</buttons>
 			</formula>
 		</space>
 	</window>
@@ -121,22 +121,22 @@ $gui='
 				<field label="Interval ({seconds; da:sekunder})" hint="1 time = 3600 sekunder">
 					<number-input key="syncInterval"/>
 				</field>
-				<buttons>
-					<button name="cancelSource" title="{Cancel; da:Annuller}"/>
-					<button name="deleteSource" title="{Delete; da:Slet}">
-						<confirm text="{Are you sure? da:Er du sikker?}" ok="{Yes, delete source; da:Ja, slet kilden}" cancel="{No; da:Nej}"/>
-					</button>
-					<button submit="true" title="{Save; da:Gem}" highlighted="true"/>
-				</buttons>
 			</fields>
+			<buttons>
+				<button name="cancelSource" text="{Cancel; da:Annuller}"/>
+				<button name="deleteSource" text="{Delete; da:Slet}">
+					<confirm text="{Are you sure? da:Er du sikker?}" ok="{Yes, delete source; da:Ja, slet kilden}" cancel="{No; da:Nej}"/>
+				</button>
+				<button submit="true" text="{Save; da:Gem}" highlighted="true"/>
+			</buttons>
 		</formula>
 	</window>
-	
-	
+
+
 	<window title="{News; da:Nyhed}" name="newsWindow" variant="news" icon="common/news" width="450">
-	
+
 		<tabs small="true" centered="true">
-		
+
 			<tab title="{News; da:Nyhed}" padding="10">
 				<space left="5" right="5">
 				<formula name="newsFormula">
@@ -145,7 +145,7 @@ $gui='
 							<text-input key="title"/>
 						</field>
 						<field label="Note">
-							<text-input key="note" multiline="true"/>
+							<text-input key="note" breaks="true"/>
 						</field>
 					</fields>
 					<columns flexible="true" space="10">
@@ -163,36 +163,36 @@ $gui='
 					<fields labels="above">
 						<field label="{Groups; da:Grupper}:">
 							<checkboxes name="newsGroups">
-								<items source="groupSource"/>
+								<options source="groupSource"/>
 							</checkboxes>
 						</field>
 					</fields>
 				</formula>
 				</space>
 			</tab>
-			
+
 			<tab title="Links">
 				<toolbar centered="true">
-					<icon title="{New link; da:Nyt link}" icon="common/link" overlay="new" click="newsLinks.addLink()"/>
+					<icon text="{New link; da:Nyt link}" icon="common/link" overlay="new" click="newsLinks.addLink()"/>
 				</toolbar>
 				<space right="10" left="10" bottom="10">
-				<links name="newsLinks" pageSource="pageItems" fileSource="fileItems"/>
+				<links name="newsLinks" page-source="pageItems" file-source="fileItems"/>
 				</space>
 			</tab>
-			
+
 		</tabs>
-		
+
 		<buttons right="16" bottom="10" align="right">
-			<button name="cancelNews" title="{Cancel; da:Annuller}"/>
-			<button name="deleteNews" title="{Delete; da:Slet}">
+			<button name="cancelNews" text="{Cancel; da:Annuller}"/>
+			<button name="deleteNews" text="{Delete; da:Slet}">
 				<confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete news; da:Ja, slet nyheden}" cancel="{Cancel; da:Annuller}"/>
 			</button>
-			<button name="updateNews" title="{Save; da:Gem}" highlighted="true"/>
+			<button name="updateNews" text="{Save; da:Gem}" highlighted="true"/>
 		</buttons>
-		
+
 	</window>
-	
-	
+
+
 	<box title="{New article; da:Ny artikel}" name="newArticleBox" absolute="true" padding="10" modal="true" width="636" variant="textured" closable="true">
 		<formula name="articleFormula">
 			<fields labels="above">
@@ -200,10 +200,10 @@ $gui='
 					<text-input key="title"/>
 				</field>
 				<field label="{Summary; da:Opsummering}">
-					<text-input key="summary" multiline="true"/>
+					<text-input key="summary" breaks="true"/>
 				</field>
 				<field label="{Text; da:Tekst}">
-					<text-input key="text" multiline="true"/>
+					<text-input key="text" breaks="true"/>
 				</field>
 				<field label="Link">
 					<text-input key="linkText"/>
@@ -227,13 +227,13 @@ $gui='
 			<fields labels="above">
 				<field label="{Groups; da:Grupper}:">
 					<checkboxes key="groups">
-						<items source="groupSource"/>
+						<options source="groupSource"/>
 					</checkboxes>
 				</field>
 			</fields>
 			<buttons>
-				<button name="cancelNewArticle" title="{Cancle; da:Annuller}" click="newNewsBox.hide()"/>
-				<button name="createNewArticle" title="{Create; da:Opret}" highlighted="true" submit="true"/>
+				<button name="cancelNewArticle" text="{Cancle; da:Annuller}" click="newNewsBox.hide()"/>
+				<button name="createNewArticle" text="{Create; da:Opret}" highlighted="true" submit="true"/>
 			</buttons>
 		</formula>
 	</box>

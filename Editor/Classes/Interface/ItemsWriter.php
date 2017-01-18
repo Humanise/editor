@@ -11,12 +11,12 @@ if (!isset($GLOBALS['basePath'])) {
 class ItemsWriter {
 	function startItems() {
 		header('Content-Type: text/xml; charset=utf-8');
-		echo '<?xml version="1.0" encoding="UTF-8"?><items>';
+		echo '<?xml version="1.0" encoding="UTF-8"?><options>';
 		return $this;
 	}
 
 	function startItem($options) {
-		echo '<item';
+		echo '<option';
 		if (isset($options['value'])) {
 			echo ' value="'.Strings::escapeEncodedXML($options['value']).'"';
 		}
@@ -44,12 +44,12 @@ class ItemsWriter {
 	}
 
 	function endItem() {
-		echo '</item>';
+		echo '</option>';
 		return $this;
 	}
 
 	function endItems() {
-		echo '</items>';
+		echo '</options>';
 		return $this;
 	}
 

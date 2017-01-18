@@ -13,7 +13,7 @@ class PersonPartController extends PartController
 	function PersonPartController() {
 		parent::PartController('person');
 	}
-	
+
 	function createPart() {
 		$part = new PersonPart();
 		$part->setPersonId(ObjectService::getLatestId('person'));
@@ -37,11 +37,11 @@ class PersonPartController extends PartController
 		$part->save();
 		return $part;
 	}
-	
+
 	function display($part,$context) {
 		return $this->render($part,$context);
 	}
-	
+
 	function getFromRequest($id) {
 		$part = PersonPart::load($id);
 		$part->setShowFirstName(Request::getBoolean('show_firstname'));
@@ -65,7 +65,7 @@ class PersonPartController extends PartController
 		$part->setAlign(Request::getString('align'));
 		return $part;
 	}
-	
+
 	function editor($part,$context) {
 		return
 		'<input type="hidden" name="align" value="'.$part->getAlign().'"/>'.
@@ -92,15 +92,15 @@ class PersonPartController extends PartController
 		'</div>'.
 		'<script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/person/script.js" type="text/javascript" charset="utf-8"></script>';
 	}
-	
+
 	function _intToBool($val){
 		return $val==1 ? "true" : "false";
 	}
-		
+
 	function buildSub($part,$context) {
 		$data='<person xmlns="'.$this->getNamespace().'">';
 		if ($personData = ObjectService::getObjectData($part->getPersonId())) {
-			$data.= 
+			$data.=
 			'<display firstname="'.($part->getShowFirstName() ? 'true' : 'false').'"'.
 			' middlename="'.($part->getShowMiddleName() ? 'true' : 'false').'"'.
 			' surname="'.($part->getShowLastName() ? 'true' : 'false').'"'.
@@ -127,7 +127,7 @@ class PersonPartController extends PartController
 		$data.='</person>';
 		return $data;
 	}
-	
+
 	function importSub($node,$part) {
 		if ($object = DOMUtils::getFirstDescendant($node,'object')) {
 			if ($id = intval($object->getAttribute('id'))) {
@@ -157,17 +157,16 @@ class PersonPartController extends PartController
 			$part->setAlign($style->getAttribute('align'));
 		}
 	}
-	
+
 	function getToolbars() {
 		return array('Person' => '
-			<script source="../../Parts/person/toolbar.js"/>
-			<field label="{Alignment; da:Placering}">
+			<item label="{Alignment; da:Placering}">
 				<segmented name="alignment" allow-null="true">
-					<item icon="style/align_left" value="left"/>
-					<item icon="style/align_center" value="center"/>
-					<item icon="style/align_right" value="right"/>
+					<option icon="style/align_left" value="left"/>
+					<option icon="style/align_center" value="center"/>
+					<option icon="style/align_right" value="right"/>
 				</segmented>
-			</field>
+			</item>
 			<divider/>
 			<grid>
 				<row>

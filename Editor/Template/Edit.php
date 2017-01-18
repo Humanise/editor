@@ -31,7 +31,7 @@ if ($id>0) {
 else {
 	$gui = '
 	<gui xmlns="uri:hui" padding="10">
-		<controller source="controller.js"/>
+		<controller url="controller.js"/>
 		<box width="400" top="30" variant="rounded">
 			<space left="30" right="30" top="10" bottom="10">
 			<text align="center">

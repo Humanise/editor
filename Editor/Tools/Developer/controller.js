@@ -1,6 +1,12 @@
 hui.ui.listen({
 	$ready : function() {
 		hui.ui.tellContainers('changeSelection','tool:Developer');
+		hui.ui.request({
+      url : 'data/LoadSettings.php',
+      $object : function(values) {
+        settingsFormula.setValues(values);
+      }
+    });
 	},
 	$click$rebuildClasses : function() {
 		hui.ui.request({
@@ -45,7 +51,7 @@ hui.ui.listen({
 			iframe.setUrl('data/Report.php');
 		} else if (item.value=='finders') {
 			iframe.clear();
-			iframe.setUrl('data/UI.php?file=finder.xml');
+			iframe.setUrl('data/UI.php?file=finder.ui.xml');
 		} else if (item.kind=='test') {
 			iframe.clear();
 			iframe.setUrl('data/RunTest.php?test='+item.value);

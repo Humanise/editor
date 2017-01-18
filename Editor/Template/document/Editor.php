@@ -73,19 +73,19 @@ if ($editedSection==null) {
 			<formula name="linkFormula">
 				<fields labels="above">
 					<field label="{Text; da:Tekst}">
-						<text-input key="text" multiline="true"/>
+						<text-input key="text" breaks="true"/>
 					</field>
 					<field label="{Description; da:Beskrivelse}">
 						<text-input key="description"/>
 					</field>
 					<field label="{Scope; da:Rækkevidde}">
 						<radiobuttons key="scope" name="linkScope">
-							<item value="page" text="{Entire page; da:Hele siden}"/>
-							<item value="part" text="{Only this section; da:Kun dette afsnit}"/>
+							<option value="page" text="{Entire page; da:Hele siden}"/>
+							<option value="part" text="{Only this section; da:Kun dette afsnit}"/>
 						</radiobuttons>
 					</field>
 				</fields>
-				<space left="3" right="3" top="5">
+        <space height="5"/>
 				<fieldset legend="Link">
 					<fields>
 						<field label="{Page; da:Side}">
@@ -102,8 +102,7 @@ if ($editedSection==null) {
 						</field>
 					</fields>
 				</fieldset>
-				</space>
-				<buttons top="5">
+				<buttons top="10">
 					<button text="{Delete; da:Slet}" name="deleteLink">
 						<confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete; da:Ja, slet}" cancel="{No; da:Nej}"/>
 					</button>
@@ -227,10 +226,10 @@ if ($editedSection==null) {
 				<fields labels="above">
 					<field label="{Width...; da:Bredde...}">
 						<radiobuttons key="preset" name="columnPreset">
-							<item value="dynamic" text="{Match content; da:Efter indhold}"/>
-							<item value="min" text="{Minimal; da:Mindst mulig}"/>
-							<item value="max" text="{Maximal; da:Størst muligt}"/>
-							<item value="specific" text="{Special; da:Speciel...}"/>
+							<option value="dynamic" text="{Match content; da:Efter indhold}"/>
+							<option value="min" text="{Minimal; da:Mindst mulig}"/>
+							<option value="max" text="{Maximal; da:Størst muligt}"/>
+							<option value="specific" text="{Special; da:Speciel...}"/>
 						</radiobuttons>
 					</field>
 					<field label="{Special width; da:Speciel bredde}">
@@ -271,8 +270,8 @@ if ($editedSection==null) {
 				<placeholder title="{Select an file on you computer...; da:Vælg en fil på din computer...}" text="{Image can be in the format JPEG, PNG or GIF. The file size can at most be; da: Billeders format skal være JPEG, PNG eller GIF. Filens størrelse må højest være} '.GuiUtils::bytesToString(FileSystemService::getMaxUploadSize()).'."/>
 			</upload>
 			<buttons align="center" top="10">
-				<button name="cancelImport" title="{Close; da:Luk}"/>
-				<button name="upload" title="{Select image...; da:Vælg billede...}" highlighted="true"/>
+				<button name="cancelImport" text="{Close; da:Luk}"/>
+				<button name="upload" text="{Select image...; da:Vælg billede...}" highlighted="true"/>
 			</buttons>
 		</window>
 	';
@@ -471,9 +470,10 @@ function partEditor($section) {
 	'<input type="hidden" name="section_class" value="'.Strings::escapeXML($section['class']).'"/>';
 	echo $ctrl->editor($part,$partContext);
 	echo '</form></div>';
-	if (method_exists($ctrl,'editorGui')) {
-		echo $ctrl->editorGui($part,$partContext);
-	}
+  $ui = $ctrl->getEditorUI($part,$partContext);
+  if (!empty($ui)) {
+    echo UI::renderFragment($ui);
+  }
 	echo '<script type="text/javascript">
 	try {
 		parent.frames[0].location="PartToolbar.php?sectionId='.$section['id'].'&partId='.$part->getId().'&partType='.$part->getType().'&'.time().'"

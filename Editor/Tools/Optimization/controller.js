@@ -1,5 +1,5 @@
 hui.ui.listen({
-	
+
 	$select$selector : function(item) {
 		if (item.value=='overview') {
 			hui.ui.changeState('overview');
@@ -73,10 +73,10 @@ hui.ui.listen({
 			}
 		})
 	},
-	
-	
+
+
 	////////////// Re-index /////////////
-	
+
 	$click$reindex : function() {
 		var row = list.getFirstSelection();
 		hui.ui.request({
@@ -88,9 +88,9 @@ hui.ui.listen({
 			}
 		})
 	},
-	
+
 	////////////// Analysis /////////////
-	
+
 	$click$analyse : function() {
 		var row = list.getFirstSelection();
 		hui.ui.request({
@@ -115,7 +115,7 @@ hui.ui.listen({
 					html+='<li>'+obj.knownWords[i].text+'</li>';
 				};
 				html+='</ul>';
-				hui.get('analysis').innerHTML = html;
+				analysisOutput.setHTML(html);
 				analysisWindow.show();
 			},
 			$failure : function() {
@@ -123,5 +123,5 @@ hui.ui.listen({
 			}
 		})
 	}
-	
+
 });

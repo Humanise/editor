@@ -47,7 +47,7 @@ var baseController = {
 	},
 
 	goPublish : function() {
-		dock.setUrl('Services/Publish/?close=../../Services/Start/');
+		dock.setUrl('Services/Publish/');
 	},
 
 	$click$navNotes : function() {

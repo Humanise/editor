@@ -284,8 +284,8 @@ class ImagePartController extends PartController
     }
   }
 
-  function editorGui($part,$context) {
-    $gui='
+  function getEditorUI($part,$context) {
+    return '
     <window title="{Add image; da:Tilføj billede}" name="imageUploadWindow" width="300">
       <tabs small="true" centered="true">
         <tab title="{Upload; da:Overførsel}" padding="10">
@@ -293,8 +293,8 @@ class ImagePartController extends PartController
             <placeholder title="{Select an image on you computer...; da:Vælg et billede på din computer...}" text="{The image format can be JPEG, PNG or GIF. The file size can at most be; da: Billedets format skal være JPEG, PNG eller GIF. Filens størrelse må højest være} '.GuiUtils::bytesToString(FileSystemService::getMaxUploadSize()).'."/>
           </upload>
           <buttons align="center" top="10">
-            <button name="cancelUpload" title="{Close; da:Luk}"/>
-            <button name="upload" title="{Select image...; da:Vælg billede...}" highlighted="true"/>
+            <button name="cancelUpload" text="{Close; da:Luk}"/>
+            <button name="upload" text="{Select image...; da:Vælg billede...}" highlighted="true"/>
           </buttons>
         </tab>
         <tab title="{Fetch from the net; da:Hent fra nettet}" padding="10">
@@ -306,8 +306,8 @@ class ImagePartController extends PartController
             </fields>
           </formula>
           <buttons align="center">
-            <button name="cancelFetch" title="{Close; da:Luk}"/>
-            <button name="createFromUrl" submit="true" title="{Fetch; da:Hent}" highlighted="true"/>
+            <button name="cancelFetch" text="{Close; da:Luk}"/>
+            <button name="createFromUrl" submit="true" text="{Fetch; da:Hent}" highlighted="true"/>
           </buttons>
         </tab>
       </tabs>
@@ -317,21 +317,21 @@ class ImagePartController extends PartController
       <formula name="imageAdvancedFormula">
         <fields>
           <field label="{Text; da:Tekst}:">
-            <text-input multiline="true" key="text"/>
+            <text-input breaks="true" key="text"/>
           </field>
           <field label="{Effects; da:Effekter}:">
-            <checkbox key="greyscale" label="{Grayscale; da:Gråtone}"/>
-            <checkbox key="adaptive" label="{Adaptive; da:Tilpasset}"/>
+            <checkbox key="greyscale" text="{Grayscale; da:Gråtone}"/>
+            <checkbox key="adaptive" text="{Adaptive; da:Tilpasset}"/>
           </field>
           <field label="{Frame; da:Ramme}:">
             <dropdown key="frame">
               '.DesignService::getFrameOptions().'
             </dropdown>
           </field>
-          <buttons>
-            <button name="pasteImage" text="{Insert from clipboard; da:Indsæt fra udklipsholder}"/>
-          </buttons>
         </fields>
+        <buttons>
+          <button name="pasteImage" text="{Insert from clipboard; da:Indsæt fra udklipsholder}"/>
+        </buttons>
       </formula>
     </window>
 
@@ -343,17 +343,17 @@ class ImagePartController extends PartController
     <source name="groupOptionsSource" url="../../Services/Model/Items.php?type=imagegroup"/>
 
     <window title="{Select image; da:Vælg billede}" name="imageChooser" width="700" icon="common/search">
-      <layout>
+      <structure height="400">
         <middle>
           <left>
             <overflow height="400">
               <selection value="all" name="imageChooserSelection">
-                <item text="{All images; da:Alle billeder}" icon="common/image" value="all"/>
-                <item text="{Latest; da:Seneste}" icon="common/time" value="latest"/>
-                <item text="{Unused; da:Ikke brugt}" icon="monochrome/round_question" value="unused"/>
+                <option text="{All images; da:Alle billeder}" icon="common/image" value="all"/>
+                <option text="{Latest; da:Seneste}" icon="common/time" value="latest"/>
+                <option text="{Unused; da:Ikke brugt}" icon="monochrome/round_question" value="unused"/>
                 <title>{Groups; da:Grupper}</title>
-                <item text="{No groups; da:Uden gruppe}" icon="common/folder_grey" value="nogroup"/>
-                <items source="groupOptionsSource" name="imageGroupSelection"/>
+                <option text="{No groups; da:Uden gruppe}" icon="common/folder_grey" value="nogroup"/>
+                <options source="groupOptionsSource" name="imageGroupSelection"/>
               </selection>
             </overflow>
           </left>
@@ -375,26 +375,25 @@ class ImagePartController extends PartController
             </overflow>
           </center>
         </middle>
-      </layout>
+      </structure>
     </window>
     ';
-    return UI::renderFragment($gui);
   }
 
   function getToolbars() {
     return array(
       GuiUtils::getTranslated(array('Image','da'=>'Billede')) =>
-      '<script source="../../Parts/image/toolbar.js"/>
-      <icon icon="common/new" title="{Add image; da:Tilføj billede}" name="addImage"/>
-      <icon icon="common/search" title="{Select image; da:Vælg billede}" name="chooseImage"/>
+      '
+      <icon icon="common/new" text="{Add image; da:Tilføj billede}" name="addImage"/>
+      <icon icon="common/search" text="{Select image; da:Vælg billede}" name="chooseImage"/>
       <divider/>
-      <field label="{Alignment; da:Placering}">
+      <item label="{Alignment; da:Placering}">
         <segmented name="alignment" allow-null="true">
-          <item icon="style/align_left" value="left"/>
-          <item icon="style/align_center" value="center"/>
-          <item icon="style/align_right" value="right"/>
+          <option icon="style/align_left" value="left"/>
+          <option icon="style/align_center" value="center"/>
+          <option icon="style/align_right" value="right"/>
         </segmented>
-      </field>
+      </item>
       <divider/>
       <grid>
         <row>
@@ -423,7 +422,7 @@ class ImagePartController extends PartController
         </row>
       </grid>
       <divider/-->
-      <icon icon="common/settings" title="{Advanced; da:Avanceret}" name="showAdvanced"/>
+      <icon icon="common/settings" text="{Advanced; da:Avanceret}" name="showAdvanced"/>
       '
       ,
       'Link' =>
@@ -431,7 +430,7 @@ class ImagePartController extends PartController
         <row>
           <cell label="{Page; da:Side}:" width="200" right="10">
             <dropdown name="page" adaptive="true">
-              '.GuiUtils::buildPageItems().'
+              '.UI::buildOptions('page').'
             </dropdown>
           </cell>
           <cell label="{Address; da:Adresse}:" width="100" right="10">
@@ -439,14 +438,14 @@ class ImagePartController extends PartController
           </cell>
           <cell label="{Image; da:Billede}:" width="200" right="10">
             <dropdown name="image" adaptive="true">
-              '.GuiUtils::buildObjectItems('image').'
+              '.UI::buildOptions('image').'
             </dropdown>
           </cell>
         </row>
         <row>
           <cell label="{File; da:Fil}:" width="200" right="10">
             <dropdown name="file" adaptive="true">
-              '.GuiUtils::buildObjectItems('file').'
+              '.UI::buildOptions('file').'
             </dropdown>
           </cell>
           <cell label="{E-mail; da:E-post}:" width="100" right="10">

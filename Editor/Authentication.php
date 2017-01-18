@@ -29,7 +29,9 @@ if (Request::exists('language')) {
 
 $gui='
 <gui xmlns="uri:hui" padding="10" title="'.SystemInfo::getTitle().'" state="'.$state.'">
-	<controller name="controller" source="Authentication.js"/>
+
+	<controller name="controller" url="Authentication.js"/>
+
 	<box width="300" top="100" variant="rounded" name="box">
 		<space all="10">
 			<formula name="formula" state="login">
@@ -41,11 +43,11 @@ $gui='
 					<field label="{Password; da:Kodeord}:">
 						<text-input name="password" secret="true"/>
 					</field>
-					<buttons>
-						<button title="{Cancel; da:Annuller}" url="../"/>
-						<button name="login" title="{Log in; da:Log ind}" highlighted="true" submit="true"/>
-					</buttons>
 				</fields>
+				<buttons>
+					<button text="{Cancel; da:Annuller}" url="../"/>
+					<button name="login" text="{Log in; da:Log ind}" highlighted="true" submit="true"/>
+				</buttons>
 			</formula>
 			<formula name="recoveryForm" state="recover">
 				'.($mailEnabled ? '
@@ -55,24 +57,22 @@ $gui='
 					<field label="{Username or e-mail; da:Brugernavn eller e-mail}:">
 						<text-input key="nameOrMail"/>
 					</field>
-					<buttons>
-						<button title="{New user; da:Ny bruger}" name="createAdmin"/>
-						<button title="{Cancel; da:Annuller}" click="hui.ui.changeState(\'login\');formula.focus()"/>
-						<button title="Find" name="recover" highlighted="true" submit="true"/>
-					</buttons>
 				</fields>
+				<buttons>
+					<button text="{New user; da:Ny bruger}" name="createAdmin"/>
+					<button text="{Cancel; da:Annuller}" click="hui.ui.changeState(\'login\');formula.focus()"/>
+					<button text="Find" name="recover" highlighted="true" submit="true"/>
+				</buttons>
 				' : '
 				<header>{Recover password; da:Genfind kodeord}</header>
 				<text>
 					<p>{The system is not configured to send e-mails. Please contact the responsible for the system in order to get access; da:Systemet er ikke konfigureret til at sende e-mail. Kontakt den ansvarlige for systemet for at få adgang.}</p>
 					<p>{You can create a new administrator if you know the super user.; da:Du kan også oprette en ny administrator hvis du kender super-brugeren.}</p>
 				</text>
-				<fields labels="above">
-					<buttons>
-						<button title="{Cancel; da:Annuller}" click="hui.ui.changeState(\'login\');formula.focus()"/>
-						<button title="{New user; da:Ny bruger}" name="createAdmin"/>
-					</buttons>
-				</fields>
+				<buttons>
+					<button text="{Cancel; da:Annuller}" click="hui.ui.changeState(\'login\');formula.focus()"/>
+					<button text="{New user; da:Ny bruger}" name="createAdmin"/>
+				</buttons>
 				'
 				).'
 			</formula>
@@ -83,7 +83,7 @@ $gui='
 						<p>{You should in a short time receive an e-mail describing how you can change your password. If you do not receive the e-mail within 15 min. then please contact the responsible for the website.; da:Du skulle inden længe modtage en e-mail der beskriver hvordan du kan ændre dit kodeord. Hvis du ikke har modtaget den inden ca. et kvarter bør du kontakte den ansvarlige for webstedet.}</p>
 					</text>
 					<buttons align="center" top="5">
-						<button title="OK" click="hui.ui.changeState(\'login\');formula.focus()"/>
+						<button text="OK" click="hui.ui.changeState(\'login\');formula.focus()"/>
 					</buttons>
 				</space>
 			</fragment>
@@ -95,8 +95,8 @@ $gui='
 						<p>{da:Du kan opdatere databasen hvis du kender super-brugeren; en:You can update the database if you know the super user}</p>
 					</text>
 					<buttons align="center" top="5">
-						<button title="{Ignore;da:Ignorér}" click="hui.ui.changeState(\'login\');formula.focus()"/>
-						<button title="{Update;da:Opdater}" name="updateDatabase" highlighted="true"/>
+						<button text="{Ignore;da:Ignorér}" click="hui.ui.changeState(\'login\');formula.focus()"/>
+						<button text="{Update;da:Opdater}" name="updateDatabase" highlighted="true"/>
 					</buttons>
 				</space>
 			</fragment>
@@ -139,7 +139,7 @@ $gui='
 	</window>
 
 	<window title="Log" name="databaseLogWindow" width="500">
-		<text-input adaptive="true" multiline="true" name="databaseLog"/>
+		<text-input adaptive="true" breaks="true" name="databaseLog"/>
 	</window>
 
 	<window name="adminWindow" width="300" padding="10" title="{Create administrator; da: Opret administrator}">

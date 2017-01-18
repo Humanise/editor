@@ -8,7 +8,7 @@ require_once '../../Include/Private.php';
 $gui='
 <gui xmlns="uri:hui" padding="10" title="Statistics">
 	
-	<controller source="controller.js"/>
+	<controller url="controller.js"/>
 	
 	<source name="listSource" url="data/List.php">
 		<parameter key="windowPage" value="@list.window.page"/>

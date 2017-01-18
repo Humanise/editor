@@ -59,6 +59,35 @@ class FileSystemService {
     return $out;
   }
 
+  static function findFiles($dir, $query = []) {
+    $out = [];
+    if (is_dir($dir)) {
+      if ($dh = opendir($dir)) {
+        while (($file = readdir($dh)) !== false) {
+          $path = FileSystemService::join($dir, $file);
+          if ($file=='.' || $file=='..') {
+            // Skip
+          }
+          else if (is_dir($path)) {
+            $found = FileSystemService::findFiles($path, $query);
+            $out = array_merge($out, $found);
+          }
+          else if (is_file($path)) {
+            $ok = true;
+            if (isset($query['end'])) {
+              $ok = $ok && Strings::endsWith($path, $query['end']);
+            }
+            if ($ok) {
+              array_push($out, $path);
+            }
+          }
+        }
+        closedir($dh);
+      }
+    }
+    return $out;
+  }
+
   /**
    * Finds an array of files inside a given directory
    * @param string $dir The path to the directory
@@ -70,11 +99,15 @@ class FileSystemService {
     if (is_dir($dir)) {
       if ($dh = opendir($dir)) {
         while (($file = readdir($dh)) !== false) {
-          if (is_file($dir.$file) && !($file=='.' || $file=='..') ) {
+          if (is_file(FileSystemService::join($dir, $file)) && !($file=='.' || $file=='..') ) {
             array_push($out,$file);
+          } else {
+            Log::debug('not a file: ' . $dir.$file);
           }
         }
         closedir($dh);
+      } else {
+        Log::debug('Unable to list: ' . $dir);
       }
     }
     return $out;

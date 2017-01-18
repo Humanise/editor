@@ -12,20 +12,20 @@ $edit = Request::getBoolean('edit');
 
 $gui='
 <gui xmlns="uri:hui" title="OnlinePublisher editor">
-  <controller source="controller.js"/>
-  <dock url="viewer/'.($edit ? '#edit' : '').'" name="dock" position="top" frame-name="Preview" devices="true">
+  <controller url="controller.js"/>
+  <dock url="viewer/'.($edit ? '#edit' : '').'" name="dock" position="top" frame-name="Preview">
     <tabs small="true" below="true">
       <tab title="{View changes; da:Vis ændringer}" background="light">
         <toolbar>
-          <icon icon="common/close" title="{Close; da:Luk}" name="close"/>
+          <icon icon="common/close" text="{Close; da:Luk}" name="close"/>
           <divider/>
-          <icon icon="common/edit" title="{Edit; da:Rediger}" name="edit"/>
-          <icon icon="common/view" title="{View published; da:Vis udgivet}" name="view"/>
-          <icon icon="common/info" title="Info" name="properties"/>
+          <icon icon="common/edit" text="{Edit; da:Rediger}" name="edit"/>
+          <icon icon="common/view" text="{View published; da:Vis udgivet}" name="view"/>
+          <icon icon="common/info" text="Info" name="properties"/>
           <divider/>
-          <icon icon="common/internet" overlay="upload" title="{Publish; da:Udgiv}" name="publish" disabled="true"/>
+          <icon icon="common/internet" overlay="upload" text="{Publish; da:Udgiv}" name="publish" disabled="true"/>
           <more>
-            <icon icon="common/page" title="{New page;da:Ny side}" overlay="new" name="newPage"/>
+            <icon icon="common/page" text="{New page;da:Ny side}" overlay="new" name="newPage"/>
           </more>
         </toolbar>
       </tab>
@@ -33,10 +33,10 @@ $gui='
         <toolbar>
           <icon icon="common/time" text="{History; da:Historik}" name="viewHistory"/>
           <divider/>
-          <icon icon="inset/stamp" title="{Revise; da:Revidér}" name="review"/>
-          <icon icon="common/note" title="{New note; da:Ny note}" name="addNote" overlay="new_monochrome"/>
+          <icon icon="inset/stamp" text="{Revise; da:Revidér}" name="review"/>
+          <icon icon="common/note" text="{New note; da:Ny note}" name="addNote" overlay="new_monochrome"/>
           <divider/>
-          <icon icon="common/settings" title="Design" name="design"/>
+          <icon icon="common/settings" text="Design" name="design"/>
         </toolbar>
       </tab>
     </tabs>
@@ -46,12 +46,12 @@ $gui='
     <formula name="noteFormula">
       <fields labels="above">
         <field label="Note:">
-          <text-input key="text" multiline="true"/>
+          <text-input key="text" breaks="true"/>
         </field>
         <field label="Type">
           <radiobuttons value="improvement" key="kind">
-            <item value="improvement" text="{Improvement; da:Forbedring}"/>
-            <item value="error" text="{Error; da:Fejl}"/>
+            <option value="improvement" text="{Improvement; da:Forbedring}"/>
+            <option value="error" text="{Error; da:Fejl}"/>
           </radiobuttons>
         </field>
       </fields>
@@ -79,9 +79,9 @@ $gui='
         </field>
         <field label="{Placement; da:Placering}">
           <radiobuttons value="below" key="placement">
-            <item value="below" text="{Below; da:Underpunkt}"/>
-            <item value="before" text="{Before; da:Før}"/>
-            <item value="after" text="{After; da:Efter}"/>
+            <option value="below" text="{Below; da:Underpunkt}"/>
+            <option value="before" text="{Before; da:Før}"/>
+            <option value="after" text="{After; da:Efter}"/>
           </radiobuttons>
         </field>
       </fields>

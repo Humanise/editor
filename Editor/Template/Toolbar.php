@@ -7,7 +7,7 @@ require_once '../Include/Private.php';
 
 $gui='
 <gui xmlns="uri:hui" title="Dokument">
-	<controller source="toolbar.js"/>
+	<controller url="toolbar.js"/>
 	<script>
 	controller.pageId='.Request::getId().';
 	</script>

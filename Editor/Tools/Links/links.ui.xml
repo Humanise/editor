@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gui xmlns="uri:hui" padding="10" title="Links" state="list">
+
+	<controller url="controller.js"/>
+
+	<source name="graphSource" url="data/GraphData.php">
+		<parameter key="source" value="@sourceSelector.value"/>
+		<parameter key="target" value="@targetSelector.value"/>
+		<parameter key="state" value="@stateSelector.value"/>
+	</source>
+
+	<source name="listSource" url="data/LinkList.php">
+		<parameter key="source" value="@sourceSelector.value"/>
+		<parameter key="target" value="@targetSelector.value"/>
+		<parameter key="state" value="@stateSelector.value"/>
+	</source>
+
+	<structure>
+		<top>
+			<toolbar>
+				<item label="{View; da:Visning}">
+					<segmented value="list" name="view">
+						<option icon="view/list" value="list"/>
+						<option icon="view/graph" value="graph"/>
+					</segmented>
+				</item>
+			</toolbar>
+		</top>
+		<middle>
+			<left>
+				<selection value="all" name="stateSelector">
+					<title>Status</title>
+					<option icon="monochrome/round_question" text="{All; da:Alle}" value="all"/>
+					<option icon="monochrome/warning" text="{Errors; da:Fejl}" value="warnings"/>
+				</selection>
+				<selection value="all" name="sourceSelector">
+					<title>{Source; da:Kilde}</title>
+					<option icon="common/folder" text="{All; da:Alle}" value="all"/>
+					<option icon="common/page" text="{Pages; da:Sider}" value="page"/>
+					<option icon="common/news" text="{News items; da:Nyheder}" value="news"/>
+					<option icon="common/hierarchy" text="{Hierarchies; da:Hierarkier}" value="hierarchy"/>
+				</selection>
+				<selection value="all" name="targetSelector">
+					<title>{Target; da:Mål}</title>
+					<option icon="common/folder" text="{All; da:Alle}" value="all"/>
+					<option icon="common/internet" text="{Addresses; da:Adresser}" value="url"/>
+					<option icon="common/email" text="{E-mails; da:E-post-adresser}" value="email"/>
+					<option icon="common/page" text="{Pages; da:Sider}" value="page"/>
+					<option icon="file/generic" text="{Files; da:Filer}" value="file"/>
+				</selection>
+			</left>
+			<center>
+				<overflow>
+					<list name="list" source="listSource" state="list"/>
+					<graph source="graphSource" name="graph" layout="d3" state="graph"/>
+				</overflow>
+			</center>
+		</middle>
+		<bottom/>
+	</structure>
+</gui>

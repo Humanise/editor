@@ -13,7 +13,7 @@ class FormulaPartController extends PartController
 	function FormulaPartController() {
 		parent::PartController('formula');
 	}
-	
+
 	static function createPart() {
 		$part = new FormulaPart();
 		$part->setRecipe('<form>
@@ -38,11 +38,11 @@ class FormulaPartController extends PartController
 		$part->save();
 		return $part;
 	}
-	
+
 	function display($part,$context) {
 		return $this->render($part,$context);
 	}
-	
+
 	function editor($part,$context) {
 		return
 		$this->buildHiddenFields(array(
@@ -55,7 +55,7 @@ class FormulaPartController extends PartController
 		'</div>'.
 		'<script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/formula/formula_editor.js" type="text/javascript" charset="utf-8"></script>';
 	}
-	
+
 	function getFromRequest($id) {
 		$part = FormulaPart::load($id);
 		$part->setReceiverName(Request::getString('receiverName'));
@@ -63,25 +63,24 @@ class FormulaPartController extends PartController
 		$part->setRecipe(Request::getString('recipe'));
 		return $part;
 	}
-	
+
 	function buildSub($part,$context) {
 		$valid = DOMUtils::isValidFragment(Strings::toUnicode($part->getRecipe()));
 		return '<formula xmlns="'.$this->getNamespace().'">'.
 			($valid ? '<recipe>'.$part->getRecipe().'</recipe>' : '<invalid/>').
 			'</formula>';
 	}
-	
+
 	function importSub($node,$part) {
 		$recipe = DOMUtils::getFirstDescendant($node,'recipe');
 		$xml = DOMUtils::getInnerXML($recipe);
 		$xml = DOMUtils::stripNamespaces($xml);
 		$part->setRecipe($xml);
 	}
-	
+
 	function getToolbars() {
 		return array(
 			GuiUtils::getTranslated(array('Formula','da'=>'Formular')) => '
-			<script source="../../Parts/formula/toolbar.js"/>
 			<icon icon="file/text" overlay="edit" text="{Show source;da:Vis kilde}" name="showSource"/>
 			<divider/>
 			<grid>
@@ -98,16 +97,19 @@ class FormulaPartController extends PartController
 			</grid>
 		');
 	}
-	
-	function editorGui($part,$context) {
-		$gui='
+
+	function getEditorUI($part,$context) {
+		return '
 			<window title="{Source; da:Kilde}" name="sourceWindow" width="600">
-				<formula name="sourceFormula">
-					<code-input key="recipe"/>
-				</formula>			
+        <formula name="sourceFormula">
+          <fields labels="above">
+            <field>
+              <code-input key="recipe"/>
+            </field>
+          </fields>
+        </formula>
 			</window>
-			';
-		return UI::renderFragment($gui);
+		';
 	}
 }
 ?>
