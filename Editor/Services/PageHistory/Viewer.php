@@ -9,7 +9,7 @@ $pageId = InternalSession::getPageId();
 
 $gui='
 <gui xmlns="uri:hui" title="Links" padding="30">
-	<controller source="js/controller.js"/>
+	<controller url="js/controller.js"/>
 	<source name="listSource" url="data/HistoryList.php">
 		<parameter key="pageId" value="'.$pageId.'"/>
 	</source>

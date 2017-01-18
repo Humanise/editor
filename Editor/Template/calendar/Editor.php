@@ -7,7 +7,7 @@ require_once '../../Include/Private.php';
 
 $gui='
 <gui xmlns="uri:hui" padding="10">
-	<controller source="controller.js"/>
+	<controller url="controller.js"/>
 	<script>
 		controller.id = '.Request::getId().';
 	</script>
@@ -21,10 +21,10 @@ $gui='
 					<number-input key="weekview_starthour" min="0" max="23"/>
 				</field>
 				<field label="Calendars">
-					<checkboxes key="calendar">'.GuiUtils::buildObjectItems('calendar').'</checkboxes>
+					<checkboxes key="calendar">'.UI::buildOptions('calendar').'</checkboxes>
 				</field>
 				<field label="Sources">
-					<checkboxes key="calendarsource">'.GuiUtils::buildObjectItems('calendarsource').'</checkboxes>
+					<checkboxes key="calendarsource">'.UI::buildOptions('calendarsource').'</checkboxes>
 				</field>
 			</fields>
 			<buttons>

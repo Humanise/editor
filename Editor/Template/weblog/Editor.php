@@ -7,7 +7,7 @@ require_once '../../Include/Private.php';
 
 $gui='
 <gui xmlns="uri:hui" padding="10">
-	<controller source="controller.js"/>
+	<controller url="controller.js"/>
 	<script>
 		controller.id = '.Request::getId().';
 	</script>
@@ -20,12 +20,12 @@ $gui='
 				<field label="Skabelon til ny side:">
 					<dropdown key="blueprint">
 						<item title="Ingen skabelon" value="0"/>
-						'.GuiUtils::buildObjectItems('pageblueprint').'
+						'.UI::buildOptions('pageblueprint').'
 					</dropdown>
 				</field>
 				<field label="Grupper">
 					<checkboxes key="groups">
-						'.GuiUtils::buildObjectItems('webloggroup').'
+						'.UI::buildOptions('webloggroup').'
 					</checkboxes>
 				</field>
 			</fields>

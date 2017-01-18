@@ -155,12 +155,12 @@ class HeaderPartController extends PartController
 						<fields>
 						<field label="Level">
 							<segmented key="level">
-								<item text="1" value="1"/>
-								<item text="2" value="2"/>
-								<item text="3" value="3"/>
-								<item text="4" value="4"/>
-								<item text="5" value="5"/>
-								<item text="6" value="6"/>
+								<option text="1" value="1"/>
+								<option text="2" value="2"/>
+								<option text="3" value="3"/>
+								<option text="4" value="4"/>
+								<option text="5" value="5"/>
+								<option text="6" value="6"/>
 							</segmented>
 						</field>
 						<field label="Size">
@@ -177,19 +177,19 @@ class HeaderPartController extends PartController
 						</field>
 						<field label="Alignment">
 							<segmented key="textAlign" allow-null="true">
-								<item icon="style/text_align_left" value="left"/>
-								<item icon="style/text_align_center" value="center"/>
-								<item icon="style/text_align_right" value="right"/>
-								<item icon="style/text_align_justify" value="justify"/>
+								<option icon="style/text_align_left" value="left"/>
+								<option icon="style/text_align_center" value="center"/>
+								<option icon="style/text_align_right" value="right"/>
+								<option icon="style/text_align_justify" value="justify"/>
 							</segmented>
 						</field>
 						<field label="Weight">
 							<segmented allow-null="true" key="fontWeight">
-								<item icon="style/text_bold" value="bold"/>
-								<item icon="style/text_normal" value="normal"/>
-								<item text="300" value="300"/>
-								<item text="200" value="200"/>
-								<item text="100" value="100"/>
+								<option icon="style/text_bold" value="bold"/>
+								<option icon="style/text_normal" value="normal"/>
+								<option text="300" value="300"/>
+								<option text="200" value="200"/>
+								<option text="100" value="100"/>
 							</segmented>
 						</field>
 						</fields>
@@ -203,83 +203,83 @@ class HeaderPartController extends PartController
 		return array(
 			GuiUtils::getTranslated(array('Header','da'=>'Overskrift')) =>
 			'
-			<field label="{Level; da:Niveau}">
+			<item label="{Level; da:Niveau}">
 				<segmented name="level">
-					<item text="1" value="1"/>
-					<item text="2" value="2"/>
-					<item text="3" value="3"/>
-					<item text="4" value="4"/>
-					<item text="5" value="5"/>
-					<item text="6" value="6"/>
+					<option text="1" value="1"/>
+					<option text="2" value="2"/>
+					<option text="3" value="3"/>
+					<option text="4" value="4"/>
+					<option text="5" value="5"/>
+					<option text="6" value="6"/>
 				</segmented>
-			</field>
-			<field label="{Size; da:Størrelse}">
+			</item>
+			<item label="{Size; da:Størrelse}">
 				<style-length-input name="fontSize" width="90"/>
-			</field>
-			<field label="{Alignment; da:Justering}">
+			</item>
+			<item label="{Alignment; da:Justering}">
 				<segmented name="textAlign" allow-null="true">
-					<item icon="style/text_align_left" value="left"/>
-					<item icon="style/text_align_center" value="center"/>
-					<item icon="style/text_align_right" value="right"/>
-					<item icon="style/text_align_justify" value="justify"/>
+					<option icon="style/text_align_left" value="left"/>
+					<option icon="style/text_align_center" value="center"/>
+					<option icon="style/text_align_right" value="right"/>
+					<option icon="style/text_align_justify" value="justify"/>
 				</segmented>
-			</field>
+			</item>
 			<divider/>
-			<field label="{Font; da:Skrift}">
-				<font-input name="fontFamily" width="120"/>
-			</field>
-			<field label="{Line height; da:Linjehøjde}">
+			<item label="{Font; da:Skrift}">
+				<font-input name="fontFamily"/>
+			</item>
+			<item label="{Line height; da:Linjehøjde}">
 				<style-length-input name="lineHeight" width="90"/>
-			</field>
-			<field label="{Color; da:Farve}">
+			</item>
+			<item label="{Color; da:Farve}">
 				<color-input name="color"/>
-			</field>
-			<field label="{Weight; da:Fed}">
+			</item>
+			<item label="{Weight; da:Fed}">
 				<segmented name="fontWeight" allow-null="true">
-					<item icon="style/text_normal" value="normal"/>
-					<item icon="style/text_bold" value="bold"/>
+					<option icon="style/text_normal" value="normal"/>
+					<option icon="style/text_bold" value="bold"/>
 				</segmented>
-			</field>
-			<field label="{Italic; da:Kursiv}">
+			</item>
+			<item label="{Italic; da:Kursiv}">
 				<segmented name="fontStyle" allow-null="true">
-					<item icon="style/text_normal" value="normal"/>
-					<item icon="style/text_italic" value="italic"/>
+					<option icon="style/text_normal" value="normal"/>
+					<option icon="style/text_italic" value="italic"/>
 				</segmented>
-			</field>
+			</item>
 			',
 		GuiUtils::getTranslated(array('Advanced','da'=>'Avanceret')) =>
 			'
-			<field label="{Word spacing; da:Ord-mellemrum}">
+			<item label="{Word spacing; da:Ord-mellemrum}">
 				<style-length-input name="wordSpacing" width="90"/>
-			</field>
-			<field label="{Letter spacing; da:Tegn-mellemrum}">
+			</item>
+			<item label="{Letter spacing; da:Tegn-mellemrum}">
 				<style-length-input name="letterSpacing" width="90"/>
-			</field>
-			<field label="{Indentation; da:Indrykning}">
+			</item>
+			<item label="{Indentation; da:Indrykning}">
 				<style-length-input name="textIndent" width="90"/>
-			</field>
-			<field label="{Letters; da:Bogstaver}">
+			</item>
+			<item label="{Letters; da:Bogstaver}">
 				<segmented name="textTransform" allow-null="true">
-					<item icon="style/text_normal" value="normal"/>
-					<item icon="style/text_transform_capitalize" value="capitalize"/>
-					<item icon="style/text_transform_uppercase" value="uppercase"/>
-					<item icon="style/text_transform_lowercase" value="lowercase"/>
+					<option icon="style/text_normal" value="normal"/>
+					<option icon="style/text_transform_capitalize" value="capitalize"/>
+					<option icon="style/text_transform_uppercase" value="uppercase"/>
+					<option icon="style/text_transform_lowercase" value="lowercase"/>
 				</segmented>
-			</field>
-			<field label="Variant">
+			</item>
+			<item label="Variant">
 				<segmented name="fontVariant" allow-null="true">
-					<item icon="style/font_variant_normal" value="normal"/>
-					<item icon="style/font_variant_smallcaps" value="small-caps"/>
+					<option icon="style/font_variant_normal" value="normal"/>
+					<option icon="style/font_variant_smallcaps" value="small-caps"/>
 				</segmented>
-			</field>
-			<field label="{Stroke; da:Streg}">
+			</item>
+			<item label="{Stroke; da:Streg}">
 				<segmented name="textDecoration" allow-null="true">
-					<item icon="style/text_normal" value="none"/>
-					<item icon="style/text_decoration_underline" value="underline"/>
-					<item icon="style/text_decoration_linethrough" value="line-through"/>
-					<item icon="style/text_decoration_overline" value="overline"/>
+					<option icon="style/text_normal" value="none"/>
+					<option icon="style/text_decoration_underline" value="underline"/>
+					<option icon="style/text_decoration_linethrough" value="line-through"/>
+					<option icon="style/text_decoration_overline" value="overline"/>
 				</segmented>
-			</field>
+			</item>
 			'
 		);
 	}

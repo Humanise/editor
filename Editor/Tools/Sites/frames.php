@@ -8,7 +8,7 @@ require_once '../../Include/Private.php';
 $gui='
 <gui xmlns="uri:hui" title="Special pages">
 	<source url="data/ListFrames.php" name="listSource"/>
-	<controller source="frames.js"/>
+	<controller url="frames.js"/>
 	<source name="pageItems" url="../../Services/Model/Items.php?type=page"/>
 	<source name="fileItems" url="../../Services/Model/Items.php?type=file"/>
 	<source name="newsGroupItems" url="../../Services/Model/Items.php?type=newsgroup"/>
@@ -32,7 +32,7 @@ $gui='
 							<text-input key="title"/>
 						</field>
 						<field label="{Bottom text; da:Bund-tekst}:">
-							<text-input key="bottomText" multiline="true"/>
+							<text-input key="bottomText" breaks="true"/>
 						</field>
 						<field label="{Hierarchy; da:Hierarki}:">
 							<dropdown key="hierarchyId" source="hierarchyItems" placeholder="{Choose hierarchy; da:Vælg hierarki...}"/>

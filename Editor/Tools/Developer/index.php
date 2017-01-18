@@ -7,7 +7,7 @@ require_once '../../Include/Private.php';
 
 $gui='
 <gui xmlns="uri:hui" padding="10" title="Developer" state="settings">
-	<controller source="controller.js"/>
+	<controller url="controller.js"/>
 	<source name="testsSource" url="data/TestSelection.php"/>
 	<source name="graphSource" url="data/GraphData.php"/>
 	<source name="diagramSource" url="data/DiagramData.php">
@@ -99,5 +99,5 @@ $gui='
 		<bottom/>
 	</structure>
 </gui>';
-UI::render($gui);
+UI::renderFile('developer.ui.xml');
 ?>

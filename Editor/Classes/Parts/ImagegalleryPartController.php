@@ -95,32 +95,31 @@ class ImagegalleryPartController extends PartController
 
   function getToolbars() {
     return array(
-      'Billedgalleri' =>
-        '<script source="../../Parts/imagegallery/toolbar.js"/>
-        <field label="{Image group; da:Billedgruppe}">
+      'Billedgalleri' => '
+        <item label="{Image group; da:Billedgruppe}">
           <dropdown width="200" name="group">
-          '.GuiUtils::buildObjectItems('imagegroup').'
+          '.UI::buildOptions('imagegroup').'
           </dropdown>
-        </field>
-        <field label="{Height; da:Højde}">
+        </item>
+        <item label="{Height; da:Højde}">
           <number-input name="height" width="70"/>
-        </field>
-        <field label="{Width; da:Bredde}">
+        </item>
+        <item label="{Width; da:Bredde}">
           <number-input name="width" width="70"/>
-        </field>
+        </item>
         <divider/>
-        <field label="Variant">
+        <item label="Variant">
           <dropdown name="variant">
-            <item value="floating" title="{Floating; da:Flydende}"/>
-            <item value="changing" title="{Shifting; da:Skiftende}"/>
-            <item value="masonry" title="{Masonry; da:Murværk}"/>
+            <option value="floating" text="{Floating; da:Flydende}"/>
+            <option value="changing" text="{Shifting; da:Skiftende}"/>
+            <option value="masonry" text="{Masonry; da:Murværk}"/>
           </dropdown>
-        </field>
-        <field label="{Frame; da:Ramme}">
+        </item>
+        <item label="{Frame; da:Ramme}">
           <dropdown name="imageFrame">
             '.DesignService::getFrameOptions().'
           </dropdown>
-        </field>
+        </item>
         <grid>
           <row>
             <cell right="5"><checkbox name="showTitle"/><label>{Show title; da:Vis titel}</label></cell>

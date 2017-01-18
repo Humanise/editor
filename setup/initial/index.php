@@ -17,7 +17,7 @@ $canWrite = is_dir($basePath."Config/") && is_writable($basePath."Config/");
 
 $gui='
 <gui xmlns="uri:hui" padding="10">
-	<controller source="controller.js"/>
+	<controller url="controller.js"/>
 	<box width="500" top="30" padding="10" title="Initial setup">
 		<space left="10" right="10" top="5" bottom="10">
 		<text>

@@ -12,15 +12,15 @@ if (!isset($GLOBALS['basePath'])) {
 require_once($basePath.'Editor/Libraries/simpletest/unit_tester.php');
 
 class AbstractObjectTest extends UnitTestCase {
-	
+
 	private $type;
-	
+
 	function AbstractObjectTest($type) {
-        //parent::UnitTestCase();
+    //parent::UnitTestCase();
 		$this->type = $type;
 	}
-    
-    function testLoad() {
+
+  function testLoad() {
 		Log::debug('Testing load!');
 		if (!$this->type) {
 			Log::debug('No type...');
@@ -28,27 +28,27 @@ class AbstractObjectTest extends UnitTestCase {
 		}
 		$class = ucfirst($this->type);
 		$obj = new $class();
-        $this->assertNull($obj->load(0));
-    }
+    $this->assertNull($obj->load(0));
+  }
 
-    function testCreate() {
-		
-		$class = ucfirst($this->type);
-        $obj = new $class();
-		if (method_exists($this,'makeValid')) {
-			$this->makeValid($obj);
-		}
-		$this->assertFalse($obj->isPersistent());
-		$obj->save();
-		$this->assertTrue($obj->isPersistent());
-		$id = $obj->getId();
-        $this->assertNotNull($obj->load($id));
-		$obj->remove();
-		$loaded = $obj->load($id);
-        $this->assertNull($loaded);
-		if ($loaded) {
-			Log::debug($loaded);
-		}
+  function testCreate() {
+
+    $class = ucfirst($this->type);
+    $obj = new $class();
+    if (method_exists($this,'makeValid')) {
+      $this->makeValid($obj);
     }
+    $this->assertFalse($obj->isPersistent());
+    $obj->save();
+    $this->assertTrue($obj->isPersistent());
+    $id = $obj->getId();
+    $this->assertNotNull($obj->load($id));
+    $obj->remove();
+    $loaded = $obj->load($id);
+    $this->assertNull($loaded);
+    if ($loaded) {
+		  Log::debug($loaded);
+    }
+  }
 
 }

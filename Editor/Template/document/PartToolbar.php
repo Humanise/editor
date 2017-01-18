@@ -19,8 +19,8 @@ $part = PartService::getController($partType);
 
 $gui='
 <gui xmlns="uri:hui" title="Toolbar">
-	<controller source="js/PartToolbar.js"/>
-	<controller source="../../Parts/'.$partType.'/toolbar.js"/>
+	<controller url="js/PartToolbar.js"/>
+	<controller url="../../Parts/'.$partType.'/toolbar.js"/>
 	<script>
 	partToolbar.pageId='.InternalSession::getPageId().';
 	partToolbar.sectionId='.$sectionId.';
@@ -30,10 +30,10 @@ $gui='
 		if ($part!=null && is_array($part->getToolbars())) {
 			foreach ($part->getToolbars() as $title => $body) {
 				$gui.='<tab title="'.$title.'" background="light">
-				<toolbar fixed-height="true">
-					<icon icon="common/stop" title="{Cancel; da:Annuller}" click="partToolbar.cancel()"/>
-					<icon icon="common/ok" title="{Save; da:Gem}" click="partToolbar.save()"/>
-					<icon icon="common/delete" title="{Delete; da:Slet}" click="partToolbar.deletePart()">
+				<toolbar>
+					<icon icon="common/stop" text="{Cancel; da:Annuller}" click="partToolbar.cancel()"/>
+					<icon icon="common/ok" text="{Save; da:Gem}" click="partToolbar.save()"/>
+					<icon icon="common/delete" text="{Delete; da:Slet}" click="partToolbar.deletePart()">
 						<confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete; da:Ja, slet}" cancel="{Cancel; da:Annuller}"/>
 					</icon>
 					<divider/>'.$body.
@@ -43,39 +43,39 @@ $gui='
 		}
 		$gui.='
 		<tab title="{Positioning; da:Afstande}" background="light">
-			<toolbar fixed-height="true">
-				<icon icon="common/stop" title="{Cancel; da:Annuller}" click="partToolbar.cancel()"/>
-				<icon icon="common/ok" title="{Save; da:Gem}" click="partToolbar.save()"/>
-				<icon icon="common/delete" title="{Delete; da:Slet}" click="partToolbar.deletePart()">
+			<toolbar>
+				<icon icon="common/stop" text="{Cancel; da:Annuller}" click="partToolbar.cancel()"/>
+				<icon icon="common/ok" text="{Save; da:Gem}" click="partToolbar.save()"/>
+				<icon icon="common/delete" text="{Delete; da:Slet}" click="partToolbar.deletePart()">
 						<confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete; da:Ja, slet}" cancel="{Cancel; da:Annuller}"/>
 				</icon>
 				<divider/>
-				<field label="{Left; da:Venstre}">
+				<item label="{Left; da:Venstre}">
 					<style-length-input name="marginLeft" width="90"/>
-				</field>
-				<field label="{Right; da:Højre}">
+				</item>
+				<item label="{Right; da:Højre}">
 					<style-length-input name="marginRight" width="90"/>
-				</field>
-				<field label="{Top; da:Top}">
+				</item>
+				<item label="{Top; da:Top}">
 					<style-length-input name="marginTop" width="90"/>
-				</field>
-				<field label="{Bottom; da:Bund}">
+				</item>
+				<item label="{Bottom; da:Bund}">
 					<style-length-input name="marginBottom" width="90"/>
-				</field>
+				</item>
 				<divider/>
-				<field label="{Width; da:Bredde}">
+				<item label="{Width; da:Bredde}">
 					<style-length-input name="sectionWidth" width="90"/>
-				</field>
-				<field label="{Wrapping; da:Tekstomløb}">
+				</item>
+				<item label="{Wrapping; da:Tekstomløb}">
 					<segmented name="sectionFloat" allow-null="true">
-						<item icon="style/float_none" value=""/>
-						<item icon="style/float_left" value="left"/>
-						<item icon="style/float_right" value="right"/>
+						<option icon="style/float_none" value=""/>
+						<option icon="style/float_left" value="left"/>
+						<option icon="style/float_right" value="right"/>
 					</segmented>
-				</field>
-				<field label="{Class; da:Klasse}">
+				</item>
+				<item label="{Class; da:Klasse}">
 					<text-input name="sectionClass" width="90"/>
-				</field>
+				</item>
 			</toolbar>
 		</tab>
 	</tabs>

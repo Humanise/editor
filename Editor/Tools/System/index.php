@@ -7,9 +7,9 @@ require_once '../../Include/Private.php';
 
 $gui='
 <gui xmlns="uri:hui" padding="10" title="System" state="list">
-	<controller source="controller.js"/>
-	<controller source="designController.js"/>
-	<controller source="settingsController.js"/>
+	<controller url="controller.js"/>
+	<controller url="designController.js"/>
+	<controller url="settingsController.js"/>
 	<source name="allObjectsSource" url="../../Services/Model/ListObjects.php">
 		<parameter key="windowPage" value="@list.window.page"/>
 		<parameter key="sort" value="@list.sort.key"/>
@@ -350,7 +350,7 @@ $gui='
 					<text-input key="subject"/>
 				</field>
 				<field label="{Message; da:Besked}:">
-					<text-input key="body" multiline="true"/>
+					<text-input key="body" breaks="true"/>
 				</field>
 				<buttons>
 					<button name="testEmail" title="Test" highlighted="true"/>

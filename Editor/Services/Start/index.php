@@ -9,8 +9,8 @@ $user = User::load(InternalSession::getUserId());
 
 $gui='
 <gui xmlns="uri:hui" padding="10" title="Start">
-	<css url="style.css"/>
-	<controller name="controller" source="controller.js"/>
+	<style url="style.css"/>
+	<controller name="controller" url="controller.js"/>
 	<source name="taskSource" url="data/TaskList.php"/>
 	<source name="developerFeed" url="data/DeveloperFeed.php"/>
 	<source name="commitFeed" url="data/CommitFeed.php"/>
@@ -29,7 +29,7 @@ $gui='
 				<button mini="true" variant="light" text="{Settings ; da:Indstillinger}" name="userSettings"/>
 			</span>
 		</div>
-		<div style="position: absolute; top: 76px; bottom: 5px; left: 5px; right: 5px; overflow: hidden;">
+		<div class="root">
 			<tiles space="10">
 				<tile width="30" height="100" top="0" left="0" variant="light" name="taskTile">
 					<actions>
@@ -39,7 +39,7 @@ $gui='
 					<title>{Tasks ; da: Opgaver }</title>
 					<pages name="issuePages" height="full">
 						<page>
-							<overflow full="true" background="sand_grey">
+							<overflow height="full" background="sand_grey">
 							<list source="taskSource" name="taskList" variant="transparent" selectable="false">
 								<empty>
 									<space all="10">
@@ -54,7 +54,7 @@ $gui='
 							</overflow>
 						</page>
 						<page>
-							<overflow full="true" shadow-variant="white">
+							<overflow height="full" shadow-variant="white">
 								<list source="warningsList" selectable="false">
 								<empty>
 									<space all="10">
@@ -67,7 +67,7 @@ $gui='
 							</overflow>
 						</page>
 						<page>
-							<overflow full="true" shadow-variant="white">
+							<overflow height="full" shadow-variant="white">
 								<list source="errorsList" selectable="false">
 									<empty>
 										<space all="10">
@@ -86,7 +86,7 @@ $gui='
 						<icon icon="monochrome/expand" key="expand"/>
 					</actions>
 					<title>{Statistics; da:Statistik}</title>
-					<chart name="stats" source="chartSource" height="100%"/>
+					<chart name="stats" source="chartSource" height="full"/>
 				</tile>
 				<tile width="30" height="60" top="40" left="30" variant="light" name="developmentTile">
 					<actions>
@@ -97,21 +97,21 @@ $gui='
 					<title>{Development ; da: Udvikling }</title>
 					<pages name="developmentPages" height="full">
 						<page>
-							<overflow full="true" shadow-variant="white">
+							<overflow height="full" shadow-variant="white">
 								<list source="newsFeed" name="newsList" selectable="false" indent="10">
 									<error text="{It was not possible to list news; da:Det lykkedes ikke at hente nyheder}"/>
 								</list>
 							</overflow>
 						</page>
 						<page>
-							<overflow full="true" shadow-variant="white">
+							<overflow height="full" shadow-variant="white">
 								<list source="developerFeed" selectable="false" indent="10">
 									<error text="{It was not possible to list news; da:Det lykkedes ikke at hente nyheder}"/>
 								</list>
 							</overflow>
 						</page>
 						<page>
-							<overflow full="true" shadow-variant="white">
+							<overflow height="full" shadow-variant="white">
 								<list source="commitFeed" selectable="false" indent="10">
 									<error text="{It was not possible to list news; da:Det lykkedes ikke at hente nyheder}"/>
 								</list>
@@ -125,18 +125,18 @@ $gui='
 						<icon icon="monochrome/expand" key="expand"/>
 					</actions>
 					<title>Feedback</title>
-					<overflow full="true" shadow-variant="white">
+					<overflow height="full" shadow-variant="white">
 						<pages name="feedbackPages">
 							<page>
 								<formula padding="10" name="feedbackForm">
 									<fields labels="above">
 										<field label="{Write us with improvements and questions ; da: Skriv til os med ris, ros eller spørgsmål }">
-											<text-input multiline="true" key="message"/>
+											<text-input breaks="true" key="message"/>
 										</field>
-										<buttons>
-											<button text="Send" submit="true" name="sendFeedback"/>
-										</buttons>
 									</fields>
+									<buttons>
+										<button text="Send" submit="true" name="sendFeedback"/>
+									</buttons>
 								</formula>
 							</page>
 							<page>
@@ -176,17 +176,15 @@ $gui='
 			<fields>
 				<field label="{Language; da: Sprog}">
 					<dropdown key="language" value="'.InternalSession::getLanguage().'">
-						<item title="{Danish; da: Dansk}" value="da"/>
-						<item title="{English; da: Engelsk}" value="en"/>
+						<option text="{Danish; da: Dansk}" value="da"/>
+						<option text="{English; da: Engelsk}" value="en"/>
 					</dropdown>
-				</field>
-				<field label="{Password ; da: Kode}">
-					<button text="{Change password; da:Skift kodeord}" variant="light" mini="true" name="changePassword"/>
 				</field>
 			</fields>
 		</formula>
-		<buttons align="right">
-			<button variant="light" text="OK" small="true" name="saveSettings"/>
+		<buttons align="right" small="true">
+      <button text="{Change password; da:Skift kodeord}" variant="light" name="changePassword"/>
+			<button variant="light" text="OK" name="saveSettings" highlighted="true"/>
 		</buttons>
 	</boundpanel>
 

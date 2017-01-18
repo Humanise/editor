@@ -218,6 +218,10 @@ class PartController
     return $css;
   }
 
+  function getEditorUI($part, $context) {
+    return null;
+  }
+
   function getUI() {
     return null;
   }

@@ -9,9 +9,9 @@ $maxUploadSize = GuiUtils::bytesToString(FileSystemService::getMaxUploadSize());
 
 $gui='
 <gui xmlns="uri:hui" title="Billeder" padding="10" state="gallery">
-	<controller source="controller.js"/>
-	<controller source="groups.js"/>
-	<controller source="upload.js"/>
+	<controller url="controller.js"/>
+	<controller url="groups.js"/>
+	<controller url="upload.js"/>
 
 	<source name="subsetSource" url="data/Selection.php"/>
 	<source name="groupOptionsSource" url="../../Services/Model/Items.php?type=imagegroup"/>
@@ -33,29 +33,35 @@ $gui='
 		<parameter key="direction" value="@list.sort.direction"/>
 	</source>
 
+  <style>
+  #photo {
+    width: 150px; min-height: 50px; max-height: 300px; overflow: hidden; background: #fff no-repeat; font-size: 0; padding: 3px; border: 1px solid #ccc; border-color: #ddd #ccc #bbb; margin: 5px;
+  }
+  </style>
+
 	<structure>
 		<top>
 			<toolbar>
-				<icon icon="common/image" title="{Add image ; da:Tilføj billede}" overlay="upload" name="newFile"/>
-				<icon icon="common/folder" title="{New group; da:Ny gruppe}" name="newGroup" overlay="new"/>
+				<icon icon="common/image" text="{Add image ; da:Tilføj billede}" overlay="upload" name="newFile"/>
+				<icon icon="common/folder" text="{New group; da:Ny gruppe}" name="newGroup" overlay="new"/>
 				<divider/>
-				<icon icon="common/info" title="Info" name="info" disabled="true"/>
-				<icon icon="common/delete" title="{Delete; da:Slet}" name="delete" disabled="true">
+				<icon icon="common/info" text="Info" name="info" disabled="true"/>
+				<icon icon="common/delete" text="{Delete; da:Slet}" name="delete" disabled="true">
 					<confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete image; da:Ja, slet billedet}" cancel="{No; da:Nej}"/>
 				</icon>
-				<icon icon="file/generic" title="{Download; da:Hent}" overlay="download" name="download" disabled="true"/>
-				<icon icon="common/view" title="{View; da:Vis}" name="view" disabled="true"/>
+				<icon icon="file/generic" text="{Download; da:Hent}" overlay="download" name="download" disabled="true"/>
+				<icon icon="common/view" text="{View; da:Vis}" name="view" disabled="true"/>
 				<divider/>
-				<field label="{View; da:Visning}">
+				<item label="{View; da:Visning}">
 					<segmented value="gallery" name="viewSwitch">
-						<item value="list" icon="view/list"/>
-						<item value="gallery" icon="view/gallery"/>
+						<option value="list" icon="view/list"/>
+						<option value="gallery" icon="view/gallery"/>
 					</segmented>
-				</field>
+				</item>
 				<right>
-					<field label="{Search; da:Søgning}">
+					<item label="{Search; da:Søgning}">
 						<searchfield name="search" expanded-width="200"/>
-					</field>
+					</item>
 				</right>
 			</toolbar>
 		</top>
@@ -63,8 +69,8 @@ $gui='
 			<left>
 				<overflow>
 					<selection value="all" name="selector" top="5">
-						<items source="subsetSource" name="subsetSelection"/>
-						<items source="groupSource" name="groupSelection" title="{Groups; da:Grupper}"/>
+						<options source="subsetSource" name="subsetSelection"/>
+						<options source="groupSource" name="groupSelection" title="{Groups; da:Grupper}"/>
 					</selection>
 				</overflow>
 			</left>
@@ -82,29 +88,29 @@ $gui='
 			</center>
 		</middle>
 		<bottom>
-			<div style="float: right; margin: 1px 8px 0 0;">
+      <space top="1" right="8" align="right">
 				<slider width="200" name="sizeSlider" value="0.5"/>
-			</div>
+			</space>
 		</bottom>
 	</structure>
-	
+
 	<window title="{Group; da:Gruppe}" name="groupWindow" icon="common/folder" width="300" padding="5">
 		<formula name="groupFormula">
 			<fields labels="above">
 				<field label="{Title; da:Titel}">
 					<text-input key="title"/>
 				</field>
-				<buttons>
-					<button name="cancelGroup" title="{Cancel; da:Annuller}"/>
-					<button name="deleteGroup" title="{Delete; da:Slet}">
-						<confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete group; da:Ja, slet gruppen}" cancel="{No; da:Nej}"/>
-					</button>
-					<button name="saveGroup" title="{Save; da:Gem}" highlighted="true"/>
-				</buttons>
 			</fields>
+			<buttons>
+				<button name="cancelGroup" text="{Cancel; da:Annuller}"/>
+				<button name="deleteGroup" text="{Delete; da:Slet}">
+					<confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete group; da:Ja, slet gruppen}" cancel="{No; da:Nej}"/>
+				</button>
+				<button name="saveGroup" text="{Save; da:Gem}" highlighted="true"/>
+			</buttons>
 		</formula>
 	</window>
-	
+
 	<window title="{Addition of images; da:Tilføjelse af billeder}" name="uploadWindow" width="300">
 		<tabs small="true" centered="true">
 			<tab title="{Upload; da:Overførsel}" padding="10">
@@ -112,8 +118,8 @@ $gui='
 					<placeholder title="{Select images on your computer...; da:Vælg billeder på din computer...}" text="{The file can at most be '.$maxUploadSize.' large; da:Filen kan højest være '.$maxUploadSize.' stor}"/>
 				</upload>
 				<buttons align="center" top="10">
-					<button name="cancelUpload" title="{Close; da:Luk}"/>
-					<button name="upload" title="{Select images...; da:Vælg billeder...}" highlighted="true"/>
+					<button name="cancelUpload" text="{Close; da:Luk}"/>
+					<button name="upload" text="{Select images...; da:Vælg billeder...}" highlighted="true"/>
 				</buttons>
 			</tab>
 			<tab title="{Fetch from the net; da:Hent fra nettet}" padding="10">
@@ -125,18 +131,18 @@ $gui='
 					</fields>
 				</formula>
 				<buttons align="center">
-					<button name="cancelFetch" title="{Cancel; da:Annuller}"/>
-					<button name="fetchImage" title="{Fetch; da:Hent}" highlighted="true"/>
+					<button name="cancelFetch" text="{Cancel; da:Annuller}"/>
+					<button name="fetchImage" text="{Fetch; da:Hent}" highlighted="true"/>
 				</buttons>
 			</tab>
 		</tabs>
 	</window>
-	
+
 	<window title="{Image; da:Billede}" name="imageWindow" icon="common/image" width="450" padding="5">
 		<formula name="imageFormula">
 			<columns flexible="true">
 				<column width="180px">
-					<div style="width: 150px; min-height: 50px; max-height: 300px; overflow: hidden; background: #fff no-repeat; font-size: 0; padding: 3px; border: 1px solid #ccc; border-color: #ddd #ccc #bbb; margin: 5px;" id="photo"></div>
+					<div id="photo"></div>
 				</column>
 				<column>
 					<fields labels="above">
@@ -145,18 +151,18 @@ $gui='
 						</field>
 						<field label="{Groups; da:Grupper}:">
 							<checkboxes name="imageGroups" key="groups" max-height="200">
-								<items source="groupOptionsSource"/>
+								<options source="groupOptionsSource"/>
 							</checkboxes>
 						</field>
 					</fields>
 				</column>
 			</columns>
 			<buttons>
-				<button name="cancelImage" title="{Cancel; da:Annuller}"/>
-				<button name="deleteImage" title="{Delete; da:Slet}">
+				<button name="cancelImage" text="{Cancel; da:Annuller}"/>
+				<button name="deleteImage" text="{Delete; da:Slet}">
 					<confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete image; da:Ja, slet billedet}" cancel="{Cancel; da:Annuller}"/>
 				</button>
-				<button name="saveImage" title="{Save; da:Gem}" highlighted="true" submit="true"/>
+				<button name="saveImage" text="{Save; da:Gem}" highlighted="true" submit="true"/>
 			</buttons>
 		</formula>
 	</window>

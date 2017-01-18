@@ -8,7 +8,7 @@ require_once '../../Include/Private.php';
 $gui='
 <gui xmlns="uri:hui" title="Special pages">
 	<source url="data/ListSpecialPages.php" name="listSource"/>
-	<controller source="specialpages.js"/>
+	<controller url="specialpages.js"/>
 	<source name="pageItems" url="../../Services/Model/Items.php?type=page"/>
 	<toolbar>
 		<icon icon="common/page" overlay="new" text="Tilføj speciel side" name="newSpecialPage"/>

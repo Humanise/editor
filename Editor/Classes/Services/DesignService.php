@@ -554,11 +554,11 @@ class DesignService {
 
   static function getFrameOptions() {
     return '
-      <item title="{None; da:Ingen}" value=""/>
-      <item title="{Light; da:Let}" value="light"/>
-      <item title="Elegant" value="elegant"/>
-      <item title="{Shaddow; da:Skygge}" value="shadow_slant"/>
-      <item title="Polaroid" value="polaroid"/>';
+      <option text="{None; da:Ingen}" value=""/>
+      <option text="{Light; da:Let}" value="light"/>
+      <option text="Elegant" value="elegant"/>
+      <option text="{Shaddow; da:Skygge}" value="shadow_slant"/>
+      <option text="Polaroid" value="polaroid"/>';
   }
 
   static function validate($name) {

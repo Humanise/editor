@@ -122,30 +122,28 @@ class CustomPartController extends PartController
 
 	function getToolbars() {
 		return array(
-			GuiUtils::getTranslated(['Custom','da'=>'Speciel']) =>
-			'<script source="../../Parts/custom/toolbar.js"/>
-			<field label="{Workflow; da:Arbejdsgang}">
-				<dropdown name="workflow" width="200">'.GuiUtils::buildObjectItems('workflow').'</dropdown>
-			</field>
-			<field label="{View; da:Visning}">
-				<dropdown name="view" width="200">'.GuiUtils::buildObjectItems('view').'</dropdown>
-			</field>
+			GuiUtils::getTranslated(['Custom','da'=>'Speciel']) => '
+			<item label="{Workflow; da:Arbejdsgang}">
+				<dropdown name="workflow" width="200">'.UI::buildOptions('workflow').'</dropdown>
+			</item>
+			<item label="{View; da:Visning}">
+				<dropdown name="view" width="200">'.UI::buildOptions('view').'</dropdown>
+			</item>
 		'
 		);
 	}
 
 
 
-	function editorGui($part,$context) {
-		$gui='
+	function getEditorUI($part,$context) {
+		return '
 		<window title="{Add file; da:Tilføj fil}" name="customPartWindow" width="300" padding="10">
 			<buttons align="center" top="10">
-				<button name="cancelUpload" title="{Close; da:Luk}"/>
-				<button name="upload" title="{Select file...; da:Vælg fil...}" highlighted="true"/>
+				<button name="cancelUpload" text="{Close; da:Luk}"/>
+				<button name="upload" text="{Select file...; da:Vælg fil...}" highlighted="true"/>
 			</buttons>
 		</window>
 		';
-		return UI::renderFragment($gui);
 	}
 }
 ?>

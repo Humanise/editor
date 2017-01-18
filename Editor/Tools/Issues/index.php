@@ -7,8 +7,8 @@ require_once '../../Include/Private.php';
 
 $gui='
 <gui xmlns="uri:hui" padding="10" title="Issues">
-	<controller source="controller.js"/>
-	<controller source="status.js"/>
+	<controller url="controller.js"/>
+	<controller url="status.js"/>
 	
 	<source name="listSource" url="data/ListIssues.php">
 		<parameter key="windowPage" value="@list.window.page"/>
@@ -102,7 +102,7 @@ $gui='
 					<text-input key="title"/>
 				</field>
 				<field label="{Text; da:Tekst}">
-					<text-input key="note" multiline="true"/>
+					<text-input key="note" breaks="true"/>
 				</field>
 				<field label="Type">
 					<dropdown key="kind">
