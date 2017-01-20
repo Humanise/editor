@@ -19,7 +19,7 @@ $writer->startList();
 $writer->sort($sort,$direction);
 $writer->window(array( 'total' => $result->getTotal(), 'size' => $windowSize, 'page' => $windowPage ));
 $writer->startHeaders();
-$writer->header(array('title'=>'Værdi'));
+$writer->header(array('title'=>'VÃ¦rdi'));
 $writer->header(array('title'=>'Dato'));
 $writer->header(array('title'=>'Opdateret'));
 $writer->endHeaders();

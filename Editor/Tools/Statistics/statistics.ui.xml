@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gui xmlns="uri:hui" padding="10" title="Statistics">
+
+	<controller url="controller.js"/>
+
+	<source name="listSource" url="data/List.php">
+		<parameter key="windowPage" value="@list.window.page"/>
+		<parameter key="kind" value="@selector.value"/>
+		<parameter key="time" value="@time.value"/>
+	</source>
+	<source name="chartSource" url="data/Chart.php">
+		<parameter key="kind" value="@selector.value"/>
+		<parameter key="time" value="@time.value"/>
+		<parameter key="resolution" value="@resolution.value"/>
+	</source>
+
+	<structure>
+		<top>
+			<!--
+			<toolbar>
+				<field label="Startdato">
+					<datetime-input name="startDate"/>
+				</field>
+				<field label="Slutdato">
+					<datetime-input name="endDate"/>
+				</field>
+			</toolbar>
+			-->
+		</top>
+		<middle>
+			<left>
+				<overflow>
+				<selection name="selector" value="visits" top="5">
+					<option icon="common/page" text="{Visits; da:Besøgende}" value="visits"/>
+					<option icon="common/page" text="{Pages; da:Sider}" value="pages"/>
+					<option icon="common/internet" text="{Paths; da:Stier}" value="paths"/>
+					<option icon="common/time" text="{Live; da:Live}" value="live"/>
+					<title>Teknik</title>
+					<option icon="common/settings" text="{Application IDs; da:Program-IDer}" value="agents"/>
+					<option icon="common/settings" text="{Applications; da:Programmer}" value="browsers"/>
+					<option icon="common/settings" text="{Application versions; da:Programversioner}" value="browserVersions"/>
+					<option icon="common/settings" text="{Unknown; da:Ukendte}" value="unknownAgents"/>
+				</selection>
+				<selection name="time" value="always">
+					<title>{Time; da:Tid}</title>
+					<option icon="common/time" text="{Always; da:Altid}" value="always"/>
+					<option icon="common/time" text="{Latest year; da:Seneste år}" value="year"/>
+					<option icon="common/time" text="{Latest month; da:Seneste måned}" value="month"/>
+					<option icon="common/time" text="{Latest week; da:Seneste uge}" value="week"/>
+				</selection>
+				</overflow>
+			</left>
+			<center>
+				<bar variant="layout">
+					<segmented variant="inset" name="resolution" value="daily">
+						<option text="Yearly" value="yearly"/>
+						<option text="Monthly" value="monthly"/>
+						<!--
+						<option text="Weekly" value="weekly"/>
+						-->
+						<option text="Daily" value="daily"/>
+						<option text="Hourly" value="hourly"/>
+					</segmented>
+				</bar>
+				<split>
+					<row height="50%">
+						<chart name="stats" source="chartSource" height="full"/>
+					</row>
+					<row>
+					<overflow>
+						<list name="list" source="listSource">
+							<error text="{Unable to retrieve statistics, please check that the login is correct; da:Det lykkedes ikke at hente statistikken, kontrolér venligst at login\'et er korrekt}"/>
+						</list>
+					</overflow>
+					</row>
+				</split>
+			</center>
+		</middle>
+		<bottom/>
+	</structure>
+</gui>

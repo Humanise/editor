@@ -1,6 +1,6 @@
 var controller = {
 	id : null,
-	
+
 	$ready : function() {
 		hui.ui.request({
 			url : 'data/Load.php',

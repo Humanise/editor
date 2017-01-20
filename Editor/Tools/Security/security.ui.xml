@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gui xmlns="uri:hui" title="{Security; da:Sikkerhed}" padding="10" state="list">
+
+  <controller url="controller.js"/>
+
+  <source name="listSource" url="data/ListUsers.php">
+    <parameter key="windowPage" value="@list.window.page"/>
+    <parameter key="sort" value="@list.sort.key"/>
+    <parameter key="direction" value="@list.sort.direction"/>
+    <parameter key="text" value="@search.value"/>
+    <parameter key="kind" value="@selector.kind"/>
+  </source>
+
+  <source name="sidebarSource" url="data/Sidebar.php"/>
+  <source name="zoneUsersSource" url="data/ListZoneUsers.php">
+    <parameter key="zoneId" value="@selector.value"/>
+  </source>
+  <source name="zonePagesSource" url="data/ListZonePages.php">
+    <parameter key="zoneId" value="@selector.value"/>
+  </source>
+  <source name="pageItems" url="../../Services/Model/Items.php?type=page&amp;includeEmpty=true"/>
+
+  <structure>
+    <top>
+      <toolbar>
+        <icon icon="common/user" text="{New user; da:Ny bruger}" overlay="new" name="newUser"/>
+        <icon icon="common/folder" text="{New zone; da:Ny zone}" overlay="new" name="newZone"/>
+        <divider/>
+        <icon icon="common/delete" text="{Delete; da:Slet}" disabled="true" name="deleteItem">
+          <confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete; da:Ja, slet}" cancel="{Cancel; da:Annuller}"/>
+        </icon>
+        <icon icon="common/edit" text="{Edit; da:Rediger}" disabled="true" name="editItem"/>
+        <divider/>
+        <icon icon="common/page" overlay="new" text="{Add page; da:Tilføj side}" name="addPage"/>
+        <icon icon="common/page" overlay="new" text="{Add user; da:Tilføj bruger}" name="addUser"/>
+        <right>
+          <item label="{Search; da:Søgning}">
+            <searchfield name="search" expanded-width="200"/>
+          </item>
+        </right>
+      </toolbar>
+    </top>
+    <middle>
+      <left>
+        <overflow>
+          <selection value="users" name="selector" top="5">
+            <options source="sidebarSource"/>
+          </selection>
+        </overflow>
+      </left>
+      <center>
+        <pages height="full" name="pages">
+          <page key="users">
+            <overflow>
+              <list name="list" source="listSource" state="list"/>
+            </overflow>
+          </page>
+          <page key="zone">
+            <split>
+              <row height="50%">
+                <bar variant="layout"><text name="zoneTitle"/></bar>
+                <overflow>
+                  <list name="zoneUsers" source="zoneUsersSource" selectable="false"/>
+                </overflow>
+              </row>
+              <row>
+                <overflow>
+                  <list name="zonePages" source="zonePagesSource" selectable="false"/>
+                </overflow>
+              </row>
+            </split>
+          </page>
+        </pages>
+      </center>
+    </middle>
+    <bottom/>
+  </structure>
+
+  <finder name="pageFinder" title="{Select page; da:Vælg side}"
+    url="../../Services/Finder/Pages.php"
+  />
+
+  <finder name="userFinder" title="{Select user; da:Vælg bruger}"
+    url="../../Services/Finder/Objects.php?type=user"
+  />
+
+  <window name="userWindow" width="300" title="{User; da:Bruger}" padding="5">
+    <formula name="userFormula">
+      <fields>
+        <field label="{Title; da:Titel}:">
+          <text-input key="title"/>
+        </field>
+        <field label="{Username; da:Brugernavn}:">
+          <text-input key="username"/>
+        </field>
+        <field label="{Password; da:Kodeord}:">
+          <text-input key="password" secret="true"/>
+        </field>
+        <field label="{Language; da:Sprog}:">
+          <dropdown key="language">
+            <option text="{Danish; da: Dansk}" value="da"/>
+            <option text="{English; da: Engelsk}" value="en"/>
+          </dropdown>
+        </field>
+        <field label="{E-post; da:E-mail}:">
+          <text-input key="email"/>
+        </field>
+        <field label="{Note; da:Notat}:">
+          <text-input key="note" breaks="true"/>
+        </field>
+        <field label="{Internal access; da:Intern adgang}:">
+          <checkbox key="internal"/>
+        </field>
+        <field label="{External access; da:Ekstern adgang}:">
+          <checkbox key="external"/>
+        </field>
+        <field label="Administrator:">
+          <checkbox key="administrator"/>
+        </field>
+      </fields>
+      <buttons>
+        <button name="cancelUser" text="{Cancel; da:Annuller}"/>
+        <button name="deleteUser" text="{Delete; da:Slet}">
+          <confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete user; da:Ja, slet brugeren}" cancel="{No; da:Nej}"/>
+        </button>
+        <button name="saveUser" text="{Save; da:Gem}" highlighted="true"/>
+      </buttons>
+    </formula>
+  </window>
+
+  <window name="zoneWindow" width="300" title="{Zone; da:Zone}" padding="5">
+    <formula name="zoneFormula">
+      <fields>
+        <field label="{Title; da:Titel}:">
+          <text-input key="title"/>
+        </field>
+        <field label="{Authentication page; da:Login-side}:">
+          <dropdown key="authenticationPageId" source="pageItems"/>
+        </field>
+      </fields>
+      <buttons>
+        <button name="cancelZone" text="{Cancel; da:Annuller}"/>
+        <button name="deleteZone" text="{Delete; da:Slet}">
+          <confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete zone; da:Ja, slet zonen}" cancel="{No; da:Nej}"/>
+        </button>
+        <button name="saveZone" text="{Save; da:Gem}" highlighted="true" submit="true"/>
+      </buttons>
+    </formula>
+  </window>
+
+</gui>

@@ -37,8 +37,8 @@ function listMeters($windowSize, $windowPage, $text, $sort, $direction) {
 	$writer->header(array('title'=>'Nummer','width'=>20,'key'=>'number','sortable'=>'true'));
 	$writer->header(array('title'=>'Adresse'));
 	$writer->header(array('title'=>'Kontakt'));
-	$writer->header(array('title'=>'Seneste værdi'));
-	$writer->header(array('title'=>'Aflæsningsdato'));
+	$writer->header(array('title'=>'Seneste vÃ¦rdi'));
+	$writer->header(array('title'=>'AflÃ¦sningsdato'));
 	$writer->endHeaders();
 
 	foreach ($result->getList() as $object) {
@@ -74,7 +74,7 @@ function listMeters($windowSize, $windowPage, $text, $sort, $direction) {
 		}
 		$writer->endRow();
 	}
-	
+
 	$writer->endList();
 }
 
@@ -84,8 +84,8 @@ function listUsage($windowSize, $windowPage, $text, $filterKind, $year=null) {
 		Waterusage::$VALIDATED => 'common/success',
 		Waterusage::$REJECTED => 'common/stop'
 	);
-	
-	
+
+
 	$query = Query::after('waterusage')->orderBy('date')->withWindowPage($windowPage)->withWindowSize($windowSize)->withText($text);
 	if ($filterKind=='year') {
 		$from = Dates::getFirstInstanceOfYear($year);
@@ -103,9 +103,9 @@ function listUsage($windowSize, $windowPage, $text, $filterKind, $year=null) {
 	$writer->sort($sort,$direction);
 	$writer->window(array( 'total' => $result->getTotal(), 'size' => $windowSize, 'page' => $windowPage ));
 	$writer->startHeaders();
-	$writer->header(array('title'=>'Målernummer','width'=>30));
-	$writer->header(array('title'=>'Værdi','width'=>30));
-	$writer->header(array('title'=>'Aflæsningsdato'));
+	$writer->header(array('title'=>'MÃ¥lernummer','width'=>30));
+	$writer->header(array('title'=>'VÃ¦rdi','width'=>30));
+	$writer->header(array('title'=>'AflÃ¦sningsdato'));
 	$writer->header(array('title'=>'Opdateret'));
 	$writer->header(array('title'=>'Status'));
 	$writer->header(array('title'=>'Kilde'));
@@ -115,7 +115,7 @@ function listUsage($windowSize, $windowPage, $text, $filterKind, $year=null) {
 		$meter = Watermeter::load($object->getWatermeterId());
 		$writer->startRow(array( 'kind'=>'waterusage', 'id'=>$object->getId(), 'icon'=>$object->getIcon(), 'title'=>$object->getTitle() ));
 		if ($meter) {
-			$writer->startCell(array( 'icon'=>$meter->getIcon() ))->text( $meter->getNumber() )->			
+			$writer->startCell(array( 'icon'=>$meter->getIcon() ))->text( $meter->getNumber() )->
 				startIcons()->
 					icon(array('icon'=>'monochrome/info','revealing'=>true,'action'=>true,'data'=>array('action'=>'meterInfo','id'=>$meter->getId())))->
 				endIcons()->
@@ -135,7 +135,7 @@ function listUsage($windowSize, $windowPage, $text, $filterKind, $year=null) {
 			startIcons()->
 				icon(array('icon'=>WaterusageService::getStatusIcon($object->getStatus()),'action'=>true,'data'=>array('action'=>'usageStatus','id'=>$object->getId())))->
 			endIcons()->
-		
+
 		endCell()->
 		startCell(array('dimmed'=>true))->text(WaterusageService::getSourceText($object->getSource()))->endCell()->
 		endRow();

@@ -33,9 +33,11 @@ class TestUIValidation extends UnitTestCase {
       }
       $part->remove();
       $toolbars = $controller->getToolbars();
-      foreach ($toolbars as $title => $body) {
-        $gui = '<?xml version="1.0" encoding="UTF-8"?><gui xmlns="uri:hui"><toolbar>' . $body . '</toolbar></gui>';
-        $this->validate($gui, $ctrlName . '#toolbar');
+      if ($toolbars) {
+        foreach ($toolbars as $title => $body) {
+          $gui = '<?xml version="1.0" encoding="UTF-8"?><gui xmlns="uri:hui"><toolbar>' . $body . '</toolbar></gui>';
+          $this->validate($gui, $ctrlName . '#toolbar');
+        }
       }
     }
   }
@@ -72,7 +74,7 @@ class TestUIValidation extends UnitTestCase {
     $doc = new DOMDocument();
     $doc->load($file);
 
-    if (!in_array($doc->documentElement->nodeName, ['gui','subgui'])) {
+    if (!$doc->documentElement || !in_array($doc->documentElement->nodeName, ['gui','subgui'])) {
       return;
     }
     $xsd = FileSystemService::getFullPath('hui/xslt/schema.xsd');

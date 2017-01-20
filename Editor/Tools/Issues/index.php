@@ -9,7 +9,7 @@ $gui='
 <gui xmlns="uri:hui" padding="10" title="Issues">
 	<controller url="controller.js"/>
 	<controller url="status.js"/>
-	
+
 	<source name="listSource" url="data/ListIssues.php">
 		<parameter key="windowPage" value="@list.window.page"/>
 		<parameter key="type" value="@selector.value"/>
@@ -17,34 +17,34 @@ $gui='
 		<parameter key="status" value="@statusSelector.value"/>
 		<parameter key="text" value="@search.value"/>
 	</source>
-	
+
 	<source name="statusListSource" url="data/ListStates.php"/>
-	
+
 	<source name="sidebarSource" url="data/Sidebar.php"/>
 	<source name="kindSelectorSource" url="data/SidebarKinds.php"/>
 	<source name="statusSelectorSource" url="data/SidebarStates.php"/>
 	<source name="statusSource" url="data/StatusItems.php"/>
-	
+
 	<structure>
 		<top>
 			<toolbar>
-				<icon icon="common/note" overlay="new" title="Ny sag" name="addIssue"/>
+				<icon icon="common/note" overlay="new" text="Ny sag" name="addIssue"/>
 				<divider/>
-				<icon icon="common/info" title="Info" name="info" disabled="true"/>
-				<icon icon="common/delete" title="{Delete; da:Slet}" name="delete" disabled="true">
+				<icon icon="common/info" text="Info" name="info" disabled="true"/>
+				<icon icon="common/delete" text="{Delete; da:Slet}" name="delete" disabled="true">
 					<confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete issue; da:Ja, slet sagen}" cancel="{No; da:Nej}"/>
 				</icon>
-				<field label="{Change type; da:Skift type}">
+				<item label="{Change type; da:Skift type}">
 					<dropdown name="changeKind" placeholder="{Change type...;da:Skift type...}">
-					'.GuiUtils::buildTranslatedItems(IssueService::getKinds()).'
+					'.UI::buildTranslatedOptions(IssueService::getKinds()).'
 					</dropdown>
-				</field>
+				</item>
 				<right>
-					<field label="{Search; da:Søgning}">
+					<item label="{Search; da:Søgning}">
 						<searchfield expanded-width="200" name="search"/>
-					</field>
+					</item>
 					<divider/>
-					<icon icon="common/settings" title="{Settings; da:Indstillinger}" name="settings" click="pages.next()"/>
+					<icon icon="common/settings" text="{Settings; da:Indstillinger}" name="settings" click="pages.next()"/>
 				</right>
 			</toolbar>
 		</top>
@@ -52,13 +52,13 @@ $gui='
 			<left>
 				<overflow>
 				<selection value="all" name="selector" top="5">
-					<items source="sidebarSource"/>
+					<options source="sidebarSource"/>
 				</selection>
 				<selection value="any" name="statusSelector" top="5">
-					<items source="statusSelectorSource"/>
+					<options source="statusSelectorSource"/>
 				</selection>
 				<selection value="any" name="kindSelector" top="5">
-					<items source="kindSelectorSource"/>
+					<options source="kindSelectorSource"/>
 				</selection>
 				</overflow>
 			</left>
@@ -72,20 +72,8 @@ $gui='
 					<page key="settings" background="sand_grey">
 						<box title="{Settings; da:Indstillinger}" width="400" top="20">
 							<toolbar>
-								<icon icon="common/object" overlay="new" title="{New status; da:Ny status}" name="newStatus"/>
+								<icon icon="common/object" overlay="new" text="{New status; da:Ny status}" name="newStatus"/>
 							</toolbar>
-							<!--
-							<formula name="settingsFormula" padding="10">
-								<fields labels="above">
-									<field label="{E-mail; da:E-post}">
-										<text-input key="email"/>
-									</field>
-									<buttons>
-										<button name="saveSettings" title="{Save; da:Gem}" highlighted="true" submit="true"/>
-									</buttons>
-								</fields>
-							</formula>
-							-->
 							<list name="statusList" source="statusListSource" variant="light"/>
 						</box>
 					</page>
@@ -106,20 +94,20 @@ $gui='
 				</field>
 				<field label="Type">
 					<dropdown key="kind">
-						'.GuiUtils::buildTranslatedItems(IssueService::getKinds()).'
+						'.UI::buildTranslatedOptions(IssueService::getKinds()).'
 					</dropdown>
 				</field>
 				<field label="Status">
 					<dropdown key="statusId" source="statusSource"/>
 				</field>
-				<buttons>
-					<button name="cancelIssue" title="{Cancel; da:Annuller}"/>
-					<button name="deleteIssue" title="{Delete; da:Slet}">
-						<confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete issue; da:Ja, slet sagen}" cancel="{No; da:Nej}"/>
-					</button>
-					<button name="saveIssue" title="{Save; da:Gem}" highlighted="true" submit="true"/>
-				</buttons>
 			</fields>
+			<buttons>
+				<button name="cancelIssue" text="{Cancel; da:Annuller}"/>
+				<button name="deleteIssue" text="{Delete; da:Slet}">
+					<confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete issue; da:Ja, slet sagen}" cancel="{No; da:Nej}"/>
+				</button>
+				<button name="saveIssue" text="{Save; da:Gem}" highlighted="true" submit="true"/>
+			</buttons>
 		</formula>
 	</window>
 
@@ -129,17 +117,17 @@ $gui='
 				<field label="{Title; da:Titel}">
 					<text-input key="title"/>
 				</field>
-				<buttons>
-					<button name="cancelStatus" title="{Cancel; da:Annuller}"/>
-					<button name="deleteStatus" title="{Delete; da:Slet}">
-						<confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete; da:Ja, slet}" cancel="{No; da:Nej}"/>
-					</button>
-					<button name="saveStatus" title="{Save; da:Gem}" highlighted="true" submit="true"/>
-				</buttons>
 			</fields>
+			<buttons>
+				<button name="cancelStatus" text="{Cancel; da:Annuller}"/>
+				<button name="deleteStatus" text="{Delete; da:Slet}">
+					<confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete; da:Ja, slet}" cancel="{No; da:Nej}"/>
+				</button>
+				<button name="saveStatus" text="{Save; da:Gem}" highlighted="true" submit="true"/>
+			</buttons>
 		</formula>
 	</window>
-	
+
 </gui>';
 
 UI::render($gui);

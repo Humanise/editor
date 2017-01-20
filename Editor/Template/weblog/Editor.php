@@ -19,7 +19,7 @@ $gui='
 				</field>
 				<field label="Skabelon til ny side:">
 					<dropdown key="blueprint">
-						<item title="Ingen skabelon" value="0"/>
+						<option text="Ingen skabelon" value="0"/>
 						'.UI::buildOptions('pageblueprint').'
 					</dropdown>
 				</field>
@@ -30,7 +30,7 @@ $gui='
 				</field>
 			</fields>
 			<buttons>
-				<button title="Opdater" name="save" highlighted="true" disabled="true"/>
+				<button text="Opdater" name="save" highlighted="true" disabled="true"/>
 			</buttons>
 		</formula>
 	</box>

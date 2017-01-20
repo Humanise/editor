@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gui xmlns="uri:hui" padding="10" title="System" state="list">
+  <controller url="controller.js"/>
+  <controller url="designController.js"/>
+  <controller url="settingsController.js"/>
+  <source name="allObjectsSource" url="../../Services/Model/ListObjects.php">
+    <parameter key="windowPage" value="@list.window.page"/>
+    <parameter key="sort" value="@list.sort.key"/>
+    <parameter key="direction" value="@list.sort.direction"/>
+    <parameter key="query" value="@searchField.value"/>
+  </source>
+  <source name="inspectionSource" url="data/InspectionList.php">
+    <parameter key="status" value="@inspectionStatus.value"/>
+    <parameter key="category" value="@inspectionCategory.value"/>
+  </source>
+  <source name="logSource" url="data/ListLog.php">
+    <parameter key="windowPage" value="@list.window.page"/>
+    <parameter key="sort" value="@list.sort.key"/>
+    <parameter key="direction" value="@list.sort.direction"/>
+    <parameter key="text" value="@searchField.value"/>
+    <parameter key="showIpSession" value="@logIpSession.value"/>
+    <parameter key="category" value="@logCategory.value"/>
+    <parameter key="event" value="@logEvent.value"/>
+  </source>
+  <source name="cachesSource" url="data/CacheList.php"/>
+  <source name="logCategoriesSource" url="data/LogCategoryItems.php"/>
+  <source name="logEventsSource" url="data/LogEventItems.php"/>
+
+  <structure>
+    <top>
+      <toolbar>
+        <icon icon="common/user" text="{New user; da:Ny bruger}" name="newUser" overlay="new"/>
+        <icon icon="common/folder" text="{New weblog group; da:Ny weblog gruppe}" name="newWeblogGroup" overlay="new"/>
+        <icon icon="common/internet" text="{New path; da:Ny sti}" name="newPath" overlay="new"/>
+        <icon icon="common/color" text="{New design; da:Nyt design}" name="newDesign" overlay="new"/>
+        <right>
+          <item label="{Search; da:Søgning}">
+            <searchfield name="searchField" expanded-width="200"/>
+          </item>
+        </right>
+      </toolbar>
+    </top>
+    <middle>
+      <left>
+        <overflow>
+          <selection value="object" name="selector" top="5">
+            <option icon="common/object" text="{All objects; da:Alle objekter}" value="object"/>
+            <option icon="common/user" text="{Users; da:Brugere}" value="user"/>
+            <option icon="file/generic" text="Log" value="log"/>
+            <option icon="common/folder" text="{Weblog groups; da:Weblog grupper}" value="webloggroup"/>
+            <option icon="common/internet" text="{Paths; da:Stier}" value="path"/>
+            <option icon="common/color" text="Designs" value="design"/>
+            <option icon="common/page" text="{Templates; da:Skabeloner}" value="templates"/>
+            <option icon="common/tools" text="{Tools; da:Værktøjer}" value="tools"/>
+            <title>Database</title>
+            <option icon="common/folder" text="Status" value="databaseInfo"/>
+            <option icon="common/folder" text="{Tables; da:Tabeller}" value="databaseTables"/>
+            <title>Indstillinger</title>
+            <option icon="common/settings" text="{Settings; da:Indstillinger}" value="settings"/>
+            <option icon="common/time" text="Cache" value="caches"/>
+            <option icon="common/warning" text="{Problems; da:Problemer}" value="inspection"/>
+          </selection>
+        </overflow>
+      </left>
+      <center>
+        <overflow>
+          <bar state="inspection" variant="layout">
+            <segmented value="all" name="inspectionCategory">
+              <option text="{All; da:Alle}" value="all"/>
+              <option text="{Environment; da:Omgivelser}" value="environment"/>
+              <option text="System" value="system"/>
+              <option text="{Content; da:Indhold}" value="content"/>
+              <option text="Model" value="model"/>
+            </segmented>
+            <segmented value="all" name="inspectionStatus">
+              <option text="{All; da:Alle}" value="all"/>
+              <option text="{Warnings; da:Advarsler}" value="warning"/>
+              <option text="OK" value="ok"/>
+              <option text="{Errors; da:Fejl}" value="error"/>
+            </segmented>
+            <right>
+              <button text="{Genindlæs; da:Refresh}" click="inspectionList.refresh()" small="true"/>
+            </right>
+          </bar>
+          <bar name="logBar" variant="layout" visible="false">
+            <dropdown value="all" name="logCategory" source="logCategoriesSource"/>
+            <dropdown value="all" name="logEvent" source="logEventsSource"/>
+            <checkbox name="logIpSession" text="{Show IP + session; da:Vis IP + session}"/>
+          </bar>
+          <list name="list" source="allObjectsSource" state="list"/>
+          <list name="inspectionList" source="inspectionSource" state="inspection"/>
+          <fragment state="caches" height="full" background="linen">
+            <box width="500" top="30" title="Caches">
+              <toolbar>
+                <icon icon="common/refresh" click="cachesList.refresh()" text="{Refresh; da:Genopfrisk}"/>
+              </toolbar>
+              <list name="cachesList" source="cachesSource" selectable="false"/>
+            </box>
+          </fragment>
+          <fragment state="settings" height="full" background="vichy">
+            <box width="600" top="30" variant="rounded">
+              <tabs small="true" centered="true">
+                <tab title="{User interface; da:Brugergrænseflade}">
+                  <space all="10" bottom="5">
+                    <formula name="uiFormula">
+                      <fields>
+                        <field label="{Modern rich text editor; da:Moderne rig tekst editor}:">
+                          <checkbox key="experimentalRichText"/>
+                        </field>
+                        <field label="{Delt nøgle; da:Shared secret}">
+                          <text-input key="sharedSecret"/>
+                        </field>
+                      </fields>
+                      <buttons>
+                        <button text="{Update; da:Opdater}" name="saveUI" highlighted="true"/>
+                      </buttons>
+                    </formula>
+                  </space>
+                </tab>
+                <tab title="{E-post; da:E-mail}">
+                  <space all="10" bottom="5">
+                    <formula name="emailFormula">
+                      <fields>
+                        <field label="{Active; da:Aktiv}:">
+                          <checkbox key="enabled"/>
+                        </field>
+                        <field label="Server:">
+                          <text-input key="server"/>
+                        </field>
+                        <field label="Port:">
+                          <text-input key="port"/>
+                        </field>
+                        <field label="{Username; da:Brugernavn}:">
+                          <text-input key="username"/>
+                        </field>
+                        <field label="{Password; da:Kodeord}:">
+                          <text-input key="password" secret="true"/>
+                        </field>
+                        <field label="{Name; da:Navn}:">
+                          <text-input key="standardName"/>
+                        </field>
+                        <field label="{E-mail; da:E-post}:">
+                          <text-input key="standardEmail"/>
+                        </field>
+                      </fields>
+                      <fieldset legend="{Feedback; da:Tilbagemelding}">
+                      <fields>
+                        <field label="{Name; da:Navn}:">
+                          <text-input key="feedbackName"/>
+                        </field>
+                        <field label="{E-mail; da:E-post}:">
+                          <text-input key="feedbackEmail"/>
+                        </field>
+                      </fields>
+                      </fieldset>
+                      <buttons>
+                        <button text="{Test; da:Afprøv}" name="showEmailTest"/>
+                        <button text="{Update; da:Opdater}" name="saveEmail" highlighted="true"/>
+                      </buttons>
+                    </formula>
+                  </space>
+                </tab>
+                <tab title="Google Analytics">
+                  <space all="10" bottom="5">
+                    <formula name="analyticsFormula">
+                      <fields>
+                        <field label="{Username; da:Brugernavn}:">
+                          <text-input key="username"/>
+                        </field>
+                        <field label="{Password; da:Kodeord}:">
+                          <text-input secret="true" key="password"/>
+                        </field>
+                        <field label="{Profile ID; da:Profil-ID}:">
+                          <text-input key="profile"/>
+                        </field>
+                        <field label="{Web profile ID; da:Web-profil-ID}:">
+                          <text-input key="webProfile"/>
+                        </field>
+                      </fields>
+                      <buttons>
+                        <button name="testAnalytics" text="{Test; da:Afprøv}"/>
+                        <button name="saveAnalytics" text="{Update; da:Opdater}" highlighted="true"/>
+                      </buttons>
+                    </formula>
+                  </space>
+                </tab>
+                <tab title="OnlineObjects">
+                  <space all="10" bottom="5">
+                    <formula name="onlineobjectsFormula">
+                      <fields>
+                        <field label="{Address; da:Adresse}:">
+                          <text-input key="url"/>
+                        </field>
+                      </fields>
+                      <buttons>
+                        <button name="testOnlineObjects" text="{Afprøv; da:Test}"/>
+                        <button name="saveOnlineObjects" text="{Update; da:Opdater}" highlighted="true"/>
+                      </buttons>
+                    </formula>
+                  </space>
+                </tab>
+                <tab title="Rapport">
+                  <space all="10" bottom="5">
+                    <formula name="reportsFormula">
+                      <fields>
+                        <field label="{E-mail-addresse; da:E-post-adresser}:" hint="{Separate by space, comma or colon;da:Adskil med mellemrum, komma eller kolon}">
+                          <text-input key="email"/>
+                        </field>
+                      </fields>
+                      <buttons>
+                        <button name="testReports" text="{Afprøv; da:Test}"/>
+                        <button name="saveReports" text="{Update; da:Opdater}" submit="true" highlighted="true"/>
+                      </buttons>
+                    </formula>
+                  </space>
+                </tab>
+              </tabs>
+            </box>
+          </fragment>
+        </overflow>
+      </center>
+    </middle>
+    <bottom/>
+  </structure>
+
+  <window name="userEditor" width="300" title="{User; da:Bruger}" padding="5">
+    <formula name="userFormula">
+      <overflow height="200">
+      <fields>
+        <field label="{Title; da:Titel}:">
+          <text-input key="title"/>
+        </field>
+        <field label="{Username; da:Brugernavn}:">
+          <text-input key="username"/>
+        </field>
+        <field label="{Password; da:Kodeord}:">
+          <text-input key="password" secret="true"/>
+        </field>
+        <field label="{Language; da:Sprog}:">
+          <dropdown key="language">
+            <option text="{Danish; da: Dansk}" value="da"/>
+            <option text="{English; da: Engelsk}" value="en"/>
+          </dropdown>
+        </field>
+        <field label="{E-post; da:E-mail}:">
+          <text-input key="email"/>
+        </field>
+        <field label="{Note; da:Notat}:">
+          <text-input key="note" breaks="true"/>
+        </field>
+        <field label="{Internal access; da:Intern adgang}:">
+          <checkbox key="internal"/>
+        </field>
+        <field label="{External access; da:Ekstern adgang}:">
+          <checkbox key="external"/>
+        </field>
+        <field label="Administrator:">
+          <checkbox key="administrator"/>
+        </field>
+      </fields>
+      </overflow>
+      <buttons>
+        <button name="cancelUser" text="{Cancel; da:Annuller}"/>
+        <button name="deleteUser" text="{Delete; da:Slet}">
+          <confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete user; da:Ja, slet brugeren}" cancel="{No; da:Nej}"/>
+        </button>
+        <button name="saveUser" text="{Save; da:Gem}" highlighted="true"/>
+      </buttons>
+    </formula>
+  </window>
+
+  <window name="pathEditor" width="300" title="{Path; da:Sti}" padding="5">
+    <formula name="pathFormula">
+      <fields>
+        <field label="{Path; da:Sti}:">
+          <text-input key="path"/>
+        </field>
+        <field label="{Page; da:Side}:">
+          <dropdown key="pageId" placeholder="{Select page...; da:Vælg side...}" url="../../Services/Model/Items.php?type=page"/>
+        </field>
+      </fields>
+      <buttons>
+        <button name="cancelPath" text="{Cancel; da:Annuller}"/>
+        <button name="deletePath" text="{Delete; da:Slet}"/>
+        <button name="savePath" text="{Save; da:Gem}" highlighted="true"/>
+      </buttons>
+    </formula>
+  </window>
+
+  <window name="weblogGroupEditor" width="300" title="{Weblog group; da:Weblog gruppe}" padding="5">
+    <formula name="weblogGroupFormula">
+      <fields>
+        <field label="{Title; da:Titel}:">
+          <text-input key="title"/>
+        </field>
+        <field label="{Note; da:Notat}:">
+          <text-input key="note" breaks="true"/>
+        </field>
+      </fields>
+      <buttons>
+        <button name="cancelWeblogGroup" text="{Cancel; da:Annuller}"/>
+        <button name="deleteWeblogGroup" text="{Delete; da:Slet}"/>
+        <button name="saveWeblogGroup" text="{Save; da:Gem}" highlighted="true"/>
+      </buttons>
+    </formula>
+  </window>
+
+  <window name="designEditor" width="300" title="Design" padding="5">
+    <formula name="designFormula">
+      <fields>
+        <field label="{Title; da:Titel}:">
+          <text-input key="title"/>
+        </field>
+        <field label="Design:">
+          <dropdown key="unique" placeholder="{Select design...; da:Vælg design...}" url="data/DesignItems.php"/>
+        </field>
+      </fields>
+      <buttons>
+        <button name="cancelDesign" text="{Cancel; da:Annuller}"/>
+        <button name="deleteDesign" text="{Delete; da:Slet}">
+          <confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete design; da:Ja, slet design}" cancel="{No; da:Nej}"/>
+        </button>
+        <button name="saveDesign" text="{Save; da:Gem}" highlighted="true"/>
+      </buttons>
+    </formula>
+  </window>
+
+  <window name="emailTestWindow" width="300" title="{Test of e-mail; da:Test af e-post}" padding="5">
+    <formula name="emailTestFormula">
+      <fields labels="above">
+        <field label="{Name; da:Navn}:">
+          <text-input key="name"/>
+        </field>
+        <field label="{E-post; da:E-mail}:">
+          <text-input key="email"/>
+        </field>
+        <field label="{Subject; da:Emne}:">
+          <text-input key="subject"/>
+        </field>
+        <field label="{Message; da:Besked}:">
+          <text-input key="body" breaks="true"/>
+        </field>
+      </fields>
+      <buttons>
+        <button name="testEmail" text="Test" highlighted="true"/>
+      </buttons>
+    </formula>
+  </window>
+</gui>

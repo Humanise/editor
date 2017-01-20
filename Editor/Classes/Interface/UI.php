@@ -239,4 +239,15 @@ class UI {
     }
     return $output;
   }
+
+  static function buildTranslatedOptions($items) {
+    $output = '';
+    foreach ($items as $key => $texts) {
+      $lang = InternalSession::getLanguage();
+      $title = isset($texts[$lang]) ? $texts[$lang] : $texts['en'];
+      $output.='<option text="'.Strings::escapeEncodedXML($title).'" value="'.Strings::escapeEncodedXML($key).'"/>';
+    }
+
+    return $output;
+  }
 }

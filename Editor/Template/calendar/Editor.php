@@ -28,7 +28,7 @@ $gui='
 				</field>
 			</fields>
 			<buttons>
-				<button title="Opdater" name="save" highlighted="true" disabled="true" submit="true"/>
+				<button text="Opdater" name="save" highlighted="true" disabled="true" submit="true"/>
 			</buttons>
 		</formula>
 	</box>

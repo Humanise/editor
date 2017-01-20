@@ -14,11 +14,11 @@ $gui='
 	<tabs small="true" below="true">
 		<tab title="'.Request::getString('title').'" background="light">
 			<toolbar>
-				<icon icon="common/close" title="Luk" name="close"/>
+				<icon icon="common/close" text="Luk" name="close"/>
 				<divider/>
-				<icon icon="common/internet" overlay="upload" title="Udgiv" name="publish" disabled="'.(PageService::isChanged(Request::getId()) ? 'false' : 'true').'"/>
-				<icon icon="common/view" title="Vis" name="preview"/>
-				<icon icon="common/info" title="Info" name="properties"/>
+				<icon icon="common/internet" overlay="upload" text="Udgiv" name="publish" disabled="'.(PageService::isChanged(Request::getId()) ? 'false' : 'true').'"/>
+				<icon icon="common/view" text="Vis" name="preview"/>
+				<icon icon="common/info" text="Info" name="properties"/>
 			</toolbar>
 		</tab>
 	</tabs>

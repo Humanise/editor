@@ -23,10 +23,10 @@ foreach ($states as $info) {
 	));
 }
 
-$writer->title(Strings::fromUnicode('Aflæsninger'));
+$writer->title('Aflæsninger');
 $writer->item(array(
 	'value' => 'usage',
-	'title' => Strings::fromUnicode('Alle aflæsninger'),
+	'title' => 'Alle aflæsninger',
 	'icon' => 'common/water'
 ));
 

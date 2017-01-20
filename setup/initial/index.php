@@ -59,7 +59,7 @@ $gui='
 		<buttons align="right" top="20">
 			<button title="Test database" name="test"/>
 			'.($canWrite 
-			? '<button title="Create configuration file" name="save" highlighted="true"/>'
+			? '<button text="Create configuration file" name="save" highlighted="true"/>'
 			: '').'
 		</buttons>
 	</box>
