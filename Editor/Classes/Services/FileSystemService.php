@@ -101,9 +101,9 @@ class FileSystemService {
         while (($file = readdir($dh)) !== false) {
           if (is_file(FileSystemService::join($dir, $file)) && !($file=='.' || $file=='..') ) {
             array_push($out,$file);
-          } else {
+          }/* else {
             Log::debug('not a file: ' . $dir.$file);
-          }
+          }*/
         }
         closedir($dh);
       } else {
