@@ -28,7 +28,7 @@ require(['hui'],function(hui) {
         effect.style.marginTop = (vert * 20) + 'px';
         var op = hui.between(0,easeInout(horz),1) * hui.between(0,easeInout(vert),1);
         effect.style.opacity = op;
-      })    
+      })
     })
   })
 

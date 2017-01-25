@@ -3,6 +3,7 @@
  xmlns="http://www.w3.org/1999/xhtml"
  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
  xmlns:p="http://uri.in2isoft.com/onlinepublisher/publishing/page/1.0/"
+ xmlns:doc="http://uri.in2isoft.com/onlinepublisher/publishing/document/1.0/"
  xmlns:f="http://uri.in2isoft.com/onlinepublisher/publishing/frame/1.0/"
  xmlns:h="http://uri.in2isoft.com/onlinepublisher/publishing/hierarchy/1.0/"
  xmlns:util="http://uri.in2isoft.com/onlinepublisher/util/"
@@ -13,13 +14,14 @@
  xmlns:part="http://uri.in2isoft.com/onlinepublisher/part/1.0/"
  xmlns:imagegallery="http://uri.in2isoft.com/onlinepublisher/part/imagegallery/1.0/"
  xmlns:widget="http://uri.in2isoft.com/onlinepublisher/part/widget/1.0/"
- exclude-result-prefixes="p f h util widget imagegallery o i text header"
+ exclude-result-prefixes="p f h util widget imagegallery o i text header doc"
  >
- 
-<xsl:template name="front">
 
-  <xsl:apply-templates select="p:content//widget:widget"/>
-      
+<xsl:template name="front">
+  <div>
+  <xsl:apply-templates select="p:content//doc:section[not(part:part[@type='imagegallery'])]"/>
+  </div>
+
   <section id="humanise" class="humanise">
     <div class="humanise_body">
       <p>This site has been carefully crafted<br/>
@@ -31,7 +33,6 @@
       <p><a href="http://www.humanise.dk/"><span>Visit Humanise »</span></a></p>
     </div>
   </section>
-    
 </xsl:template>
 
 
@@ -97,7 +98,7 @@
 </xsl:template>
 
 <xsl:template match="widget:photography">
-  
+
   <div class="photography block">
     <a name="photos"><xsl:comment/></a>
     <h2 class="block_title photography_title">Fotografier</h2>
@@ -249,7 +250,7 @@
                     <p class="communication_text">Skuespillerteknikken anvender jeg også som kommunikationsrådgiver, hvor jeg bruger <strong>teaterets redskaber</strong> til at give en <strong>oplevelsesbaseret læring</strong>.  Jeg prøver altid  at formidle en indsigt i det enkelte menneskes måde at kommunikere på. At give en meget personlig og <strong>konstruktiv feedback</strong>, er noget jeg vægter meget højt.</p>
                     <p class="communication_actions"><a class="button button-dense button-right" href="{$path}kommunikation/"><span>Mere om kommunikationstræning</span></a></p>
                 </xsl:otherwise>
-            </xsl:choose>              
+            </xsl:choose>
           </div>
           <figure class="communication_image"><xsl:comment/></figure>
       </article>
