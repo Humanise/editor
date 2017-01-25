@@ -9,21 +9,21 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 class FeedSerializer {
-	
+
 	function FeedSerializer() {
-		
+
 	}
-	
+
 	function send($feed) {
 		$this->sendHeaders();
 		echo $this->serialize($feed);
 	}
-	
+
 	function sendHeaders() {
 		header("Last-Modified: " . gmdate("D, d M Y H:i:s",time()) . " GMT");
 		header('Content-type: application/rss+xml; charset=utf-8');
 	}
-	
+
 	function serialize($feed) {
 		$xml = '<?xml version="1.0" encoding="utf-8"?><rss version="2.0"><channel>'.
 		$this->buildTextTag('title',$feed->getTitle()).
@@ -57,17 +57,17 @@ class FeedSerializer {
 		$xml .= '</channel></rss>';
 		return $xml;
 	}
-	
+
 	function serializeDate($date) {
 		return gmdate("D, d M Y H:i:s T",$date);
 	}
-	
+
 	function buildTextTag($tagName,$value) {
 		if ($value) {
-			return "\n<".$tagName.">".Strings::escapeXML($value)."</".$tagName.">";
+			return "\n<".$tagName.">".Strings::escapeEncodedXML($value)."</".$tagName.">";
 		}
 	}
-	
+
 	function buildDateTag($tagName,$value) {
 		if (strlen($value)>0) {
 			return "\n<".$tagName.">".$this->serializeDate($value)."</".$tagName.">";
