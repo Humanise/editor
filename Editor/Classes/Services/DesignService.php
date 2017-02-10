@@ -123,13 +123,13 @@ class DesignService {
     if ($preview) {
       $files[] = 'hui/bin/minimized.js';
       $files[] = 'hui/js/Editor.js';
-      $files[] = 'hui/js/Pages.js';
     } else {
 
       $files[] = 'hui/js/hui.js';
       $files[] = 'hui/js/hui_animation.js';
       $files[] = 'hui/js/hui_color.js';
       $files[] = 'hui/js/hui_require.js';
+      $files[] = 'hui/js/hui_preloader.js';
       $files[] = 'hui/js/ui.js';
       $files[] = 'hui/js/ImageViewer.js';
       $files[] = 'hui/js/Box.js';
