@@ -2,7 +2,10 @@
 require_once '../../../Editor/Include/Public.php';
 
 $data = Request::getObject('data');
-
+if (!$data) {
+	Response::badRequest();
+	exit;
+}
 $part = FormulaPart::load($data->id);
 if (!$part) {
 	Log::debug($data);

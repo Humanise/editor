@@ -152,11 +152,214 @@ var controller = {
 hui.ui.listen(controller);
 
 hui.ui.listen({
-  $editPart : function(event) {
-    hui.log('edit part',event)
-    hui.ui.get('partWindow').show();
+  $showPartInfo : function() {
+    var win = hui.ui.get('partWindow');
+    win && win.show()
   },
-  $cancelPart : function(event) {
-    hui.ui.get('partWindow').hide();
-  }
+  $openPart : function(event) {
+    this._loadUI(event)
+  },
+  _loadUI : function(event) {
+    hui.log('Loading UI...')
+    hui.ui.include({
+      url : '../../Template/document/live/gui/properties.php?type=' + event.part.type,
+      $success : function() {
+        var data = event.data;
+        console.log(event.data)
+        hui.ui.get('advancedFormula').setValues({
+          class: data.section['class'],
+          partStyle: data.part.style,
+          sectionStyle: data.section.style
+        });
+        hui.ui.get('layoutFormula').setValues({
+          top: data.section.top,
+          bottom: data.section.bottom,
+          left: data.section.left,
+          right: data.section.right,
+          float: data.section.float,
+          width: data.section.width
+        })
+        var custom = hui.ui.get('textFormula');
+        if (custom) {
+          custom.setValues(event.custom);
+        }
+        hui.ui.get('bar').select(hui.ui.get('pages').getPageKey());
+        hui.ui.get('partWindow').show();
+      }.bind(this),
+      $faulure : function() {
+        // TODO
+      }
+    })
+  },
+  _destroy : function() {
+    var win = hui.ui.get('partWindow');
+    if (win) {
+      hui.ui.remove(win);
+    }
+  },
+  $closePart : function(event) {
+    this._destroy();
+  },
+  $getPartInfo : function() {
+    var advanced = hui.ui.get('advancedFormula').getValues();
+    var layout = hui.ui.get('layoutFormula').getValues();
+    return {
+      section : {
+        'class' : advanced['class'],
+        style : advanced['sectionStyle'],
+        width : layout.width,
+        float : layout.float,
+        top: layout.top,
+        bottom: layout.bottom,
+        left: layout.left,
+        right: layout.right
+      },
+      part : {
+        style : advanced['partStyle']
+      }
+    };
+  },
+
+  $clickButton$bar : function(button) {
+    hui.ui.get('pages').goTo(button.getKey());
+    hui.ui.get('bar').select(button.getKey());
+  },
+  $valuesChanged$layoutFormula : function(values) {
+    this._tellEditor('$sectionChanged$parent',values);
+  },
+  $valuesChanged$textFormula : function(values) {
+    this._tellEditor('$partChanged$parent',values);
+  },
+  _tellEditor : function(method,event) {
+    var win = simulator.getFrameWindow();
+    if (!win || !win.op || !win.op.DocumentEditor) {
+      hui.log('Unable to find win.op.DocumentEditor')
+      return
+    }
+    win.op.DocumentEditor[method](event)
+  },
+
+  // Columns...
+
+  _editedColumn : null,
+
+  $editColumn : function(event) {
+    var self = this;
+    this._requireStructureUI(function() {
+      var win = hui.ui.get('columnWindow');
+      win.show();
+      win.setBusy('Loading...');
+      hui.ui.request({
+        url : '../../Template/document/live/LoadColumn.php',
+        parameters : {
+          id : event.id
+        },
+        $object : function(data) {
+          self._editedColumn = data;
+          var form = hui.ui.get('columnFormula');
+          form.setValues(data);
+        },
+        $finally : function() {
+          win.setBusy(false);
+        }
+      });
+    })
+  },
+  _requireStructureUI : function(callback) {
+    if (this._structureLoaded) {
+      return callback();
+    }
+    var self = this;
+    hui.ui.include({
+      url : '../../Template/document/live/gui/structure.php',
+      $success : function() {
+        self._structureLoaded = true;
+        callback();
+      }
+    })
+  },
+  $close$columnWindow : function() {
+    this._tellEditor('$stopColumnEditing$parent');
+  },
+  $click$saveColumn : function() {
+    var win = hui.ui.get('columnWindow');
+    var form = hui.ui.get('columnFormula');
+    var values = form.getValues();
+    win.setBusy(true);
+    var self = this;
+    hui.ui.request({
+      url : '../../Template/document/live/SaveColumn.php',
+      parameters : {
+        id : this._editedColumn.id,
+        style : values.style,
+        'class' : values['class']
+      },
+      $success : function() {
+        win.hide();
+        self._tellEditor('$columnWasUpdated$parent');
+      },
+      $failure : function() {
+        // TODO
+      },
+      $finally : function() {
+        win.setBusy(false);
+      }
+    });
+  },
+
+  // Rows...
+
+  _editedRow : null,
+
+  $editRow : function(info) {
+    var self = this;
+    this._requireStructureUI(function() {
+      var win = hui.ui.get('rowWindow');
+      win.show();
+      win.setBusy('Loading...');
+      hui.ui.request({
+        url : '../../Template/document/live/LoadRow.php',
+        parameters : {
+          id : info.id
+        },
+        $object : function(data) {
+          self._editedRow = data;
+          var form = hui.ui.get('rowFormula');
+          form.setValues(data);
+        },
+        $finally : function() {
+          win.setBusy(false);
+        }
+      });
+    })
+  },
+  $close$rowWindow : function() {
+    this._tellEditor('$stopRowEditing$parent');
+  },
+  $click$saveRow : function() {
+    var win = hui.ui.get('rowWindow');
+    var form = hui.ui.get('rowFormula');
+    var values = form.getValues();
+    var self = this;
+    win.setBusy(true);
+    hui.ui.request({
+      url : '../../Template/document/live/SaveRow.php',
+      parameters : {
+        id : this._editedRow.id,
+        style : values.style,
+        layout : values.layout,
+        'class' : values['class']
+      },
+      $success : function() {
+        win.hide();
+        self._tellEditor('$rowWasUpdated$parent');
+      },
+      $failure : function() {
+        // TODO
+      },
+      $finally : function() {
+        win.setBusy(false);
+      }
+    });
+  },
 })

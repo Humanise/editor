@@ -14,7 +14,7 @@ op.Editor.Header = function(options) {
 op.Editor.Header.prototype = {
   type : 'header',
   properties : ['color','fontSize','lineHeight','fontWeight','fontFamily','textAlign'],
-  
+
   activate : function(callback) {
     this._load(callback);
     hui.ui.listen(this);
@@ -22,7 +22,7 @@ op.Editor.Header.prototype = {
   save : function(options) {
     this.value = this.field.value;
     var parameters = {
-      text : this.value, 
+      text : this.value,
       level : this.part.level
     }
     for (var i = 0; i < this.properties.length; i++) {
@@ -91,6 +91,20 @@ op.Editor.Header.prototype = {
     this.part.level = String(this.part.level); // TODO: Segmented only supports strings - should be fixed in segmented
     hui.ui.get('textFormula').setValues(this.part);
   },
+  $updateFromForm : function(values) {
+    this.$valuesChanged$textFormula(values);
+  },
+  $getFormValues : function(values) {
+    return {
+      level : String(values.level),
+      color: values.color,
+      fontSize: values.fontSize,
+      lineHeight: values.lineHeight,
+      fontFamily: values.fontFamily,
+      textAlign: values.textAlign,
+      fontWeight: values.fontWeight
+    };
+  },
   $valuesChanged$textFormula : function(values) {
     if (!this.field) {
       hui.log('No field',this);
@@ -108,7 +122,7 @@ op.Editor.Header.prototype = {
       this.part[p] = values[p];
       this.header.style[p] = values[p];
     }
-    
+
     this._updateFieldStyle();
   },
   _changeSectionClass : function(level) {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<subgui xmlns="uri:hui" padding="10" title="Editor properties" globals="false">
+<subgui xmlns="uri:hui" globals="false">
 	<window width="300" name="partWindow" title="Properties" icon="monochrome/info_light" variant="light">
 		<bar variant="window_mini" name="bar">
 			<!--buttons-->
@@ -17,9 +17,9 @@
 						</field>
 						<field label="Float:">
 							<segmented key="float">
-								<item icon="style/float_left" value="left"/>
-								<item icon="style/float_right" value="right"/>
-								<item icon="style/float_none" value=""/>
+								<option icon="style/float_left" value="left"/>
+								<option icon="style/float_right" value="right"/>
+								<option icon="style/float_none" value=""/>
 							</segmented>
 						</field>
 						<field label="Margin:">
@@ -58,7 +58,7 @@
 			</page>
 			<page key="advanced">
 				<formula name="advancedFormula" padding="10">
-					<fields>
+					<fields labels="above">
 						<field label="Class">
 							<text-input key="class"/>
 						</field>

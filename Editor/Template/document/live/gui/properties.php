@@ -9,14 +9,14 @@ $type = Request::getString('type');
 
 $ctrl = PartService::getController($type);
 
-$gui = file_get_contents($basePath.'Editor/Template/document/live/gui/properties.xml');
+$gui = file_get_contents($basePath.'Editor/Template/document/live/gui/properties.ui.xml');
 
 $partUI = $ctrl->getUI();
 
 if ($partUI) {
 	$buttons = '';
 	$pages = '';
-	for ($i=0; $i < count($partUI); $i++) { 
+	for ($i=0; $i < count($partUI); $i++) {
 		$item = $partUI[$i];
 		$buttons.= '<button icon="'.$item['icon'].'" key="'.$item['key'].'"/>';
 		$pages.= '<page key="'.$item['key'].'">'.$item['body'].'</page>';

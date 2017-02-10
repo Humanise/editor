@@ -100,14 +100,6 @@ $gui='
     </formula>
   </boundpanel>
 
-  <window name="partWindow" width="300">
-    <formula name="partFormula">
-      <buttons>
-        <button text="{Save; da:Gem}" highlighted="true" submit="true" small="true"/>
-      </buttons>
-    </formula>
-  </window>
-
 </gui>';
 
 UI::render($gui);
