@@ -251,7 +251,8 @@ body, html {
   border-bottom: none;
   border-left: 1px solid #eee;
   white-space: normal;
-  overflow: visible; }
+  overflow: visible;
+  transform: translate3d(0, 0, 0); }
 
 .sidemenu_item {
   display: block; }
