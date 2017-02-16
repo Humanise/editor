@@ -2,16 +2,15 @@
 	"name" : "Custom",
 	"description" : "Customizable design",
 	"owner" : "Open source",
-    "build" : {
-        "js" : [],
-        "css" : [
-            "style/basic/css/shared.css",
-            "style/custom/css/main.css",
-            "style/custom/css/custom.css",
-            "@parts",
-            "style/custom/css/overwrite.css"
-        ]
-    },
+  "css" : [
+    "style/basic/css/shared.css",
+    "@parts",
+    "style/custom/css/main.css",
+    "style/custom/css/custom.css",
+    "style/custom/css/overwrite.css"
+  ],
+  "js" : [
+  ],
 	"parameters" : [
 		{"key" : "title", "type" : "text", "label" : "Titel"},
 		{"key" : "background-color", "type" : "color", "label" : "Baggrundsfarve"},
