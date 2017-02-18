@@ -42,10 +42,10 @@ if (Strings::isBlank($path)) {
   $path = '/';
 }
 if (strpos($path, 'api/') === 0) {
-  if (preg_match('/api\/style\/([a-z]+)\.css/', $path, $matches)) {
+  if (preg_match('/api\/style\/([a-zA-Z0-9_]+)\.css/', $path, $matches)) {
     DesignService::writeCSS($matches[1]);
   }
-  else if (preg_match('/api\/style\/([a-z]+)\.js/', $path, $matches)) {
+  else if (preg_match('/api\/style\/([a-zA-Z0-9_]+)\.js/', $path, $matches)) {
     DesignService::writeJS($matches[1]);
   }
   else {
