@@ -1,5 +1,13 @@
 {
 	"name" : "Kvalitetstorvet",
 	"description" : "Design for kvalitetstorvet.dk",
-	"owner" : "Property of kvalitetstorvet.dk"
+	"owner" : "Property of kvalitetstorvet.dk",
+  "css" : [
+    "style/basic/css/shared.css",
+    "@parts",
+    "style/kvalitetstorvet/css/overwrite.css",
+    "style/kvalitetstorvet/css/main.css"
+  ],
+  "js" : [
+  ]
 }

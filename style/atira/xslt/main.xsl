@@ -24,11 +24,10 @@
 	<!--<xsl:if test="//p:page/p:context/p:home[@page=//p:page/@id]">
 		<link rel="stylesheet" type="text/css" href="{$path}style/{$design}/css/front.css"/>
 	</xsl:if>-->
-	<xsl:call-template name="util:style"/>
+	<xsl:call-template name="util:css"/>
 	<xsl:call-template name="util:style-ie6"/>
 	<xsl:call-template name="util:style-ie7"/>
-	<xsl:call-template name="util:scripts"/>
-	<script src="{$path}style/{$design}/js/AtiraWebsite.js?1" type="text/javascript"><xsl:comment/></script>
+	<xsl:call-template name="util:js"/>
 </head>
 <body>
 	<xsl:if test="//p:design/p:parameter[@key='variant']/.='news'">
@@ -476,7 +475,7 @@
 		</div>
 	</div>
 	<script charset="utf-8" type="text/javascript">
-		!function() {
+		hui.onReady(function() {
 			var ticker = new Atira.Website.Ticker();
 			<xsl:for-each select="//pn:news">
 				<xsl:if test="position()=1">
@@ -493,7 +492,7 @@
 				</xsl:if>
 			</xsl:for-each>
 			ticker.start();
-		}();
+		});
 	</script>
 </xsl:template>
 
@@ -610,7 +609,7 @@
 		<xsl:call-template name="front-posters"/>
 	</div>
 	<script type="text/javascript">
-		hui.ui.onReady(function() {
+		hui.onReady(function() {
 			new Atira.Website.Poster({random:true});
 		})
 	</script>
@@ -623,7 +622,7 @@
 		<xsl:call-template name="front-posters"/>
 	</div>
 	<script type="text/javascript">
-		hui.ui.onReady(function() {
+		hui.onReady(function() {
 			new Atira.Website.Poster();
 		})
 	</script>
@@ -861,7 +860,9 @@
 </div>
 </form>
 <script type="text/javascript"><xsl:comment>
-new op.SearchField({element:'searchfield'});
+  hui.onReady(function() {
+    new op.SearchField({element:'searchfield'});
+  })
 </xsl:comment>
 </script>
 </xsl:if>

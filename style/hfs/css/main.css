@@ -1,5 +1,3 @@
-@import url('webkit.css');
-
 .clear
 {
 	clear: both;
@@ -18,8 +16,7 @@ body
 	padding: 0px;
 	margin: 0px;
 	text-align: center;
-	background: #f9f9f9 ;
-	grunge_wall.png
+	background: #f9f9f9;
 }
 
 body.design_theme_soccer
@@ -35,8 +32,8 @@ body.design_theme_soccer
 
 body.design_theme_soccer div.layout
 {
-	box-shadow: 0 0 20px rgba(0,30,0,.8);	
-	box-shadow: 0 0 20px rgba(0,0,0,.4);	
+	box-shadow: 0 0 20px rgba(0,30,0,.8);
+	box-shadow: 0 0 20px rgba(0,0,0,.4);
 }
 /*
 body.design_theme_soccer
@@ -131,7 +128,7 @@ div.layout
 	width: 960px;
 	margin: 0 auto;
 	background: #fff;
-	box-shadow: 0 0 20px rgba(0,0,0,.2);	
+	box-shadow: 0 0 20px rgba(0,0,0,.2);
 }
 
 div.layout_sidebar
@@ -247,7 +244,6 @@ div.layout_links
 
 ul.layout_navigation
 {
-	font-family: 'Contrail One', cursive;
 	font-family: 'Play','Helvetica Neue',Arial;
 	position: absolute;
 	bottom: 10px;
@@ -293,7 +289,7 @@ ul.layout_navigation li span span
 	padding: 0px;
 }
 
-ul.layout_navigation li.selected a span span, 
+ul.layout_navigation li.selected a span span,
 ul.layout_navigation li.highlighted a span span
 {
 	border-bottom: 2px solid #fff;

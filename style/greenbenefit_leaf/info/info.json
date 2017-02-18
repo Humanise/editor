@@ -1,5 +1,13 @@
 {
 	"name" : "Green Benefit (leaf)",
 	"description" : "Design for greenbenefit.dk",
-	"owner" : "Property of greenbenefit.dk"
+	"owner" : "Property of greenbenefit.dk",
+  "css" : [
+    "style/basic/css/shared.css",
+    "@parts",
+    "style/greenbenefit_leaf/css/overwrite.css",
+    "style/greenbenefit_leaf/css/main.css"
+  ],
+  "js" : [
+  ]
 }

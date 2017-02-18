@@ -17,13 +17,13 @@
 <xsl:template match="p:page">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<xsl:call-template name="util:html-attributes"/>
-<head> 
+<head>
 	<title><xsl:if test="not(//p:page/@id=//p:context/p:home/@page)"><xsl:value-of select="@title"/> » </xsl:if><xsl:value-of select="f:frame/@title"/></title>
 	<meta name="google-site-verification" content="vagGQtrnVxxm4omlbXckjUkFqucyeVPmo-CE_LxQQ10" />
 	<xsl:call-template name="util:metatags"/>
-	<xsl:call-template name="util:style"/>
+	<xsl:call-template name="util:css"/>
 	<xsl:call-template name="util:style-ie6"/>
-	<xsl:call-template name="util:scripts"/>
+	<xsl:call-template name="util:js"/>
 </head>
 <body>
 	<div class="chrome">
@@ -68,10 +68,12 @@
 		<p><a href="mailto:bustermunk@gmail.com">bustermunk@gmail.com</a></p>
 	</div>
 	<script type="text/javascript">
-		var one = hui.get('chrome_photos2');
-		var two = hui.get('chrome_photos1');
-		new op.Dissolver({elements:one.getElementsByTagName('div'),wait:5000,transition:3000,delay:4500});
-		new op.Dissolver({elements:two.getElementsByTagName('div'),wait:5000,transition:3000});
+    hui.onReady(function() {
+      var one = hui.get('chrome_photos2');
+      var two = hui.get('chrome_photos1');
+      new op.Dissolver({elements:one.getElementsByTagName('div'),wait:5000,transition:3000,delay:4500});
+      new op.Dissolver({elements:two.getElementsByTagName('div'),wait:5000,transition:3000});
+    })
 	</script>
 	<xsl:call-template name="util:googleanalytics"/>
 </body>

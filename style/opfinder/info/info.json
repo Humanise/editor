@@ -1,5 +1,13 @@
 {
 	"name" : "Nordjyllands Udviklingscenter",
 	"description" : "Design for n-u-c.dk",
-	"owner" : "The design is the property of Nordjyllands Udviklingscenter"
+	"owner" : "The design is the property of Nordjyllands Udviklingscenter",
+  "css" : [
+    "style/basic/css/shared.css",
+    "@parts",
+    "style/opfinder/css/overwrite.css",
+    "style/opfinder/css/main.css"
+  ],
+  "js" : [
+  ]
 }

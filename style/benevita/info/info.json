@@ -1,5 +1,14 @@
 {
 	"name" : "Benevita",
 	"description" : "Design for benevita.dk",
-	"owner" : "Property of benevita.dk"
+	"owner" : "Property of benevita.dk",
+  "css" : [
+    "style/basic/css/shared.css",
+    "@parts",
+    "style/benevita/css/overwrite.css",
+    "style/benevita/css/main.css"
+  ],
+  "js" : [
+    "style/benevita/js/layout.js"
+  ]
 }

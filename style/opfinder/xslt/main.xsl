@@ -21,18 +21,17 @@
 <head>
 	<title><xsl:value-of select="@title"/> » <xsl:value-of select="f:frame/@title"/></title>
 	<xsl:call-template name="util:metatags"/>
-	<xsl:call-template name="util:style"/>
+	<xsl:call-template name="util:css"/>
 	<xsl:call-template name="util:style-ie6"/>
 	<xsl:call-template name="util:style-ie7"/>
 	<xsl:call-template name="util:style-ie8"/>
-	<xsl:call-template name="util:scripts"/>
+	<xsl:call-template name="util:js"/>
 </head>
 <body>
 	<div class="case">
 		<div class="case_head"><h1>Nordjyllands Udviklingscenter A/S</h1></div>
 		<ul class="case_navigation"><xsl:apply-templates select="f:frame/h:hierarchy/h:item"/></ul>
 		<xsl:call-template name="secondlevel"/><xsl:comment/>
-		<xsl:call-template name="search"/>
 		<div class="case_body">
 			<xsl:apply-templates select="p:content"/>
 		</div>
@@ -280,32 +279,5 @@
 </span>
 </a>
 </xsl:template>
-
-
-
-<!--                  Search                     -->
-
-
-<xsl:template name="search">
-<xsl:if test="f:frame/f:search">
-<form action="{$path}" method="get" class="search" accept-charset="UTF-8">
-<div>
-<input type="hidden" name="id" value="{f:frame/f:search/@page}"/>
-<xsl:for-each select="f:frame/f:search/f:types/f:type">
-<input type="hidden" name="{@unique}" value="on"/>
-</xsl:for-each>
-<input type="text" class="text" name="query" id="searchfield"/>
-<input type="submit" class="submit" value="Søg"/>
-</div>
-</form>
-<script type="text/javascript"><xsl:comment>
-new op.SearchField({element:'searchfield',placeholder:'Søg her!'});
-</xsl:comment>
-</script>
-</xsl:if>
-</xsl:template>
-
-
-
 
 </xsl:stylesheet>

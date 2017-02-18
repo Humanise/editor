@@ -21,11 +21,11 @@
 		<head>
 			<title><xsl:value-of select="@title"/> » <xsl:value-of select="f:frame/@title"/></title>
 			<xsl:call-template name="util:metatags"/>
-			<xsl:call-template name="util:style"/>
+			<xsl:call-template name="util:css"/>
 			<xsl:call-template name="util:style-ie6"/>
 			<xsl:call-template name="util:style-ie7"/>
 			<xsl:call-template name="util:style-ie8"/>
-			<xsl:call-template name="util:scripts"/>
+			<xsl:call-template name="util:js"/>
 		</head>
 		<body>
 			<div class="layout">
@@ -62,6 +62,7 @@
 					<div class="layout_box">
 						<div class="layout_box_top"><xsl:comment/></div>
 						<div class="layout_box_middle">
+              <xsl:comment/>
 							<xsl:for-each select="//f:newsblock//o:object">
 								<blockquote style="height: 60px;">
 									<p class="title"><xsl:value-of select="o:title"/></p>

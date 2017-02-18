@@ -30,9 +30,9 @@
 		</title>
 		<meta name="google-site-verification" content="WMeBqZoNf7fYYk8Yvu8p05cFXnskJt1_Y6SJtXE-Ym0" />
 		<xsl:call-template name="util:metatags"/>
-		<xsl:call-template name="util:style"/>
+		<xsl:call-template name="util:css"/>
 		<xsl:call-template name="util:style-ie6"/>
-		<xsl:call-template name="util:scripts"/>
+		<xsl:call-template name="util:js"/>
 	</head>
 	<body>
 		<div class="chrome">
@@ -401,7 +401,9 @@
 			<div>
 				<span class="hui_searchfield" id="search"><em class="hui_searchfield_placeholder">Søg her...</em><a href="javascript:void(0);" class="hui_searchfield_reset" tabindex="-1"><xsl:comment/></a><span><span><input type="text" class="text" name="query"/></span></span></span>
 				<script type="text/javascript">
-					new hui.ui.SearchField({element:'search',expandedWidth:200});
+          hui.onReady(['hui.ui'],function() {
+            new hui.ui.SearchField({element:'search',expandedWidth:200});
+          })
 				</script>
 				<input type="hidden" name="id" value="{f:frame/f:search/@page}"/>
 				<xsl:for-each select="f:frame/f:search/f:types/f:type">

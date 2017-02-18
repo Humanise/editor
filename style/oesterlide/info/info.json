@@ -1,5 +1,13 @@
 {
 	"name" : "Oesterlide",
 	"description" : "Design for osterlide.dk",
-	"owner" : "Property of Henriette Laursen"
+	"owner" : "Property of Henriette Laursen",
+  "css" : [
+    "style/basic/css/shared.css",
+    "@parts",
+    "style/oesterlide/css/overwrite.css",
+    "style/oesterlide/css/main.css"
+  ],
+  "js" : [
+  ]
 }

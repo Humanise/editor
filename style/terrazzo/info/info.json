@@ -1,5 +1,14 @@
 {
 	"name" : "Terrazzo Forum",
 	"description" : "Design for terrazzoforum.dk",
-	"owner" : "Property of terrazzoforum.dk"
+	"owner" : "Property of terrazzoforum.dk",
+  "css" : [
+    "style/basic/css/shared.css",
+    "@parts",
+    "style/terrazzo/css/overwrite.css",
+    "style/terrazzo/css/stylesheet.css"
+  ],
+  "js" : [
+    "style/terrazzo/js/Poster.css"
+  ]
 }

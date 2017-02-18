@@ -20,8 +20,8 @@
 <head>
 	<xsl:call-template name="util:metatags"/>
 	<title><xsl:value-of select="@title"/> : <xsl:value-of select="f:frame/@title"/></title>
-	<xsl:call-template name="util:style"/>
-	<xsl:call-template name="util:scripts"/>
+	<xsl:call-template name="util:css"/>
+	<xsl:call-template name="util:js"/>
 	<xsl:if test="@id=1">
 		<script type="text/javascript" src="{$path}style/terrazzo/js/Poster.js"><xsl:text> </xsl:text></script>
 	</xsl:if>
@@ -310,7 +310,9 @@
 </div>
 </form>
 <script type="text/javascript"><xsl:comment>
-new op.SearchField({element:'searchfield',placeholder:'Søg her!'});
+  hui.onReady(function() {
+    new op.SearchField({element:'searchfield',placeholder:'Søg her!'});
+  })
 </xsl:comment>
 </script>
 </xsl:if>

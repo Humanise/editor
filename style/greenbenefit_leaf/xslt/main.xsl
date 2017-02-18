@@ -23,9 +23,9 @@
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
 	<link rel="icon" href="/favicon.ico" type="image/x-icon"/>
 	<xsl:call-template name="util:metatags"/>
-	<xsl:call-template name="util:style"/>
+	<xsl:call-template name="util:css"/>
 	<xsl:call-template name="util:style-ie6"/>
-	<xsl:call-template name="util:scripts"/>
+	<xsl:call-template name="util:js"/>
 </head>
 <body>
 	<div class="layout">

@@ -21,22 +21,16 @@
 	<xsl:call-template name="util:html-attributes"/>
 <head>
 	<title>
-		<xsl:if test="not(//p:page/@id=//p:context/p:home/@page)"> 
+		<xsl:if test="not(//p:page/@id=//p:context/p:home/@page)">
 			<xsl:value-of select="@title"/>
 			<xsl:text> - </xsl:text>
 		</xsl:if>
 		<xsl:value-of select="f:frame/@title"/>
 	</title>
 	<xsl:call-template name="util:metatags"/>
-	<!--
-	<link href='http://fonts.googleapis.com/css?family=Neuton:300,700,400,200' rel='stylesheet' type='text/css'/>
-	<link href='http://fonts.googleapis.com/css?family=Merriweather:400,300' rel='stylesheet' type='text/css'/>
-	<link href='http://fonts.googleapis.com/css?family=Crimson+Text' rel='stylesheet' type='text/css'/>
-	<link href='http://fonts.googleapis.com/css?family=Ovo' rel='stylesheet' type='text/css'/>
-	-->
-	<xsl:call-template name="util:style"/>
-	<xsl:call-template name="util:scripts"/>
-	
+	<xsl:call-template name="util:css"/>
+	<xsl:call-template name="util:js"/>
+
 </head>
 <body>
 	<div class="layout_bg">
@@ -164,7 +158,7 @@
 <xsl:template match="f:links/f:top">
 	<div class="links_top">
 	<div>
-	<xsl:apply-templates select="//f:frame/f:userstatus"/> · 
+	<xsl:apply-templates select="//f:frame/f:userstatus"/> ·
 	<a title="Udskriv siden" class="common" href="?id={//p:page/@id}&amp;print=true">Udskriv</a>
 	<xsl:apply-templates/>
 	</div>

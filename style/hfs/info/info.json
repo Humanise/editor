@@ -13,5 +13,13 @@
 			{"label" : "Floorball", "value" : "floorball"},
 			{"label" : "Boksning", "value" : "boxing"}
 		]}
-	]
+	],
+  "css" : [
+    "style/basic/css/shared.css",
+    "@parts",
+    "style/hfs/css/overwrite.css",
+    "style/hfs/css/main.css"
+  ],
+  "js" : [
+  ]
 }

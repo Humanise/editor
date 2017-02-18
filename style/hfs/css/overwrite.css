@@ -4,7 +4,7 @@ body
 {
 	font-family: "Lucida Grande","Lucida Sans Unicode", sans-serif;
 }
-	
+
 a.common
 {
 	color: #ddd;
@@ -14,7 +14,7 @@ a.common span
 {
 	color: #0079cd;
 }
-	
+
 a.common:hover, a.common:hover span
 {
 	color: #0169b2;

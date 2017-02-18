@@ -1,5 +1,13 @@
 {
 	"name" : "Hals FS 2009",
 	"description" : "Design for halsfs.dk",
-	"owner" : "Open Source"
+	"owner" : "Open Source",
+  "css" : [
+    "style/basic/css/shared.css",
+    "@parts",
+    "style/halsfs/css/overwrite.css",
+    "style/halsfs/css/main.css"
+  ],
+  "js" : [
+  ]
 }

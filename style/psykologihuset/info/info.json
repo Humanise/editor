@@ -1,5 +1,13 @@
 {
 	"name" : "Psykologihuset",
 	"description" : "Design for Psykologihuset.dk",
-	"owner" : "Property of Tobias Kolding Karnoe"
+	"owner" : "Property of Tobias Kolding Karnoe",
+  "css" : [
+    "style/basic/css/shared.css",
+    "@parts",
+    "style/psykologihuset/css/main.css",
+    "style/psykologihuset/css/overwrite.css"
+  ],
+  "js" : [
+  ]
 }

@@ -441,10 +441,6 @@ i.parentNode.insertBefore(o,i)}}}})}},_editor.processNoscript()}(window,document
     <script>_editor.context = '<xsl:value-of select="$path"/>';</script>
 </xsl:template>
 
-<xsl:template name="util:scripts-adaptive">
-  <script src="{$path}{$timestamp-url}hui/lib/ios-orientationchange-fix.js{$timestamp-query}"><xsl:comment/></script>
-</xsl:template>
-
 <xsl:template name="util:script-inline">
     <xsl:param name="compiled" />
     <xsl:param name="file"/>
