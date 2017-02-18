@@ -61,11 +61,6 @@ class Commander {
     echo UI::compile();
   }
 
-	static function style($args = []) {
-    $design = isset($args[2]) ? $args[2] : null;
-    DesignService::rebuild($design);
-  }
-
 	static function schema() {
     global $basePath;
     $schema = SchemaService::getDatabaseSchema();
@@ -108,7 +103,6 @@ if (!isset(\$GLOBALS['basePath'])) {
 	static function full() {
     Commander::classes();
     Commander::hui();
-    Commander::style();
   }
 }
 ?>

@@ -82,34 +82,6 @@ class DesignService {
     return $default;
   }
 
-  static function _embedInlineCSS($design) {
-    global $basePath;
-
-    Log::info('Embedding inline css for: ' . $design);
-    $xslFile = $basePath.'style/' .$design . '/xslt/main.xsl';
-    $xsl = file_get_contents($xslFile);
-    $callTemplate = Strings::extract($xsl,'<xsl:call-template name="util:style-inline">','</xsl:call-template>');
-    foreach ($callTemplate as $template) {
-      $compiledParam = Strings::extract($template,'<xsl:with-param name="compiled">','</xsl:with-param>');
-      if (count($compiledParam)==1) {
-        $compiledParam = $compiledParam[0];
-
-        $cssFileName = DesignService::_getFileParameter($template);
-        $cssFile = $basePath."style/".$design."/css/".$cssFileName;
-        if (file_exists($cssFile)) {
-          $cssMin = DesignService::_compressToString($cssFile);
-          $cssMin = DesignService::adjustURLs($cssMin,$design);
-          $new = '<xsl:with-param name="compiled">' . $cssMin . '</xsl:with-param>';
-          $replacement = str_replace($compiledParam,$new,$template);
-          $xsl = str_replace($template,$replacement,$xsl);
-        } else {
-          Log::warn('Inline file not found: ' . $cssFile);
-        }
-      }
-    }
-    FileSystemService::writeStringToFile($xsl,$xslFile);
-  }
-
   static function adjustURLs($css,$design) {
     return preg_replace("/url\((['\"]{0,1})..\//um", 'url($1<xsl:value-of select="\$path"/><xsl:value-of select="\$timestamp-url"/>style/'.$design.'/', $css);
   }
@@ -287,6 +259,8 @@ class DesignService {
 
   private static function loadInlineCSS($design) {
     $files = DesignService::getCSS($design, 'inline');
+
+    Log::debug($files);
     $css = '';
     foreach ($files as $file) {
       $folder = FileSystemService::folderOfPath($file);
@@ -368,99 +342,6 @@ class DesignService {
     }
     $files = array_merge($files, DesignService::getCSS($design, 'async'));
     return $files;
-  }
-
-  static function rebuild($design) {
-    global $basePath;
-
-    $designs = DesignService::getAvailableDesigns();
-    foreach ($designs as $key => $info) {
-      if ($design!==null && $design!==$key) {
-          continue;
-      }
-      if (isset($info->build)) {
-        if (isset($info->build->css)) {
-
-          $imports = array();
-
-          $data = '/* '.Strings::toJSON($info->build->css).' */';
-          // TODO: Use getCSSFiles
-          foreach ($info->build->css as $file) {
-            if ($file[0]=='@') {
-              if ($file=='@parts') {
-                $data .= DesignService::_read('style/basic/css/document.css');
-                $imports[] = 'style/basic/css/document.css';
-
-                $partFiles = DesignService::_getPartStyleFiles();
-                foreach ($partFiles as $partFile) {
-                  $data .= DesignService::_read($partFile);
-                  $imports[] = $partFile;
-                }
-              }
-            } else {
-              $data .= DesignService::_read($file);
-              $imports[] = $file;
-            }
-          }
-          {
-            $cssFile = $basePath."style/".$key."/css/style.private.tmp.css";
-            FileSystemService::writeStringToFile($data,$cssFile);
-            DesignService::_compress($cssFile,$basePath."style/".$key."/css/style.private.css");
-            unlink($cssFile);
-          }
-          {
-            $huiCss = DesignService::_read('hui/bin/joined.site.css');
-            $huiCss = preg_replace("/(url\\(['\"]?)(..\/gfx\/)([^\\)]+\\))/u", "$1../../../hui/gfx/$3", $huiCss);
-            $data = $huiCss . $data;
-            $cssFile = $basePath."style/".$key."/css/style.tmp.css";
-            FileSystemService::writeStringToFile($data,$cssFile);
-            DesignService::_compress($cssFile,$basePath."style/".$key."/css/style.css");
-            unlink($cssFile);
-          }
-          {
-            $data = '';
-            foreach ($imports as $path) {
-              $data .= '@import url(../../../' . $path . ');' . PHP_EOL;
-            }
-            $cssFile = $basePath."style/".$key."/css/style.dev.css";
-            FileSystemService::writeStringToFile($data,$cssFile);
-          }
-        }
-        if (isset($info->build->js)) {
-
-          $imports = array();
-          $data = '/* '.Strings::toJSON($info->build->js).' */' . PHP_EOL . PHP_EOL;
-
-          $data .= DesignService::_read('style/basic/js/OnlinePublisher.js');
-
-          foreach ($info->build->js as $file) {
-            $data .= DesignService::_read($file);
-            $imports[] = $file;
-          }
-          {
-            $jsFile = $basePath."style/".$key."/js/script.private.tmp.js";
-            FileSystemService::writeStringToFile($data,$jsFile);
-            DesignService::_compress($jsFile,$basePath."style/".$key."/js/script.private.js");
-          }
-          {
-            $jsFile = $basePath."style/".$key."/js/script.tmp.js";
-            $data = DesignService::_read('hui/bin/joined.site.js') . $data;
-            FileSystemService::writeStringToFile($data,$jsFile);
-            DesignService::_compress($jsFile,$basePath."style/".$key."/js/script.js");
-          }
-          {
-            $data = '';
-            $jsFile = $basePath."style/".$key."/js/script.dev.js";
-            foreach ($imports as $path) {
-              $data.= 'document.write(\'<script type="text/javascript" src="\' + _editor.context + \'' . $path . '"></script>\');';
-            }
-            FileSystemService::writeStringToFile($data,$jsFile);
-          }
-        }
-      }
-      DesignService::_embedInlineCSS($key);
-    }
-    DesignService::_inlineJS();
   }
 
   static function _read($path) {
@@ -572,15 +453,15 @@ class DesignService {
     } else {
       $valid = false;
     }
-    $valid = $valid && !file_exists($basePath."style/".$name."/info/info.xml");
     $valid = $valid && file_exists($basePath."style/".$name."/info/Preview128.png");
     $valid = $valid && file_exists($basePath."style/".$name."/info/Preview64.png");
     $valid = $valid && file_exists($basePath."style/".$name."/xslt/main.xsl");
-    if ($info!==null && !(isset($info->build) || isset($info->js) || isset($info->css))) {
-      $valid = $valid && file_exists($basePath."style/".$name."/css/style.php");
+    if ((!isset($info->js) || !isset($info->css))) {
+      $valid = false;
     } else {
       $valid = $valid && !file_exists($basePath."style/".$name."/css/style.php");
     }
+    $valid = $valid && !file_exists($basePath."style/".$name."/css/style.php");
     // TODO (jm)
     $valid = $valid && file_exists($basePath."style/".$name."/css/editor.css");
     return $valid;
