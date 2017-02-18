@@ -661,21 +661,21 @@ ga('create', '<xsl:value-of select="$code"/>', {siteSpeedSampleRate : 20});ga('s
       <xsl:for-each select="//f:frame/h:hierarchy/h:item">
         <xsl:if test="not(@hidden='true')">
           <li>
-                        <xsl:attribute name="class">
-                            <xsl:text>layout_menu_top_item</xsl:text>
-                <xsl:choose>
-                  <xsl:when test="//p:page/@id=@page"> layout_menu_top_item_selected</xsl:when>
-                  <xsl:when test="descendant-or-self::*/@page=//p:page/@id"> layout_menu_top_item_highlighted</xsl:when>
-                </xsl:choose>
-                        </xsl:attribute>
+            <xsl:attribute name="class">
+              <xsl:text>layout_menu_top_item</xsl:text>
+              <xsl:choose>
+                <xsl:when test="//p:page/@id=@page"> layout_menu_top_item_selected</xsl:when>
+                <xsl:when test="descendant-or-self::*/@page=//p:page/@id"> layout_menu_top_item_highlighted</xsl:when>
+              </xsl:choose>
+            </xsl:attribute>
             <a>
-                            <xsl:attribute name="class">
-                                <xsl:text>layout_menu_top_link</xsl:text>
-                    <xsl:choose>
-                      <xsl:when test="//p:page/@id=@page"> layout_menu_top_link_selected</xsl:when>
-                      <xsl:when test="descendant-or-self::*/@page=//p:page/@id"> layout_menu_top_link_highlighted</xsl:when>
-                    </xsl:choose>
-                            </xsl:attribute>
+              <xsl:attribute name="class">
+                <xsl:text>layout_menu_top_link</xsl:text>
+                <xsl:choose>
+                  <xsl:when test="//p:page/@id=@page"> layout_menu_top_link_selected</xsl:when>
+                  <xsl:when test="descendant-or-self::*/@page=//p:page/@id"> layout_menu_top_link_highlighted</xsl:when>
+                </xsl:choose>
+              </xsl:attribute>
               <xsl:call-template name="util:link"/>
               <span><xsl:value-of select="@title"/></span>
             </a>
