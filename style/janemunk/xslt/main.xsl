@@ -30,7 +30,7 @@
           <meta name="viewport" content="user-scalable=no, initial-scale = 1, maximum-scale = 1, minimum-scale = 1"/>
         </xsl:when>
         <xsl:otherwise>
-          <meta name="viewport" content="user-scalable=yes, initial-scale = 1, maximum-scale = 10, minimum-scale = 0.2"/>
+          <xsl:call-template name="util:viewport"/>
         </xsl:otherwise>
       </xsl:choose>
       <xsl:call-template name="util:metatags"/>

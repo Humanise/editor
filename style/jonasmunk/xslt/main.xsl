@@ -28,7 +28,7 @@
           </xsl:if>
           <xsl:value-of select="f:frame/@title"/>
         </title>
-        <meta name="viewport" content="user-scalable=yes, initial-scale = 1, maximum-scale = 10, minimum-scale = 0.2"/>
+        <xsl:call-template name="util:viewport"/>
         <xsl:call-template name="util:metatags"/>
         <xsl:call-template name="util:js"/>
         <link href='https://fonts.googleapis.com/css?family=Neuton:400,300,500,600' rel='stylesheet' type='text/css'/>
