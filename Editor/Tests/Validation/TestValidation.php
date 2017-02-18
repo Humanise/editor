@@ -50,6 +50,7 @@ class TestValidation extends UnitTestCase {
 			Log::debug('Checking: '.$url);
 			$file = new RemoteFile($url);
 			$html = $file->getData();
+      $this->assertTrue(strpos($html, '<!DOCTYPE html>')!==false,'The design "'.$name.'" has wrong doctype');
 			$this->assertTrue(strpos($html, '<meta http-equiv="content-type" content="text/html; charset=utf-8"/>')!==false,'The design "'.$name.'" has no content-type');
 			$this->assertTrue(strpos($html, '<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">')!==false,'The design "'.$name.'" does not have correct html tag');
 			$this->assertFalse(strpos($html, 'http://uri.in2isoft.com')!==false,'The design "'.$name.'" may contain xml namespaces');
@@ -62,13 +63,9 @@ class TestValidation extends UnitTestCase {
 			} else {
         if (isset($info->js)) {
           $this->assertTrue(strpos($html, '/api/style/' . $name . '.js')!==false,'The design "'.$name.'" does not include JS from API');
-        } else {
-          $this->assertTrue(strpos($html, '/bin/minimized.site.js')!==false,'The design "'.$name.'" does not include minimized site scripts');
         }
         if (isset($info->css)) {
           $this->assertTrue(strpos($html, '/api/style/' . $name . '.css')!==false,'The design "'.$name.'" does not include css from API');
-        } else {
-          $this->assertTrue(strpos($html, '/bin/minimized.site.css')!==false,'The design "'.$name.'" does not include minimized site css');
         }
 			}
 			$this->assertTrue(XmlService::validateSnippet($html),'The design "'.$name.'" is not valid xml');
