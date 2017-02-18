@@ -207,6 +207,15 @@ ga('create', '<xsl:value-of select="$code"/>', {siteSpeedSampleRate : 20});ga('s
 </xsl:text>
 </xsl:template>
 
+<xsl:template name="util:html-attributes">
+  <xsl:if test="//p:page/p:meta/p:language">
+    <xsl:if test="//p:page/p:meta/p:language/text()">
+      <xsl:attribute name="lang"><xsl:value-of select="//p:page/p:meta/p:language"/></xsl:attribute>
+      <xsl:attribute name="xml:lang"><xsl:value-of select="//p:page/p:meta/p:language"/></xsl:attribute>
+    </xsl:if>
+  </xsl:if>
+</xsl:template>
+
 <xsl:template name="util:title">
   <title>
     <xsl:if test="not(//p:page/@id=//p:context/p:home/@page)">
@@ -319,15 +328,12 @@ ga('create', '<xsl:value-of select="$code"/>', {siteSpeedSampleRate : 20});ga('s
     <xsl:text disable-output-escaping="yes">//&lt;![CDATA[
 </xsl:text>
 <xsl:value-of select="php:function('DesignService::getInlineJS',$design,$development)" disable-output-escaping="yes"/>
+  _editor.context = '<xsl:value-of select="$path"/>';
+  require(['hui.ui'],function() {hui.ui.context='<xsl:value-of select="$path"/>';hui.ui.language='<xsl:value-of select="$language"/>';});require(['op'],function() {op.context='<xsl:value-of select="$path"/>';op.page.id=<xsl:value-of select="@id"/>;op.page.template='<xsl:value-of select="$template"/>';op.page.path='<xsl:value-of select="$path"/>';op.page.pagePath='<xsl:value-of select="$page-path"/>';op.user={username:'<xsl:value-of select="$username"/>',id:<xsl:value-of select="$userid"/>,internal:<xsl:value-of select="$internal-logged-in"/>};op.preview=<xsl:value-of select="$preview"/>;op.ignite();})
     <xsl:text disable-output-escaping="yes">
 //]]&gt;</xsl:text>
   </script>
-  <script>_editor.context = '<xsl:value-of select="$path"/>';</script>
-  <script>
-  <xsl:comment>
-  require(['hui.ui'],function() {hui.ui.context='<xsl:value-of select="$path"/>';hui.ui.language='<xsl:value-of select="$language"/>';});require(['op'],function() {op.context='<xsl:value-of select="$path"/>';op.page.id=<xsl:value-of select="@id"/>;op.page.template='<xsl:value-of select="$template"/>';op.page.path='<xsl:value-of select="$path"/>';op.page.pagePath='<xsl:value-of select="$page-path"/>';op.user={username:'<xsl:value-of select="$username"/>',id:<xsl:value-of select="$userid"/>,internal:<xsl:value-of select="$internal-logged-in"/>};op.preview=<xsl:value-of select="$preview"/>;op.ignite();})
-  </xsl:comment>
-  </script>
+
   <xsl:variable name="query">
     <xsl:choose>
       <xsl:when test="$development='true' and $preview='true'">?preview=true&amp;development=true</xsl:when>
@@ -360,14 +366,6 @@ ga('create', '<xsl:value-of select="$code"/>', {siteSpeedSampleRate : 20});ga('s
   </xsl:if>
 </xsl:template>
 
-<xsl:template name="util:html-attributes">
-  <xsl:if test="//p:page/p:meta/p:language">
-    <xsl:if test="//p:page/p:meta/p:language/text()">
-      <xsl:attribute name="lang"><xsl:value-of select="//p:page/p:meta/p:language"/></xsl:attribute>
-      <xsl:attribute name="xml:lang"><xsl:value-of select="//p:page/p:meta/p:language"/></xsl:attribute>
-    </xsl:if>
-  </xsl:if>
-</xsl:template>
 
 
 
@@ -492,10 +490,10 @@ ga('create', '<xsl:value-of select="$code"/>', {siteSpeedSampleRate : 20});ga('s
       <xsl:text disable-output-escaping="yes">//&lt;![CDATA[
       </xsl:text>
       <xsl:value-of select="php:function('DesignService::getCustomInlineJS','style/basic/js/boot_fonts.js',$development)" disable-output-escaping="yes"/>
+_editor.loadFont({href:'<xsl:value-of select="$href"/>',family:'<xsl:value-of select="$family"/>',cls:'<xsl:value-of select="$class"/>'<xsl:if test="$weights!=''">,weights:'<xsl:value-of select="$weights"/>'.split(',')</xsl:if>});
       <xsl:text disable-output-escaping="yes">
   //]]&gt;</xsl:text>
     </script>
-    <script>_editor.loadFont({href:'<xsl:value-of select="$href"/>',family:'<xsl:value-of select="$family"/>',cls:'<xsl:value-of select="$class"/>'<xsl:if test="$weights!=''">,weights:'<xsl:value-of select="$weights"/>'.split(',')</xsl:if>});</script>
 </xsl:template>
 
 <xsl:template name="util:_style-dynamic">
