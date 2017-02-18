@@ -30,8 +30,9 @@
 		</title>
 		<meta name="google-site-verification" content="WMeBqZoNf7fYYk8Yvu8p05cFXnskJt1_Y6SJtXE-Ym0" />
 		<xsl:call-template name="util:metatags"/>
-		<xsl:call-template name="util:css"/>
-		<xsl:call-template name="util:style-ie6"/>
+		<xsl:call-template name="util:css">
+      <xsl:with-param name="ie-6" select="'true'"/>
+    </xsl:call-template>
 		<xsl:call-template name="util:js"/>
 	</head>
 	<body>

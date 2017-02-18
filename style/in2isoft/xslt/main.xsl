@@ -39,11 +39,11 @@
 		<link rel="shortcut icon" href="{$path}style/in2isoft/gfx/favicon.ico" type="image/x-icon" />
 		<xsl:call-template name="util:metatags"/>
 		<xsl:call-template name="util:watermark"/>
-		<xsl:call-template name="util:style-ie6"/>
 		<xsl:call-template name="util:js"/>
     <xsl:call-template name="util:css">
       <xsl:with-param name="inline" select="'true'"/>
       <xsl:with-param name="ie-lt-9" select="'true'"/>
+      <xsl:with-param name="ie-6" select="'true'"/>
     </xsl:call-template>
 		<xsl:call-template name="util:load-font">
 			<xsl:with-param name="href" select="'http://fonts.googleapis.com/css?family=Lato:300,400,700'"/>

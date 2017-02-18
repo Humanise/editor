@@ -22,10 +22,11 @@
 	<title><xsl:value-of select="@title"/> » <xsl:value-of select="f:frame/@title"/></title>
 	<xsl:call-template name="util:metatags"/>
 	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'/>
-	<xsl:call-template name="util:css"/>
-	<xsl:call-template name="util:style-ie6"/>
-	<xsl:call-template name="util:style-ie7"/>
-	<xsl:call-template name="util:style-ie8"/>
+	<xsl:call-template name="util:css">
+    <xsl:with-param name="ie-6" select="'true'"/>
+    <xsl:with-param name="ie-7" select="'true'"/>
+    <xsl:with-param name="ie-8" select="'true'"/>
+  </xsl:call-template>
 	<xsl:call-template name="util:js"/>
 </head>
 <body>

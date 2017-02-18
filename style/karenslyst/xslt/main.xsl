@@ -53,9 +53,9 @@
 
     <xsl:call-template name="util:css">
       <xsl:with-param name="inline" select="'true'"/>
+      <xsl:with-param name="ie-7" select="'true'"/>
     </xsl:call-template>
-    <xsl:call-template name="util:style-ie7"/>
-    </head>
+  </head>
     <body>
       <div class="layout">
         <xsl:choose>

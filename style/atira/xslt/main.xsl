@@ -24,9 +24,10 @@
 	<!--<xsl:if test="//p:page/p:context/p:home[@page=//p:page/@id]">
 		<link rel="stylesheet" type="text/css" href="{$path}style/{$design}/css/front.css"/>
 	</xsl:if>-->
-	<xsl:call-template name="util:css"/>
-	<xsl:call-template name="util:style-ie6"/>
-	<xsl:call-template name="util:style-ie7"/>
+	<xsl:call-template name="util:css">
+    <xsl:with-param name="ie-6" select="'true'"/>
+    <xsl:with-param name="ie-7" select="'true'"/>
+  </xsl:call-template>
 	<xsl:call-template name="util:js"/>
 </head>
 <body>

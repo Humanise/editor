@@ -28,9 +28,6 @@
 	</title>
 	<xsl:call-template name="util:metatags"/>
 	<xsl:call-template name="util:css"/>
-	<xsl:call-template name="util:style-ie6"/>
-	<xsl:call-template name="util:style-ie7"/>
-	<xsl:call-template name="util:style-ie8"/>
 	<xsl:call-template name="util:js"/>
 </head>
 <body>

@@ -20,7 +20,7 @@
 	<xsl:call-template name="util:html-attributes"/>
 <head>
 	<title>
-		<xsl:if test="not(//p:page/@id=//p:context/p:home/@page)"> 
+		<xsl:if test="not(//p:page/@id=//p:context/p:home/@page)">
 			<xsl:value-of select="@title"/>
 			<xsl:text> - </xsl:text>
 		</xsl:if>
@@ -29,9 +29,6 @@
 	<xsl:call-template name="util:metatags"/>
 	<link href='http://fonts.googleapis.com/css?family=Nobile:regular,bold|Reenie+Beanie&amp;subset=latin' rel='stylesheet' type='text/css'/>
 	<xsl:call-template name="util:css"/>
-	<xsl:call-template name="util:style-ie6"/>
-	<xsl:call-template name="util:style-ie7"/>
-	<xsl:call-template name="util:style-ie8"/>
 	<xsl:call-template name="util:js"/>
 </head>
 <body>
@@ -52,7 +49,7 @@
 		<div class="layout_middle layout_centered">
 			<div class="layout_navigation">
 				<xsl:call-template name="util:languages"/>
-				
+
 			</div>
 			<!--xsl:if test="//p:page/p:context/p:home[@page=//p:page/@id]">
 				<div class="layout_front"><xsl:comment/></div>
@@ -178,7 +175,7 @@
 <xsl:template match="f:links/f:top">
 <div class="links_top">
 <div>
-<xsl:apply-templates select="//f:frame/f:userstatus"/> · 
+<xsl:apply-templates select="//f:frame/f:userstatus"/> ·
 <a title="Udskriv siden" class="common" href="?id={//p:page/@id}&amp;print=true">Udskriv</a>
 <xsl:apply-templates/>
 </div>
