@@ -20,8 +20,8 @@
 	<head>
 		<title><xsl:value-of select="@title"/> :: <xsl:value-of select="f:frame/@title"/></title>
 		<xsl:call-template name="util:metatags"/>
-		<xsl:call-template name="util:style"/>
-		<xsl:call-template name="util:scripts"/>
+		<xsl:call-template name="util:css"/>
+		<xsl:call-template name="util:js"/>
 	</head>
 	<body>
 		<xsl:apply-templates select="p:content"/>			

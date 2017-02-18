@@ -39,8 +39,8 @@
     </xsl:call-template>
     <xsl:call-template name="util:css">
       <xsl:with-param name="inline" select="'true'"/>
+      <xsl:with-param name="ie-lt-9" select="'true'"/>
     </xsl:call-template>
-    <xsl:call-template name="util:style-lt-ie9"/>
   </head>
   <body>
     <div class="layout">

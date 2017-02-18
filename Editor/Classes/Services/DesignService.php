@@ -300,6 +300,21 @@ class DesignService {
     return file_get_contents($cacheFile);
   }
 
+  public static function getCustomInlineJS($file, $development='false') {
+    Log::debug($file);
+    if ($development == 'true') {
+      return DesignService::_read($file);
+    }
+    $key = sha1($file . '|' . ConfigurationService::getDeploymentTime());
+    $cacheFile = FileSystemService::getFullPath('local/cache/temp/' . $key . '.js');
+    if (!file_exists($cacheFile)) {
+      $str = DesignService::_read($file);
+      FileSystemService::writeStringToFile($str,$cacheFile);
+      DesignService::_compress($cacheFile,$cacheFile);
+    }
+    return file_get_contents($cacheFile);
+  }
+
   public static function getInlineCSS($design,$development='false') {
     if ($development == 'true') {
       return DesignService::loadInlineCSS($design);

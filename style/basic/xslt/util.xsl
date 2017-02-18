@@ -16,8 +16,6 @@
  exclude-result-prefixes="p f h header text util part movie php res style"
  >
 
-<xsl:variable name="only-inline" select="'!true'" />
-
 <xsl:variable name="timestamp-query">
   <xsl:if test="$urlrewrite!='true'">
     <xsl:text>?version=</xsl:text><xsl:value-of select="$timestamp"/>
@@ -219,16 +217,8 @@ ga('create', '<xsl:value-of select="$code"/>', {siteSpeedSampleRate : 20});ga('s
   </title>
 </xsl:template>
 
-<xsl:template name="util:google-font">
-  <xsl:param name="family" />
-  <link href='http://fonts.googleapis.com/css?family={$family}' rel='stylesheet' type='text/css'/>
-</xsl:template>
-
 <xsl:template name="util:metatags">
   <meta http-equiv="content-type" content="text/html; charset=utf-8"></meta>
-    <!-- Set on server
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge"></meta>
-    -->
   <meta name="robots" content="index,follow"></meta>
   <meta property="og:title" content="{//p:page/@title}"/>
   <meta property="og:site_name" content="{//f:frame/@title}"/>
@@ -300,19 +290,19 @@ ga('create', '<xsl:value-of select="$code"/>', {siteSpeedSampleRate : 20});ga('s
 </xsl:template>
 
 <xsl:template name="util:parameter">
-    <xsl:param name="name" />
-    <xsl:param name="default" />
-    <div>
-        <xsl:attribute name="data-editable">{"name":"<xsl:value-of select="$name"/>"}</xsl:attribute>
-        <xsl:choose>
-          <xsl:when test="//p:parameter[@name=$name]">
-              <xsl:value-of select="//p:parameter[@name=$name]" disable-output-escaping="yes"/>
-          </xsl:when>
-          <xsl:otherwise>
-              <xsl:copy-of select="$default"/>
-          </xsl:otherwise>
-        </xsl:choose>
-    </div>
+  <xsl:param name="name" />
+  <xsl:param name="default" />
+  <div>
+    <xsl:attribute name="data-editable">{"name":"<xsl:value-of select="$name"/>"}</xsl:attribute>
+    <xsl:choose>
+      <xsl:when test="//p:parameter[@name=$name]">
+        <xsl:value-of select="//p:parameter[@name=$name]" disable-output-escaping="yes"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:copy-of select="$default"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </div>
 </xsl:template>
 
 <xsl:template name="util:viewport">
@@ -322,7 +312,9 @@ ga('create', '<xsl:value-of select="$code"/>', {siteSpeedSampleRate : 20});ga('s
 <!-- Scripts -->
 
 <xsl:template name="util:js">
-  <xsl:call-template name="util:_scripts-msie"/>
+  <xsl:comment><![CDATA[[if lt IE 9]>
+  <script src="]]><xsl:value-of select="$path"/><xsl:value-of select="$timestamp-url"/>hui/bin/compatibility.min.js<xsl:value-of select="$timestamp-query"/><![CDATA[" data-movable="false"></script>
+  <![endif]]]></xsl:comment>
   <script type="text/javascript">
     <xsl:text disable-output-escaping="yes">//&lt;![CDATA[
 </xsl:text>
@@ -331,7 +323,11 @@ ga('create', '<xsl:value-of select="$code"/>', {siteSpeedSampleRate : 20});ga('s
 //]]&gt;</xsl:text>
   </script>
   <script>_editor.context = '<xsl:value-of select="$path"/>';</script>
-  <xsl:call-template name="util:_scripts-config"/>
+  <script>
+  <xsl:comment>
+  require(['hui.ui'],function() {hui.ui.context='<xsl:value-of select="$path"/>';hui.ui.language='<xsl:value-of select="$language"/>';});require(['op'],function() {op.context='<xsl:value-of select="$path"/>';op.page.id=<xsl:value-of select="@id"/>;op.page.template='<xsl:value-of select="$template"/>';op.page.path='<xsl:value-of select="$path"/>';op.page.pagePath='<xsl:value-of select="$page-path"/>';op.user={username:'<xsl:value-of select="$username"/>',id:<xsl:value-of select="$userid"/>,internal:<xsl:value-of select="$internal-logged-in"/>};op.preview=<xsl:value-of select="$preview"/>;op.ignite();})
+  </xsl:comment>
+  </script>
   <xsl:variable name="query">
     <xsl:choose>
       <xsl:when test="$development='true' and $preview='true'">?preview=true&amp;development=true</xsl:when>
@@ -358,106 +354,10 @@ ga('create', '<xsl:value-of select="$code"/>', {siteSpeedSampleRate : 20});ga('s
     </xsl:otherwise>
   </xsl:choose>
 
-  <xsl:call-template name="util:_scripts-preview"/>
-</xsl:template>
-
-<xsl:template name="util:scripts">
-    <xsl:call-template name="util:_scripts-base"/>
-    <xsl:call-template name="util:_scripts-msie"/>
-  <xsl:choose>
-    <xsl:when test="$preview='true'">
-      <xsl:choose>
-        <xsl:when test="$development='true'">
-          <script src="{$path}{$timestamp-url}hui/bin/joined.js{$timestamp-query}"><xsl:comment/></script>
-        </xsl:when>
-        <xsl:otherwise>
-          <script src="{$path}{$timestamp-url}hui/bin/minimized.js{$timestamp-query}"><xsl:comment/></script>
-        </xsl:otherwise>
-      </xsl:choose>
-      <script src="{$path}{$timestamp-url}hui/js/Editor.js{$timestamp-query}"><xsl:comment/></script>
-      <script src="{$path}{$timestamp-url}hui/js/Pages.js{$timestamp-query}"><xsl:comment/></script>
-    </xsl:when>
-    <xsl:when test="$development='true'">
-      <script src="{$path}{$timestamp-url}hui/js/hui.js{$timestamp-query}"><xsl:comment/></script>
-      <script src="{$path}{$timestamp-url}hui/js/hui_animation.js{$timestamp-query}"><xsl:comment/></script>
-      <script src="{$path}{$timestamp-url}hui/js/hui_parallax.js{$timestamp-query}"><xsl:comment/></script>
-      <script src="{$path}{$timestamp-url}hui/js/hui_color.js{$timestamp-query}"><xsl:comment/></script>
-      <script src="{$path}{$timestamp-url}hui/js/hui_require.js{$timestamp-query}"><xsl:comment/></script>
-      <script src="{$path}{$timestamp-url}hui/js/ui.js{$timestamp-query}"><xsl:comment/></script>
-      <script src="{$path}{$timestamp-url}hui/js/ImageViewer.js{$timestamp-query}"><xsl:comment/></script>
-      <script src="{$path}{$timestamp-url}hui/js/Box.js{$timestamp-query}"><xsl:comment/></script>
-      <script src="{$path}{$timestamp-url}hui/js/SearchField.js{$timestamp-query}"><xsl:comment/></script>
-    </xsl:when>
-    <xsl:otherwise>
-      <script src="{$path}{$timestamp-url}hui/bin/minimized.site.js{$timestamp-query}"><xsl:comment/></script>
-    </xsl:otherwise>
-  </xsl:choose>
-  <script src="{$path}{$timestamp-url}style/basic/js/OnlinePublisher.js{$timestamp-query}"><xsl:comment/></script>
-  <xsl:call-template name="util:_scripts-config"/>
-  <xsl:call-template name="util:_scripts-preview"/>
-</xsl:template>
-
-<xsl:template name="util:_scripts-preview">
   <xsl:if test="$preview='true' and $mini!='true'">
     <script src="editor.js?version={$timestamp}"><xsl:comment/></script>
     <script src="{$path}{$timestamp-url}Editor/Template/{$template}/js/editor.php{$timestamp-query}"><xsl:comment/></script>
   </xsl:if>
-</xsl:template>
-
-<xsl:template name="util:_scripts-msie">
-<!-- html5 -->
-<xsl:comment><![CDATA[[if lt IE 9]>
-<script src="]]><xsl:value-of select="$path"/><xsl:value-of select="$timestamp-url"/>hui/bin/compatibility.min.js<xsl:value-of select="$timestamp-query"/><![CDATA[" data-movable="false"></script>
-<![endif]]]></xsl:comment>
-</xsl:template>
-
-<xsl:template name="util:_scripts-config">
-<script>
-<xsl:comment>
-require(['hui.ui'],function() {hui.ui.context='<xsl:value-of select="$path"/>';hui.ui.language='<xsl:value-of select="$language"/>';});require(['op'],function() {op.context='<xsl:value-of select="$path"/>';op.page.id=<xsl:value-of select="@id"/>;op.page.template='<xsl:value-of select="$template"/>';op.page.path='<xsl:value-of select="$path"/>';op.page.pagePath='<xsl:value-of select="$page-path"/>';op.user={username:'<xsl:value-of select="$username"/>',id:<xsl:value-of select="$userid"/>,internal:<xsl:value-of select="$internal-logged-in"/>};op.preview=<xsl:value-of select="$preview"/>;op.ignite();})
-</xsl:comment>
-</script>
-</xsl:template>
-
-<xsl:template name="util:_scripts-base">
-    <xsl:call-template name="util:script-inline">
-        <xsl:with-param name="file" select="'style/basic/js/boot.js'"/>
-        <xsl:with-param name="compiled"><![CDATA[!function(){function e(e,t){t in a?e(t,a[t]):i[t]?i[t].push(e):i[t]=[e]}function t(e,t){a[e]=t
-var n=i[e]
-n&&(n.forEach(function(n){n(e,t)}),i[e]=0)}function n(t,n){var i=t.length
-if(i){var a=[],r=0
-t.forEach(e.bind(0,function(e,o){a[t.indexOf(e)]=o,++r>=i&&n.apply(0,a)}))}else n()}var i={},a={}
-require=n,define=function(e,i,a){a?n(i,function(){t(e,a.apply(0,arguments))}):t(e,i)}}(),function(e,t){e._editor={ready:function(n){"complete"==t.readyState?n():e.addEventListener?e.addEventListener("DOMContentLoaded",n,!1):t.addEventListener?t.addEventListener("load",n,!1):"undefined"!=typeof e.attachEvent&&e.attachEvent("onload",n)},viewReady:function(t){var n=e.requestAnimationFrame||e.mozRequestAnimationFrame||e.webkitRequestAnimationFrame||e.msRequestAnimationFrame
-return n?n(t):void this.ready(t)},loadPart:function(e){require(["hui","hui.ui","op"],function(){_editor.loadScript(_editor.context+"style/basic/js/parts/"+e.name+".js")}),require(["op.part."+e.name],e.$ready)},loadCSS:function(e){this.viewReady(function(){_editor.inject(_editor._build("link",{rel:"stylesheet",type:"text/css",href:e}))})},_loaded:{},loadScript:function(e){this._loaded[e]||(this._loaded[e]=1,_editor.inject(this._build("script",{async:"async",src:e})))},_build:function(e,n){var i=t.createElement(e)
-for(variable in n)i.setAttribute(variable,n[variable])
-return i},inject:function(e){var n=t.getElementsByTagName("head")[0]
-n?n.appendChild(e):this.ready(function(){_editor.inject(e)})},processNoscript:function(){this.ready(function(){for(var e=t.getElementsByTagName("noscript"),n=0;n<e.length;n++){var i=e[n]
-if("js-async"==i.className&&i.firstChild){var a=t.createElement("div")
-a.innerHTML=i.firstChild.nodeValue
-for(var r=a.childNodes;r.length;){var o=a.removeChild(r[0])
-i.parentNode.insertBefore(o,i)}}}})}},_editor.processNoscript()}(window,document)
-]]></xsl:with-param>
-    </xsl:call-template>
-    <script>_editor.context = '<xsl:value-of select="$path"/>';</script>
-</xsl:template>
-
-<xsl:template name="util:script-inline">
-    <xsl:param name="compiled" />
-    <xsl:param name="file"/>
-    <xsl:choose>
-      <xsl:when test="$development='true'">
-      <script src="{$path}{$timestamp-url}{$file}{$timestamp-query}"><xsl:comment/></script>
-      </xsl:when>
-      <xsl:otherwise>
-        <script>
-            <xsl:text disable-output-escaping="yes">//&lt;![CDATA[
-</xsl:text>
-          <xsl:value-of select="$compiled" disable-output-escaping="yes"/>
-            <xsl:text disable-output-escaping="yes">
-//]]&gt;</xsl:text>
-        </script>
-      </xsl:otherwise>
-    </xsl:choose>
 </xsl:template>
 
 <xsl:template name="util:html-attributes">
@@ -487,14 +387,6 @@ i.parentNode.insertBefore(o,i)}}}})}},_editor.processNoscript()}(window,document
   <xsl:comment><![CDATA[[if IE 8]><link rel="stylesheet" type="text/css" href="]]><xsl:value-of select="$path"/><xsl:value-of select="$timestamp-url"/>style/<xsl:value-of select="$design"/><![CDATA[/css/msie8.css"> </link><![endif]]]></xsl:comment>
 </xsl:template>
 
-<xsl:template name="util:style-lt-ie9">
-  <xsl:comment><![CDATA[[if lt IE 9]><link rel="stylesheet" type="text/css" href="]]><xsl:value-of select="$path"/><xsl:value-of select="$timestamp-url"/>style/<xsl:value-of select="$design"/><![CDATA[/css/msie_lt9.css"> </link><![endif]]]></xsl:comment>
-</xsl:template>
-
-<xsl:template name="util:style-lt-ie8">
-  <xsl:comment><![CDATA[[if lt IE 9]><link rel="stylesheet" type="text/css" href="]]><xsl:value-of select="$path"/><xsl:value-of select="$timestamp-url"/>style/<xsl:value-of select="$design"/><![CDATA[/css/msie_lt8.css"> </link><![endif]]]></xsl:comment>
-</xsl:template>
-
 <xsl:template name="util:inline-css">
   <xsl:param name="file"/>
   <style type="text/css">
@@ -507,6 +399,7 @@ i.parentNode.insertBefore(o,i)}}}})}},_editor.processNoscript()}(window,document
   <xsl:param name="inline" select="'false'"/>
   <xsl:param name="ie-lt-9" select="'false'"/>
   <xsl:param name="ie-lt-8" select="'false'"/>
+  <xsl:param name="ie-lt-7" select="'false'"/>
 
   <xsl:if test="$inline='true'">
     <style type="text/css">
@@ -539,7 +432,7 @@ i.parentNode.insertBefore(o,i)}}}})}},_editor.processNoscript()}(window,document
 
   <xsl:choose>
     <xsl:when test="$async='true'">
-      <xsl:call-template name="util:lazy-style">
+      <xsl:call-template name="util:async-css">
         <xsl:with-param name="href"><xsl:value-of select="$url"/></xsl:with-param>
       </xsl:call-template>
     </xsl:when>
@@ -550,13 +443,17 @@ i.parentNode.insertBefore(o,i)}}}})}},_editor.processNoscript()}(window,document
 
   <xsl:call-template name="util:_style-dynamic"/>
 
-  <xsl:call-template name="util:_style-hui-msie"/>
+  <xsl:comment><![CDATA[[if lt IE 7]><link rel="stylesheet" type="text/css" href="]]><xsl:value-of select="$path"/><xsl:value-of select="$timestamp-url"/>hui/css/msie6.css<xsl:value-of select="$timestamp-query"/><![CDATA["></link><![endif]]]></xsl:comment>
+  <xsl:comment><![CDATA[[if IE 7]><link rel="stylesheet" type="text/css" href="]]><xsl:value-of select="$path"/><xsl:value-of select="$timestamp-url"/>hui/css/msie7.css<xsl:value-of select="$timestamp-query"/><![CDATA["></link><![endif]]]></xsl:comment>
 
   <xsl:if test="$ie-lt-9='true'">
-    <xsl:call-template name="util:style-lt-ie9"/>
+    <xsl:comment><![CDATA[[if lt IE 9]><link rel="stylesheet" type="text/css" href="]]><xsl:value-of select="$path"/><xsl:value-of select="$timestamp-url"/>style/<xsl:value-of select="$design"/><![CDATA[/css/msie_lt9.css"> </link><![endif]]]></xsl:comment>
   </xsl:if>
   <xsl:if test="$ie-lt-8='true'">
-    <xsl:call-template name="util:style-lt-ie8"/>
+    <xsl:comment><![CDATA[[if lt IE 9]><link rel="stylesheet" type="text/css" href="]]><xsl:value-of select="$path"/><xsl:value-of select="$timestamp-url"/>style/<xsl:value-of select="$design"/><![CDATA[/css/msie_lt8.css"> </link><![endif]]]></xsl:comment>
+  </xsl:if>
+  <xsl:if test="$ie-lt-7='true'">
+    <xsl:comment><![CDATA[[if lt IE 7]><link rel="stylesheet" type="text/css" href="]]><xsl:value-of select="$path"/><xsl:value-of select="$timestamp-url"/>style/<xsl:value-of select="$design"/><![CDATA[/css/msie6.css"> </link><![endif]]]></xsl:comment>
   </xsl:if>
 
   <xsl:call-template name="util:css-resources"/>
@@ -569,7 +466,7 @@ i.parentNode.insertBefore(o,i)}}}})}},_editor.processNoscript()}(window,document
     </xsl:call-template>
   </xsl:for-each>
   <xsl:for-each select="//res:css[@async]">
-    <xsl:call-template name="util:lazy-style">
+    <xsl:call-template name="util:async-css">
       <xsl:with-param name="href">
         <xsl:value-of select="$path"/><xsl:value-of select="$timestamp-url"/><xsl:value-of select="@async"/>
       </xsl:with-param>
@@ -577,28 +474,8 @@ i.parentNode.insertBefore(o,i)}}}})}},_editor.processNoscript()}(window,document
   </xsl:for-each>
 </xsl:template>
 
-<xsl:template name="util:style">
-  <link rel="stylesheet" type="text/css" href="{$path}{$timestamp-url}style/basic/css/{$template}.css"/>
-  <link rel="stylesheet" type="text/css" href="{$path}{$timestamp-url}style/{$design}/css/style.php"/>
-  <xsl:choose>
-    <xsl:when test="$preview='true'">
-      <link rel="stylesheet" type="text/css" href="{$path}{$timestamp-url}hui/bin/minimized.css{$timestamp-query}"/>
-      <link rel="stylesheet" type="text/css" href="{$path}{$timestamp-url}hui/css/pages.css{$timestamp-query}"/>
-      <link rel="stylesheet" type="text/css" href="{$path}{$timestamp-url}hui/css/editor.css{$timestamp-query}"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <link rel="stylesheet" type="text/css" href="{$path}{$timestamp-url}hui/bin/minimized.site.css{$timestamp-query}"/>
-    </xsl:otherwise>
-  </xsl:choose>
-  <xsl:call-template name="util:css-resources"/>
-  <xsl:call-template name="util:_style-dynamic"/>
-  <xsl:call-template name="util:_style-hui-msie"/>
-</xsl:template>
-
-<xsl:template name="util:lazy-style">
+<xsl:template name="util:async-css">
     <xsl:param name="href"/>
-    <!--
-    <script>_editor.loadCSS('<xsl:value-of select="$href"/>');</script>-->
     <noscript class="js-async">
     <link rel="stylesheet" type="text/css" href="{$href}" media="all"/>
     </noscript>
@@ -610,33 +487,17 @@ i.parentNode.insertBefore(o,i)}}}})}},_editor.processNoscript()}(window,document
     <xsl:param name="family"/>
     <xsl:param name="weights" select="'400'"/>
     <xsl:param name="class" select="'font'"/>
-    <xsl:call-template name="util:script-inline">
-        <xsl:with-param name="file" select="'style/basic/js/boot_fonts.js'"/>
-        <xsl:with-param name="compiled"><![CDATA[!function(e,t,s){s.loadFont=function(n){if(e.sessionStorage&&sessionStorage.getItem(n.href))t.body.className+=" "+n.cls
-else for(var o=n.weights||["normal"],i={},l=o.length,a=function(s){var o=t.createElement("div")
-o.style.position="absolute",o.style.whiteSpace="nowrap",o.style.top="-9999px",o.style.left="-9999px",o.style.font="999px fantasy",o.style.fontWeight=s,o.innerHTML="Am-i#w^o",t.body.appendChild(o)
-var a=o.clientWidth
-o.style.fontFamily="'"+n.family+"',fantasy"
-var r,f=.01;(r=function(){f*=1.5
-var s=o.clientWidth
-0==a||a!=s&&!i[s]?(l--,0==l&&(t.body.className+=" "+n.cls,e.sessionStorage&&sessionStorage.setItem(n.href,"1")),i[s]=1,o.parentNode.removeChild(o)):e.setTimeout(r,f)})()},r=0;r<o.length;r++)a(o[r])
-s.inject(s._build("link",{rel:"stylesheet",type:"text/css",href:n.href}))}}(window,document,_editor)
-]]></xsl:with-param>
-    </xsl:call-template>
+    <script type="text/javascript">
+      <xsl:text disable-output-escaping="yes">//&lt;![CDATA[
+      </xsl:text>
+      <xsl:value-of select="php:function('DesignService::getCustomInlineJS','style/basic/js/boot_fonts.js',$development)" disable-output-escaping="yes"/>
+      <xsl:text disable-output-escaping="yes">
+  //]]&gt;</xsl:text>
+    </script>
     <script>_editor.loadFont({href:'<xsl:value-of select="$href"/>',family:'<xsl:value-of select="$family"/>',cls:'<xsl:value-of select="$class"/>'<xsl:if test="$weights!=''">,weights:'<xsl:value-of select="$weights"/>'.split(',')</xsl:if>});</script>
 </xsl:template>
 
-<xsl:template name="util:_style-hui-msie">
-  <xsl:comment><![CDATA[[if lt IE 7]><link rel="stylesheet" type="text/css" href="]]><xsl:value-of select="$path"/><xsl:value-of select="$timestamp-url"/>hui/css/msie6.css<xsl:value-of select="$timestamp-query"/><![CDATA["></link><![endif]]]></xsl:comment>
-  <xsl:comment><![CDATA[[if IE 7]><link rel="stylesheet" type="text/css" href="]]><xsl:value-of select="$path"/><xsl:value-of select="$timestamp-url"/>hui/css/msie7.css<xsl:value-of select="$timestamp-query"/><![CDATA["></link><![endif]]]></xsl:comment>
-</xsl:template>
-
 <xsl:template name="util:_style-dynamic">
-    <!--
-  <xsl:if test="//movie:movie">
-    <link href="http://vjs.zencdn.net/4.1/video-js.css" rel="stylesheet"/>
-  </xsl:if>
-        -->
   <xsl:if test="//header:style[contains(@font-family,'Cabin Sketch')] or //text:style[contains(@font-family,'Cabin Sketch')]">
     <link href='http://fonts.googleapis.com/css?family=Cabin+Sketch:bold' rel='stylesheet' type='text/css'/>
   </xsl:if>
@@ -1010,13 +871,4 @@ s.inject(s._build("link",{rel:"stylesheet",type:"text/css",href:n.href}))}}(wind
 </xsl:template>
 
 
-<!--
-  <xsl:template name="util:share">
-    <script src="http://apis.google.com/js/plusone.js"></script>
-    <g:plusone size="small"></g:plusone>"
-    <div id="fb-root"></div>
-    <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
-    <fb:like href="" send="false" layout="button_count" width="450" show_faces="false" font="lucida grande"></fb:like>
-  </xsl:template>
--->
 </xsl:stylesheet>
