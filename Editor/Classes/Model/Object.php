@@ -22,7 +22,7 @@ Entity::$schema['Object'] = [
 		'ownerId' => ['type' => 'int','column' => 'owner_id','relation' => ['class' => 'User','property' => 'id']]
     ]
 ];
-class Object extends Entity {
+class Object extends Entity implements Loadable {
 
 	var $title;
 	var $created;
