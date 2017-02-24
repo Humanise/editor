@@ -10,12 +10,13 @@
  xmlns:util="http://uri.in2isoft.com/onlinepublisher/util/"
  exclude-result-prefixes="p f h n o"
  >
-	<xsl:output encoding="UTF-8" method="xml" doctype-public="-//W3C//DTD XHTML 1.1//EN" doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"/>
+	<xsl:output encoding="UTF-8" method="xml" omit-xml-declaration="yes"/>
 
 	<xsl:include href="../../basic/xslt/util.xsl"/>
 
 	<xsl:template match="p:page">
-		<html xmlns="http://www.w3.org/1999/xhtml">
+    <xsl:call-template name="util:doctype"/>
+		<html>
 			<xsl:call-template name="util:html-attributes"/>
 			<head>
 				<title><xsl:if test="not(//p:page/@id=//p:context/p:home/@page)"><xsl:value-of select="@title"/> - </xsl:if><xsl:value-of select="f:frame/@title"/></title>
