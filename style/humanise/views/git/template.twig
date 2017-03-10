@@ -2,8 +2,9 @@
   <ul class="gitlog_items">
   {% for item in data %}
     <li class="gitlog_item">
+      <a class="gitlog_avatar" style="background-image: url({{item.author.avatar_url}}&amp;s=80)" href="{{item.author.html_url}}"><!----></a>
       <div class="gitlog_message">{{item.commit.message}}</div>
-      <div class="gitlog_date">{{item.commit.author.date}}</div>
+      <div class="gitlog_date"><a href="{{item.html_url}}">{{item.commit.author.date|date}}</a></div>
     </li>
   {% endfor %}
   </ul>

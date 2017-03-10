@@ -1,0 +1,2107 @@
+[
+  {
+    "sha": "33f0e4d38acd942ef09bb30510901d827a45dc09",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-18T12:23:09Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-18T12:23:09Z"
+      },
+      "message": "Test for doctype + remove site* stuff",
+      "tree": {
+        "sha": "c28e88f9400bd6bcceae570f8f162c370eba10bf",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/c28e88f9400bd6bcceae570f8f162c370eba10bf"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/33f0e4d38acd942ef09bb30510901d827a45dc09",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/33f0e4d38acd942ef09bb30510901d827a45dc09",
+    "html_url": "https://github.com/Humanise/editor/commit/33f0e4d38acd942ef09bb30510901d827a45dc09",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/33f0e4d38acd942ef09bb30510901d827a45dc09/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "fd3775f18301da63b4cdafd910ca96bd40ddd1b1",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/fd3775f18301da63b4cdafd910ca96bd40ddd1b1",
+        "html_url": "https://github.com/Humanise/editor/commit/fd3775f18301da63b4cdafd910ca96bd40ddd1b1"
+      }
+    ]
+  },
+  {
+    "sha": "fd3775f18301da63b4cdafd910ca96bd40ddd1b1",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-18T12:18:47Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-18T12:18:47Z"
+      },
+      "message": "More compact scripts",
+      "tree": {
+        "sha": "4e424e3c5c12f946db27ea9dfc6c5614bdaebd5c",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/4e424e3c5c12f946db27ea9dfc6c5614bdaebd5c"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/fd3775f18301da63b4cdafd910ca96bd40ddd1b1",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/fd3775f18301da63b4cdafd910ca96bd40ddd1b1",
+    "html_url": "https://github.com/Humanise/editor/commit/fd3775f18301da63b4cdafd910ca96bd40ddd1b1",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/fd3775f18301da63b4cdafd910ca96bd40ddd1b1/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "bfcb3679532d925e4fecc1141065434ef2e03dfc",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/bfcb3679532d925e4fecc1141065434ef2e03dfc",
+        "html_url": "https://github.com/Humanise/editor/commit/bfcb3679532d925e4fecc1141065434ef2e03dfc"
+      }
+    ]
+  },
+  {
+    "sha": "bfcb3679532d925e4fecc1141065434ef2e03dfc",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-18T12:10:59Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-18T12:10:59Z"
+      },
+      "message": "Better formatting",
+      "tree": {
+        "sha": "c08bc1b488865c94562a9af690e8018ab4050697",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/c08bc1b488865c94562a9af690e8018ab4050697"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/bfcb3679532d925e4fecc1141065434ef2e03dfc",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/bfcb3679532d925e4fecc1141065434ef2e03dfc",
+    "html_url": "https://github.com/Humanise/editor/commit/bfcb3679532d925e4fecc1141065434ef2e03dfc",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/bfcb3679532d925e4fecc1141065434ef2e03dfc/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "38c6c8fc57f9ad903ff5992c8a62d2b554b041b9",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/38c6c8fc57f9ad903ff5992c8a62d2b554b041b9",
+        "html_url": "https://github.com/Humanise/editor/commit/38c6c8fc57f9ad903ff5992c8a62d2b554b041b9"
+      }
+    ]
+  },
+  {
+    "sha": "38c6c8fc57f9ad903ff5992c8a62d2b554b041b9",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-18T12:08:49Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-18T12:08:49Z"
+      },
+      "message": "Simplified MSIE css",
+      "tree": {
+        "sha": "b5f6bf913d798805dd43e416cb793d42c798fa2b",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/b5f6bf913d798805dd43e416cb793d42c798fa2b"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/38c6c8fc57f9ad903ff5992c8a62d2b554b041b9",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/38c6c8fc57f9ad903ff5992c8a62d2b554b041b9",
+    "html_url": "https://github.com/Humanise/editor/commit/38c6c8fc57f9ad903ff5992c8a62d2b554b041b9",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/38c6c8fc57f9ad903ff5992c8a62d2b554b041b9/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "079f5327126d08690b5941b76f56334da360ad67",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/079f5327126d08690b5941b76f56334da360ad67",
+        "html_url": "https://github.com/Humanise/editor/commit/079f5327126d08690b5941b76f56334da360ad67"
+      }
+    ]
+  },
+  {
+    "sha": "079f5327126d08690b5941b76f56334da360ad67",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-18T11:59:16Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-18T11:59:16Z"
+      },
+      "message": "Shared viewport template",
+      "tree": {
+        "sha": "c61ef8c69dcbcbdbec873b9e97e3c991580c3e86",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/c61ef8c69dcbcbdbec873b9e97e3c991580c3e86"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/079f5327126d08690b5941b76f56334da360ad67",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/079f5327126d08690b5941b76f56334da360ad67",
+    "html_url": "https://github.com/Humanise/editor/commit/079f5327126d08690b5941b76f56334da360ad67",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/079f5327126d08690b5941b76f56334da360ad67/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "27157a9a1a878f420df65569e9e9aa6558ec3ee1",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/27157a9a1a878f420df65569e9e9aa6558ec3ee1",
+        "html_url": "https://github.com/Humanise/editor/commit/27157a9a1a878f420df65569e9e9aa6558ec3ee1"
+      }
+    ]
+  },
+  {
+    "sha": "27157a9a1a878f420df65569e9e9aa6558ec3ee1",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-18T11:55:24Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-18T11:55:24Z"
+      },
+      "message": "Cleaned up XSL utils",
+      "tree": {
+        "sha": "8b0c32721f50bda017a4a908ecfc8adba1ac5d7f",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/8b0c32721f50bda017a4a908ecfc8adba1ac5d7f"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/27157a9a1a878f420df65569e9e9aa6558ec3ee1",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/27157a9a1a878f420df65569e9e9aa6558ec3ee1",
+    "html_url": "https://github.com/Humanise/editor/commit/27157a9a1a878f420df65569e9e9aa6558ec3ee1",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/27157a9a1a878f420df65569e9e9aa6558ec3ee1/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "f48e536658be84eee34205c18a07a03caade9b46",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/f48e536658be84eee34205c18a07a03caade9b46",
+        "html_url": "https://github.com/Humanise/editor/commit/f48e536658be84eee34205c18a07a03caade9b46"
+      }
+    ]
+  },
+  {
+    "sha": "f48e536658be84eee34205c18a07a03caade9b46",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-18T11:02:00Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-18T11:02:00Z"
+      },
+      "message": "Modernized resource inclusion in designs",
+      "tree": {
+        "sha": "64f7ef61c1f7b150ea82078eebaf1cd4fa0f8b00",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/64f7ef61c1f7b150ea82078eebaf1cd4fa0f8b00"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/f48e536658be84eee34205c18a07a03caade9b46",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/f48e536658be84eee34205c18a07a03caade9b46",
+    "html_url": "https://github.com/Humanise/editor/commit/f48e536658be84eee34205c18a07a03caade9b46",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/f48e536658be84eee34205c18a07a03caade9b46/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "ee88a344ee9d0595f22c10b10c53f162e6b82dd1",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/ee88a344ee9d0595f22c10b10c53f162e6b82dd1",
+        "html_url": "https://github.com/Humanise/editor/commit/ee88a344ee9d0595f22c10b10c53f162e6b82dd1"
+      }
+    ]
+  },
+  {
+    "sha": "ee88a344ee9d0595f22c10b10c53f162e6b82dd1",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-18T11:01:28Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-18T11:01:28Z"
+      },
+      "message": "Made Object implement loadable",
+      "tree": {
+        "sha": "ea8c465bd90daff7a32aa93d2aa90d0325812b21",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/ea8c465bd90daff7a32aa93d2aa90d0325812b21"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/ee88a344ee9d0595f22c10b10c53f162e6b82dd1",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/ee88a344ee9d0595f22c10b10c53f162e6b82dd1",
+    "html_url": "https://github.com/Humanise/editor/commit/ee88a344ee9d0595f22c10b10c53f162e6b82dd1",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/ee88a344ee9d0595f22c10b10c53f162e6b82dd1/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "8c2b5bb7a1c5f5ad78c9a03d4499f3ddb0a710ad",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/8c2b5bb7a1c5f5ad78c9a03d4499f3ddb0a710ad",
+        "html_url": "https://github.com/Humanise/editor/commit/8c2b5bb7a1c5f5ad78c9a03d4499f3ddb0a710ad"
+      }
+    ]
+  },
+  {
+    "sha": "8c2b5bb7a1c5f5ad78c9a03d4499f3ddb0a710ad",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-18T11:01:01Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-18T11:01:01Z"
+      },
+      "message": "Support broader design names",
+      "tree": {
+        "sha": "08de4e65309f0939dff3fbc8108bf4bc7f02aed8",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/08de4e65309f0939dff3fbc8108bf4bc7f02aed8"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/8c2b5bb7a1c5f5ad78c9a03d4499f3ddb0a710ad",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/8c2b5bb7a1c5f5ad78c9a03d4499f3ddb0a710ad",
+    "html_url": "https://github.com/Humanise/editor/commit/8c2b5bb7a1c5f5ad78c9a03d4499f3ddb0a710ad",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/8c2b5bb7a1c5f5ad78c9a03d4499f3ddb0a710ad/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "0486b199baaa8419f2bdecd708223b804fe7efbe",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/0486b199baaa8419f2bdecd708223b804fe7efbe",
+        "html_url": "https://github.com/Humanise/editor/commit/0486b199baaa8419f2bdecd708223b804fe7efbe"
+      }
+    ]
+  },
+  {
+    "sha": "0486b199baaa8419f2bdecd708223b804fe7efbe",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-18T11:00:36Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-18T11:00:36Z"
+      },
+      "message": "Removed legacy way of joining resources",
+      "tree": {
+        "sha": "9e83d6bd372c91b9f5ab1f1f3f8be88576efbf12",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/9e83d6bd372c91b9f5ab1f1f3f8be88576efbf12"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/0486b199baaa8419f2bdecd708223b804fe7efbe",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/0486b199baaa8419f2bdecd708223b804fe7efbe",
+    "html_url": "https://github.com/Humanise/editor/commit/0486b199baaa8419f2bdecd708223b804fe7efbe",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/0486b199baaa8419f2bdecd708223b804fe7efbe/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "bb4c31b6af99d1e0bacf4dc2abb69b209f21ab3d",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/bb4c31b6af99d1e0bacf4dc2abb69b209f21ab3d",
+        "html_url": "https://github.com/Humanise/editor/commit/bb4c31b6af99d1e0bacf4dc2abb69b209f21ab3d"
+      }
+    ]
+  },
+  {
+    "sha": "bb4c31b6af99d1e0bacf4dc2abb69b209f21ab3d",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-17T23:27:58Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-17T23:27:58Z"
+      },
+      "message": "Removed the pigsaaler design",
+      "tree": {
+        "sha": "74b0ef6b7fa19029932e8198ccdab202209e9d9d",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/74b0ef6b7fa19029932e8198ccdab202209e9d9d"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/bb4c31b6af99d1e0bacf4dc2abb69b209f21ab3d",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/bb4c31b6af99d1e0bacf4dc2abb69b209f21ab3d",
+    "html_url": "https://github.com/Humanise/editor/commit/bb4c31b6af99d1e0bacf4dc2abb69b209f21ab3d",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/bb4c31b6af99d1e0bacf4dc2abb69b209f21ab3d/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "208aa9c89c84e995204a21ec99883935909cc764",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/208aa9c89c84e995204a21ec99883935909cc764",
+        "html_url": "https://github.com/Humanise/editor/commit/208aa9c89c84e995204a21ec99883935909cc764"
+      }
+    ]
+  },
+  {
+    "sha": "208aa9c89c84e995204a21ec99883935909cc764",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-17T23:13:47Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-17T23:13:47Z"
+      },
+      "message": "removed unused design",
+      "tree": {
+        "sha": "b7c288dc9783ec40384fe94684fe9edaa4711031",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/b7c288dc9783ec40384fe94684fe9edaa4711031"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/208aa9c89c84e995204a21ec99883935909cc764",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/208aa9c89c84e995204a21ec99883935909cc764",
+    "html_url": "https://github.com/Humanise/editor/commit/208aa9c89c84e995204a21ec99883935909cc764",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/208aa9c89c84e995204a21ec99883935909cc764/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "3166eb0a56d579b37d0c24390c496a23264290f2",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/3166eb0a56d579b37d0c24390c496a23264290f2",
+        "html_url": "https://github.com/Humanise/editor/commit/3166eb0a56d579b37d0c24390c496a23264290f2"
+      }
+    ]
+  },
+  {
+    "sha": "3166eb0a56d579b37d0c24390c496a23264290f2",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-16T15:45:24Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-16T15:45:24Z"
+      },
+      "message": "Removed unused templates",
+      "tree": {
+        "sha": "b579a0e4e4e62af5edffd4d8fd9c890c4eb981b3",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/b579a0e4e4e62af5edffd4d8fd9c890c4eb981b3"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/3166eb0a56d579b37d0c24390c496a23264290f2",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/3166eb0a56d579b37d0c24390c496a23264290f2",
+    "html_url": "https://github.com/Humanise/editor/commit/3166eb0a56d579b37d0c24390c496a23264290f2",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/3166eb0a56d579b37d0c24390c496a23264290f2/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "f4990cef010dca5255f452de1945001edf2406a8",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/f4990cef010dca5255f452de1945001edf2406a8",
+        "html_url": "https://github.com/Humanise/editor/commit/f4990cef010dca5255f452de1945001edf2406a8"
+      }
+    ]
+  },
+  {
+    "sha": "f4990cef010dca5255f452de1945001edf2406a8",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-16T15:38:12Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-16T15:38:12Z"
+      },
+      "message": "Cleaned up XSL",
+      "tree": {
+        "sha": "72e4782b350dae945264443b74a02ac9df474ba5",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/72e4782b350dae945264443b74a02ac9df474ba5"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/f4990cef010dca5255f452de1945001edf2406a8",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/f4990cef010dca5255f452de1945001edf2406a8",
+    "html_url": "https://github.com/Humanise/editor/commit/f4990cef010dca5255f452de1945001edf2406a8",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/f4990cef010dca5255f452de1945001edf2406a8/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "e78e1c184439de0db34ee47a751243b5b71c0bfc",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/e78e1c184439de0db34ee47a751243b5b71c0bfc",
+        "html_url": "https://github.com/Humanise/editor/commit/e78e1c184439de0db34ee47a751243b5b71c0bfc"
+      }
+    ]
+  },
+  {
+    "sha": "e78e1c184439de0db34ee47a751243b5b71c0bfc",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-16T15:35:21Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-16T15:35:21Z"
+      },
+      "message": "Modernized CSS/JS inclusion",
+      "tree": {
+        "sha": "80637b91e3850141f16ad2a771d11e0ac16e9aa7",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/80637b91e3850141f16ad2a771d11e0ac16e9aa7"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/e78e1c184439de0db34ee47a751243b5b71c0bfc",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/e78e1c184439de0db34ee47a751243b5b71c0bfc",
+    "html_url": "https://github.com/Humanise/editor/commit/e78e1c184439de0db34ee47a751243b5b71c0bfc",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/e78e1c184439de0db34ee47a751243b5b71c0bfc/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "5d5251770ed253260963631c9a6459c64acc2677",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/5d5251770ed253260963631c9a6459c64acc2677",
+        "html_url": "https://github.com/Humanise/editor/commit/5d5251770ed253260963631c9a6459c64acc2677"
+      }
+    ]
+  },
+  {
+    "sha": "5d5251770ed253260963631c9a6459c64acc2677",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-16T15:34:11Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-16T15:34:11Z"
+      },
+      "message": "Modernized CSS/JS inclusion #fynbogaarden",
+      "tree": {
+        "sha": "48d53abf57ed8d16c0359f3758661996a137c6d1",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/48d53abf57ed8d16c0359f3758661996a137c6d1"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/5d5251770ed253260963631c9a6459c64acc2677",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/5d5251770ed253260963631c9a6459c64acc2677",
+    "html_url": "https://github.com/Humanise/editor/commit/5d5251770ed253260963631c9a6459c64acc2677",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/5d5251770ed253260963631c9a6459c64acc2677/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "e8fa59fe4a0201ea36439218c5a22a4e7e0ab68c",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/e8fa59fe4a0201ea36439218c5a22a4e7e0ab68c",
+        "html_url": "https://github.com/Humanise/editor/commit/e8fa59fe4a0201ea36439218c5a22a4e7e0ab68c"
+      }
+    ]
+  },
+  {
+    "sha": "e8fa59fe4a0201ea36439218c5a22a4e7e0ab68c",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-16T15:30:03Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-16T15:30:03Z"
+      },
+      "message": "Modernized CSS/JS inclusion #karenslyst",
+      "tree": {
+        "sha": "688693d0b15e0ff44d7cb0bf279300c9cdc65f41",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/688693d0b15e0ff44d7cb0bf279300c9cdc65f41"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/e8fa59fe4a0201ea36439218c5a22a4e7e0ab68c",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/e8fa59fe4a0201ea36439218c5a22a4e7e0ab68c",
+    "html_url": "https://github.com/Humanise/editor/commit/e8fa59fe4a0201ea36439218c5a22a4e7e0ab68c",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/e8fa59fe4a0201ea36439218c5a22a4e7e0ab68c/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "9f2f45e87ff7b70ed5365fa2bc9de20585a3ac60",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/9f2f45e87ff7b70ed5365fa2bc9de20585a3ac60",
+        "html_url": "https://github.com/Humanise/editor/commit/9f2f45e87ff7b70ed5365fa2bc9de20585a3ac60"
+      }
+    ]
+  },
+  {
+    "sha": "9f2f45e87ff7b70ed5365fa2bc9de20585a3ac60",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-16T14:52:38Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-16T14:52:38Z"
+      },
+      "message": "Cleaned up XSL",
+      "tree": {
+        "sha": "eb0cb9b8dc8461695b3804193260bb86393a1f9a",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/eb0cb9b8dc8461695b3804193260bb86393a1f9a"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/9f2f45e87ff7b70ed5365fa2bc9de20585a3ac60",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/9f2f45e87ff7b70ed5365fa2bc9de20585a3ac60",
+    "html_url": "https://github.com/Humanise/editor/commit/9f2f45e87ff7b70ed5365fa2bc9de20585a3ac60",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/9f2f45e87ff7b70ed5365fa2bc9de20585a3ac60/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "b93670fe3d4d1ad120b3170dc74e988c7061538c",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/b93670fe3d4d1ad120b3170dc74e988c7061538c",
+        "html_url": "https://github.com/Humanise/editor/commit/b93670fe3d4d1ad120b3170dc74e988c7061538c"
+      }
+    ]
+  },
+  {
+    "sha": "b93670fe3d4d1ad120b3170dc74e988c7061538c",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-15T15:19:48Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-15T15:19:48Z"
+      },
+      "message": "Changed to use modern resource inclusion #in2isoft",
+      "tree": {
+        "sha": "fa2b03221467e775d2956bfb7db119bc13c3f7c4",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/fa2b03221467e775d2956bfb7db119bc13c3f7c4"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/b93670fe3d4d1ad120b3170dc74e988c7061538c",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/b93670fe3d4d1ad120b3170dc74e988c7061538c",
+    "html_url": "https://github.com/Humanise/editor/commit/b93670fe3d4d1ad120b3170dc74e988c7061538c",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/b93670fe3d4d1ad120b3170dc74e988c7061538c/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "cdf068a3a32b89615db6c71df93024e3261516cd",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/cdf068a3a32b89615db6c71df93024e3261516cd",
+        "html_url": "https://github.com/Humanise/editor/commit/cdf068a3a32b89615db6c71df93024e3261516cd"
+      }
+    ]
+  },
+  {
+    "sha": "cdf068a3a32b89615db6c71df93024e3261516cd",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-15T15:18:58Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-15T15:18:58Z"
+      },
+      "message": "Removed uncommented code",
+      "tree": {
+        "sha": "4f5cf17f33d000b6980196b4cae02eea3a7bed7e",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/4f5cf17f33d000b6980196b4cae02eea3a7bed7e"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/cdf068a3a32b89615db6c71df93024e3261516cd",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/cdf068a3a32b89615db6c71df93024e3261516cd",
+    "html_url": "https://github.com/Humanise/editor/commit/cdf068a3a32b89615db6c71df93024e3261516cd",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/cdf068a3a32b89615db6c71df93024e3261516cd/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "b6ab8b107da10d9cf53eea5bd7e57392f223b046",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/b6ab8b107da10d9cf53eea5bd7e57392f223b046",
+        "html_url": "https://github.com/Humanise/editor/commit/b6ab8b107da10d9cf53eea5bd7e57392f223b046"
+      }
+    ]
+  },
+  {
+    "sha": "b6ab8b107da10d9cf53eea5bd7e57392f223b046",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-14T16:08:16Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-14T16:08:16Z"
+      },
+      "message": "Made side menu work better on iOS",
+      "tree": {
+        "sha": "8eaa01ef65eff7148eba9737dd289a8d4d2722a1",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/8eaa01ef65eff7148eba9737dd289a8d4d2722a1"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/b6ab8b107da10d9cf53eea5bd7e57392f223b046",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/b6ab8b107da10d9cf53eea5bd7e57392f223b046",
+    "html_url": "https://github.com/Humanise/editor/commit/b6ab8b107da10d9cf53eea5bd7e57392f223b046",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/b6ab8b107da10d9cf53eea5bd7e57392f223b046/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "1317ee71188c3292f1cc66179eea175f2614ba68",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/1317ee71188c3292f1cc66179eea175f2614ba68",
+        "html_url": "https://github.com/Humanise/editor/commit/1317ee71188c3292f1cc66179eea175f2614ba68"
+      }
+    ]
+  },
+  {
+    "sha": "1317ee71188c3292f1cc66179eea175f2614ba68",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-10T16:58:06Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-10T16:58:06Z"
+      },
+      "message": "Better live editing",
+      "tree": {
+        "sha": "999b2033cfd285e1b8183161d0ba63cd02bb10f5",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/999b2033cfd285e1b8183161d0ba63cd02bb10f5"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/1317ee71188c3292f1cc66179eea175f2614ba68",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/1317ee71188c3292f1cc66179eea175f2614ba68",
+    "html_url": "https://github.com/Humanise/editor/commit/1317ee71188c3292f1cc66179eea175f2614ba68",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/1317ee71188c3292f1cc66179eea175f2614ba68/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "23a49104a19a7cfc281596b3f86674f67df41165",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/23a49104a19a7cfc281596b3f86674f67df41165",
+        "html_url": "https://github.com/Humanise/editor/commit/23a49104a19a7cfc281596b3f86674f67df41165"
+      }
+    ]
+  },
+  {
+    "sha": "23a49104a19a7cfc281596b3f86674f67df41165",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-10T16:57:20Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-02-10T16:57:20Z"
+      },
+      "message": "Improved HUI compatibility",
+      "tree": {
+        "sha": "d12cd2b7ee3d242d323749622ad616f5ff40cfb7",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/d12cd2b7ee3d242d323749622ad616f5ff40cfb7"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/23a49104a19a7cfc281596b3f86674f67df41165",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/23a49104a19a7cfc281596b3f86674f67df41165",
+    "html_url": "https://github.com/Humanise/editor/commit/23a49104a19a7cfc281596b3f86674f67df41165",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/23a49104a19a7cfc281596b3f86674f67df41165/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "0538a71c0137df3c218db84126bba4c8ad516ada",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/0538a71c0137df3c218db84126bba4c8ad516ada",
+        "html_url": "https://github.com/Humanise/editor/commit/0538a71c0137df3c218db84126bba4c8ad516ada"
+      }
+    ]
+  },
+  {
+    "sha": "0538a71c0137df3c218db84126bba4c8ad516ada",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-01-25T20:25:34Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-01-25T20:25:34Z"
+      },
+      "message": "Fixed RSS encoding",
+      "tree": {
+        "sha": "9ee29751165605169c0dee9dae8b03a476e9314f",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/9ee29751165605169c0dee9dae8b03a476e9314f"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/0538a71c0137df3c218db84126bba4c8ad516ada",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/0538a71c0137df3c218db84126bba4c8ad516ada",
+    "html_url": "https://github.com/Humanise/editor/commit/0538a71c0137df3c218db84126bba4c8ad516ada",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/0538a71c0137df3c218db84126bba4c8ad516ada/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "42bd43a95889aef81f6eee5179a8f4fbd102fb33",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/42bd43a95889aef81f6eee5179a8f4fbd102fb33",
+        "html_url": "https://github.com/Humanise/editor/commit/42bd43a95889aef81f6eee5179a8f4fbd102fb33"
+      }
+    ]
+  },
+  {
+    "sha": "42bd43a95889aef81f6eee5179a8f4fbd102fb33",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-01-25T19:53:12Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-01-25T19:53:12Z"
+      },
+      "message": "Support video on front page #lottemunk",
+      "tree": {
+        "sha": "6bba1782bf08c1d3ea348c1be5ecf27fb91381cc",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/6bba1782bf08c1d3ea348c1be5ecf27fb91381cc"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/42bd43a95889aef81f6eee5179a8f4fbd102fb33",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/42bd43a95889aef81f6eee5179a8f4fbd102fb33",
+    "html_url": "https://github.com/Humanise/editor/commit/42bd43a95889aef81f6eee5179a8f4fbd102fb33",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/42bd43a95889aef81f6eee5179a8f4fbd102fb33/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "978aa3524a2f41d795abee4b37e4ab7a4b827218",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/978aa3524a2f41d795abee4b37e4ab7a4b827218",
+        "html_url": "https://github.com/Humanise/editor/commit/978aa3524a2f41d795abee4b37e4ab7a4b827218"
+      }
+    ]
+  },
+  {
+    "sha": "978aa3524a2f41d795abee4b37e4ab7a4b827218",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-01-20T09:25:08Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-01-20T09:25:08Z"
+      },
+      "message": "Improved wellformedness of HUI Interfaces",
+      "tree": {
+        "sha": "b16a5314b08449099d600e57899dd918d39c2a59",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/b16a5314b08449099d600e57899dd918d39c2a59"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/978aa3524a2f41d795abee4b37e4ab7a4b827218",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/978aa3524a2f41d795abee4b37e4ab7a4b827218",
+    "html_url": "https://github.com/Humanise/editor/commit/978aa3524a2f41d795abee4b37e4ab7a4b827218",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/978aa3524a2f41d795abee4b37e4ab7a4b827218/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "707dac9088689ff549850a7b082e43403793eaba",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/707dac9088689ff549850a7b082e43403793eaba",
+        "html_url": "https://github.com/Humanise/editor/commit/707dac9088689ff549850a7b082e43403793eaba"
+      }
+    ]
+  },
+  {
+    "sha": "707dac9088689ff549850a7b082e43403793eaba",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-01-20T09:24:16Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-01-20T09:24:16Z"
+      },
+      "message": "Disabled logging",
+      "tree": {
+        "sha": "def96951be66369812a8f2767d2a3cf87ec8377b",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/def96951be66369812a8f2767d2a3cf87ec8377b"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/707dac9088689ff549850a7b082e43403793eaba",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/707dac9088689ff549850a7b082e43403793eaba",
+    "html_url": "https://github.com/Humanise/editor/commit/707dac9088689ff549850a7b082e43403793eaba",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/707dac9088689ff549850a7b082e43403793eaba/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "784a6e9917cd37b8e8b0f15e66abc734d1a97411",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/784a6e9917cd37b8e8b0f15e66abc734d1a97411",
+        "html_url": "https://github.com/Humanise/editor/commit/784a6e9917cd37b8e8b0f15e66abc734d1a97411"
+      }
+    ]
+  },
+  {
+    "sha": "784a6e9917cd37b8e8b0f15e66abc734d1a97411",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-01-18T23:59:51Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-01-18T23:59:51Z"
+      },
+      "message": "Merge branch 'master' into media-simulator\n\n# Conflicts:\n#\tEditor/Services/Preview/index.php",
+      "tree": {
+        "sha": "567e0df56c604999d9741d8f1a7e1ea0fbefa9f0",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/567e0df56c604999d9741d8f1a7e1ea0fbefa9f0"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/784a6e9917cd37b8e8b0f15e66abc734d1a97411",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/784a6e9917cd37b8e8b0f15e66abc734d1a97411",
+    "html_url": "https://github.com/Humanise/editor/commit/784a6e9917cd37b8e8b0f15e66abc734d1a97411",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/784a6e9917cd37b8e8b0f15e66abc734d1a97411/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "cc72c6dd21deaca33e3fb943dcbcb9a0a24a7bd6",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/cc72c6dd21deaca33e3fb943dcbcb9a0a24a7bd6",
+        "html_url": "https://github.com/Humanise/editor/commit/cc72c6dd21deaca33e3fb943dcbcb9a0a24a7bd6"
+      },
+      {
+        "sha": "0b2d85102673e9fa3389e3a784b1e85b922a6040",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/0b2d85102673e9fa3389e3a784b1e85b922a6040",
+        "html_url": "https://github.com/Humanise/editor/commit/0b2d85102673e9fa3389e3a784b1e85b922a6040"
+      }
+    ]
+  },
+  {
+    "sha": "0b2d85102673e9fa3389e3a784b1e85b922a6040",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-01-18T23:54:02Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-01-18T23:54:02Z"
+      },
+      "message": "First take at major UI refactoring",
+      "tree": {
+        "sha": "8fac38a6032027f828650d3e774d74e284b9fe56",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/8fac38a6032027f828650d3e774d74e284b9fe56"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/0b2d85102673e9fa3389e3a784b1e85b922a6040",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/0b2d85102673e9fa3389e3a784b1e85b922a6040",
+    "html_url": "https://github.com/Humanise/editor/commit/0b2d85102673e9fa3389e3a784b1e85b922a6040",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/0b2d85102673e9fa3389e3a784b1e85b922a6040/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "7aaf05931cf626b26fd6927e09a5c88bf3d260bd",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/7aaf05931cf626b26fd6927e09a5c88bf3d260bd",
+        "html_url": "https://github.com/Humanise/editor/commit/7aaf05931cf626b26fd6927e09a5c88bf3d260bd"
+      }
+    ]
+  },
+  {
+    "sha": "7aaf05931cf626b26fd6927e09a5c88bf3d260bd",
+    "commit": {
+      "author": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-01-17T07:24:01Z"
+      },
+      "committer": {
+        "name": "Jonas Munk",
+        "email": "jonasmunk@mac.com",
+        "date": "2017-01-17T07:24:01Z"
+      },
+      "message": "Even better indentation",
+      "tree": {
+        "sha": "a050f92a0f6e367feef7c92a093dbb99fcef5796",
+        "url": "https://api.github.com/repos/Humanise/editor/git/trees/a050f92a0f6e367feef7c92a093dbb99fcef5796"
+      },
+      "url": "https://api.github.com/repos/Humanise/editor/git/commits/7aaf05931cf626b26fd6927e09a5c88bf3d260bd",
+      "comment_count": 0
+    },
+    "url": "https://api.github.com/repos/Humanise/editor/commits/7aaf05931cf626b26fd6927e09a5c88bf3d260bd",
+    "html_url": "https://github.com/Humanise/editor/commit/7aaf05931cf626b26fd6927e09a5c88bf3d260bd",
+    "comments_url": "https://api.github.com/repos/Humanise/editor/commits/7aaf05931cf626b26fd6927e09a5c88bf3d260bd/comments",
+    "author": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "jonasmunk",
+      "id": 318748,
+      "avatar_url": "https://avatars.githubusercontent.com/u/318748?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jonasmunk",
+      "html_url": "https://github.com/jonasmunk",
+      "followers_url": "https://api.github.com/users/jonasmunk/followers",
+      "following_url": "https://api.github.com/users/jonasmunk/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jonasmunk/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jonasmunk/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jonasmunk/subscriptions",
+      "organizations_url": "https://api.github.com/users/jonasmunk/orgs",
+      "repos_url": "https://api.github.com/users/jonasmunk/repos",
+      "events_url": "https://api.github.com/users/jonasmunk/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jonasmunk/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "0b073af4e2464b0b5ffca3b62cdd6bc590f33b52",
+        "url": "https://api.github.com/repos/Humanise/editor/commits/0b073af4e2464b0b5ffca3b62cdd6bc590f33b52",
+        "html_url": "https://github.com/Humanise/editor/commit/0b073af4e2464b0b5ffca3b62cdd6bc590f33b52"
+      }
+    ]
+  }
+]
