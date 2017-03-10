@@ -169,7 +169,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-jsdoc');
 
-  grunt.registerTask('default', 'Standard tasks', ['watch']);
+  grunt.registerTask('default', 'Standard tasks', ['sass','compass','watch']);
 
   grunt.registerTask('stage', 'Stage a client', function(client) {
     grunt.task.run('shell:stage:' + client);
