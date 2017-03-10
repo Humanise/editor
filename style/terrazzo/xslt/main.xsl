@@ -10,12 +10,13 @@
  xmlns:util="http://uri.in2isoft.com/onlinepublisher/util/"
  exclude-result-prefixes="p f h n o"
  >
-<xsl:output encoding="UTF-8" method="xml" doctype-public="-//W3C//DTD XHTML 1.1//EN" doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"/>
+<xsl:output encoding="UTF-8" method="xml" omit-xml-declaration="yes"/>
 
 <xsl:include href="../../basic/xslt/util.xsl"/>
 
 <xsl:template match="p:page">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<xsl:call-template name="util:doctype"/>
+<html>
 	<xsl:call-template name="util:html-attributes"/>
 <head>
 	<xsl:call-template name="util:metatags"/>
@@ -64,12 +65,12 @@
 	<xsl:apply-templates select="../f:frame/f:newsblock"/>
 	<div class="info">
 		<h2><em>Terrazzo</em>Forum</h2>
-		<p>Produktionsvirksomhed med speciale i formstøbt terrazzo og beton.</p>
+		<p>Produktionsvirksomhed med speciale i formstÃ¸bt terrazzo og beton.</p>
 		<address>
 			<strong>Contec Prefab A/S</strong>
 			<br/>Dennis Rafn Serwin
 			<br/>Axel Kiers Vej 18 J
-			<br/>8270 Højbjerg - DK
+			<br/>8270 HÃ¸jbjerg - DK
 			<br/><a class="common" href="mailto:prefab@contec-aps.dk">prefab@contec-aps.dk</a>
 			<br/><strong class="phone">+45 23 999 367</strong>
 		</address>
@@ -93,7 +94,7 @@
 	<xsl:choose>
 		<xsl:when test="$userid>0">
 		<span class="userstatus">Bruger: <strong><xsl:value-of select="$usertitle"/></strong></span>
-		<xsl:text> · </xsl:text>
+		<xsl:text> Â· </xsl:text>
 		<a href="./?id={@page}&amp;logout=true" class="common">Log ud</a>
 		</xsl:when>
 		<xsl:otherwise>
@@ -180,7 +181,7 @@
 <xsl:template match="f:links/f:top">
 <div class="links_top">
 <div>
-<xsl:apply-templates select="//f:frame/f:userstatus"/> · 
+<xsl:apply-templates select="//f:frame/f:userstatus"/> Â· 
 <a title="Udskriv siden" class="common" href="?id={//p:page/@id}&amp;print=true">Udskriv</a>
 <xsl:apply-templates/>
 </div>
@@ -306,12 +307,12 @@
 </div>
 <div>
 <input class="field" name="query" id="searchfield"></input>
-<input type="submit" class="button" value="Søg"/>
+<input type="submit" class="button" value="SÃ¸g"/>
 </div>
 </form>
 <script type="text/javascript"><xsl:comment>
   hui.onReady(function() {
-    new op.SearchField({element:'searchfield',placeholder:'Søg her!'});
+    new op.SearchField({element:'searchfield',placeholder:'SÃ¸g her!'});
   })
 </xsl:comment>
 </script>
