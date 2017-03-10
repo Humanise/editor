@@ -1,145 +1,66 @@
-a.common {
-  color: #ddd;
-  cursor: pointer;
-}
-a.common span {
-  color: #0073b9;
-}
-a.common:hover, a.common:hover span {
-  color: #005aae;
-}
+/*
+Error: File to import not found or unreadable: compass/css3/transition.
+        on line 2 of style/lottemunk/scss/_tools.scss
+        from line 3 of style/lottemunk/scss/overwrite.scss
 
-.part_header {
-  font-family: "Merriweather", Georgia, "Book Antiqua", "Palatino", Times, serif;
-  word-break: break-word;
-  margin: 0px;
-  color: #000;
-  font-weight: normal;
-}
+1: $target : 'screen';
+2: 
+3: @import 'tools';
+4: 
+5: @include when {
+6: 
+7:   a.common
 
-.part_header-1,
-.part_header-2,
-.part_header-3 {
-  font-family: "Lora", Georgia, "Book Antiqua", "Palatino", Times, serif;
-}
-
-.part_header-1 {
-  font-size: 32px;
-  line-height: 1;
-}
-
-.part_header-2 {
-  font-size: 26px;
-  line-height: 1;
-}
-
-.part_header-3 {
-  font-size: 18px;
-  font-weight: bold;
-  line-height: 1;
-}
-
-.part_text,
-.part_richtext,
-.part_listing {
-  font-family: "Merriweather", Georgia, "Book Antiqua", "Palatino", Times, serif;
-  font-size: 16px;
-  line-height: 1.4em;
-  color: #333;
-  font-weight: 400;
-}
-
-.part_listing {
-  font-size: 10pt;
-  color: #ddd;
-}
-
-.part_listing_text {
-  color: #333;
-}
-
-.part_table {
-  overflow: auto;
-}
-.part_table table {
-  font-size: 1em;
-  border-spacing: 0;
-  border-collapse: collapse;
-}
-.part_table thead th {
-  border-bottom: 1px solid #eee;
-  padding: 3px;
-  text-align: left;
-}
-.part_table tfoot th {
-  border-bottom: 1px solid #eee;
-  padding: 3px;
-  text-align: left;
-}
-.part_table td {
-  border-bottom: 1px solid #eee;
-  padding: 3px;
-}
-
-.part_horizontalrule {
-  border: none;
-  border-bottom: solid 1px #ddd;
-  margin: 20px 0;
-}
-
-.part_movie_text {
-  font-weight: normal;
-  font-size: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  top: 50%;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.5));
-}
-
-.part_movie_text_inner {
-  background: none;
-  padding: 10px 0;
-  display: block;
-  font-size: 16px;
-  line-height: 1;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-@media screen and (min-width: 600px) {
-  .part_header-1 {
-    font-size: 42px;
-    line-height: 1;
-  }
-
-  .part_header-2 {
-    font-size: 32px;
-  }
-
-  .part_horizontalrule {
-    margin: 30px 0;
-  }
-
-  .part_text,
-  .part_richtext,
-  .part_listing {
-    font-size: 18px;
-    line-height: 1.6em;
-  }
-}
-@media screen and (min-width: 760px) {
-  .part_section_header-1 {
-    padding: 0 0 30px;
-  }
-
-  .part_header-1 {
-    font-size: 52px;
-  }
-
-  .part_horizontalrule {
-    margin: 40px 0;
-  }
-}
+Backtrace:
+style/lottemunk/scss/_tools.scss:2
+style/lottemunk/scss/overwrite.scss:3
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/import_node.rb:67:in `rescue in import'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/import_node.rb:45:in `import'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/import_node.rb:28:in `imported_file'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/import_node.rb:37:in `css_import?'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:313:in `visit_import'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/stack.rb:79:in `block in with_base'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/stack.rb:115:in `with_frame'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/stack.rb:79:in `with_base'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:160:in `visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:328:in `block (2 levels) in visit_import'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:328:in `map'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:328:in `block in visit_import'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/stack.rb:88:in `block in with_import'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/stack.rb:115:in `with_frame'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/stack.rb:88:in `with_import'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:325:in `visit_import'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/stack.rb:79:in `block in with_base'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/stack.rb:115:in `with_frame'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/stack.rb:79:in `with_base'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:160:in `visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:52:in `map'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:169:in `block in visit_children'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:181:in `with_environment'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:168:in `visit_children'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:188:in `visit_root'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:159:in `visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:8:in `visit'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/root_node.rb:36:in `css_tree'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/tree/root_node.rb:20:in `render'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/engine.rb:281:in `render'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/exec/sass_scss.rb:400:in `run'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/exec/sass_scss.rb:63:in `process_result'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/exec/base.rb:52:in `parse'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/lib/sass/exec/base.rb:19:in `parse!'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.22/bin/sass:13:in `<top (required)>'
+/usr/local/bin/sass:23:in `load'
+/usr/local/bin/sass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: File to import not found or unreadable: compass/css3/transition.\A         on line 2 of style/lottemunk/scss/_tools.scss\A         from line 3 of style/lottemunk/scss/overwrite.scss\A \A 1: $target : 'screen';\A 2: \A 3: @import 'tools';\A 4: \A 5: @include when {\A 6: \A 7:   a.common"; }
