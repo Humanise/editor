@@ -27,6 +27,7 @@
     <body>
       <div class="layout">
         <div class="layout_top">
+          <xsl:comment/>
           <xsl:apply-templates select="f:frame/f:links/f:top"/>
           <xsl:call-template name="util:userstatus"/>
         </div>
@@ -45,10 +46,12 @@
             <xsl:apply-templates select="p:content"/>
           </div>
           <div class="layout_right">
+            <xsl:comment/>
             <xsl:apply-templates select="f:frame/f:newsblock"/>
           </div>
         </div>
         <div class="layout_bottom">
+          <xsl:comment/>
           <xsl:apply-templates select="f:frame/f:text/f:bottom"/>
           <xsl:apply-templates select="f:frame/f:links/f:bottom"/>
         </div>

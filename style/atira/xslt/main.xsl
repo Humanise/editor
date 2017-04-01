@@ -50,7 +50,7 @@
       <div class="bar">
         <div class="bar">
           <div class="bar">
-            <ul class="navigation"><xsl:apply-templates select="f:frame/h:hierarchy/h:item"/></ul>
+            <ul class="navigation"><xsl:comment/><xsl:apply-templates select="f:frame/h:hierarchy/h:item"/></ul>
             <xsl:call-template name="search"/>
           </div>
         </div>
@@ -84,6 +84,7 @@
       Cookies are set by this site. To decline them or learn more, visit our <a href="http://info.scival.com/cookies">Cookies</a> page.</p>
   </div>
   <div class="footer">
+    <xsl:comment/>
     <xsl:apply-templates select="f:frame/f:text/f:bottom"/>
     <xsl:apply-templates select="f:frame/f:links/f:bottom"/>
   </div>
@@ -182,6 +183,7 @@
           </xsl:otherwise>
         </xsl:choose>
         <div>
+          <xsl:comment/>
           <xsl:for-each select="//h:hierarchy/h:item[position()>1 and not(@hidden='true')]">
           <div class="tile">
             <p>

@@ -830,6 +830,7 @@ _editor.loadFont({href:'<xsl:value-of select="$href"/>',family:'<xsl:value-of se
 <!-- deprecated -->
 <xsl:template name="util:hierarchy-first-level">
   <ul>
+    <xsl:comment/>
     <xsl:for-each select="//f:frame/h:hierarchy/h:item">
       <xsl:if test="not(@hidden='true')">
         <li>
@@ -851,6 +852,7 @@ _editor.loadFont({href:'<xsl:value-of select="$href"/>',family:'<xsl:value-of se
 <xsl:template name="util:hierarchy-second-level">
   <xsl:if test="//f:frame/h:hierarchy/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item">
     <ul class="case_sub_navigation">
+      <xsl:comment/>
       <xsl:for-each select="//f:frame/h:hierarchy/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item">
         <xsl:if test="not(@hidden='true')">
           <li>
