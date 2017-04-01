@@ -32,6 +32,10 @@ class ConfigurationService {
     return ConfigurationService::_getConfig('statistics',true);
   }
 
+  static function getValidatorCommand() {
+    return ConfigurationService::_getConfig('validator',true);
+  }
+
   static function getDeploymentTime() {
     $time = ConfigurationService::_getConfig('deployed',0);
     if ($time==0) {
