@@ -35,7 +35,7 @@
 					<xsl:call-template name="search"/>
 				</div>
 				<div class="bar">
-					<ul class="navigation"><xsl:apply-templates select="f:frame/h:hierarchy/h:item"/></ul>
+					<ul class="navigation"><xsl:comment/><xsl:apply-templates select="f:frame/h:hierarchy/h:item"/></ul>
 				</div>
 				<xsl:if test="@id=1">
 					<div class="images">
@@ -50,6 +50,7 @@
 		</div>
 	</div>
 	<div class="footer">
+    <xsl:comment/>
 		<xsl:apply-templates select="f:frame/f:text/f:bottom"/>
 		<xsl:apply-templates select="f:frame/f:links/f:bottom"/>
 	</div>

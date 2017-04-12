@@ -84,6 +84,7 @@
 
         <nav class="menu">
           <ul class="menu_items">
+            <xsl:comment/>
             <xsl:for-each select="//f:frame/h:hierarchy/h:item[not(@hidden='true')]">
               <li>
                 <xsl:attribute name="class">

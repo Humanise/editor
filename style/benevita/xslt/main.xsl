@@ -32,7 +32,7 @@
 				</div>
 				<div class="layout_navigation">
 					<xsl:call-template name="util:languages"/>
-					<ul class="layout_navigation">
+					<ul class="layout_navigation"><xsl:text> </xsl:text>
 						<xsl:apply-templates select="f:frame/h:hierarchy/h:item"/>
 					</ul>
 				</div>
@@ -73,7 +73,7 @@
 					<div class="layout_box">
 						<div class="layout_box_top"><xsl:comment/></div>
 						<div class="layout_box_middle">
-							<img src="{$path}services/images/?id=32&amp;width=175" style="width: 175px; border: 0px;"/>
+							<img alt="" src="{$path}services/images/?id=32&amp;width=175" style="width: 175px; border: 0px;"/>
 						</div>
 						<div class="layout_box_bottom"><xsl:comment/></div>
 					</div>

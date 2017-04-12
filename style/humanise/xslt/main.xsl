@@ -73,6 +73,7 @@
         <div class="layout_head_body">
           <a href="/" class="layout_head_logo"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-hand"></use></svg></a>
           <ul class="layout_menu">
+            <xsl:text> </xsl:text>
             <xsl:apply-templates select="f:frame/h:hierarchy/h:item"/>
           </ul>
           <xsl:call-template name="search"/>
@@ -130,13 +131,13 @@
               <xsl:otherwise><h2 class="layout_info_header">Kontakt</h2></xsl:otherwise>
             </xsl:choose>
             <xsl:call-template name="util:parameter">
-                <xsl:with-param name="name" select="'contact'"/>
-                <xsl:with-param name="default">
-                  <p><strong class="layout_info_name">Jonas Brinkmann Munk</strong></p>
-                  <p><a class="common_link" href="mailto:jonasmunk@mac.com"><span class="common_link_text">jonasmunk@mac.com</span></a> · <a href="tel:004528776365" class="layout_info_phone">+45 28 77 63 65</a></p>
-                  <p><strong class="layout_info_name">Kenni Graversen</strong></p>
-                  <p><a class="common_link" href="mailto:gr@versen.dk"><span class="common_link_text">gr@versen.dk</span></a> · <a href="tel:004522486153" class="layout_info_phone">+45 22 48 61 53</a></p>
-                </xsl:with-param>
+              <xsl:with-param name="name" select="'contact'"/>
+              <xsl:with-param name="default">
+                <p><strong class="layout_info_name">Jonas Brinkmann Munk</strong></p>
+                <p><a class="common_link" href="mailto:jonasmunk@mac.com"><span class="common_link_text">jonasmunk@mac.com</span></a> · <a href="tel:004528776365" class="layout_info_phone">+45 28 77 63 65</a></p>
+                <p><strong class="layout_info_name">Kenni Graversen</strong></p>
+                <p><a class="common_link" href="mailto:gr@versen.dk"><span class="common_link_text">gr@versen.dk</span></a> · <a href="tel:004522486153" class="layout_info_phone">+45 22 48 61 53</a></p>
+              </xsl:with-param>
             </xsl:call-template>
           </div>
         </div>

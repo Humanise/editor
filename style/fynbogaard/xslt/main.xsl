@@ -18,49 +18,51 @@
 <xsl:template match="p:page">
   <xsl:call-template name="util:doctype"/>
 <html>
-	<xsl:call-template name="util:html-attributes"/>
+  <xsl:call-template name="util:html-attributes"/>
 <head>
-	<title>
-		<xsl:if test="not(//p:page/@id=//p:context/p:home/@page)"> 
-			<xsl:value-of select="@title"/>
-			<xsl:text> - </xsl:text>
-		</xsl:if>
-		<xsl:value-of select="f:frame/@title"/>
-	</title>
-	<xsl:call-template name="util:metatags"/>
-	<xsl:call-template name="util:css"/>
-	<xsl:call-template name="util:js"/>
+  <title>
+    <xsl:if test="not(//p:page/@id=//p:context/p:home/@page)">
+      <xsl:value-of select="@title"/>
+      <xsl:text> - </xsl:text>
+    </xsl:if>
+    <xsl:value-of select="f:frame/@title"/>
+  </title>
+  <xsl:call-template name="util:metatags"/>
+  <xsl:call-template name="util:css"/>
+  <xsl:call-template name="util:js"/>
 </head>
 <body>
-	<div class="layout">
-		<div class="layout_top">
-			<xsl:comment/>
-		</div>
-		<div class="layout_navigation">
-			<xsl:call-template name="util:languages"/>
-			<ul class="layout_navigation">
-				<xsl:apply-templates select="f:frame/h:hierarchy/h:item"/>
-			</ul>
-		</div>
-		<xsl:if test="//p:page/p:context/p:home[@page=//p:page/@id]">
-			<div class="layout_front"><xsl:comment/></div>
-		</xsl:if>
-		<xsl:apply-templates select="p:content"/>
-		<div class="layout_bottom">
-			Fynbogaard · Bjerrevej 318 · Bjerre · 8783 Hornsyld · Mobil 26 14 87 36
-		</div>
-	</div>
-	<xsl:call-template name="util:googleanalytics"/>
+  <div class="layout">
+    <div class="layout_top">
+      <xsl:comment/>
+    </div>
+    <div class="layout_navigation">
+      <xsl:text> </xsl:text>
+      <xsl:call-template name="util:languages"/>
+      <ul class="layout_navigation">
+        <xsl:text> </xsl:text>
+        <xsl:apply-templates select="f:frame/h:hierarchy/h:item"/>
+      </ul>
+    </div>
+    <xsl:if test="//p:page/p:context/p:home[@page=//p:page/@id]">
+      <div class="layout_front"><xsl:comment/></div>
+    </xsl:if>
+    <xsl:apply-templates select="p:content"/>
+    <div class="layout_bottom">
+      Fynbogaard · Bjerrevej 318 · Bjerre · 8783 Hornsyld · Mobil 26 14 87 36
+    </div>
+  </div>
+  <xsl:call-template name="util:googleanalytics"/>
 </body>
 </html>
 </xsl:template>
 
 
 <xsl:template match="p:content">
-	<div class="layout_content">
-		<xsl:apply-templates/>
-		<xsl:comment/>
-	</div>
+  <div class="layout_content">
+    <xsl:apply-templates/>
+    <xsl:comment/>
+  </div>
 </xsl:template>
 
 
@@ -69,16 +71,16 @@
 
 
 <xsl:template match="f:userstatus">
-	<xsl:choose>
-		<xsl:when test="$userid>0">
-		<span class="userstatus">Bruger: <strong><xsl:value-of select="$usertitle"/></strong></span>
-		<xsl:text> · </xsl:text>
-		<a href="./?id={@page}&amp;logout=true" class="common">Log ud</a>
-		</xsl:when>
-		<xsl:otherwise>
-		<a href="./?id={@page}" class="common">Log ind</a>
-		</xsl:otherwise>
-	</xsl:choose>
+  <xsl:choose>
+    <xsl:when test="$userid>0">
+    <span class="userstatus">Bruger: <strong><xsl:value-of select="$usertitle"/></strong></span>
+    <xsl:text> · </xsl:text>
+    <a href="./?id={@page}&amp;logout=true" class="common">Log ud</a>
+    </xsl:when>
+    <xsl:otherwise>
+    <a href="./?id={@page}" class="common">Log ind</a>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 
@@ -103,17 +105,17 @@
 
 <xsl:template name="secondlevel">
 <xsl:if test="//f:frame/h:hierarchy/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item">
-	<ul class="case_sub_navigation">
-		<xsl:apply-templates select="//f:frame/h:hierarchy/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item"/>
-	</ul>
+  <ul class="case_sub_navigation">
+    <xsl:apply-templates select="//f:frame/h:hierarchy/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item"/>
+  </ul>
 </xsl:if>
 </xsl:template>
 
 <xsl:template name="thirdlevel">
 <xsl:if test="//f:frame/h:hierarchy/h:item/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item">
-	<ul class="case_side_navigation">
-		<xsl:apply-templates select="//f:frame/h:hierarchy/h:item/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item"/>
-	</ul>
+  <ul class="case_side_navigation">
+    <xsl:apply-templates select="//f:frame/h:hierarchy/h:item/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item"/>
+  </ul>
 </xsl:if>
 </xsl:template>
 
@@ -165,7 +167,7 @@
 <xsl:template match="f:links/f:top">
 <div class="links_top">
 <div>
-<xsl:apply-templates select="//f:frame/f:userstatus"/> · 
+<xsl:apply-templates select="//f:frame/f:userstatus"/> ·
 <a title="Udskriv siden" class="common" href="?id={//p:page/@id}&amp;print=true">Udskriv</a>
 <xsl:apply-templates/>
 </div>
@@ -206,13 +208,13 @@
 
 <xsl:template match="f:text/f:bottom">
 <span class="text">
-	<xsl:comment/>
+  <xsl:comment/>
 <xsl:apply-templates/>
 </span>
 </xsl:template>
 
 <xsl:template match="f:text/f:bottom/f:break">
-	<br/>
+  <br/>
 </xsl:template>
 
 

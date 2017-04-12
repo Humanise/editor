@@ -41,7 +41,10 @@
 			<div class="layout_middle_body">
 			<div class="layout_container">
 				<div class="layout_navigation_bar">
-					<ul class="layout_navigation"><xsl:apply-templates select="f:frame/h:hierarchy/h:item"/></ul>
+					<ul class="layout_navigation">
+            <xsl:comment/>
+            <xsl:apply-templates select="f:frame/h:hierarchy/h:item"/>
+          </ul>
 					<div class="layout_box layout_contact">
 						<div class="layout_box_top"><div><xsl:comment/></div></div>
 						<div class="layout_box_middle">

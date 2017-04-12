@@ -42,7 +42,10 @@
 				<xsl:comment/>
 			</div>
 			<div class="layout_logo"><xsl:comment/></div>
-				<ul class="layout_navigation"><xsl:apply-templates select="f:frame/h:hierarchy/h:item"/></ul>
+			<ul class="layout_navigation">
+        <xsl:comment/>
+        <xsl:apply-templates select="f:frame/h:hierarchy/h:item"/>
+      </ul>
 		</div>
 		<div class="layout_base">
 			<xsl:call-template name="secondlevel"/>

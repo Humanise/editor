@@ -37,7 +37,10 @@
 		</div>
 		<div class="chrome_head">
 			<div class="chrome_bar">
-				<ul class="chrome_navigation"><xsl:apply-templates select="f:frame/h:hierarchy/h:item"/></ul>
+				<ul class="chrome_navigation">
+          <xsl:comment/>
+          <xsl:apply-templates select="f:frame/h:hierarchy/h:item"/>
+        </ul>
 			</div>
 		</div>
 		<div class="chrome_base">

@@ -31,7 +31,6 @@
 	<xsl:call-template name="util:metatags"/>
 	<xsl:call-template name="util:css"/>
 	<xsl:call-template name="util:js"/>
-
 </head>
 <body>
 	<div class="layout_bg">
@@ -41,6 +40,7 @@
 			<p>Østerlide ferielejlighed</p>
 			<div class="layout_navigation">
 				<ul class="layout_navigation">
+          <xsl:comment/>
 					<xsl:apply-templates select="f:frame/h:hierarchy/h:item"/>
 				</ul>
 			</div>

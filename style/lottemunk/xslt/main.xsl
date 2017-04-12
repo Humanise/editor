@@ -38,7 +38,7 @@
     <xsl:call-template name="util:metatags"/>
     <xsl:call-template name="util:css"/>
     <xsl:call-template name="util:js"/>
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,400italic,700|Merriweather:400,700,300,200|Cinzel:400|Gloria+Hallelujah"/>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,400italic,700%7CMerriweather:400,700,300,200%7CCinzel:400%7CGloria+Hallelujah"/>
   </head>
 </xsl:template>
 
@@ -81,6 +81,7 @@
     </a>
     <nav class="header_navigation">
       <ul class="header_menu">
+        <xsl:comment/>
         <xsl:apply-templates select="f:frame/h:hierarchy/h:item"/>
       </ul>
     </nav>

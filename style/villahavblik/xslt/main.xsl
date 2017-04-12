@@ -126,6 +126,7 @@
 
 <xsl:template match="h:hierarchy">
 	<ul class="navigation">
+    <xsl:comment/>
 		<xsl:apply-templates select="h:item"/>
 	</ul>
 </xsl:template>

@@ -35,8 +35,7 @@
           <div class="chrome_top_header">
             <xsl:comment/>
           </div>
-
-                <div class="chrome_body">
+          <div class="chrome_body">
             <xsl:apply-templates select="f:frame/h:hierarchy"/>
             <xsl:apply-templates select="p:content"/>
           </div>
@@ -87,6 +86,7 @@
 
 <xsl:template match="h:hierarchy">
   <ul class="navigation">
+    <xsl:comment/>
     <xsl:apply-templates select="h:item"/>
   </ul>
 </xsl:template>

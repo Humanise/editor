@@ -262,7 +262,7 @@ ga('create', '<xsl:value-of select="$code"/>', {siteSpeedSampleRate : 20});ga('s
 <xsl:template name="util:feedback">
   <xsl:param name="text">Feedback</xsl:param>
   <p class="layout_feedback">
-    <a class="common" href="javascript://" onclick="op.feedback(this)"><span><xsl:value-of select="$text"/></span></a>
+    <a class="common" href="#" onclick="op.feedback(this)"><span><xsl:value-of select="$text"/></span></a>
   </p>
 </xsl:template>
 
@@ -759,6 +759,7 @@ _editor.loadFont({href:'<xsl:value-of select="$href"/>',family:'<xsl:value-of se
 
 <xsl:template name="util:hierarchy-all-levels">
   <ul>
+    <xsl:text> </xsl:text>
     <xsl:for-each select="//f:frame/h:hierarchy/h:item">
       <xsl:call-template name="util:hierarchy-item-iterator"/>
     </xsl:for-each>

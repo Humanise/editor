@@ -40,7 +40,10 @@
 			<div class="chrome_middle_body">
 			<div class="chrome_container">
 				<div class="chrome_navigation_bar">
-					<ul class="chrome_navigation"><xsl:apply-templates select="f:frame/h:hierarchy/h:item"/></ul>
+					<ul class="chrome_navigation">
+            <xsl:comment/>
+            <xsl:apply-templates select="f:frame/h:hierarchy/h:item"/>
+          </ul>
 					<div class="chrome_box chrome_contact">
 						<div class="chrome_box_top"><div><xsl:comment/></div></div>
 						<div class="chrome_box_middle">

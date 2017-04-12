@@ -46,6 +46,7 @@
 							<xsl:text> chrome_navigation_selected</xsl:text>
 						</xsl:if>
 					</xsl:attribute>
+          <xsl:comment/>
 					<xsl:apply-templates select="f:frame/h:hierarchy/h:item"/>
 				</ul>
 				<xsl:call-template name="search"/>

@@ -35,7 +35,7 @@
       </xsl:choose>
       <xsl:call-template name="util:metatags"/>
       <xsl:call-template name="util:css"/>
-      <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,500,600|Amatic+SC|Indie+Flower' rel='stylesheet' type='text/css'/>
+      <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,500,600%7CAmatic+SC%7CIndie+Flower' rel='stylesheet' type='text/css'/>
       <xsl:call-template name="util:js"/>
     </head>
     <body>
@@ -64,6 +64,7 @@
       <div class="layout_navigation">
         <h1 class="layout_title">Jane Munk</h1>
         <ul class="layout_menu">
+          <xsl:comment/>
           <xsl:for-each select="f:frame/h:hierarchy/h:item[not(@hidden='true')]">
             <xsl:variable name="style">
               <xsl:choose>
@@ -91,6 +92,7 @@
         <div class="layout_header">
           <p class="layout_header_title">Jane Munk</p>
           <ul class="layout_header_menu">
+            <xsl:comment/>
             <xsl:for-each select="f:frame/h:hierarchy/h:item[not(@hidden='true')]">
               <xsl:variable name="style">
                 <xsl:choose>
@@ -109,6 +111,7 @@
           </ul>
         </div>
         <div class="layout_content">
+          <xsl:comment/>
           <xsl:apply-templates select="p:content/*"/>
         </div>
       </div>
