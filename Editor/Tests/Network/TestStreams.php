@@ -32,7 +32,7 @@ class TestStreams extends UnitTestCase {
     $flow = new WorkflowDescription();
     $flow->add(new DataStage([
       'type' => WorkflowState::$URL,
-      'data' => 'http://janemunk.tumblr.com/rss']
+      'data' => 'http://daringfireball.net/feeds/main']
     ));
     $flow->add(new FetchStage(['maxAge'=>60]));
     $flow->add(new ParseFeedStage());
@@ -49,7 +49,7 @@ class TestStreams extends UnitTestCase {
     $stream->setTitle('Test stream');
     $stream->save();
     $params = [
-      'url' => 'http://janemunk.tumblr.com/rss',
+      'url' => 'http://daringfireball.net/feeds/main',
       'streamId' => $stream->getId()
     ];
     $xml = '
