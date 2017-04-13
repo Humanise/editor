@@ -59,12 +59,12 @@ class TestValidation extends UnitTestCase {
       $result = ShellService::executeLive($cmd);
       $out = $result['output'];
       $out = preg_replace('/Picked up[^\\n]+\\n/uism', '', $out);
-      $stuff = Strings::fromJSON($out);
-      if (is_object($stuff) && isset($stuff->messages) && is_array($stuff->messages) && count($stuff->messages) > 0) {
-        foreach ($stuff->messages as $msg) {
+      $validation = Strings::fromJSON($out);
+      if (is_object($validation) && isset($validation->messages) && is_array($validation->messages) && count($validation->messages) > 0) {
+        foreach ($validation->messages as $msg) {
           $this->assertTrue(false, $name . ': ' . $msg->message . ' : ' . $msg->extract);
         }
-        Log::debug($stuff);
+        Log::debug($validation);
         break;
       }
       unlink($tmp);
