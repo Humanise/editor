@@ -32,7 +32,7 @@
 <body>
 	<div class="case">
 		<div class="case_head"><h1>Nordjyllands Udviklingscenter A/S</h1></div>
-		<ul class="case_navigation"><xsl:apply-templates select="f:frame/h:hierarchy/h:item"/></ul>
+		<ul class="case_navigation"><xsl:comment/><xsl:apply-templates select="f:frame/h:hierarchy/h:item"/></ul>
 		<xsl:call-template name="secondlevel"/><xsl:comment/>
 		<div class="case_body">
 			<xsl:apply-templates select="p:content"/>
