@@ -95,7 +95,7 @@ class UI {
   static function validateDoc($doc) {
     libxml_use_internal_errors(true);
     if (!$doc->schemaValidate(FileSystemService::getFullPath('hui/xslt/schema.xsd'))) {
-      Log::debug('INVALID UI=' . $_SERVER['REQUEST_URI']);
+      Log::debug('INVALID UI=' . @$_SERVER['REQUEST_URI']);
       $errors = libxml_get_errors();
       Log::debug($errors);
     }
