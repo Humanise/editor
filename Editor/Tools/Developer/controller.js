@@ -34,6 +34,8 @@ hui.ui.listen({
 			hui.ui.changeState('list');
 		} else if (item.value=='queries') {
 			hui.ui.changeState('queries');
+		} else if (item.value=='ui') {
+			hui.ui.changeState('ui');
 		} else {
 			hui.ui.changeState('frame');
 		}
@@ -82,16 +84,47 @@ hui.ui.listen({
 	$click$contractDiagram : function() {
 		diagram.contract();
 	},
-    
+
   // Queries...
-    
+
   $valueChanged$queryInput : function(value) {
 		hui.ui.request({
 			url : 'data/Query.php',
 			parameters : {query:value},
 			$text : function(value) {
-        queryOutput.setValue(value);			  
+        queryOutput.setValue(value);
 			}
 		})
+  },
+
+  // Abstract UI
+
+  $valueChanged$uiInput : function(value) {
+		hui.ui.request({
+			url : 'data/RenderAbstractUI.php',
+			parameters : {xml:value},
+			$text : function(value) {
+        uiRendering.setHTML(value);
+        var desc = hui.ui.getDescendants(uiRendering);
+        if (desc[0]) {
+          desc[0].listen({$valuesChanged : function(values) {
+            uiOutput.setHTML(hui.string.toJSON(values));
+          }})
+        }
+			}
+		})
+  },
+  $resolveImageUrl: function(img, width, height) {
+    return '../../../../services/images/?id=' + img.id + '&width=' + width + '&height=' + height + '&format=jpg';
+  },
+  $valueChanged$abstractUiSamples : function(value) {
+		hui.ui.request({
+			url : value,
+			parameters : {xml:value},
+			$text : function(value) {
+        uiInput.setValue(value);
+        this.$valueChanged$uiInput(value);
+      }.bind(this)
+    });
   }
 });

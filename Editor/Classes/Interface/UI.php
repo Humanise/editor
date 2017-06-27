@@ -173,6 +173,16 @@ class UI {
         $gui.='<text-input key="' . Strings::escapeXML($child->getAttribute('key')) . '"/>';
         $gui.='</field>';
       }
+      else if ($child->tagName=='number') {
+        $gui.='<field label="' . Strings::escapeXML($child->getAttribute('label')) . '">';
+        $gui.='<number-input key="' . Strings::escapeXML($child->getAttribute('key')) . '"/>';
+        $gui.='</field>';
+      }
+      else if ($child->tagName=='object') {
+        $gui.='<field label="' . Strings::escapeXML($child->getAttribute('label')) . '">';
+        $gui.='<object-input key="' . Strings::escapeXML($child->getAttribute('key')) . '"><finder url="' . ConfigurationService::getBaseUrl() . 'Editor/Services/Finder/Images.php"/></object-input>';
+        $gui.='</field>';
+      }
     }
 
     $gui .= '</group></formula>';

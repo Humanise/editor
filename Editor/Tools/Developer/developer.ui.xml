@@ -24,6 +24,7 @@
             <option icon="common/object" text="Classes" value="classes"/>
             <option icon="common/search" text="Query" value="queries"/>
             <title>UI</title>
+            <option icon="common/search" text="Abstract UI" value="ui"/>
             <option icon="common/search" text="Finders" value="finders"/>
             <option icon="monochrome/nuclear" text="Graph" value="graph"/>
             <option icon="common/hierarchy" text="Diagram" value="diagram"/>
@@ -68,6 +69,28 @@
             </row>
             <row height="50%">
               <code-input name="queryOutput" height="full"/>
+            </row>
+          </split>
+        </overflow>
+        <bar variant="layout" state="ui">
+          <dropdown name="abstractUiSamples" placeholder="Samples">
+            <option value="../../Tests/Resources/abstract_ui.xml" text="Complete sample"/>
+          </dropdown>
+        </bar>
+        <overflow state="ui">
+          <split>
+            <row height="50%">
+              <code-input name="uiInput" height="full"/>
+            </row>
+            <row height="30%">
+              <overflow>
+                <div style="padding: 20px">
+                  <fragment name="uiRendering"/>
+                </div>
+              </overflow>
+            </row>
+            <row height="20%">
+              <fragment name="uiOutput"/>
             </row>
           </split>
         </overflow>
