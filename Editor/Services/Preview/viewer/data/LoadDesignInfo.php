@@ -13,7 +13,7 @@ $designId = $page->getDesignId();
 
 //$design = Design::load($designId);
 
-$info = DesignService::loadParameters($designId);
+$info = Strings::toUnicode(DesignService::loadParameters($designId));
 
 Log::debug($info);
 
