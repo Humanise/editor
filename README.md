@@ -18,6 +18,7 @@ The system depends on Humanise User Interface which should be placed in the root
     git clone git@github.com:Humanise/hui.git
 
 -----------
+
 ## Development
 
 Install minify CLI
@@ -27,3 +28,8 @@ Install minify CLI
 Install SVGO - tool for minifying SVGs
 
   sudo npm install -g svgo
+
+## Styling
+
+  /api/prototype?name=humanise/test
+  /Editor/Tools/Builder/actions/render.php?path=style/humanise/views/git
