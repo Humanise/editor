@@ -30,6 +30,9 @@ xsi:noNamespaceSchemaLocation="../../../hui/xslt/schema.xsd">
         <icon icon="common/refresh"
           text="{Synchronize; da:Synkroniser}"
           name="synchronizeSource" disabled="true"/>
+        <icon icon="common/view"
+            text="{Render; da:Vis}"
+            name="renderView" disabled="true"/>
         <right>
           <icon icon="common/play"
             text="{Heartbeat; da:Hjerteslag}"

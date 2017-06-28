@@ -6,6 +6,12 @@
 require_once '../../../Include/Private.php';
 
 $path = Request::getString('path');
+$id = Request::getId();
+if ($id) {
+  if ($view = View::load($id)) {
+    $path = $view->getPath();
+  }
+}
 
 $data = [];
 $sample = FileSystemService::join($path, 'sample.json');
