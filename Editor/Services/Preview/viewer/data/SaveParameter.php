@@ -10,10 +10,10 @@ $name = Request::getString('name');
 $value = Request::getString('value');
 
 if ($id) {
-    $parameter = Parameter::load($id);
+  $parameter = Parameter::load($id);
 } else {
-    $parameter = new Parameter();    
-    $parameter->setName($name);
+  $parameter = new Parameter();
+  $parameter->setName($name);
 }
 $parameter->setValue($value);
 $parameter->save();
