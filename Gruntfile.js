@@ -14,6 +14,13 @@ module.exports = function(grunt) {
       all: ['Grunfile.js', 'drupal-common/src/*']
     },
     watch: {
+      custom: {
+        files: ['style/custom/scss/**/*.scss'],
+        tasks: ['sass:custom'],
+        options: {
+          spawn: false,
+        }
+      },
       humanise: {
         files: ['style/humanise/scss/**/*.scss'],
         tasks: ['sass:humanise'],
@@ -81,6 +88,16 @@ module.exports = function(grunt) {
       }
     },
     sass : {
+      custom: {
+        options : {sourcemap:'none'},
+        files: [{
+          expand: true,
+          cwd: 'style/custom/scss',
+          src: ['*.scss'],
+          dest: 'style/custom/css',
+          ext: '.css'
+        }]
+      },
       humanise: {
         options : {sourcemap:'none'},
         files: [{
