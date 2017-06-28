@@ -306,6 +306,15 @@ hui.ui.listen({
       }
     });
   },
+  $click$columnSample : function() {
+    var xml = ['<if max-width="600px">',
+    '  <component name="column">',
+    '    <background of="red"/>',
+    '  </component>',
+    '</if>']
+    var form = hui.ui.get('columnFormula');
+    form.setValues({style:xml.join('\n')});
+  },
 
   // Rows...
 
