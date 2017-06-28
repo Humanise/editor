@@ -3,16 +3,19 @@
   <text key="name" label="Name"/>
   <boolean key="administrator" label="Administrator"/>
   <number key="amount" label="Number of items"/>
-  <select key="gender">
+  <text key="gender" label="Gender">
     <option value="male" label="{Male;da:Mand}"/>
     <option value="female" label="Female"/>
     <option value="unknown" label="Unknown"/>
-  </select>
-  <select key="animals" max="infinite">
+  </text>
+  <text key="animals" label="Choose an animal">
     <option value="dog">Dog</option>
     <option value="cat">Cat</option>
-  </select>
+  </text>
   <image key="image" label="Image"/>
   <object key="photo" label="Photo" type="Image"/>
   <link key="link" label="Link"/>
+  <list key="tags">
+    <text key="title"/>
+  </list>
 </model>
