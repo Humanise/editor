@@ -176,6 +176,11 @@
             <xsl:call-template name="util:rules"/>
           <xsl:text>}</xsl:text>
         </xsl:for-each>
+        <xsl:for-each select="style:component[@name='column']">
+          <xsl:value-of select="concat('.', $id, '_column {')"/>
+            <xsl:call-template name="util:rules"/>
+          <xsl:text>}</xsl:text>
+        </xsl:for-each>
         <xsl:call-template name="util:media-after"/>
       </xsl:for-each>
     </style>
@@ -211,7 +216,7 @@
 
   <xsl:template match="doc:row[@layout='flexible']/doc:column">
     <xsl:variable name="id" select="concat('document_column-',generate-id())" />
-    <div class="document_column document_column-flexible {$id}" data-id="{@id}">
+    <div class="document_column document_column-flexible {$id} document_row-{count(../preceding-sibling::*)+1}_column" data-id="{@id}">
       <xsl:apply-templates select="*[not(self::style:style)]"/>
       <xsl:comment/>
     </div>
