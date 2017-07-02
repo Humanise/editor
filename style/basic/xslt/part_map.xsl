@@ -71,7 +71,7 @@
 			</xsl:choose>
 		</xsl:variable>
     <xsl:variable name="url">
-      <xsl:value-of select="concat($protocol,'://maps.googleapis.com/maps/api/staticmap?center=',@latitude,',',@longitude,'&amp;zoom=',@zoom,'&amp;size=',$width,'x',$fake-height,'&amp;sensor=false&amp;maptype=',@maptype)"/>
+      <xsl:value-of select="concat($protocol,'://maps.googleapis.com/maps/api/staticmap?center=',@latitude,',',@longitude,'&amp;zoom=',@zoom,'&amp;size=',$width,'x',$fake-height,'&amp;sensor=false&amp;maptype=',@maptype,'&amp;key=AIzaSyAJEsQcWdC9lpcA9BTmNaeVbRWF-XqCyh0')"/>
     </xsl:variable>
 		<span class="part_map_static" style="padding-bottom: {$height div $width * 100}%;">
 			<a class="part_map_static_pin"><xsl:comment/></a>
