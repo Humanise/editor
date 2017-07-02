@@ -1,0 +1,14 @@
+{
+	"name" : "Dalleruphallerne",
+	"description" : "Design for dalleruphallerne.dk",
+	"owner" : "Property of Henrik Laursen",
+  "js" : [
+    "style/humanise/js/layout.js"
+  ],
+  "css" : [
+    "style/basic/css/shared.css",
+    "@parts",
+    "style/dalleruphallerne/css/async.css",
+    {"file" : "style/dalleruphallerne/css/inline.css", "inline" : true }
+  ]
+}

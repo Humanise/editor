@@ -1,0 +1,25 @@
+$target: inline;
+
+@import 'tools';
+
+@import 'parts/all';
+
+
+/////////////////// Document ////////////////
+
+
+@media screen and (max-width: 700px) {
+
+  .document_table_container {
+    margin: 0 !important;
+  }
+
+  .document_table,.document_table_body,.document_table_column
+  {
+    display: block !important;
+  }
+
+  .document_table_column {
+    width: auto !important;
+  }
+}

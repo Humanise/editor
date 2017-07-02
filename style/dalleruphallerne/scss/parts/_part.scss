@@ -1,0 +1,59 @@
+@include if {
+  .part_text,
+  .part_richtext {
+    font-size: 18px;
+  }
+
+  .part_table {
+    table {
+      font-size: 12px;
+    }
+
+    thead th,
+    tfoot th,
+    td {
+      padding: 5px 10px 5px 0;
+    }
+  }
+
+  .part_horizontalrule {
+    border: none;
+    border-bottom: 1px solid $line-color;
+  }
+
+  .part_header-1 {
+    font-size: $medium-heading-font-size;
+  }
+
+  .part_header-2 {
+    font-size: $small-heading-font-size;
+  }
+}
+
+@include if((width: 700px)) {
+
+  .part_header-1 {
+    font-size: $large-heading-font-size;
+  }
+
+  .part_header-2 {
+    font-size: $medium-heading-font-size;
+  }
+
+  .part_table {
+    table {
+      font-size: 14px;
+    }
+  }
+}
+
+
+@include if((width: 900px)) {
+  .part_header-1 {
+    font-size: $huge-heading-font-size;
+  }
+
+  .part_header-2 {
+    font-size: $large-heading-font-size;
+  }
+}

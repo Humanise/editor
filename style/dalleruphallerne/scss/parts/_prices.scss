@@ -1,0 +1,52 @@
+@include if {
+  .prices {
+    margin: 20px 0;
+    padding: 20px 0;
+
+    &_body {
+      max-width: 960px;
+      padding: 0 $small-gutter;
+      margin: 0 auto;
+    }
+
+    &_header {
+      margin: 0;
+    }
+
+    &_item {
+      position: relative;
+      max-width: 480px;
+      margin: 20px auto 0;
+    }
+
+    &_title {
+      margin: 0;
+      font-size: 20px;
+      padding-right: 100px;
+    }
+
+    &_text {
+      color: #666;
+      font-size: 14px;
+      margin: 5px 0 0;
+    }
+
+    &_price {
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin: 0;
+      font-size: 20px;
+    }
+  }
+}
+
+@include if ((width:700px)) {
+  .prices {
+    background: $alternate-background;
+
+    &_body {
+      padding: 0 $large-gutter;
+    }
+  }
+}

@@ -1,0 +1,77 @@
+@include if((target:inline)) {
+
+  .header {
+    background: #4a4845 url('../gfx/top_small.jpg') 50% 50%;
+    background-size: cover;
+    height: 160px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    &_logo {
+      font-size: 0;
+      width: 172px;
+      height: 9px;
+      background: url('../gfx/logo.png') 50%;
+      background-size: 172px 9px;
+      margin: 0 auto;
+      flex-basis: 25%;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .header_title {
+    font-weight: 900;
+    margin: 0;
+    font-size: 32px;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 1;
+    flex-basis: 50%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+}
+
+@include if((width: 500px, target: inline)) {
+
+  .header {
+    height: 160 / 500 * 100vw;
+    &_title {
+      font-size: 8vw;
+    }
+  }
+}
+
+@include if((width: 700px, target: inline)) {
+  .header {
+    background-image: url('../gfx/top.jpg');
+    display: block;
+
+    &_logo {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+    }
+
+    &_title {
+      text-align: left;
+      padding: 15px;
+      font-size: 56px;
+    }
+  }
+}
+
+@include if((width: 1000px, target: inline)) {
+  .header {
+  }
+}
+
+@include if((width: 1200px, target: inline)) {
+  .header {
+    height: 384px;
+  }
+}
