@@ -1,6 +1,6 @@
 @media screen and (min-width: 700px) {
   .common_header-1 {
-    font-size: 48px; }
+    font-size: 42px; }
 
   .common_header-2 {
     font-size: 32px; } }
@@ -9,10 +9,15 @@
     font-size: 60px; }
 
   .common_header-2 {
-    font-size: 48px; } }
+    font-size: 42px; } }
 .part_text,
 .part_richtext {
   font-size: 18px; }
+
+.introduction .part_text {
+  font-size: 22px;
+  line-height: 1.2;
+  text-align: center; }
 
 .part_table table {
   font-size: 12px; }
@@ -31,12 +36,26 @@
 .part_header-2 {
   font-size: 24px; }
 
+.part_header-3 {
+  font-size: 18px;
+  color: #000; }
+
 @media screen and (min-width: 700px) {
+  .introduction .part_text {
+    text-align: left;
+    font-size: 28px; }
+
   .part_header-1 {
-    font-size: 48px; }
+    font-size: 42px; }
 
   .part_header-2 {
     font-size: 32px; }
+
+  .part_header-3 {
+    font-size: 24px; }
+
+  .document_column .part_header {
+    text-align: left; }
 
   .part_table table {
     font-size: 14px; } }
@@ -45,7 +64,7 @@
     font-size: 60px; }
 
   .part_header-2 {
-    font-size: 48px; } }
+    font-size: 42px; } }
 .contact {
   max-width: 360px;
   margin: 0 auto;
@@ -168,54 +187,36 @@
   .quote_name {
     font-size: 18px; } }
 .poster {
-  padding-bottom: 120px; }
-
-.poster_body {
-  height: 120px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  background: #eee 50% 50%;
+  height: 60vw;
+  background-position: 50%;
   background-size: cover;
-  overflow: hidden; }
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center; }
+  .poster_box {
+    background: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    margin-right: 30px;
+    width: 40%;
+    max-width: 400px;
+    text-align: center;
+    font-size: 2.5em;
+    line-height: 1;
+    font-family: 'Georgia';
+    font-style: italic; }
+  .poster-road {
+    background-image: url("../gfx/poster_road.jpg"); }
+  .poster-warehouse {
+    background-image: url("../gfx/poster_warehouse.jpg"); }
 
-.poster_body-pano {
-  background-image: url("../gfx/pano.jpg"); }
-
-.poster_body-zen {
-  background-image: url("../gfx/zen.jpg"); }
-
-.poster_body-idyl {
-  background-image: url("../gfx/idyl.jpg"); }
-
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 1000px) {
   .poster {
-    padding-bottom: 200px; }
-
-  .poster_body {
-    height: 200px; } }
-@media screen and (min-width: 700px) {
-  .poster {
-    padding-bottom: 280px; }
-
-  .poster_body {
-    height: 280px; } }
-@media screen and (min-width: 960px) {
-  .poster {
-    padding-bottom: 380px;
-    margin: 40px 0; }
-
-  .poster_body {
-    height: 380px; } }
-@media screen and (min-width: 1400px) {
-  .poster {
-    padding-bottom: 500px; }
-
-  .poster_body {
-    height: 500px; } }
+    height: 600px; } }
 .prices {
   margin: 20px 0;
-  padding: 20px 0; }
+  padding: 15px 0; }
   .prices_body {
     max-width: 960px;
     padding: 0 15px;
@@ -229,20 +230,36 @@
   .prices_title {
     margin: 0;
     font-size: 20px;
-    padding-right: 100px; }
+    line-height: 1; }
   .prices_text {
     color: #666;
     font-size: 14px;
-    margin: 5px 0 0; }
+    margin: 5px 0 0;
+    padding-right: 100px; }
   .prices_price {
     position: absolute;
     right: 0;
     top: 0;
     margin: 0;
-    font-size: 20px; }
+    font-size: 18px;
+    line-height: 1.11111;
+    color: #bbb; }
+    .prices_price-text {
+      color: #000; }
+    .prices_price > strong {
+      color: #000;
+      letter-spacing: 1px; }
 
 @media screen and (min-width: 700px) {
   .prices {
-    background: #f6f4f3; }
+    background: #f6f4f3;
+    padding: 40px 0; }
     .prices_body {
       padding: 0 30px; } }
+@media screen and (min-width: 900px) {
+  .prices_title {
+    font-size: 24px; }
+  .prices_text {
+    font-size: 16px; }
+  .prices_price {
+    font-size: 20px; } }

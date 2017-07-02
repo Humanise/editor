@@ -31,6 +31,9 @@
 
 @include if((target: inline, width: 700px)) {
 
+  .layout_content {
+    padding: $large-gap 0;
+  }
   .document {
     &_row {
       padding: 0 $large-gutter;

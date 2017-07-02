@@ -53,20 +53,39 @@
 
     &_logo {
       position: absolute;
-      right: 20px;
-      top: 20px;
+      right: 30px;
+      top: 35px;
+      background-image: url(../gfx/logo_large.svg);
+      background-size: contain;
+      width: 250px;
+      height: 40px;
     }
 
     &_title {
       text-align: left;
-      padding: 15px;
-      font-size: 56px;
+      padding: 30px;
+      font-size: 6vw;
+      max-width: 50%;
     }
   }
 }
 
-@include if((width: 1000px, target: inline)) {
+@include if((width: 1020px, target: inline)) {
   .header {
+
+    &_title {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      margin-left: -510px;
+      font-size: 60px;
+    }
+
+    &_logo {
+      right: 50%;
+      margin-right: -480px;
+      width: 160px;
+    }
   }
 }
 

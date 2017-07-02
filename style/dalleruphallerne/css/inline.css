@@ -32,7 +32,8 @@ a {
     position: relative;
     left: .1em;
     bottom: -.05em;
-    line-height: 1; }
+    line-height: 0.7;
+    display: inline-block; }
   .common_header-2 {
     color: #004a80;
     text-align: center;
@@ -86,12 +87,28 @@ a {
     display: block; }
     .header_logo {
       position: absolute;
-      right: 20px;
-      top: 20px; }
+      right: 30px;
+      top: 35px;
+      background-image: url(../gfx/logo_large.svg);
+      background-size: contain;
+      width: 250px;
+      height: 40px; }
     .header_title {
       text-align: left;
-      padding: 15px;
-      font-size: 56px; } }
+      padding: 30px;
+      font-size: 6vw;
+      max-width: 50%; } }
+@media screen and (min-width: 1020px) {
+  .header_title {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -510px;
+    font-size: 60px; }
+  .header_logo {
+    right: 50%;
+    margin-right: -480px;
+    width: 160px; } }
 @media screen and (min-width: 1200px) {
   .header {
     height: 384px; } }
@@ -117,6 +134,9 @@ a {
     padding: 0; }
 
 @media screen and (min-width: 700px) {
+  .layout_content {
+    padding: 40px 0; }
+
   .document_row {
     padding: 0 30px; } }
 .language {
@@ -183,7 +203,8 @@ a {
     margin: 0 auto 10px;
     font-size: 2em;
     max-width: 260px;
-    line-height: 1; }
+    line-height: 1;
+    margin-top: -.1em; }
   .offer_name {
     opacity: .5;
     font-size: 1.5em; }
@@ -198,7 +219,7 @@ a {
       line-height: 1;
       display: inline-block; }
   .offer_mail {
-    margin: 20px 0; }
+    margin: 20px 0 0; }
     .offer_mail > a {
       font-size: 1.25em;
       text-decoration: none;
@@ -207,6 +228,7 @@ a {
       line-height: 1;
       display: inline-block; }
   .offer_msg {
+    display: none;
     margin: 20px 0 0; }
     .offer_msg > a {
       display: inline-block;
@@ -214,19 +236,25 @@ a {
       line-height: 42px;
       padding: 0 20px;
       background: #00a651;
+      background-image: linear-gradient(#31c77b, #00a651);
       color: #fff;
       text-decoration: none;
       border-radius: 3px;
       font-size: 18px;
       font-weight: bold;
-      box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1); }
+      box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
+      transition: transform .2s; }
+      .offer_msg > a:active {
+        transform: scale(0.9); }
+  .offer.is-message-capable .offer_msg {
+    display: block; }
 
 @media screen and (min-width: 700px) {
   .offer {
     min-height: 100px;
     position: relative;
     width: 250px;
-    margin: 0;
+    margin: 0 0 0 20px;
     font-size: 10px; }
     .offer_box {
       position: absolute;
@@ -235,8 +263,9 @@ a {
       font-size: 16px; } }
 @media screen and (min-width: 900px) {
   .offer {
-    font-size: 14px; } }
-@media screen and (max-width: 700px) {
+    font-size: 14px;
+    width: 300px; } }
+@media screen and (max-width: 699px) {
   .document_table_container {
     margin: 0 !important; }
 

@@ -1,68 +1,40 @@
 @include if {
   .poster {
-    padding-bottom: 120px;
-  }
-  
-  .poster_body {
-    height: 120px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    background: #eee 50% 50%;
+    height: 60vw;
+    background-position: 50%;
     background-size: cover;
-    overflow: hidden;
-  }
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
 
-  .poster_body-pano {
-    background-image: url('../gfx/pano.jpg');
-  }
+    &_box {
+      background: rgba(255,255,255,.5);
+      padding: 20px;
+      margin-right: 30px;
+      width: 40%;
+      max-width: 400px;
+      text-align: center;
+      font-size: 2.5em;
+      line-height: 1;
+      font-family: 'Georgia';
+      font-style: italic;
+    }
 
-  .poster_body-zen {
-    background-image: url('../gfx/zen.jpg');
-  }
+    &-road {
+      background-image: url('../gfx/poster_road.jpg');
+    }
 
-  .poster_body-idyl {
-    background-image: url('../gfx/idyl.jpg');
-  }
-}
-
-@include if((width: 500px)) {
-
-  .poster {
-    padding-bottom: 200px;
-  }
-  .poster_body {
-    height: 200px;
-  }
-}
-
-@include if((width: 700px)) {
-
-  .poster {
-    padding-bottom: 280px;
-  }
-  .poster_body {
-    height: 280px;
+    &-warehouse {
+      background-image: url('../gfx/poster_warehouse.jpg');
+    }
   }
 }
 
-@include if((width: 960px)) {
+@include if((width: 1000px)) {
 
   .poster {
-    padding-bottom: 380px;
-    margin: 40px 0;
-  }
-  .poster_body {
-    height: 380px;
-  }
-}
-
-@include if((width: 1400px)) {
-
-  .poster {
-    padding-bottom: 500px;
-  }
-  .poster_body {
-    height: 500px;
+    height: 600px;
   }
 }

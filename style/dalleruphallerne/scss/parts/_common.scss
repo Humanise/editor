@@ -44,7 +44,8 @@
       position: relative;
       left: .1em;
       bottom: -.05em;
-      line-height: 1;
+      line-height: 0.7;
+      display: inline-block;
     }
     &-2 {
       color: $heading-color;

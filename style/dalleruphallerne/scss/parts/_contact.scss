@@ -4,7 +4,7 @@
     max-width: 360px;
     margin: 0 auto;
     text-align: center;
-    
+
     &:before {
       content: '';
       display: block;
@@ -23,22 +23,22 @@
       margin-top: 10px;
     }
   }
-  
+
   .contact_phone {
     font-size: 32px;
     font-family: Georgia;
   }
-  
+
   .contact_phone_prefix {
     color: #bbb;
   }
-  
+
   .contact_mail {
     font-size: 16px;
     color: #bbb;
     margin-top: 10px;
   }
-  
+
   .contact_phone_link,
   .contact_mail_link {
     color: $link-color;

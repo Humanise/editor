@@ -89,7 +89,7 @@
 </xsl:template>
 
 <xsl:template match="widget:offer">
-  <div class="offer">
+  <div class="offer js-offer">
     <div class="offer_box">
       <h2 class="offer_title"><xsl:value-of select="widget:title"/></h2>
       <p class="offer_name"><xsl:value-of select="widget:name"/>:</p>
@@ -98,6 +98,13 @@
       <p class="offer_msg"><a href="sms:{widget:phone}">Send SMS</a></p>
     </div>
   </div>
+  <script>
+    hui.onReady(function() {
+      if (navigator.userAgent.match(/iphone|ipad|android/gi)) {
+        hui.cls.add(hui.find('.js-offer'),'is-message-capable')
+      }
+    })
+  </script>
 </xsl:template>
 
 <xsl:template match="widget:prices">
@@ -108,7 +115,12 @@
       <div class="prices_item">
         <h3 class="prices_title"><xsl:value-of select="widget:title"/></h3>
         <p class="prices_text"><xsl:value-of select="widget:text"/></p>
-        <p class="prices_price"><xsl:value-of select="widget:price"/></p>
+        <xsl:if test="widget:price and not(widget:price/@text)">
+          <p class="prices_price">kr. <strong><xsl:value-of select="widget:price"/></strong>,–</p>
+        </xsl:if>
+        <xsl:if test="widget:price/@text">
+          <p class="prices_price prices_price-text"><xsl:value-of select="widget:price/@text"/></p>
+        </xsl:if>
       </div>
     </xsl:for-each>
     </div>
@@ -126,7 +138,7 @@
 
 <xsl:template match="widget:poster">
   <div class="poster poster-{@variant}">
-    <div class="poster_body poster_body-{@variant}"><xsl:comment/></div>
+    <div class="poster_box poster_box-{@variant}"><xsl:value-of select="widget:quote"/><xsl:comment/></div>
   </div>
 </xsl:template>
 

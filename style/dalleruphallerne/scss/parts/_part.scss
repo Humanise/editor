@@ -4,6 +4,14 @@
     font-size: 18px;
   }
 
+  .introduction {
+    .part_text {
+      font-size: 22px;
+      line-height: 1.2;
+      text-align: center;
+    }
+  }
+
   .part_table {
     table {
       font-size: 12px;
@@ -28,9 +36,21 @@
   .part_header-2 {
     font-size: $small-heading-font-size;
   }
+
+  .part_header-3 {
+    font-size: $tiny-heading-font-size;
+    color: $text-color;
+  }
 }
 
 @include if((width: 700px)) {
+
+  .introduction {
+    .part_text {
+      text-align: left;
+      font-size: 28px;
+    }
+  }
 
   .part_header-1 {
     font-size: $large-heading-font-size;
@@ -38,6 +58,15 @@
 
   .part_header-2 {
     font-size: $medium-heading-font-size;
+  }
+
+  .part_header-3 {
+    font-size: $small-heading-font-size;
+  }
+  .document_column {
+    .part_header {
+      text-align: left;
+    }
   }
 
   .part_table {
