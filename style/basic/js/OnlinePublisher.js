@@ -421,7 +421,7 @@ op.part.Map.onReady = function(callback) {
       window.opMapReady = null;
       this.loaded = true;
     }.bind(this)
-    hui.require('https://maps.googleapis.com/maps/api/js?callback=opMapReady&key=AIzaSyBToLasfCj-kpsD-mGsimi1P32emIJeG-U');
+    hui.require('https://maps.googleapis.com/maps/api/js?callback=opMapReady&key=AIzaSyAJEsQcWdC9lpcA9BTmNaeVbRWF-XqCyh0');
   }
 }
 
