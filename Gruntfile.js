@@ -8,7 +8,7 @@ module.exports = function(grunt) {
   })();
 
   // Project configuration.
-  grunt.initConfig({
+  var config = {
     pkg: grunt.file.readJSON('package.json'),
     jshint: {
       all: ['Grunfile.js', 'drupal-common/src/*']
@@ -158,6 +158,8 @@ module.exports = function(grunt) {
         command : function(client) {
           if (clients[client] && clients[client].staging) {
             return 'Config/scripts/deploy.sh ' + clients[client].staging.folder;
+          } else {
+            console.error('Client not found: ' + client)
           }
           return '';
         }
@@ -171,7 +173,32 @@ module.exports = function(grunt) {
         }
       }
     }
-  });
+  };
+
+  var designs = [{name:'dalleruphallerne'}];
+
+  designs.forEach(function(design) {
+
+    config.watch[design.name] = {
+      files: ['style/' + design.name + '/scss/**/*.scss'],
+      tasks: ['sass:' + design.name],
+      options: {
+        spawn: false,
+      }
+    }
+    config.sass[design.name] = {
+      options : {sourcemap:'none'},
+      files: [{
+        expand: true,
+        cwd: 'style/' + design.name + '/scss',
+        src: ['*.scss'],
+        dest: 'style/' + design.name + '/css',
+        ext: '.css'
+      }]
+    }
+  })
+
+  grunt.initConfig(config);
 
   // Load plugins.
   grunt.loadNpmTasks('grunt-contrib-concat');
