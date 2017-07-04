@@ -83,7 +83,7 @@
   <xsl:template match="doc:row[count(doc:column)>1]">
 
     <xsl:variable name="id" select="concat('document_row-',position())" />
-    <div class="document_row {$id}" data-id="{@id}">
+    <div class="document_row {$id} {@class}" data-id="{@id}">
       <div class="document_table_container">
         <xsl:if test="@spacing!=''">
           <xsl:attribute name="style">
@@ -206,7 +206,7 @@
 
   <xsl:template match="doc:row[@layout='flexible']">
     <xsl:variable name="id" select="concat('document_row-',position())" />
-    <div class="document_row document_row-flexible {$id}" data-id="{@id}">
+    <div class="document_row document_row-flexible {$id} {@class}" data-id="{@id}">
       <xsl:apply-templates select="*[not(self::style:style)]"/>
       <xsl:comment/>
     </div>
