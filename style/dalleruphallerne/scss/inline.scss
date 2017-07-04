@@ -6,20 +6,3 @@ $target: inline;
 
 
 /////////////////// Document ////////////////
-
-
-@media screen and (max-width: 699px) {
-
-  .document_table_container {
-    margin: 0 !important;
-  }
-
-  .document_table,.document_table_body,.document_table_column
-  {
-    display: block !important;
-  }
-
-  .document_table_column {
-    width: auto !important;
-  }
-}

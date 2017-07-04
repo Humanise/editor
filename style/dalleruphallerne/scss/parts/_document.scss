@@ -1,0 +1,44 @@
+@include if ((target: inline, max-width: 699px)) {
+
+  .document_table {
+    &_container {
+      margin: 0 !important;
+    }
+
+    &_table,
+    &_table_body,
+    &_table_column
+    {
+      display: block !important;
+    }
+  }
+
+  .document_table_column {
+    width: auto !important;
+  }
+
+  .document_row-flexible.splitted {
+    flex-direction: column;
+
+    .document_column-flexible {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+@include if ((target: inline )) {
+
+  .document_column-flexible {
+    padding-left: 10px;
+    padding-right: 10px;
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+}
