@@ -20,6 +20,11 @@
           @content;
         }
       }
+      @elseif (map-has-key($params, max-width)) {
+        @media screen and (max-width: #{map-get($params,'max-width')}) {
+          @content;
+        }
+      }
       @else {
         @content;
       }
