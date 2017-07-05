@@ -37,6 +37,11 @@
       <xsl:with-param name="family" select="'Lato'"/>
       <xsl:with-param name="class" select="'font_lato'"/>
     </xsl:call-template>
+    <xsl:call-template name="util:load-font">
+      <xsl:with-param name="href" select="'http://fonts.googleapis.com/css?family=Lora:400italic'"/>
+      <xsl:with-param name="family" select="'Lora'"/>
+      <xsl:with-param name="class" select="'font_lora'"/>
+    </xsl:call-template>
     <xsl:call-template name="util:css">
       <xsl:with-param name="inline" select="'true'"/>
       <xsl:with-param name="ie-lt-9" select="'true'"/>

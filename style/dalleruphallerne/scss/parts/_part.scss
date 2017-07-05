@@ -29,6 +29,17 @@
     border-bottom: 1px solid $line-color;
   }
 
+  .part_section_header {
+    padding: 0;
+    margin: $small-section-space 0 15px;
+  }
+
+  .part_section_text {
+    &:last-child {
+      padding: 0;
+    };
+  }
+
   .part_header-1 {
     font-size: $medium-heading-font-size;
   }

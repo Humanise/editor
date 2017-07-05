@@ -1,7 +1,6 @@
 @include if {
   .prices {
-    margin: 20px 0;
-    padding: $small-gap 0;
+    margin: $small-section-space 0;
 
     &_body {
       max-width: 960px;
@@ -27,7 +26,7 @@
 
     &_text {
       color: #666;
-      font-size: 14px;
+      font-size: 16px;
       margin: 5px 0 0;
       padding-right: 100px;
     }
@@ -39,7 +38,7 @@
       margin: 0;
       font-size: 18px;
       line-height: (20/18);
-      color: #bbb;
+      color: #999;
       &-text {
         color: $text-color;
       }
@@ -56,6 +55,7 @@
   .prices {
     background: $alternate-background;
     padding: $large-gap 0;
+    margin: 40px 0 0;
 
     &_body {
       padding: 0 $large-gutter;

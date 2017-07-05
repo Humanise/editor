@@ -72,10 +72,8 @@ a {
 @media screen and (max-width: 699px) {
   .document_table_container {
     margin: 0 !important; }
-  .document_table_table, .document_table_table_body, .document_table_table_column {
-    display: block !important; }
-
-  .document_table_column {
+  .document_table, .document_table_body, .document_table_column {
+    display: block !important;
     width: auto !important; }
 
   .document_row-flexible.splitted {
@@ -110,6 +108,13 @@ a {
 .part_horizontalrule {
   border: none;
   border-bottom: 1px solid #ddd; }
+
+.part_section_header {
+  padding: 0;
+  margin: 40px 0 15px; }
+
+.part_section_text:last-child {
+  padding: 0; }
 
 .part_header-1 {
   font-size: 32px; }
@@ -160,7 +165,7 @@ a {
     background: url("../gfx/logo.png") 50%;
     background-size: 172px 9px;
     margin: 0 auto;
-    flex-basis: 25%;
+    flex-basis: 30%;
     background-repeat: no-repeat; }
 
 .header_title {
@@ -171,7 +176,6 @@ a {
   text-align: center;
   text-transform: uppercase;
   line-height: 1;
-  flex-basis: 50%;
   justify-content: center;
   display: flex;
   flex-direction: column; }
@@ -213,7 +217,7 @@ a {
   .header {
     height: 384px; } }
 .layout_content {
-  padding: 15px 0; }
+  padding: 40px 0; }
 
 .layout_bottom {
   text-align: center;
@@ -424,22 +428,26 @@ a {
   .quote_name {
     font-size: 18px; } }
 .poster {
-  margin: 15px 0;
+  margin: 40px 0;
   height: 65vw;
+  height: 100vw;
   background-position: 50%;
   background-size: cover;
   position: relative;
   text-align: center;
   display: flex;
   justify-content: center;
-  font-size: 1.3em; }
+  font-size: 1.3em;
+  font-size: 1.8em; }
   .poster_box {
     padding: 10px 15px;
-    line-height: 1;
-    font-family: 'Georgia';
+    line-height: 1.15;
+    line-height: 1.1;
+    font-family: 'Lora';
     font-style: italic;
+    letter-spacing: -.5px;
     text-shadow: 0 1px 1px white;
-    max-width: 280px;
+    max-width: 260px;
     color: #02275c; }
   .poster-road {
     background-image: url("../gfx/poster_road.jpg"); }
@@ -447,7 +455,7 @@ a {
     background-image: url("../gfx/poster_warehouse.jpg");
     text-align: right;
     justify-content: flex-end;
-    font-size: 1.2em; }
+    font-size: 1.6em; }
 
 @media screen and (min-width: 700px) {
   .poster {
@@ -461,7 +469,7 @@ a {
     height: 650px;
     font-size: 3.3em; } }
 .offer {
-  margin: 20px -15px; }
+  margin: 40px -15px; }
   .offer_box {
     background: #eef2e3;
     padding: 30px 15px;
@@ -518,11 +526,11 @@ a {
 
 @media screen and (min-width: 700px) {
   .offer {
-    min-height: 100px;
+    min-height: 120px;
     position: relative;
     width: 250px;
     margin: 0 0 0 20px;
-    font-size: 10px; }
+    font-size: 13px; }
     .offer_box {
       position: absolute;
       bottom: 0; }
@@ -533,11 +541,12 @@ a {
     position: static; } }
 @media screen and (min-width: 900px) {
   .offer {
-    font-size: 14px;
-    width: 300px; } }
+    font-size: 16px;
+    width: 300px; }
+    .offer_mail > a {
+      font-size: 18px; } }
 .prices {
-  margin: 20px 0;
-  padding: 15px 0; }
+  margin: 40px 0; }
   .prices_body {
     max-width: 960px;
     padding: 0 15px;
@@ -554,7 +563,7 @@ a {
     line-height: 1; }
   .prices_text {
     color: #666;
-    font-size: 14px;
+    font-size: 16px;
     margin: 5px 0 0;
     padding-right: 100px; }
   .prices_price {
@@ -564,7 +573,7 @@ a {
     margin: 0;
     font-size: 18px;
     line-height: 1.11111;
-    color: #bbb; }
+    color: #999; }
     .prices_price-text {
       color: #000; }
     .prices_price > strong {
@@ -574,7 +583,8 @@ a {
 @media screen and (min-width: 700px) {
   .prices {
     background: #f6f4f3;
-    padding: 40px 0; }
+    padding: 40px 0;
+    margin: 40px 0 0; }
     .prices_body {
       padding: 0 30px; } }
 @media screen and (min-width: 900px) {

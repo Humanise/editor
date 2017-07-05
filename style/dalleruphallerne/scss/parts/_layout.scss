@@ -1,7 +1,7 @@
 @include if((target: inline)) {
 
   .layout_content {
-    padding: $small-gutter 0;
+    padding: $small-section-space 0;
   }
 
   .layout_bottom {

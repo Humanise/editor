@@ -1,7 +1,8 @@
 @include if {
   .poster {
-    margin: $small-gap 0;
+    margin: $small-section-space 0;
     height: 65vw;
+    height: 100vw;
     background-position: 50%;
     background-size: cover;
     position: relative;
@@ -9,14 +10,17 @@
     display: flex;
     justify-content: center;
     font-size: 1.3em;
+    font-size: 1.8em;
 
     &_box {
       padding: 10px 15px;
-      line-height: 1;
-      font-family: 'Georgia';
+      line-height: 1.15;
+      line-height: 1.1;
+      font-family: 'Lora';
       font-style: italic;
+      letter-spacing: -.5px;
       text-shadow: 0 1px 1px white;
-      max-width: 280px;
+      max-width: 260px;
       color: rgb(2, 39, 92);
     }
 
@@ -28,7 +32,7 @@
       background-image: url('../gfx/poster_warehouse.jpg');
       text-align: right;
       justify-content: flex-end;
-      font-size: 1.2em;
+      font-size: 1.6em;
     }
   }
 }

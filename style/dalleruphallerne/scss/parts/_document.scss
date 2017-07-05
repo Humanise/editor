@@ -5,16 +5,13 @@
       margin: 0 !important;
     }
 
-    &_table,
-    &_table_body,
-    &_table_column
+    &,
+    &_body,
+    &_column
     {
       display: block !important;
+      width: auto !important;
     }
-  }
-
-  .document_table_column {
-    width: auto !important;
   }
 
   .document_row-flexible.splitted {

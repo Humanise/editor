@@ -30,6 +30,13 @@
   border: none;
   border-bottom: 1px solid #ddd; }
 
+.part_section_header {
+  padding: 0;
+  margin: 40px 0 15px; }
+
+.part_section_text:last-child {
+  padding: 0; }
+
 .part_header-1 {
   font-size: 32px; }
 
@@ -187,22 +194,26 @@
   .quote_name {
     font-size: 18px; } }
 .poster {
-  margin: 15px 0;
+  margin: 40px 0;
   height: 65vw;
+  height: 100vw;
   background-position: 50%;
   background-size: cover;
   position: relative;
   text-align: center;
   display: flex;
   justify-content: center;
-  font-size: 1.3em; }
+  font-size: 1.3em;
+  font-size: 1.8em; }
   .poster_box {
     padding: 10px 15px;
-    line-height: 1;
-    font-family: 'Georgia';
+    line-height: 1.15;
+    line-height: 1.1;
+    font-family: 'Lora';
     font-style: italic;
+    letter-spacing: -.5px;
     text-shadow: 0 1px 1px white;
-    max-width: 280px;
+    max-width: 260px;
     color: #02275c; }
   .poster-road {
     background-image: url("../gfx/poster_road.jpg"); }
@@ -210,7 +221,7 @@
     background-image: url("../gfx/poster_warehouse.jpg");
     text-align: right;
     justify-content: flex-end;
-    font-size: 1.2em; }
+    font-size: 1.6em; }
 
 @media screen and (min-width: 700px) {
   .poster {
@@ -224,8 +235,7 @@
     height: 650px;
     font-size: 3.3em; } }
 .prices {
-  margin: 20px 0;
-  padding: 15px 0; }
+  margin: 40px 0; }
   .prices_body {
     max-width: 960px;
     padding: 0 15px;
@@ -242,7 +252,7 @@
     line-height: 1; }
   .prices_text {
     color: #666;
-    font-size: 14px;
+    font-size: 16px;
     margin: 5px 0 0;
     padding-right: 100px; }
   .prices_price {
@@ -252,7 +262,7 @@
     margin: 0;
     font-size: 18px;
     line-height: 1.11111;
-    color: #bbb; }
+    color: #999; }
     .prices_price-text {
       color: #000; }
     .prices_price > strong {
@@ -262,7 +272,8 @@
 @media screen and (min-width: 700px) {
   .prices {
     background: #f6f4f3;
-    padding: 40px 0; }
+    padding: 40px 0;
+    margin: 40px 0 0; }
     .prices_body {
       padding: 0 30px; } }
 @media screen and (min-width: 900px) {
