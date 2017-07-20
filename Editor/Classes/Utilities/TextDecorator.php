@@ -111,7 +111,7 @@ class TextDecorator {
   function tags($text,&$rules,$orig,$replacement) {
     $pattern = "/\[".$orig."\]([^\[\]\n]+)\[".$orig."\]/i";
     preg_match_all($pattern, $text, $matches,PREG_OFFSET_CAPTURE);
-    for ($i=0;$i<count($matches[0]);$i++) {
+    for ($i=0; $i<count($matches[0]); $i++) {
       $pos = $matches[0][$i][1];
       $old = $matches[0][$i][0];
       $subject = $matches[1][$i][0];

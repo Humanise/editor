@@ -126,7 +126,7 @@ class UI {
     $pattern = "/({[^}]+})/mi";
     preg_match_all($pattern, $xml, $matches,PREG_OFFSET_CAPTURE);
     $diff = 0;
-    for ($i=0;$i<count($matches[0]);$i++) {
+    for ($i=0; $i<count($matches[0]); $i++) {
       $pos = $matches[0][$i][1];
       if ($xml[$pos+$diff-1]!='"' && $xml[$pos+$diff-1]!='>') {
         continue;

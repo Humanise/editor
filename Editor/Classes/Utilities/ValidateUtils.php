@@ -28,7 +28,7 @@ class ValidateUtils {
   }
 
   static function validateDigits($str=null) {
-    if ($str===null) {return false;}
+    if ($str===null) {return false; }
     $str = strval($str);
     $pattern = "/[0-9]+/";
       $num = preg_match($pattern,$str,$matches);

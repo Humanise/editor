@@ -192,7 +192,7 @@ class Strings {
     $lower=mb_strtolower($text,'UTF-8');
     $positions = array();
     $out = '';
-    for ($i=0;$i<count($keywords);$i++) {
+    for ($i=0; $i<count($keywords); $i++) {
       $word=mb_strtolower($keywords[$i],'UTF-8');
       $index=0;
       $endIsReached = false;

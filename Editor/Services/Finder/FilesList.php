@@ -6,7 +6,7 @@
 require_once '../../Include/Private.php';
 
 $queryString = Request::getString('query');
-$windowSize = 20;//Request::getInt('windowSize',30);
+$windowSize = 20; //Request::getInt('windowSize',30);
 $windowPage = Request::getInt('windowPage',0);
 $sort = Request::getString('sort','title');
 $direction = Request::getString('direction','ascending');

@@ -46,7 +46,7 @@ class TemplateService {
   static function getAvailableTemplates() {
     global $basePath;
     $arr = FileSystemService::listDirs($basePath."Editor/Template/");
-    for ($i=0;$i<count($arr);$i++) {
+    for ($i=0; $i<count($arr); $i++) {
       if (substr($arr[$i],0,3)=='CVS') {
         unset($arr[$i]);
       }
@@ -113,7 +113,7 @@ class TemplateService {
   static function getTemplatesKeyed() {
     $output = array();
     $templates = TemplateService::getInstalledTemplates();
-    for ($i=0;$i<count($templates);$i++) {
+    for ($i=0; $i<count($templates); $i++) {
       $unique = $templates[$i]['unique'];
       $info = TemplateService::getTemplateInfo($unique);
       $info['id']=$templates[$i]['id'];
@@ -126,7 +126,7 @@ class TemplateService {
   static function getTemplatesSorted() {
     $output = array();
     $templates = TemplateService::getInstalledTemplates();
-    for ($i=0;$i<count($templates);$i++) {
+    for ($i=0; $i<count($templates); $i++) {
       $unique = $templates[$i]['unique'];
       $info = TemplateService::getTemplateInfo($unique);
       $info['id']=$templates[$i]['id'];

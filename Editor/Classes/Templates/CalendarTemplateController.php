@@ -99,7 +99,7 @@ class CalendarTemplateController extends TemplateController
     $events = $this->getEvents($id,$query,$refresh);
     $xml='<weekview>';
     $derived = array();
-    for ($i=0;$i<7;$i++) {
+    for ($i=0; $i<7; $i++) {
       $timestamp = Dates::addDays($firstWeekDay,$i);
       $timestampEnd = Dates::addDays($firstWeekDay,$i+1)-1;
       $xml.='<day date="'.date("Ymd",$timestamp).'" today="'.(date("Ymd",$timestamp)==date("Ymd",time()) ? 'true' : 'false').'" selected="'.(date("Ymd",$timestamp)==date("Ymd",$date) ? 'true' : 'false').'" title="'.Dates::formatShortDate($timestamp).'">';
@@ -128,7 +128,7 @@ class CalendarTemplateController extends TemplateController
       }
       $xml.='</day>';
     }
-    for ($i=$startHour;$i<25;$i++) {
+    for ($i=$startHour; $i<25; $i++) {
       $xml.='<hour value="'.$i.'"/>';
     }
     $xml.='</weekview>';
@@ -146,7 +146,7 @@ class CalendarTemplateController extends TemplateController
     $events = $this->getEvents($id,$query,$refresh);
     $xml='<monthview>';
     $derived = array();
-    for ($i=0;$i<$days;$i++) {
+    for ($i=0; $i<$days; $i++) {
       $timestamp = Dates::addDays($startDay,$i);
       $timestampEnd = Dates::addDays($startDay,$i+1)-1;
       $weekday = Dates::getWeekDay($timestamp);
@@ -196,7 +196,7 @@ class CalendarTemplateController extends TemplateController
     $events = $this->getEvents($id,$query,$refresh);
     $xml='<listview>';
     $derived = array();
-    for ($i=0;$i<$days;$i++) {
+    for ($i=0; $i<$days; $i++) {
       $timestamp = Dates::addDays($startDay,$i);
       $timestampEnd = Dates::addDays($startDay,$i+1)-1;
       $title = Dates::formatDate($timestamp,array('shortWeekday'=>true,'year'=>false));
@@ -249,7 +249,7 @@ class CalendarTemplateController extends TemplateController
         }
       }
     }
-    for ($i=0;$i<count($events);$i++) {
+    for ($i=0; $i<count($events); $i++) {
       foreach ($collisions as $collision) {
         $result = array_search($events[$i]['id'], $collision);
         if ($result!==false) {
@@ -262,7 +262,7 @@ class CalendarTemplateController extends TemplateController
 
   function addToCollisionGroups(&$groups,$first,$second) {
     $found = false;
-    for ($i=0;$i<count($groups);$i++) {
+    for ($i=0; $i<count($groups); $i++) {
       if (in_array($first, $groups[$i]) || in_array($second, $groups[$i])) {
         if (!in_array($first, $groups[$i])) $groups[$i][] = $first;
         if (!in_array($second, $groups[$i])) $groups[$i][] = $second;

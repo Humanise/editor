@@ -296,7 +296,7 @@ class DatabaseUtil {
       $action = "CREATE TABLE `".$table."` (";
       $columns = DatabaseUtil::getExpectedColumns($table);
       $keys = '';
-      for ($i=0;$i<count($columns);$i++) {
+      for ($i=0; $i<count($columns); $i++) {
         $column = $columns[$i];
         if ($i>0) {
           $action.= ",";

@@ -292,7 +292,7 @@ class Calendarsource extends Object {
       //Log::debug($row);
       // Build maximum 1000 events
       $running = true;
-      for ($i=0;$i<1000 && $running;$i++) {
+      for ($i=0; $i<1000 && $running; $i++) {
         if ($row['interval']==0 || (($i) % $row['interval'])==0) {
           $futureEvents = $this->_createFutureEvents($row,$row['frequency'],$i);
           foreach ($futureEvents as $futureEvent) {

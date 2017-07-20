@@ -8,7 +8,7 @@ class StatisticsService {
 
   static function registerPage($options) {
     $ip = getenv("REMOTE_ADDR");
-    $method = 'GET';//getenv('REQUEST_METHOD');
+    $method = 'GET'; //getenv('REQUEST_METHOD');
     //$uri = getenv('REQUEST_URI');
     $language = getenv('HTTP_ACCEPT_LANGUAGE');
     $session = session_id();

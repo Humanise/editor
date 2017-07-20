@@ -99,7 +99,7 @@ class SearchTemplateController extends TemplateController
             $count = count($words);
             if ($count>0) {
               $sql.=' and (';
-              for ($i=0;$i<$count;$i++) {
+              for ($i=0; $i<$count; $i++) {
                 if (strlen($words[$i])>0) {
                   if (!$first) {
                     if ($method=='some') {
@@ -185,7 +185,7 @@ class SearchTemplateController extends TemplateController
       $first=true;
       if (count($words>0)) {
         $sql.=" and (";
-        for ($i=0;$i<count($words);$i++) {
+        for ($i=0; $i<count($words); $i++) {
           if (strlen($words[$i])>0) {
             if (!$first) {
               if ($method=='some') {

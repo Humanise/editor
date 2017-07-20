@@ -38,7 +38,7 @@ class Gradient {
           $p['red'] = ($this->red[$last] - $this->red[$id]) / $diff;
           $p['green'] = ($this->green[$last] - $this->green[$id]) / $diff;
           $p['blue'] = ($this->blue[$last] - $this->blue[$id]) / $diff;
-          for($i=$this->position[$last];$i<$value;$i++)
+          for($i=$this->position[$last]; $i<$value; $i++)
           {
             $w = floor($i * $percentage);
             $color = @imagecolorallocate($im,floor($c['red']),floor($c['green']),floor($c['blue']));

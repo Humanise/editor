@@ -29,7 +29,7 @@ class TestService {
         $out[] = $groups[$i];
       }
     }
-    return $out;//$groups;
+    return $out; //$groups;
   }
 
   static function getTestsInGroup($group) {

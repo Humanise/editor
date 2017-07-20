@@ -156,7 +156,7 @@ class Product extends Object {
   function updateAttributes($attributes) {
     $sql = "delete from productattribute where product_id=".$this->id;
     Database::delete($sql);
-    for ($i=0;$i<count($attributes);$i++) {
+    for ($i=0; $i<count($attributes); $i++) {
       $att = $attributes[$i];
       $sql = "insert into productattribute (product_id,`name`,`value`,`index`) values (".$this->id.",".Database::text($att['name']).",".Database::text($att['value']).",".$i.")";
       Database::insert($sql);
@@ -166,7 +166,7 @@ class Product extends Object {
   function updatePrices($prices) {
     $sql = "delete from productprice where product_id=".$this->id;
     Database::delete($sql);
-    for ($i=0;$i<count($prices);$i++) {
+    for ($i=0; $i<count($prices); $i++) {
       $att = $prices[$i];
       $sql = "insert into productprice (product_id,`amount`,`type`,price,currency,`index`) values (".
       $this->id.",".

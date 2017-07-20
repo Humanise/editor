@@ -24,7 +24,7 @@ class ToolService {
   static function getAvailable() {
     global $basePath;
     $arr = FileSystemService::listDirs($basePath."Editor/Tools/");
-    for ($i=0;$i<count($arr);$i++) {
+    for ($i=0; $i<count($arr); $i++) {
       if (substr($arr[$i],0,3)=='CVS') {
         unset($arr[$i]);
       }

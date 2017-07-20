@@ -38,7 +38,7 @@ class ListingPartController extends PartController
     foreach ($parsed as $point) {
       $data.='<item>';
       $lines = count($point);
-      for ($i=0;$i<$lines;$i++) {
+      for ($i=0; $i<$lines; $i++) {
         $formatted = $this->_formatBuildText($point[$i],$context,$part);
         if ($i>0) {
           $data.='<break/>'.$formatted;
@@ -65,7 +65,7 @@ class ListingPartController extends PartController
     $list="\n".$list;
     $items = preg_split("/\n\*/",$list);
     $parsed = array();
-    for ($i=1;$i<count($items);$i++) {
+    for ($i=1; $i<count($items); $i++) {
       $item=$items[$i];
       $lines=preg_split("/\n/",$item);
       $parsed[]=$lines;
