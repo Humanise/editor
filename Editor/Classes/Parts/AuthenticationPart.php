@@ -18,7 +18,7 @@ class AuthenticationPart extends Part
   function AuthenticationPart() {
     parent::Part('authentication');
   }
-  
+
   static function load($id) {
     return Part::get('authentication',$id);
   }

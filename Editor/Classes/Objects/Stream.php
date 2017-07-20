@@ -28,11 +28,11 @@ class Stream extends Object {
     return Object::get($id,'stream');
   }
 
-	function removeMore() {
-		$items = Query::after('streamitem')->withProperty('stream_id',$this->id)->get();
-		foreach ($items as $item) {
-			$item->remove();
-		}
-	}
+  function removeMore() {
+    $items = Query::after('streamitem')->withProperty('stream_id',$this->id)->get();
+    foreach ($items as $item) {
+      $item->remove();
+    }
+  }
 
 }

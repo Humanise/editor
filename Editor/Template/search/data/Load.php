@@ -9,8 +9,8 @@ $id = Request::getId();
 
 $obj = SearchTemplate::load($id);
 if ($obj) {
-	Response::sendObject($obj);
+  Response::sendObject($obj);
 } else {
-	Response::notFound();
+  Response::notFound();
 }
 ?>

@@ -14,15 +14,15 @@ $gui = file_get_contents($basePath.'Editor/Template/document/live/gui/properties
 $partUI = $ctrl->getUI();
 
 if ($partUI) {
-	$buttons = '';
-	$pages = '';
-	for ($i=0; $i < count($partUI); $i++) {
-		$item = $partUI[$i];
-		$buttons.= '<button icon="'.$item['icon'].'" key="'.$item['key'].'"/>';
-		$pages.= '<page key="'.$item['key'].'">'.$item['body'].'</page>';
-	}
-	$gui = str_replace("<!--buttons-->", $buttons, $gui);
-	$gui = str_replace("<!--pages-->", $pages, $gui);
+  $buttons = '';
+  $pages = '';
+  for ($i=0; $i < count($partUI); $i++) {
+    $item = $partUI[$i];
+    $buttons.= '<button icon="'.$item['icon'].'" key="'.$item['key'].'"/>';
+    $pages.= '<page key="'.$item['key'].'">'.$item['body'].'</page>';
+  }
+  $gui = str_replace("<!--buttons-->", $buttons, $gui);
+  $gui = str_replace("<!--pages-->", $pages, $gui);
 }
 
 

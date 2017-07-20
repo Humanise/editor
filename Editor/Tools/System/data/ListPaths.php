@@ -16,16 +16,16 @@ $writer->endHeaders();
 
 $list = Query::after('path')->get();
 foreach ($list as $item) {
-	$page = Page::load($item->getPageId());
-	$writer->startRow(array('kind'=>'path','id'=>$item->getId()));
-	$writer->startCell(array('icon'=>$item->getIcon()))->text($item->getPath())->endCell();
-	if ($page) {
-		$writer->startCell(array('icon'=>$page->getIcon()))->text($page->getTitle())->endCell();
-	} else {
-		$writer->startCell(array('icon'=>'common/warning'))->text(array('No page','da'=>'Ingen siden'))->endCell();
-	}
-	$writer->startCell()->text($page ? $page->getPath() : '')->endCell();
-	$writer->endRow();
+  $page = Page::load($item->getPageId());
+  $writer->startRow(array('kind'=>'path','id'=>$item->getId()));
+  $writer->startCell(array('icon'=>$item->getIcon()))->text($item->getPath())->endCell();
+  if ($page) {
+    $writer->startCell(array('icon'=>$page->getIcon()))->text($page->getTitle())->endCell();
+  } else {
+    $writer->startCell(array('icon'=>'common/warning'))->text(array('No page','da'=>'Ingen siden'))->endCell();
+  }
+  $writer->startCell()->text($page ? $page->getPath() : '')->endCell();
+  $writer->endRow();
 }
 $writer->endList();
 ?>

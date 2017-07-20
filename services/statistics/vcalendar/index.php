@@ -49,13 +49,13 @@ $analyzer = new UserAgentAnalyzer();
 $sql="select ip,agent,count(session) as num,DATE_FORMAT(min(time),'%Y%m%dT%H%i%s') as begin,DATE_FORMAT(max(time),'%Y%m%dT%H%i%s') as end from statistics group by session";
 $result = Database::select($sql);
 while ($row = Database::next($result)) {
-	$analyzer->setUserAgent($row['agent']);
-	echo "BEGIN:VEVENT\n";
-	echo "DTSTART;TZID=Europe/Copenhagen:".$row['begin']."\n";
-	echo "DTEND;TZID=Europe/Copenhagen:".$row['end']."\n";
-	echo "SUMMARY:Antal: ".$row['num']."\\nIP: ".$row['ip']."\n";
-	echo "DESCRIPTION:Browser: ".$analyzer->getApplicationName()." ".$analyzer->getApplicationVersion()."\n";
-	echo "END:VEVENT\n";
+  $analyzer->setUserAgent($row['agent']);
+  echo "BEGIN:VEVENT\n";
+  echo "DTSTART;TZID=Europe/Copenhagen:".$row['begin']."\n";
+  echo "DTEND;TZID=Europe/Copenhagen:".$row['end']."\n";
+  echo "SUMMARY:Antal: ".$row['num']."\\nIP: ".$row['ip']."\n";
+  echo "DESCRIPTION:Browser: ".$analyzer->getApplicationName()." ".$analyzer->getApplicationVersion()."\n";
+  echo "END:VEVENT\n";
 }
 Database::free($result);
 

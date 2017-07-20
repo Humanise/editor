@@ -5,18 +5,18 @@
  */
 
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 $HUMANISE_EDITOR_SCHEMA = array (
-  'tables' => 
+  'tables' =>
   array (
-    0 => 
+    0 =>
     array (
       'name' => 'address',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -25,7 +25,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'street' => 
+        'street' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -34,7 +34,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'zipcode' => 
+        'zipcode' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -43,7 +43,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'city' => 
+        'city' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -52,7 +52,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'country' => 
+        'country' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -63,12 +63,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    1 => 
+    1 =>
     array (
       'name' => 'authentication',
-      'columns' => 
+      'columns' =>
       array (
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -77,7 +77,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'title' => 
+        'title' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -88,12 +88,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    2 => 
+    2 =>
     array (
       'name' => 'cachedurl',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -102,7 +102,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'url' => 
+        'url' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -111,7 +111,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'synchronized' => 
+        'synchronized' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -120,7 +120,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'mimeType' => 
+        'mimeType' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -131,12 +131,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    3 => 
+    3 =>
     array (
       'name' => 'calendar',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -147,12 +147,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    4 => 
+    4 =>
     array (
       'name' => 'calendar_event',
-      'columns' => 
+      'columns' =>
       array (
-        'calendar_id' => 
+        'calendar_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -161,7 +161,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'event_id' => 
+        'event_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -172,12 +172,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    5 => 
+    5 =>
     array (
       'name' => 'calendarsource',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -186,7 +186,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'url' => 
+        'url' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -195,7 +195,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'synchronized' => 
+        'synchronized' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -204,7 +204,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'sync_interval' => 
+        'sync_interval' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -213,7 +213,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'display_title' => 
+        'display_title' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -222,7 +222,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'filter' => 
+        'filter' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -233,12 +233,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    6 => 
+    6 =>
     array (
       'name' => 'calendarsource_event',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -247,7 +247,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'calendarsource_id' => 
+        'calendarsource_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -256,7 +256,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'summary' => 
+        'summary' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -265,7 +265,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'description' => 
+        'description' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -274,7 +274,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'startdate' => 
+        'startdate' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -283,7 +283,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'enddate' => 
+        'enddate' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -292,7 +292,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'timestamp' => 
+        'timestamp' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -301,7 +301,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'uniqueid' => 
+        'uniqueid' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -310,7 +310,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'location' => 
+        'location' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -319,7 +319,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'recurring' => 
+        'recurring' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -328,7 +328,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'frequency' => 
+        'frequency' =>
         array (
           'type' => 'varchar(20)',
           'collation' => 'utf8_danish_ci',
@@ -337,7 +337,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'until' => 
+        'until' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -346,7 +346,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'count' => 
+        'count' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -355,7 +355,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'interval' => 
+        'interval' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -364,7 +364,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'bymonth' => 
+        'bymonth' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -373,7 +373,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'bymonthday' => 
+        'bymonthday' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -382,7 +382,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'byday' => 
+        'byday' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -391,7 +391,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'byyearday' => 
+        'byyearday' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -400,7 +400,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'byweeknumber' => 
+        'byweeknumber' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -409,7 +409,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'weekstart' => 
+        'weekstart' =>
         array (
           'type' => 'char(2)',
           'collation' => 'utf8_danish_ci',
@@ -418,7 +418,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'duration' => 
+        'duration' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -427,7 +427,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'url' => 
+        'url' =>
         array (
           'type' => 'varchar(1024)',
           'collation' => 'utf8_danish_ci',
@@ -438,12 +438,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    7 => 
+    7 =>
     array (
       'name' => 'calendarviewer',
-      'columns' => 
+      'columns' =>
       array (
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -452,7 +452,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'title' => 
+        'title' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -461,7 +461,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'weekview_starthour' => 
+        'weekview_starthour' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -470,7 +470,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'standard_view' => 
+        'standard_view' =>
         array (
           'type' => 'varchar(128)',
           'collation' => 'utf8_danish_ci',
@@ -481,12 +481,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    8 => 
+    8 =>
     array (
       'name' => 'calendarviewer_object',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -495,7 +495,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -504,7 +504,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -515,12 +515,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    9 => 
+    9 =>
     array (
       'name' => 'design',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -529,7 +529,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -538,7 +538,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'unique' => 
+        'unique' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -547,7 +547,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'name' => 
+        'name' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -556,7 +556,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'parameters' => 
+        'parameters' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -567,12 +567,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    10 => 
+    10 =>
     array (
       'name' => 'design_parameter',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -581,7 +581,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'design_id' => 
+        'design_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -590,7 +590,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'key' => 
+        'key' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -599,7 +599,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'type' => 
+        'type' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -608,7 +608,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'value' => 
+        'value' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -619,12 +619,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    11 => 
+    11 =>
     array (
       'name' => 'document',
-      'columns' => 
+      'columns' =>
       array (
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -635,12 +635,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    12 => 
+    12 =>
     array (
       'name' => 'document_column',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -649,7 +649,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'row_id' => 
+        'row_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -658,7 +658,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'index' => 
+        'index' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -667,7 +667,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -676,7 +676,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'width' => 
+        'width' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -685,7 +685,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'top' => 
+        'top' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -694,7 +694,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'bottom' => 
+        'bottom' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -703,7 +703,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'left' => 
+        'left' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -712,7 +712,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'right' => 
+        'right' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -723,12 +723,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    13 => 
+    13 =>
     array (
       'name' => 'document_row',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -737,7 +737,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -746,7 +746,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'index' => 
+        'index' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -755,7 +755,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'top' => 
+        'top' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -764,7 +764,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'bottom' => 
+        'bottom' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -773,7 +773,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'spacing' => 
+        'spacing' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -784,12 +784,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    14 => 
+    14 =>
     array (
       'name' => 'document_section',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -798,7 +798,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -807,7 +807,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'column_id' => 
+        'column_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -816,7 +816,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'index' => 
+        'index' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -825,7 +825,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'type' => 
+        'type' =>
         array (
           'type' => 'varchar(20)',
           'collation' => 'utf8_danish_ci',
@@ -834,7 +834,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'top' => 
+        'top' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -843,7 +843,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'bottom' => 
+        'bottom' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -852,7 +852,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'left' => 
+        'left' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -861,7 +861,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'right' => 
+        'right' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -870,7 +870,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -879,7 +879,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'float' => 
+        'float' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -888,7 +888,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'width' => 
+        'width' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -899,12 +899,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    15 => 
+    15 =>
     array (
       'name' => 'email_validation_session',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -913,7 +913,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'unique' => 
+        'unique' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -922,7 +922,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'user_id' => 
+        'user_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -931,7 +931,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'email' => 
+        'email' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -940,7 +940,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'timelimit' => 
+        'timelimit' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -951,12 +951,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    16 => 
+    16 =>
     array (
       'name' => 'emailaddress',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -965,7 +965,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'address' => 
+        'address' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -974,7 +974,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'containing_object_id' => 
+        'containing_object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -985,12 +985,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    17 => 
+    17 =>
     array (
       'name' => 'event',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -999,7 +999,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'startdate' => 
+        'startdate' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -1008,7 +1008,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'enddate' => 
+        'enddate' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -1017,7 +1017,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'location' => 
+        'location' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -1028,12 +1028,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    18 => 
+    18 =>
     array (
       'name' => 'feedback',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1042,7 +1042,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'name' => 
+        'name' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -1051,7 +1051,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'email' => 
+        'email' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -1060,7 +1060,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'message' => 
+        'message' =>
         array (
           'type' => 'mediumtext',
           'collation' => 'utf8_danish_ci',
@@ -1071,12 +1071,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    19 => 
+    19 =>
     array (
       'name' => 'file',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1085,7 +1085,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'filename' => 
+        'filename' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -1094,7 +1094,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'size' => 
+        'size' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1103,7 +1103,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'type' => 
+        'type' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -1114,12 +1114,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    20 => 
+    20 =>
     array (
       'name' => 'filegroup',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1130,12 +1130,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    21 => 
+    21 =>
     array (
       'name' => 'filegroup_file',
-      'columns' => 
+      'columns' =>
       array (
-        'file_id' => 
+        'file_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1144,7 +1144,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'filegroup_id' => 
+        'filegroup_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1155,12 +1155,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    22 => 
+    22 =>
     array (
       'name' => 'frame',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1169,7 +1169,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'title' => 
+        'title' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -1178,7 +1178,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'name' => 
+        'name' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -1187,7 +1187,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'hierarchy_id' => 
+        'hierarchy_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1196,7 +1196,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'searchbuttontitle' => 
+        'searchbuttontitle' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -1205,7 +1205,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'searchenabled' => 
+        'searchenabled' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -1214,7 +1214,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'searchpage_id' => 
+        'searchpage_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1223,7 +1223,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'searchpages' => 
+        'searchpages' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -1232,7 +1232,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'searchimages' => 
+        'searchimages' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -1241,7 +1241,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'searchfiles' => 
+        'searchfiles' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -1250,7 +1250,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'searchnews' => 
+        'searchnews' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -1259,7 +1259,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'searchpersons' => 
+        'searchpersons' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -1268,7 +1268,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'searchproducts' => 
+        'searchproducts' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -1277,7 +1277,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'data' => 
+        'data' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -1286,7 +1286,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'changed' => 
+        'changed' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -1295,7 +1295,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'published' => 
+        'published' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -1304,7 +1304,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'bottomtext' => 
+        'bottomtext' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -1313,7 +1313,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'dynamic' => 
+        'dynamic' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -1322,7 +1322,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'userstatusenabled' => 
+        'userstatusenabled' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -1331,7 +1331,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'userstatuspage_id' => 
+        'userstatuspage_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1342,12 +1342,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    23 => 
+    23 =>
     array (
       'name' => 'frame_link',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1356,7 +1356,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'frame_id' => 
+        'frame_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1365,7 +1365,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'position' => 
+        'position' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -1374,7 +1374,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'index' => 
+        'index' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1383,7 +1383,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'target' => 
+        'target' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -1392,7 +1392,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'target_type' => 
+        'target_type' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -1401,7 +1401,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'target_value' => 
+        'target_value' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -1410,7 +1410,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'target_id' => 
+        'target_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1419,7 +1419,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'alternative' => 
+        'alternative' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -1428,7 +1428,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'title' => 
+        'title' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -1439,12 +1439,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    24 => 
+    24 =>
     array (
       'name' => 'frame_newsblock',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1453,7 +1453,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'frame_id' => 
+        'frame_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1462,7 +1462,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'index' => 
+        'index' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1471,7 +1471,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'title' => 
+        'title' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -1480,7 +1480,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'sortby' => 
+        'sortby' =>
         array (
           'type' => 'varchar(20)',
           'collation' => 'utf8_danish_ci',
@@ -1489,7 +1489,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'sortdir' => 
+        'sortdir' =>
         array (
           'type' => 'varchar(20)',
           'collation' => 'utf8_danish_ci',
@@ -1498,7 +1498,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'maxitems' => 
+        'maxitems' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1507,7 +1507,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'timetype' => 
+        'timetype' =>
         array (
           'type' => 'varchar(20)',
           'collation' => 'utf8_danish_ci',
@@ -1516,7 +1516,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'timecount' => 
+        'timecount' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1525,7 +1525,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'startdate' => 
+        'startdate' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -1534,7 +1534,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'enddate' => 
+        'enddate' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -1545,12 +1545,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    25 => 
+    25 =>
     array (
       'name' => 'frame_newsblock_newsgroup',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1559,7 +1559,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'frame_newsblock_id' => 
+        'frame_newsblock_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1568,7 +1568,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'newsgroup_id' => 
+        'newsgroup_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1579,12 +1579,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    26 => 
+    26 =>
     array (
       'name' => 'guestbook',
-      'columns' => 
+      'columns' =>
       array (
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1593,7 +1593,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'title' => 
+        'title' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -1602,7 +1602,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'text' => 
+        'text' =>
         array (
           'type' => 'mediumtext',
           'collation' => 'utf8_danish_ci',
@@ -1613,12 +1613,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    27 => 
+    27 =>
     array (
       'name' => 'guestbook_item',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1627,7 +1627,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1636,7 +1636,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'time' => 
+        'time' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -1645,7 +1645,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'text' => 
+        'text' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -1654,7 +1654,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'name' => 
+        'name' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -1665,12 +1665,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    28 => 
+    28 =>
     array (
       'name' => 'hierarchy',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1679,7 +1679,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'name' => 
+        'name' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -1688,7 +1688,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'data' => 
+        'data' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -1697,7 +1697,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'changed' => 
+        'changed' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -1706,7 +1706,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'published' => 
+        'published' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -1715,7 +1715,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'language' => 
+        'language' =>
         array (
           'type' => 'varchar(5)',
           'collation' => 'utf8_danish_ci',
@@ -1726,12 +1726,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    29 => 
+    29 =>
     array (
       'name' => 'hierarchy_item',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1740,7 +1740,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'hierarchy_id' => 
+        'hierarchy_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1749,16 +1749,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'parent' => 
-        array (
-          'type' => 'int(11)',
-          'collation' => NULL,
-          'null' => 'NO',
-          'default' => '0',
-          'key' => '',
-          'extra' => '',
-        ),
-        'index' => 
+        'parent' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1767,7 +1758,16 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'type' => 
+        'index' =>
+        array (
+          'type' => 'int(11)',
+          'collation' => NULL,
+          'null' => 'NO',
+          'default' => '0',
+          'key' => '',
+          'extra' => '',
+        ),
+        'type' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -1776,7 +1776,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'title' => 
+        'title' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -1785,7 +1785,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'alternative' => 
+        'alternative' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -1794,7 +1794,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'target' => 
+        'target' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -1803,7 +1803,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'target_type' => 
+        'target_type' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -1812,7 +1812,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'target_id' => 
+        'target_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1821,7 +1821,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'target_value' => 
+        'target_value' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -1830,7 +1830,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'hidden' => 
+        'hidden' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -1841,12 +1841,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    30 => 
+    30 =>
     array (
       'name' => 'html',
-      'columns' => 
+      'columns' =>
       array (
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1855,7 +1855,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'html' => 
+        'html' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -1864,7 +1864,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'valid' => 
+        'valid' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -1873,7 +1873,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'title' => 
+        'title' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -1884,12 +1884,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    31 => 
+    31 =>
     array (
       'name' => 'image',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1898,7 +1898,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'filename' => 
+        'filename' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -1907,7 +1907,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'size' => 
+        'size' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1916,7 +1916,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'width' => 
+        'width' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1925,7 +1925,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'height' => 
+        'height' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1934,7 +1934,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'type' => 
+        'type' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -1945,12 +1945,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    32 => 
+    32 =>
     array (
       'name' => 'imagegallery',
-      'columns' => 
+      'columns' =>
       array (
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1959,7 +1959,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => '',
         ),
-        'title' => 
+        'title' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -1968,7 +1968,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'text' => 
+        'text' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -1977,7 +1977,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'imagesize' => 
+        'imagesize' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -1986,7 +1986,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'showtitle' => 
+        'showtitle' =>
         array (
           'type' => 'tinyint(1)',
           'collation' => NULL,
@@ -1995,7 +1995,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'shownote' => 
+        'shownote' =>
         array (
           'type' => 'tinyint(1)',
           'collation' => NULL,
@@ -2004,7 +2004,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'rotate' => 
+        'rotate' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2015,12 +2015,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    33 => 
+    33 =>
     array (
       'name' => 'imagegallery_custom_info',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2029,7 +2029,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2038,7 +2038,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'image_id' => 
+        'image_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2047,7 +2047,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'title' => 
+        'title' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -2056,7 +2056,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'note' => 
+        'note' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -2067,12 +2067,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    34 => 
+    34 =>
     array (
       'name' => 'imagegallery_object',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2081,7 +2081,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2090,7 +2090,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2099,7 +2099,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'position' => 
+        'position' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2110,12 +2110,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    35 => 
+    35 =>
     array (
       'name' => 'imagegroup',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2126,12 +2126,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    36 => 
+    36 =>
     array (
       'name' => 'imagegroup_image',
-      'columns' => 
+      'columns' =>
       array (
-        'image_id' => 
+        'image_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2140,7 +2140,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'imagegroup_id' => 
+        'imagegroup_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2151,12 +2151,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    37 => 
+    37 =>
     array (
       'name' => 'issue',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2165,7 +2165,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'kind' => 
+        'kind' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -2174,7 +2174,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'issuestatus_id' => 
+        'issuestatus_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2185,12 +2185,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    38 => 
+    38 =>
     array (
       'name' => 'issuestatus',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2201,12 +2201,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    39 => 
+    39 =>
     array (
       'name' => 'link',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2215,7 +2215,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2224,7 +2224,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2233,7 +2233,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'source_type' => 
+        'source_type' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -2242,7 +2242,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'source_text' => 
+        'source_text' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -2251,7 +2251,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'target' => 
+        'target' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -2260,7 +2260,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'target_type' => 
+        'target_type' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -2269,7 +2269,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'target_value' => 
+        'target_value' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -2278,7 +2278,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'target_id' => 
+        'target_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2287,7 +2287,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'alternative' => 
+        'alternative' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -2298,12 +2298,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    40 => 
+    40 =>
     array (
       'name' => 'log',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2312,7 +2312,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'time' => 
+        'time' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -2321,7 +2321,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'category' => 
+        'category' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -2330,7 +2330,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'event' => 
+        'event' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -2339,7 +2339,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'entity' => 
+        'entity' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2348,7 +2348,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'message' => 
+        'message' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -2357,7 +2357,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'user_id' => 
+        'user_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2366,7 +2366,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'ip' => 
+        'ip' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -2375,7 +2375,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'session' => 
+        'session' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -2386,12 +2386,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    41 => 
+    41 =>
     array (
       'name' => 'mailinglist',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2402,12 +2402,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    42 => 
+    42 =>
     array (
       'name' => 'milestone',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2416,7 +2416,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'deadline' => 
+        'deadline' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -2425,7 +2425,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'containing_object_id' => 
+        'containing_object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2434,7 +2434,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'completed' => 
+        'completed' =>
         array (
           'type' => 'tinyint(1)',
           'collation' => NULL,
@@ -2445,12 +2445,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    43 => 
+    43 =>
     array (
       'name' => 'news',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2459,7 +2459,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'startdate' => 
+        'startdate' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -2468,7 +2468,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'enddate' => 
+        'enddate' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -2477,7 +2477,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'image_id' => 
+        'image_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2488,12 +2488,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    44 => 
+    44 =>
     array (
       'name' => 'newsgroup',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2504,12 +2504,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    45 => 
+    45 =>
     array (
       'name' => 'newsgroup_news',
-      'columns' => 
+      'columns' =>
       array (
-        'news_id' => 
+        'news_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2518,7 +2518,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'newsgroup_id' => 
+        'newsgroup_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2529,12 +2529,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    46 => 
+    46 =>
     array (
       'name' => 'newssource',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2543,7 +2543,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'url' => 
+        'url' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -2552,7 +2552,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'synchronized' => 
+        'synchronized' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -2561,7 +2561,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'sync_interval' => 
+        'sync_interval' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2572,12 +2572,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    47 => 
+    47 =>
     array (
       'name' => 'newssourceitem',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2586,7 +2586,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'newssource_id' => 
+        'newssource_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2595,7 +2595,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'text' => 
+        'text' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -2604,7 +2604,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'date' => 
+        'date' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -2613,7 +2613,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'url' => 
+        'url' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -2622,7 +2622,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'guid' => 
+        'guid' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -2633,12 +2633,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    48 => 
+    48 =>
     array (
       'name' => 'object',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2647,7 +2647,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'title' => 
+        'title' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -2656,7 +2656,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'type' => 
+        'type' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -2665,7 +2665,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'note' => 
+        'note' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -2674,7 +2674,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'data' => 
+        'data' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -2683,7 +2683,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'created' => 
+        'created' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -2692,7 +2692,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'updated' => 
+        'updated' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -2701,7 +2701,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'published' => 
+        'published' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -2710,7 +2710,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'searchable' => 
+        'searchable' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -2719,7 +2719,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'index' => 
+        'index' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -2728,7 +2728,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'owner_id' => 
+        'owner_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2739,12 +2739,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    49 => 
+    49 =>
     array (
       'name' => 'object_link',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2753,7 +2753,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2762,7 +2762,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'target' => 
+        'target' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -2771,7 +2771,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'target_type' => 
+        'target_type' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -2780,7 +2780,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'target_value' => 
+        'target_value' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -2789,7 +2789,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'alternative' => 
+        'alternative' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -2798,7 +2798,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'title' => 
+        'title' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -2807,7 +2807,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'position' => 
+        'position' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2818,12 +2818,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    50 => 
+    50 =>
     array (
       'name' => 'page',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2832,7 +2832,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'title' => 
+        'title' =>
         array (
           'type' => 'varchar(100)',
           'collation' => 'utf8_danish_ci',
@@ -2841,7 +2841,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'description' => 
+        'description' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -2850,7 +2850,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'keywords' => 
+        'keywords' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -2859,7 +2859,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'template_id' => 
+        'template_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2868,7 +2868,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'data' => 
+        'data' =>
         array (
           'type' => 'longtext',
           'collation' => 'utf8_danish_ci',
@@ -2877,7 +2877,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'created' => 
+        'created' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -2886,7 +2886,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'changed' => 
+        'changed' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -2895,7 +2895,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'published' => 
+        'published' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -2904,7 +2904,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'design_id' => 
+        'design_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2913,7 +2913,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'frame_id' => 
+        'frame_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -2922,7 +2922,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'index' => 
+        'index' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -2931,7 +2931,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'dynamic' => 
+        'dynamic' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -2940,7 +2940,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'language' => 
+        'language' =>
         array (
           'type' => 'varchar(5)',
           'collation' => 'utf8_danish_ci',
@@ -2949,7 +2949,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'searchable' => 
+        'searchable' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -2958,7 +2958,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'secure' => 
+        'secure' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -2967,7 +2967,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'disabled' => 
+        'disabled' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -2976,7 +2976,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'name' => 
+        'name' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -2985,7 +2985,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'path' => 
+        'path' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -2994,7 +2994,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'next_page' => 
+        'next_page' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3003,7 +3003,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'previous_page' => 
+        'previous_page' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3014,12 +3014,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    51 => 
+    51 =>
     array (
       'name' => 'page_cache',
-      'columns' => 
+      'columns' =>
       array (
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3028,7 +3028,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'stamp' => 
+        'stamp' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -3037,7 +3037,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'version' => 
+        'version' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3046,7 +3046,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'html' => 
+        'html' =>
         array (
           'type' => 'mediumtext',
           'collation' => 'utf8_danish_ci',
@@ -3055,7 +3055,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'path' => 
+        'path' =>
         array (
           'type' => 'varchar(1024)',
           'collation' => 'utf8_danish_ci',
@@ -3066,12 +3066,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    52 => 
+    52 =>
     array (
       'name' => 'page_history',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3080,7 +3080,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3089,7 +3089,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'user_id' => 
+        'user_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3098,7 +3098,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'time' => 
+        'time' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -3107,7 +3107,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'data' => 
+        'data' =>
         array (
           'type' => 'longtext',
           'collation' => 'utf8_danish_ci',
@@ -3116,7 +3116,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'message' => 
+        'message' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -3127,12 +3127,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    53 => 
+    53 =>
     array (
       'name' => 'page_translation',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3141,7 +3141,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3150,7 +3150,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'translation_id' => 
+        'translation_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3161,12 +3161,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    54 => 
+    54 =>
     array (
       'name' => 'pageblueprint',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3175,7 +3175,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'design_id' => 
+        'design_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3184,7 +3184,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'frame_id' => 
+        'frame_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3193,7 +3193,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'template_id' => 
+        'template_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3204,12 +3204,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    55 => 
+    55 =>
     array (
       'name' => 'parameter',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3218,7 +3218,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'name' => 
+        'name' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -3227,7 +3227,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'level' => 
+        'level' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -3236,7 +3236,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'language' => 
+        'language' =>
         array (
           'type' => 'varchar(5)',
           'collation' => 'utf8_danish_ci',
@@ -3245,7 +3245,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'value' => 
+        'value' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -3256,12 +3256,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    56 => 
+    56 =>
     array (
       'name' => 'part',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3270,7 +3270,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'type' => 
+        'type' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -3279,7 +3279,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'created' => 
+        'created' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -3288,7 +3288,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'updated' => 
+        'updated' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -3297,7 +3297,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'dynamic' => 
+        'dynamic' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -3308,12 +3308,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    57 => 
+    57 =>
     array (
       'name' => 'part_authentication',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3324,12 +3324,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    58 => 
+    58 =>
     array (
       'name' => 'part_file',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3338,7 +3338,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'file_id' => 
+        'file_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3347,7 +3347,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'text' => 
+        'text' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -3358,12 +3358,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    59 => 
+    59 =>
     array (
       'name' => 'part_formula',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3372,7 +3372,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'receivername' => 
+        'receivername' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -3381,7 +3381,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'receiveremail' => 
+        'receiveremail' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -3390,7 +3390,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'recipe' => 
+        'recipe' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -3401,12 +3401,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    60 => 
+    60 =>
     array (
       'name' => 'part_header',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3415,7 +3415,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'level' => 
+        'level' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3424,7 +3424,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'text' => 
+        'text' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -3433,7 +3433,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'textalign' => 
+        'textalign' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -3442,7 +3442,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'fontfamily' => 
+        'fontfamily' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -3451,7 +3451,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'fontsize' => 
+        'fontsize' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -3460,7 +3460,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'lineheight' => 
+        'lineheight' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -3469,7 +3469,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'fontweight' => 
+        'fontweight' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -3478,7 +3478,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'color' => 
+        'color' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -3487,7 +3487,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'wordspacing' => 
+        'wordspacing' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -3496,7 +3496,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'letterspacing' => 
+        'letterspacing' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -3505,7 +3505,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'textdecoration' => 
+        'textdecoration' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -3514,7 +3514,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'textindent' => 
+        'textindent' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -3523,7 +3523,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'texttransform' => 
+        'texttransform' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -3532,7 +3532,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'fontstyle' => 
+        'fontstyle' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -3541,7 +3541,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'fontvariant' => 
+        'fontvariant' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -3552,12 +3552,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    61 => 
+    61 =>
     array (
       'name' => 'part_horizontalrule',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3568,12 +3568,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    62 => 
+    62 =>
     array (
       'name' => 'part_html',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3582,7 +3582,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'html' => 
+        'html' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -3593,12 +3593,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    63 => 
+    63 =>
     array (
       'name' => 'part_image',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3607,7 +3607,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'image_id' => 
+        'image_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3616,7 +3616,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'align' => 
+        'align' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -3625,7 +3625,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'greyscale' => 
+        'greyscale' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -3634,7 +3634,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'adaptive' => 
+        'adaptive' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -3643,7 +3643,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'scalemethod' => 
+        'scalemethod' =>
         array (
           'type' => 'varchar(20)',
           'collation' => 'utf8_danish_ci',
@@ -3652,7 +3652,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'scalewidth' => 
+        'scalewidth' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3661,7 +3661,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'scaleheight' => 
+        'scaleheight' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3670,7 +3670,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'scalepercent' => 
+        'scalepercent' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3679,7 +3679,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'text' => 
+        'text' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -3688,7 +3688,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'frame' => 
+        'frame' =>
         array (
           'type' => 'varchar(30)',
           'collation' => 'utf8_danish_ci',
@@ -3699,12 +3699,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    64 => 
+    64 =>
     array (
       'name' => 'part_imagegallery',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3713,7 +3713,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'imagegroup_id' => 
+        'imagegroup_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3722,7 +3722,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'height' => 
+        'height' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3731,7 +3731,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'width' => 
+        'width' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3740,7 +3740,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'framed' => 
+        'framed' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -3749,7 +3749,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'show_title' => 
+        'show_title' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -3758,7 +3758,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'variant' => 
+        'variant' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -3767,7 +3767,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'frame' => 
+        'frame' =>
         array (
           'type' => 'varchar(30)',
           'collation' => 'utf8_danish_ci',
@@ -3778,12 +3778,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    65 => 
+    65 =>
     array (
       'name' => 'part_link',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3792,7 +3792,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3801,7 +3801,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'source_type' => 
+        'source_type' =>
         array (
           'type' => 'varchar(20)',
           'collation' => 'utf8_danish_ci',
@@ -3810,7 +3810,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'source_text' => 
+        'source_text' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -3819,7 +3819,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'target' => 
+        'target' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -3828,7 +3828,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'target_type' => 
+        'target_type' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -3837,7 +3837,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'target_value' => 
+        'target_value' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -3846,7 +3846,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'alternative' => 
+        'alternative' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -3855,7 +3855,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'title' => 
+        'title' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -3864,7 +3864,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'position' => 
+        'position' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3875,12 +3875,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    66 => 
+    66 =>
     array (
       'name' => 'part_list',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3889,7 +3889,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'title' => 
+        'title' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -3898,7 +3898,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'align' => 
+        'align' =>
         array (
           'type' => 'varchar(20)',
           'collation' => 'utf8_danish_ci',
@@ -3907,7 +3907,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'width' => 
+        'width' =>
         array (
           'type' => 'varchar(20)',
           'collation' => 'utf8_danish_ci',
@@ -3916,7 +3916,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'maxitems' => 
+        'maxitems' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3925,7 +3925,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'maxtextlength' => 
+        'maxtextlength' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3934,7 +3934,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'variant' => 
+        'variant' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -3943,7 +3943,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'time_count' => 
+        'time_count' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -3952,7 +3952,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'time_type' => 
+        'time_type' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -3961,7 +3961,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'show_source' => 
+        'show_source' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -3970,7 +3970,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'show_text' => 
+        'show_text' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -3979,7 +3979,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'show_timezone' => 
+        'show_timezone' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -3988,7 +3988,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'sort_direction' => 
+        'sort_direction' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -3997,7 +3997,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'timezone' => 
+        'timezone' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -4008,12 +4008,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    67 => 
+    67 =>
     array (
       'name' => 'part_list_object',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4022,7 +4022,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4033,12 +4033,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    68 => 
+    68 =>
     array (
       'name' => 'part_listing',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4047,7 +4047,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'text' => 
+        'text' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -4056,7 +4056,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'textalign' => 
+        'textalign' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4065,7 +4065,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'fontfamily' => 
+        'fontfamily' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4074,7 +4074,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'fontsize' => 
+        'fontsize' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4083,7 +4083,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'lineheight' => 
+        'lineheight' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4092,7 +4092,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'fontweight' => 
+        'fontweight' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4101,7 +4101,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'color' => 
+        'color' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4110,7 +4110,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'wordspacing' => 
+        'wordspacing' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4119,7 +4119,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'letterspacing' => 
+        'letterspacing' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4128,7 +4128,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'textdecoration' => 
+        'textdecoration' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4137,7 +4137,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'textindent' => 
+        'textindent' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4146,7 +4146,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'texttransform' => 
+        'texttransform' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4155,7 +4155,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'fontstyle' => 
+        'fontstyle' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4164,7 +4164,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'fontvariant' => 
+        'fontvariant' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4173,7 +4173,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'type' => 
+        'type' =>
         array (
           'type' => 'varchar(20)',
           'collation' => 'utf8_danish_ci',
@@ -4184,12 +4184,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    69 => 
+    69 =>
     array (
       'name' => 'part_mailinglist',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4200,12 +4200,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    70 => 
+    70 =>
     array (
       'name' => 'part_mailinglist_mailinglist',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4214,7 +4214,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'mailinglist_id' => 
+        'mailinglist_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4225,12 +4225,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    71 => 
+    71 =>
     array (
       'name' => 'part_map',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4239,7 +4239,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'provider' => 
+        'provider' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4248,7 +4248,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'latitude' => 
+        'latitude' =>
         array (
           'type' => 'decimal(20,17)',
           'collation' => NULL,
@@ -4257,7 +4257,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'longitude' => 
+        'longitude' =>
         array (
           'type' => 'decimal(20,17)',
           'collation' => NULL,
@@ -4266,7 +4266,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'text' => 
+        'text' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -4275,7 +4275,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'maptype' => 
+        'maptype' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4284,7 +4284,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'markers' => 
+        'markers' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -4293,7 +4293,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'zoom' => 
+        'zoom' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4302,7 +4302,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'width' => 
+        'width' =>
         array (
           'type' => 'varchar(11)',
           'collation' => 'utf8_danish_ci',
@@ -4311,7 +4311,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'height' => 
+        'height' =>
         array (
           'type' => 'varchar(11)',
           'collation' => 'utf8_danish_ci',
@@ -4320,7 +4320,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'frame' => 
+        'frame' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4331,12 +4331,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    72 => 
+    72 =>
     array (
       'name' => 'part_menu',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4345,7 +4345,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'hierarchy_id' => 
+        'hierarchy_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4354,7 +4354,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'variant' => 
+        'variant' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -4363,7 +4363,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'header' => 
+        'header' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -4372,7 +4372,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'depth' => 
+        'depth' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4383,12 +4383,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    73 => 
+    73 =>
     array (
       'name' => 'part_movie',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4397,7 +4397,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'file_id' => 
+        'file_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4406,7 +4406,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'image_id' => 
+        'image_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4415,7 +4415,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'text' => 
+        'text' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -4424,7 +4424,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'code' => 
+        'code' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -4433,7 +4433,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'url' => 
+        'url' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -4442,7 +4442,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'width' => 
+        'width' =>
         array (
           'type' => 'varchar(20)',
           'collation' => 'utf8_danish_ci',
@@ -4451,7 +4451,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'height' => 
+        'height' =>
         array (
           'type' => 'varchar(20)',
           'collation' => 'utf8_danish_ci',
@@ -4462,12 +4462,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    74 => 
+    74 =>
     array (
       'name' => 'part_news',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4476,7 +4476,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'align' => 
+        'align' =>
         array (
           'type' => 'varchar(20)',
           'collation' => 'utf8_danish_ci',
@@ -4485,7 +4485,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'width' => 
+        'width' =>
         array (
           'type' => 'varchar(20)',
           'collation' => 'utf8_danish_ci',
@@ -4494,7 +4494,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'news_id' => 
+        'news_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4503,7 +4503,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'mode' => 
+        'mode' =>
         array (
           'type' => 'varchar(20)',
           'collation' => 'utf8_danish_ci',
@@ -4512,7 +4512,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'title' => 
+        'title' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -4521,7 +4521,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'sortby' => 
+        'sortby' =>
         array (
           'type' => 'varchar(20)',
           'collation' => 'utf8_danish_ci',
@@ -4530,7 +4530,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'sortdir' => 
+        'sortdir' =>
         array (
           'type' => 'varchar(20)',
           'collation' => 'utf8_danish_ci',
@@ -4539,7 +4539,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'maxitems' => 
+        'maxitems' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4548,7 +4548,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'timetype' => 
+        'timetype' =>
         array (
           'type' => 'varchar(20)',
           'collation' => 'utf8_danish_ci',
@@ -4557,7 +4557,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'timecount' => 
+        'timecount' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4566,7 +4566,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'startdate' => 
+        'startdate' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -4575,7 +4575,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'enddate' => 
+        'enddate' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -4584,7 +4584,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'variant' => 
+        'variant' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4595,12 +4595,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    75 => 
+    75 =>
     array (
       'name' => 'part_news_newsgroup',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4609,7 +4609,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'newsgroup_id' => 
+        'newsgroup_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4620,12 +4620,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    76 => 
+    76 =>
     array (
       'name' => 'part_person',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4634,7 +4634,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'align' => 
+        'align' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4643,7 +4643,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'person_id' => 
+        'person_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4652,7 +4652,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'show_firstname' => 
+        'show_firstname' =>
         array (
           'type' => 'int(1)',
           'collation' => NULL,
@@ -4661,7 +4661,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'show_middlename' => 
+        'show_middlename' =>
         array (
           'type' => 'int(1)',
           'collation' => NULL,
@@ -4670,7 +4670,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'show_surname' => 
+        'show_surname' =>
         array (
           'type' => 'int(1)',
           'collation' => NULL,
@@ -4679,7 +4679,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'show_initials' => 
+        'show_initials' =>
         array (
           'type' => 'int(1)',
           'collation' => NULL,
@@ -4688,7 +4688,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'show_nickname' => 
+        'show_nickname' =>
         array (
           'type' => 'int(1)',
           'collation' => NULL,
@@ -4697,7 +4697,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'show_jobtitle' => 
+        'show_jobtitle' =>
         array (
           'type' => 'int(1)',
           'collation' => NULL,
@@ -4706,7 +4706,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'show_sex' => 
+        'show_sex' =>
         array (
           'type' => 'int(1)',
           'collation' => NULL,
@@ -4715,7 +4715,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'show_email_job' => 
+        'show_email_job' =>
         array (
           'type' => 'int(1)',
           'collation' => NULL,
@@ -4724,7 +4724,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'show_email_private' => 
+        'show_email_private' =>
         array (
           'type' => 'int(1)',
           'collation' => NULL,
@@ -4733,7 +4733,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'show_phone_job' => 
+        'show_phone_job' =>
         array (
           'type' => 'int(1)',
           'collation' => NULL,
@@ -4742,7 +4742,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'show_phone_private' => 
+        'show_phone_private' =>
         array (
           'type' => 'int(1)',
           'collation' => NULL,
@@ -4751,7 +4751,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'show_streetname' => 
+        'show_streetname' =>
         array (
           'type' => 'int(1)',
           'collation' => NULL,
@@ -4760,7 +4760,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'show_zipcode' => 
+        'show_zipcode' =>
         array (
           'type' => 'int(1)',
           'collation' => NULL,
@@ -4769,7 +4769,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'show_city' => 
+        'show_city' =>
         array (
           'type' => 'int(1)',
           'collation' => NULL,
@@ -4778,7 +4778,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'show_country' => 
+        'show_country' =>
         array (
           'type' => 'int(1)',
           'collation' => NULL,
@@ -4787,7 +4787,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'show_webaddress' => 
+        'show_webaddress' =>
         array (
           'type' => 'int(1)',
           'collation' => NULL,
@@ -4796,7 +4796,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'show_image' => 
+        'show_image' =>
         array (
           'type' => 'int(1)',
           'collation' => NULL,
@@ -4807,12 +4807,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    77 => 
+    77 =>
     array (
       'name' => 'part_poster',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4821,7 +4821,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'recipe' => 
+        'recipe' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -4832,12 +4832,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    78 => 
+    78 =>
     array (
       'name' => 'part_richtext',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4846,7 +4846,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'html' => 
+        'html' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -4857,12 +4857,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    79 => 
+    79 =>
     array (
       'name' => 'part_table',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4871,7 +4871,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'html' => 
+        'html' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -4882,12 +4882,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    80 => 
+    80 =>
     array (
       'name' => 'part_text',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -4896,7 +4896,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'text' => 
+        'text' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -4905,7 +4905,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'textalign' => 
+        'textalign' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4914,7 +4914,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'fontfamily' => 
+        'fontfamily' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4923,7 +4923,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'fontsize' => 
+        'fontsize' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4932,7 +4932,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'lineheight' => 
+        'lineheight' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4941,7 +4941,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'fontweight' => 
+        'fontweight' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4950,7 +4950,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'color' => 
+        'color' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4959,7 +4959,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'wordspacing' => 
+        'wordspacing' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4968,7 +4968,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'letterspacing' => 
+        'letterspacing' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4977,7 +4977,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'textdecoration' => 
+        'textdecoration' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4986,7 +4986,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'textindent' => 
+        'textindent' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -4995,7 +4995,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'texttransform' => 
+        'texttransform' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -5004,7 +5004,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'fontstyle' => 
+        'fontstyle' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -5013,7 +5013,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'fontvariant' => 
+        'fontvariant' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -5022,7 +5022,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'image_id' => 
+        'image_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5031,7 +5031,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'imagefloat' => 
+        'imagefloat' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -5040,7 +5040,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'imagewidth' => 
+        'imagewidth' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5049,7 +5049,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'imageheight' => 
+        'imageheight' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5060,12 +5060,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    81 => 
+    81 =>
     array (
       'name' => 'part_widget',
-      'columns' => 
+      'columns' =>
       array (
-        'part_id' => 
+        'part_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5074,7 +5074,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'key' => 
+        'key' =>
         array (
           'type' => 'varchar(100)',
           'collation' => 'utf8_danish_ci',
@@ -5083,7 +5083,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'data' => 
+        'data' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -5094,12 +5094,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    82 => 
+    82 =>
     array (
       'name' => 'path',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5108,7 +5108,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'path' => 
+        'path' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -5117,7 +5117,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5128,12 +5128,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    83 => 
+    83 =>
     array (
       'name' => 'person',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5142,7 +5142,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'firstname' => 
+        'firstname' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -5151,7 +5151,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'middlename' => 
+        'middlename' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -5160,7 +5160,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'surname' => 
+        'surname' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -5169,7 +5169,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'initials' => 
+        'initials' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -5178,7 +5178,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'nickname' => 
+        'nickname' =>
         array (
           'type' => 'varchar(20)',
           'collation' => 'utf8_danish_ci',
@@ -5187,7 +5187,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'jobtitle' => 
+        'jobtitle' =>
         array (
           'type' => 'varchar(30)',
           'collation' => 'utf8_danish_ci',
@@ -5196,7 +5196,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'sex' => 
+        'sex' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -5205,7 +5205,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'email_job' => 
+        'email_job' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -5214,7 +5214,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'email_private' => 
+        'email_private' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -5223,7 +5223,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'phone_job' => 
+        'phone_job' =>
         array (
           'type' => 'varchar(20)',
           'collation' => 'utf8_danish_ci',
@@ -5232,7 +5232,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'phone_private' => 
+        'phone_private' =>
         array (
           'type' => 'varchar(20)',
           'collation' => 'utf8_danish_ci',
@@ -5241,7 +5241,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'streetname' => 
+        'streetname' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -5250,7 +5250,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'zipcode' => 
+        'zipcode' =>
         array (
           'type' => 'varchar(4)',
           'collation' => 'utf8_danish_ci',
@@ -5259,7 +5259,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'city' => 
+        'city' =>
         array (
           'type' => 'varchar(30)',
           'collation' => 'utf8_danish_ci',
@@ -5268,7 +5268,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'country' => 
+        'country' =>
         array (
           'type' => 'varchar(30)',
           'collation' => 'utf8_danish_ci',
@@ -5277,7 +5277,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'webaddress' => 
+        'webaddress' =>
         array (
           'type' => 'varchar(30)',
           'collation' => 'utf8_danish_ci',
@@ -5286,7 +5286,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'image_id' => 
+        'image_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5297,12 +5297,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    84 => 
+    84 =>
     array (
       'name' => 'person_mailinglist',
-      'columns' => 
+      'columns' =>
       array (
-        'person_id' => 
+        'person_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5311,7 +5311,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'mailinglist_id' => 
+        'mailinglist_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5322,12 +5322,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    85 => 
+    85 =>
     array (
       'name' => 'persongroup',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5338,12 +5338,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    86 => 
+    86 =>
     array (
       'name' => 'persongroup_person',
-      'columns' => 
+      'columns' =>
       array (
-        'person_id' => 
+        'person_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5352,7 +5352,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'persongroup_id' => 
+        'persongroup_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5363,12 +5363,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    87 => 
+    87 =>
     array (
       'name' => 'personrole',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5377,7 +5377,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'person_id' => 
+        'person_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5388,12 +5388,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    88 => 
+    88 =>
     array (
       'name' => 'phonenumber',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5402,7 +5402,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'number' => 
+        'number' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -5411,7 +5411,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'context' => 
+        'context' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -5420,7 +5420,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'containing_object_id' => 
+        'containing_object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5431,12 +5431,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    89 => 
+    89 =>
     array (
       'name' => 'problem',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5445,7 +5445,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'deadline' => 
+        'deadline' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -5454,7 +5454,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'containing_object_id' => 
+        'containing_object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5463,7 +5463,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'completed' => 
+        'completed' =>
         array (
           'type' => 'tinyint(1)',
           'collation' => NULL,
@@ -5472,7 +5472,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'milestone_id' => 
+        'milestone_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5481,7 +5481,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'priority' => 
+        'priority' =>
         array (
           'type' => 'float',
           'collation' => NULL,
@@ -5492,12 +5492,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    90 => 
+    90 =>
     array (
       'name' => 'product',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5506,7 +5506,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'number' => 
+        'number' =>
         array (
           'type' => 'varchar(100)',
           'collation' => 'utf8_danish_ci',
@@ -5515,7 +5515,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'image_id' => 
+        'image_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5524,7 +5524,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'producttype_id' => 
+        'producttype_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5533,7 +5533,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'allow_offer' => 
+        'allow_offer' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -5544,12 +5544,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    91 => 
+    91 =>
     array (
       'name' => 'productattribute',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5558,7 +5558,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'product_id' => 
+        'product_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5567,7 +5567,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'name' => 
+        'name' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -5576,7 +5576,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'value' => 
+        'value' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -5585,7 +5585,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'index' => 
+        'index' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5596,12 +5596,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    92 => 
+    92 =>
     array (
       'name' => 'productgroup',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5612,12 +5612,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    93 => 
+    93 =>
     array (
       'name' => 'productgroup_product',
-      'columns' => 
+      'columns' =>
       array (
-        'product_id' => 
+        'product_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5626,7 +5626,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'productgroup_id' => 
+        'productgroup_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5637,12 +5637,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    94 => 
+    94 =>
     array (
       'name' => 'productoffer',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5651,7 +5651,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'offer' => 
+        'offer' =>
         array (
           'type' => 'double',
           'collation' => NULL,
@@ -5660,7 +5660,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'product_id' => 
+        'product_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5669,7 +5669,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'person_id' => 
+        'person_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5678,7 +5678,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'expiry' => 
+        'expiry' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -5689,12 +5689,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    95 => 
+    95 =>
     array (
       'name' => 'productprice',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5703,7 +5703,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'product_id' => 
+        'product_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5712,7 +5712,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'amount' => 
+        'amount' =>
         array (
           'type' => 'double',
           'collation' => NULL,
@@ -5721,7 +5721,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'type' => 
+        'type' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -5730,7 +5730,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'price' => 
+        'price' =>
         array (
           'type' => 'double',
           'collation' => NULL,
@@ -5739,7 +5739,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'currency' => 
+        'currency' =>
         array (
           'type' => 'varchar(5)',
           'collation' => 'utf8_danish_ci',
@@ -5748,7 +5748,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'index' => 
+        'index' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5759,12 +5759,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    96 => 
+    96 =>
     array (
       'name' => 'producttype',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5775,12 +5775,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    97 => 
+    97 =>
     array (
       'name' => 'project',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5789,7 +5789,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'parent_project_id' => 
+        'parent_project_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5800,12 +5800,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    98 => 
+    98 =>
     array (
       'name' => 'relation',
-      'columns' => 
+      'columns' =>
       array (
-        'from_type' => 
+        'from_type' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -5814,7 +5814,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'from_object_id' => 
+        'from_object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5823,7 +5823,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'to_type' => 
+        'to_type' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -5832,7 +5832,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'to_object_id' => 
+        'to_object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5841,7 +5841,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'kind' => 
+        'kind' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -5852,12 +5852,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    99 => 
+    99 =>
     array (
       'name' => 'remotepublisher',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5866,7 +5866,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'url' => 
+        'url' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -5877,12 +5877,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    100 => 
+    100 =>
     array (
       'name' => 'review',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5891,7 +5891,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'accepted' => 
+        'accepted' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -5900,7 +5900,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'date' => 
+        'date' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -5911,12 +5911,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    101 => 
+    101 =>
     array (
       'name' => 'search',
-      'columns' => 
+      'columns' =>
       array (
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -5925,7 +5925,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => '',
         ),
-        'title' => 
+        'title' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -5934,7 +5934,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'text' => 
+        'text' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -5943,7 +5943,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'pagesenabled' => 
+        'pagesenabled' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -5952,7 +5952,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'pageslabel' => 
+        'pageslabel' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -5961,7 +5961,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'pagesdefault' => 
+        'pagesdefault' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -5970,7 +5970,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'pageshidden' => 
+        'pageshidden' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -5979,7 +5979,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'imagesenabled' => 
+        'imagesenabled' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -5988,7 +5988,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'imageslabel' => 
+        'imageslabel' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -5997,7 +5997,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'imagesdefault' => 
+        'imagesdefault' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -6006,7 +6006,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'imageshidden' => 
+        'imageshidden' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -6015,7 +6015,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'filesenabled' => 
+        'filesenabled' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -6024,7 +6024,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'fileslabel' => 
+        'fileslabel' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -6033,7 +6033,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'filesdefault' => 
+        'filesdefault' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -6042,7 +6042,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'fileshidden' => 
+        'fileshidden' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -6051,7 +6051,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'newsenabled' => 
+        'newsenabled' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -6060,7 +6060,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'newslabel' => 
+        'newslabel' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -6069,7 +6069,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'newsdefault' => 
+        'newsdefault' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -6078,7 +6078,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'newshidden' => 
+        'newshidden' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -6087,7 +6087,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'personsenabled' => 
+        'personsenabled' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -6096,7 +6096,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'personslabel' => 
+        'personslabel' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -6105,7 +6105,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'personsdefault' => 
+        'personsdefault' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -6114,7 +6114,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'personshidden' => 
+        'personshidden' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -6123,7 +6123,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'productsenabled' => 
+        'productsenabled' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -6132,7 +6132,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'productslabel' => 
+        'productslabel' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -6141,7 +6141,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'productsdefault' => 
+        'productsdefault' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -6150,7 +6150,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'productshidden' => 
+        'productshidden' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -6159,7 +6159,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'buttontitle' => 
+        'buttontitle' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -6170,12 +6170,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    102 => 
+    102 =>
     array (
       'name' => 'securityzone',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6184,7 +6184,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'authentication_page_id' => 
+        'authentication_page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6195,12 +6195,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    103 => 
+    103 =>
     array (
       'name' => 'securityzone_page',
-      'columns' => 
+      'columns' =>
       array (
-        'securityzone_id' => 
+        'securityzone_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6209,7 +6209,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6220,12 +6220,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    104 => 
+    104 =>
     array (
       'name' => 'securityzone_user',
-      'columns' => 
+      'columns' =>
       array (
-        'securityzone_id' => 
+        'securityzone_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6234,7 +6234,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'user_id' => 
+        'user_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6245,12 +6245,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    105 => 
+    105 =>
     array (
       'name' => 'setting',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6259,7 +6259,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'domain' => 
+        'domain' =>
         array (
           'type' => 'varchar(30)',
           'collation' => 'utf8_danish_ci',
@@ -6268,7 +6268,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'subdomain' => 
+        'subdomain' =>
         array (
           'type' => 'varchar(30)',
           'collation' => 'utf8_danish_ci',
@@ -6277,7 +6277,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'key' => 
+        'key' =>
         array (
           'type' => 'varchar(30)',
           'collation' => 'utf8_danish_ci',
@@ -6286,7 +6286,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'value' => 
+        'value' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -6295,7 +6295,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'user_id' => 
+        'user_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6306,12 +6306,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    106 => 
+    106 =>
     array (
       'name' => 'specialpage',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6320,7 +6320,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6329,7 +6329,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'type' => 
+        'type' =>
         array (
           'type' => 'varchar(30)',
           'collation' => 'utf8_danish_ci',
@@ -6338,7 +6338,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'language' => 
+        'language' =>
         array (
           'type' => 'varchar(11)',
           'collation' => 'utf8_danish_ci',
@@ -6349,12 +6349,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    107 => 
+    107 =>
     array (
       'name' => 'statistics',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6363,7 +6363,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'ip' => 
+        'ip' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -6372,7 +6372,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'country' => 
+        'country' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -6381,7 +6381,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'agent' => 
+        'agent' =>
         array (
           'type' => 'varchar(4096)',
           'collation' => 'utf8_danish_ci',
@@ -6390,7 +6390,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'method' => 
+        'method' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -6399,7 +6399,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'uri' => 
+        'uri' =>
         array (
           'type' => 'varchar(4096)',
           'collation' => 'utf8_danish_ci',
@@ -6408,7 +6408,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'language' => 
+        'language' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -6417,7 +6417,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'type' => 
+        'type' =>
         array (
           'type' => 'varchar(10)',
           'collation' => 'utf8_danish_ci',
@@ -6426,7 +6426,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'value' => 
+        'value' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6435,7 +6435,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'session' => 
+        'session' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -6444,7 +6444,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'time' => 
+        'time' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -6453,7 +6453,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'referer' => 
+        'referer' =>
         array (
           'type' => 'varchar(4096)',
           'collation' => 'utf8_danish_ci',
@@ -6462,7 +6462,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'host' => 
+        'host' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -6471,7 +6471,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'robot' => 
+        'robot' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -6480,7 +6480,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'known' => 
+        'known' =>
         array (
           'type' => 'tinyint(4)',
           'collation' => NULL,
@@ -6491,12 +6491,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    108 => 
+    108 =>
     array (
       'name' => 'task',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6505,7 +6505,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'deadline' => 
+        'deadline' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -6514,7 +6514,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'containing_object_id' => 
+        'containing_object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6523,7 +6523,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'completed' => 
+        'completed' =>
         array (
           'type' => 'tinyint(1)',
           'collation' => NULL,
@@ -6532,7 +6532,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'milestone_id' => 
+        'milestone_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6541,7 +6541,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'priority' => 
+        'priority' =>
         array (
           'type' => 'float',
           'collation' => NULL,
@@ -6552,12 +6552,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    109 => 
+    109 =>
     array (
       'name' => 'template',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6566,7 +6566,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'unique' => 
+        'unique' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -6577,12 +6577,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    110 => 
+    110 =>
     array (
       'name' => 'testphrase',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6593,12 +6593,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    111 => 
+    111 =>
     array (
       'name' => 'tool',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6607,7 +6607,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'unique' => 
+        'unique' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -6618,12 +6618,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    112 => 
+    112 =>
     array (
       'name' => 'user',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6632,7 +6632,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'username' => 
+        'username' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -6641,7 +6641,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'password' => 
+        'password' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -6650,7 +6650,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'email' => 
+        'email' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -6659,7 +6659,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'language' => 
+        'language' =>
         array (
           'type' => 'varchar(5)',
           'collation' => 'utf8_danish_ci',
@@ -6668,7 +6668,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'internal' => 
+        'internal' =>
         array (
           'type' => 'tinyint(1)',
           'collation' => NULL,
@@ -6677,7 +6677,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'external' => 
+        'external' =>
         array (
           'type' => 'tinyint(1)',
           'collation' => NULL,
@@ -6686,7 +6686,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'administrator' => 
+        'administrator' =>
         array (
           'type' => 'tinyint(1)',
           'collation' => NULL,
@@ -6695,7 +6695,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'secure' => 
+        'secure' =>
         array (
           'type' => 'tinyint(1)',
           'collation' => NULL,
@@ -6706,12 +6706,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    113 => 
+    113 =>
     array (
       'name' => 'user_permission',
-      'columns' => 
+      'columns' =>
       array (
-        'id' => 
+        'id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6720,7 +6720,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => 'PRI',
           'extra' => 'auto_increment',
         ),
-        'user_id' => 
+        'user_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6729,7 +6729,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'entity_type' => 
+        'entity_type' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -6738,7 +6738,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'entity_id' => 
+        'entity_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6747,7 +6747,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'permission' => 
+        'permission' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -6758,12 +6758,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    114 => 
+    114 =>
     array (
       'name' => 'watermeter',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6772,7 +6772,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'number' => 
+        'number' =>
         array (
           'type' => 'varchar(50)',
           'collation' => 'utf8_danish_ci',
@@ -6783,12 +6783,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    115 => 
+    115 =>
     array (
       'name' => 'waterusage',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6797,7 +6797,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'watermeter_id' => 
+        'watermeter_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6806,7 +6806,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'value' => 
+        'value' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6815,7 +6815,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'date' => 
+        'date' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -6824,7 +6824,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'status' => 
+        'status' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6833,7 +6833,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'source' => 
+        'source' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6844,12 +6844,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    116 => 
+    116 =>
     array (
       'name' => 'weblog',
-      'columns' => 
+      'columns' =>
       array (
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6858,7 +6858,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'pageblueprint_id' => 
+        'pageblueprint_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6867,7 +6867,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'title' => 
+        'title' =>
         array (
           'type' => 'varchar(255)',
           'collation' => 'utf8_danish_ci',
@@ -6878,12 +6878,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    117 => 
+    117 =>
     array (
       'name' => 'weblog_webloggroup',
-      'columns' => 
+      'columns' =>
       array (
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6892,7 +6892,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'webloggroup_id' => 
+        'webloggroup_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6903,12 +6903,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    118 => 
+    118 =>
     array (
       'name' => 'weblogentry',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6917,7 +6917,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'text' => 
+        'text' =>
         array (
           'type' => 'text',
           'collation' => 'utf8_danish_ci',
@@ -6926,7 +6926,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'date' => 
+        'date' =>
         array (
           'type' => 'datetime',
           'collation' => NULL,
@@ -6935,7 +6935,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'page_id' => 
+        'page_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6946,12 +6946,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    119 => 
+    119 =>
     array (
       'name' => 'webloggroup',
-      'columns' => 
+      'columns' =>
       array (
-        'object_id' => 
+        'object_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6962,12 +6962,12 @@ $HUMANISE_EDITOR_SCHEMA = array (
         ),
       ),
     ),
-    120 => 
+    120 =>
     array (
       'name' => 'webloggroup_weblogentry',
-      'columns' => 
+      'columns' =>
       array (
-        'weblogentry_id' => 
+        'weblogentry_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,
@@ -6976,7 +6976,7 @@ $HUMANISE_EDITOR_SCHEMA = array (
           'key' => '',
           'extra' => '',
         ),
-        'webloggroup_id' => 
+        'webloggroup_id' =>
         array (
           'type' => 'int(11)',
           'collation' => NULL,

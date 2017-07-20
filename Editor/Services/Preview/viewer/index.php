@@ -9,24 +9,24 @@ $id = Request::getInt('id',0);
 $history = Request::getInt('history');
 
 if ($id==0) {
-	if (InternalSession::getPageId()>0) {
-		$id = InternalSession::getPageId();
-	}
-	else {
-		$id = RenderingService::findPage('home');
-	}
+  if (InternalSession::getPageId()>0) {
+    $id = InternalSession::getPageId();
+  }
+  else {
+    $id = RenderingService::findPage('home');
+  }
 }
 
 $html = RenderingService::previewPage(array(
-	'pageId' => $id,
-	'historyId' => $history,
-	'relativePath' => '../../../../'
+  'pageId' => $id,
+  'historyId' => $history,
+  'relativePath' => '../../../../'
 ));
 if ($html) {
-	InternalSession::setPageId($id);
-	header("Content-Type: text/html; charset=UTF-8");
-	echo $html;
+  InternalSession::setPageId($id);
+  header("Content-Type: text/html; charset=UTF-8");
+  echo $html;
 } else {
-	Response::notFound('Siden findes ikke længere: '.$id);
+  Response::notFound('Siden findes ikke længere: '.$id);
 }
 ?>

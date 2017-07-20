@@ -15,18 +15,18 @@ $target = Request::getString('target');
 $alternative = Request::getString('description');
 
 if ($id) {
-	$link=Link::load($id);
+  $link=Link::load($id);
 } else {
-	$link=new Link();
+  $link=new Link();
 }
 if ($link) {
-	$link->setText($text);
-	$link->setAlternative($alternative);
-	$link->setPageId($pageId);
-	$link->setTypeAndValue($type,$value);
-	$link->setPartId($partId);
-	$link->save();
+  $link->setText($text);
+  $link->setAlternative($alternative);
+  $link->setPageId($pageId);
+  $link->setTypeAndValue($type,$value);
+  $link->setPartId($partId);
+  $link->save();
 
-	PageService::markChanged($pageId);
+  PageService::markChanged($pageId);
 }
 ?>

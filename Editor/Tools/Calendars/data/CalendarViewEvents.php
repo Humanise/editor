@@ -8,23 +8,23 @@ require_once '../../../Include/Private.php';
 $force = Request::getBoolean('force');
 $sourceId = Request::getInt('sourceId');
 if ($sourceId>0) {
-	listSource($sourceId,$force);
+  listSource($sourceId,$force);
 }
 
 function listSource($id,$force) {
 
-	$source = Calendarsource::load($id);
+  $source = Calendarsource::load($id);
 
-	$source->synchronize($force);
+  $source->synchronize($force);
 
-	$query = array('sort' => 'startDate');
+  $query = array('sort' => 'startDate');
 
-	$events = $source->getEvents($query);
+  $events = $source->getEvents($query);
 
-	$out = array();
+  $out = array();
 
-	foreach ($events as $event) {
-		$out[] = array('startTime'=>$event['startDate'],'endTime'=>$event['endDate'],'text'=>$event['summary']);
-	}
-	Response::sendObject($out);
+  foreach ($events as $event) {
+    $out[] = array('startTime'=>$event['startDate'],'endTime'=>$event['endDate'],'text'=>$event['summary']);
+  }
+  Response::sendObject($out);
 }

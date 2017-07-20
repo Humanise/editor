@@ -4,73 +4,73 @@
  * @subpackage Classes.Modules.Water
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 class WatermeterSummary {
-	var $watermeterId;
-	var $number;
-	var $street;
-	var $zipcode;
-	var $city;
-	var $email;
-	var $phone;
-	
-	function setWatermeterId($watermeterId) {
-	    $this->watermeterId = $watermeterId;
-	}
+  var $watermeterId;
+  var $number;
+  var $street;
+  var $zipcode;
+  var $city;
+  var $email;
+  var $phone;
 
-	function getWatermeterId() {
-	    return $this->watermeterId;
-	}
-	
-	function setNumber($number) {
-	    $this->number = $number;
-	}
+  function setWatermeterId($watermeterId) {
+    $this->watermeterId = $watermeterId;
+  }
 
-	function getNumber() {
-	    return $this->number;
-	}
-	
-	function setStreet($street) {
-	    $this->street = $street;
-	}
+  function getWatermeterId() {
+    return $this->watermeterId;
+  }
 
-	function getStreet() {
-	    return $this->street;
-	}
-	
-	function setZipcode($zipcode) {
-	    $this->zipcode = $zipcode;
-	}
+  function setNumber($number) {
+    $this->number = $number;
+  }
 
-	function getZipcode() {
-	    return $this->zipcode;
-	}
-	
-	function setCity($city) {
-	    $this->city = $city;
-	}
+  function getNumber() {
+    return $this->number;
+  }
 
-	function getCity() {
-	    return $this->city;
-	}
-	
-	function setEmail($email) {
-	    $this->email = $email;
-	}
+  function setStreet($street) {
+    $this->street = $street;
+  }
 
-	function getEmail() {
-	    return $this->email;
-	}
-	
-	function setPhone($phone) {
-	    $this->phone = $phone;
-	}
+  function getStreet() {
+    return $this->street;
+  }
 
-	function getPhone() {
-	    return $this->phone;
-	}
-	
+  function setZipcode($zipcode) {
+    $this->zipcode = $zipcode;
+  }
+
+  function getZipcode() {
+    return $this->zipcode;
+  }
+
+  function setCity($city) {
+    $this->city = $city;
+  }
+
+  function getCity() {
+    return $this->city;
+  }
+
+  function setEmail($email) {
+    $this->email = $email;
+  }
+
+  function getEmail() {
+    return $this->email;
+  }
+
+  function setPhone($phone) {
+    $this->phone = $phone;
+  }
+
+  function getPhone() {
+    return $this->phone;
+  }
+
 }

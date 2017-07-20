@@ -11,11 +11,11 @@ $url = Request::getString('url');
 
 $newProfiles = array();
 if (is_array($settings->profiles)) {
-	foreach ($settings->profiles as $profile) {
-		if ($url!=$profile->url) {
-			$newProfiles[] = $profile;
-		}
-	}
+  foreach ($settings->profiles as $profile) {
+    if ($url!=$profile->url) {
+      $newProfiles[] = $profile;
+    }
+  }
 }
 $settings->profiles = $newProfiles;
 

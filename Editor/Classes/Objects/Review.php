@@ -4,46 +4,46 @@
  * @subpackage Classes.Objects
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 Entity::$schema['Review'] = [
-	'table' => 'review',
-	'properties' => [
-    	'accepted' => array('type'=>'boolean'),
-    	'date' => array('type'=>'datetime')
-	]
+  'table' => 'review',
+  'properties' => [
+    'accepted' => array('type'=>'boolean'),
+    'date' => array('type'=>'datetime')
+  ]
 ];
 
 class Review extends Object {
 
-    var $accepted;
-	var $date;
-    
-    function Review() {
-		parent::Object('review');
-    }
+  var $accepted;
+  var $date;
 
-	static function load($id) {
-		return Object::get($id,'review');
-	}
-	
-	function setAccepted($accepted) {
-	    $this->accepted = $accepted;
-	}
+  function Review() {
+    parent::Object('review');
+  }
 
-	function getAccepted() {
-	    return $this->accepted;
-	}
-	
-	function setDate($date) {
-	    $this->date = $date;
-	}
+  static function load($id) {
+    return Object::get($id,'review');
+  }
 
-	function getDate() {
-	    return $this->date;
-	}
-	
+  function setAccepted($accepted) {
+    $this->accepted = $accepted;
+  }
+
+  function getAccepted() {
+    return $this->accepted;
+  }
+
+  function setDate($date) {
+    $this->date = $date;
+  }
+
+  function getDate() {
+    return $this->date;
+  }
+
 }
 ?>

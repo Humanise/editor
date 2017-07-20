@@ -74,7 +74,7 @@ class RichtextPartController extends PartController
     $part->setHtml(Request::getString('html'));
     return $part;
   }
-  
+
   function beforeSave($part) {
     $existing = LinkService::getPartLinks($part->getId());
     $linksFound = [];
@@ -117,7 +117,7 @@ class RichtextPartController extends PartController
     }
     $html = DOMUtils::getInnerXML($doc->documentElement);
     $part->setHtml($html);
-    
+
     foreach ($linksById as $id => $link) {
       $link->remove();
     }

@@ -13,16 +13,16 @@ $list = ReviewService::search($query);
 $writer = new ListWriter();
 
 $writer->startList()->
-	startHeaders()->
-		header(array('title'=>'Side','width'=>45))->
-	endHeaders();
+  startHeaders()->
+    header(array('title'=>'Side','width'=>45))->
+  endHeaders();
 
 foreach ($list as $review) {
-	$writer->startRow(array( 'kind' => 'page', 'id' => $review->getPageId() ))->
-		startCell(array('icon'=>'common/page'))->
-			text($review->getPageTitle())->
-		endCell()->
-	endRow();
+  $writer->startRow(array( 'kind' => 'page', 'id' => $review->getPageId() ))->
+    startCell(array('icon'=>'common/page'))->
+      text($review->getPageTitle())->
+    endCell()->
+  endRow();
 }
 
 $writer->endList();

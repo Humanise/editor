@@ -9,8 +9,8 @@ $id = Request::getId();
 
 $object = Issue::load($id);
 if ($object) {
-	Response::sendObject($object);
+  Response::sendObject($object);
 } else {
-	Response::notFound();
+  Response::notFound();
 }
 ?>

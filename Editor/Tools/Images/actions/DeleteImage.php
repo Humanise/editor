@@ -8,7 +8,7 @@ require_once '../../../Include/Private.php';
 $id = Request::getInt('id');
 $obj = Image::load($id);
 if ($obj) {
-	$obj->remove();
+  $obj->remove();
 }
 Response::sendObject(array('success'=>true));
 ?>

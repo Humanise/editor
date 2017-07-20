@@ -9,8 +9,8 @@ $id = Request::getInt('id');
 
 $column = DocumentTemplateEditor::loadColumn($id);
 if ($column) {
-	Response::sendObject($column);
+  Response::sendObject($column);
 } else {
-	Response::notFound();
+  Response::notFound();
 }
 ?>

@@ -5,65 +5,65 @@
  */
 
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 class DBUCalendarEvent {
-	
-	var $location;
-	var $homeTeam;
-	var $guestTeam;
-	var $startDate;
-	var $endDate;
-	var $score;
 
-	function setLocation($location) {
-	    $this->location = $location;
-	}
+  var $location;
+  var $homeTeam;
+  var $guestTeam;
+  var $startDate;
+  var $endDate;
+  var $score;
 
-	function getLocation() {
-	    return $this->location;
-	}
-	
-	function setHomeTeam($homeTeam) {
-	    $this->homeTeam = $homeTeam;
-	}
+  function setLocation($location) {
+      $this->location = $location;
+  }
 
-	function getHomeTeam() {
-	    return $this->homeTeam;
-	}
-	
-	function setGuestTeam($guestTeam) {
-	    $this->guestTeam = $guestTeam;
-	}
+  function getLocation() {
+      return $this->location;
+  }
 
-	function getGuestTeam() {
-	    return $this->guestTeam;
-	}
-	
-	function setStartDate($startDate) {
-	    $this->startDate = $startDate;
-	}
+  function setHomeTeam($homeTeam) {
+      $this->homeTeam = $homeTeam;
+  }
 
-	function getStartDate() {
-	    return $this->startDate;
-	}
-	
-	function setEndDate($endDate) {
-	    $this->endDate = $endDate;
-	}
+  function getHomeTeam() {
+      return $this->homeTeam;
+  }
 
-	function getEndDate() {
-	    return $this->endDate;
-	}
-	
-	function setScore($score) {
-	    $this->score = $score;
-	}
+  function setGuestTeam($guestTeam) {
+      $this->guestTeam = $guestTeam;
+  }
 
-	function getScore() {
-	    return $this->score;
-	}
-	
+  function getGuestTeam() {
+      return $this->guestTeam;
+  }
+
+  function setStartDate($startDate) {
+      $this->startDate = $startDate;
+  }
+
+  function getStartDate() {
+      return $this->startDate;
+  }
+
+  function setEndDate($endDate) {
+      $this->endDate = $endDate;
+  }
+
+  function getEndDate() {
+      return $this->endDate;
+  }
+
+  function setScore($score) {
+      $this->score = $score;
+  }
+
+  function getScore() {
+      return $this->score;
+  }
+
 }
 ?>

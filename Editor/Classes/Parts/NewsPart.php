@@ -4,168 +4,168 @@
  * @subpackage Classes.Part
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 Entity::$schema['NewsPart'] = [
-	'table' => 'part_news',
-	'properties' => [
-		'align' => [ 'type' => 'string' ],
-		'width' => [ 'type' => 'string' ],
-		'newsId' => ['type'=>'int', 'column' => 'news_id','relation'=>['class'=>'News','property'=>'id']],
-		'mode' => [ 'type' => 'string' ],
+  'table' => 'part_news',
+  'properties' => [
+    'align' => [ 'type' => 'string' ],
+    'width' => [ 'type' => 'string' ],
+    'newsId' => ['type'=>'int', 'column' => 'news_id','relation'=>['class'=>'News','property'=>'id']],
+    'mode' => [ 'type' => 'string' ],
     'title' => [ 'type' => 'string' ],
-		'sortBy' => [ 'type' => 'string', 'column' => 'sortby' ],
+    'sortBy' => [ 'type' => 'string', 'column' => 'sortby' ],
     'sortDir' => [ 'type' => 'string', 'column' => 'sortdir' ],
-		'maxItems' => [ 'type' => 'int', 'column' => 'maxitems' ],
-		'timeType' => [ 'type' => 'string', 'column' => 'timetype' ],
+    'maxItems' => [ 'type' => 'int', 'column' => 'maxitems' ],
+    'timeType' => [ 'type' => 'string', 'column' => 'timetype' ],
     'timeCount' => [ 'type' => 'int', 'column' => 'timecount' ],
-		'startDate' => [ 'type' => 'datetime', 'column' => 'startdate' ],
-		'endDate' => [ 'type' => 'datetime', 'column' => 'enddate' ],
-		'variant' => [ 'type' => 'string' ]
-	],
-	'relations' => [
-		'newsGroupIds' => [ 'table' => 'part_news_newsgroup', 'fromColumn' => 'part_id', 'toColumn' => 'newsgroup_id' ]
-	]
+    'startDate' => [ 'type' => 'datetime', 'column' => 'startdate' ],
+    'endDate' => [ 'type' => 'datetime', 'column' => 'enddate' ],
+    'variant' => [ 'type' => 'string' ]
+  ],
+  'relations' => [
+    'newsGroupIds' => [ 'table' => 'part_news_newsgroup', 'fromColumn' => 'part_id', 'toColumn' => 'newsgroup_id' ]
+  ]
 ];
 
 class NewsPart extends Part
 {
-	var $align;
-	var $width;
-	var $newsId;
-	var $mode;
-	var $title;
-	var $sortBy;
-	var $sortDir;
-	var $maxItems;
-	var $timeType;
-	var $timeCount;
-	var $startDate;
-	var $endDate;
-	var $variant;
-	var $newsGroupIds;
+  var $align;
+  var $width;
+  var $newsId;
+  var $mode;
+  var $title;
+  var $sortBy;
+  var $sortDir;
+  var $maxItems;
+  var $timeType;
+  var $timeCount;
+  var $startDate;
+  var $endDate;
+  var $variant;
+  var $newsGroupIds;
 
-	function NewsPart() {
-		parent::Part('news');
-	}
+  function NewsPart() {
+    parent::Part('news');
+  }
 
-	static function load($id) {
-		return Part::get('news',$id);
-	}
+  static function load($id) {
+    return Part::get('news',$id);
+  }
 
-	function setAlign($align) {
+  function setAlign($align) {
     $this->align = $align;
-	}
+  }
 
-	function getAlign() {
+  function getAlign() {
     return $this->align;
-	}
+  }
 
-	function setWidth($width) {
+  function setWidth($width) {
     $this->width = $width;
-	}
+  }
 
-	function getWidth() {
+  function getWidth() {
     return $this->width;
-	}
+  }
 
-	function setNewsId($newsId) {
+  function setNewsId($newsId) {
     $this->newsId = $newsId;
-	}
+  }
 
-	function getNewsId() {
+  function getNewsId() {
     return $this->newsId;
-	}
+  }
 
-	function setMode($mode) {
+  function setMode($mode) {
     $this->mode = $mode;
-	}
+  }
 
-	function getMode() {
+  function getMode() {
     return $this->mode;
-	}
+  }
 
-	function setTitle($title) {
+  function setTitle($title) {
     $this->title = $title;
-	}
+  }
 
-	function getTitle() {
+  function getTitle() {
     return $this->title;
-	}
+  }
 
-	function setSortBy($sortBy) {
+  function setSortBy($sortBy) {
     $this->sortBy = $sortBy;
-	}
+  }
 
-	function getSortBy() {
+  function getSortBy() {
     return $this->sortBy;
-	}
+  }
 
-	function setSortDir($sortDir) {
+  function setSortDir($sortDir) {
     $this->sortDir = $sortDir;
-	}
+  }
 
-	function getSortDir() {
+  function getSortDir() {
     return $this->sortDir;
-	}
+  }
 
-	function setMaxItems($maxItems) {
+  function setMaxItems($maxItems) {
     $this->maxItems = $maxItems;
-	}
+  }
 
-	function getMaxItems() {
+  function getMaxItems() {
     return $this->maxItems;
-	}
+  }
 
-	function setTimeType($timeType) {
+  function setTimeType($timeType) {
     $this->timeType = $timeType;
-	}
+  }
 
-	function getTimeType() {
+  function getTimeType() {
     return $this->timeType;
-	}
+  }
 
-	function setTimeCount($timeCount) {
+  function setTimeCount($timeCount) {
     $this->timeCount = $timeCount;
-	}
+  }
 
-	function getTimeCount() {
+  function getTimeCount() {
     return $this->timeCount;
-	}
+  }
 
-	function setStartDate($startDate) {
+  function setStartDate($startDate) {
     $this->startDate = $startDate;
-	}
+  }
 
-	function getStartDate() {
+  function getStartDate() {
     return $this->startDate;
-	}
+  }
 
-	function setEndDate($endDate) {
+  function setEndDate($endDate) {
     $this->endDate = $endDate;
-	}
+  }
 
-	function getEndDate() {
+  function getEndDate() {
     return $this->endDate;
-	}
+  }
 
-	function setVariant($variant) {
+  function setVariant($variant) {
     $this->variant = $variant;
-	}
+  }
 
-	function getVariant() {
+  function getVariant() {
     return $this->variant;
-	}
+  }
 
-	function setNewsGroupIds($newsGroupIds) {
+  function setNewsGroupIds($newsGroupIds) {
     $this->newsGroupIds = $newsGroupIds;
-	}
+  }
 
-	function getNewsGroupIds() {
+  function getNewsGroupIds() {
     return $this->newsGroupIds;
-	}
+  }
 
 
 }

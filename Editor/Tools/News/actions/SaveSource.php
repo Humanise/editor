@@ -7,15 +7,15 @@ require_once '../../../Include/Private.php';
 
 $data = Request::getObject('data');
 if ($data->id) {
-	$news = Newssource::load($data->id);
+  $news = Newssource::load($data->id);
 } else {
-	$news = new Newssource();
+  $news = new Newssource();
 }
 if ($news) {
-	$news->setTitle($data->title);
-	$news->setUrl($data->url);
-	$news->setSyncInterval($data->syncInterval);
-	$news->save();
-	$news->publish();
+  $news->setTitle($data->title);
+  $news->setUrl($data->url);
+  $news->setSyncInterval($data->syncInterval);
+  $news->save();
+  $news->publish();
 }
 ?>

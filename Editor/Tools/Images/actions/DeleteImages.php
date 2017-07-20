@@ -7,9 +7,9 @@ require_once '../../../Include/Private.php';
 
 $ids = Request::getObject('ids');
 foreach ($ids as $id) {
-	$obj = Image::load($id);
-	if ($obj) {
-		$obj->remove();
-	}	
+  $obj = Image::load($id);
+  if ($obj) {
+    $obj->remove();
+  }
 }
 ?>

@@ -4,12 +4,12 @@
  * @subpackage Classes.Part
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 Entity::$schema['MoviePart'] = [
-	'table' => 'part_movie',
+  'table' => 'part_movie',
     'properties' => [
     'fileId' => [ 'type' => 'int', 'column' => 'file_id'],
     'imageId' => [ 'type' => 'int', 'column' => 'image_id' ],
@@ -22,77 +22,77 @@ Entity::$schema['MoviePart'] = [
 ];
 class MoviePart extends Part
 {
-	var $fileId;
-	var $imageId;
-	var $text;
-	var $url;
-	var $code;
+  var $fileId;
+  var $imageId;
+  var $text;
+  var $url;
+  var $code;
   var $width;
   var $height;
 
-	function MoviePart() {
-		parent::Part('movie');
-	}
+  function MoviePart() {
+    parent::Part('movie');
+  }
 
-	static function load($id) {
-		return Part::get('movie',$id);
-	}
+  static function load($id) {
+    return Part::get('movie',$id);
+  }
 
-	function setFileId($fileId) {
+  function setFileId($fileId) {
     $this->fileId = $fileId;
-	}
+  }
 
-	function getFileId() {
+  function getFileId() {
     return $this->fileId;
-	}
+  }
 
-	function setImageId($imageId) {
+  function setImageId($imageId) {
     $this->imageId = $imageId;
-	}
+  }
 
-	function getImageId() {
+  function getImageId() {
     return $this->imageId;
-	}
+  }
 
-	function setText($text) {
+  function setText($text) {
     $this->text = $text;
-	}
+  }
 
-	function getText() {
+  function getText() {
     return $this->text;
-	}
+  }
 
-	function setUrl($url) {
+  function setUrl($url) {
     $this->url = $url;
-	}
+  }
 
-	function getUrl() {
+  function getUrl() {
     return $this->url;
-	}
+  }
 
-	function setCode($code) {
+  function setCode($code) {
     $this->code = $code;
-	}
+  }
 
-	function getCode() {
+  function getCode() {
     return $this->code;
-	}
+  }
 
-	function setWidth($width) {
+  function setWidth($width) {
     $this->width = $width;
-	}
+  }
 
-	function getWidth() {
+  function getWidth() {
     return $this->width;
-	}
+  }
 
-	function setHeight($height) {
+  function setHeight($height) {
     $this->height = $height;
-	}
+  }
 
-	function getHeight() {
+  function getHeight() {
     return $this->height;
-	}
+  }
 
 }
 ?>

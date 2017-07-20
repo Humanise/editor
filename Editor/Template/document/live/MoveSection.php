@@ -11,10 +11,10 @@ $columnIndex = Request::getInt('columnIndex',-1);
 $sectionIndex = Request::getInt('sectionIndex',-1);
 
 DocumentTemplateEditor::moveSectionFar(array(
-	'sectionId' => $sectionId,
-	'rowIndex' => $rowIndex,
-	'columnIndex' => $columnIndex,
-	'sectionIndex' => $sectionIndex
+  'sectionId' => $sectionId,
+  'rowIndex' => $rowIndex,
+  'columnIndex' => $columnIndex,
+  'sectionIndex' => $sectionIndex
 ));
 
 Response::redirect('../Editor.php');

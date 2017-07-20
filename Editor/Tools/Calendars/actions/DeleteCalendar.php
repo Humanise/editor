@@ -9,6 +9,6 @@ $id = Request::getInt('id');
 
 $src = Calendar::load($id);
 if ($src) {
-	$src->remove();
+  $src->remove();
 }
 ?>

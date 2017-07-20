@@ -9,18 +9,18 @@ $kind = Request::getString('kind');
 $id = Request::getInt('id');
 
 if ($kind=='page') {
-	PublishingService::publishPage($id);
+  PublishingService::publishPage($id);
 }
 else if ($kind=='object') {
-	$object = Object::load($id);
-	if ($object) {
-		$object->publish();
-	}
+  $object = Object::load($id);
+  if ($object) {
+    $object->publish();
+  }
 }
 else if ($kind=='hierarchy') {
-	$object = Hierarchy::load($id);
-	if ($object) {
-		$object->publish();
-	}
+  $object = Hierarchy::load($id);
+  if ($object) {
+    $object->publish();
+  }
 }
 ?>

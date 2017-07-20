@@ -30,12 +30,12 @@ $writer->endHeaders();
 $templates = TemplateService::getTemplatesKeyed();
 
 foreach ($result->getList() as $row) {
-	$modified = $row['publishdelta']>0;
-	$writer->startRow(array('id'=>$row['id'],'title'=>$row['title'],'kind'=>'page','icon'=>'common/page'))->
-		startCell(array('icon'=>'common/page'))->text($row['title'])->endCell()->
-		startCell()->text($templates[$row['unique']]['name'])->endCell()->
-		startCell()->icon(array('icon'=>GuiUtils::getLanguageIcon($row['language'])))->endCell()->
-	endRow();
+  $modified = $row['publishdelta']>0;
+  $writer->startRow(array('id'=>$row['id'],'title'=>$row['title'],'kind'=>'page','icon'=>'common/page'))->
+    startCell(array('icon'=>'common/page'))->text($row['title'])->endCell()->
+    startCell()->text($templates[$row['unique']]['name'])->endCell()->
+    startCell()->icon(array('icon'=>GuiUtils::getLanguageIcon($row['language'])))->endCell()->
+  endRow();
 }
 $writer->endList();
 ?>

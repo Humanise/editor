@@ -5,14 +5,14 @@
  */
 
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 class TestWatermeter extends AbstractObjectTest {
-    
-	function TestWatermeter() {
-		parent::AbstractObjectTest('watermeter');
-	}
+
+  function TestWatermeter() {
+    parent::AbstractObjectTest('watermeter');
+  }
 }
 ?>

@@ -9,7 +9,7 @@ if (Request::isPost()) {
   $page = Request::getInt('page');
   $username = Request::getString('username');
   $password = Request::getString('password');
-  
+
   if (InternalSession::logIn($username,$password)) {
     ToolService::install('System'); // Ensure that the system tool is present
     Response::sendObject(array('success' => true));

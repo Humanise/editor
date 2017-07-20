@@ -1,43 +1,43 @@
 <?php
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 class HeartBeatService {
 
-	static function beat() {
-		$latest = SettingService::getLatestHeartBeat();
-		if (!$latest) {
-			HeartBeatService::run();
-			return;
-		}
-		$duration = time() - intval($latest);
-		if ($duration > 60 * 5) {
-			HeartBeatService::run();
-		} else {
-			Log::debug('Skipping beat, duration='.Dates::formatDuration($duration));
-		}
-	}
+  static function beat() {
+    $latest = SettingService::getLatestHeartBeat();
+    if (!$latest) {
+      HeartBeatService::run();
+      return;
+    }
+    $duration = time() - intval($latest);
+    if ($duration > 60 * 5) {
+      HeartBeatService::run();
+    } else {
+      Log::debug('Skipping beat, duration='.Dates::formatDuration($duration));
+    }
+  }
 
   // TODO: Is this safe?
   static function forceRun() {
     HeartBeatService::run();
   }
 
-	private static function run() {
-		SettingService::setLatestHeartBeat(time());
-		ReportService::heartBeat();
+  private static function run() {
+    SettingService::setLatestHeartBeat(time());
+    ReportService::heartBeat();
 
-		$sources = Query::after('calendarsource')->orderBy('title')->get();
-		foreach ($sources as $source) {
-			$source->synchronize();
-		}
+    $sources = Query::after('calendarsource')->orderBy('title')->get();
+    foreach ($sources as $source) {
+      $source->synchronize();
+    }
 
     HeartBeatService::executeListeners();
-	}
+  }
 
-	private static function executeListeners() {
+  private static function executeListeners() {
     $listeners = Query::after('listener')->withProperty('event','time')->orderBy('title')->get();
     foreach ($listeners as $listener) {
       if (time() - $listener->getLatestExecution() > $listener->getInterval()) {

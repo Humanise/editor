@@ -9,9 +9,9 @@ $data = Request::getObject('data');
 
 $file = File::load($data->id);
 if ($file) {
-	$file->updateGroupIds($data->groups);
-	$file->setTitle($data->title);
-	$file->save();
-	$file->publish();
+  $file->updateGroupIds($data->groups);
+  $file->setTitle($data->title);
+  $file->save();
+  $file->publish();
 }
 ?>

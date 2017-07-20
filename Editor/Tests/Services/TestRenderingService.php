@@ -5,23 +5,23 @@
  */
 
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 class TestRenderingService extends UnitTestCase {
 
   function testPreview() {
-		$page = TestService::createTestPage();
+    $page = TestService::createTestPage();
 
-		$preview = RenderingService::previewPage(array(
-			'pageId' => $page->getId(),
-			'relativePath' => '../../../../'
-		));
+    $preview = RenderingService::previewPage(array(
+      'pageId' => $page->getId(),
+      'relativePath' => '../../../../'
+    ));
 
-		$this->assertTrue(Strings::isNotBlank($preview));
+    $this->assertTrue(Strings::isNotBlank($preview));
 
-		TestService::removeTestPage($page);
+    TestService::removeTestPage($page);
   }
 }
 ?>

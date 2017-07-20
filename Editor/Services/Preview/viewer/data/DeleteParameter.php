@@ -8,8 +8,8 @@ require_once '../../../../Include/Private.php';
 $id = Request::getString('id');
 
 if ($parameter = Parameter::load($id)) {
-    $parameter->remove();
+  $parameter->remove();
 } else {
-    Response::notFound();
+  Response::notFound();
 }
 ?>

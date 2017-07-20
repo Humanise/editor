@@ -4,36 +4,36 @@
  * @subpackage Classes.Part
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 Entity::$schema['HtmlPart'] = [
-	'table' => 'part_html',
-	'properties' => [
-		'html' => [ 'type' => 'string' ]
-	]
+  'table' => 'part_html',
+  'properties' => [
+    'html' => [ 'type' => 'string' ]
+  ]
 ];
 
 class HtmlPart extends Part
 {
-	var $html;
+  var $html;
 
-	function HtmlPart() {
-		parent::Part('html');
-	}
+  function HtmlPart() {
+    parent::Part('html');
+  }
 
-	static function load($id) {
-		return Part::get('html',$id);
-	}
+  static function load($id) {
+    return Part::get('html',$id);
+  }
 
-	function setHtml($html) {
+  function setHtml($html) {
     $this->html = $html;
-	}
+  }
 
-	function getHtml() {
+  function getHtml() {
     return $this->html;
-	}
+  }
 
 }
 ?>

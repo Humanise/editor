@@ -8,13 +8,13 @@ require_once '../../../Include/Private.php';
 $data = Request::getObject('data');
 
 if ($data->id) {
-	$src = Calendar::load($data->id);
+  $src = Calendar::load($data->id);
 } else {
-	$src = new Calendar();
+  $src = new Calendar();
 }
 if ($src) {
-	$src->setTitle($data->title);
-	$src->save();
-	$src->publish();
+  $src->setTitle($data->title);
+  $src->save();
+  $src->publish();
 }
 ?>

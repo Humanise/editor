@@ -7,7 +7,7 @@ $id = Request::getInt('id');
 
 $usage = Waterusage::load($id);
 if (!$usage) {
-	Response::sendNotFound();
+  Response::sendNotFound();
 } else {
-	$usage->remove();
+  $usage->remove();
 }?>

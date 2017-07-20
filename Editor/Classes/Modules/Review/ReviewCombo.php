@@ -5,38 +5,38 @@
  */
 
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 class ReviewCombo {
-	
-	private $pageTitle;
-	private $pageId;
-	private $accepted;
-	
-	function setPageTitle($pageTitle) {
-	    $this->pageTitle = $pageTitle;
-	}
 
-	function getPageTitle() {
-	    return $this->pageTitle;
-	}
-	
-	function setPageId($pageId) {
-	    $this->pageId = $pageId;
-	}
+  private $pageTitle;
+  private $pageId;
+  private $accepted;
 
-	function getPageId() {
-	    return $this->pageId;
-	}
-	
-	function setAccepted($accepted) {
-	    $this->accepted = $accepted;
-	}
+  function setPageTitle($pageTitle) {
+    $this->pageTitle = $pageTitle;
+  }
 
-	function getAccepted() {
-	    return $this->accepted;
-	}
-	
+  function getPageTitle() {
+    return $this->pageTitle;
+  }
+
+  function setPageId($pageId) {
+    $this->pageId = $pageId;
+  }
+
+  function getPageId() {
+    return $this->pageId;
+  }
+
+  function setAccepted($accepted) {
+    $this->accepted = $accepted;
+  }
+
+  function getAccepted() {
+    return $this->accepted;
+  }
+
 }
 ?>

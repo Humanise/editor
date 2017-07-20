@@ -6,16 +6,16 @@ $site = Request::getString('site');
 $description = Request::getString('description');
 
 if (Strings::isBlank($user)) {
-	Log::debug('No user!');
-	exit;
+  Log::debug('No user!');
+  exit;
 }
 if (Strings::isBlank($site)) {
-	Log::debug('No site!');
-	exit;
+  Log::debug('No site!');
+  exit;
 }
 if (Strings::isBlank($description)) {
-	Log::debug('No description!');
-	exit;
+  Log::debug('No description!');
+  exit;
 }
 
 $issue = new Issue();

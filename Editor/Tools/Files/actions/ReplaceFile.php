@@ -7,16 +7,16 @@ require_once '../../../Include/Private.php';
 
 $id = Request::getInt('id');
 if (!$id) {
-	Log::debug('No id provided');
-	Response::badRequest();
-	exit;
+  Log::debug('No id provided');
+  Response::badRequest();
+  exit;
 }
 
 $response = FileService::replaceUploadedFile($id);
 
 if ($response['success']==true) {
-	Response::uploadSuccess();
+  Response::uploadSuccess();
 } else {
-	Response::uploadFailure();
+  Response::uploadFailure();
 }
 ?>

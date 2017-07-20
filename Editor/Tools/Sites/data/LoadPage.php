@@ -11,6 +11,6 @@ $page=Page::load($id);
 $page->setData(null);
 
 Response::sendObject(array(
-	'page'=>$page
+  'page'=>$page
 ));
 ?>

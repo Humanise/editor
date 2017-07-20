@@ -11,26 +11,26 @@ $phone = Request::getString('phone');
 $email = Request::getString('email');
 
 if (Strings::isBlank($number)) {
-	Response::sendObject(array('success'=>false,'message'=>'No number'));
-	exit;
+  Response::sendObject(array('success'=>false,'message'=>'No number'));
+  exit;
 }
 if (!$value) {
-	Response::sendObject(array('success'=>false,'message'=>'No value'));
-	exit;
+  Response::sendObject(array('success'=>false,'message'=>'No value'));
+  exit;
 }
 if (!$date) {
-	Response::sendObject(array('success'=>false,'message'=>'No date'));
-	exit;
+  Response::sendObject(array('success'=>false,'message'=>'No date'));
+  exit;
 }
 
 $meter = Query::after('watermeter')->withProperty('number',$number)->first();
 if (!$meter) {
-	Response::sendObject(array('success'=>false,'message'=>'Number not found','key'=>'notfound'));
-	exit;
-	$meter = new Watermeter();
-	$meter->setNumber($number);
-	$meter->save();
-	$meter->publish();
+  Response::sendObject(array('success'=>false,'message'=>'Number not found','key'=>'notfound'));
+  exit;
+  $meter = new Watermeter();
+  $meter->setNumber($number);
+  $meter->save();
+  $meter->publish();
 }
 
 $usage = new Waterusage();
@@ -43,11 +43,11 @@ $usage->save();
 $usage->publish();
 
 if (Strings::isNotBlank($email)) {
-	WaterusageService::updateEmailOfMeter($meter,$email);
+  WaterusageService::updateEmailOfMeter($meter,$email);
 }
 
 if (Strings::isNotBlank($phone)) {
-	WaterusageService::updatePhoneOfMeter($meter,$phone);
+  WaterusageService::updatePhoneOfMeter($meter,$phone);
 }
 
 Response::sendObject(array('success'=>true,'id'=>$usage->getId()));

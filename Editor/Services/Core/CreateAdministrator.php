@@ -12,12 +12,12 @@ $adminUsername = Request::getString('adminUsername');
 $adminPassword = Request::getString('adminPassword');
 
 if (!AuthenticationService::isSuperUser($superUsername,$superPassword)) {
-	Response::forbidden();
-	exit;	
+  Response::forbidden();
+  exit;
 }
 if (Strings::isBlank($adminUsername) || Strings::isBlank($adminPassword)) {
-	Response::badRequest();
-	exit;
+  Response::badRequest();
+  exit;
 }
 
 $user = new User();

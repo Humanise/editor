@@ -5,7 +5,7 @@ require_once($basePath."Config/Setup.php");
 require_once($basePath."Editor/Include/Classloader.php");
 
 if (!AuthenticationService::isInternalUser(Request::getString('username'),Request::getString('password'))) {
-	Response::forbidden();
-	exit;
+  Response::forbidden();
+  exit;
 }
 ?>

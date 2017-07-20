@@ -8,16 +8,16 @@ require_once '../../../Include/Private.php';
 $data = Request::getObject('data');
 
 if ($data->id>0) {
-	$user = User::load($data->id);
+  $user = User::load($data->id);
 } else {
-	$user = new User();
+  $user = new User();
 }
 $user->setTitle($data->title);
 $user->setNote($data->note);
 $user->setUsername($data->username);
 $password = $data->password;
 if (Strings::isNotBlank($password)) {
-	AuthenticationService::setPassword($user,$password);
+  AuthenticationService::setPassword($user,$password);
 }
 $user->setEmail($data->email);
 $user->setInternal($data->internal);

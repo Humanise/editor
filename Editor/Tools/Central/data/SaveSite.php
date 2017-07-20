@@ -8,9 +8,9 @@ require_once '../../../Include/Private.php';
 $data = Request::getObject('data');
 
 if ($data->id) {
-	$site = Remotepublisher::load($data->id);
+  $site = Remotepublisher::load($data->id);
 } else {
-	$site = new Remotepublisher();
+  $site = new Remotepublisher();
 }
 $site->setTitle($data->title);
 $site->setUrl($data->url);

@@ -4,206 +4,206 @@
  * @subpackage Classes.Part
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 Entity::$schema['TextPart'] = array(
-	'table' => 'part_text',
-	'properties' => array(
-		'text'   => array('type'=>'string'),
-		'textAlign' => array( 'type' => 'string', 'column' => 'textalign' ),
-		'fontFamily' => array( 'type' => 'string', 'column' => 'fontfamily' ),
-		'fontSize' => array( 'type' => 'string', 'column' => 'fontsize' ),
-		'lineHeight' => array( 'type' => 'string', 'column' => 'lineheight' ),
-		'fontWeight' => array( 'type' => 'string', 'column' => 'fontweight' ),
-		'color' => array( 'type' => 'string', 'column' => 'color' ),
-		'wordSpacing' => array( 'type' => 'string', 'column' => 'wordspacing' ),
-		'letterSpacing' => array( 'type' => 'string', 'column' => 'letterspacing' ),
-		'textDecoration' => array( 'type' => 'string', 'column' => 'textdecoration' ),
-		'textIndent' => array( 'type' => 'string', 'column' => 'textindent' ),
-		'textTransform' => array( 'type' => 'string', 'column' => 'texttransform' ),
-		'fontStyle' => array( 'type' => 'string', 'column' => 'fontstyle' ),
-		'fontVariant' => array( 'type' => 'string', 'column' => 'fontvariant' ),
-		'imageId' => array('type'=>'int', 'column' => 'image_id', 'relation'=>array('class'=>'Image','property'=>'id')),
-		'imageFloat' => array( 'type' => 'string', 'column' => 'imagefloat' ),
-		'imageWidth' => array( 'type' => 'int', 'column' => 'imagewidth' ),
-		'imageHeight' => array( 'type' => 'int', 'column' => 'imageheight' )
-	)
+  'table' => 'part_text',
+  'properties' => array(
+    'text'   => array('type'=>'string'),
+    'textAlign' => array( 'type' => 'string', 'column' => 'textalign' ),
+    'fontFamily' => array( 'type' => 'string', 'column' => 'fontfamily' ),
+    'fontSize' => array( 'type' => 'string', 'column' => 'fontsize' ),
+    'lineHeight' => array( 'type' => 'string', 'column' => 'lineheight' ),
+    'fontWeight' => array( 'type' => 'string', 'column' => 'fontweight' ),
+    'color' => array( 'type' => 'string', 'column' => 'color' ),
+    'wordSpacing' => array( 'type' => 'string', 'column' => 'wordspacing' ),
+    'letterSpacing' => array( 'type' => 'string', 'column' => 'letterspacing' ),
+    'textDecoration' => array( 'type' => 'string', 'column' => 'textdecoration' ),
+    'textIndent' => array( 'type' => 'string', 'column' => 'textindent' ),
+    'textTransform' => array( 'type' => 'string', 'column' => 'texttransform' ),
+    'fontStyle' => array( 'type' => 'string', 'column' => 'fontstyle' ),
+    'fontVariant' => array( 'type' => 'string', 'column' => 'fontvariant' ),
+    'imageId' => array('type'=>'int', 'column' => 'image_id', 'relation'=>array('class'=>'Image','property'=>'id')),
+    'imageFloat' => array( 'type' => 'string', 'column' => 'imagefloat' ),
+    'imageWidth' => array( 'type' => 'int', 'column' => 'imagewidth' ),
+    'imageHeight' => array( 'type' => 'int', 'column' => 'imageheight' )
+  )
 );
 
 class TextPart extends Part
 {
-	var $text;
-	var $textAlign;
-	var $fontFamily;
-	var $fontSize;
-	var $lineHeight;
-	var $fontWeight;
-	var $color;
-	var $wordSpacing;
-	var $letterSpacing;
-	var $textDecoration;
-	var $textIndent;
-	var $textTransform;
-	var $fontStyle;
-	var $fontVariant;
-	var $imageId;
-	var $imageFloat;
-	var $imageWidth;
-	var $imageHeight;
+  var $text;
+  var $textAlign;
+  var $fontFamily;
+  var $fontSize;
+  var $lineHeight;
+  var $fontWeight;
+  var $color;
+  var $wordSpacing;
+  var $letterSpacing;
+  var $textDecoration;
+  var $textIndent;
+  var $textTransform;
+  var $fontStyle;
+  var $fontVariant;
+  var $imageId;
+  var $imageFloat;
+  var $imageWidth;
+  var $imageHeight;
 
-	function TextPart() {
-		parent::Part('text');
-	}
+  function TextPart() {
+    parent::Part('text');
+  }
 
-	static function load($id) {
-		return Part::get('text',$id);
-	}
+  static function load($id) {
+    return Part::get('text',$id);
+  }
 
-	function setText($text) {
+  function setText($text) {
     $this->text = $text;
-	}
+  }
 
-	function getText() {
+  function getText() {
     return $this->text;
-	}
+  }
 
-	function setTextAlign($textAlign) {
+  function setTextAlign($textAlign) {
     $this->textAlign = $textAlign;
-	}
+  }
 
-	function getTextAlign() {
+  function getTextAlign() {
     return $this->textAlign;
-	}
+  }
 
-	function setFontFamily($fontFamily) {
+  function setFontFamily($fontFamily) {
     $this->fontFamily = $fontFamily;
-	}
+  }
 
-	function getFontFamily() {
+  function getFontFamily() {
     return $this->fontFamily;
-	}
+  }
 
-	function setFontSize($fontSize) {
+  function setFontSize($fontSize) {
     $this->fontSize = $fontSize;
-	}
+  }
 
-	function getFontSize() {
+  function getFontSize() {
     return $this->fontSize;
-	}
+  }
 
-	function setLineHeight($lineHeight) {
+  function setLineHeight($lineHeight) {
     $this->lineHeight = $lineHeight;
-	}
+  }
 
-	function getLineHeight() {
+  function getLineHeight() {
     return $this->lineHeight;
-	}
+  }
 
-	function setFontWeight($fontWeight) {
+  function setFontWeight($fontWeight) {
     $this->fontWeight = $fontWeight;
-	}
+  }
 
-	function getFontWeight() {
+  function getFontWeight() {
     return $this->fontWeight;
-	}
+  }
 
-	function setColor($color) {
+  function setColor($color) {
     $this->color = $color;
-	}
+  }
 
-	function getColor() {
+  function getColor() {
     return $this->color;
-	}
+  }
 
-	function setWordSpacing($wordSpacing) {
+  function setWordSpacing($wordSpacing) {
     $this->wordSpacing = $wordSpacing;
-	}
+  }
 
-	function getWordSpacing() {
+  function getWordSpacing() {
     return $this->wordSpacing;
-	}
+  }
 
-	function setLetterSpacing($letterSpacing) {
+  function setLetterSpacing($letterSpacing) {
     $this->letterSpacing = $letterSpacing;
-	}
+  }
 
-	function getLetterSpacing() {
+  function getLetterSpacing() {
     return $this->letterSpacing;
-	}
+  }
 
-	function setTextDecoration($textDecoration) {
+  function setTextDecoration($textDecoration) {
     $this->textDecoration = $textDecoration;
-	}
+  }
 
-	function getTextDecoration() {
+  function getTextDecoration() {
     return $this->textDecoration;
-	}
+  }
 
-	function setTextIndent($textIndent) {
+  function setTextIndent($textIndent) {
     $this->textIndent = $textIndent;
-	}
+  }
 
-	function getTextIndent() {
+  function getTextIndent() {
     return $this->textIndent;
-	}
+  }
 
-	function setTextTransform($textTransform) {
+  function setTextTransform($textTransform) {
     $this->textTransform = $textTransform;
-	}
+  }
 
-	function getTextTransform() {
+  function getTextTransform() {
     return $this->textTransform;
-	}
+  }
 
-	function setFontStyle($fontStyle) {
+  function setFontStyle($fontStyle) {
     $this->fontStyle = $fontStyle;
-	}
+  }
 
-	function getFontStyle() {
+  function getFontStyle() {
     return $this->fontStyle;
-	}
+  }
 
-	function setFontVariant($fontVariant) {
+  function setFontVariant($fontVariant) {
     $this->fontVariant = $fontVariant;
-	}
+  }
 
-	function getFontVariant() {
+  function getFontVariant() {
     return $this->fontVariant;
-	}
+  }
 
-	function setImageId($imageId) {
+  function setImageId($imageId) {
     $this->imageId = $imageId;
-	}
+  }
 
-	function getImageId() {
+  function getImageId() {
     return $this->imageId;
-	}
+  }
 
-	function setImageFloat($imageFloat) {
+  function setImageFloat($imageFloat) {
     $this->imageFloat = $imageFloat;
-	}
+  }
 
-	function getImageFloat() {
+  function getImageFloat() {
     return $this->imageFloat;
-	}
+  }
 
-	function setImageWidth($imageWidth) {
+  function setImageWidth($imageWidth) {
     $this->imageWidth = $imageWidth;
-	}
+  }
 
-	function getImageWidth() {
+  function getImageWidth() {
     return $this->imageWidth;
-	}
+  }
 
-	function setImageHeight($imageHeight) {
+  function setImageHeight($imageHeight) {
     $this->imageHeight = $imageHeight;
-	}
+  }
 
-	function getImageHeight() {
+  function getImageHeight() {
     return $this->imageHeight;
-	}
+  }
 
 }
 ?>

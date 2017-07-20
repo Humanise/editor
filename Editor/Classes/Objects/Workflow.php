@@ -9,10 +9,10 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 Entity::$schema['Workflow'] = [
-    'table' => 'workflow',
-    'properties' => [
-      'recipe' => ['type'=>'string']
-    ]
+  'table' => 'workflow',
+  'properties' => [
+    'recipe' => ['type'=>'string']
+  ]
 ];
 
 class Workflow extends Object {
@@ -27,11 +27,11 @@ class Workflow extends Object {
   }
 
   function setRecipe($recipe) {
-      $this->recipe = $recipe;
+    $this->recipe = $recipe;
   }
 
   function getRecipe() {
-      return $this->recipe;
+    return $this->recipe;
   }
 
 }

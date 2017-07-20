@@ -4,54 +4,54 @@
  * @subpackage Classes
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 Entity::$schema['Pageblueprint'] = [
     'table' => 'pageblueprint',
     'properties' => array(
-    	'designId' => array('type' => 'int','column' => 'design_id'),
-    	'frameId' => array('type' => 'int','column' => 'frame_id'),
-    	'templateId' => array('type' => 'int','column' => 'template_id'),
+      'designId' => array('type' => 'int','column' => 'design_id'),
+      'frameId' => array('type' => 'int','column' => 'frame_id'),
+      'templateId' => array('type' => 'int','column' => 'template_id'),
     )
 ];
 
 class Pageblueprint extends Object {
-	var $designId;
-	var $frameId;
-	var $templateId;
+  var $designId;
+  var $frameId;
+  var $templateId;
 
-	function Pageblueprint() {
-		parent::Object('pageblueprint');
-	}
-	
-	static function load($id) {
-		return Object::get($id,'pageblueprint');
-	}
-		
-	function setDesignId($designId) {
-	    $this->designId = $designId;
-	}
+  function Pageblueprint() {
+    parent::Object('pageblueprint');
+  }
 
-	function getDesignId() {
-	    return $this->designId;
-	}
-	
-	function setFrameId($frameId) {
-	    $this->frameId = $frameId;
-	}
+  static function load($id) {
+    return Object::get($id,'pageblueprint');
+  }
 
-	function getFrameId() {
-	    return $this->frameId;
-	}
-	
-	function setTemplateId($templateId) {
-	    $this->templateId = $templateId;
-	}
+  function setDesignId($designId) {
+      $this->designId = $designId;
+  }
 
-	function getTemplateId() {
-	    return $this->templateId;
-	}
+  function getDesignId() {
+      return $this->designId;
+  }
+
+  function setFrameId($frameId) {
+      $this->frameId = $frameId;
+  }
+
+  function getFrameId() {
+      return $this->frameId;
+  }
+
+  function setTemplateId($templateId) {
+      $this->templateId = $templateId;
+  }
+
+  function getTemplateId() {
+      return $this->templateId;
+  }
 }
 ?>

@@ -4,8 +4,8 @@
  * @subpackage Classes.Objects
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 Entity::$schema['Issuestatus'] = [
@@ -14,13 +14,13 @@ Entity::$schema['Issuestatus'] = [
 ];
 
 class Issuestatus extends Object {
-    
-    function Issuestatus() {
-		parent::Object('issuestatus');
-    }
 
-	static function load($id) {
-		return Object::get($id,'issuestatus');
-	}
+  function Issuestatus() {
+    parent::Object('issuestatus');
+  }
+
+  static function load($id) {
+    return Object::get($id,'issuestatus');
+  }
 }
 ?>

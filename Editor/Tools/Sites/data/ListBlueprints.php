@@ -24,15 +24,15 @@ $writer->header(array('title'=>'Design'));
 $writer->endHeaders();
 
 foreach ($result->getList() as $object) {
-	$frame = Frame::load($object->getFrameId());
-	$template = TemplateService::getTemplateById($object->getTemplateId());
-	$design = Design::load($object->getDesignId());
-	$writer->startRow(array( 'kind'=>'blueprint', 'id'=>$object->getId(), 'icon'=>$object->getIcon(), 'title'=>$object->getTitle() ));
-	$writer->startCell()->text($object->getTitle())->endCell();
-	$writer->startCell()->text($frame ? $frame->getName() : '?')->endCell();
-	$writer->startCell()->text($template ? $template->getName() : '?')->endCell();
-	$writer->startCell()->text($design ? $design->getTitle() : '?')->endCell();
-	$writer->endRow();
+  $frame = Frame::load($object->getFrameId());
+  $template = TemplateService::getTemplateById($object->getTemplateId());
+  $design = Design::load($object->getDesignId());
+  $writer->startRow(array( 'kind'=>'blueprint', 'id'=>$object->getId(), 'icon'=>$object->getIcon(), 'title'=>$object->getTitle() ));
+  $writer->startCell()->text($object->getTitle())->endCell();
+  $writer->startCell()->text($frame ? $frame->getName() : '?')->endCell();
+  $writer->startCell()->text($template ? $template->getName() : '?')->endCell();
+  $writer->startCell()->text($design ? $design->getTitle() : '?')->endCell();
+  $writer->endRow();
 }
 $writer->endList();
 ?>

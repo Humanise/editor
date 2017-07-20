@@ -8,9 +8,9 @@ require_once '../../../Include/Private.php';
 $data = Request::getObject('data');
 
 if (intval($data->person->id)>0) {
-	$person = Person::load($data->person->id);
+  $person = Person::load($data->person->id);
 } else {
-	$person = new Person();
+  $person = new Person();
 }
 $person->setFirstname($data->person->firstname);
 $person->setMiddlename($data->person->middlename);

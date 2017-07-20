@@ -4,33 +4,33 @@
  * @subpackage Classes.Part
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 Entity::$schema['Part'] = [
-	'table' => 'part',
-	'properties' => [
-		'id' => ['type' => 'int'],
-		'type' => ['type' => 'string'],
-		'style' => ['type' => 'string'],
-		'dynamic' => ['type' => 'boolean']
-	]
+  'table' => 'part',
+  'properties' => [
+    'id' => ['type' => 'int'],
+    'type' => ['type' => 'string'],
+    'style' => ['type' => 'string'],
+    'dynamic' => ['type' => 'boolean']
+  ]
 ];
 
 class Part extends Entity
 {
-	var $type;
-	var $dynamic;
-	var $style;
+  var $type;
+  var $dynamic;
+  var $style;
 
-	function Part($type) {
-		$this->type = $type;
-	}
+  function Part($type) {
+    $this->type = $type;
+  }
 
-	function getType() {
-	    return $this->type;
-	}
+  function getType() {
+      return $this->type;
+  }
 
   function setType($type) {
       $this->type = $type;
@@ -52,29 +52,29 @@ class Part extends Entity
       return $this->style;
   }
 
-	function save() {
-		PartService::save($this);
-	}
+  function save() {
+    PartService::save($this);
+  }
 
-	function isDynamic() {
-		$ctrl = PartService::getController($this->type);
-		if ($ctrl) {
-			return $ctrl->isDynamic($this);
-		}
-		return false;
-	}
+  function isDynamic() {
+    $ctrl = PartService::getController($this->type);
+    if ($ctrl) {
+      return $ctrl->isDynamic($this);
+    }
+    return false;
+  }
 
-	function remove() {
-		PartService::remove($this);
-	}
+  function remove() {
+    PartService::remove($this);
+  }
 
-	function isPersistent() {
-		return $this->id!=null;
-	}
+  function isPersistent() {
+    return $this->id!=null;
+  }
 
-	static function get($type,$id) {
-		return PartService::load($type,$id);
-	}
+  static function get($type,$id) {
+    return PartService::load($type,$id);
+  }
 }
 
 ?>

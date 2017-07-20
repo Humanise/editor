@@ -9,17 +9,17 @@ $old = Request::getString('old');
 $password = Request::getString('password');
 
 if (Strings::isBlank($old) || Strings::isBlank($password)) {
-	Response::badRequest();
+  Response::badRequest();
 }
 
 
 $user = AuthenticationService::getUser(InternalSession::getUsername(),$old);
 
 if ($user) {
-	AuthenticationService::setPassword($user,$password);
-	$user->save();
-	$user->publish();
+  AuthenticationService::setPassword($user,$password);
+  $user->save();
+  $user->publish();
 } else {
-	Response::badRequest();
+  Response::badRequest();
 }
 ?>

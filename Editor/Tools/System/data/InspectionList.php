@@ -16,8 +16,8 @@ $writer->header(array('width'=>1));
 $writer->endHeaders();
 
 $inspections = InspectionService::performInspection(array(
-	'status' => Request::getString('status'),
-	'category' => Request::getString('category')
+  'status' => Request::getString('status'),
+  'category' => Request::getString('category')
 ));
 
 $icons = [
@@ -27,22 +27,22 @@ $icons = [
 ];
 
 foreach ($inspections as $inspection) {
-	$entity = $inspection->getEntity();
-	$writer->startRow();
-	$writer->startCell(['icon'=>$icons[$inspection->getStatus()]]);
+  $entity = $inspection->getEntity();
+  $writer->startRow();
+  $writer->startCell(['icon'=>$icons[$inspection->getStatus()]]);
   $writer->text($inspection->getText());
   if ($inspection->getInfo()) {
     $writer->startLine(['minor'=>true])->text($inspection->getInfo())->endLine();
   }
   $writer->endCell();
-	if ($entity) {
-		$writer->startCell(array('icon'=>$entity['icon']))->text($entity['title'])->endCell();
-	} else {
-		$writer->startCell()->endCell();
-	}
-	$writer->startCell()->text($inspection->getCategory())->endCell();
-	$writer->startCell()->button(array('text'=>'Fiks','data'=>array('type'=>'pages')))->endCell();
-	$writer->endRow();
+  if ($entity) {
+    $writer->startCell(array('icon'=>$entity['icon']))->text($entity['title'])->endCell();
+  } else {
+    $writer->startCell()->endCell();
+  }
+  $writer->startCell()->text($inspection->getCategory())->endCell();
+  $writer->startCell()->button(array('text'=>'Fiks','data'=>array('type'=>'pages')))->endCell();
+  $writer->endRow();
 }
 
 $writer->endList();

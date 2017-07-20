@@ -5,17 +5,17 @@
  */
 
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 class TestWebloggroup extends AbstractObjectTest {
-    
-	function TestWebloggroup() {
-		parent::AbstractObjectTest('webloggroup');
-	}
-	
-	function testToString() {
-	}
+
+  function TestWebloggroup() {
+    parent::AbstractObjectTest('webloggroup');
+  }
+
+  function testToString() {
+  }
 }
 ?>

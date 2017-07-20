@@ -25,11 +25,11 @@ $writer->header(array('title'=>'Opdateret'));
 $writer->endHeaders();
 
 foreach ($result->getList() as $object) {
-	$writer->startRow(array( 'kind'=>'waterusage', 'id'=>$object->getId(), 'icon'=>$object->getIcon(), 'title'=>$object->getTitle() ));
-	$writer->startCell()->text($object->getValue())->endCell();
-	$writer->startCell()->text(Dates::formatLongDate($object->getDate()))->endCell();
-	$writer->startCell()->text(Dates::formatLongDateTime($object->getUpdated()))->endCell();
-	$writer->endRow();
+  $writer->startRow(array( 'kind'=>'waterusage', 'id'=>$object->getId(), 'icon'=>$object->getIcon(), 'title'=>$object->getTitle() ));
+  $writer->startCell()->text($object->getValue())->endCell();
+  $writer->startCell()->text(Dates::formatLongDate($object->getDate()))->endCell();
+  $writer->startCell()->text(Dates::formatLongDateTime($object->getUpdated()))->endCell();
+  $writer->endRow();
 }
 $writer->endList();
 ?>

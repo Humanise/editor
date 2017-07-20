@@ -10,19 +10,19 @@ $writer = new ListWriter();
 $list = Query::after('issue')->withRelationToPage(InternalSession::getPageId())->get();
 
 $writer->startList();
-	foreach ($list as $issue) {
-		$writer->startRow(array('id'=>$issue->getId(),'kind'=>$issue->getType()))->
-			startCell()->
-				startLine()->text($issue->getNote())->endLine()->
-				startLine(array('minor'=>true,'dimmed'=>true))->text(IssueService::translateKind($issue->getKind()))->endLine()->
-			endCell()->
-			startCell(array('width'=>1));
-			$writer->startIcons()->
-				icon(array('icon'=>'monochrome/edit','revealing'=>true,'action'=>true,'data'=>array('action'=>'view')))->
-			endIcons();
-			$writer->endCell()->
-		endRow();
-	}
+  foreach ($list as $issue) {
+    $writer->startRow(array('id'=>$issue->getId(),'kind'=>$issue->getType()))->
+      startCell()->
+        startLine()->text($issue->getNote())->endLine()->
+        startLine(array('minor'=>true,'dimmed'=>true))->text(IssueService::translateKind($issue->getKind()))->endLine()->
+      endCell()->
+      startCell(array('width'=>1));
+      $writer->startIcons()->
+        icon(array('icon'=>'monochrome/edit','revealing'=>true,'action'=>true,'data'=>array('action'=>'view')))->
+      endIcons();
+      $writer->endCell()->
+    endRow();
+  }
 $writer->endList();
 
 ?>

@@ -18,11 +18,11 @@ $writer->startItems();
 
 $result = Database::select($sql);
 while ($row = Database::next($result)) {
-	$writer->item(array(
-		'icon' => 'common/time',
-		'value' => $row['id'],
-		'title' => Dates::formatLongDateTime($row['time'])
-	));
+  $writer->item(array(
+    'icon' => 'common/time',
+    'value' => $row['id'],
+    'title' => Dates::formatLongDateTime($row['time'])
+  ));
 }
 Database::free($result);
 

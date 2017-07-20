@@ -5,29 +5,29 @@
  */
 
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 require_once($basePath.'Editor/Libraries/simpletest/unit_tester.php');
 
 class AbstractObjectTest extends UnitTestCase {
 
-	private $type;
+  private $type;
 
-	function AbstractObjectTest($type) {
+  function AbstractObjectTest($type) {
     //parent::UnitTestCase();
-		$this->type = $type;
-	}
+    $this->type = $type;
+  }
 
   function testLoad() {
-		Log::debug('Testing load!');
-		if (!$this->type) {
-			Log::debug('No type...');
-			Log::debug($this);
-		}
-		$class = ucfirst($this->type);
-		$obj = new $class();
+    Log::debug('Testing load!');
+    if (!$this->type) {
+      Log::debug('No type...');
+      Log::debug($this);
+    }
+    $class = ucfirst($this->type);
+    $obj = new $class();
     $this->assertNull($obj->load(0));
   }
 
@@ -47,7 +47,7 @@ class AbstractObjectTest extends UnitTestCase {
     $loaded = $obj->load($id);
     $this->assertNull($loaded);
     if ($loaded) {
-		  Log::debug($loaded);
+      Log::debug($loaded);
     }
   }
 

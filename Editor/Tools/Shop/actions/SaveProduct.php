@@ -7,9 +7,9 @@ require_once '../../../Include/Private.php';
 
 $data = Request::getObject('data');
 if (intval($data->product->id)>0) {
-	$product = Product::load($data->product->id);
+  $product = Product::load($data->product->id);
 } else {
-	$product = new Product();
+  $product = new Product();
 }
 $product->setTitle($data->product->title);
 $product->setNote($data->product->note);
@@ -24,21 +24,21 @@ $product->updateGroupIds($data->groups);
 
 $attributes = array();
 foreach ($data->attributes as $attribute) {
-	$attributes[] = array(
-		'name'=>$attribute->name,
-		'value'=>$attribute->value
-	);
+  $attributes[] = array(
+    'name'=>$attribute->name,
+    'value'=>$attribute->value
+  );
 }
 $product->updateAttributes($attributes);
 
 $prices = array();
 foreach ($data->prices as $price) {
-	$prices[] = array(
-		'amount'=>$price->amount,
-		'type'=>$price->type,
-		'price'=>$price->price,
-		'currency'=>$price->currency
-	);
+  $prices[] = array(
+    'amount'=>$price->amount,
+    'type'=>$price->type,
+    'price'=>$price->price,
+    'currency'=>$price->currency
+  );
 }
 $product->updatePrices($prices);
 

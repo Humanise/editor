@@ -9,10 +9,10 @@ $url = Request::getString('url');
 
 $response = ImageService::createImageFromUrl($url);
 if ($response->getSuccess()) {
-	$group = InternalSession::getToolSessionVar('images','group');
-	if ($group) {
-		ImageService::addImageToGroup($response->getObject()->getId(),$group);
-	}
+  $group = InternalSession::getToolSessionVar('images','group');
+  if ($group) {
+    ImageService::addImageToGroup($response->getObject()->getId(),$group);
+  }
 }
 Response::sendObject($response);
 ?>

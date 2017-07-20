@@ -8,9 +8,9 @@ require_once '../../../Include/Private.php';
 $id = Request::getInt('id');
 $file = File::load($id);
 if ($file) {
-	$file->remove();
-	Response::sendObject(array('success'=>true));
+  $file->remove();
+  Response::sendObject(array('success'=>true));
 } else {
-	Response::notFound();
+  Response::notFound();
 }
 ?>

@@ -10,13 +10,13 @@ $data = Request::getObject('data');
 Log::debug($data);
 
 if ($data->id) {
-	$obj = SpecialPage::load($data->id);
-	if (!$obj) {
-		Response::badRequest();
-		exit;
-	}
+  $obj = SpecialPage::load($data->id);
+  if (!$obj) {
+    Response::badRequest();
+    exit;
+  }
 } else {
-	$obj = new SpecialPage();
+  $obj = new SpecialPage();
 }
 $obj->setLanguage($data->language);
 $obj->setType($data->type);

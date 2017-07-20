@@ -8,10 +8,10 @@ require_once '../../../Include/Private.php';
 $id = Request::getInt('id');
 if ($file=File::load($id)) {
 
-	$groups = $file->getGroupIds();
+  $groups = $file->getGroupIds();
 
-	Response::sendObject(array('file' => $file, 'groups' => $groups));
+  Response::sendObject(array('file' => $file, 'groups' => $groups));
 } else {
-	Response::notFound();
+  Response::notFound();
 }
 ?>

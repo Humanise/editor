@@ -25,16 +25,16 @@ $sql="update document_section set".
 Database::update($sql);
 
 if ($ctrl = PartService::getController($type)) {
-	$part = $ctrl->getFromRequest($id);
+  $part = $ctrl->getFromRequest($id);
   $part->setStyle(Request::getString('style'));
-	$part->save();
+  $part->save();
 
-	PageService::markChanged($pageId);
+  PageService::markChanged($pageId);
 
-	header("Content-Type: text/html; charset=UTF-8");
-	$context = PartService::buildPartContext($pageId);
-	echo $ctrl->render($part,$context);
+  header("Content-Type: text/html; charset=UTF-8");
+  $context = PartService::buildPartContext($pageId);
+  echo $ctrl->render($part,$context);
 } else {
-	Log::debug("Unable to find controller for $type");
+  Log::debug("Unable to find controller for $type");
 }
 ?>

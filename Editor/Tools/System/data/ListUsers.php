@@ -20,27 +20,27 @@ $writer->endHeaders();
 
 $list = Query::after('user')->get();
 foreach ($list as $item) {
-	$writer->startRow(array('kind'=>'user','id'=>$item->getId()));
-	$writer->startCell(array('icon'=>$item->getIcon()))->text($item->getTitle())->endCell();
-	$writer->startCell()->text($item->getUsername())->endCell();
-	$writer->startCell()->text($item->getEmail())->endCell();
-	$writer->startCell()->text($item->getLanguage())->endCell();
-	$writer->startCell(array('align'=>'center'));
-	if ($item->getInternal()) {
-		$writer->startIcons()->icon('monochrome/checkmark')->endIcons();
-	}
-	$writer->endCell();
-	$writer->startCell(array('align'=>'center'));
-	if ($item->getExternal()) {
-		$writer->startIcons()->icon('monochrome/checkmark')->endIcons();
-	}
-	$writer->endCell();
-	$writer->startCell(array('align'=>'center'));
-	if ($item->getAdministrator()) {
-		$writer->startIcons()->icon('monochrome/checkmark')->endIcons();
-	}
-	$writer->endCell();
-	$writer->endRow();
+  $writer->startRow(array('kind'=>'user','id'=>$item->getId()));
+  $writer->startCell(array('icon'=>$item->getIcon()))->text($item->getTitle())->endCell();
+  $writer->startCell()->text($item->getUsername())->endCell();
+  $writer->startCell()->text($item->getEmail())->endCell();
+  $writer->startCell()->text($item->getLanguage())->endCell();
+  $writer->startCell(array('align'=>'center'));
+  if ($item->getInternal()) {
+    $writer->startIcons()->icon('monochrome/checkmark')->endIcons();
+  }
+  $writer->endCell();
+  $writer->startCell(array('align'=>'center'));
+  if ($item->getExternal()) {
+    $writer->startIcons()->icon('monochrome/checkmark')->endIcons();
+  }
+  $writer->endCell();
+  $writer->startCell(array('align'=>'center'));
+  if ($item->getAdministrator()) {
+    $writer->startIcons()->icon('monochrome/checkmark')->endIcons();
+  }
+  $writer->endCell();
+  $writer->endRow();
 }
 $writer->endList();
 ?>

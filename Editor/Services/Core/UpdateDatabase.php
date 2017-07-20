@@ -9,14 +9,14 @@ $username = Request::getString('username');
 $password = Request::getString('password');
 
 if (!AuthenticationService::isSuperUser($username,$password)) {
-	Response::forbidden();
-	exit;	
+  Response::forbidden();
+  exit;
 }
 
 $log = DatabaseUtil::update();
 
 Response::sendObject(array(
-	'log' => join("\n",$log),
-	'updated' => DatabaseUtil::isUpToDate()
+  'log' => join("\n",$log),
+  'updated' => DatabaseUtil::isUpToDate()
 ));
 ?>

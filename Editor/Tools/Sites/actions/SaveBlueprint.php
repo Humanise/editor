@@ -8,9 +8,9 @@ require_once '../../../Include/Private.php';
 $data = Request::getObject('data');
 
 if ($data->id>0) {
-	$object = Pageblueprint::load($data->id);
+  $object = Pageblueprint::load($data->id);
 } else {
-	$object = new Pageblueprint();
+  $object = new Pageblueprint();
 }
 $object->setTitle($data->title);
 $object->setDesignId($data->designId);

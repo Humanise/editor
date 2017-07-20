@@ -4,8 +4,8 @@
  * @subpackage Classes.Modules.Workflows
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 class ExtractUrlsStage extends WorkflowStage {
@@ -19,9 +19,9 @@ class ExtractUrlsStage extends WorkflowStage {
   function run($state) {
     $text = $state->getData();
     $found = [];
-		$pattern = "/http[s]?:\/\/[a-z0-9\-\.]+[a-z0-9.\?&\/\#=_\-\%,~\+)\(;]*/umi";
-		preg_match_all($pattern, $text, $matches, PREG_SET_ORDER);
-		foreach ($matches as $match) {
+    $pattern = "/http[s]?:\/\/[a-z0-9\-\.]+[a-z0-9.\?&\/\#=_\-\%,~\+)\(;]*/umi";
+    preg_match_all($pattern, $text, $matches, PREG_SET_ORDER);
+    foreach ($matches as $match) {
       $url = trim($match[0]);
       if ($this->extensions) {
         $ext = FileSystemService::getFileExtension($url);
@@ -31,8 +31,8 @@ class ExtractUrlsStage extends WorkflowStage {
           continue;
         }
       }
-			$found[] = $url;
-		}
+      $found[] = $url;
+    }
     $state->setObjectData($found);
   }
 

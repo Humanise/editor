@@ -9,6 +9,6 @@ $data = Request::getObject('data');
 
 $person = Person::load($data->personId);
 if ($person) {
-	$person->addGroupId($data->personGroupId);
+  $person->addGroupId($data->personGroupId);
 }
 ?>

@@ -10,10 +10,10 @@ $test = Request::getString('test');
 $group = Request::getString('group');
 
 if ($all) {
-	TestService::runAllTests();
+  TestService::runAllTests();
 } else if ($test) {
-	TestService::runTest($test);
+  TestService::runTest($test);
 } else if ($group) {
-	TestService::runTestsInGroup($group);
+  TestService::runTestsInGroup($group);
 }
 ?>

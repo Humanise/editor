@@ -17,18 +17,18 @@ if (Strings::isNotBlank($query)) {
 $query = Query::after('image')->withText($text)->withWindowSize(500);
 
 if ($subset=='unused') {
-	$query->withCustom('unused',true);
+  $query->withCustom('unused',true);
 }
 if ($subset=='nogroup') {
-	$query->withCustom('nogroup',true);
+  $query->withCustom('nogroup',true);
 }
 if ($subset=='latest') {
-	$query->withCustom('createdAfter',Dates::addDays(mktime(),-1));
+  $query->withCustom('createdAfter',Dates::addDays(mktime(),-1));
 }
 if ($group===-1) {
-	$query->withCustom('nogroup',true);
+  $query->withCustom('nogroup',true);
 } else if ($group) {
-	$query->withCustom('group',$group);
+  $query->withCustom('group',$group);
 }
 
 $objects = $query->get();

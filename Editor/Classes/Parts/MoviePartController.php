@@ -4,58 +4,58 @@
  * @subpackage Classes.Part
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 class MoviePartController extends PartController
 {
-	function MoviePartController() {
-		parent::PartController('movie');
-	}
+  function MoviePartController() {
+    parent::PartController('movie');
+  }
 
-	function createPart() {
-		$part = new MoviePart();
-        $part->setHeight('56.25%');
-        $part->setWidth('100%');
-		$part->save();
-		return $part;
-	}
+  function createPart() {
+    $part = new MoviePart();
+    $part->setHeight('56.25%');
+    $part->setWidth('100%');
+    $part->save();
+    return $part;
+  }
 
-	function display($part,$context) {
-		return $this->render($part,$context);
-	}
+  function display($part,$context) {
+    return $this->render($part,$context);
+  }
 
-	function editor($part,$context) {
-		return '<div id="part_movie_container">'.$this->render($part,$context).'</div>'.
+  function editor($part,$context) {
+    return '<div id="part_movie_container">'.$this->render($part,$context).'</div>'.
 
     $this->buildHiddenFields([
-			'fileId' => $part->getFileId()>0 ? $part->getFileId() : '',
-			'imageId' => $part->getImageId()>0 ? $part->getImageId() : '',
-			'text' => $part->getText(),
-			'url' => $part->getUrl(),
-			'code' => $part->getCode(),
-			'movieWidth' => $part->getWidth(),
-			'movieHeight' => $part->getHeight()
+      'fileId' => $part->getFileId()>0 ? $part->getFileId() : '',
+      'imageId' => $part->getImageId()>0 ? $part->getImageId() : '',
+      'text' => $part->getText(),
+      'url' => $part->getUrl(),
+      'code' => $part->getCode(),
+      'movieWidth' => $part->getWidth(),
+      'movieHeight' => $part->getHeight()
     ]).
-		$this->getEditorScript();
-	}
+    $this->getEditorScript();
+  }
 
-	function getFromRequest($id) {
-		$part = MoviePart::load($id);
-		$part->setFileId(Request::getInt('fileId'));
-		$part->setImageId(Request::getInt('imageId'));
-		$part->setText(Request::getString('text'));
-		$part->setUrl(Request::getString('url'));
-		$part->setCode(Request::getString('code'));
-		$part->setWidth(Request::getString('movieWidth'));
-		$part->setHeight(Request::getString('movieHeight'));
-		return $part;
-	}
+  function getFromRequest($id) {
+    $part = MoviePart::load($id);
+    $part->setFileId(Request::getInt('fileId'));
+    $part->setImageId(Request::getInt('imageId'));
+    $part->setText(Request::getString('text'));
+    $part->setUrl(Request::getString('url'));
+    $part->setCode(Request::getString('code'));
+    $part->setWidth(Request::getString('movieWidth'));
+    $part->setHeight(Request::getString('movieHeight'));
+    return $part;
+  }
 
-	function buildSub($part,$context) {
-		$xml='<movie xmlns="'.$this->getNamespace().'">';
-		$xml.='<style';
+  function buildSub($part,$context) {
+    $xml='<movie xmlns="'.$this->getNamespace().'">';
+    $xml.='<style';
     if (Strings::isNotBlank($part->getWidth())) {
       $xml.=' width="'.Strings::escapeXML($part->getWidth()).'"';
     }
@@ -63,15 +63,15 @@ class MoviePartController extends PartController
       $xml.=' height="'.Strings::escapeXML($part->getHeight()).'"';
     }
     $xml.='/>';
-		if (Strings::isNotBlank($part->getText())) {
-			$xml.='<text>' . Strings::escapeXML($part->getText()) . '</text>';
-		}
-		if (Strings::isNotBlank($part->getUrl())) {
-			$xml.='<url>' . Strings::escapeXML($part->getUrl()) . '</url>';
-		}
-		if (Strings::isNotBlank($part->getCode())) {
-			$xml.='<code><![CDATA[' . $part->getCode() . ']]></code>';
-		}
+    if (Strings::isNotBlank($part->getText())) {
+      $xml.='<text>' . Strings::escapeXML($part->getText()) . '</text>';
+    }
+    if (Strings::isNotBlank($part->getUrl())) {
+      $xml.='<url>' . Strings::escapeXML($part->getUrl()) . '</url>';
+    }
+    if (Strings::isNotBlank($part->getCode())) {
+      $xml.='<code><![CDATA[' . $part->getCode() . ']]></code>';
+    }
     if ($part->getImageId() > 0) {
       $xml.='<image id="' . intval($part->getImageId()) . '"/>';
     }
@@ -83,77 +83,77 @@ class MoviePartController extends PartController
         $xml.= '<poster>' . $image . '</poster>';
       }
     }
-		if (Strings::isNotBlank($part->getCode())) {
-			$xml.='<source type="code"><![CDATA[' . $part->getCode() . ']]></source>';
-		}
-		$analyzed = Strings::analyzeMovieURL($part->getUrl());
-		if ($analyzed) {
-			$xml.='<source type="' . $analyzed['type'] . '" id="' . $analyzed['id'] . '"/>';
-		}
-		$sql="select object.data,file.type from object,file where file.object_id = object.id and object.id=".Database::int($part->getFileId());
-		if ($row = Database::selectFirst($sql)) {
-			$xml.='<source type="file">';
-			$xml.=$row['data'];
-			$xml.='</source>';
-		}
-		$xml.='</movie>';
-		return $xml;
-	}
+    if (Strings::isNotBlank($part->getCode())) {
+      $xml.='<source type="code"><![CDATA[' . $part->getCode() . ']]></source>';
+    }
+    $analyzed = Strings::analyzeMovieURL($part->getUrl());
+    if ($analyzed) {
+      $xml.='<source type="' . $analyzed['type'] . '" id="' . $analyzed['id'] . '"/>';
+    }
+    $sql="select object.data,file.type from object,file where file.object_id = object.id and object.id=".Database::int($part->getFileId());
+    if ($row = Database::selectFirst($sql)) {
+      $xml.='<source type="file">';
+      $xml.=$row['data'];
+      $xml.='</source>';
+    }
+    $xml.='</movie>';
+    return $xml;
+  }
 
-	function importSub($node,$part) {
-		if ($file = DOMUtils::getFirstDescendant($node,'file')) {
-			if ($id = intval($file->getAttribute('id'))) {
-				$part->setFileId($id);
-			}
-		}
-		if ($image = DOMUtils::getFirstDescendant($node,'image')) {
-			if ($id = intval($image->getAttribute('id'))) {
-				$part->setImageId($id);
-			}
-		}
-		if ($style = DOMUtils::getFirstDescendant($node,'style')) {
-			$part->setWidth($style->getAttribute('width'));
-			$part->setHeight($style->getAttribute('height'));
-		}
-		if ($text = DOMUtils::getFirstDescendant($node,'text')) {
-			$part->setText(DOMUtils::getText($text));
-		}
-		if ($url = DOMUtils::getFirstDescendant($node,'url')) {
-			$part->setUrl(DOMUtils::getText($url));
-		}
-		if ($code = DOMUtils::getFirstDescendant($node,'code')) {
-			$part->setCode(DOMUtils::getText($code));
-		}
-	}
+  function importSub($node,$part) {
+    if ($file = DOMUtils::getFirstDescendant($node,'file')) {
+      if ($id = intval($file->getAttribute('id'))) {
+        $part->setFileId($id);
+      }
+    }
+    if ($image = DOMUtils::getFirstDescendant($node,'image')) {
+      if ($id = intval($image->getAttribute('id'))) {
+        $part->setImageId($id);
+      }
+    }
+    if ($style = DOMUtils::getFirstDescendant($node,'style')) {
+      $part->setWidth($style->getAttribute('width'));
+      $part->setHeight($style->getAttribute('height'));
+    }
+    if ($text = DOMUtils::getFirstDescendant($node,'text')) {
+      $part->setText(DOMUtils::getText($text));
+    }
+    if ($url = DOMUtils::getFirstDescendant($node,'url')) {
+      $part->setUrl(DOMUtils::getText($url));
+    }
+    if ($code = DOMUtils::getFirstDescendant($node,'code')) {
+      $part->setCode(DOMUtils::getText($code));
+    }
+  }
 
 
-	function getToolbars() {
-		return array(
-			GuiUtils::getTranslated(array('Movie','da'=>'Film')) =>'
+  function getToolbars() {
+    return array(
+      GuiUtils::getTranslated(array('Movie','da'=>'Film')) =>'
         <icon icon="common/new" text="{Add file; da:Tilføj fil}" name="addFile"/>
         <icon icon="common/search" text="{Select file; da:Vælg fil}" name="chooseFile"/>
         <divider/>
         <icon icon="common/info" text="{Info; da:Info}" name="info"/>
       '
-		);
-	}
+    );
+  }
 
-	function getEditorUI($part,$context) {
-		return '
-		<window title="{Add file; da:Tilføj fil}" name="fileUploadWindow" width="300" padding="10">
-			<upload name="fileUpload" url="../../Parts/file/Upload.php" widget="upload">
-				<placeholder
-					title="{Select a file on your computer; da:Vælg en fil på din computer...}"
-					text="{The file size can at most be; da:Filens størrelse må højest være} '.GuiUtils::bytesToString(FileSystemService::getMaxUploadSize()).'."
+  function getEditorUI($part,$context) {
+    return '
+    <window title="{Add file; da:Tilføj fil}" name="fileUploadWindow" width="300" padding="10">
+      <upload name="fileUpload" url="../../Parts/file/Upload.php" widget="upload">
+        <placeholder
+          title="{Select a file on your computer; da:Vælg en fil på din computer...}"
+          text="{The file size can at most be; da:Filens størrelse må højest være} '.GuiUtils::bytesToString(FileSystemService::getMaxUploadSize()).'."
         />
-			</upload>
-			<buttons align="center" top="10">
-				<button name="cancelUpload" text="{Close; da:Luk}"/>
-				<button name="upload" text="{Select file...; da:Vælg fil...}" highlighted="true"/>
-			</buttons>
-		</window>
+      </upload>
+      <buttons align="center" top="10">
+        <button name="cancelUpload" text="{Close; da:Luk}"/>
+        <button name="upload" text="{Select file...; da:Vælg fil...}" highlighted="true"/>
+      </buttons>
+    </window>
 
-		<window title="{Info; da:Info}" icon="common/info" name="movieInfoWindow" width="300" padding="10">
+    <window title="{Info; da:Info}" icon="common/info" name="movieInfoWindow" width="300" padding="10">
       <formula name="movieInfoFormula">
         <fields>
           <field label="Poster">
@@ -173,16 +173,16 @@ class MoviePartController extends PartController
           <field label="Text"><text-input breaks="true" key="text"/></field>
         </fields>
       </formula>
-		</window>
-		';
-	}
+    </window>
+    ';
+  }
 
-	function setLatestUploadId($id) {
-		$_SESSION['part.movie.latest_upload_id'] = $id;
-	}
+  function setLatestUploadId($id) {
+    $_SESSION['part.movie.latest_upload_id'] = $id;
+  }
 
-	function getLatestUploadId() {
-		return $_SESSION['part.movie.latest_upload_id'];
-	}
+  function getLatestUploadId() {
+    return $_SESSION['part.movie.latest_upload_id'];
+  }
 }
 ?>

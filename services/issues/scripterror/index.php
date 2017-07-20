@@ -7,7 +7,7 @@ $file = Request::getString('file');
 $line = Request::getString('line');
 
 if (Strings::isBlank($message) && Strings::isBlank($url) && Strings::isBlank($file) && Strings::isBlank($line)) {
-	exit;
+  exit;
 }
 
 $note = $message."\n\nFile: ".$file."\nLine: ".$line."\n\nURL: ".$url."\n\nAgent: ".$_SERVER['HTTP_USER_AGENT'];

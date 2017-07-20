@@ -4,38 +4,38 @@
  * @subpackage Classes.Part
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 Entity::$schema['CustomPart'] = [
-	'table' => 'part_custom',
-	'properties' => [
-		'workflowId' => [ 'type' => 'int', 'column' => 'workflow_id', 'relation' => ['class' => 'Workflow','property' => 'id'] ],
-		'viewId' => [ 'type' => 'int', 'column' => 'view_id', 'relation' => ['class' => 'View','property' => 'id'] ]
-	]
+  'table' => 'part_custom',
+  'properties' => [
+    'workflowId' => [ 'type' => 'int', 'column' => 'workflow_id', 'relation' => ['class' => 'Workflow','property' => 'id'] ],
+    'viewId' => [ 'type' => 'int', 'column' => 'view_id', 'relation' => ['class' => 'View','property' => 'id'] ]
+  ]
 ];
 
 class CustomPart extends Part
 {
-	var $workflowId;
-	var $viewId;
+  var $workflowId;
+  var $viewId;
 
-	function CustomPart() {
-		parent::Part('custom');
-	}
+  function CustomPart() {
+    parent::Part('custom');
+  }
 
-	static function load($id) {
-		return Part::get('custom',$id);
-	}
+  static function load($id) {
+    return Part::get('custom',$id);
+  }
 
-	function setWorkflowId($workflowId) {
+  function setWorkflowId($workflowId) {
     $this->workflowId = $workflowId;
-	}
+  }
 
-	function getWorkflowId() {
+  function getWorkflowId() {
     return $this->workflowId;
-	}
+  }
 
   function setViewId($viewId) {
     $this->viewId = $viewId;

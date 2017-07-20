@@ -9,6 +9,6 @@ $id = Request::getInt('id');
 
 $obj = Event::load($id);
 if ($obj) {
-	$obj->remove();
+  $obj->remove();
 }
 ?>

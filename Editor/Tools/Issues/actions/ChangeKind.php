@@ -9,16 +9,16 @@ $ids = Request::getObject('ids');
 $kind = Request::getObject('kind');
 
 if (!is_array($ids)) {
-	Log::debug($ids);
-	Response::badRequest();
-	exit;
+  Log::debug($ids);
+  Response::badRequest();
+  exit;
 }
 
 foreach ($ids as $id) {
-	if ($object = Issue::load($id)) {
-		$object->setKind($kind);
-		$object->save();
-		$object->publish();
-	}
+  if ($object = Issue::load($id)) {
+    $object->setKind($kind);
+    $object->save();
+    $object->publish();
+  }
 }
 ?>

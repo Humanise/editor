@@ -8,7 +8,7 @@ require_once '../../../Include/Private.php';
 $id = Request::getInt('id');
 $news = News::load($id);
 if ($news) {
-	$news->remove();
+  $news->remove();
 }
 Response::sendObject(array('success'=>true));
 ?>

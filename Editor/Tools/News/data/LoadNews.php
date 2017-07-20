@@ -8,12 +8,12 @@ require_once '../../../Include/Private.php';
 $id = Request::getInt('id');
 $file = News::load($id);
 if ($file) {
-	$groups = $file->getGroupIds();
+  $groups = $file->getGroupIds();
 
-	$links = UI::toLinks($file->getLinks());
+  $links = UI::toLinks($file->getLinks());
 
-	Response::sendObject(array('news' => $file, 'groups' => $groups, 'links' => $links));
+  Response::sendObject(array('news' => $file, 'groups' => $groups, 'links' => $links));
 } else {
-	Response::notFound();
+  Response::notFound();
 }
 ?>

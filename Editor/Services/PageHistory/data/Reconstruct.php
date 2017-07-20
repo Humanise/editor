@@ -11,6 +11,6 @@ $pageId = InternalSession::getPageId();
 $success = PageService::reconstruct($pageId,$historyId);
 
 Response::sendObject(array(
-	'success' => $success
+  'success' => $success
 ));
 ?>

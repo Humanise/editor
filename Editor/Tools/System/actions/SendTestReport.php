@@ -7,6 +7,6 @@ require_once '../../../Include/Private.php';
 
 $success = ReportService::sendReport();
 if (!$success) {
-	Response::internalServerError();
+  Response::internalServerError();
 }
 ?>

@@ -8,8 +8,8 @@ require_once '../../../Include/Private.php';
 $id = Request::getInt('id');
 $obj = SpecialPage::load($id);
 if ($obj) {
-	Response::sendObject($obj);
+  Response::sendObject($obj);
 } else {
-	Response::notFound();
+  Response::notFound();
 }
 ?>

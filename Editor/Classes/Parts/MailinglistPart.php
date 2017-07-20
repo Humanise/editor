@@ -4,38 +4,38 @@
  * @subpackage Classes.Part
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 Entity::$schema['MailinglistPart'] = array(
-	'table' => 'part_mailinglist',
-	'properties' => array(
-	),
-	'relations' => array(
-		'mailinglistIds' => array( 'table' => 'part_mailinglist_mailinglist', 'fromColumn' => 'part_id', 'toColumn' => 'mailinglist_id' )
-	)
+  'table' => 'part_mailinglist',
+  'properties' => array(
+  ),
+  'relations' => array(
+    'mailinglistIds' => array( 'table' => 'part_mailinglist_mailinglist', 'fromColumn' => 'part_id', 'toColumn' => 'mailinglist_id' )
+  )
 );
 
 class MailinglistPart extends Part
 {
-	var $mailinglistIds;
+  var $mailinglistIds;
 
-	function MailinglistPart() {
-		parent::Part('mailinglist');
-	}
+  function MailinglistPart() {
+    parent::Part('mailinglist');
+  }
 
-	static function load($id) {
-		return Part::get('mailinglist',$id);
-	}
+  static function load($id) {
+    return Part::get('mailinglist',$id);
+  }
 
-	function setMailinglistIds($mailinglistIds) {
+  function setMailinglistIds($mailinglistIds) {
     $this->mailinglistIds = $mailinglistIds;
-	}
+  }
 
-	function getMailinglistIds() {
+  function getMailinglistIds() {
     return $this->mailinglistIds;
-	}
+  }
 
 }
 ?>

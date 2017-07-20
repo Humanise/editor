@@ -4,83 +4,83 @@
  * @subpackage Classes
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 Entity::$schema['Problem'] = [
-	'table' => 'problem',
-	'properties' => array(
-    	'deadline'  => array('type'=>'datetime'),
-    	'completed'  => array('type'=>'boolean'),
-    	'containingObjectId'  => array('type'=>'int','column'=>'containing_object_id'),
-    	'milestoneId'  => array('type'=>'int','column'=>'milestone_id'),
-    	'priority'  => array('type'=>'float')
+  'table' => 'problem',
+  'properties' => array(
+      'deadline'  => array('type'=>'datetime'),
+      'completed'  => array('type'=>'boolean'),
+      'containingObjectId'  => array('type'=>'int','column'=>'containing_object_id'),
+      'milestoneId'  => array('type'=>'int','column'=>'milestone_id'),
+      'priority'  => array('type'=>'float')
     )
 ];
 
 class Problem extends Object {
-	
-	var $deadline;
-	var $completed=false;
-	var $containingObjectId=0;
-	var $milestoneId;
-	var $priority;
 
-	function Problem() {
-		parent::Object('problem');
-	}
+  var $deadline;
+  var $completed=false;
+  var $containingObjectId=0;
+  var $milestoneId;
+  var $priority;
 
-	static function load($id) {
-		return Object::get($id,'problem');
-	}
+  function Problem() {
+    parent::Object('problem');
+  }
 
-	function setDeadline($deadline) {
-		$this->deadline = $deadline;
-	}
+  static function load($id) {
+    return Object::get($id,'problem');
+  }
 
-	function getDeadline() {
-		return $this->deadline;
-	}
+  function setDeadline($deadline) {
+    $this->deadline = $deadline;
+  }
 
-	function setCompleted($completed) {
-		$this->completed = $completed;
-	}
+  function getDeadline() {
+    return $this->deadline;
+  }
 
-	function getCompleted() {
-		return $this->completed;
-	}
+  function setCompleted($completed) {
+    $this->completed = $completed;
+  }
 
-	function setContainingObjectId($id) {
-		$this->containingObjectId = $id;
-	}
+  function getCompleted() {
+    return $this->completed;
+  }
 
-	function getContainingObjectId() {
-		return $this->containingObjectId;
-	}
+  function setContainingObjectId($id) {
+    $this->containingObjectId = $id;
+  }
 
-	function setMilestoneId($milestoneId) {
-	    $this->milestoneId = $milestoneId;
-	}
+  function getContainingObjectId() {
+    return $this->containingObjectId;
+  }
 
-	function getMilestoneId() {
-	    return $this->milestoneId;
-	}
-	
-	function setPriority($priority) {
-	    $this->priority = $priority;
-	}
+  function setMilestoneId($milestoneId) {
+      $this->milestoneId = $milestoneId;
+  }
 
-	function getPriority() {
-	    return $this->priority;
-	}
-	
-	function sub_publish() {
-		$data =
-		'<problem xmlns="'.parent::_buildnamespace('1.0').'">'.
-		'</problem>';
-		return $data;
-	}
-	
+  function getMilestoneId() {
+      return $this->milestoneId;
+  }
+
+  function setPriority($priority) {
+      $this->priority = $priority;
+  }
+
+  function getPriority() {
+      return $this->priority;
+  }
+
+  function sub_publish() {
+    $data =
+    '<problem xmlns="'.parent::_buildnamespace('1.0').'">'.
+    '</problem>';
+    return $data;
+  }
+
 }
 ?>

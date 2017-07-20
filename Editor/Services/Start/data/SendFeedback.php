@@ -17,6 +17,6 @@ $client = new HttpClient();
 $response = $client->send($request);
 
 if (!$response->isSuccess()) {
-	Response::badGateway();
+  Response::badGateway();
 }
 ?>

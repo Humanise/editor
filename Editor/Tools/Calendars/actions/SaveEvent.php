@@ -8,17 +8,17 @@ require_once '../../../Include/Private.php';
 $data = Request::getObject('data');
 
 if ($data->id) {
-	$src = Event::load($data->id);
+  $src = Event::load($data->id);
 } else {
-	$src = new Event();
+  $src = new Event();
 }
 if ($src) {
-	$src->setTitle($data->title);
-	$src->setLocation($data->location);
-	$src->setStartdate($data->startdate);
-	$src->setEnddate($data->enddate);
-	$src->save();
-	$src->publish();
-	$src->updateCalendarIds($data->calendars);
+  $src->setTitle($data->title);
+  $src->setLocation($data->location);
+  $src->setStartdate($data->startdate);
+  $src->setEnddate($data->enddate);
+  $src->save();
+  $src->publish();
+  $src->updateCalendarIds($data->calendars);
 }
 ?>

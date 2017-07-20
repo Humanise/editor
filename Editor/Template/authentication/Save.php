@@ -9,9 +9,9 @@ $id = Request::getId();
 $title = Request::getString('title');
 
 if ($obj = AuthenticationTemplate::load($id)) {
-	$obj->setTitle($title);
-	$obj->save();
+  $obj->setTitle($title);
+  $obj->save();
 } else {
-	Response::badRequest();
+  Response::badRequest();
 }
 ?>

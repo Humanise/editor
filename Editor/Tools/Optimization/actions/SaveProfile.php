@@ -15,7 +15,7 @@ if (!is_object($settings)) {
 }
 
 if (!is_array(@$settings->profiles)) {
-	$settings->profiles = array();
+  $settings->profiles = array();
 }
 
 $settings->profiles[] = array('name'=>$name,'url'=>$url);

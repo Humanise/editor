@@ -7,15 +7,15 @@ require_once '../../../Include/Private.php';
 
 $type = Request::getString('type');
 if ($type=='pages') {
-	CacheService::clearCompletePageCache();
+  CacheService::clearCompletePageCache();
 }
 else if ($type=='images') {
-	CacheService::clearCompleteImageCache();
+  CacheService::clearCompleteImageCache();
 }
 else if ($type=='temp') {
-	CacheService::clearCompleteTempCache();
+  CacheService::clearCompleteTempCache();
 }
 else if ($type=='urls') {
-	CacheService::clearCompleteUrlCache();
+  CacheService::clearCompleteUrlCache();
 }
 ?>

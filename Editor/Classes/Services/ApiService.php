@@ -4,13 +4,13 @@
  * @subpackage Classes.Services
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 class ApiService {
 
-	static function handle() {
+  static function handle() {
     $path = Request::getString('path');
     $method = '';
     if (preg_match('/api((\/[a-z]+)+)/', $path, $matches)) {
@@ -26,7 +26,7 @@ class ApiService {
     } else {
       echo $method;
     }
-	}
+  }
 
   static function appPost() {
     if (!AuthenticationService::isInternalUser(Request::getString('username'),Request::getString('password'))) {

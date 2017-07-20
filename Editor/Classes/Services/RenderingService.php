@@ -423,7 +423,7 @@ class RenderingService {
     }
   }
 
-  /** 
+  /**
      * Finds the appropriate authentication page for a given page
    * returns the id of the authentication page
    * returns false otherwise

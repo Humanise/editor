@@ -5,8 +5,8 @@
  */
 
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 class TestStreams extends UnitTestCase {
@@ -22,7 +22,7 @@ class TestStreams extends UnitTestCase {
     $result = $flow->run();
     $this->assertNotNull($result);
     Log::debug($result->getTitle());
-	}
+  }
 
   function testWorkflowIntoStream() {
     $stream = new Stream();
@@ -42,7 +42,7 @@ class TestStreams extends UnitTestCase {
     Log::debug($result->getTitle());
 
     $stream->remove();
-	}
+  }
 
   function testParseWorkflow() {
     $stream = new Stream();

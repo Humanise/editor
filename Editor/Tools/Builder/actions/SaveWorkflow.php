@@ -7,9 +7,9 @@ require_once '../../../Include/Private.php';
 
 $data = Request::getObject('data');
 if ($data->id) {
-	$src = Workflow::load($data->id);
+  $src = Workflow::load($data->id);
 } else {
-	$src = new Workflow();
+  $src = new Workflow();
 }
 if ($src) {
   if (isset($data->title)) {
@@ -18,7 +18,7 @@ if ($src) {
   if (isset($data->recipe)) {
     $src->setRecipe($data->recipe);
   }
-	$src->save();
-	$src->publish();
+  $src->save();
+  $src->publish();
 }
 ?>

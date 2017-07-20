@@ -4,34 +4,34 @@
  * @subpackage Classes.Part
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 Entity::$schema['MenuPart'] = [
-	'table' => 'part_menu',
-	'properties' => [
-		'hierarchyId' => [ 'type' => 'int', 'column' => 'hierarchy_id', 'relation' => ['class' => 'Hierarchy','property' => 'id'] ],
-		'header' => [ 'type' => 'string' ],
-		'variant' => [ 'type' => 'string' ],
+  'table' => 'part_menu',
+  'properties' => [
+    'hierarchyId' => [ 'type' => 'int', 'column' => 'hierarchy_id', 'relation' => ['class' => 'Hierarchy','property' => 'id'] ],
+    'header' => [ 'type' => 'string' ],
+    'variant' => [ 'type' => 'string' ],
         'depth' => [ 'type' => 'int' ],
-	]
+  ]
 ];
 
 class MenuPart extends Part
 {
-	var $hierarchyId;
-	var $variant;
+  var $hierarchyId;
+  var $variant;
   var $header;
   var $depth;
 
-	function MenuPart() {
-		parent::Part('menu');
-	}
+  function MenuPart() {
+    parent::Part('menu');
+  }
 
-	static function load($id) {
-		return Part::get('menu',$id);
-	}
+  static function load($id) {
+    return Part::get('menu',$id);
+  }
 
   function setHierarchyId($hierarchyId) {
     $this->hierarchyId = $hierarchyId;

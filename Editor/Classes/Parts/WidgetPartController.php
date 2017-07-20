@@ -30,11 +30,11 @@ class WidgetPartController extends PartController
 
   function editor($part,$context) {
     return '<div id="part_widget_container">'.$this->render($part,$context).'</div>'.
-        $this->buildHiddenFields([
+      $this->buildHiddenFields([
       'key' => $part->getKey(),
       'data' => $part->getData()
-        ]).
-        $this->getEditorScript();
+      ]).
+      $this->getEditorScript();
   }
 
   function getFromRequest($id) {
@@ -46,20 +46,20 @@ class WidgetPartController extends PartController
 
   function buildSub($part,$context) {
     $xml = '<widget xmlns="'.$this->getNamespace().'" key="'.Strings::escapeXML($part->getKey()).'">';
-        if (DOMUtils::isValidFragment($part->getData())) {
-            $xml.= $part->getData();
-        }
+    if (DOMUtils::isValidFragment($part->getData())) {
+      $xml.= $part->getData();
+    }
     $xml.= '</widget>';
     return $xml;
   }
 
   function importSub($node,$part) {
-        if ($widget = DOMUtils::getFirstChildElement($node,'widget')) {
-            $part->setKey($widget->getAttribute('key'));
-            $data = DOMUtils::getInnerXML($widget);
-            $data = DOMUtils::stripNamespaces($data);
-            $part->setData($data);
-        }
+    if ($widget = DOMUtils::getFirstChildElement($node,'widget')) {
+      $part->setKey($widget->getAttribute('key'));
+      $data = DOMUtils::getInnerXML($widget);
+      $data = DOMUtils::stripNamespaces($data);
+      $part->setData($data);
+    }
   }
 
 

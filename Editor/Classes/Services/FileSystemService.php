@@ -68,7 +68,15 @@ class FileSystemService {
           if ($file=='.' || $file=='..') {
             // Skip
           }
+          else if (strpos($file, '.') === 0) {
+            // Skip hidden files
+          }
           else if (is_dir($path)) {
+            if (isset($query['exclude']) && is_array($query['exclude'])) {
+              if (in_array($path, $query['exclude'])) {
+                continue;
+              }
+            }
             $found = FileSystemService::findFiles($path, $query);
             $out = array_merge($out, $found);
           }

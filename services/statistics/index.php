@@ -5,8 +5,8 @@ session_set_cookie_params(0);
 session_start();
 
 StatisticsService::registerPage([
-	'id' => Request::getInt('page'),
-	'referrer' => Request::getString('referrer'),
-	'uri' => Request::getString('uri')
+  'id' => Request::getInt('page'),
+  'referrer' => Request::getString('referrer'),
+  'uri' => Request::getString('uri')
 ]);
 ?>

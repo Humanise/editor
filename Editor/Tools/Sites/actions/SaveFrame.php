@@ -14,23 +14,23 @@ $user = Request::getObject('user');
 $newsBlocks = Request::getObject('newsBlocks');
 
 if ($id>0) {
-	$object = Frame::load($id);
+  $object = Frame::load($id);
 } else {
-	$object = new Frame();
+  $object = new Frame();
 }
 if ($object) {
-	$object->setTitle($data->title);
-	$object->setName($data->name);
-	$object->setBottomText($data->bottomText);
-	$object->setHierarchyId($data->hierarchyId);
-	$object->setSearchEnabled($search->enabled);
-	$object->setSearchPageId($search->pageId);
-	$object->setUserStatusEnabled($user->enabled);
-	$object->setLoginPageId($user->pageId);
-	$object->save();
+  $object->setTitle($data->title);
+  $object->setName($data->name);
+  $object->setBottomText($data->bottomText);
+  $object->setHierarchyId($data->hierarchyId);
+  $object->setSearchEnabled($search->enabled);
+  $object->setSearchPageId($search->pageId);
+  $object->setUserStatusEnabled($user->enabled);
+  $object->setLoginPageId($user->pageId);
+  $object->save();
 
-	FrameService::replaceLinks($object,$topLinks,$bottomLinks);
-	FrameService::replaceNewsBlocks($object,$newsBlocks);
-	PublishingService::publishFrame($id);
+  FrameService::replaceLinks($object,$topLinks,$bottomLinks);
+  FrameService::replaceNewsBlocks($object,$newsBlocks);
+  PublishingService::publishFrame($id);
 }
 ?>

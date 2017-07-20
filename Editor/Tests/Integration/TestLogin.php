@@ -5,12 +5,12 @@
  */
 
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 class TestLogin extends UnitTestCase {
-    
+
     function testNotAllowed() {
         global $baseUrl, $basePath;
         $url = ConfigurationService::getCompleteBaseUrl().'Editor/Services/Core/Authentication.php';
@@ -22,12 +22,12 @@ class TestLogin extends UnitTestCase {
 
         $url = ConfigurationService::getCompleteBaseUrl().'Editor/index.php';
         $request = new WebRequest($url);
-        
+
         $response = HttpClient::send($request);
         $this->assertEqual(302,$response->getStatusCode());
-  
+
     }
-    
+
     function testSuccess() {
         global $baseUrl, $basePath;
         $username = Strings::generate(30);
@@ -39,18 +39,18 @@ class TestLogin extends UnitTestCase {
         $user->setInternal(true);
         $user->setSecure(true);
         $user->save();
-        
+
         $url = ConfigurationService::getCompleteBaseUrl().'Editor/Services/Core/Authentication.php';
         $request = new WebRequest($url);
         $request->addParameter('username',$username);
         $request->addParameter('password',$password);
-        
+
         $response = HttpClient::send($request);
-        
+
         $this->assertEqual(200,$response->getStatusCode());
         $obj = Strings::fromJSON($response->getBody());
         $this->assertTrue($obj->success);
-        
+
         $this->assertNotNull($response->getHeader('Set-Cookie'));
         $cookie = $response->getHeader('Set-Cookie');
         $cookie = substr($cookie,0,strpos($cookie,';'));
@@ -58,23 +58,23 @@ class TestLogin extends UnitTestCase {
         $url = ConfigurationService::getCompleteBaseUrl().'Editor/index.php';
         $request = new WebRequest($url);
         $request->addHeader('Cookie',$cookie);
-        
+
         $response = HttpClient::send($request);
         $this->assertEqual(200,$response->getStatusCode());
-        
-        
+
+
         // Try loading the user
-        
+
         $url = ConfigurationService::getCompleteBaseUrl().'Editor/Services/Model/LoadObject.php';
         $request = new WebRequest($url);
         $request->addHeader('Cookie',$cookie);
         $request->addParameter('id',$user->getId());
-        
+
         $response = HttpClient::send($request);
         $this->assertEqual(200,$response->getStatusCode());
         $obj = Strings::fromJSON($response->getBody());
         $this->assertEqual($user->getUsername(),$obj->username);
-        
+
 
         $user->remove();
     }

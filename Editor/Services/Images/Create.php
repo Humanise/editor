@@ -10,9 +10,9 @@ $title = Request::getString('title');
 
 $result = ImageService::createImageFromBase64($data,null,$title);
 if ($result['success']) {
-	$image = $result['image'];
-	Response::sendObject(array('id'=>$image->getId()));
+  $image = $result['image'];
+  Response::sendObject(array('id'=>$image->getId()));
 } else {
-	Response::badRequest();
-}	
+  Response::badRequest();
+}
 ?>

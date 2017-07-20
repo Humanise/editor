@@ -5,13 +5,13 @@
  */
 
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 class TestUIValidation extends UnitTestCase {
 
-	function testValidateUI() {
+  function testValidateUI() {
     $dir = FileSystemService::getFullPath('Editor');
     $files = FileSystemService::findFiles($dir,['end' => '.ui.xml']);
     foreach ($files as $file) {
@@ -20,7 +20,7 @@ class TestUIValidation extends UnitTestCase {
     // TODO Validate UI from parts etc.
   }
 
-	function testValidateParts() {
+  function testValidateParts() {
     $ctrls = ClassService::getBySuper('PartController');
     foreach ($ctrls as $ctrlName) {
       $controller = new $ctrlName();
@@ -42,7 +42,7 @@ class TestUIValidation extends UnitTestCase {
     }
   }
 
-	function testValidateHUITests() {
+  function testValidateHUITests() {
     $dir = FileSystemService::getFullPath('hui/test/');
     $files = FileSystemService::findFiles($dir,['end' => '.xml']);
     foreach ($files as $file) {

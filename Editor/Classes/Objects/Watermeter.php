@@ -4,46 +4,46 @@
  * @subpackage Classes
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 Entity::$schema['Watermeter'] = [
-	'table' => 'watermeter',
-	'properties' => [
-    	'number' => array('type'=>'string')
-	]
+  'table' => 'watermeter',
+  'properties' => [
+      'number' => array('type'=>'string')
+  ]
 ];
 
 class Watermeter extends Object {
-	var $number;
+  var $number;
 
-	function Watermeter() {
-		parent::Object('watermeter');
-	}
+  function Watermeter() {
+    parent::Object('watermeter');
+  }
 
-	static function load($id) {
-		return Object::get($id,'watermeter');
-	}
-	
-	function getIcon() {
-		return "common/gauge";
-	}
-	
-	function setNumber($number) {
-	    $this->number = $number;
-		$this->setTitle($number);
-	}
+  static function load($id) {
+    return Object::get($id,'watermeter');
+  }
 
-	function getNumber() {
-	    return $this->number;
-	}
-	
-	function sub_index() {
-		$address = Query::after('address')->withRelationFrom($this)->first();
-		if ($address) {
-			return $address->getIndex();
-		}
-	}
+  function getIcon() {
+    return "common/gauge";
+  }
+
+  function setNumber($number) {
+    $this->number = $number;
+    $this->setTitle($number);
+  }
+
+  function getNumber() {
+    return $this->number;
+  }
+
+  function sub_index() {
+    $address = Query::after('address')->withRelationFrom($this)->first();
+    if ($address) {
+      return $address->getIndex();
+    }
+  }
 }
 ?>

@@ -9,6 +9,6 @@ $id = Request::getInt('id');
 
 $src = Calendarsource::load($id);
 if ($src) {
-	$src->synchronize(true);
+  $src->synchronize(true);
 }
 ?>

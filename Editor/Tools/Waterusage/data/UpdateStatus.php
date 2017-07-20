@@ -9,10 +9,10 @@ $id = Request::getInt('id');
 $status = Request::getInt('status');
 
 if ($obj = Waterusage::load($id)) {
-	$obj->setStatus($status);
-	$obj->save();
-	$obj->publish();
+  $obj->setStatus($status);
+  $obj->save();
+  $obj->publish();
 } else {
-	Response::badRequest();
+  Response::badRequest();
 }
 ?>

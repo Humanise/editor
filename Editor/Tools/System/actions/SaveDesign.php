@@ -8,9 +8,9 @@ require_once '../../../Include/Private.php';
 $data = Request::getObject('data');
 
 if ($data->id>0) {
-	$design = Design::load($data->id);
+  $design = Design::load($data->id);
 } else {
-	$design = new Design();
+  $design = new Design();
 }
 $design->setTitle($data->title);
 $design->setUnique($data->unique);

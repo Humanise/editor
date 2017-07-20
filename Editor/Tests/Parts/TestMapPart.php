@@ -5,76 +5,76 @@
  */
 
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 class TestMapPart extends UnitTestCase {
-    
+
     function testLoad() {
         $this->assertNull(MapPart::load(0));
     }
 
     function testCreate() {
         $obj = new MapPart();
-		$this->assertFalse($obj->isPersistent());
-		$obj->save();
-		$this->assertTrue($obj->isPersistent());
-		$id = $obj->getId();
+    $this->assertFalse($obj->isPersistent());
+    $obj->save();
+    $this->assertTrue($obj->isPersistent());
+    $id = $obj->getId();
         $this->assertNotNull(MapPart::load($id));
-		$obj->remove();
+    $obj->remove();
         $this->assertNull(MapPart::load($id));
     }
 
-	function testProperties() {
-		$obj = new MapPart();
-		$obj->setMaptype('terrain');
-		$obj->setLongitude(-34.560859);
-		$obj->setLatitude(-58.491211);
-		$obj->save();
-		
-		$loaded = MapPart::load($obj->getId());
-		$this->assertEqual($loaded->getMaptype(),'terrain');
-		$this->assertEqual($loaded->getLongitude(),-34.560859);
-		$this->assertEqual($loaded->getLatitude(),-58.491211);
-		
-		$loaded->remove();
-	}
+  function testProperties() {
+    $obj = new MapPart();
+    $obj->setMaptype('terrain');
+    $obj->setLongitude(-34.560859);
+    $obj->setLatitude(-58.491211);
+    $obj->save();
 
-	function testImport() {
-		
-		$obj = new MapPart();
-		$obj->setMaptype('Please get me back!');
-		$obj->setLongitude(-34.560859);
-		$obj->setLatitude(-58.491211);
-		$ctrl = new MapPartController();
-		
-		$xml = $ctrl->build($obj,new PartContext());
-		
-		$this->assertNull($ctrl->importFromString(null));
-		
-		$imported = $ctrl->importFromString($xml);
-		
-		$this->assertNotNull($imported);
-		$this->assertIdentical($imported->getMaptype(),$obj->getMaptype());
-		$this->assertIdentical($imported->getLongitude(),$obj->getLongitude());
-		$this->assertIdentical($imported->getLatitude(),$obj->getLatitude());
-	}
+    $loaded = MapPart::load($obj->getId());
+    $this->assertEqual($loaded->getMaptype(),'terrain');
+    $this->assertEqual($loaded->getLongitude(),-34.560859);
+    $this->assertEqual($loaded->getLatitude(),-58.491211);
 
-	function testEmptyImport() {
-		$obj = new MapPart();
-		$ctrl = new MapPartController();
-		
-		$xml = $ctrl->build($obj,new PartContext());
-		
-		$this->assertNull($ctrl->importFromString(null));
-		
-		$imported = $ctrl->importFromString($xml);
-		
-		$this->assertNotNull($imported);
-		$this->assertIdentical($imported->getMaptype(),$obj->getMaptype());
-		$this->assertIdentical($imported->getLongitude(),$obj->getLongitude());
-		$this->assertIdentical($imported->getLatitude(),$obj->getLatitude());
-	}
+    $loaded->remove();
+  }
+
+  function testImport() {
+
+    $obj = new MapPart();
+    $obj->setMaptype('Please get me back!');
+    $obj->setLongitude(-34.560859);
+    $obj->setLatitude(-58.491211);
+    $ctrl = new MapPartController();
+
+    $xml = $ctrl->build($obj,new PartContext());
+
+    $this->assertNull($ctrl->importFromString(null));
+
+    $imported = $ctrl->importFromString($xml);
+
+    $this->assertNotNull($imported);
+    $this->assertIdentical($imported->getMaptype(),$obj->getMaptype());
+    $this->assertIdentical($imported->getLongitude(),$obj->getLongitude());
+    $this->assertIdentical($imported->getLatitude(),$obj->getLatitude());
+  }
+
+  function testEmptyImport() {
+    $obj = new MapPart();
+    $ctrl = new MapPartController();
+
+    $xml = $ctrl->build($obj,new PartContext());
+
+    $this->assertNull($ctrl->importFromString(null));
+
+    $imported = $ctrl->importFromString($xml);
+
+    $this->assertNotNull($imported);
+    $this->assertIdentical($imported->getMaptype(),$obj->getMaptype());
+    $this->assertIdentical($imported->getLongitude(),$obj->getLongitude());
+    $this->assertIdentical($imported->getLatitude(),$obj->getLatitude());
+  }
 }
 ?>

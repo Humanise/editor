@@ -9,8 +9,8 @@ $id = Request::getId();
 
 $sql="select * from html where page_id=".Database::int($id);
 if ($row = Database::getRow($sql)) {
-	Response::sendObject($row);
+  Response::sendObject($row);
 } else {
-	Response::notFound();
+  Response::notFound();
 }
 ?>

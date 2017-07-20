@@ -5,15 +5,15 @@
  */
 
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 class TestProject extends AbstractObjectTest {
-    
-	function TestProject() {
-		parent::AbstractObjectTest('project');
-	}
-	
+
+  function TestProject() {
+    parent::AbstractObjectTest('project');
+  }
+
 }
 ?>

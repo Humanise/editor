@@ -111,14 +111,14 @@ class Request {
       return $default;
     }
   }
-  
+
   /**
    * Gets an int with name id;
    */
   static function getId() {
     return Request::getInt('id');
   }
-  
+
   /**
    * Gets "1,9,3" as array(1,9,3)
    */
@@ -182,7 +182,7 @@ class Request {
       return '';
     }
   }
-  
+
   static function getObject($key) {
     $obj = Strings::fromJSON(Request::getStringAsUnicode($key));
     if ($obj!==null) {
@@ -193,7 +193,7 @@ class Request {
     return $obj;
   }
 
-  
+
   static function isPost() {
     return $_SERVER['REQUEST_METHOD']=='POST';
   }
@@ -215,11 +215,11 @@ class Request {
       return array();
     }
   }
-  
+
   static function isLocalhost() {
     return $_SERVER['SERVER_NAME']==='localhost';
   }
-  
+
   static function supportsGzip() {
     return isset($_SERVER['HTTP_ACCEPT_ENCODING']) && strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false;
   }
@@ -236,7 +236,7 @@ class Request {
     }
     return null;
   }
-  
+
   static function getHeaders() {
     $headers = array();
     foreach ($_SERVER as $k => $v) {
@@ -248,7 +248,7 @@ class Request {
     }
     return $headers;
   }
-  
+
   /**
    * Transfers request parameters to an object if the parameter exists and a corresponding setter exists.
    * The keys can be just the parameters or parameter => type (string, int etc.) - or mixed.

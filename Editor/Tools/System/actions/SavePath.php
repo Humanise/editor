@@ -8,9 +8,9 @@ require_once '../../../Include/Private.php';
 $data = Request::getObject('data');
 
 if ($data->id>0) {
-	$path = Path::load($data->id);
+  $path = Path::load($data->id);
 } else {
-	$path = new Path();
+  $path = new Path();
 }
 $path->setPath($data->path);
 $path->setPageId($data->pageId);

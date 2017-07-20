@@ -9,9 +9,9 @@ $id = Request::getInt('id');
 $hierarchy = Hierarchy::load($id);
 
 Response::sendObject(array(
-	'id' => $hierarchy->getId(),
-	'name' => $hierarchy->getName(),
-	'language' => $hierarchy->getLanguage(),
-	'canDelete' => $hierarchy->canDelete()
+  'id' => $hierarchy->getId(),
+  'name' => $hierarchy->getName(),
+  'language' => $hierarchy->getLanguage(),
+  'canDelete' => $hierarchy->canDelete()
 ));
 ?>

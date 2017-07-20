@@ -12,13 +12,13 @@ $writer = new ListWriter();
 $writer->startList();
 
 $writer->startHeaders()->
-	header('Status')->
+  header('Status')->
 endHeaders();
 
 foreach($list as $item) {
-	$writer->startRow(array('id'=>$item->getId()))->
-		startCell(array('icon'=>$item->getIcon()))->text($item->getTitle())->endCell()->
-	endRow();
+  $writer->startRow(array('id'=>$item->getId()))->
+    startCell(array('icon'=>$item->getIcon()))->text($item->getTitle())->endCell()->
+  endRow();
 }
 $writer->endList();
 ?>

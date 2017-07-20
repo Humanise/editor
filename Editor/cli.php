@@ -34,7 +34,7 @@ if (method_exists('Commander',$args[1])) {
 
 class Commander {
 
-	static function test($args) {
+  static function test($args) {
     if (!Database::testConnection()) {
       echo "No database - no testing!\n";
       exit;
@@ -57,11 +57,11 @@ class Commander {
     }
   }
 
-	static function hui() {
+  static function hui() {
     echo UI::compile();
   }
 
-	static function schema() {
+  static function schema() {
     global $basePath;
     $schema = SchemaService::getDatabaseSchema();
 
@@ -76,8 +76,8 @@ class Commander {
  */
 
 if (!isset(\$GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 \$HUMANISE_EDITOR_SCHEMA = " . $schema . "
 ?>";
@@ -85,13 +85,13 @@ if (!isset(\$GLOBALS['basePath'])) {
     echo $schema . PHP_EOL;
   }
 
-	static function classes() {
+  static function classes() {
     $success = ClassService::rebuildClasses();
     echo $success ? 'Classes successfully rebuild' : 'ERROR: Classes could not be rebuild';
     echo PHP_EOL;
   }
 
-	static function check() {
+  static function check() {
     if (DatabaseUtil::isCorrect()) {
       echo "The database schema is correct" . PHP_EOL;
     } else {
@@ -100,7 +100,7 @@ if (!isset(\$GLOBALS['basePath'])) {
     echo join(PHP_EOL,DatabaseUtil::buildUpdateSQL()) . PHP_EOL;
   }
 
-	static function full() {
+  static function full() {
     Commander::classes();
     Commander::hui();
   }

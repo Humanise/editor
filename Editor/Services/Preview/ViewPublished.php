@@ -8,13 +8,13 @@ require_once '../../Include/Private.php';
 $page = Page::load(InternalSession::getPageId());
 
 if (strlen($page->getPath())>0) {
-	$path = $page->getPath();
-	if (Strings::startsWith($path,'/')) {
-		Response::redirect('../../..'.$path);
-	} else {
-		Response::redirect('../../../'.$path);
-	}
+  $path = $page->getPath();
+  if (Strings::startsWith($path,'/')) {
+    Response::redirect('../../..'.$path);
+  } else {
+    Response::redirect('../../../'.$path);
+  }
 } else {
-	Response::redirect('../../../?id='.$page->getId());
+  Response::redirect('../../../?id='.$page->getId());
 }
 ?>

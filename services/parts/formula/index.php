@@ -3,20 +3,20 @@ require_once '../../../Editor/Include/Public.php';
 
 $data = Request::getObject('data');
 if (!$data) {
-	Response::badRequest();
-	exit;
+  Response::badRequest();
+  exit;
 }
 $part = FormulaPart::load($data->id);
 if (!$part) {
-	Log::debug($data);
-	Response::badRequest();
-	exit;
+  Log::debug($data);
+  Response::badRequest();
+  exit;
 }
 
 $body = '';
 
 foreach ($data->fields as $field) {
-	$body.= $field->label.": ".$field->value."\n\n";
+  $body.= $field->label.": ".$field->value."\n\n";
 }
 
 $issue = new Issue();
@@ -31,7 +31,7 @@ $receiverName = $part->getReceiverName();
 $receiverEmail = $part->getReceiverEmail();
 
 if (!Strings::isBlank($receiverName) || !Strings::isBlank($receiverEmail)) {
-	MailService::send($receiverEmail,$receiverName,"New form submission",$body);
+  MailService::send($receiverEmail,$receiverName,"New form submission",$body);
 }
 
 ?>

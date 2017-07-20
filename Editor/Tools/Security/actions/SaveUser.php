@@ -8,9 +8,9 @@ require_once '../../../Include/Private.php';
 $data = Request::getObject('data');
 
 if ($data->id>0) {
-	$user = User::load($data->id);
+  $user = User::load($data->id);
 } else {
-	$user = new User();
+  $user = new User();
 }
 $user->setTitle($data->title);
 $user->setNote($data->note);
@@ -21,13 +21,13 @@ $user->setExternal($data->external);
 $user->setAdministrator($data->administrator);
 $user->setLanguage($data->language);
 if ($user->save()) {
-	$password = $data->password;
-	if (Strings::isNotBlank($password)) {
-		AuthenticationService::setPassword($user,$password);
-        $user->save();
-	}
-	$user->publish();
+  $password = $data->password;
+  if (Strings::isNotBlank($password)) {
+    AuthenticationService::setPassword($user,$password);
+    $user->save();
+  }
+  $user->publish();
 } else {
-	Response::badRequest();
+  Response::badRequest();
 }
 ?>

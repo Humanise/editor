@@ -12,40 +12,40 @@ $diagram = new DiagramData();
 $classes = ClassService::getClassInfo();
 
 foreach ($classes as $class) {
-	$parent = $class->getParent();
-	
-	if ($super && !in_array($super,$class->getHierarchy())) {
-		//Log::debug('Skipping: '.$class->getName());
-		continue;
-	}
-	$node = new DiagramNode();
-	$node->setId($class->getName());
-	$node->setTitle($class->getName());
-	$properties = array();
+  $parent = $class->getParent();
 
-	foreach ($class->getProperties() as $property) {
-		if ($property->getOrigin()==$class->getName()) {
-			$properties[] = [
-				'label' => $property->getName(),
-				'value' => $property->getType(),
-				'hint' => $property->getValue()
-			];
-		}
-	}
+  if ($super && !in_array($super,$class->getHierarchy())) {
+    //Log::debug('Skipping: '.$class->getName());
+    continue;
+  }
+  $node = new DiagramNode();
+  $node->setId($class->getName());
+  $node->setTitle($class->getName());
+  $properties = array();
 
-	$node->setProperties($properties);
-	
-	$diagram->addNode($node);
-	
-	$relations = $class->getRelations();
-	
-	foreach ($relations as $relation) {
-		$diagram->addEdge()->from($relation->getFromClass())->to($relation->getToClass())->withLabel($relation->getFromProperty());
-	}
-	
-	if ($class->getParent()) {
-		$diagram->addEdge()->from($class->getName())->to($class->getParent())->withColor('#eee');
-	}
+  foreach ($class->getProperties() as $property) {
+    if ($property->getOrigin()==$class->getName()) {
+      $properties[] = [
+        'label' => $property->getName(),
+        'value' => $property->getType(),
+        'hint' => $property->getValue()
+      ];
+    }
+  }
+
+  $node->setProperties($properties);
+
+  $diagram->addNode($node);
+
+  $relations = $class->getRelations();
+
+  foreach ($relations as $relation) {
+    $diagram->addEdge()->from($relation->getFromClass())->to($relation->getToClass())->withLabel($relation->getFromProperty());
+  }
+
+  if ($class->getParent()) {
+    $diagram->addEdge()->from($class->getName())->to($class->getParent())->withColor('#eee');
+  }
 }
 
 Response::sendObject($diagram);

@@ -13,9 +13,9 @@ $meter = Watermeter::load($usage->getWatermeterId());
 
 
 Response::sendObject(array(
-	'id' => $usage->getId(),
-	'number' => $meter->getNumber(),
-	'value' => $usage->getValue(),
-	'date' => $usage->getDate()
+  'id' => $usage->getId(),
+  'number' => $meter->getNumber(),
+  'value' => $usage->getValue(),
+  'date' => $usage->getDate()
 ));
 ?>

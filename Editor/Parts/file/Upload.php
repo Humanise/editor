@@ -8,11 +8,11 @@ require_once '../../Include/Private.php';
 $response = FileService::createUploadedFile();
 
 if ($response->getSuccess()) {
-	MoviePartController::setLatestUploadId($response->getObject()->getId());
-	Response::uploadSuccess();
+  MoviePartController::setLatestUploadId($response->getObject()->getId());
+  Response::uploadSuccess();
 } else {
-	MoviePartController::setLatestUploadId(null);
-	Log::debug('Unable to upload file');
-	Response::uploadFailure();
+  MoviePartController::setLatestUploadId(null);
+  Log::debug('Unable to upload file');
+  Response::uploadFailure();
 }
 ?>

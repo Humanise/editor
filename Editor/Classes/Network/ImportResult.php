@@ -1,43 +1,43 @@
 <?php
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 class ImportResult {
 
-	var $success = false;
-	var $message = null;
-	var $object = null;
+  var $success = false;
+  var $message = null;
+  var $object = null;
 
-	static function fail($message) {
-		$result = new ImportResult();
-		$result->setMessage($message);
-		return $result;
-	}
+  static function fail($message) {
+    $result = new ImportResult();
+    $result->setMessage($message);
+    return $result;
+  }
 
-	function setSuccess($success) {
+  function setSuccess($success) {
     $this->success = $success;
-	}
+  }
 
-	function getSuccess() {
+  function getSuccess() {
     return $this->success;
-	}
+  }
 
-	function setMessage($message) {
+  function setMessage($message) {
     $this->message = $message;
-	}
+  }
 
-	function getMessage() {
+  function getMessage() {
     return $this->message;
-	}
+  }
 
-	function setObject($object) {
+  function setObject($object) {
     $this->object = $object;
-	}
+  }
 
-	function getObject() {
+  function getObject() {
     return $this->object;
-	}
+  }
 
 }
 ?>

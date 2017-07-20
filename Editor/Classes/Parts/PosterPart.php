@@ -4,35 +4,35 @@
  * @subpackage Classes.Part
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 Entity::$schema['PosterPart'] = array(
-	'table' => 'part_poster',
-	'properties' => array(
-		'recipe' => array( 'type' => 'string' )
-	)
+  'table' => 'part_poster',
+  'properties' => array(
+    'recipe' => array( 'type' => 'string' )
+  )
 );
 
 class PosterPart extends Part
 {
-	var $recipe;
+  var $recipe;
 
-	function PosterPart() {
-		parent::Part('poster');
-	}
+  function PosterPart() {
+    parent::Part('poster');
+  }
 
-	static function load($id) {
-		return Part::get('poster',$id);
-	}
+  static function load($id) {
+    return Part::get('poster',$id);
+  }
 
-	function setRecipe($recipe) {
+  function setRecipe($recipe) {
     $this->recipe = $recipe;
-	}
+  }
 
-	function getRecipe() {
-	  return $this->recipe;
-	}
+  function getRecipe() {
+    return $this->recipe;
+  }
 }
 ?>

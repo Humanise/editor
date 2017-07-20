@@ -9,9 +9,9 @@ $data = Request::getObject('data');
 $product = Product::load($data->id);
 
 Response::sendObject(array(
-	'product' => $product,
-	'attributes' => $product->getAttributes(),
-	'prices' => $product->getPrices(),
-	'groups' => $product->getGroupIds()
+  'product' => $product,
+  'attributes' => $product->getAttributes(),
+  'prices' => $product->getPrices(),
+  'groups' => $product->getGroupIds()
 ));
 ?>

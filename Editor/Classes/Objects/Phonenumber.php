@@ -4,70 +4,70 @@
  * @subpackage Classes
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 Entity::$schema['Phonenumber'] = [
-	'table' => 'phonenumber',
-	'properties' => array(
-    	'number' => array('type'=>'string'),
-    	'context' => array('type'=>'string'),
-    	'containingObjectId'   => array('type'=>'int','column'=>'containing_object_id')
+  'table' => 'phonenumber',
+  'properties' => array(
+      'number' => array('type'=>'string'),
+      'context' => array('type'=>'string'),
+      'containingObjectId'   => array('type'=>'int','column'=>'containing_object_id')
     )
 ];
 
 class Phonenumber extends Object {
-	var $number;
-	var $context;
-	var $containingObjectId=0;
+  var $number;
+  var $context;
+  var $containingObjectId=0;
 
-	function Phonenumber() {
-		parent::Object('phonenumber');
-	}
+  function Phonenumber() {
+    parent::Object('phonenumber');
+  }
 
-	static function load($id) {
-		return Object::get($id,'phonenumber');
-	}
-	
-	function setNumber($number) {
-		$this->title = $number;
-		$this->number = $number;
-	}
+  static function load($id) {
+    return Object::get($id,'phonenumber');
+  }
 
-	function getNumber() {
-		return $this->number;
-	}
-	
-	function setContext($context) {
-		$this->context = $context;
-	}
+  function setNumber($number) {
+    $this->title = $number;
+    $this->number = $number;
+  }
 
-	function getContext() {
-		return $this->context;
-	}
+  function getNumber() {
+    return $this->number;
+  }
 
-	function setContainingObjectId($id) {
-		$this->containingObjectId = $id;
-	}
+  function setContext($context) {
+    $this->context = $context;
+  }
 
-	function getContainingObjectId() {
-		return $this->containingObjectId;
-	}
+  function getContext() {
+    return $this->context;
+  }
+
+  function setContainingObjectId($id) {
+    $this->containingObjectId = $id;
+  }
+
+  function getContainingObjectId() {
+    return $this->containingObjectId;
+  }
 
     /////////////////////////// Persistence ////////////////////////
 
-	function sub_publish() {
-		$data =
-		'<phonenumber xmlns="'.parent::_buildnamespace('1.0').'">'.
-		'</phonenumber>';
-		return $data;
-	}
-	
-	/////////////////////////// GUI /////////////////////////
-		
-	function getIcon() {
-		return "common/phone";
-	}
+  function sub_publish() {
+    $data =
+    '<phonenumber xmlns="'.parent::_buildnamespace('1.0').'">'.
+    '</phonenumber>';
+    return $data;
+  }
+
+  /////////////////////////// GUI /////////////////////////
+
+  function getIcon() {
+    return "common/phone";
+  }
 }
 ?>

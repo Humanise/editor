@@ -9,8 +9,8 @@ $id = Request::getInt('id');
 
 $row = DocumentTemplateEditor::loadRow($id);
 if ($row) {
-	Response::sendObject($row);
+  Response::sendObject($row);
 } else {
-	Response::notFound();
+  Response::notFound();
 }
 ?>

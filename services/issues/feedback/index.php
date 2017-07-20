@@ -6,18 +6,18 @@ $email = Request::getString('email');
 $pageId = Request::getInt('pageId');
 
 if (Strings::isBlank($text)) {
-	Response::badRequest('No text!');
-	exit;
+  Response::badRequest('No text!');
+  exit;
 }
 
 $page = Page::load($pageId);
 
 $title = 'Feedback';
 if ($page) {
-	$title.=' : '.$page->getTitle();
+  $title.=' : '.$page->getTitle();
 }
 if (Strings::isNotBlank($email)) {
-	$title.=' : '.$email;
+  $title.=' : '.$email;
 }
 
 $issue = new Issue();
@@ -29,6 +29,6 @@ $issue->publish();
 
 
 if ($page) {
-	RelationsService::relateObjectToPage($issue,$page,'subject');
+  RelationsService::relateObjectToPage($issue,$page,'subject');
 }
 ?>

@@ -4,79 +4,79 @@
  * @subpackage Classes.Part
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 Entity::$schema['ImagePart'] = [
-	'table' => 'part_image',
-	'properties' => [
-		'imageId' => ['type'=>'int', 'column' => 'image_id','relation'=>['class'=>'Image','property'=>'id']],
-		'text' => [ 'type' => 'string' ],
-		'align' => [ 'type' => 'string' ],
-		'frame' => [ 'type' => 'string' ],
-		'greyscale' => [ 'type' => 'boolean' ],
-		'adaptive' => [ 'type' => 'boolean' ],
-		'scaleMethod' => [ 'type' => 'string', 'column' => 'scalemethod' ],
-		'scalePercent' => [ 'type' => 'int', 'column' => 'scalepercent' ],
-		'scaleWidth' => [ 'type' => 'int', 'column' => 'scalewidth' ],
-		'scaleHeight' => [ 'type' => 'int', 'column' => 'scaleheight' ]
-	]
+  'table' => 'part_image',
+  'properties' => [
+    'imageId' => ['type'=>'int', 'column' => 'image_id','relation'=>['class'=>'Image','property'=>'id']],
+    'text' => [ 'type' => 'string' ],
+    'align' => [ 'type' => 'string' ],
+    'frame' => [ 'type' => 'string' ],
+    'greyscale' => [ 'type' => 'boolean' ],
+    'adaptive' => [ 'type' => 'boolean' ],
+    'scaleMethod' => [ 'type' => 'string', 'column' => 'scalemethod' ],
+    'scalePercent' => [ 'type' => 'int', 'column' => 'scalepercent' ],
+    'scaleWidth' => [ 'type' => 'int', 'column' => 'scalewidth' ],
+    'scaleHeight' => [ 'type' => 'int', 'column' => 'scaleheight' ]
+  ]
 ];
 
 class ImagePart extends Part
 {
-	var $imageId;
-	var $text;
-	var $align;
-	var $greyscale;
-	var $adaptive;
-	var $scaleMethod;
-	var $scalePercent;
-	var $scaleWidth;
-	var $scaleHeight;
-	var $frame;
+  var $imageId;
+  var $text;
+  var $align;
+  var $greyscale;
+  var $adaptive;
+  var $scaleMethod;
+  var $scalePercent;
+  var $scaleWidth;
+  var $scaleHeight;
+  var $frame;
 
-	function ImagePart() {
-		parent::Part('image');
-	}
+  function ImagePart() {
+    parent::Part('image');
+  }
 
-	static function load($id) {
-		return Part::get('image',$id);
-	}
+  static function load($id) {
+    return Part::get('image',$id);
+  }
 
-	function setImageId($imageId) {
+  function setImageId($imageId) {
     $this->imageId = $imageId;
-	}
+  }
 
-	function getImageId() {
-	    return $this->imageId;
-	}
+  function getImageId() {
+      return $this->imageId;
+  }
 
-	function setText($text) {
+  function setText($text) {
     $this->text = $text;
-	}
+  }
 
-	function getText() {
+  function getText() {
     return $this->text;
-	}
+  }
 
-	function setAlign($align) {
+  function setAlign($align) {
     $this->align = $align;
-	}
+  }
 
-	function getAlign() {
+  function getAlign() {
     return $this->align;
-	}
+  }
 
 
-	function setGreyscale($greyscale) {
+  function setGreyscale($greyscale) {
     $this->greyscale = $greyscale;
-	}
+  }
 
-	function getGreyscale() {
+  function getGreyscale() {
     return $this->greyscale;
-	}
+  }
 
   function setAdaptive($adaptive) {
     $this->adaptive = $adaptive;
@@ -87,45 +87,45 @@ class ImagePart extends Part
   }
 
 
-	function setScaleMethod($scaleMethod) {
+  function setScaleMethod($scaleMethod) {
     $this->scaleMethod = $scaleMethod;
-	}
+  }
 
-	function getScaleMethod() {
+  function getScaleMethod() {
     return $this->scaleMethod;
-	}
+  }
 
-	function setScalePercent($scalePercent) {
+  function setScalePercent($scalePercent) {
     $this->scalePercent = $scalePercent;
-	}
+  }
 
-	function getScalePercent() {
+  function getScalePercent() {
     return $this->scalePercent;
-	}
+  }
 
-	function setScaleWidth($scaleWidth) {
+  function setScaleWidth($scaleWidth) {
     $this->scaleWidth = $scaleWidth;
-	}
+  }
 
-	function getScaleWidth() {
+  function getScaleWidth() {
     return $this->scaleWidth;
-	}
+  }
 
-	function setScaleHeight($scaleHeight) {
+  function setScaleHeight($scaleHeight) {
     $this->scaleHeight = $scaleHeight;
-	}
+  }
 
-	function getScaleHeight() {
+  function getScaleHeight() {
     return $this->scaleHeight;
-	}
+  }
 
-	function setFrame($frame) {
+  function setFrame($frame) {
     $this->frame = $frame;
-	}
+  }
 
-	function getFrame() {
+  function getFrame() {
     return $this->frame;
-	}
+  }
 
 
 }

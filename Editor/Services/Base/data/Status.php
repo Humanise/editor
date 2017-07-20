@@ -7,7 +7,7 @@ require_once '../../../Include/Private.php';
 
 
 Response::sendObject(array(
-	'unpublished' => PublishingService::getTotalUnpublishedCount()
+  'unpublished' => PublishingService::getTotalUnpublishedCount()
 ));
 
 ?>

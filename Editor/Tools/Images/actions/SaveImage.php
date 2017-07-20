@@ -9,9 +9,9 @@ $data = Request::getObject('data');
 
 $object = Image::load($data->id);
 if ($object) {
-	$object->changeGroups($data->groups);
-	$object->setTitle($data->title);
-	$object->save();
-	$object->publish();
+  $object->changeGroups($data->groups);
+  $object->setTitle($data->title);
+  $object->save();
+  $object->publish();
 }
 ?>

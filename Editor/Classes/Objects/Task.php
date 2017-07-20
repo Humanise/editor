@@ -4,82 +4,82 @@
  * @subpackage Classes
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 Entity::$schema['Task'] = [
-	'table' => 'task',
-	'properties' => [
-    	'deadline' => array('type'=>'datetime'),
-    	'completed' => array('type'=>'boolean'),
-    	'containingObjectId' => array('type'=>'int','column'=>'containing_object_id'),
-    	'milestoneId' => array('type'=>'int','column'=>'milestone_id'),
-    	'priority' => array('type'=>'float')
-	]
+  'table' => 'task',
+  'properties' => [
+      'deadline' => array('type'=>'datetime'),
+      'completed' => array('type'=>'boolean'),
+      'containingObjectId' => array('type'=>'int','column'=>'containing_object_id'),
+      'milestoneId' => array('type'=>'int','column'=>'milestone_id'),
+      'priority' => array('type'=>'float')
+  ]
 ];
 
 class Task extends Object {
 
-	var $deadline;
-	var $completed = false;
-	var $containingObjectId = 0;
-	var $milestoneId = 0;
-	var $priority;
+  var $deadline;
+  var $completed = false;
+  var $containingObjectId = 0;
+  var $milestoneId = 0;
+  var $priority;
 
-	function Task() {
-		parent::Object('task');
-	}
+  function Task() {
+    parent::Object('task');
+  }
 
-	static function load($id) {
-		return Object::get($id,'task');
-	}
+  static function load($id) {
+    return Object::get($id,'task');
+  }
 
-	function setDeadline($deadline) {
-		$this->deadline = $deadline;
-	}
+  function setDeadline($deadline) {
+    $this->deadline = $deadline;
+  }
 
-	function getDeadline() {
-		return $this->deadline;
-	}
+  function getDeadline() {
+    return $this->deadline;
+  }
 
-	function setCompleted($completed) {
-		$this->completed = $completed;
-	}
+  function setCompleted($completed) {
+    $this->completed = $completed;
+  }
 
-	function getCompleted() {
-		return $this->completed;
-	}
+  function getCompleted() {
+    return $this->completed;
+  }
 
-	function setContainingObjectId($id) {
-		$this->containingObjectId = $id;
-	}
+  function setContainingObjectId($id) {
+    $this->containingObjectId = $id;
+  }
 
-	function getContainingObjectId() {
-		return $this->containingObjectId;
-	}
+  function getContainingObjectId() {
+    return $this->containingObjectId;
+  }
 
-	function setMilestoneId($id) {
-		$this->milestoneId = $id;
-	}
+  function setMilestoneId($id) {
+    $this->milestoneId = $id;
+  }
 
-	function getMilestoneId() {
-		return $this->milestoneId;
-	}
-	
-	function setPriority($priority) {
-	    $this->priority = $priority;
-	}
+  function getMilestoneId() {
+    return $this->milestoneId;
+  }
 
-	function getPriority() {
-	    return $this->priority;
-	}
-	
-	function sub_publish() {
-		$data =
-		'<task xmlns="'.parent::_buildnamespace('1.0').'">'.
-		'</task>';
-		return $data;
-	}
+  function setPriority($priority) {
+      $this->priority = $priority;
+  }
+
+  function getPriority() {
+      return $this->priority;
+  }
+
+  function sub_publish() {
+    $data =
+    '<task xmlns="'.parent::_buildnamespace('1.0').'">'.
+    '</task>';
+    return $data;
+  }
 }
 ?>

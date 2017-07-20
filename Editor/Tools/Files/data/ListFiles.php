@@ -14,10 +14,10 @@ $windowPage = Request::getInt('windowPage',0);
 $sort = Request::getString('sort');
 $direction = Request::getString('direction');
 if (!$sort) {
-	$sort='title';
+  $sort='title';
 }
 if (!$direction) {
-	$direction='ascending';
+  $direction='ascending';
 }
 
 InternalSession::setToolSessionVar('files','group',$group);
@@ -28,13 +28,13 @@ $query = array('windowSize' => $windowSize,'windowPage' => $windowPage,'sort' =>
 if ($queryString!='') $query['query'] = $queryString;
 
 if ($group>0) {
-	$query['filegroup'] = $group;
+  $query['filegroup'] = $group;
 }
 if ($type) {
-	$query['mimetypes'] = FileService::kindToMimeTypes($type);
+  $query['mimetypes'] = FileService::kindToMimeTypes($type);
 }
 if ($main=='latest') {
-	$query['createdMin'] = Dates::addDays(time(),-1);
+  $query['createdMin'] = Dates::addDays(time(),-1);
 }
 
 $list = File::find($query);
@@ -53,18 +53,18 @@ $writer->header(array('title'=>array('Modified','da'=>'Ændret')));
 $writer->endHeaders();
 
 foreach ($objects as $object) {
-	$writer->
-	startRow(array('kind'=>'file','id'=>$object->getId(),'icon'=>$object->getIcon(),'title'=>$object->getTitle()))->
-		startCell(array('icon'=>$object->getIcon()))->
-			startLine()->startWrap()->text($object->getTitle())->endWrap()->endLine()->
-		endCell()->
-		startCell()->
-			startLine(array('dimmed'=>true))->text(FileService::mimeTypeToLabel($object->getMimeType()))->endLine()->
-			//startLine(array('dimmed'=>true))->text($object->getFilename())->endLine()->
-		endCell()->
-		startCell()->startLine(array('dimmed'=>true))->text(GuiUtils::bytesToString($object->getSize()))->endLine()->endCell()->
-		startCell()->startLine(array('dimmed'=>true))->text(Dates::formatDateTime($object->getUpdated()))->endLine()->endCell()->
-	endRow();
+  $writer->
+  startRow(array('kind'=>'file','id'=>$object->getId(),'icon'=>$object->getIcon(),'title'=>$object->getTitle()))->
+    startCell(array('icon'=>$object->getIcon()))->
+      startLine()->startWrap()->text($object->getTitle())->endWrap()->endLine()->
+    endCell()->
+    startCell()->
+      startLine(array('dimmed'=>true))->text(FileService::mimeTypeToLabel($object->getMimeType()))->endLine()->
+      //startLine(array('dimmed'=>true))->text($object->getFilename())->endLine()->
+    endCell()->
+    startCell()->startLine(array('dimmed'=>true))->text(GuiUtils::bytesToString($object->getSize()))->endLine()->endCell()->
+    startCell()->startLine(array('dimmed'=>true))->text(Dates::formatDateTime($object->getUpdated()))->endLine()->endCell()->
+  endRow();
 }
 $writer->endList();
 ?>

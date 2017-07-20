@@ -8,8 +8,8 @@ require_once '../../../Include/Private.php';
 $id = Request::getInt('id');
 
 if ($obj = Frame::load($id)) {
-	$obj->remove();
+  $obj->remove();
 } else {
-	Response::badRequest();
+  Response::badRequest();
 }
 ?>

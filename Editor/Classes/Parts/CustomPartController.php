@@ -4,25 +4,25 @@
  * @subpackage Classes.Part
  */
 if (!isset($GLOBALS['basePath'])) {
-	header('HTTP/1.1 403 Forbidden');
-	exit;
+  header('HTTP/1.1 403 Forbidden');
+  exit;
 }
 
 class CustomPartController extends PartController
 {
-	function CustomPartController() {
-		parent::PartController('custom');
-	}
+  function CustomPartController() {
+    parent::PartController('custom');
+  }
 
-	static function createPart() {
-		$part = new CustomPart();
-		$part->save();
-		return $part;
-	}
+  static function createPart() {
+    $part = new CustomPart();
+    $part->save();
+    return $part;
+  }
 
-	function display($part,$context) {
-		return $this->render($part,$context) . $this->resources($part);
-	}
+  function display($part,$context) {
+    return $this->render($part,$context) . $this->resources($part);
+  }
 
   private function resources($part) {
     $view = View::load($part->getViewId());
@@ -43,31 +43,31 @@ class CustomPartController extends PartController
     return $css;
   }
 
-	function editor($part,$context) {
+  function editor($part,$context) {
 
-		return '<div id="part_custom_container">' . $this->render($part,$context) . '</div>' .
+    return '<div id="part_custom_container">' . $this->render($part,$context) . '</div>' .
       $this->resources($part) .
 
     $this->buildHiddenFields([
-			'workflowId' => $part->getWorkflowId(),
-			'viewId' => $part->getViewId()
+      'workflowId' => $part->getWorkflowId(),
+      'viewId' => $part->getViewId()
     ]) .
-		'<script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/custom/editor.js" type="text/javascript" charset="utf-8"></script>';
-	}
+    '<script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/custom/editor.js" type="text/javascript" charset="utf-8"></script>';
+  }
 
-	function getFromRequest($id) {
-		$part = CustomPart::load($id);
-		$part->setWorkflowId(Request::getInt('workflowId'));
-		$part->setViewId(Request::getInt('viewId'));
-		return $part;
-	}
+  function getFromRequest($id) {
+    $part = CustomPart::load($id);
+    $part->setWorkflowId(Request::getInt('workflowId'));
+    $part->setViewId(Request::getInt('viewId'));
+    return $part;
+  }
 
-	function isDynamic($part) {
-		return true;
-	}
+  function isDynamic($part) {
+    return true;
+  }
 
-	function buildSub($part,$context) {
-		$xml='<custom xmlns="'.$this->getNamespace().'">';
+  function buildSub($part,$context) {
+    $xml='<custom xmlns="'.$this->getNamespace().'">';
     $workflow = Workflow::load($part->getWorkflowId());
     $view = View::load($part->getViewId());
     if ($workflow && $view) {
@@ -104,46 +104,46 @@ class CustomPartController extends PartController
         $xml.= '<rendered xmlns="http://www.w3.org/1999/xhtml">' . $rendered . '</rendered>';
       }
     }
-		$xml.='</custom>';
-		return $xml;
-	}
+    $xml.='</custom>';
+    return $xml;
+  }
 
-	function importSub($node,$part) {
-/*		if ($object = DOMUtils::getFirstDescendant($node,'object')) {
-			if ($id = intval($object->getAttribute('id'))) {
-				$part->setFileId($id);
-			}
-		}
-		if ($text = DOMUtils::getFirstDescendant($node,'text')) {
-			$part->setText(DOMUtils::getText($text));
-		}*/
-	}
-
-
-	function getToolbars() {
-		return array(
-			GuiUtils::getTranslated(['Custom','da'=>'Speciel']) => '
-			<item label="{Workflow; da:Arbejdsgang}">
-				<dropdown name="workflow" width="200">'.UI::buildOptions('workflow').'</dropdown>
-			</item>
-			<item label="{View; da:Visning}">
-				<dropdown name="view" width="200">'.UI::buildOptions('view').'</dropdown>
-			</item>
-		'
-		);
-	}
+  function importSub($node,$part) {
+/*    if ($object = DOMUtils::getFirstDescendant($node,'object')) {
+      if ($id = intval($object->getAttribute('id'))) {
+        $part->setFileId($id);
+      }
+    }
+    if ($text = DOMUtils::getFirstDescendant($node,'text')) {
+      $part->setText(DOMUtils::getText($text));
+    }*/
+  }
 
 
+  function getToolbars() {
+    return array(
+      GuiUtils::getTranslated(['Custom','da'=>'Speciel']) => '
+      <item label="{Workflow; da:Arbejdsgang}">
+        <dropdown name="workflow" width="200">'.UI::buildOptions('workflow').'</dropdown>
+      </item>
+      <item label="{View; da:Visning}">
+        <dropdown name="view" width="200">'.UI::buildOptions('view').'</dropdown>
+      </item>
+    '
+    );
+  }
 
-	function getEditorUI($part,$context) {
-		return '
-		<window title="{Add file; da:Tilføj fil}" name="customPartWindow" width="300" padding="10">
-			<buttons align="center" top="10">
-				<button name="cancelUpload" text="{Close; da:Luk}"/>
-				<button name="upload" text="{Select file...; da:Vælg fil...}" highlighted="true"/>
-			</buttons>
-		</window>
-		';
-	}
+
+
+  function getEditorUI($part,$context) {
+    return '
+    <window title="{Add file; da:Tilføj fil}" name="customPartWindow" width="300" padding="10">
+      <buttons align="center" top="10">
+        <button name="cancelUpload" text="{Close; da:Luk}"/>
+        <button name="upload" text="{Select file...; da:Vælg fil...}" highlighted="true"/>
+      </buttons>
+    </window>
+    ';
+  }
 }
 ?>
