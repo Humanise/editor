@@ -14,33 +14,33 @@ $writer->startItems();
 
 $writer->title('Status');
 foreach ($states as $info) {
-  $writer->item(array(
+  $writer->item([
     'value' => $info['status'],
     'title' => WaterusageService::getStatusText($info['status']),
     'badge' => $info['count'],
     'icon' => WaterusageService::getStatusIcon($info['status']),
     'kind' => 'status'
-  ));
+  ]);
 }
 
 $writer->title('Aflæsninger');
-$writer->item(array(
+$writer->item([
   'value' => 'usage',
   'title' => 'Alle aflæsninger',
   'icon' => 'common/water'
-));
+]);
 
 foreach ($years as $info) {
   if (!$info['year']) {
     continue;
   }
-  $writer->item(array(
+  $writer->item([
     'value'=>$info['year'],
     'title'=>$info['year'],
     'badge'=>$info['count'],
     'icon'=>'common/time',
     'kind'=>'year'
-  ));
+  ]);
 }
 $writer->endItems();
 ?>

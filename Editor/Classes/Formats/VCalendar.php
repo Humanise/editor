@@ -10,7 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 }
 class VCalendar {
 
-  var $events = array();
+  var $events = [];
   var $version;
   var $title;
   var $timeZone;
@@ -24,7 +24,7 @@ class VCalendar {
 
   function getEvents($comparator=null) {
     if ($comparator == 'startDate') {
-      usort($this->events,array('VCalendar','startDateComparator'));
+      usort($this->events,['VCalendar','startDateComparator']);
     }
     return $this->events;
   }

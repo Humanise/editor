@@ -25,7 +25,7 @@ if ($clipboard && $clipboard['type']=='section') {
       DocumentTemplateEditor::deleteSection($clipboard['id']);
       ClipboardService::clear();
     }
-    Response::sendObject(array('sectionId'=>$sectionId));
+    Response::sendObject(['sectionId'=>$sectionId]);
     exit;
   }
 }

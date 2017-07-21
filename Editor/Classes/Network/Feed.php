@@ -10,7 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 class Feed {
 
-  var $items = array();
+  var $items = [];
   var $format;
   var $title;
   var $link;

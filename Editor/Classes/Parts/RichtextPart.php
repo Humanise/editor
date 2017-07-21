@@ -10,9 +10,9 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['RichtextPart'] = [
   'table' => 'part_richtext',
-  'properties' => array(
-    'html' => array( 'type' => 'string' )
-  )
+  'properties' => [
+    'html' => [ 'type' => 'string' ]
+  ]
 ];
 
 class RichtextPart extends Part

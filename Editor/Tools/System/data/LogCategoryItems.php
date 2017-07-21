@@ -10,9 +10,9 @@ $categories = LogService::getUsedCategories();
 $writer = new ItemsWriter();
 
 $writer->startItems();
-$writer->item(array('value'=>'all','title'=>array('All categories','da'=>'Alle kategorier')));
+$writer->item(['value'=>'all','title'=>['All categories','da'=>'Alle kategorier']]);
 foreach($categories as $category) {
-  $writer->startItem(array('value'=>$category,'title'=>$category))->endItem();
+  $writer->startItem(['value'=>$category,'title'=>$category])->endItem();
 }
 $writer->endItems();
 ?>

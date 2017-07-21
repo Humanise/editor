@@ -20,7 +20,7 @@ class PartContext {
   var $language;
 
   function PartContext() {
-    $this->displayLinks = array();
+    $this->displayLinks = [];
     //$this->buildLinks = array();
     $this->template = 'document';
     $this->design = 'basic';

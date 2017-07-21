@@ -10,11 +10,11 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['News'] = [
     'table' => 'news',
-    'properties' => array(
-      'imageId'   => array('type'=>'int','column'=>'image_id'),
-      'startdate'  => array('type'=>'datetime'),
-      'enddate'  => array('type'=>'datetime')
-    )
+    'properties' => [
+      'imageId'   => ['type'=>'int','column'=>'image_id'],
+      'startdate'  => ['type'=>'datetime'],
+      'enddate'  => ['type'=>'datetime']
+    ]
 ];
 
 class News extends Object {

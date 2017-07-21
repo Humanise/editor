@@ -10,7 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 class FeedParser {
 
-  var $log = array();
+  var $log = [];
 
   function FeedParser() {
   }

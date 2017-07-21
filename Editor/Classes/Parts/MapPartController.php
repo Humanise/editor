@@ -34,7 +34,7 @@ class MapPartController extends PartController
 
   function editor($part,$context) {
     return
-    $this->buildHiddenFields(array(
+    $this->buildHiddenFields([
       "provider" => $part->getProvider(),
       "longitude" => $part->getLongitude(),
       "latitude" => $part->getLatitude(),
@@ -45,7 +45,7 @@ class MapPartController extends PartController
       "mapwidth" => $part->getWidth(),
       "mapheight" => $part->getHeight(),
       "frame" => $part->getFrame()
-    )).
+    ]).
     '<div id="part_map_container">'.
     $this->render($part,$context).
     '</div>

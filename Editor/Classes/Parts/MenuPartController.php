@@ -97,8 +97,8 @@ class MenuPartController extends PartController
   }
 
   function getToolbars() {
-    return array(
-      GuiUtils::getTranslated(array('Menu','da'=>'Menu')) => '
+    return [
+      GuiUtils::getTranslated(['Menu','da'=>'Menu']) => '
       <icon icon="common/info" text="{Info; da:Info}" name="info"/>
       <divider/>
       <item label="{Variant; da:Variant}">
@@ -113,7 +113,7 @@ class MenuPartController extends PartController
         <number-input name="depth" min="0" max="20" width="60"/>
       </item>
     '
-    );
+    ];
   }
 
   function getEditorUI($part,$context) {
@@ -151,13 +151,13 @@ class MenuPartController extends PartController
   }
 
   function getUI() {
-    return array(
-      array(
+    return [
+      [
         'icon' => 'monochrome/text',
         'key' => 'menu',
         'body' => _getFormula()
-      )
-    );
+      ]
+    ];
   }
 }
 ?>

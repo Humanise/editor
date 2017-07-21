@@ -8,12 +8,12 @@ require_once '../../../Include/Private.php';
 $weblog = WeblogTemplate::load(Request::getId());
 
 if ($weblog) {
-  $values = array(
+  $values = [
     'id' => $weblog->getId(),
     'title' => $weblog->getTitle(),
     'blueprint' => $weblog->getPageBlueprintId(),
     'groups' => $weblog->getGroupIds()
-  );
+  ];
 
   Response::sendObject($values);
 } else {

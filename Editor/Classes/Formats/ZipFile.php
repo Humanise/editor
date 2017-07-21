@@ -18,7 +18,7 @@ class ZipFile {
 
   function getFiles() {
     $list = $this->delegate->listContent();
-    $files = array();
+    $files = [];
 
     foreach ($list as $file) {
       $base = basename($file['filename']);

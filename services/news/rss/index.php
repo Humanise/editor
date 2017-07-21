@@ -25,7 +25,7 @@ function group($id) {
 
   $sql = "select object.id,object.title,object.note,UNIX_TIMESTAMP(news.startdate) as startdate,object_link.target_type,object_link.target_value from news,newsgroup_news,object left join object_link on object.id = object_link.object_id where object.id=news.object_id and newsgroup_news.news_id = news.object_id and newsgroup_news.newsgroup_id=".Database::int($id)." order by startdate desc,id,object_link.position";
   $result = Database::select($sql);
-  $ids[] = array();
+  $ids[] = [];
   while ($row = Database::next($result)) {
     if (!in_array($row['id'],$ids)) {
       $item = new FeedItem();

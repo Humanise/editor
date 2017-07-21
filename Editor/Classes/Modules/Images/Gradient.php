@@ -4,10 +4,10 @@ if (!isset($GLOBALS['basePath'])) {
   exit;
 }
 class Gradient {
-  var $red = array();
-  var $green = array();
-  var $blue = array();
-  var $position = array();
+  var $red = [];
+  var $green = [];
+  var $blue = [];
+  var $position = [];
   var $rotation = 0;
   var $vertical = false;
 
@@ -60,10 +60,10 @@ class Gradient {
 
   function clearcache()
   {
-    $this->red = array();
-    $this->green = array();
-    $this->blue = array();
-    $this->position = array();
+    $this->red = [];
+    $this->green = [];
+    $this->blue = [];
+    $this->position = [];
     $this->rotation = 0;
     return true;
   }

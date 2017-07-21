@@ -13,12 +13,12 @@ $writer = new ItemsWriter();
 $writer->startItems();
 
 foreach ($groups as $group) {
-  $options = array(
+  $options = [
     'value' => $group['id'],
     'title' => $group['title'],
     'icon' => 'common/folder',
     'kind' => 'imagegroup'
-  );
+  ];
   if ($group['count']>0) {
     $options['badge'] = $group['count'];
   }
@@ -26,13 +26,13 @@ foreach ($groups as $group) {
 }
 
 if ($notInGroup>0) {
-  $options = array(
+  $options = [
     'value'=>-1,
     'title'=>'Ikke i gruppe',
     'icon'=>'common/folder_grey',
     'kind'=>'nogroup',
     'badge' => $notInGroup,
-  );
+  ];
   $writer->startItem($options)->endItem();
 }
 

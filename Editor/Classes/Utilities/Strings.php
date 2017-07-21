@@ -128,7 +128,7 @@ class Strings {
   }
 
   static function insertLineBreakTags($input,$tag) {
-    return str_replace(array("\r\n","\r","\n"), $tag, $input);
+    return str_replace(["\r\n","\r","\n"], $tag, $input);
   }
 
   static function toBoolean($var) {
@@ -136,7 +136,7 @@ class Strings {
   }
 
   static function splitIntegers($str) {
-    $arr = array();
+    $arr = [];
     $parts = preg_split('/\\,/',$str);
     foreach ($parts as $part) {
       $part = trim($part);
@@ -190,7 +190,7 @@ class Strings {
    */
   static function summarizeAndHighlight($keywords,$text) {
     $lower=mb_strtolower($text,'UTF-8');
-    $positions = array();
+    $positions = [];
     $out = '';
     for ($i=0; $i<count($keywords); $i++) {
       $word=mb_strtolower($keywords[$i],'UTF-8');
@@ -350,7 +350,7 @@ class Strings {
   }
 
   static function extract($str,$start,$stop,$encoding='UTF-8') {
-    $extracted = array();
+    $extracted = [];
     $pos = 0;
     while ($pos!==false) {
       $from = mb_strpos($str,$start,$pos,$encoding);

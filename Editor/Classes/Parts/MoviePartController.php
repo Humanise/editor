@@ -128,14 +128,14 @@ class MoviePartController extends PartController
 
 
   function getToolbars() {
-    return array(
-      GuiUtils::getTranslated(array('Movie','da'=>'Film')) =>'
+    return [
+      GuiUtils::getTranslated(['Movie','da'=>'Film']) =>'
         <icon icon="common/new" text="{Add file; da:Tilføj fil}" name="addFile"/>
         <icon icon="common/search" text="{Select file; da:Vælg fil}" name="chooseFile"/>
         <divider/>
         <icon icon="common/info" text="{Info; da:Info}" name="info"/>
       '
-    );
+    ];
   }
 
   function getEditorUI($part,$context) {

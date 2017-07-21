@@ -41,7 +41,7 @@ class ReviewService {
       }
 
     }
-    $list = array();
+    $list = [];
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
       $combo = new ReviewCombo();

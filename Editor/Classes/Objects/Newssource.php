@@ -10,11 +10,11 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['Newssource'] = [
     'table' => 'newssource',
-    'properties' => array(
-      'url' => array('type'=>'string'),
-      'synchronized'    => array('type'=>'datetime'),
-      'syncInterval'    => array('type'=>'int','column'=>'sync_interval')
-    )
+    'properties' => [
+      'url' => ['type'=>'string'],
+      'synchronized'    => ['type'=>'datetime'],
+      'syncInterval'    => ['type'=>'int','column'=>'sync_interval']
+    ]
 ];
 
 class Newssource extends Object {

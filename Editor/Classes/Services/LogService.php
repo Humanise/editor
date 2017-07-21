@@ -10,7 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 class LogService {
 
-  static function getEntries($query=array()) {
+  static function getEntries($query=[]) {
     $page = 0;
     $size = 10;
     if (isset($query['page'])) {

@@ -175,8 +175,8 @@ class TextPartController extends PartController
 
 
   function getToolbars() {
-    return array(
-      GuiUtils::getTranslated(array('Text','da'=>'Tekst')) =>
+    return [
+      GuiUtils::getTranslated(['Text','da'=>'Tekst']) =>
       '
       <item label="{Size; da:Størrelse}">
         <style-length-input name="fontSize" width="90"/>
@@ -213,7 +213,7 @@ class TextPartController extends PartController
       </item>
       ',
 
-    GuiUtils::getTranslated(array('Advanced','da'=>'Avanceret')) =>
+    GuiUtils::getTranslated(['Advanced','da'=>'Avanceret']) =>
       '
       <item label="{Word spacing; da:Ord-mellemrum}">
         <style-length-input name="wordSpacing" width="90"/>
@@ -248,7 +248,7 @@ class TextPartController extends PartController
       </item>
       ',
 
-    GuiUtils::getTranslated(array('Image','da'=>'Billede')) =>
+    GuiUtils::getTranslated(['Image','da'=>'Billede']) =>
       '
       <icon text="{Select image; da:Vælg billede}" icon="common/image" overlay="search" name="chooseImage"/>
       <item label="{Image; da:Billede}">
@@ -278,7 +278,7 @@ class TextPartController extends PartController
         </segmented>
       </item>
       '
-      );
+      ];
   }
 }
 ?>

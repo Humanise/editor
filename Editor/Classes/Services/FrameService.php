@@ -15,9 +15,9 @@ class FrameService {
     if (!$hierarchy) {
       return false;
     }
-    $sql = array(
+    $sql = [
       'table' => 'frame',
-      'values' => array(
+      'values' => [
         'title' => Database::text($frame->getTitle()),
         'name' => Database::text($frame->getName()),
         'bottomtext' => Database::text($frame->getBottomText()),
@@ -27,9 +27,9 @@ class FrameService {
         'searchpage_id' => Database::int($frame->getSearchPageId()),
         'userstatusenabled' => Database::boolean($frame->getUserStatusEnabled()),
         'userstatuspage_id' => Database::int($frame->getLoginPageId())
-      ),
-      'where' => array( 'id' => $frame->getId())
-    );
+      ],
+      'where' => [ 'id' => $frame->getId()]
+    ];
     if ($frame->getId()>0) {
       Database::update($sql);
     } else {
@@ -39,14 +39,14 @@ class FrameService {
   }
 
   static function getLinks($frame,$position) {
-    $links = array();
+    $links = [];
     $sql = "select frame_link.*,page.title as page_title,object.title as object_title from frame_link left join page on page.id=`frame_link`.`target_id` left join object on object.id=`frame_link`.`target_id` where frame_link.frame_id=".Database::int($frame->getId())." and frame_link.position=".Database::text($position)." order by frame_link.`index`";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
-      $link = array(
+      $link = [
         'text' => $row['title'],
         'kind' => $row['target_type'],
-      );
+      ];
       if ($row['target_type']=='page') {
         $link['value'] = $row['target_id'];
         $link['info'] = $row['page_title'];
@@ -99,9 +99,9 @@ class FrameService {
         $value = $link->value;
       }
       if ($type) {
-        $sql = array(
+        $sql = [
           'table'=>'frame_link',
-          'values'=> array(
+          'values'=> [
             'frame_id' => Database::int($frame->getId()),
             'position' => Database::text($position),
             'title' => Database::text($link->text),
@@ -109,8 +109,8 @@ class FrameService {
             'target_id' => Database::int($id),
             'target_value' => Database::text($value),
             'index' => Database::int($index)
-          )
-        );
+          ]
+        ];
         Database::insert($sql);
       }
       $index++;
@@ -153,7 +153,7 @@ class FrameService {
   }
 
   static function search() {
-    $list = array();
+    $list = [];
     $sql = "select id,title,bottomtext,name,hierarchy_id,UNIX_TIMESTAMP(changed) as changed from frame order by name";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
@@ -203,9 +203,9 @@ class FrameService {
         //$block->startdate = Dates::parseRFC3339($block->startdate);
         //$block->enddate = Dates::parseRFC3339($block->enddate);
       }
-      $sql = array(
+      $sql = [
         'table'=>'frame_newsblock',
-        'values'=> array(
+        'values'=> [
           'frame_id' => Database::int($frame->getId()),
           'title' => Database::text($block->title),
           'sortby' => Database::text($block->sortby),
@@ -215,8 +215,8 @@ class FrameService {
           'timecount' => Database::int($block->timecount),
           'startdate' => Database::datetime($block->startdate),
           'enddate' => Database::datetime($block->enddate)
-        )
-      );
+        ]
+      ];
       Database::insert($sql);
     }
   }

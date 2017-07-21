@@ -30,17 +30,17 @@ $writer = new ListWriter();
 
 $writer->startList()->
     sort($sort,$direction)->
-    window(array('total'=>$result->getTotal(),'size'=>$windowSize,'page'=>$windowPage))->
+    window(['total'=>$result->getTotal(),'size'=>$windowSize,'page'=>$windowPage])->
     startHeaders()->
-      header(array('title'=>array('Name','da'=>'Navn'),'key'=>'title','sortable'=>true,'width'=>30))->
-      header(array('title'=>array('E-mail','da'=>'E-post'),'width'=>20))->
-      header(array('title'=>array('Phone','da'=>'Telefon'),'width'=>20))->
-      header(array('title'=>array('Address','da'=>'Adresse'),'width'=>20))->
-      header(array('width'=>1))->
+      header(['title'=>['Name','da'=>'Navn'],'key'=>'title','sortable'=>true,'width'=>30])->
+      header(['title'=>['E-mail','da'=>'E-post'],'width'=>20])->
+      header(['title'=>['Phone','da'=>'Telefon'],'width'=>20])->
+      header(['title'=>['Address','da'=>'Adresse'],'width'=>20])->
+      header(['width'=>1])->
     endHeaders();
 foreach ($result->getList() as $object) {
-  $writer->startRow(array('id'=>$object->getId(),'kind'=>$object->getType(),'icon'=>'common/person','title'=>$object->getTitle()))->
-    startCell(array('icon'=>'common/person'))->text($object->getTitle())->endCell();
+  $writer->startRow(['id'=>$object->getId(),'kind'=>$object->getType(),'icon'=>'common/person','title'=>$object->getTitle()])->
+    startCell(['icon'=>'common/person'])->text($object->getTitle())->endCell();
   $writer->startCell();
   buildEmails($object,$writer);
   $writer->endCell();
@@ -52,7 +52,7 @@ foreach ($result->getList() as $object) {
   $writer->endCell();
   $writer->startCell();
   if ($object->getImageId()!=null) {
-    $writer->startIcons()->icon(array('icon'=>'monochrome/image'))->endIcons();
+    $writer->startIcons()->icon(['icon'=>'monochrome/image'])->endIcons();
   }
   $writer->endCell();
   $writer->endRow();
@@ -79,14 +79,14 @@ function buildAddress($person,$writer) {
 function buildEmails($person,$writer) {
   $mails = Query::after('emailaddress')->withProperty('containingObjectId',$person->getId())->get();
   foreach ($mails as $mail) {
-    $writer->object(array('icon'=>'common/email','text'=>$mail->getAddress()));
+    $writer->object(['icon'=>'common/email','text'=>$mail->getAddress()]);
   }
 }
 
 function buildPhones($person,$writer) {
   $phones = Query::after('phonenumber')->withProperty('containingObjectId',$person->getId())->get();
   foreach ($phones as $phone) {
-    $writer->object(array('icon'=>'common/phone','text'=>$phone->getNumber()));
+    $writer->object(['icon'=>'common/phone','text'=>$phone->getNumber()]);
   }
 }
 ?>

@@ -20,7 +20,7 @@ class DesignService {
   static function getAvailableDesigns() {
     global $basePath;
     $names = FileSystemService::listDirs($basePath."style/");
-    $out = array();
+    $out = [];
     foreach ($names as $name) {
       $out[$name] = DesignService::getInfo($name);
     }
@@ -36,7 +36,7 @@ class DesignService {
 
   static function _getPartStyleFiles() {
     global $basePath;
-    $files = array();
+    $files = [];
     $names = FileSystemService::listFiles($basePath."style/basic/css/");
     foreach ($names as $name) {
       if (Strings::startsWith($name,'part_')) {
@@ -245,7 +245,7 @@ class DesignService {
 
   private static function normalizePath($path) {
     $parts = array_filter(explode('/', $path), 'strlen');
-    $absolutes = array();
+    $absolutes = [];
     foreach ($parts as $part) {
       if ('.' == $part) continue;
       if ('..' == $part) {
@@ -388,7 +388,7 @@ class DesignService {
   }
 
   static function loadParameters($id) {
-    $out = array();
+    $out = [];
     $design = Design::load($id);
     $info = DesignService::getInfo($design->getUnique());
     if (isset($info->parameters)) {

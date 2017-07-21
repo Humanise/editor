@@ -26,18 +26,18 @@ if (ConfigurationService::isUnicode()) {
   //Strings::toUnicode($feed);
 }
 
-$writer->startList(array('unicode'=>true));
+$writer->startList(['unicode'=>true]);
 
 foreach($feed->getItems() as $item) {
   $writer->startRow()->
-    startCell(array('class'=>'news'))->startLine()->startStrong()->text($item->getTitle())->endStrong()->endLine()->
-      startLine(array('minor'=>true))->text($item->getDescription())->endline()->
-      startLine(array('dimmed'=>true,'mini'=>true))->text(Dates::formatFuzzy($item->getPubDate()))->endLine()->
+    startCell(['class'=>'news'])->startLine()->startStrong()->text($item->getTitle())->endStrong()->endLine()->
+      startLine(['minor'=>true])->text($item->getDescription())->endline()->
+      startLine(['dimmed'=>true,'mini'=>true])->text(Dates::formatFuzzy($item->getPubDate()))->endLine()->
     endCell()->
-    startCell(array('class'=>'news'));
+    startCell(['class'=>'news']);
     if (Strings::isNotBlank($item->getLink())) {
       $writer->startIcons()->
-        icon(array('icon'=>'monochrome/round_arrow_right','action'=>true,'revealing'=>true,'data'=>array('url'=>$item->getLink())))->
+        icon(['icon'=>'monochrome/round_arrow_right','action'=>true,'revealing'=>true,'data'=>['url'=>$item->getLink()]])->
       endIcons();
       //$writer->button(array('text'=>Strings::fromUnicode('Læs'),'data'=>array('url'=>$item->getLink())));
     }

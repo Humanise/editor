@@ -12,7 +12,7 @@ class DiagramNode {
 
   var $id;
   var $title;
-  var $properties = array();
+  var $properties = [];
 
   function setId($id) {
       $this->id = $id;

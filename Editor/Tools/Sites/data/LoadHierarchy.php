@@ -8,10 +8,10 @@ require_once '../../../Include/Private.php';
 $id = Request::getInt('id');
 $hierarchy = Hierarchy::load($id);
 
-Response::sendObject(array(
+Response::sendObject([
   'id' => $hierarchy->getId(),
   'name' => $hierarchy->getName(),
   'language' => $hierarchy->getLanguage(),
   'canDelete' => $hierarchy->canDelete()
-));
+]);
 ?>

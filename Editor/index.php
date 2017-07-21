@@ -76,7 +76,7 @@ $gui='
     </sidebar>
 
     <tabs small="true">';
-      $tabs = array('edit'=>'{ Editing ; da: Redigering }','analyse'=>'{Analysis ; da:Analyse}','setup'=>'{ Setup ; da:Opsætning }');
+      $tabs = ['edit'=>'{ Editing ; da: Redigering }','analyse'=>'{Analysis ; da:Analyse}','setup'=>'{ Setup ; da:Opsætning }'];
       foreach ($tabs as $tab => $tabTitle) {
         $tools = @$categorized[$tab];
         if ($tools) {

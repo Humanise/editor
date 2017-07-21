@@ -10,7 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 class VCalParser {
 
-  var $log = array();
+  var $log = [];
   var $state = 'base';
   var $latestEvent;
 
@@ -101,8 +101,8 @@ class VCalParser {
 
   function decodeString($string) {
     $string = utf8_decode($string);
-    $search = array('\,','\"',"\\n");
-    $replace = array(',','"',"\n");
+    $search = ['\,','\"',"\\n"];
+    $replace = [',','"',"\n"];
     return str_replace($search,$replace,$string);
   }
 

@@ -10,11 +10,11 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['Milestone'] = [
     'table' => 'milestone',
-    'properties' => array(
-      'deadline'  => array('type'=>'datetime'),
-      'completed'  => array('type'=>'boolean'),
-      'containingObjectId'  => array('type'=>'int','column'=>'containing_object_id')
-    )
+    'properties' => [
+      'deadline'  => ['type'=>'datetime'],
+      'completed'  => ['type'=>'boolean'],
+      'containingObjectId'  => ['type'=>'int','column'=>'containing_object_id']
+    ]
 ];
 
 class Milestone extends Object {
@@ -57,10 +57,10 @@ class Milestone extends Object {
     /////////////////////////// Persistence ////////////////////////
 
   function _fixOptions(&$arr) {
-    if (!is_array($arr)) $arr = array();
+    if (!is_array($arr)) $arr = [];
     if (!isset($arr['sort'])) $arr['sort'] = 'title';
     if (!isset($arr['project'])) $arr['project'] = 0;
-    if (!isset($arr['projects'])) $arr['projects'] = array();
+    if (!isset($arr['projects'])) $arr['projects'] = [];
   }
 
   function search($options = null) {
@@ -80,13 +80,13 @@ class Milestone extends Object {
       $sql.=' order by object.title';
     }
     $result = Database::select($sql);
-    $ids = array();
+    $ids = [];
     while ($row = Database::next($result)) {
       $ids[] = $row['id'];
     }
     Database::free($result);
 
-    $list = array();
+    $list = [];
     foreach ($ids as $id) {
       $list[] = Milestone::load($id);
     }
@@ -102,7 +102,7 @@ class Milestone extends Object {
 
 
   function getTasks() {
-    $output = array();
+    $output = [];
     $sql = "select object_id from task,object where task.object_id = object.id and task.milestone_id=".$this->id." order by object.title";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
@@ -113,7 +113,7 @@ class Milestone extends Object {
   }
 
   function getProblems() {
-    $output = array();
+    $output = [];
     $sql = "select object_id from problem,object where problem.object_id = object.id and problem.milestone_id=".$this->id." order by object.title";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
@@ -124,7 +124,7 @@ class Milestone extends Object {
   }
 
   function getCompletedInfo() {
-    $output = array('completed' => 0, 'active' => 0);
+    $output = ['completed' => 0, 'active' => 0];
     $sql = "select count(object_id)-sum(problem.completed) as active,sum(problem.completed) as completed from problem where problem.milestone_id=".$this->id." union select count(object_id)-sum(task.completed) as active,sum(task.completed) as completed from task where task.milestone_id=".$this->id;
     $result = Database::select($sql);
     while ($row = Database::next($result)) {

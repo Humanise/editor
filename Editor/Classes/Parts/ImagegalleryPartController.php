@@ -94,7 +94,7 @@ class ImagegalleryPartController extends PartController
   }
 
   function getToolbars() {
-    return array(
+    return [
       'Billedgalleri' => '
         <item label="{Image group; da:Billedgruppe}">
           <dropdown width="200" name="group">
@@ -128,7 +128,7 @@ class ImagegalleryPartController extends PartController
             <cell right="5"><checkbox name="framed"/><label>{Framed; da:Indrammet}</label></cell>
           </row>
         </grid>'
-    );
+    ];
   }
 
 }

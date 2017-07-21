@@ -29,9 +29,9 @@ foreach($feed->getItems() as $item) {
     continue;
   }
   $writer->startRow()->
-    startCell(array('class'=>'news'))->
+    startCell(['class'=>'news'])->
       startLine()->text(trim($title))->endLine()->
-      startLine(array('dimmed'=>true,'mini'=>true))->text(Dates::formatFuzzy($item->getPubDate()))->endLine()->
+      startLine(['dimmed'=>true,'mini'=>true])->text(Dates::formatFuzzy($item->getPubDate()))->endLine()->
     endCell()->
   endRow();
 

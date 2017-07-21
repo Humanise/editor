@@ -9,7 +9,7 @@ if (!isset($GLOBALS['basePath'])) {
   exit;
 }
 class DBUCalendar {
-  var $events = array();
+  var $events = [];
 
   function addEvent($event) {
       $this->events[] = $event;

@@ -11,7 +11,7 @@ $type = Request::getString('type');
 $sql = "select `id`,`left`,`right`,`top`,`bottom`,`float`,`width`,`style`,`class` from `document_section` where `part_id`=@int(id)";
 $section = Database::selectFirst($sql, ['id' => $id]);
 if ($section) {
-  $section = array(
+  $section = [
     'id' => intval($section['id']),
     'left' => $section['left'],
     'right' => $section['right'],
@@ -21,13 +21,13 @@ if ($section) {
     'width' => $section['width'],
     'style' => $section['style'],
     'class' => $section['class']
-  );
+  ];
   $part = PartService::load($type,$id);
   //Response::sendObject($part);
-  Response::sendObject(array(
+  Response::sendObject([
     'part' => $part,
     'section' => $section
-  ));
+  ]);
 }
 
 ?>

@@ -8,10 +8,10 @@ require_once '../../../Include/Private.php';
 $data = Request::getObject('data');
 $product = Product::load($data->id);
 
-Response::sendObject(array(
+Response::sendObject([
   'product' => $product,
   'attributes' => $product->getAttributes(),
   'prices' => $product->getPrices(),
   'groups' => $product->getGroupIds()
-));
+]);
 ?>

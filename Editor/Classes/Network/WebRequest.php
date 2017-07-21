@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 class WebRequest {
 
   private $url;
-  private $parameters = array();
-  private $headers = array();
+  private $parameters = [];
+  private $headers = [];
   private $unicode;
 
   function WebRequest($url=null) {

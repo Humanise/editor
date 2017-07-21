@@ -32,7 +32,7 @@ class Object extends Entity implements Loadable {
   var $note;
   var $searchable;
   var $ownerId;
-  static $schema = array();
+  static $schema = [];
 
   function Object($type) {
     $this->type = $type;
@@ -172,7 +172,7 @@ class Object extends Entity implements Loadable {
   }
 
   function getLinks() {
-    return ObjectLinkService::search(array('objectId'=>$this->id));
+    return ObjectLinkService::search(['objectId'=>$this->id]);
   }
 
 

@@ -45,10 +45,10 @@ class GoogleAnalytics {
 
   static function test() {
     try {
-      GoogleAnalytics::getResult(array(
-        'dimensions' => array('browser'),
-        'metrics' => array('pageviews')
-      ));
+      GoogleAnalytics::getResult([
+        'dimensions' => ['browser'],
+        'metrics' => ['pageviews']
+      ]);
       return true;
     } catch (Exception $e) {
       Log::debug($e);

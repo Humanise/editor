@@ -214,36 +214,36 @@ class PartService {
 
     /** A map of all available parts */
     static function getParts() {
-        return array(
-            'header' => array ( 'name' => array('da'=>'Overskrift','en'=>'Header') ),
-            'text' => array ( 'name' => array('da'=>'Tekst','en'=>'Text') ),
-            'listing' => array ( 'name' => array('da'=>'Punktopstilling','en'=>'Bullet list') ),
-            'image' => array ( 'name' => array('da'=>'Billede','en'=>'Image') ),
-            'imagegallery' => array ( 'name' => array('da'=>'Billedgalleri','en'=>'Image gallery') ),
-            'horizontalrule' => array ( 'name' => array('da'=>'Adskiller','en'=>'Divider') ),
-            'table' => array ( 'name' => array('da'=>'Tabel','en'=>'Table') ),
-            'richtext' => array ( 'name' => array('da'=>'Rig tekst','en'=>'Rich text') ),
-            'file' => array ( 'name' => array('da'=>'Fil','en'=>'File') ),
-            'person' => array ( 'name' => array('da'=>'Person','en'=>'Person') ),
-            'news' => array ( 'name' => array('da'=>'Nyheder','en'=>'News') ),
-            'formula' => array ( 'name' => array('da'=>'Formular','en'=>'Formula') ),
-            'list' => array ( 'name' => array('da'=>'Liste','en'=>'List') ),
-            'mailinglist' => array ( 'name' => array('da'=>'Postliste','en'=>'Mailing list') ),
-            'html' => array ( 'name' => array('da'=>'HTML','en'=>'HTML') ),
-            'poster' => array ( 'name' => array('da'=>'Plakat','en'=>'Poster') ),
-            'map' => array ( 'name' => array('da'=>'Kort','en'=>'Map') ),
-            'movie' => array ( 'name' => array('da'=>'Film','en'=>'Movie') ),
-            'menu' => array ( 'name' => array('da'=>'Menu','en'=>'Menu') ),
-            'widget' => array ( 'name' => array('da'=>'Widget','en'=>'Widget') ),
-            'authentication' => array ( 'name' => array('da'=>'Adgangskontrol','en'=>'Authentication') ),
-            'custom' => array ( 'name' => array('da'=>'Speciel','en'=>'Custom') )
-        );
+        return [
+            'header' =>  [ 'name' => ['da'=>'Overskrift','en'=>'Header'] ],
+            'text' =>  [ 'name' => ['da'=>'Tekst','en'=>'Text'] ],
+            'listing' =>  [ 'name' => ['da'=>'Punktopstilling','en'=>'Bullet list'] ],
+            'image' =>  [ 'name' => ['da'=>'Billede','en'=>'Image'] ],
+            'imagegallery' =>  [ 'name' => ['da'=>'Billedgalleri','en'=>'Image gallery'] ],
+            'horizontalrule' =>  [ 'name' => ['da'=>'Adskiller','en'=>'Divider'] ],
+            'table' =>  [ 'name' => ['da'=>'Tabel','en'=>'Table'] ],
+            'richtext' =>  [ 'name' => ['da'=>'Rig tekst','en'=>'Rich text'] ],
+            'file' =>  [ 'name' => ['da'=>'Fil','en'=>'File'] ],
+            'person' =>  [ 'name' => ['da'=>'Person','en'=>'Person'] ],
+            'news' =>  [ 'name' => ['da'=>'Nyheder','en'=>'News'] ],
+            'formula' =>  [ 'name' => ['da'=>'Formular','en'=>'Formula'] ],
+            'list' =>  [ 'name' => ['da'=>'Liste','en'=>'List'] ],
+            'mailinglist' =>  [ 'name' => ['da'=>'Postliste','en'=>'Mailing list'] ],
+            'html' =>  [ 'name' => ['da'=>'HTML','en'=>'HTML'] ],
+            'poster' =>  [ 'name' => ['da'=>'Plakat','en'=>'Poster'] ],
+            'map' =>  [ 'name' => ['da'=>'Kort','en'=>'Map'] ],
+            'movie' =>  [ 'name' => ['da'=>'Film','en'=>'Movie'] ],
+            'menu' =>  [ 'name' => ['da'=>'Menu','en'=>'Menu'] ],
+            'widget' =>  [ 'name' => ['da'=>'Widget','en'=>'Widget'] ],
+            'authentication' =>  [ 'name' => ['da'=>'Adgangskontrol','en'=>'Authentication'] ],
+            'custom' =>  [ 'name' => ['da'=>'Speciel','en'=>'Custom'] ]
+        ];
     }
 
     /** The part menu structure */
     static function getPartMenu() {
         $parts = PartService::getParts();
-        $menu = array(
+        $menu = [
             'header' => $parts['header'],
             'text' => $parts['text'],
             'listing' => $parts['listing'],
@@ -255,7 +255,7 @@ class PartService {
             'file' => $parts['file'],
             'imagegallery' => $parts['imagegallery'],
             'y' => 'divider',
-            'advanced' => array('name'=>array('da'=>'Avanceret','en'=>'Advanced'),'children'=>array(
+            'advanced' => ['name'=>['da'=>'Avanceret','en'=>'Advanced'],'children'=>[
                 'person' => $parts['person'],
                 'news' => $parts['news'],
                 'formula' => $parts['formula'],
@@ -269,14 +269,14 @@ class PartService {
                 'widget' => $parts['widget'],
                 'custom' => $parts['custom'],
                 'authentication' => $parts['authentication']
-            ))
-        );
+            ]]
+        ];
         return $menu;
     }
 
     /** Gets all available controllers */
     static function getAllControllers() {
-        $controllers = array();
+        $controllers = [];
         $parts = PartService::getParts();
         foreach ($parts as $key => $value) {
             $controllers[] = PartService::getController($key);
@@ -302,7 +302,7 @@ class PartService {
         global $basePath;
         $file = $basePath."Editor/Parts/".$unique."/info.xml";
         if (file_exists($file)) {
-            $info = array();
+            $info = [];
             $doc = new DOMDocument();
             if ($doc->load($file)) {
                 $info['name'] = DOMUtils::getPathText($doc->documentElement,"/part/name");
@@ -361,7 +361,7 @@ union select html as text,document_section.part_id from part_table,document_sect
 
     /** Gets all links for a part */
     static function getLinks($part) {
-        $links = array();
+        $links = [];
         $sql = "select * from part_link where part_id=".Database::int($part->getId());
         $result = Database::select($sql);
         while ($row = Database::next($result)) {

@@ -57,15 +57,15 @@ class Project extends Object {
   //////////////////////// Convenience /////////////////////////
 
   function getPath($includeSelf=false) {
-      $output = array();
+      $output = [];
       if ($includeSelf) {
-          $output[] = array('id' => $this->id, 'title' => $this->title);
+          $output[] = ['id' => $this->id, 'title' => $this->title];
       }
       $parent = $this->parentProjectId;
       while ($parent>0) {
           $sql = "select object.id,object.title,project.parent_project_id from project,object where project.object_id = object.id and object.id=".Database::int($parent);
           if ($row=Database::selectFirst($sql)) {
-              $output[] = array('id'=>$row['id'],'title'=>$row['title']);
+              $output[] = ['id'=>$row['id'],'title'=>$row['title']];
               $parent = $row['parent_project_id'];
           } else {
               $parent = 0;
@@ -75,7 +75,7 @@ class Project extends Object {
   }
 
   function getSubProjectIds() {
-    $ids = array();
+    $ids = [];
     $this->_getSubProjectIdsSpider($this->id,$ids);
     return $ids;
   }
@@ -90,10 +90,10 @@ class Project extends Object {
     Database::free($result);
   }
 
-  function getSubProjects($filter=array()) {
-    $output = array();
+  function getSubProjects($filter=[]) {
+    $output = [];
 
-    $ids = array();
+    $ids = [];
     if ($filter['includeSubProjects']==true) {
       $ids = $this->getSubProjectIds();
     }
@@ -107,9 +107,9 @@ class Project extends Object {
     return $output;
   }
 
-  function getSubTasks($filter=array()) {
-    $output = array();
-    $ids = array();
+  function getSubTasks($filter=[]) {
+    $output = [];
+    $ids = [];
     if ($filter['includeSubProjects']==true) {
       $ids = $this->getSubProjectIds();
     }
@@ -126,9 +126,9 @@ class Project extends Object {
     return $output;
   }
 
-  function getSubProblems($filter=array()) {
-    $output = array();
-    $ids = array();
+  function getSubProblems($filter=[]) {
+    $output = [];
+    $ids = [];
     if ($filter['includeSubProjects']) {
       $ids = $this->getSubProjectIds();
     }
@@ -144,14 +144,14 @@ class Project extends Object {
     return $output;
   }
 
-  function getMilestones($filter=array()) {
+  function getMilestones($filter=[]) {
 
-    $ids = array();
+    $ids = [];
     if ($filter['includeSubProjects']==true) {
       $ids = $this->getSubProjectIds();
     }
     $ids[] = $this->id;
-    $milestoneFilter = array('projects'=>$ids,'sort'=>'deadline');
+    $milestoneFilter = ['projects'=>$ids,'sort'=>'deadline'];
     if (isset($filter['completed'])) {
       $milestoneFilter['completed'] = $filter['completed'];
     }

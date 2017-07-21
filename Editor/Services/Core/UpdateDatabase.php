@@ -15,8 +15,8 @@ if (!AuthenticationService::isSuperUser($username,$password)) {
 
 $log = DatabaseUtil::update();
 
-Response::sendObject(array(
+Response::sendObject([
   'log' => join("\n",$log),
   'updated' => DatabaseUtil::isUpToDate()
-));
+]);
 ?>

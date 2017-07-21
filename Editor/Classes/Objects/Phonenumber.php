@@ -10,11 +10,11 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['Phonenumber'] = [
   'table' => 'phonenumber',
-  'properties' => array(
-      'number' => array('type'=>'string'),
-      'context' => array('type'=>'string'),
-      'containingObjectId'   => array('type'=>'int','column'=>'containing_object_id')
-    )
+  'properties' => [
+      'number' => ['type'=>'string'],
+      'context' => ['type'=>'string'],
+      'containingObjectId'   => ['type'=>'int','column'=>'containing_object_id']
+    ]
 ];
 
 class Phonenumber extends Object {

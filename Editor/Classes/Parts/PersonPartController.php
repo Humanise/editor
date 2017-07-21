@@ -159,7 +159,7 @@ class PersonPartController extends PartController
   }
 
   function getToolbars() {
-    return array('Person' => '
+    return ['Person' => '
       <item label="{Alignment; da:Placering}">
         <segmented name="alignment" allow-null="true">
           <option icon="style/align_left" value="left"/>
@@ -211,6 +211,6 @@ class PersonPartController extends PartController
           <cell right="5"><checkbox name="showPhoneJob"/><label>{Phone (work); da:Telefon (job)}</label></cell>
         </row>
       </grid>
-    ');
+    '];
   }
 }

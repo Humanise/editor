@@ -45,8 +45,8 @@ function listGroup($group) {
   $images = ImageService::search(['direction'=>$direction, 'sort' => $sort, 'text' => $text, 'group' => $group]);
   foreach ($images as $row) {
     $writer->
-    startRow(array('kind'=>'image','id'=>$row['id'],'icon'=>'common/image','title'=>$row['title']))->
-      startCell(array('icon'=>'common/image'))->
+    startRow(['kind'=>'image','id'=>$row['id'],'icon'=>'common/image','title'=>$row['title']])->
+      startCell(['icon'=>'common/image'])->
         startLine()->text($row['title'])->endLine()->
       endCell()->
       startCell()->
@@ -131,8 +131,8 @@ function listImages() {
 
   foreach ($list as $image) {
     $writer->
-    startRow(array('kind'=>'image','id'=>$image->getId(),'icon'=>$image->getIcon(),'title'=>$image->getTitle()))->
-      startCell(array('icon'=>'common/image'))->
+    startRow(['kind'=>'image','id'=>$image->getId(),'icon'=>$image->getIcon(),'title'=>$image->getTitle()])->
+      startCell(['icon'=>'common/image'])->
         startLine()->text($image->getTitle())->endLine()->
       endCell()->
       startCell()->
@@ -167,21 +167,21 @@ function listProducts() {
   $writer = new ListWriter();
 
   $writer->
-  startList(array('unicode'=>true))->
+  startList(['unicode'=>true])->
     startHeaders()->
-      header(array('title'=>array('Image','da'=>'Billede'),'width'=>40))->
-      header(array('title'=>array('Product','da'=>'Produkt')))->
+      header(['title'=>['Image','da'=>'Billede'],'width'=>40])->
+      header(['title'=>['Product','da'=>'Produkt']])->
     endHeaders();
 
   $result = ImageService::getProductImageRelations();
 
   foreach ($result as $row) {
     $writer->
-    startRow(array('kind'=>'image','id'=>$row['image_id'],'icon'=>'common/image','title'=>$row['image_title']))->
-      startCell(array('icon'=>'common/image'))->
+    startRow(['kind'=>'image','id'=>$row['image_id'],'icon'=>'common/image','title'=>$row['image_title']])->
+      startCell(['icon'=>'common/image'])->
         startLine()->text($row['image_title'])->endLine()->
       endCell()->
-      startCell(array('icon'=>'common/product'))->
+      startCell(['icon'=>'common/product'])->
         text($row['product_title'])->
         /*startIcons()->
           icon(array(
@@ -203,28 +203,28 @@ function listPersons() {
   $writer = new ListWriter();
 
   $writer->
-  startList(array('unicode'=>true))->
+  startList(['unicode'=>true])->
     startHeaders()->
-      header(array('title'=>array('Image','da'=>'Billede'),'width'=>40))->
-      header(array('title'=>'Person'))->
+      header(['title'=>['Image','da'=>'Billede'],'width'=>40])->
+      header(['title'=>'Person'])->
     endHeaders();
 
   $result = ImageService::getPersonImageRelations();
 
   foreach ($result as $row) {
     $writer->
-    startRow(array('kind'=>'image','id'=>$row['image_id'],'icon'=>'common/image','title'=>$row['image_title']))->
-      startCell(array('icon'=>'common/image'))->
+    startRow(['kind'=>'image','id'=>$row['image_id'],'icon'=>'common/image','title'=>$row['image_title']])->
+      startCell(['icon'=>'common/image'])->
         startLine()->text($row['image_title'])->endLine()->
       endCell()->
-      startCell(array('icon'=>'common/person'))->
+      startCell(['icon'=>'common/person'])->
         text($row['person_title'])->
         startIcons()->
-          icon(array(
+          icon([
             'icon' => 'monochrome/info_light',
             'action' => true,
-            'data' => array('action' => 'editPerson','id' => $row['person_id']),
-            'revealing' => true)
+            'data' => ['action' => 'editPerson','id' => $row['person_id']],
+            'revealing' => true]
           )->
         endIcons()->
       endCell()->
@@ -240,30 +240,30 @@ function listPages() {
   $writer = new ListWriter();
 
   $writer->
-  startList(array('unicode'=>true))->
+  startList(['unicode'=>true])->
     startHeaders()->
-      header(array('title'=>array('Image','da'=>'Billede'),'width'=>40))->
-      header(array('title'=>array('Page','da'=>'Side')))->
-      header(array('title'=>array('Section','da'=>'Afsnit')))->
+      header(['title'=>['Image','da'=>'Billede'],'width'=>40])->
+      header(['title'=>['Page','da'=>'Side']])->
+      header(['title'=>['Section','da'=>'Afsnit']])->
     endHeaders();
 
   $result = ImageService::getPageImageRelations();
 
   foreach ($result as $row) {
     $writer->
-    startRow(array('kind'=>'image','id'=>$row['image_id'],'icon'=>'common/image','title'=>$row['image_title']))->
-      startCell(array('icon'=>'common/image'))->
+    startRow(['kind'=>'image','id'=>$row['image_id'],'icon'=>'common/image','title'=>$row['image_title']])->
+      startCell(['icon'=>'common/image'])->
         startLine()->text($row['image_title'])->endLine()->
       endCell()->
-      startCell(array('icon'=>'common/page'))->
+      startCell(['icon'=>'common/page'])->
         text($row['page_title'])->
         badge($row['template'])->
         startIcons()->
-          icon(array(
+          icon([
             'icon' => 'monochrome/edit',
             'action' => true,
-            'data' => array('action' => 'editPage','id' => $row['page_id']),
-            'revealing' => true)
+            'data' => ['action' => 'editPage','id' => $row['page_id']],
+            'revealing' => true]
           )->
         endIcons()->
       endCell()->

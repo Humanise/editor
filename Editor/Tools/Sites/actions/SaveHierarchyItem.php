@@ -27,13 +27,13 @@ if (isset($data->id)) {
     Response::badRequest();
     exit;
   }
-  $result = $hierarchy->createItem(array(
+  $result = $hierarchy->createItem([
     'title' => $data->title,
     'hidden' => $data->hidden,
     'targetType' => $data->targetType,
     'targetValue' => $data->targetValue,
     'parent' => $parent
-  ));
+  ]);
   if ($result===false) {
     Response::badRequest();
   }

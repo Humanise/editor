@@ -14,16 +14,16 @@ class RelationsService {
     if (!$fromObject || !$toObject) {
       return false;
     }
-    $sql = array(
+    $sql = [
       'table' => 'relation',
-      'values' => array(
+      'values' => [
         'from_type' => Database::text('object'),
         'from_object_id' => Database::int($fromObject->getId()),
         'to_type' => Database::text('object'),
         'to_object_id' => Database::int($toObject->getId()),
         'kind' => Database::text($kind)
-      )
-    );
+      ]
+    ];
     Database::insert($sql);
     return true;
   }
@@ -32,16 +32,16 @@ class RelationsService {
     if (!$fromPage || !$toObject) {
       return false;
     }
-    $sql = array(
+    $sql = [
       'table' => 'relation',
-      'values' => array(
+      'values' => [
         'from_type' => Database::text('page'),
         'from_object_id' => Database::int($fromPage->getId()),
         'to_type' => Database::text('object'),
         'to_object_id' => Database::int($toObject->getId()),
         'kind' => Database::text($kind)
-      )
-    );
+      ]
+    ];
     Database::insert($sql);
     return true;
   }
@@ -50,16 +50,16 @@ class RelationsService {
     if (!$fromObject || !$toPage) {
       return false;
     }
-    $sql = array(
+    $sql = [
       'table' => 'relation',
-      'values' => array(
+      'values' => [
         'from_type' => Database::text('object'),
         'from_object_id' => Database::int($fromObject->getId()),
         'to_type' => Database::text('page'),
         'to_object_id' => Database::int($toPage->getId()),
         'kind' => Database::text($kind)
-      )
-    );
+      ]
+    ];
     Database::insert($sql);
     return true;
   }

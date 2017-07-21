@@ -11,9 +11,9 @@ $workflows = Query::after('workflow')->orderByTitle()->get();
 $writer = new ItemsWriter();
 $writer->startItems();
 foreach ($workflows as $item) {
-  $writer->item(array(
+  $writer->item([
     'value' => $item->getId(),
     'text' => $item->getTitle()
-  ));
+  ]);
 }
 $writer->endItems();

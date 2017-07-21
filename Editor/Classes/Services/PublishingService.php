@@ -104,10 +104,10 @@ class PublishingService {
   }
 
   static function getUnpublishedObjects() {
-    $result = array();
+    $result = [];
     $sql = "select id from object where updated>published";
     $ids = Database::getIds($sql);
-    $notFound = array();
+    $notFound = [];
     foreach ($ids as $id) {
       if ($object = Object::load($id)) {
         $result[] = $object;

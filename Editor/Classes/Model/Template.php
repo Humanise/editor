@@ -33,7 +33,7 @@ class Template extends Entity {
    * @static
    */
   function search() {
-    $list = array();
+    $list = [];
     $sql = "select id,`unique` from template";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {

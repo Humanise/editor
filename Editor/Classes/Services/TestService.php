@@ -22,7 +22,7 @@ class TestService {
   }
 
   static function getGroups() {
-    $out = array();
+    $out = [];
     $groups = FileSystemService::listDirs(FileSystemService::getFullPath('Editor/Tests/'));
     for ($i=0; $i < count($groups); $i++) {
       if ($groups[$i]!='Resources') {
@@ -62,7 +62,7 @@ class TestService {
   }
 
   static function runTestsInGroup($group,$reporter = null) {
-    $paths = array();
+    $paths = [];
 
     $tests = TestService::getTestsInGroup($group);
     foreach ($tests as $test) {
@@ -80,7 +80,7 @@ class TestService {
   }
 
   static function runAllTests($reporter = null) {
-    $paths = array();
+    $paths = [];
     $groups = TestService::getGroups();
 
     foreach ($groups as $group) {

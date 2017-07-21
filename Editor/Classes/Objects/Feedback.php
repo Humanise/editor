@@ -10,11 +10,11 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['Feedback'] = [
     'table' => 'feedback',
-    'properties' => array(
-      'name'   => array('type'=>'string'),
-      'email'  => array('type'=>'string'),
-      'message'  => array('type'=>'string')
-    )
+    'properties' => [
+      'name'   => ['type'=>'string'],
+      'email'  => ['type'=>'string'],
+      'message'  => ['type'=>'string']
+    ]
 ];
 
 class Feedback extends Object {

@@ -10,7 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 class ObjectLinkService {
 
-  static function search($query = array()) {
+  static function search($query = []) {
     $sql = "select object_link.*,page.title as page_title, object.title as file_title from object_link ".
         "left join page on page.id=object_link.target_value ".
         "left join object on object.id=object_link.target_value and object.type='file'";
@@ -18,7 +18,7 @@ class ObjectLinkService {
       $sql.=" where object_id=".$query['objectId'];
     }
     $sql.=" order by object_link.position";
-    $list = array();
+    $list = [];
     foreach (Database::selectAll($sql) as $row) {
       $link = new ObjectLink();
       $link->setId(intval($row['id']));
@@ -40,7 +40,7 @@ class ObjectLinkService {
   }
 
   static function getLinks($object) {
-    return ObjectLinkService::search(array('objectId'=>$object->getId()));
+    return ObjectLinkService::search(['objectId'=>$object->getId()]);
   }
 
   static function updateLinks($id,$links) {
@@ -57,13 +57,13 @@ class ObjectLinkService {
 
   static function getLinkCounts($objects) {
     if (count($objects)==0) {
-      return array();
+      return [];
     }
-    $ids = array();
+    $ids = [];
     foreach ($objects as $object) {
       $ids[] = $object->getId();
     }
-    $counts = array();
+    $counts = [];
     $sql = "select object_id as id,count(object_id) as count from object_link where object_id in (".implode($ids,",").") group by object_id";
     foreach (Database::selectAll($sql) as $row) {
       $counts[$row['id']] = $row['count'];

@@ -30,7 +30,7 @@ class CalendarTemplateController extends TemplateController
     $data = '<calendar xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/calendar/1.0/">';
     $data.= '<!--dynamic-->';
     $data.= '</calendar>';
-        return array('data' => $data, 'dynamic' => true, 'index' => '');
+        return ['data' => $data, 'dynamic' => true, 'index' => ''];
     }
 
   function dynamic($id,&$state) {
@@ -70,7 +70,7 @@ class CalendarTemplateController extends TemplateController
 
 
   function getEvents($id,$query,$refresh) {
-    $events = array();
+    $events = [];
     $sql="select calendarsource.object_id as id from calendarviewer_object,calendarsource where calendarsource.object_id = calendarviewer_object.object_id and calendarviewer_object.page_id = ".$id;
     $ids = Database::getIds($sql);
     foreach ($ids as $sourceId) {
@@ -82,7 +82,7 @@ class CalendarTemplateController extends TemplateController
 
         $result = Database::select($sql);
         while ($row = Database::next($result)) {
-      $eventQuery = array('calendarId'=>$row['id'],'startDate' => $query['startDate'],'endDate' => $query['endDate'],'calendarTitle' => $row['title']);
+      $eventQuery = ['calendarId'=>$row['id'],'startDate' => $query['startDate'],'endDate' => $query['endDate'],'calendarTitle' => $row['title']];
       $events = array_merge($events,Event::getSimpleEvents($eventQuery));
     }
         Database::free($result);
@@ -95,16 +95,16 @@ class CalendarTemplateController extends TemplateController
     $startHour = $setup['weekview_starthour'];
     $firstWeekDay = Dates::getWeekStart($date);
     $lastWeekDay = Dates::addDays($firstWeekDay,7);
-    $query = array('sort' => 'startDate', 'startDate' => $firstWeekDay, 'endDate' => $lastWeekDay);
+    $query = ['sort' => 'startDate', 'startDate' => $firstWeekDay, 'endDate' => $lastWeekDay];
     $events = $this->getEvents($id,$query,$refresh);
     $xml='<weekview>';
-    $derived = array();
+    $derived = [];
     for ($i=0; $i<7; $i++) {
       $timestamp = Dates::addDays($firstWeekDay,$i);
       $timestampEnd = Dates::addDays($firstWeekDay,$i+1)-1;
       $xml.='<day date="'.date("Ymd",$timestamp).'" today="'.(date("Ymd",$timestamp)==date("Ymd",time()) ? 'true' : 'false').'" selected="'.(date("Ymd",$timestamp)==date("Ymd",$date) ? 'true' : 'false').'" title="'.Dates::formatShortDate($timestamp).'">';
       $xml.=Dates::buildTag('date',$timestamp);
-      $dayEvents = array();
+      $dayEvents = [];
       foreach ($events as $event) {
         $event = EventUtils::getEventInsidePeriod($timestamp,$timestampEnd,$event);
         if ($event!=null) {
@@ -132,7 +132,7 @@ class CalendarTemplateController extends TemplateController
       $xml.='<hour value="'.$i.'"/>';
     }
     $xml.='</weekview>';
-    return array('xml'=>$xml,'first'=>$firstWeekDay,'last' => $lastWeekDay,'next' => Dates::addDays($date,7),'previous' => Dates::addDays($date,-7));
+    return ['xml'=>$xml,'first'=>$firstWeekDay,'last' => $lastWeekDay,'next' => Dates::addDays($date,7),'previous' => Dates::addDays($date,-7)];
   }
 
 
@@ -142,10 +142,10 @@ class CalendarTemplateController extends TemplateController
     $endDay = Dates::getMonthEnd($date);
     $days = date("d",$endDay);
     $days=35;
-    $query = array('sort' => 'startDate', 'startDate' => $startDay, 'endDate' => $endDay);
+    $query = ['sort' => 'startDate', 'startDate' => $startDay, 'endDate' => $endDay];
     $events = $this->getEvents($id,$query,$refresh);
     $xml='<monthview>';
-    $derived = array();
+    $derived = [];
     for ($i=0; $i<$days; $i++) {
       $timestamp = Dates::addDays($startDay,$i);
       $timestampEnd = Dates::addDays($startDay,$i+1)-1;
@@ -153,11 +153,11 @@ class CalendarTemplateController extends TemplateController
       if ($weekday==0) {
         $xml.='<week>';
       }
-      $title = Dates::formatDate($timestamp,array('shortWeekday'=>true,'year'=>false));
+      $title = Dates::formatDate($timestamp,['shortWeekday'=>true,'year'=>false]);
       $title = mb_convert_encoding($title, "ISO-8859-1","UTF-8");
       $xml.='<day date="'.date("Ymd",$timestamp).'" today="'.(date("Ymd",$timestamp)==date("Ymd",time()) ? 'true' : 'false').'" selected="'.(date("Ymd",$timestamp)==date("Ymd",$date) ? 'true' : 'false').'" title="'.$title.'">';
       $xml.=Dates::buildTag('date',$timestamp);
-      $dayEvents = array();
+      $dayEvents = [];
       foreach ($events as $event) {
         $event = EventUtils::getEventInsidePeriod($timestamp,$timestampEnd,$event);
         if ($event!=null) {
@@ -174,7 +174,7 @@ class CalendarTemplateController extends TemplateController
       }
     }
     $xml.='</monthview>';
-    return array('xml'=>$xml,'first'=>$startDay,'last' => $endDay,'next' => Dates::addMonths($date,1),'previous' => Dates::addMonths($date,-1));
+    return ['xml'=>$xml,'first'=>$startDay,'last' => $endDay,'next' => Dates::addMonths($date,1),'previous' => Dates::addMonths($date,-1)];
   }
 
   function buildEventXML(&$event) {
@@ -192,18 +192,18 @@ class CalendarTemplateController extends TemplateController
     $startDay = Dates::getMonthStart($date);
     $endDay = Dates::getMonthEnd($date);
     $days = date("d",$endDay);
-    $query = array('sort' => 'startDate', 'startDate' => $startDay, 'endDate' => $endDay);
+    $query = ['sort' => 'startDate', 'startDate' => $startDay, 'endDate' => $endDay];
     $events = $this->getEvents($id,$query,$refresh);
     $xml='<listview>';
-    $derived = array();
+    $derived = [];
     for ($i=0; $i<$days; $i++) {
       $timestamp = Dates::addDays($startDay,$i);
       $timestampEnd = Dates::addDays($startDay,$i+1)-1;
-      $title = Dates::formatDate($timestamp,array('shortWeekday'=>true,'year'=>false));
+      $title = Dates::formatDate($timestamp,['shortWeekday'=>true,'year'=>false]);
       $title = mb_convert_encoding($title, "ISO-8859-1","UTF-8");
       $xml.='<day date="'.date("Ymd",$timestamp).'" today="'.(date("Ymd",$timestamp)==date("Ymd",time()) ? 'true' : 'false').'" selected="'.(date("Ymd",$timestamp)==date("Ymd",$date) ? 'true' : 'false').'" title="'.$title.'">';
       $xml.=Dates::buildTag('date',$timestamp);
-      $dayEvents = array();
+      $dayEvents = [];
       foreach ($events as $event) {
         $event = EventUtils::getEventInsidePeriod($timestamp,$timestampEnd,$event);
         if ($event!=null) {
@@ -217,25 +217,25 @@ class CalendarTemplateController extends TemplateController
       $xml.='</day>';
     }
     $xml.='</listview>';
-    return array('xml'=>$xml,'first'=>$startDay,'last' => $endDay,'next' => Dates::addMonths($date,1),'previous' => Dates::addMonths($date,-1));
+    return ['xml'=>$xml,'first'=>$startDay,'last' => $endDay,'next' => Dates::addMonths($date,1),'previous' => Dates::addMonths($date,-1)];
   }
 
   function buildAgendaView($date,$id,$refresh) {
     $startDay = Dates::getMonthStart($date);
     $endDay = Dates::getMonthEnd($date);
     $days = date("d",$endDay);
-    $query = array('sort' => 'startDate', 'startDate' => $startDay, 'endDate' => $endDay);
+    $query = ['sort' => 'startDate', 'startDate' => $startDay, 'endDate' => $endDay];
     $events = $this->getEvents($id,$query,$refresh);
     $xml='<agendaview>';
     foreach ($events as $event) {
       $xml.=$this->buildEventXML($event);
     }
     $xml.='</agendaview>';
-    return array('xml'=>$xml,'first'=>$startDay,'last' => $endDay,'next' => Dates::addMonths($date,1),'previous' => Dates::addMonths($date,-1));
+    return ['xml'=>$xml,'first'=>$startDay,'last' => $endDay,'next' => Dates::addMonths($date,1),'previous' => Dates::addMonths($date,-1)];
   }
 
   function analyzeOverlaps(&$events,$day) {
-    $collisions = array();
+    $collisions = [];
     $others = $events;
     $num=0;
     foreach ($events as $event) {
@@ -270,7 +270,7 @@ class CalendarTemplateController extends TemplateController
       }
     }
     if (count($groups)==0 || !$found) {
-      $groups[] = array($first,$second);
+      $groups[] = [$first,$second];
     }
     return $groups;
   }

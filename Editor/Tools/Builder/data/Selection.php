@@ -31,20 +31,20 @@ $writer->item([
 ]);
 $writer->title(['Streams', 'da' => 'Strømme']);
 foreach ($streams as $item) {
-  $writer->item(array(
+  $writer->item([
     'icon' => $item->getIcon(),
     'value' => $item->getId(),
     'title' => $item->getTitle(),
     'kind' => $item->getType()
-  ));
+  ]);
 }
 $writer->title('Workflows');
 foreach ($workflows as $item) {
-  $writer->item(array(
+  $writer->item([
     'icon' => $item->getIcon(),
     'value' => $item->getId(),
     'title' => $item->getTitle(),
     'kind' => $item->getType()
-  ));
+  ]);
 }
 $writer->endItems();

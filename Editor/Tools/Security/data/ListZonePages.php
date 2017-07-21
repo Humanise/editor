@@ -19,7 +19,7 @@ $sql = "SELECT page.title,page.id from page,securityzone_page where securityzone
 
 $result = Database::select($sql,['zoneId'=>$zoneId]);
 while($row = Database::next($result)) {
-  $writer->startRow(array('kind'=>'page','id'=>$row['id']))->
+  $writer->startRow(['kind'=>'page','id'=>$row['id']])->
     startCell([ 'icon' => 'common/page' ])->text($row['title'])->endCell()->
     startCell()->icon(['icon'=>'common/delete','action'=>'true','key'=>'remove'])->endCell();
   $writer->endRow();

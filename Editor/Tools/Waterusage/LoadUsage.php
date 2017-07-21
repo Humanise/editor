@@ -12,10 +12,10 @@ $usage = Waterusage::load($data->id);
 $meter = Watermeter::load($usage->getWatermeterId());
 
 
-Response::sendObject(array(
+Response::sendObject([
   'id' => $usage->getId(),
   'number' => $meter->getNumber(),
   'value' => $usage->getValue(),
   'date' => $usage->getDate()
-));
+]);
 ?>

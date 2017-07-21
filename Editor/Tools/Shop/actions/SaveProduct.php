@@ -22,23 +22,23 @@ $product->save();
 
 $product->updateGroupIds($data->groups);
 
-$attributes = array();
+$attributes = [];
 foreach ($data->attributes as $attribute) {
-  $attributes[] = array(
+  $attributes[] = [
     'name'=>$attribute->name,
     'value'=>$attribute->value
-  );
+  ];
 }
 $product->updateAttributes($attributes);
 
-$prices = array();
+$prices = [];
 foreach ($data->prices as $price) {
-  $prices[] = array(
+  $prices[] = [
     'amount'=>$price->amount,
     'type'=>$price->type,
     'price'=>$price->price,
     'currency'=>$price->currency
-  );
+  ];
 }
 $product->updatePrices($prices);
 

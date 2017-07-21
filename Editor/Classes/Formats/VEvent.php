@@ -18,7 +18,7 @@ class VEvent {
   var $duration;
   var $timeStamp;
   var $uniqueId;
-  var $recurrenceRules = array();
+  var $recurrenceRules = [];
   var $url;
 
   function VEvent() {

@@ -4,23 +4,23 @@ if (!isset($GLOBALS['basePath'])) {
   exit;
 }
 
-Entity::$schema['Page'] = array(
+Entity::$schema['Page'] = [
   'table' => 'page',
-  'properties' => array(
-    'title' => array('type'=>'string'),
-    'description' => array('type'=>'string'),
-    'keywords' => array('type'=>'string'),
-    'templateId' => array('type'=>'int','column'=>'template_id','relation'=>array('class'=>'Template','property'=>'id')),
+  'properties' => [
+    'title' => ['type'=>'string'],
+    'description' => ['type'=>'string'],
+    'keywords' => ['type'=>'string'],
+    'templateId' => ['type'=>'int','column'=>'template_id','relation'=>['class'=>'Template','property'=>'id']],
 //    'templateUnique' => array('type'=>'string'),
-    'frameId' => array('type'=>'int','column'=>'frame_id','relation'=>array('class'=>'Frame','property'=>'id')),
-    'designId' => array('type'=>'int','column'=>'design_id','relation'=>array('class'=>'Design','property'=>'id')),
-    'language' => array('type'=>'string'),
-    'searchable' => array('type'=>'boolean'),
-    'disabled' => array('type'=>'boolean'),
-    'changed' => array('type'=>'datetime'),
-    'published' => array('type'=>'datetime')
-  )
-);
+    'frameId' => ['type'=>'int','column'=>'frame_id','relation'=>['class'=>'Frame','property'=>'id']],
+    'designId' => ['type'=>'int','column'=>'design_id','relation'=>['class'=>'Design','property'=>'id']],
+    'language' => ['type'=>'string'],
+    'searchable' => ['type'=>'boolean'],
+    'disabled' => ['type'=>'boolean'],
+    'changed' => ['type'=>'datetime'],
+    'published' => ['type'=>'datetime']
+  ]
+];
 class Page extends Entity {
 
   var $title;

@@ -11,9 +11,9 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Weblogentry'] = [
   'table' => 'weblogentry',
   'properties' => [
-      'text' => array('type'=>'string'),
-      'date'  => array('type'=>'datetime'),
-      'pageId' => array('type'=>'int','column'=>'page_id')
+      'text' => ['type'=>'string'],
+      'date'  => ['type'=>'datetime'],
+      'pageId' => ['type'=>'int','column'=>'page_id']
   ]
 ];
 
@@ -56,7 +56,7 @@ class Weblogentry extends Object {
   }
 
   function loadGroups() {
-    $this->groups = array();
+    $this->groups = [];
     $sql = "select object.title,object.id from webloggroup_weblogentry,object where webloggroup_weblogentry.webloggroup_id=object.id and weblogentry_id=".$this->id." order by object.title";
     $subResult = Database::select($sql);
     while ($subRow = Database::next($subResult)) {

@@ -84,6 +84,6 @@ class NewsService {
 
     ObjectLinkService::addPageLink($news,$page,$article->getLinkText());
 
-    return array('page' => $page, 'news' => $news);
+    return ['page' => $page, 'news' => $news];
   }
 }

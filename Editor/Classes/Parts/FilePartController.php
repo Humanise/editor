@@ -28,9 +28,9 @@ class FilePartController extends PartController
   function editor($part,$context) {
     return '<div id="part_file_container">'.$this->render($part,$context).'</div>'.
 
-    $this->buildHiddenFields(array(
+    $this->buildHiddenFields([
       'fileId' => $part->getFileId(),
-      'text' => $part->getText())).
+      'text' => $part->getText()]).
     '<script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/file/script.js" type="text/javascript" charset="utf-8"></script>';
   }
 
@@ -68,8 +68,8 @@ class FilePartController extends PartController
 
 
   function getToolbars() {
-    return array(
-      GuiUtils::getTranslated(array('File','da'=>'Fil')) => '
+    return [
+      GuiUtils::getTranslated(['File','da'=>'Fil']) => '
       <icon icon="common/new" text="{Add file; da:Tilføj fil}" name="addFile"/>
       <icon icon="common/search" text="{Select file; da:Vælg fil}" name="chooseFile"/>
       <divider/>
@@ -77,7 +77,7 @@ class FilePartController extends PartController
         <text-input name="text" width="200"/>
       </item>
     '
-    );
+    ];
   }
 
 

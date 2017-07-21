@@ -70,7 +70,7 @@ class DatabaseUtil {
    */
   static function getTables() {
     $config = ConfigurationService::getDatabase();
-    $out = array();
+    $out = [];
     $sql = "show tables from ".$config['database'];
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
@@ -88,7 +88,7 @@ class DatabaseUtil {
   static function getTableColumns($table) {
     $config = ConfigurationService::getDatabase();
     $sql = "SHOW FULL COLUMNS FROM ".$table." FROM ".$config['database'];
-    $out = array();
+    $out = [];
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
       $out[] = $row;
@@ -116,7 +116,7 @@ class DatabaseUtil {
    */
   static function updateTable($table,$columns) {
     global $databaseTables;
-    $commands = array();
+    $commands = [];
     if (array_key_exists($table,$databaseTables)) {
       $expectedColumns = $databaseTables[$table];
 
@@ -171,7 +171,7 @@ class DatabaseUtil {
   static function checkTable($table,$columns) {
     global $databaseTables, $basePath;
     require_once($basePath.'/Editor/Info/Database.php');
-    $errors = array();
+    $errors = [];
     if (array_key_exists($table,$databaseTables)) {
       $expectedColumns = $databaseTables[$table];
       foreach ($expectedColumns as $col) {
@@ -218,7 +218,7 @@ class DatabaseUtil {
   static function findMissingTables($tables) {
     global $databaseTables, $basePath;
     require_once($basePath.'/Editor/Info/Database.php');
-    $out = array();
+    $out = [];
     $keys = array_keys($databaseTables);
     foreach ($keys as $table) {
       if (!in_array($table,$tables)) {
@@ -261,7 +261,7 @@ class DatabaseUtil {
 
   static function update() {
 
-    $log = array();
+    $log = [];
     $log[] = "== Starting update ==";
     $tables = DatabaseUtil::getTables();
 
@@ -290,7 +290,7 @@ class DatabaseUtil {
   static function buildUpdateSQL() {
     $tables = DatabaseUtil::getTables();
 
-    $commands = array();
+    $commands = [];
     $missingTables = DatabaseUtil::findMissingTables($tables);
     foreach ($missingTables as $table) {
       $action = "CREATE TABLE `".$table."` (";

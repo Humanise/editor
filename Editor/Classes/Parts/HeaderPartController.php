@@ -48,7 +48,7 @@ class HeaderPartController extends PartController
 
   function getFromRequest($id) {
     $part = HeaderPart::load($id);
-    $this->_transfer($part,array(
+    $this->_transfer($part,[
       'text',
       'level'=>'int',
       'color',
@@ -64,7 +64,7 @@ class HeaderPartController extends PartController
       'textTransform',
       'fontVariant',
       'textDecoration'
-    ));
+    ]);
     return $part;
   }
 
@@ -146,8 +146,8 @@ class HeaderPartController extends PartController
   }
 
   function getUI() {
-    return array(
-      array(
+    return [
+      [
         'icon' => 'monochrome/text',
         'key' => 'text',
         'body' => '
@@ -195,13 +195,13 @@ class HeaderPartController extends PartController
             </fields>
           </formula>
         '
-      )
-    );
+      ]
+    ];
   }
 
   function getToolbars() {
-    return array(
-      GuiUtils::getTranslated(array('Header','da'=>'Overskrift')) =>
+    return [
+      GuiUtils::getTranslated(['Header','da'=>'Overskrift']) =>
       '
       <item label="{Level; da:Niveau}">
         <segmented name="level">
@@ -247,7 +247,7 @@ class HeaderPartController extends PartController
         </segmented>
       </item>
       ',
-    GuiUtils::getTranslated(array('Advanced','da'=>'Avanceret')) =>
+    GuiUtils::getTranslated(['Advanced','da'=>'Avanceret']) =>
       '
       <item label="{Word spacing; da:Ord-mellemrum}">
         <style-length-input name="wordSpacing" width="90"/>
@@ -281,7 +281,7 @@ class HeaderPartController extends PartController
         </segmented>
       </item>
       '
-    );
+    ];
   }
 }
 ?>

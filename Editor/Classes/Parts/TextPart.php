@@ -8,29 +8,29 @@ if (!isset($GLOBALS['basePath'])) {
   exit;
 }
 
-Entity::$schema['TextPart'] = array(
+Entity::$schema['TextPart'] = [
   'table' => 'part_text',
-  'properties' => array(
-    'text'   => array('type'=>'string'),
-    'textAlign' => array( 'type' => 'string', 'column' => 'textalign' ),
-    'fontFamily' => array( 'type' => 'string', 'column' => 'fontfamily' ),
-    'fontSize' => array( 'type' => 'string', 'column' => 'fontsize' ),
-    'lineHeight' => array( 'type' => 'string', 'column' => 'lineheight' ),
-    'fontWeight' => array( 'type' => 'string', 'column' => 'fontweight' ),
-    'color' => array( 'type' => 'string', 'column' => 'color' ),
-    'wordSpacing' => array( 'type' => 'string', 'column' => 'wordspacing' ),
-    'letterSpacing' => array( 'type' => 'string', 'column' => 'letterspacing' ),
-    'textDecoration' => array( 'type' => 'string', 'column' => 'textdecoration' ),
-    'textIndent' => array( 'type' => 'string', 'column' => 'textindent' ),
-    'textTransform' => array( 'type' => 'string', 'column' => 'texttransform' ),
-    'fontStyle' => array( 'type' => 'string', 'column' => 'fontstyle' ),
-    'fontVariant' => array( 'type' => 'string', 'column' => 'fontvariant' ),
-    'imageId' => array('type'=>'int', 'column' => 'image_id', 'relation'=>array('class'=>'Image','property'=>'id')),
-    'imageFloat' => array( 'type' => 'string', 'column' => 'imagefloat' ),
-    'imageWidth' => array( 'type' => 'int', 'column' => 'imagewidth' ),
-    'imageHeight' => array( 'type' => 'int', 'column' => 'imageheight' )
-  )
-);
+  'properties' => [
+    'text'   => ['type'=>'string'],
+    'textAlign' => [ 'type' => 'string', 'column' => 'textalign' ],
+    'fontFamily' => [ 'type' => 'string', 'column' => 'fontfamily' ],
+    'fontSize' => [ 'type' => 'string', 'column' => 'fontsize' ],
+    'lineHeight' => [ 'type' => 'string', 'column' => 'lineheight' ],
+    'fontWeight' => [ 'type' => 'string', 'column' => 'fontweight' ],
+    'color' => [ 'type' => 'string', 'column' => 'color' ],
+    'wordSpacing' => [ 'type' => 'string', 'column' => 'wordspacing' ],
+    'letterSpacing' => [ 'type' => 'string', 'column' => 'letterspacing' ],
+    'textDecoration' => [ 'type' => 'string', 'column' => 'textdecoration' ],
+    'textIndent' => [ 'type' => 'string', 'column' => 'textindent' ],
+    'textTransform' => [ 'type' => 'string', 'column' => 'texttransform' ],
+    'fontStyle' => [ 'type' => 'string', 'column' => 'fontstyle' ],
+    'fontVariant' => [ 'type' => 'string', 'column' => 'fontvariant' ],
+    'imageId' => ['type'=>'int', 'column' => 'image_id', 'relation'=>['class'=>'Image','property'=>'id']],
+    'imageFloat' => [ 'type' => 'string', 'column' => 'imagefloat' ],
+    'imageWidth' => [ 'type' => 'int', 'column' => 'imagewidth' ],
+    'imageHeight' => [ 'type' => 'int', 'column' => 'imageheight' ]
+  ]
+];
 
 class TextPart extends Part
 {

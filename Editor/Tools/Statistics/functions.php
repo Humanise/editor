@@ -104,7 +104,7 @@ function buildFilesSql() {
 function buildCountryData() {
   $parms = buildSql();
   $sql="SELECT statistics.country,statistics.language,count(distinct statistics.session) as sessions, count(distinct statistics.ip) as ips, count(statistics.id) as hits FROM statistics ".(strlen($parms)>0 ? " where ".$parms : "")." group by statistics.country,statistics.language";
-  $analyzed = array();
+  $analyzed = [];
   $total = 0;
   $result = Database::select($sql);
   while($row = Database::next($result)) {
@@ -114,13 +114,13 @@ function buildCountryData() {
       $analyzed[$trans]['sessions']+=$row['sessions'];
       $analyzed[$trans]['ips']+=$row['ips'];
     } else {
-      $analyzed[$trans]=array('hits' => $row['hits'],'sessions' => $row['sessions'],'ips' => $row['ips']);
+      $analyzed[$trans]=['hits' => $row['hits'],'sessions' => $row['sessions'],'ips' => $row['ips']];
     }
     $total+=$row['hits'];
   }
   Database::free($result);
   uasort($analyzed,'sortResult');
-  return array("data" => array_reverse($analyzed),"total" => $total);
+  return ["data" => array_reverse($analyzed),"total" => $total];
 }
 
 function getCountry($country,$language) {
@@ -145,7 +145,7 @@ function buildBrowserData($mode) {
   $parms = buildSql();
 
   $sql="SELECT count(distinct statistics.session) as sessions, count(distinct statistics.ip) as ips, count(statistics.id) as hits,statistics.agent FROM statistics ".(strlen($parms)>0 ? " where ".$parms : "")." group by statistics.agent order by statistics.agent";
-  $analyzed = array();
+  $analyzed = [];
   $total = 0;
   $result = Database::select($sql);
   while($row = Database::next($result)) {
@@ -169,13 +169,13 @@ function buildBrowserData($mode) {
       $analyzed[$trans]['sessions']+=$row['sessions'];
       $analyzed[$trans]['ips']+=$row['ips'];
     } else {
-      $analyzed[$trans]=array('hits' => $row['hits'],'sessions' => $row['sessions'],'ips' => $row['ips']);
+      $analyzed[$trans]=['hits' => $row['hits'],'sessions' => $row['sessions'],'ips' => $row['ips']];
     }
     $total+=$row['hits'];
   }
   Database::free($result);
   uasort($analyzed,'sortResult');
-  return array("data" => array_reverse($analyzed),"total" => $total);
+  return ["data" => array_reverse($analyzed),"total" => $total];
 }
 
 function getAgentVersion($agent) {

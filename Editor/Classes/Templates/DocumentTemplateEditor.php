@@ -458,14 +458,14 @@ class DocumentTemplateEditor
   static function loadColumn($id) {
     $sql = "select * from document_column where id=".Database::int($id);
     if ($row = Database::selectFirst($sql)) {
-      return array(
+      return [
         'id' => intval($row['id']),
         'width' => $row['width'],
         'top' => $row['top'],
         'bottom' => $row['bottom'],
         'left' => $row['left'],
         'right' => $row['right']
-      );
+      ];
     }
     return null;
   }
@@ -632,7 +632,7 @@ class DocumentTemplateEditor
 
       order by document_row.index,document_row.id, document_column.index, document_column.id, document_section.index, document_section.id";
     //Log::debug($sql);
-    $structure = array();
+    $structure = [];
 
     $result = Database::select($sql);
     while ($line = Database::next($result)) {
@@ -643,7 +643,7 @@ class DocumentTemplateEditor
       $sectionIndex = intval($line['section_index']);
 
       if (!isset($structure[$rowIndex])) {
-        $structure[$rowIndex] = array(
+        $structure[$rowIndex] = [
           'id' => intval($line['row_id']),
           'index' => $rowIndex,
           'top' => $line['row_top'],
@@ -651,11 +651,11 @@ class DocumentTemplateEditor
           'spacing' => $line['row_spacing'],
           'class' => $line['row_class'],
           'columns' => []
-        );
+        ];
       }
 
       if (!isset($structure[$rowIndex]['columns'][$columnIndex])) {
-        $structure[$rowIndex]['columns'][$columnIndex] = array(
+        $structure[$rowIndex]['columns'][$columnIndex] = [
           'id' => $line['column_id'],
           'index' => $columnIndex,
           'width' => $line['column_width'],
@@ -664,11 +664,11 @@ class DocumentTemplateEditor
           'left' => $line['column_left'],
           'right' => $line['column_right'],
           'sections' => []
-        );
+        ];
       }
       if ($line['section_id']) {
         if (!isset($structure[$rowIndex]['columns'][$columnIndex]['sections'][$sectionIndex])) {
-          $structure[$rowIndex]['columns'][$columnIndex]['sections'][$sectionIndex] = array(
+          $structure[$rowIndex]['columns'][$columnIndex]['sections'][$sectionIndex] = [
             'id' => $line['section_id'],
             'index' => $sectionIndex,
             'width' => $line['section_width'],
@@ -680,7 +680,7 @@ class DocumentTemplateEditor
             'class' => $line['section_class'],
             'partType' => $line['part_type'],
             'partId' => $line['part_id']
-          );
+          ];
         }
       }
     }

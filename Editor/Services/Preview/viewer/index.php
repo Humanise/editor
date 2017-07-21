@@ -17,11 +17,11 @@ if ($id==0) {
   }
 }
 
-$html = RenderingService::previewPage(array(
+$html = RenderingService::previewPage([
   'pageId' => $id,
   'historyId' => $history,
   'relativePath' => '../../../../'
-));
+]);
 if ($html) {
   InternalSession::setPageId($id);
   header("Content-Type: text/html; charset=UTF-8");

@@ -11,19 +11,19 @@ if (!isset($GLOBALS['basePath'])) {
 class ClipboardService {
 
   static function copySection($id) {
-    $_SESSION['core.clipboard'] = array(
+    $_SESSION['core.clipboard'] = [
       'action' => 'copy',
       'type' => 'section',
       'id' => $id
-    );
+    ];
   }
 
   static function cutSection($id) {
-    $_SESSION['core.clipboard'] = array(
+    $_SESSION['core.clipboard'] = [
       'action' => 'cut',
       'type' => 'section',
       'id' => $id
-    );
+    ];
   }
 
   static function getClipboard() {

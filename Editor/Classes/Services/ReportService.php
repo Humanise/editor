@@ -95,7 +95,7 @@ class ReportService {
     $report.= '<h2>Statistics for the last two weeks</h2>';
     $report.= '<table>'.
       '<thead><th class="date">Date</th><th>Sessions</th><th>IPs</th><th>Hits</th></thead><tbody>';
-    $max = array('sessions'=>0,'ips'=>0,'hits'=>0);
+    $max = ['sessions'=>0,'ips'=>0,'hits'=>0];
     foreach ($stats as $stat) {
       $max['sessions'] = max($max['sessions'],$stat['sessions']);
       $max['ips'] = max($max['ips'],$stat['ips']);

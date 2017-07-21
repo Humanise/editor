@@ -20,7 +20,7 @@ class ObjectService {
 
   static function getValidIds($ids) {
     if (count($ids)==0) {
-      return array();
+      return [];
     }
     $sql = "select id from object where id in (".implode(',',$ids).")";
     return Database::getIds($sql);
@@ -305,15 +305,15 @@ class ObjectService {
    * @param query Query
    */
   static function search($query) {
-    $parts = array(
+    $parts = [
       'type' => $query->getType(),
       'query' => $query->getText(),
       'fields' => $query->getFields(),
       'ordering' => $query->getOrdering(),
       'direction' => $query->getDirection(),
-      'tables' => array(),
-      'parts' => array()
-    );
+      'tables' => [],
+      'parts' => []
+    ];
     if ($query->getWindowPage()!==null) {
       $parts['windowPage'] = $query->getWindowPage();
     }
@@ -382,7 +382,7 @@ class ObjectService {
     return $result;
   }
 
-  static function _search($query = array()) {
+  static function _search($query = []) {
     $type = $query['type'];
     if (!$type) {
       return null;
@@ -391,16 +391,16 @@ class ObjectService {
     if (!is_array($schema)) {
       Log::debug('Unable to find schema for: '.$type);
     }
-    $parts = array(
+    $parts = [
       // It is important to name type "object_type" since the image class also has a column named type
       'columns' => 'object.id,object.title,object.note,object.type as object_type,object.owner_id,UNIX_TIMESTAMP(object.created) as created,UNIX_TIMESTAMP(object.updated) as updated,UNIX_TIMESTAMP(object.published) as published,object.searchable',
       'tables' => 'object,`'.$type.'`',
       'ordering' => ['object.title'],
-      'limits' => array(
+      'limits' => [
         '`'.$type.'`.object_id=object.id'
-      ),
-      'joins' => array()
-    );
+      ],
+      'joins' => []
+    ];
     if (isset($query['ordering'])) {
       $parts['ordering'] = $query['ordering'];
     }
@@ -492,11 +492,11 @@ class ObjectService {
     return $list;
   }
 
-  static function findAny($query = array()) {
-    $parts = array();
+  static function findAny($query = []) {
+    $parts = [];
     $parts['columns'] = 'object.id,object.type';
     $parts['tables'] = 'object';
-    $parts['limits'] = array();
+    $parts['limits'] = [];
     $parts['ordering'] = 'object.title';
     $parts['direction'] = $query['direction'];
 
@@ -514,7 +514,7 @@ class ObjectService {
       $parts['limits'][]='`index` like '.Database::search($query['query']);
     }
     $list = ObjectService::_find($parts,$query);
-    $list['result'] = array();
+    $list['result'] = [];
     foreach ($list['rows'] as $row) {
       if ($row['type']=='') {
         error_log('Could not load '.$row['id'].' it has no type');
@@ -534,7 +534,7 @@ class ObjectService {
   }
 
   static function _find($parts,$query) {
-    $list = array('result' => array(),'rows' => array(),'windowPage' => 0,'windowSize' => 0,'total' => 0);
+    $list = ['result' => [],'rows' => [],'windowPage' => 0,'windowSize' => 0,'total' => 0];
 
     $sql = "select ".$parts['columns']." from ".$parts['tables'];
     if (isset($parts['joins']) && is_array($parts['joins']) && count($parts['joins'])>0) {

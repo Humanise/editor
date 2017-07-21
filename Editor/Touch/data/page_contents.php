@@ -6,12 +6,12 @@
 require_once '../../Include/Private.php';
 
 $id = Request::getInt('id',0);
-$html = RenderingService::previewPage(array(
+$html = RenderingService::previewPage([
   'pageId' => $id,
   'mini' => true,
   'relativePath' => '../../../',
   'relativeUrl' => '../../'
-));
+]);
 
 if ($html) {
   header("Content-Type: text/html; charset=UTF-8");

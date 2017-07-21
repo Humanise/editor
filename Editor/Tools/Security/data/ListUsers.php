@@ -22,7 +22,7 @@ $writer->startList()
 
 $list = Query::after('user')->withText($text)->get();
 foreach ($list as $item) {
-  $writer->startRow(array('kind'=>'user','id'=>$item->getId()))->
+  $writer->startRow(['kind'=>'user','id'=>$item->getId()])->
     startCell([ 'icon' => $item->getIcon() ])->text($item->getTitle())->endCell()->
     startCell()->text($item->getUsername())->endCell()->
     startCell()->text($item->getEmail())->endCell()->

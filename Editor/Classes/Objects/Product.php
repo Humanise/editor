@@ -10,12 +10,12 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['Product'] = [
   'table' => 'product',
-  'properties' => array(
-      'number' => array('type'=>'string'),
-      'productTypeId' => array('type'=>'int','column'=>'producttype_id'),
-      'imageId' => array('type'=>'int','column'=>'image_id'),
-      'allowOffer' => array('type'=>'boolean','column'=>'allow_offer')
-    )
+  'properties' => [
+      'number' => ['type'=>'string'],
+      'productTypeId' => ['type'=>'int','column'=>'producttype_id'],
+      'imageId' => ['type'=>'int','column'=>'image_id'],
+      'allowOffer' => ['type'=>'boolean','column'=>'allow_offer']
+    ]
 ];
 
 class Product extends Object {
@@ -117,22 +117,22 @@ class Product extends Object {
   /////////////////////////////// Special ///////////////////////
 
   function getAttributes() {
-    $atts = array();
+    $atts = [];
     $sql="select * from productattribute where product_id=".$this->id." order by `index`";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
-      $atts[] = array('name' => $row['name'],'value' => $row['value']);
+      $atts[] = ['name' => $row['name'],'value' => $row['value']];
     }
     Database::free($result);
     return $atts;
   }
 
   function getPrices() {
-    $atts = array();
+    $atts = [];
     $sql="select * from productprice where product_id=".$this->id." order by `index`";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
-      $atts[] = array('amount' => $row['amount'],'type' => $row['type'],'price' => floatval($row['price']),'currency' => $row['currency']);
+      $atts[] = ['amount' => $row['amount'],'type' => $row['type'],'price' => floatval($row['price']),'currency' => $row['currency']];
     }
     Database::free($result);
     return $atts;
@@ -180,8 +180,8 @@ class Product extends Object {
     }
   }
 
-    static function find($query = array()) {
-      $parts = array();
+    static function find($query = []) {
+      $parts = [];
     $parts['columns'] = 'object.id';
     $parts['tables'] = 'product,object';
     $parts['limits'] = 'object.id=product.object_id';
@@ -196,7 +196,7 @@ class Product extends Object {
       $parts['limits'] .= " and productgroup_product.product_id = object.id and productgroup_product.productgroup_id=".$query['productgroup'];
     }
     $list = ObjectService::_find($parts,$query);
-    $list['result'] = array();
+    $list['result'] = [];
     foreach ($list['rows'] as $row) {
       $list['result'][] = Product::load($row['id']);
     }

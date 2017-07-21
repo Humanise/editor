@@ -111,7 +111,7 @@ class DocumentTemplateController extends TemplateController
 
   function build($id) {
     $out = $this->getData($id);
-    return array('data' => $out['xml'], 'dynamic' => $out['dynamic'], 'index' => $out['index']);
+    return ['data' => $out['xml'], 'dynamic' => $out['dynamic'], 'index' => $out['index']];
   }
 
   function getData($id) {
@@ -169,7 +169,7 @@ class DocumentTemplateController extends TemplateController
     }
     Database::free($result_row);
     $output.= '</content>';
-    return array('xml'=>$output,'index'=>$index,'dynamic'=>$dynamic);
+    return ['xml'=>$output,'index'=>$index,'dynamic'=>$dynamic];
   }
 
   static function _getStyle($xml) {
@@ -230,7 +230,7 @@ class DocumentTemplateController extends TemplateController
       }
       $index = $ctrl->getIndex($part);
     }
-    return array('output' => $output,'index' => $index,'dynamic' => $dynamic);
+    return ['output' => $output,'index' => $index,'dynamic' => $dynamic];
   }
 
   function dynamic($id,&$state) {

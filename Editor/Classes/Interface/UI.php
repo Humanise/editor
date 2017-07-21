@@ -41,7 +41,7 @@ class UI {
 
     $result = preg_replace("/<!DOCTYPE[^>]+>/u", "", $result);
     $result = str_replace(
-      array(' xmlns="http://www.w3.org/1999/xhtml"',' xmlns:html="http://www.w3.org/1999/xhtml"')
+      [' xmlns="http://www.w3.org/1999/xhtml"',' xmlns:html="http://www.w3.org/1999/xhtml"']
       ,'',$result);
     return $result;
   }
@@ -142,7 +142,7 @@ class UI {
   }
 
   static function extract($str) {
-    $parsed = array();
+    $parsed = [];
     $str = substr($str,1,-1);
     $parts = explode(';',$str);
     foreach ($parts as $part) {
@@ -196,23 +196,23 @@ class UI {
   }
 
   static function toLinks($links) {
-    $out = array();
+    $out = [];
     foreach ($links as $link) {
-      $out[] = array(
+      $out[] = [
         'id' => $link->getId(),
         'text' => $link->getText(),
         'kind' => $link->getType(),
         'value' => $link->getValue(),
         'info' => $link->getInfo(),
         'icon' => $link->getIcon()
-      );
+      ];
     }
     return $out;
   }
 
   static function fromLinks($links) {
     if (!is_array($links)) return;
-    $out = array();
+    $out = [];
     foreach ($links as $link) {
       $objectLink = new ObjectLink();
       $objectLink->setText($link->text);

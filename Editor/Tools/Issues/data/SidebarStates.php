@@ -12,16 +12,16 @@ $writer = new ItemsWriter();
 $writer->startItems();
 
 if ($states) {
-  $writer->title(array('States','da'=>'Status'));
-  $writer->item(array('title'=>array('Any state','da'=>'Enhver status'),'value'=>'any','icon'=>'view/list'));
+  $writer->title(['States','da'=>'Status']);
+  $writer->item(['title'=>['Any state','da'=>'Enhver status'],'value'=>'any','icon'=>'view/list']);
   foreach ($states as $row) {
-    $writer->item(array(
-      'title' => $row['title'] ? $row['title'] : array('No status','da'=>'Ingen status'),
+    $writer->item([
+      'title' => $row['title'] ? $row['title'] : ['No status','da'=>'Ingen status'],
       'icon' => 'view/list',
       'badge' => $row['count'],
       'kind' => 'status',
       'value' => $row['id'] ? $row['id'] : 'nostatus'
-    ));
+    ]);
   }
 }
 $writer->endItems();

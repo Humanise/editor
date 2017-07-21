@@ -15,19 +15,19 @@ $writer = new ListWriter();
 
 $writer->startList();
 $writer->sort($sort,$direction);
-$writer->window(array( 'total' => $result->getTotal(), 'size' => $windowSize, 'page' => $windowPage ));
+$writer->window([ 'total' => $result->getTotal(), 'size' => $windowSize, 'page' => $windowPage ]);
 $writer->startHeaders();
-$writer->header(array('title'=>'Titel'));
-$writer->header(array('title'=>'Ramme'));
-$writer->header(array('title'=>'Type'));
-$writer->header(array('title'=>'Design'));
+$writer->header(['title'=>'Titel']);
+$writer->header(['title'=>'Ramme']);
+$writer->header(['title'=>'Type']);
+$writer->header(['title'=>'Design']);
 $writer->endHeaders();
 
 foreach ($result->getList() as $object) {
   $frame = Frame::load($object->getFrameId());
   $template = TemplateService::getTemplateById($object->getTemplateId());
   $design = Design::load($object->getDesignId());
-  $writer->startRow(array( 'kind'=>'blueprint', 'id'=>$object->getId(), 'icon'=>$object->getIcon(), 'title'=>$object->getTitle() ));
+  $writer->startRow([ 'kind'=>'blueprint', 'id'=>$object->getId(), 'icon'=>$object->getIcon(), 'title'=>$object->getTitle() ]);
   $writer->startCell()->text($object->getTitle())->endCell();
   $writer->startCell()->text($frame ? $frame->getName() : '?')->endCell();
   $writer->startCell()->text($template ? $template->getName() : '?')->endCell();

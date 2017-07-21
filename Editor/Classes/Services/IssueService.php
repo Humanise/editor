@@ -10,13 +10,13 @@ if (!isset($GLOBALS['basePath'])) {
 
 class IssueService {
 
-  private static $KINDS = array(
-    'unknown' => array('da'=>'Ukendt','en' => 'Unknown'),
-    'improvement' => array('da' => 'Forbedring','en' => 'Improvement'),
-    'task' => array('da'=>'Opgave','en' => 'Task'),
-    'feedback' => array('da' => 'Tilbagemelding', 'en' => 'Feedback'),
-    'error' => array('da' => 'Fejl', 'en' => 'Error')
-  );
+  private static $KINDS = [
+    'unknown' => ['da'=>'Ukendt','en' => 'Unknown'],
+    'improvement' => ['da' => 'Forbedring','en' => 'Improvement'],
+    'task' => ['da'=>'Opgave','en' => 'Task'],
+    'feedback' => ['da' => 'Tilbagemelding', 'en' => 'Feedback'],
+    'error' => ['da' => 'Fejl', 'en' => 'Error']
+  ];
 
   static function getKinds() {
     return IssueService::$KINDS;
@@ -49,7 +49,7 @@ class IssueService {
   }
 
   static function getStatusMap() {
-    $map = array();
+    $map = [];
     $sql = "select id,title from object where type='issuestatus' order by title";
     $result = Database::select($sql);
     while($row = Database::next($result)) {

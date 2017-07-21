@@ -10,13 +10,13 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['Newssourceitem'] = [
     'table' => 'newssourceitem',
-    'properties' => array(
-      'text' => array('type'=>'string'),
-      'url' => array('type'=>'string'),
-      'newssourceId' => array('type' => 'int','column' => 'newssource_id'),
-      'date' => array('type'=>'datetime'),
-      'guid' => array('type'=>'string')
-    )
+    'properties' => [
+      'text' => ['type'=>'string'],
+      'url' => ['type'=>'string'],
+      'newssourceId' => ['type' => 'int','column' => 'newssource_id'],
+      'date' => ['type'=>'datetime'],
+      'guid' => ['type'=>'string']
+    ]
 ];
 
 class Newssourceitem extends Object {

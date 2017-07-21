@@ -11,7 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 class ClassService {
 
   static function getClassInfo() {
-    $infos = array();
+    $infos = [];
     $files = ClassService::_getFiles();
 
     foreach ($files as $path) {
@@ -22,8 +22,8 @@ class ClassService {
       $info = new ClassInfo();
       $info->setPath($path);
       $info->setName($name);
-      $relations = array();
-      $properties = array();
+      $relations = [];
+      $properties = [];
       if (class_exists($name)) {
         $parent = get_parent_class($name);
         $info->setParent($parent);
@@ -71,7 +71,7 @@ class ClassService {
         }
         }
       } else {
-        $info->setHierarchy(array($name));
+        $info->setHierarchy([$name]);
         Log::debug('Class '.$name.' does not exist');
       }
       $info->setProperties($properties);
@@ -93,7 +93,7 @@ class ClassService {
   }
 
   static function _getHierarchy($name) {
-    $hier = array($name);
+    $hier = [$name];
     $parent = $name;
     while ($parent) {
       $parent = get_parent_class($parent);
@@ -107,10 +107,10 @@ class ClassService {
   static function _getFiles() {
     global $basePath;
     $dir = $basePath.'Editor/Classes/';
-    $files = FileSystemService::find(array(
+    $files = FileSystemService::find([
       'dir' => $dir,
       'extension' => 'php'
-    ));
+    ]);
     return $files;
   }
 
@@ -154,14 +154,14 @@ class ClassService {
           $props = get_object_vars($instance);
         }
       }
-      $classes[] = array(
+      $classes[] = [
         'path' => $path,
         'relativePath' => substr($path,strlen($dir)),
         'name' => $name,
         'valid' => $valid,
         'parent' => $parent,
         'properties' => $props
-      );
+      ];
     }
     return $classes;
   }

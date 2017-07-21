@@ -11,14 +11,14 @@ $list = Query::after('issue')->withRelationToPage(InternalSession::getPageId())-
 
 $writer->startList();
   foreach ($list as $issue) {
-    $writer->startRow(array('id'=>$issue->getId(),'kind'=>$issue->getType()))->
+    $writer->startRow(['id'=>$issue->getId(),'kind'=>$issue->getType()])->
       startCell()->
         startLine()->text($issue->getNote())->endLine()->
-        startLine(array('minor'=>true,'dimmed'=>true))->text(IssueService::translateKind($issue->getKind()))->endLine()->
+        startLine(['minor'=>true,'dimmed'=>true])->text(IssueService::translateKind($issue->getKind()))->endLine()->
       endCell()->
-      startCell(array('width'=>1));
+      startCell(['width'=>1]);
       $writer->startIcons()->
-        icon(array('icon'=>'monochrome/edit','revealing'=>true,'action'=>true,'data'=>array('action'=>'view')))->
+        icon(['icon'=>'monochrome/edit','revealing'=>true,'action'=>true,'data'=>['action'=>'view']])->
       endIcons();
       $writer->endCell()->
     endRow();

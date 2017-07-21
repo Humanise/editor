@@ -9,20 +9,20 @@ $writer = new ItemsWriter();
 
 $writer->startItems();
 
-$writer->item(array(
-  'title' => array('All pages','da'=>'Alle sider'),
+$writer->item([
+  'title' => ['All pages','da'=>'Alle sider'],
   'icon' => 'common/page',
   'value' => 'all',
   'badge' => PageService::getTotalPageCount()
-));
-$writer->item(array(
-  'title' => array('Latest','da'=>'Seneste'),
+]);
+$writer->item([
+  'title' => ['Latest','da'=>'Seneste'],
   'icon' => 'common/time',
   'value' => 'latest',
   'badge' => PageService::getLatestPageCount()
-));
+]);
 
-$writer->title(array('Hierarchies','da'=>'Hierarkier'));
+$writer->title(['Hierarchies','da'=>'Hierarkier']);
 
 $hierarchies = Hierarchy::search();
 
@@ -31,18 +31,18 @@ foreach ($hierarchies as $hierarchy) {
   if ($hierarchy->getChanged()>$hierarchy->getPublished()) {
     $title.=' !';
   }
-  $writer->startItem(array('icon'=>'common/hierarchy','kind'=>'hierarchy','value'=>$hierarchy->getId(),'title'=>$title));
+  $writer->startItem(['icon'=>'common/hierarchy','kind'=>'hierarchy','value'=>$hierarchy->getId(),'title'=>$title]);
   encodeLevel(0,$hierarchy->getId(),$writer);
   $writer->endItem();
 }
 
-$writer->item(array(
-  'title' => array('No menu item','da'=>'Uden menupunkt'),
+$writer->item([
+  'title' => ['No menu item','da'=>'Uden menupunkt'],
   'icon' => 'monochrome/nomenu',
   'value' => 'nomenu',
   'kind' => 'subset',
   'badge' => PageService::getNoItemPageCount()
-));
+]);
 
 function encodeLevel($parent,$hierarchyId,&$writer) {
   $sql="select hierarchy_item.*,page.disabled,page.path,page.id as pageid from hierarchy_item".
@@ -56,7 +56,7 @@ function encodeLevel($parent,$hierarchyId,&$writer) {
     if ($row['target_type']=='page' && !$row['pageid']) {
       $icon = "common/warning";
     }
-    $writer->startItem(array('icon' => $icon, 'kind' => 'hierarchyItem', 'value' => $row['id'], 'title' => $row['title']));
+    $writer->startItem(['icon' => $icon, 'kind' => 'hierarchyItem', 'value' => $row['id'], 'title' => $row['title']]);
     encodeLevel($row['id'],$hierarchyId,$writer);
     $writer->endItem();
   }
@@ -68,15 +68,15 @@ function encodeLevel($parent,$hierarchyId,&$writer) {
 
 
 
-$writer->title(array('Languages','da'=>'Sprog'));
+$writer->title(['Languages','da'=>'Sprog']);
 
 $counts = PageService::getLanguageCounts();
 
 foreach ($counts as $row) {
-  $options = array('kind'=>'language');
+  $options = ['kind'=>'language'];
   if ($row['language']==null || count($row['language'])==0) {
     $options['icon'] = 'monochrome/round_question';
-    $options['title'] = array('No language', 'da'=>'Intet sprog');
+    $options['title'] = ['No language', 'da'=>'Intet sprog'];
   } else {
     $options['icon'] = GuiUtils::getLanguageIcon($row['language']);
     $options['title'] = GuiUtils::getLanguageName($row['language']);
@@ -86,39 +86,39 @@ foreach ($counts as $row) {
   $writer->item($options);
 }
 
-$writer->title(array('Overviews','da'=>'Oversigter'));
+$writer->title(['Overviews','da'=>'Oversigter']);
 
-$writer->item(array(
-  'title' => array('News','da'=>'Nyheder'),
+$writer->item([
+  'title' => ['News','da'=>'Nyheder'],
   'icon' => 'monochrome/news',
   'value' => 'news',
   'kind' => 'subset',
   'badge' => PageService::getNewsPageCount()
-));
+]);
 
-$writer->item(array(
-  'title' => array('Warnings','da'=>'Advarsler'),
+$writer->item([
+  'title' => ['Warnings','da'=>'Advarsler'],
   'icon' => 'monochrome/warning',
   'value' => 'warnings',
   'kind' => 'subset',
   'badge' => PageService::getWarningsPageCount()
-));
+]);
 
-$writer->item(array(
-  'title' => array('Modified','da'=>'Ændret'),
+$writer->item([
+  'title' => ['Modified','da'=>'Ændret'],
   'icon' => 'monochrome/edit',
   'value' => 'changed',
   'kind' => 'subset',
   'badge' => PageService::getChangedPageCount()
-));
+]);
 
-$writer->item(array(
-  'title' => array('Review','da'=>'Revidering'),
+$writer->item([
+  'title' => ['Review','da'=>'Revidering'],
   'icon' => 'monochrome/stamp',
   'value' => 'review',
   'kind' => 'subset',
   'badge' => PageService::getReviewPageCount()
-));
+]);
 
 $writer->endItems();
 ?>

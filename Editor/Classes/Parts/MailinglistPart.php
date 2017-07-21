@@ -8,14 +8,14 @@ if (!isset($GLOBALS['basePath'])) {
   exit;
 }
 
-Entity::$schema['MailinglistPart'] = array(
+Entity::$schema['MailinglistPart'] = [
   'table' => 'part_mailinglist',
-  'properties' => array(
-  ),
-  'relations' => array(
-    'mailinglistIds' => array( 'table' => 'part_mailinglist_mailinglist', 'fromColumn' => 'part_id', 'toColumn' => 'mailinglist_id' )
-  )
-);
+  'properties' => [
+  ],
+  'relations' => [
+    'mailinglistIds' => [ 'table' => 'part_mailinglist_mailinglist', 'fromColumn' => 'part_id', 'toColumn' => 'mailinglist_id' ]
+  ]
+];
 
 class MailinglistPart extends Part
 {

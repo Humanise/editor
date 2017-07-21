@@ -106,7 +106,7 @@ class Database {
   }
 
   static function selectAll($sql,$key=null) {
-    $output = array();
+    $output = [];
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
       if ($key!=null) {
@@ -194,7 +194,7 @@ class Database {
 
   static function selectArray($sql) {
     $result = Database::select($sql);
-    $ids = array();
+    $ids = [];
     while($row = Database::next($result)) {
       $ids[] = $row[0];
     }
@@ -204,7 +204,7 @@ class Database {
 
   static function selectMap($sql,$parameters=null) {
     $result = Database::select($sql,$parameters);
-    $map = array();
+    $map = [];
     while($row = Database::next($result)) {
       $map[$row[0]] = $row[1];
     }
@@ -214,7 +214,7 @@ class Database {
 
   static function selectIntArray($sql,$parameters=null) {
     $result = Database::select($sql,$parameters);
-    $ids = array();
+    $ids = [];
     while($row = Database::next($result)) {
       $ids[] = intval($row[0]);
     }
@@ -237,7 +237,7 @@ class Database {
 
   static function buildArray($sql) {
     $result = Database::select($sql);
-    $ids = array();
+    $ids = [];
     while($row = Database::next($result)) {
       $ids[] = $row[0];
     }
@@ -371,7 +371,7 @@ class Database {
   }
 
   static function compile($sql,$vars) {
-    $replacements = array();
+    $replacements = [];
     if (preg_match_all("/@[a-z]+\\([a-zA-Z]+\\)/u", $sql,$matches) > 0) {
       foreach ($matches[0] as $expression) {
         $pos = strpos($expression,'(');

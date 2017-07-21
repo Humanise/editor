@@ -8,32 +8,32 @@ if (!isset($GLOBALS['basePath'])) {
   exit;
 }
 
-Entity::$schema['PersonPart'] = array(
+Entity::$schema['PersonPart'] = [
   'table' => 'part_person',
-  'properties' => array(
-    'align' => array( 'type' => 'string' ),
-    'personId' => array( 'type' => 'int', 'column' => 'person_id',
+  'properties' => [
+    'align' => [ 'type' => 'string' ],
+    'personId' => [ 'type' => 'int', 'column' => 'person_id',
       'relation'=>['class'=>'Person','property'=>'id']
-    ),
-    'showFirstName' => array( 'type' => 'boolean', 'column' => 'show_firstname' ),
-    'showMiddleName' => array( 'type' => 'boolean', 'column' => 'show_middlename' ),
-    'showLastName' => array( 'type' => 'boolean', 'column' => 'show_surname' ),
-    'showInitials' => array( 'type' => 'boolean', 'column' => 'show_initials' ),
-    'showNickname' => array( 'type' => 'boolean', 'column' => 'show_nickname' ),
-    'showJobTitle' => array( 'type' => 'boolean', 'column' => 'show_jobtitle' ),
-    'showSex' => array( 'type' => 'boolean', 'column' => 'show_sex' ),
-    'showEmailJob' => array( 'type' => 'boolean', 'column' => 'show_email_job' ),
-    'showEmailPrivate' => array( 'type' => 'boolean', 'column' => 'show_email_private' ),
-    'showPhoneJob' => array( 'type' => 'boolean', 'column' => 'show_phone_job' ),
-    'showPhonePrivate' => array( 'type' => 'boolean', 'column' => 'show_phone_private' ),
-    'showStreetname' => array( 'type' => 'boolean', 'column' => 'show_streetname' ),
-    'showZipcode' => array( 'type' => 'boolean', 'column' => 'show_zipcode' ),
-    'showCity' => array( 'type' => 'boolean', 'column' => 'show_city' ),
-    'showCountry' => array( 'type' => 'boolean', 'column' => 'show_country' ),
-    'showWebAddress' => array( 'type' => 'boolean', 'column' => 'show_webaddress' ),
-    'showImage' => array( 'type' => 'boolean', 'column' => 'show_image' )
-  )
-);
+    ],
+    'showFirstName' => [ 'type' => 'boolean', 'column' => 'show_firstname' ],
+    'showMiddleName' => [ 'type' => 'boolean', 'column' => 'show_middlename' ],
+    'showLastName' => [ 'type' => 'boolean', 'column' => 'show_surname' ],
+    'showInitials' => [ 'type' => 'boolean', 'column' => 'show_initials' ],
+    'showNickname' => [ 'type' => 'boolean', 'column' => 'show_nickname' ],
+    'showJobTitle' => [ 'type' => 'boolean', 'column' => 'show_jobtitle' ],
+    'showSex' => [ 'type' => 'boolean', 'column' => 'show_sex' ],
+    'showEmailJob' => [ 'type' => 'boolean', 'column' => 'show_email_job' ],
+    'showEmailPrivate' => [ 'type' => 'boolean', 'column' => 'show_email_private' ],
+    'showPhoneJob' => [ 'type' => 'boolean', 'column' => 'show_phone_job' ],
+    'showPhonePrivate' => [ 'type' => 'boolean', 'column' => 'show_phone_private' ],
+    'showStreetname' => [ 'type' => 'boolean', 'column' => 'show_streetname' ],
+    'showZipcode' => [ 'type' => 'boolean', 'column' => 'show_zipcode' ],
+    'showCity' => [ 'type' => 'boolean', 'column' => 'show_city' ],
+    'showCountry' => [ 'type' => 'boolean', 'column' => 'show_country' ],
+    'showWebAddress' => [ 'type' => 'boolean', 'column' => 'show_webaddress' ],
+    'showImage' => [ 'type' => 'boolean', 'column' => 'show_image' ]
+  ]
+];
 
 class PersonPart extends Part
 {

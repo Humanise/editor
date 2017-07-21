@@ -11,9 +11,9 @@ $writer = new ListWriter();
 
 $writer->startList()->
   startHeaders()->
-    header(array('title'=>array('Table','da'=>'Tabel'),'width'=>30))->
-    header(array('title'=>array('Columns','da'=>'Kolonner'),'width'=>20))->
-    header(array('title'=>array('Status','da'=>'Status'),'width'=>50))->
+    header(['title'=>['Table','da'=>'Tabel'],'width'=>30])->
+    header(['title'=>['Columns','da'=>'Kolonner'],'width'=>20])->
+    header(['title'=>['Status','da'=>'Status'],'width'=>50])->
   endHeaders();
 
 $tables = DatabaseUtil::getTables();
@@ -32,7 +32,7 @@ foreach ($missingTables as $table) {
   $writer->startRow()->
     cell($table)->
     cell('?')->
-    cell(array('The table is missing','da'=>'Tabellen mangler'))->
+    cell(['The table is missing','da'=>'Tabellen mangler'])->
   endRow();
 }
 $writer->endList();

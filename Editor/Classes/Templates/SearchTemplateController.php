@@ -54,7 +54,7 @@ class SearchTemplateController extends TemplateController
     $data.='</types>';
     $data.='<!--dynamic-->';
     $data.='</search>';
-        return array('data' => $data, 'dynamic' => true, 'index' => '');
+        return ['data' => $data, 'dynamic' => true, 'index' => ''];
     }
 
   function dynamic($id,&$state) {
@@ -86,7 +86,7 @@ class SearchTemplateController extends TemplateController
         if ($searchPages) {
           $sql="select id,title,description,`index` from page where searchable=1 and secure=0 and disabled=0";
           if ($method=='sentence') {
-            $highlight = array($query);
+            $highlight = [$query];
             $sql.=" and (title like ".Database::search($query);
             $sql.=" or keywords like ".Database::search($query);
             $sql.=" or description like ".Database::search($query);

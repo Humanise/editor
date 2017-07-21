@@ -20,5 +20,5 @@ Database::update($sql);
 
 PageService::markChanged($id);
 
-Response::sendObject(array('valid'=>$valid));
+Response::sendObject(['valid'=>$valid]);
 ?>

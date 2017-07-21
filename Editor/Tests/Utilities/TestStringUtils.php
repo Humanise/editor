@@ -14,7 +14,7 @@ if (!isset($GLOBALS['basePath'])) {
 class TestStrings extends UnitTestCase {
 
   function testTest() {
-    $result = preg_replace_callback("/&#(0|30);/", function() {return '';}, 'hep &#30; &#0;hey');
+    $result = preg_replace_callback("/&#(0|30);/", function() {return ''; }, 'hep &#30; &#0;hey');
     $this->assertEqual($result,'hep  hey');
   }
 
@@ -30,13 +30,13 @@ class TestStrings extends UnitTestCase {
   }
 
     function testSplitIntegers() {
-        $this->assertIdentical(array(0),Strings::splitIntegers("0"));
-        $this->assertIdentical(array(),Strings::splitIntegers(""));
-        $this->assertIdentical(array(),Strings::splitIntegers(null));
-        $this->assertIdentical(array(0),Strings::splitIntegers(0));
-        $this->assertIdentical(array(0,-23,56),Strings::splitIntegers("0,-23,56"));
-        $this->assertIdentical(array(0,-23,56),Strings::splitIntegers("0 ,  -23 , 56   ,x"));
-        $this->assertIdentical(array(-23,56),Strings::splitIntegers("0xx ,  -23 , 56   ,x"));
+        $this->assertIdentical([0],Strings::splitIntegers("0"));
+        $this->assertIdentical([],Strings::splitIntegers(""));
+        $this->assertIdentical([],Strings::splitIntegers(null));
+        $this->assertIdentical([0],Strings::splitIntegers(0));
+        $this->assertIdentical([0,-23,56],Strings::splitIntegers("0,-23,56"));
+        $this->assertIdentical([0,-23,56],Strings::splitIntegers("0 ,  -23 , 56   ,x"));
+        $this->assertIdentical([-23,56],Strings::splitIntegers("0xx ,  -23 , 56   ,x"));
   }
 
     function testEscaping() {
@@ -63,7 +63,7 @@ class TestStrings extends UnitTestCase {
     $this->assertEqual("Ã¦",Strings::toUnicode('æ'));
     $this->assertEqual("æ",Strings::toUnicode(Strings::fromUnicode('æ')));
 
-    $obj = array('first'=>'æ','sub'=>array('one'=>'æ'));
+    $obj = ['first'=>'æ','sub'=>['one'=>'æ']];
     $obj = Strings::toUnicode($obj);
     $this->assertEqual("Ã¦",$obj['first']);
     $this->assertEqual("Ã¦",$obj['sub']['one']);
@@ -95,7 +95,7 @@ class TestStrings extends UnitTestCase {
     }
 
     function testSummarize() {
-    $this->assertEqual("onc<highlight>e</highlight> upon a tim<highlight>e</highlight>",Strings::summarizeAndHighlight(array("e"),"once upon a time"));
+    $this->assertEqual("onc<highlight>e</highlight> upon a tim<highlight>e</highlight>",Strings::summarizeAndHighlight(["e"],"once upon a time"));
   }
 
     function testNumericEntities() {
@@ -136,8 +136,8 @@ class TestStrings extends UnitTestCase {
   }
 
   function testBuildIndex() {
-    $this->assertEqual('Jonas Munk',Strings::buildIndex(array('Jonas','Munk')));
-    $this->assertEqual('Jonas Munk',Strings::buildIndex(array(' ','Jonas ',null,'  Munk',null,'')));
+    $this->assertEqual('Jonas Munk',Strings::buildIndex(['Jonas','Munk']));
+    $this->assertEqual('Jonas Munk',Strings::buildIndex([' ','Jonas ',null,'  Munk',null,'']));
     $this->assertEqual('',Strings::buildIndex(null));
   }
 

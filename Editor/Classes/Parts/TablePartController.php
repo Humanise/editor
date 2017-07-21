@@ -93,7 +93,7 @@ class TablePartController extends PartController
   }
 
   function getToolbars() {
-    return array(
+    return [
       'Tabel' => '
         <icon icon="common/clean" text="{Clean; da:Ryd op}" name="clean"/>
         <icon icon="common/info" text="Info" name="showInfo"/>
@@ -102,7 +102,7 @@ class TablePartController extends PartController
         <icon icon="table/row" text="{New row; da:Ny række}" overlay="new" name="addRow"/>
         <icon icon="table/column" text="{New column; da:Ny kolonne}" overlay="new" name="addColumn"/>
         '
-      );
+      ];
   }
 
   function getFromRequest($id) {

@@ -79,9 +79,9 @@ class ImagePartController extends PartController
   function editor($part,$context) {
     $link = $this->getSingleLink($part,'entireimage');
     if (!$link) {
-      $link = array('target_type'=>'','target_value'=>'');
+      $link = ['target_type'=>'','target_value'=>''];
     }
-    return $this->buildHiddenFields(array(
+    return $this->buildHiddenFields([
       'imageId' => $part->getImageId(),
       'align' => $part->getAlign(),
       'greyscale' => $part->getGreyscale() ? 'true' : 'false',
@@ -94,7 +94,7 @@ class ImagePartController extends PartController
       'scaleheight' => $part->getScaleHeight()>0 ? $part->getScaleHeight() : '',
       'text' => $part->getText(),
       'frame' => $part->getFrame()
-    )).
+    ]).
     '<div id="part_image_container">'.$this->render($part,$context).'</div>'.
     '<script src="'.ConfigurationService::getBaseUrl().'hui/ext/ImagePaster.js" type="text/javascript" charset="utf-8"></script>'.
     '<script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/image/script.js" type="text/javascript" charset="utf-8"></script>';
@@ -251,7 +251,7 @@ class ImagePartController extends PartController
         $height=$part->getScaleHeight();
       }
     }
-    return array('width' => $width, 'height' => $height);
+    return ['width' => $width, 'height' => $height];
   }
 
   function importSub($node,$part) {
@@ -381,8 +381,8 @@ class ImagePartController extends PartController
   }
 
   function getToolbars() {
-    return array(
-      GuiUtils::getTranslated(array('Image','da'=>'Billede')) =>
+    return [
+      GuiUtils::getTranslated(['Image','da'=>'Billede']) =>
       '
       <icon icon="common/new" text="{Add image; da:Tilføj billede}" name="addImage"/>
       <icon icon="common/search" text="{Select image; da:Vælg billede}" name="chooseImage"/>
@@ -456,7 +456,7 @@ class ImagePartController extends PartController
           </cell>
         </row>
       </grid>'
-    );
+    ];
   }
 }
 ?>

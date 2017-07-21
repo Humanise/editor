@@ -29,7 +29,7 @@ class TemporaryFolder {
   }
 
   function getFiles() {
-    return FileSystemService::find(array('dir'=>$this->dir));
+    return FileSystemService::find(['dir'=>$this->dir]);
   }
 }
 ?>

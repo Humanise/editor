@@ -11,7 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 class ToolService {
 
   static function getInstalled() {
-    $arr = array();
+    $arr = [];
     $sql = "select id,`unique` from `tool`";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
@@ -33,13 +33,13 @@ class ToolService {
   }
 
   static function getCategorized() {
-    $categorized = array();
+    $categorized = [];
     $installed = ToolService::getInstalled();
     foreach ($installed as $key) {
       $info = ToolService::getInfo($key);
       if ($info) {
         if (!isset($categorized[$info->category])) {
-          $categorized[$info->category] = array();
+          $categorized[$info->category] = [];
         }
         $categorized[$info->category][$key] = $info;
       } else {
@@ -47,7 +47,7 @@ class ToolService {
       }
     }
     foreach ($categorized as $key => &$value) {
-      usort($value,array('ToolService','_priorityComparator'));
+      usort($value,['ToolService','_priorityComparator']);
     }
     return $categorized;
   }

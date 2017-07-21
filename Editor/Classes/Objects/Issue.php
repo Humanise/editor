@@ -8,13 +8,13 @@ if (!isset($GLOBALS['basePath'])) {
   exit;
 }
 
-Entity::$schema['Issue'] = array(
+Entity::$schema['Issue'] = [
   'table' => 'issue',
-  'properties' => array(
-    'kind' => array('type'=>'string'),
-    'statusId' => array('type'=>'int','column'=>'issuestatus_id','relation'=>array('class'=>'Issuestatus','property'=>'id'))
-  )
-);
+  'properties' => [
+    'kind' => ['type'=>'string'],
+    'statusId' => ['type'=>'int','column'=>'issuestatus_id','relation'=>['class'=>'Issuestatus','property'=>'id']]
+  ]
+];
 
 class Issue extends Object {
 

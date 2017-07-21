@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 }
 class DiagramData {
 
-  var $nodes = array();
-  var $edges = array();
+  var $nodes = [];
+  var $edges = [];
 
   function addNode($node) {
       $this->nodes[] = $node;

@@ -15,7 +15,7 @@ class Dates {
     if (!$matches) {
       return null;
     }
-    $months = array("Jan" => 1,"Feb" => 2,"Mar" => 3,"Apr" => 4,"May" => 5,"Jun" => 6,"Jul" => 7,"Aug" => 8,"Sep" => 9,"Oct" => 10,"Nov" => 11,"Dec" => 12);
+    $months = ["Jan" => 1,"Feb" => 2,"Mar" => 3,"Apr" => 4,"May" => 5,"Jun" => 6,"Jul" => 7,"Aug" => 8,"Sep" => 9,"Oct" => 10,"Nov" => 11,"Dec" => 12];
 
     return gmmktime ( $matches[5],$matches[6],$matches[7], $months[$matches[3]],$matches[2], $matches[4]);
   }
@@ -93,7 +93,7 @@ class Dates {
     }
   }
 
-  static function formatDate($timestamp,$options=array()) {
+  static function formatDate($timestamp,$options=[]) {
     if ($timestamp==null) return '';
     $format = "%e. %B";
     if (isset($options['shortWeekday'])) {

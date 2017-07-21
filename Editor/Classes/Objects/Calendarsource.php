@@ -10,13 +10,13 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['Calendarsource'] = [
     'table' => 'calendarsource',
-    'properties' => array(
-      'url'       => array('type'=>'string'),
-      'synchronized'    => array('type'=>'datetime'),
-      'syncInterval'    => array('type'=>'int','column'=>'sync_interval'),
-      'filter'      => array('type'=>'string'),
-      'displayTitle'    => array('type'=>'string','column'=>'display_title')
-    )
+    'properties' => [
+      'url'       => ['type'=>'string'],
+      'synchronized'    => ['type'=>'datetime'],
+      'syncInterval'    => ['type'=>'int','column'=>'sync_interval'],
+      'filter'      => ['type'=>'string'],
+      'displayTitle'    => ['type'=>'string','column'=>'display_title']
+    ]
 ];
 class Calendarsource extends Object {
   var $url;
@@ -106,7 +106,7 @@ class Calendarsource extends Object {
   }
 
   function getParsedFilter() {
-    $parsed = array();
+    $parsed = [];
     if ($this->filter) {
       preg_match('/home=([\w\W]+)/i', $this->filter, $result);
       if ($result) {
@@ -249,8 +249,8 @@ class Calendarsource extends Object {
     }
   }
 
-  function getEvents($query=array()) {
-    $events = array();
+  function getEvents($query=[]) {
+    $events = [];
     $sql = "select id,summary,description,url,recurring,uniqueid,location,unix_timestamp(startdate) as startdate,unix_timestamp(enddate) as enddate,`duration`".
     " from calendarsource_event where calendarsource_id=".$this->id." and recurring=0";
     if (isset($query['startDate']) && isset($query['endDate'])) {
@@ -277,7 +277,7 @@ class Calendarsource extends Object {
     Database::free($result);
 
     if (@$query['sort'] == 'startDate') {
-      usort($events,array('Calendarsource','_startDateComparator'));
+      usort($events,['Calendarsource','_startDateComparator']);
     }
 
     return $events;
@@ -313,10 +313,10 @@ class Calendarsource extends Object {
   }
 
   function _createFutureEvents($row,$by,$count) {
-    $events = array();
+    $events = [];
     if ($by=='WEEKLY') {
       if ($row['byday']) {
-        $dayNums = array('MO'=>0, 'TU'=>1, 'WE'=>2, 'TH'=>3,'FR'=>4,'SA'=>5,'SU'=>6);
+        $dayNums = ['MO'=>0, 'TU'=>1, 'WE'=>2, 'TH'=>3,'FR'=>4,'SA'=>5,'SU'=>6];
         $weekday = Dates::getWeekDay($row['startdate']);
         $byDays = @split(",",$row['byday']);
         foreach ($byDays as $day) {
@@ -349,7 +349,7 @@ class Calendarsource extends Object {
   }
 
   function sort(&$events) {
-    usort($events,array('Calendarsource','_startDateComparator'));
+    usort($events,['Calendarsource','_startDateComparator']);
   }
 
   static function _startDateComparator($a, $b) {
@@ -364,7 +364,7 @@ class Calendarsource extends Object {
   }
 
   function _buildEvent($row) {
-    $event = array(
+    $event = [
       'id' => $row['id'],
       'summary' => $row['summary'],
       'description' => $row['description'],
@@ -376,7 +376,7 @@ class Calendarsource extends Object {
       'endDate' => $row['enddate'],
       'calendarTitle' => $this->title,
       'calendarDisplayTitle' => $this->displayTitle
-    );
+    ];
     if ($row['duration']>0) {
       $event['endDate'] = Dates::addSeconds($row['startdate'],$row['duration']);
     }

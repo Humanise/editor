@@ -15,10 +15,10 @@ if (!is_object($settings)) {
 }
 
 if (!is_array(@$settings->profiles)) {
-  $settings->profiles = array();
+  $settings->profiles = [];
 }
 
-$settings->profiles[] = array('name'=>$name,'url'=>$url);
+$settings->profiles[] = ['name'=>$name,'url'=>$url];
 
 OptimizationService::setSettings($settings);
 ?>

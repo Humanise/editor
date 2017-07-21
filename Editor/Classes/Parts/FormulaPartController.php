@@ -45,11 +45,11 @@ class FormulaPartController extends PartController
 
   function editor($part,$context) {
     return
-    $this->buildHiddenFields(array(
+    $this->buildHiddenFields([
       "receiverName" => $part->getReceiverName(),
       "receiverEmail" => $part->getReceiverEmail(),
       "recipe" => $part->getRecipe()
-    )).
+    ]).
     '<div id="part_formula_container">'.
     $this->render($part,$context).
     '</div>'.
@@ -79,8 +79,8 @@ class FormulaPartController extends PartController
   }
 
   function getToolbars() {
-    return array(
-      GuiUtils::getTranslated(array('Formula','da'=>'Formular')) => '
+    return [
+      GuiUtils::getTranslated(['Formula','da'=>'Formular']) => '
       <icon icon="file/text" overlay="edit" text="{Show source;da:Vis kilde}" name="showSource"/>
       <divider/>
       <grid>
@@ -95,7 +95,7 @@ class FormulaPartController extends PartController
           </cell>
         </row>
       </grid>
-    ');
+    '];
   }
 
   function getEditorUI($part,$context) {

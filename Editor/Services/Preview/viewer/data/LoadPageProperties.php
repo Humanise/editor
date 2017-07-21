@@ -9,13 +9,13 @@ $id = Request::getInt('id');
 
 $page = Page::load($id);
 
-$arr = array(
+$arr = [
   'title'=>$page->getTitle(),
   'path'=>$page->getPath(),
   'keywords'=>$page->getKeywords(),
   'language'=>$page->getLanguage(),
   'description'=>$page->getDescription()
-);
+];
 
 Response::sendObject($arr);
 ?>

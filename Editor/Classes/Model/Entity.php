@@ -8,7 +8,7 @@ class Entity {
 
   var $id;
 
-  static $schema = array();
+  static $schema = [];
 
   function setId($id) {
     $this->id = $id;

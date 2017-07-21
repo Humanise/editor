@@ -46,7 +46,7 @@ class PosterPartController extends PartController
         $link = new PartLink();
         $link->setPartId($part->getId());
         $link->setSourceText(DOMUtils::getText($node));
-        $types = array('url','email','page','file');
+        $types = ['url','email','page','file'];
         foreach ($types as $type) {
           $value = $node->getAttribute($type);
           if ($value) {
@@ -65,9 +65,9 @@ class PosterPartController extends PartController
 
   function editor($part,$context) {
     $html =
-    $this->buildHiddenFields(array(
+    $this->buildHiddenFields([
       "recipe" => $part->getRecipe()
-    )).
+    ]).
     '<div id="part_poster_container">'.
     $this->render($part,$context).
     '</div>
@@ -76,8 +76,8 @@ class PosterPartController extends PartController
   }
 
   function getToolbars() {
-    return array(
-      GuiUtils::getTranslated(array('Poster','da'=>'Plakat')) => '
+    return [
+      GuiUtils::getTranslated(['Poster','da'=>'Plakat']) => '
         <icon icon="common/previous" text="{Previous ; da:Forrige}" name="goPrevious"/>
         <icon icon="common/next" text="{Next ; da:Næste}" name="goNext"/>
         <divider/>
@@ -85,7 +85,7 @@ class PosterPartController extends PartController
         <icon icon="common/info" text="{Info ; da:Info}" name="showInfo"/>
         <icon icon="file/text" overlay="edit" text="{Source ; da:Kilde}" name="showSource"/>
         '
-      );
+      ];
   }
 
   function getEditorUI($part,$context) {

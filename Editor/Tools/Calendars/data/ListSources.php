@@ -11,24 +11,24 @@ $writer = new ListWriter();
 
 $writer->startList()
   ->startHeaders()
-    ->header(array('title'=>array('Title','da'=>'Titel'),'width'=>30))
-    ->header(array('title'=>array('Address','da'=>'Adresse')))
-    ->header(array('title'=>'Filter'))
-    ->header(array('title'=>'Interval'))
-    ->header(array('title'=>array('Synchronized','da'=>'Synkroniseret')))
+    ->header(['title'=>['Title','da'=>'Titel'],'width'=>30])
+    ->header(['title'=>['Address','da'=>'Adresse']])
+    ->header(['title'=>'Filter'])
+    ->header(['title'=>'Interval'])
+    ->header(['title'=>['Synchronized','da'=>'Synkroniseret']])
   ->endHeaders();
 
 foreach ($sources as $source) {
   $writer
-    ->startRow(array('kind'=>'calendarsource','id'=>$source->getId()))
-    ->startCell(array('icon'=>$source->getIcon()))
+    ->startRow(['kind'=>'calendarsource','id'=>$source->getId()])
+    ->startCell(['icon'=>$source->getIcon()])
       ->startLine()->text($source->getTitle())->endLine()
-      ->startLine(array('dimmed'=>true))->text($source->getDisplayTitle())->endLine()
+      ->startLine(['dimmed'=>true])->text($source->getDisplayTitle())->endLine()
     ->endCell()
-    ->startCell()->startLine(array('dimmed'=>true,'mini'=>true))->startWrap()->text($source->getUrl())->endWrap()->endLine()->endCell()
-    ->startCell()->startLine(array('mini'=>true))->text($source->getFilter())->endLine()->endCell()
-    ->startCell(array('wrap'=>false))->text(Dates::formatDuration($source->getSyncInterval()))->endCell()
-    ->startCell(array('wrap'=>false))->text(Dates::formatFuzzy($source->getSynchronized()))->endCell()
+    ->startCell()->startLine(['dimmed'=>true,'mini'=>true])->startWrap()->text($source->getUrl())->endWrap()->endLine()->endCell()
+    ->startCell()->startLine(['mini'=>true])->text($source->getFilter())->endLine()->endCell()
+    ->startCell(['wrap'=>false])->text(Dates::formatDuration($source->getSyncInterval()))->endCell()
+    ->startCell(['wrap'=>false])->text(Dates::formatFuzzy($source->getSynchronized()))->endCell()
   ->endRow();
 }
 $writer->endList();

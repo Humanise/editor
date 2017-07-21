@@ -9,7 +9,7 @@ class ExternalSession {
   static function logIn($username,$password) {
 
     if ($user = AuthenticationService::getExternalUser($username,$password)) {
-      $_SESSION['external.user']=array('id'=>$user->getId(),'username'=>$user->getUsername(),'title'=>$user->getTitle());
+      $_SESSION['external.user']=['id'=>$user->getId(),'username'=>$user->getUsername(),'title'=>$user->getTitle()];
       return $user;
     }
     else {

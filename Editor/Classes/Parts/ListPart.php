@@ -8,27 +8,27 @@ if (!isset($GLOBALS['basePath'])) {
   exit;
 }
 
-Entity::$schema['ListPart'] = array(
+Entity::$schema['ListPart'] = [
   'table' => 'part_list',
-  'properties' => array(
-    'align' => array( 'type' => 'string' ),
-    'width' => array( 'type' => 'string' ),
-    'title' => array( 'type' => 'string' ),
-    'maxItems' => array( 'type' => 'int', 'column' => 'maxitems' ),
-    'variant' => array( 'type' => 'string' ),
-    'timeCount' => array( 'type' => 'int', 'column' => 'time_count' ),
-    'timeType' => array( 'type' => 'string', 'column' => 'time_type' ),
-    'showSource' => array( 'type' => 'boolean', 'column' => 'show_source' ),
-    'showText' => array( 'type' => 'boolean', 'column' => 'show_text' ),
-    'showTimeZone' => array( 'type' => 'boolean', 'column' => 'show_timezone' ),
-    'timezone' => array( 'type' => 'string' ),
-    'maxTextLength' => array( 'type' => 'int', 'column' => 'maxtextlength' ),
-    'sortDirection' => array( 'type' => 'string', 'column' => 'sort_direction' )
-  ),
-  'relations' => array(
-    'objectIds' => array( 'table' => 'part_list_object', 'fromColumn' => 'part_id', 'toColumn' => 'object_id' )
-  )
-);
+  'properties' => [
+    'align' => [ 'type' => 'string' ],
+    'width' => [ 'type' => 'string' ],
+    'title' => [ 'type' => 'string' ],
+    'maxItems' => [ 'type' => 'int', 'column' => 'maxitems' ],
+    'variant' => [ 'type' => 'string' ],
+    'timeCount' => [ 'type' => 'int', 'column' => 'time_count' ],
+    'timeType' => [ 'type' => 'string', 'column' => 'time_type' ],
+    'showSource' => [ 'type' => 'boolean', 'column' => 'show_source' ],
+    'showText' => [ 'type' => 'boolean', 'column' => 'show_text' ],
+    'showTimeZone' => [ 'type' => 'boolean', 'column' => 'show_timezone' ],
+    'timezone' => [ 'type' => 'string' ],
+    'maxTextLength' => [ 'type' => 'int', 'column' => 'maxtextlength' ],
+    'sortDirection' => [ 'type' => 'string', 'column' => 'sort_direction' ]
+  ],
+  'relations' => [
+    'objectIds' => [ 'table' => 'part_list_object', 'fromColumn' => 'part_id', 'toColumn' => 'object_id' ]
+  ]
+];
 
 class ListPart extends Part
 {

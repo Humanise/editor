@@ -10,100 +10,100 @@ if (!isset($GLOBALS['basePath'])) {
 
 class FileService {
 
-  public static $types = array(
-     array('kind' => 'unknown.any', 'label' => 'Ukendt', 'category' => 'unknown',
-      'mimetypes' => array('application/octet-stream'),
-      'extensions' => array()
-    ),
-     array('kind' => 'document.microsoft-word', 'label' => 'Microsoft Word', 'category' => 'document',
-      'mimetypes' => array('application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document'),
-      'extensions' => array('doc','docx')
-    ),
-    array('kind' => 'image.jpeg', 'category' => 'image', 'label' => 'JPEG billede',
-      'mimetypes' => array('image/jpeg','image/pjpeg'),
-      'extensions'=>array('jpg','jpeg','pjpeg')
-    ),
-    array('kind' => 'image.png', 'category' => 'image', 'label' => 'PNG billede',
-      'mimetypes' => array('image/png'),
-      'extensions'=>array('png')
-    ),
-    array('kind' => 'image.gif', 'category' => 'image', 'label' => 'GIF billede',
-      'mimetypes' => array('image/gif'),
-      'extensions'=>array('gif')
-    ),
-    array('kind' => 'image.tiff', 'category' => 'image', 'label' => 'TIFF billede',
-      'mimetypes' => array('image/tif','image/tiff'),
-      'extensions'=>array('tif','tiff')
-    ),
-    array('kind' => 'image.photoshop', 'category' => 'image', 'label' => 'Adobe Photoshop',
-      'mimetypes' => array('application/x-photoshop'),
-      'extensions'=>array('psd')
-    ),
-    array('kind' => 'multimedia.flash', 'category' => 'multimedia', 'label' => 'Adobe Flash',
-      'mimetypes' => array('application/x-shockwave-flash'),
-      'extensions'=>array('swf')
-    ),
-    array('kind' => 'document.html', 'category' => 'document', 'label' => 'HTML-dokument',
-      'mimetypes' => array('text/html','application/xhtml+xml'),
-      'extensions'=>array('html','htm','xhtml')
-    ),
-    array('kind' => 'document.pdf', 'category' => 'document', 'label' => 'PDF-dokument',
-      'mimetypes' => array('application/pdf'),
-      'extensions'=>array('pdf')
-    ),
-    array('kind' => 'archive.zip', 'category' => 'archive', 'label' => 'ZIP-arkiv',
-      'mimetypes' => array('application/zip','application/x-gzip'),
-      'extensions'=>array('zip','gz')
-    ),
-    array('kind' => 'data.xml', 'category' => 'data', 'label' => 'XML-data',
-      'mimetypes' => array('text/xml'),
-      'extensions'=>array('xml','xsl')
-    ),
-    array('kind' => 'document.text', 'category' => 'document', 'label' => 'Tekst',
-      'mimetypes' => array('text/plain'),
-      'extensions'=>array('txt')
-    ),
-    array('kind' => 'document.rtf', 'category' => 'document', 'label' => 'RTF-dokument',
-      'mimetypes' => array('text/rtf'),
-      'extensions'=>array('rtf')
-    ),
-    array('kind' => 'document.excel', 'category' => 'document', 'label' => 'Microsoft Excel',
-      'mimetypes' => array('application/vnd.ms-excel'),
-      'extensions'=>array('xls')
-    ),
-    array('kind' => 'document.powerpoint', 'category' => 'document', 'label' => 'Microsoft PowerPoint',
-      'mimetypes' => array('application/vnd.ms-powerpoint'),
-      'extensions'=>array('ppt')
-    ),
-    array('kind' => 'audio.windowsmedia', 'category' => 'audio', 'label' => 'Windows Media Audio',
-      'mimetypes' => array('audio/x-ms-wma'),
-      'extensions'=>array()
-    ),
-    array('kind' => 'audio.windowsmedia.playlist', 'category' => 'audio', 'label' => 'Windows Media Playlist',
-      'mimetypes' => array('application/vnd.ms-wpl'),
-      'extensions'=>array('wpl')
-    ),
-    array('kind' => 'video.mpeg4', 'category' => 'video', 'label' => 'MPEG-4 film',
-      'mimetypes' => array('video/mp4'),
-      'extensions'=>array('mp4')
-    ),
-    array('kind' => 'video.quicktime', 'category' => 'video', 'label' => 'QuickTime film',
-      'mimetypes' => array('video/quicktime'),
-      'extensions'=>array('mov')
-    ),
-    array('kind' => 'document.ibooks', 'category' => 'document', 'label' => 'iBooks bog',
-      'mimetypes' => array('application/x-ibooks+zip'),
-      'extensions'=>array('ibooks')
-    )
-  );
+  public static $types = [
+     ['kind' => 'unknown.any', 'label' => 'Ukendt', 'category' => 'unknown',
+      'mimetypes' => ['application/octet-stream'],
+      'extensions' => []
+    ],
+     ['kind' => 'document.microsoft-word', 'label' => 'Microsoft Word', 'category' => 'document',
+      'mimetypes' => ['application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+      'extensions' => ['doc','docx']
+    ],
+    ['kind' => 'image.jpeg', 'category' => 'image', 'label' => 'JPEG billede',
+      'mimetypes' => ['image/jpeg','image/pjpeg'],
+      'extensions'=>['jpg','jpeg','pjpeg']
+    ],
+    ['kind' => 'image.png', 'category' => 'image', 'label' => 'PNG billede',
+      'mimetypes' => ['image/png'],
+      'extensions'=>['png']
+    ],
+    ['kind' => 'image.gif', 'category' => 'image', 'label' => 'GIF billede',
+      'mimetypes' => ['image/gif'],
+      'extensions'=>['gif']
+    ],
+    ['kind' => 'image.tiff', 'category' => 'image', 'label' => 'TIFF billede',
+      'mimetypes' => ['image/tif','image/tiff'],
+      'extensions'=>['tif','tiff']
+    ],
+    ['kind' => 'image.photoshop', 'category' => 'image', 'label' => 'Adobe Photoshop',
+      'mimetypes' => ['application/x-photoshop'],
+      'extensions'=>['psd']
+    ],
+    ['kind' => 'multimedia.flash', 'category' => 'multimedia', 'label' => 'Adobe Flash',
+      'mimetypes' => ['application/x-shockwave-flash'],
+      'extensions'=>['swf']
+    ],
+    ['kind' => 'document.html', 'category' => 'document', 'label' => 'HTML-dokument',
+      'mimetypes' => ['text/html','application/xhtml+xml'],
+      'extensions'=>['html','htm','xhtml']
+    ],
+    ['kind' => 'document.pdf', 'category' => 'document', 'label' => 'PDF-dokument',
+      'mimetypes' => ['application/pdf'],
+      'extensions'=>['pdf']
+    ],
+    ['kind' => 'archive.zip', 'category' => 'archive', 'label' => 'ZIP-arkiv',
+      'mimetypes' => ['application/zip','application/x-gzip'],
+      'extensions'=>['zip','gz']
+    ],
+    ['kind' => 'data.xml', 'category' => 'data', 'label' => 'XML-data',
+      'mimetypes' => ['text/xml'],
+      'extensions'=>['xml','xsl']
+    ],
+    ['kind' => 'document.text', 'category' => 'document', 'label' => 'Tekst',
+      'mimetypes' => ['text/plain'],
+      'extensions'=>['txt']
+    ],
+    ['kind' => 'document.rtf', 'category' => 'document', 'label' => 'RTF-dokument',
+      'mimetypes' => ['text/rtf'],
+      'extensions'=>['rtf']
+    ],
+    ['kind' => 'document.excel', 'category' => 'document', 'label' => 'Microsoft Excel',
+      'mimetypes' => ['application/vnd.ms-excel'],
+      'extensions'=>['xls']
+    ],
+    ['kind' => 'document.powerpoint', 'category' => 'document', 'label' => 'Microsoft PowerPoint',
+      'mimetypes' => ['application/vnd.ms-powerpoint'],
+      'extensions'=>['ppt']
+    ],
+    ['kind' => 'audio.windowsmedia', 'category' => 'audio', 'label' => 'Windows Media Audio',
+      'mimetypes' => ['audio/x-ms-wma'],
+      'extensions'=>[]
+    ],
+    ['kind' => 'audio.windowsmedia.playlist', 'category' => 'audio', 'label' => 'Windows Media Playlist',
+      'mimetypes' => ['application/vnd.ms-wpl'],
+      'extensions'=>['wpl']
+    ],
+    ['kind' => 'video.mpeg4', 'category' => 'video', 'label' => 'MPEG-4 film',
+      'mimetypes' => ['video/mp4'],
+      'extensions'=>['mp4']
+    ],
+    ['kind' => 'video.quicktime', 'category' => 'video', 'label' => 'QuickTime film',
+      'mimetypes' => ['video/quicktime'],
+      'extensions'=>['mov']
+    ],
+    ['kind' => 'document.ibooks', 'category' => 'document', 'label' => 'iBooks bog',
+      'mimetypes' => ['application/x-ibooks+zip'],
+      'extensions'=>['ibooks']
+    ]
+  ];
 
-  public static $categories = array(
+  public static $categories = [
      'document' => 'Dokument'
     ,'image' => 'Billede'
     ,'multimedia' => 'Multimedie'
     ,'movie' => 'Film'
     ,'text' => 'Tekst'
-  );
+  ];
 
   static function mimeTypeToInfo($mime) {
     foreach (FileService::$types as $type) {
@@ -221,7 +221,7 @@ class FileService {
         $errorMessage='Kunne ikke finde fil med id='.$id;
       }
     }
-    return array('success' => ($errorMessage===false),'errorMessage' => $errorMessage,'errorDetails' => $errorDetails);
+    return ['success' => ($errorMessage===false),'errorMessage' => $errorMessage,'errorDetails' => $errorDetails];
   }
 
   /**
@@ -290,7 +290,7 @@ class FileService {
     $path = $remote->writeToTempFile();
     if (!$remote->isSuccess()) {
       @unlink($path);
-      return array('success' => false,'message' => 'Filen blev ikke fundet');
+      return ['success' => false,'message' => 'Filen blev ikke fundet'];
     }
     $type = $remote->getContentType();
     $filename = $remote->getFilename();
@@ -307,7 +307,7 @@ class FileService {
     $filename = FileSystemService::safeFilename($filename);
     $newPath = FileSystemService::findFreeFilePath($basePath.'files/'.$filename);
     if (!@rename($path,$newPath)) {
-      return array('success' => false,'message' => 'Der skete en uventet fejl ');
+      return ['success' => false,'message' => 'Der skete en uventet fejl '];
     }
 
     $title = FileSystemService::filenameToTitle($filename);
@@ -319,7 +319,7 @@ class FileService {
     $file->setMimetype($type);
     $file->create();
     $file->publish();
-    return array('success' => true);
+    return ['success' => true];
   }
 
   static function getLatestFileId() {
@@ -344,15 +344,15 @@ class FileService {
   }
 
   static function getGroupCounts() {
-    $out = array();
+    $out = [];
     $sql="select distinct object.id,object.title,count(file.object_id) as filecount from filegroup, filegroup_file, file,object  where filegroup_file.filegroup_id=filegroup.object_id and filegroup_file.file_id = file.object_id and object.id=filegroup.object_id group by filegroup.object_id union select object.id,object.title,'0' from object left join filegroup_file on filegroup_file.filegroup_id=object.id where object.type='filegroup' and filegroup_file.file_id is null order by title";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
-      $out[] = array(
+      $out[] = [
         'id' => $row['id'],
         'title' => $row['title'],
         'count' => $row['filecount']
-      );
+      ];
     }
     Database::free($result);
     return $out;

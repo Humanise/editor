@@ -16,13 +16,13 @@ class TestPHPFiles extends UnitTestCase {
 
     $base = $basePath.'Editor/';
 
-    $files = FileSystemService::find(array(
+    $files = FileSystemService::find([
       'dir' => $base,
-      'exclude' => array($base.'Libraries'),
+      'exclude' => [$base.'Libraries'],
       'extension' => 'php'
-    ));
+    ]);
     $this->assertTrue(is_dir($base));
-    $excluded = array(
+    $excluded = [
       'Authentication.php',
       'cli.php',
       'Recover.php',
@@ -31,8 +31,9 @@ class TestPHPFiles extends UnitTestCase {
       'Touch/css/style.css.php',
       'Services/Core/RecoverPassword.php',
       'Services/Core/Authentication.php',
-      'Services/Core/ChangePassword.php'
-    );
+      'Services/Core/ChangePassword.php',
+      'Info/CodeStyle.php'
+    ];
     foreach ($files as $file) {
       $rel = substr($file,strlen($base));
       $url = ConfigurationService::getCompleteBaseUrl().'Editor/'.$rel;

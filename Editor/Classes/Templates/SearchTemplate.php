@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 }
 class SearchTemplate {
 
-  static $TYPES = array('pages'=>'Sider','images'=>'Billeder','files'=>'Filer','news'=>'Nyheder','products'=>'Produkter','persons'=>'Personer');
-  static $PARTS = array('label'=>'text','enabled'=>'boolean','default'=>'boolean','hidden'=>'boolean');
+  static $TYPES = ['pages'=>'Sider','images'=>'Billeder','files'=>'Filer','news'=>'Nyheder','products'=>'Produkter','persons'=>'Personer'];
+  static $PARTS = ['label'=>'text','enabled'=>'boolean','default'=>'boolean','hidden'=>'boolean'];
 
   var $id;
   var $title;

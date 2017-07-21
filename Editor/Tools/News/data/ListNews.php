@@ -14,17 +14,17 @@ if ($sourceId) {
 
   $writer->startList();
   $writer->startHeaders();
-  $writer->header(array('title'=>array('Title','da'=>'Titel'),'width'=>70));
-  $writer->header(array('title'=>array('Date','da'=>'Dato')));
+  $writer->header(['title'=>['Title','da'=>'Titel'],'width'=>70]);
+  $writer->header(['title'=>['Date','da'=>'Dato']]);
   $writer->endHeaders();
 
   $items = Query::after('newssourceitem')->withProperty('newssource_id',$sourceId)->orderBy('date')->descending()->get();
 
   foreach ($items as $item) {
     $writer->startRow()->
-    startCell(array('icon'=>'common/page'))->
+    startCell(['icon'=>'common/page'])->
       startLine()->text($item->getTitle())->endLine()->
-      startLine(array('dimmed'=>true))->text(Strings::shortenString(trim(Strings::removeTags($item->getText())),400))->endLine()->
+      startLine(['dimmed'=>true])->text(Strings::shortenString(trim(Strings::removeTags($item->getText())),400))->endLine()->
     endCell()->
     startCell()->
       text(Dates::formatFuzzy($item->getDate()))->
@@ -73,12 +73,12 @@ $writer = new ListWriter();
 
 $writer->startList()->
   sort($sort,$direction)->
-  window(array( 'total' => $result->getTotal(), 'size' => $windowSize, 'page' => $windowPage ))->
+  window([ 'total' => $result->getTotal(), 'size' => $windowSize, 'page' => $windowPage ])->
   startHeaders()->
-    header(array('title'=>array('Title','da'=>'Titel'),'width'=>40,'key'=>'title','sortable'=>true))->
-    header(array('title'=>array('Start date','da'=>'Startdato'),'key'=>'startdate','sortable'=>true))->
-    header(array('title'=>array('End date','da'=>'Slutdato'),'key'=>'enddate','sortable'=>true))->
-    header(array('width'=>1))->
+    header(['title'=>['Title','da'=>'Titel'],'width'=>40,'key'=>'title','sortable'=>true])->
+    header(['title'=>['Start date','da'=>'Startdato'],'key'=>'startdate','sortable'=>true])->
+    header(['title'=>['End date','da'=>'Slutdato'],'key'=>'enddate','sortable'=>true])->
+    header(['width'=>1])->
   endHeaders();
 
 foreach ($objects as $object) {
@@ -90,18 +90,18 @@ foreach ($objects as $object) {
   } else if ($object->getEndDate()==null && $object->getStartDate()<time()) {
     $active = true;
   }
-  $writer->startRow(array('kind'=>'news','id'=>$object->getId(),'icon'=>$object->getIcon(),'title'=>$object->getTitle()));
-  $writer->startCell(array('icon'=>$object->getIcon()))->text($object->getTitle())->endCell();
+  $writer->startRow(['kind'=>'news','id'=>$object->getId(),'icon'=>$object->getIcon(),'title'=>$object->getTitle()]);
+  $writer->startCell(['icon'=>$object->getIcon()])->text($object->getTitle())->endCell();
   $writer->startCell();
   $writer->text(Dates::formatDateTime($object->getStartdate()))->endCell();
   $writer->startCell()->text(Dates::formatDateTime($object->getEnddate()))->endCell();
   $writer->startCell()->startIcons();
   if (!$active) {
-    $writer->icon(array('icon'=>'monochrome/invisible'));
+    $writer->icon(['icon'=>'monochrome/invisible']);
   }
   //$writer->icon(array('icon'=>($active ? 'monochrome/play' : 'monochrome/invisible')));
   if (isset($linkCounts[$object->getId()]) && $linkCounts[$object->getId()]>0) {
-    $writer->icon(array('icon'=>"monochrome/link"));
+    $writer->icon(['icon'=>"monochrome/link"]);
   }
   $writer->endIcons()->endCell();
   $writer->endRow();

@@ -9,24 +9,24 @@ $writer = new ItemsWriter();
 
 $writer->startItems();
 
-$writer->item(array(
+$writer->item([
   'value' => 'all',
-  'title' => array('All','da'=>'Alle'),
+  'title' => ['All','da'=>'Alle'],
   'icon' => 'common/files',
   'kind' => 'all'
-));
+]);
 
-$writer->title(array('Groups','da'=>'Grupper'));
+$writer->title(['Groups','da'=>'Grupper']);
 
 $groups = ImageService::getGroupCounts();
 
 foreach ($groups as $group) {
-  $options = array(
+  $options = [
     'value' => $group['id'],
     'title' => $group['title'],
     'icon' => 'common/folder',
     'kind' => 'imagegroup'
-  );
+  ];
   if ($group['count']>0) {
     $options['badge'] = $group['count'];
   }

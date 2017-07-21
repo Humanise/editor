@@ -21,7 +21,7 @@ foreach ($classes as $class) {
   $node = new DiagramNode();
   $node->setId($class->getName());
   $node->setTitle($class->getName());
-  $properties = array();
+  $properties = [];
 
   foreach ($class->getProperties() as $property) {
     if ($property->getOrigin()==$class->getName()) {

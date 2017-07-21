@@ -9,17 +9,17 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 
-Entity::$schema['ObjectLink'] = array(
+Entity::$schema['ObjectLink'] = [
   'table' => 'object_link',
-  'properties' => array(
-    'objectId' => array('type'=>'int','relation'=>array('class'=>'Object','property'=>'id')),
-    'value' => array('type'=>'int','relations'=>array(
-      array('class'=>'Page','property'=>'id'),
-      array('class'=>'File','property'=>'id')
-      )
-    )
-  )
-);
+  'properties' => [
+    'objectId' => ['type'=>'int','relation'=>['class'=>'Object','property'=>'id']],
+    'value' => ['type'=>'int','relations'=>[
+      ['class'=>'Page','property'=>'id'],
+      ['class'=>'File','property'=>'id']
+      ]
+    ]
+  ]
+];
 class ObjectLink extends Entity {
 
   var $type;
@@ -78,13 +78,13 @@ class ObjectLink extends Entity {
     return $this->objectId;
   }
 
-  static $icons = array('file' => 'monochrome/file', 'page' => 'common/page', 'url' => 'monochrome/globe', 'email' => 'monochrome/email');
+  static $icons = ['file' => 'monochrome/file', 'page' => 'common/page', 'url' => 'monochrome/globe', 'email' => 'monochrome/email'];
 
   function getIcon() {
     return ObjectLink::$icons[$this->type];
   }
 
-  function search($query = array()) {
+  function search($query = []) {
     return ObjectLinkService::search($query);
   }
 }

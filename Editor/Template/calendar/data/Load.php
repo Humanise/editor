@@ -15,7 +15,7 @@ if ($row = Database::getRow($sql)) {
   foreach ($all as $item) {
     $type = $item['type'];
     if (!isset($row[$type])) {
-      $row[$type] = array();
+      $row[$type] = [];
     }
     $row[$type][] = intval($item['id']);
   }

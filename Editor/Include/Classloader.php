@@ -29,7 +29,7 @@ function __autoload($class_name) {
 
   // Fall back to scanning (dev mode)
   // TODO: more dynamic
-  $folders = array('', 'Templates/', 'Services/', 'Utilities/', 'Objects/', 'Parts/', 'Core/', 'Model/', 'Network/', 'Interface/', 'Modules/News/', 'Modules/Images/', 'Modules/Links/', 'Modules/Graphs/', 'Modules/Review/', 'Modules/Statistics/', 'Modules/Water/', 'Formats/', 'Integration/', 'Modules/Inspection/', 'Modules/Workflows/'/*,'Tests/'*/);
+  $folders = ['', 'Templates/', 'Services/', 'Utilities/', 'Objects/', 'Parts/', 'Core/', 'Model/', 'Network/', 'Interface/', 'Modules/News/', 'Modules/Images/', 'Modules/Links/', 'Modules/Graphs/', 'Modules/Review/', 'Modules/Statistics/', 'Modules/Water/', 'Formats/', 'Integration/', 'Modules/Inspection/', 'Modules/Workflows/'/*,'Tests/'*/];
   foreach ($folders as $folder) {
     $path = $basePath.'Editor/Classes/'.$folder.$class_name . '.php';
     if (file_exists($path)) {

@@ -31,7 +31,7 @@ class LinkView {
   private $targetId;
   private $targetTitle;
 
-  private $errors = array();
+  private $errors = [];
 
   function setId($id) {
     $this->id = $id;
@@ -139,7 +139,7 @@ class LinkView {
   }
 
   function addError($key,$message) {
-    $this->errors[] = array('key'=>$key,'message'=>$message);
+    $this->errors[] = ['key'=>$key,'message'=>$message];
   }
 
   function hasError($key=null) {

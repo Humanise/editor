@@ -12,7 +12,6 @@ if (!isset($GLOBALS['basePath'])) {
 class TestValidation extends UnitTestCase {
 
   function testValidateDesigns() {
-    global $CONFIG;
     $template = TemplateService::getTemplateByUnique('document');
     if (!$template) {
       Log::debug('Skipping test since no document template exists');
@@ -128,9 +127,9 @@ function liveExecuteCommand($cmd)
     preg_match('/[0-9]+$/', $complete_output, $matches);
 
     // return exit status and intended output
-    return array (
+    return  [
       'status' => intval($matches[0]),
       'output' => str_replace("Exit status : " . $matches[0], '', $complete_output)
-    );
+    ];
 }
 ?>

@@ -9,7 +9,7 @@ if (!isset($GLOBALS['basePath'])) {
   exit;
 }
 class ListWriter {
-  function startList($options=array()) {
+  function startList($options=[]) {
     if (@$options['unicode']==true || ConfigurationService::isUnicode()) {
       header('Content-Type: text/xml; charset=utf-8');
       echo '<?xml version="1.0" encoding="UTF-8"?>';
@@ -52,7 +52,7 @@ class ListWriter {
     return $this;
   }
 
-  function header($options=array()) {
+  function header($options=[]) {
     echo '<header';
     if (is_string($options)) {
       echo ' title="'.Strings::escapeEncodedXML($options).'"';
@@ -78,7 +78,7 @@ class ListWriter {
     return $this;
   }
 
-  function startRow($options=array()) {
+  function startRow($options=[]) {
     echo '<row';
     if (isset($options['id'])) {
       echo ' id="'.$options['id'].'"';
@@ -104,7 +104,7 @@ class ListWriter {
     return $this;
   }
 
-  function startCell($options=array()) {
+  function startCell($options=[]) {
     echo '<cell';
     if (isset($options['icon'])) {
       echo ' icon="'.$options['icon'].'"';
@@ -140,7 +140,7 @@ class ListWriter {
     return $this;
   }
 
-  function startLine($options=array()) {
+  function startLine($options=[]) {
     echo '<line'.
     (@$options['dimmed'] ? ' dimmed="true"' : '').
     (@$options['minor'] ? ' minor="true"' : '').
@@ -203,16 +203,16 @@ class ListWriter {
     return $this;
   }
 
-  function object($options=array()) {
+  function object($options=[]) {
     echo '<object icon="'.$options['icon'].'">';
     $this->text($options['text']);
     echo '</object>';
     return $this;
   }
 
-  function icon($options=array()) {
+  function icon($options=[]) {
     if (is_string($options)) {
-      $options = array('icon'=>$options);
+      $options = ['icon'=>$options];
     }
     echo '<icon icon="'.$options['icon'].'"';
     if (isset($options['data'])) {
@@ -234,7 +234,7 @@ class ListWriter {
     return $this;
   }
 
-  function button($options=array()) {
+  function button($options=[]) {
     echo '<button text="'.Strings::escapeEncodedXML(GuiUtils::getTranslated($options['text'])).'"';
     if (isset($options['data'])) {
       echo ' data="'.Strings::escapeXML(Strings::toJSON($options['data'])).'"';
@@ -243,7 +243,7 @@ class ListWriter {
     return $this;
   }
 
-  function startIcons($options=array()) {
+  function startIcons($options=[]) {
     echo '<icons';
     if (isset($options['left'])) {
       echo ' left="'.Strings::escapeXML($options['left']).'"';

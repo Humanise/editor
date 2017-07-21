@@ -28,7 +28,7 @@ class MailService {
     $password = MailService::getPassword();
     $port = MailService::getPort();
     if (strlen($username)>0 && strlen($password)>0) {
-      $config = array('auth' => 'login', 'username' => $username, 'password' => $password, 'ssl' => 'tls');
+      $config = ['auth' => 'login', 'username' => $username, 'password' => $password, 'ssl' => 'tls'];
       if ($port) {
         $config['port'] = $port;
       }

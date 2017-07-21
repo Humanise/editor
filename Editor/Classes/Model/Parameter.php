@@ -8,16 +8,16 @@ if (!isset($GLOBALS['basePath'])) {
   exit;
 }
 
-Entity::$schema['Parameter'] = array(
+Entity::$schema['Parameter'] = [
   'table' => 'parameter',
-  'properties' => array(
-    'id' => array('type'=>'int'),
-    'name' => array('type'=>'string'),
-    'level' => array('type'=>'string'),
-    'language' => array('type'=>'string'),
-    'value' => array('type'=>'string'),
-  )
-);
+  'properties' => [
+    'id' => ['type'=>'int'],
+    'name' => ['type'=>'string'],
+    'level' => ['type'=>'string'],
+    'language' => ['type'=>'string'],
+    'value' => ['type'=>'string'],
+  ]
+];
 class Parameter extends Entity implements Loadable {
 
   var $name;

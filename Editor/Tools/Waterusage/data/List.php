@@ -32,13 +32,13 @@ function listMeters($windowSize, $windowPage, $text, $sort, $direction) {
 
   $writer->startList();
   $writer->sort($sort,$direction);
-  $writer->window(array( 'total' => $result->getTotal(), 'size' => $windowSize, 'page' => $windowPage ));
+  $writer->window([ 'total' => $result->getTotal(), 'size' => $windowSize, 'page' => $windowPage ]);
   $writer->startHeaders();
-  $writer->header(array('title'=>'Nummer','width'=>20,'key'=>'number','sortable'=>'true'));
-  $writer->header(array('title'=>'Adresse'));
-  $writer->header(array('title'=>'Kontakt'));
-  $writer->header(array('title'=>'Seneste værdi'));
-  $writer->header(array('title'=>'Aflæsningsdato'));
+  $writer->header(['title'=>'Nummer','width'=>20,'key'=>'number','sortable'=>'true']);
+  $writer->header(['title'=>'Adresse']);
+  $writer->header(['title'=>'Kontakt']);
+  $writer->header(['title'=>'Seneste værdi']);
+  $writer->header(['title'=>'Aflæsningsdato']);
   $writer->endHeaders();
 
   foreach ($result->getList() as $object) {
@@ -46,23 +46,23 @@ function listMeters($windowSize, $windowPage, $text, $sort, $direction) {
     $phone = Query::after('phonenumber')->withRelationFrom($object)->first();
     $email = Query::after('emailaddress')->withRelationFrom($object)->first();
     $usage = Query::after('waterusage')->withProperty('watermeterId',$object->getId())->orderBy('date')->descending()->first();
-    $writer->startRow(array( 'kind'=>'watermeter', 'id'=>$object->getId(), 'icon'=>$object->getIcon(), 'title'=>$object->getTitle() ));
-    $writer->startCell(array( 'icon'=>$object->getIcon() ))->
+    $writer->startRow([ 'kind'=>'watermeter', 'id'=>$object->getId(), 'icon'=>$object->getIcon(), 'title'=>$object->getTitle() ]);
+    $writer->startCell([ 'icon'=>$object->getIcon() ])->
       text( $object->getNumber() )->
       startIcons()->
-        icon(array('icon'=>'monochrome/info','revealing'=>true,'action'=>true,'data'=>array('action'=>'meterInfo','id'=>$object->getId())))->
+        icon(['icon'=>'monochrome/info','revealing'=>true,'action'=>true,'data'=>['action'=>'meterInfo','id'=>$object->getId()]])->
       endIcons()->
     endCell()->
     startCell();
     if ($address) {
-      $writer->startLine()->icon(array( 'icon'=>$address->getIcon() ))->text($address->toString())->endLine();
+      $writer->startLine()->icon([ 'icon'=>$address->getIcon() ])->text($address->toString())->endLine();
     }
     $writer->endCell()->startCell();
     if ($email) {
-      $writer->startLine()->icon(array( 'icon'=>$email->getIcon() ))->text($email->getAddress())->endLine();
+      $writer->startLine()->icon([ 'icon'=>$email->getIcon() ])->text($email->getAddress())->endLine();
     }
     if ($phone) {
-      $writer->startLine()->icon(array( 'icon'=>$phone->getIcon() ))->text($phone->getNumber())->endLine();
+      $writer->startLine()->icon([ 'icon'=>$phone->getIcon() ])->text($phone->getNumber())->endLine();
     }
     $writer->endCell();
     if ($usage) {
@@ -79,11 +79,11 @@ function listMeters($windowSize, $windowPage, $text, $sort, $direction) {
 }
 
 function listUsage($windowSize, $windowPage, $text, $filterKind, $year=null) {
-  $status = array(
+  $status = [
     Waterusage::$UNKNOWN => 'monochrome/round_question',
     Waterusage::$VALIDATED => 'common/success',
     Waterusage::$REJECTED => 'common/stop'
-  );
+  ];
 
 
   $query = Query::after('waterusage')->orderBy('date')->withWindowPage($windowPage)->withWindowSize($windowSize)->withText($text);
@@ -101,65 +101,65 @@ function listUsage($windowSize, $windowPage, $text, $filterKind, $year=null) {
 
   $writer->startList();
   $writer->sort($sort,$direction);
-  $writer->window(array( 'total' => $result->getTotal(), 'size' => $windowSize, 'page' => $windowPage ));
+  $writer->window([ 'total' => $result->getTotal(), 'size' => $windowSize, 'page' => $windowPage ]);
   $writer->startHeaders();
-  $writer->header(array('title'=>'Målernummer','width'=>30));
-  $writer->header(array('title'=>'Værdi','width'=>30));
-  $writer->header(array('title'=>'Aflæsningsdato'));
-  $writer->header(array('title'=>'Opdateret'));
-  $writer->header(array('title'=>'Status'));
-  $writer->header(array('title'=>'Kilde'));
+  $writer->header(['title'=>'Målernummer','width'=>30]);
+  $writer->header(['title'=>'Værdi','width'=>30]);
+  $writer->header(['title'=>'Aflæsningsdato']);
+  $writer->header(['title'=>'Opdateret']);
+  $writer->header(['title'=>'Status']);
+  $writer->header(['title'=>'Kilde']);
   $writer->endHeaders();
 
   foreach ($result->getList() as $object) {
     $meter = Watermeter::load($object->getWatermeterId());
-    $writer->startRow(array( 'kind'=>'waterusage', 'id'=>$object->getId(), 'icon'=>$object->getIcon(), 'title'=>$object->getTitle() ));
+    $writer->startRow([ 'kind'=>'waterusage', 'id'=>$object->getId(), 'icon'=>$object->getIcon(), 'title'=>$object->getTitle() ]);
     if ($meter) {
-      $writer->startCell(array( 'icon'=>$meter->getIcon() ))->text( $meter->getNumber() )->
+      $writer->startCell([ 'icon'=>$meter->getIcon() ])->text( $meter->getNumber() )->
         startIcons()->
-          icon(array('icon'=>'monochrome/info','revealing'=>true,'action'=>true,'data'=>array('action'=>'meterInfo','id'=>$meter->getId())))->
+          icon(['icon'=>'monochrome/info','revealing'=>true,'action'=>true,'data'=>['action'=>'meterInfo','id'=>$meter->getId()]])->
         endIcons()->
       endCell();
     } else {
-      $writer->startCell(array( 'icon'=>'common/warning' ))->text( 'Ikke fundet' )->endCell();
+      $writer->startCell([ 'icon'=>'common/warning' ])->text( 'Ikke fundet' )->endCell();
     }
-    $writer->startCell(array( 'icon'=>$object->getIcon() ))->
+    $writer->startCell([ 'icon'=>$object->getIcon() ])->
       text($object->getValue())->
       startIcons()->
-        icon(array('icon'=>'monochrome/info','revealing'=>true,'action'=>true,'data'=>array('action'=>'usageInfo','id'=>$object->getId())))->
+        icon(['icon'=>'monochrome/info','revealing'=>true,'action'=>true,'data'=>['action'=>'usageInfo','id'=>$object->getId()]])->
       endIcons()->
     endCell()->
     startCell()->text(Dates::formatLongDate($object->getDate()))->endCell()->
     startCell()->text(Dates::formatFuzzy($object->getUpdated()))->endCell()->
-    startCell(array('align'=>'center'))->
+    startCell(['align'=>'center'])->
       startIcons()->
-        icon(array('icon'=>WaterusageService::getStatusIcon($object->getStatus()),'action'=>true,'data'=>array('action'=>'usageStatus','id'=>$object->getId())))->
+        icon(['icon'=>WaterusageService::getStatusIcon($object->getStatus()),'action'=>true,'data'=>['action'=>'usageStatus','id'=>$object->getId()]])->
       endIcons()->
 
     endCell()->
-    startCell(array('dimmed'=>true))->text(WaterusageService::getSourceText($object->getSource()))->endCell()->
+    startCell(['dimmed'=>true])->text(WaterusageService::getSourceText($object->getSource()))->endCell()->
     endRow();
   }
   $writer->endList();
 }
 
 function listLog($size, $page, $text) {
-  $result = LogService::getEntries(array('category'=>'waterusage','page'=>$page, 'size'=>$size));
+  $result = LogService::getEntries(['category'=>'waterusage','page'=>$page, 'size'=>$size]);
 
   $writer = new ListWriter();
 
   $writer->startList();
   $writer->sort($sort,$direction);
-  $writer->window(array( 'total' => $result->getTotal(), 'size' => $result->getWindowSize(), 'page' => $result->getWindowPage() ));
+  $writer->window([ 'total' => $result->getTotal(), 'size' => $result->getWindowSize(), 'page' => $result->getWindowPage() ]);
   $writer->startHeaders();
-  $writer->header(array('title'=>'Tid','width'=>30));
-  $writer->header(array('title'=>'Besked'));
+  $writer->header(['title'=>'Tid','width'=>30]);
+  $writer->header(['title'=>'Besked']);
   $writer->endHeaders();
 
   Log::debug($entries);
 
   foreach ($result->getList() as $entry) {
-    $writer->startRow(array( 'kind'=>'logentry', 'icon'=>'common/file' ));
+    $writer->startRow([ 'kind'=>'logentry', 'icon'=>'common/file' ]);
     $writer->startCell()->text(Dates::formatDateTime($entry['time']))->endCell();
     $writer->startCell()->text($entry['message'])->endCell();
     $writer->endRow();

@@ -10,7 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 }
 class DOMUtils {
 
-  static $codes = array(
+  static $codes = [
     XML_ERROR_NONE => 'XML_ERROR_NONE',
     XML_ERROR_NO_MEMORY => 'XML_ERROR_NO_MEMORY',
     XML_ERROR_SYNTAX => 'XML_ERROR_SYNTAX',
@@ -33,7 +33,7 @@ class DOMUtils {
     XML_ERROR_INCORRECT_ENCODING => 'XML_ERROR_INCORRECT_ENCODING',
     XML_ERROR_UNCLOSED_CDATA_SECTION => 'XML_ERROR_UNCLOSED_CDATA_SECTION',
     XML_ERROR_EXTERNAL_ENTITY_HANDLING => 'XML_ERROR_EXTERNAL_ENTITY_HANDLING'
-  );
+  ];
 
   static function getFirstDescendant($node,$name) {
     $nodes = $node->getElementsByTagName($name);
@@ -97,7 +97,7 @@ class DOMUtils {
   }
 
   static function getChildElements($node,$name=null) {
-    $result = array();
+    $result = [];
     for ($i=0; $i < $node->childNodes->length; $i++) {
       $child = $node->childNodes->item($i);
       if ($child->nodeType == XML_ELEMENT_NODE) {

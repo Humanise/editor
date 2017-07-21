@@ -8,12 +8,12 @@ if (!isset($GLOBALS['basePath'])) {
   exit;
 }
 
-Entity::$schema['PosterPart'] = array(
+Entity::$schema['PosterPart'] = [
   'table' => 'part_poster',
-  'properties' => array(
-    'recipe' => array( 'type' => 'string' )
-  )
-);
+  'properties' => [
+    'recipe' => [ 'type' => 'string' ]
+  ]
+];
 
 class PosterPart extends Part
 {

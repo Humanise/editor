@@ -75,18 +75,18 @@ class TemplateService {
   }
 
   static function getInstalledTemplates() {
-    $arr = array();
+    $arr = [];
     $sql = "select id,`unique` from `template`";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
-      $arr[] = array("id" => $row['id'],"unique" => $row['unique']);
+      $arr[] = ["id" => $row['id'],"unique" => $row['unique']];
     }
     Database::free($result);
     return $arr;
   }
 
   static function getInstalledTemplateKeys() {
-    $arr = array();
+    $arr = [];
     $sql = "select `unique` from `template`";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
@@ -97,7 +97,7 @@ class TemplateService {
   }
 
   static function getUsedTemplates() {
-    $arr = array();
+    $arr = [];
     $sql = "select distinct `template`.`unique` from `template`,`page` where page.template_id=template.id";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
@@ -111,7 +111,7 @@ class TemplateService {
    * @static
    */
   static function getTemplatesKeyed() {
-    $output = array();
+    $output = [];
     $templates = TemplateService::getInstalledTemplates();
     for ($i=0; $i<count($templates); $i++) {
       $unique = $templates[$i]['unique'];
@@ -124,7 +124,7 @@ class TemplateService {
 
   // returns all installed templates sorted by name
   static function getTemplatesSorted() {
-    $output = array();
+    $output = [];
     $templates = TemplateService::getInstalledTemplates();
     for ($i=0; $i<count($templates); $i++) {
       $unique = $templates[$i]['unique'];
@@ -132,7 +132,7 @@ class TemplateService {
       $info['id']=$templates[$i]['id'];
       $output[]=$info;
     }
-    usort($output,array('TemplateService','compareTemplates'));
+    usort($output,['TemplateService','compareTemplates']);
     return $output;
   }
 
@@ -152,7 +152,7 @@ class TemplateService {
       return $out;
     }
     else {
-      $out = array('unique'=>$unique,'icon' => null,'name' => null,'description' => null);
+      $out = ['unique'=>$unique,'icon' => null,'name' => null,'description' => null];
       $filename = $basePath."Editor/Template/".$unique."/info.xml";
 
       $data = implode("", file($filename));

@@ -8,7 +8,7 @@ require_once '../../../Include/Private.php';
 $id = Request::getInt('id');
 
 if ($link = Link::load($id)) {
-  Response::sendObject(array(
+  Response::sendObject([
     'id' => $link->getId(),
     'text' => $link->getText(),
     'description' => $link->getAlternative(),
@@ -19,6 +19,6 @@ if ($link = Link::load($id)) {
     'scope' => $link->getPartId()>0 ? 'part' : 'page',
     'limitToPart' => $link->getPartId()>0 ? true : false,
     'partId' => $link->getPartId()
-  ));
+  ]);
 }
 ?>

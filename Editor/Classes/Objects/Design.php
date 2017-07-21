@@ -9,10 +9,10 @@ if (!isset($GLOBALS['basePath'])) {
 }
 Entity::$schema['Design'] = [
     'table' => 'design',
-    'properties' => array(
-      'unique' => array('type'=>'string'),
-      'parameters' => array('type'=>'string')
-    )
+    'properties' => [
+      'unique' => ['type'=>'string'],
+      'parameters' => ['type'=>'string']
+    ]
 ];
 
 class Design extends Object {

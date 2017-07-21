@@ -11,14 +11,14 @@ $writer = new ListWriter();
 
 $writer->startList();
 $writer->startHeaders();
-$writer->header(array('title'=>'Type'));
-$writer->header(array('title'=>'Side'));
-$writer->header(array('title'=>'Sprog'));
+$writer->header(['title'=>'Type']);
+$writer->header(['title'=>'Side']);
+$writer->header(['title'=>'Sprog']);
 $writer->endHeaders();
 
 foreach ($list as $object) {
   $page = Page::load($object->getPageId());
-  $writer->startRow(array( 'kind'=>'specialpage', 'id'=>$object->getId()));
+  $writer->startRow([ 'kind'=>'specialpage', 'id'=>$object->getId()]);
   $writer->startCell()->text($object->getType())->endCell();
   $writer->startCell()->text($page ? $page->getTitle() : '!! findes ikke !!')->endCell();
   $writer->startCell()->text($object->getLanguage())->endCell();

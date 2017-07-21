@@ -12,7 +12,7 @@ if ($file) {
 
   $links = UI::toLinks($file->getLinks());
 
-  Response::sendObject(array('news' => $file, 'groups' => $groups, 'links' => $links));
+  Response::sendObject(['news' => $file, 'groups' => $groups, 'links' => $links]);
 } else {
   Response::notFound();
 }

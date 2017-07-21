@@ -11,11 +11,11 @@ $hierarchies = Hierarchy::search();
 
 $writer->startItems();
 foreach ($hierarchies as $hierarchy) {
-  $writer->item(array(
+  $writer->item([
     'icon' => 'common/hierarchy',
     'value' => $hierarchy->getId(),
     'title' => $hierarchy->getName(),
     'kind' => 'hierarchy'
-  ));
+  ]);
 }
 $writer->endItems();

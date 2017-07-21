@@ -15,5 +15,5 @@ $phones = Query::after('phonenumber')->withProperty('containingObjectId',$person
 $mailinglists = $person->getMailinglistIds();
 $groups = $person->getGroupIds();
 
-Response::sendObject(array('person' => $person, 'emails' => $mails, 'phones' => $phones, 'mailinglists' => $mailinglists, 'groups' => $groups));
+Response::sendObject(['person' => $person, 'emails' => $mails, 'phones' => $phones, 'mailinglists' => $mailinglists, 'groups' => $groups]);
 ?>

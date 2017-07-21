@@ -10,7 +10,7 @@ if (@$_SESSION['core.debug.simulateLatency']) {
 }
 $id = Request::getId();
 
-$recipe = array(
+$recipe = [
   'width' => Request::getInt('width',null),
   'height' => Request::getInt('height',null),
   'scale' => Request::getInt('scale',null),
@@ -18,8 +18,8 @@ $recipe = array(
   'method' => Request::getString('method'),
   'format' => Request::getString('format'),
   'background' => Request::getString('background'),
-  'filters' => array()
-);
+  'filters' => []
+];
 // TODO: This should be more robust: Handled in the ImageTransformationService
 if ($recipe['format'] != 'png' && $recipe['format'] != 'jpg') {
   $recipe['format'] = 'jpg';
@@ -32,19 +32,19 @@ foreach ($parameters as $parameter) {
   $name = $parameter['name'];
   $value = $parameter['value'];
   if ($name === 'sharpen') {
-    $recipe['filters'][] = array('name' => 'sharpen','amount' => ($value==='true' ? 1 : floatval($value)));
+    $recipe['filters'][] = ['name' => 'sharpen','amount' => ($value==='true' ? 1 : floatval($value))];
   } else if ($name === 'sharpen') {
-    $recipe['filters'][] = array('name' => 'sharpen');
+    $recipe['filters'][] = ['name' => 'sharpen'];
   } else if ($name === 'greyscale' && $value==='true') {
-    $recipe['filters'][] = array('name' => 'greyscale');
+    $recipe['filters'][] = ['name' => 'greyscale'];
   } else if ($name === 'blur') {
-    $recipe['filters'][] = array('name' => 'blur', 'amount' => intval($value));
+    $recipe['filters'][] = ['name' => 'blur', 'amount' => intval($value)];
   } else if ($name === 'contrast') {
-    $recipe['filters'][] = array('name' => 'contrast', 'amount' => intval($value));
+    $recipe['filters'][] = ['name' => 'contrast', 'amount' => intval($value)];
   } else if ($name === 'brightness') {
-    $recipe['filters'][] = array('name' => 'brightness', 'amount' => intval($value));
+    $recipe['filters'][] = ['name' => 'brightness', 'amount' => intval($value)];
   } else if ($name == 'border') {
-    $recipe['filters'][] = array('name' => 'border', 'width' => intval($value));
+    $recipe['filters'][] = ['name' => 'border', 'width' => intval($value)];
   }
 }
 // Bypass transformation if not required

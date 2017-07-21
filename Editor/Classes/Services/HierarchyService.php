@@ -72,7 +72,7 @@ class HierarchyService {
         return null;
     }
 
-    static function findItems($query = array()) {
+    static function findItems($query = []) {
         $params = [];
     $sql = "SELECT id,title,hidden,target_type,target_value,target_id,hierarchy_id,parent,`index` from hierarchy_item";
         if (isset($query['parent'])) {
@@ -126,7 +126,7 @@ class HierarchyService {
       Log::debug('No title');
       return false;
     }
-    if (!in_array(@$options['targetType'],array('page','pageref','file','email','url'))) {
+    if (!in_array(@$options['targetType'],['page','pageref','file','email','url'])) {
       Log::debug('Invalid targetType');
       return false;
     }

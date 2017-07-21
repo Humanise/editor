@@ -8,12 +8,12 @@ require_once '../../../Include/Private.php';
 $frameId = Request::getInt('frame');
 if ($frameId>0) {
   $frame = Frame::load($frameId);
-  $hierarchies = array(Hierarchy::load($frame->getHierarchyId()));
+  $hierarchies = [Hierarchy::load($frame->getHierarchyId())];
 } else {
   $hierarchies = Hierarchy::search();
 }
 
-$icons = array('page'=>'common/page','pageref'=>'common/pagereference','email'=>'common/email','url'=>'monochrome/globe','file'=>'monochrome/file');
+$icons = ['page'=>'common/page','pageref'=>'common/pagereference','email'=>'common/email','url'=>'monochrome/globe','file'=>'monochrome/file'];
 
 $writer = new ItemsWriter();
 
@@ -23,12 +23,12 @@ foreach ($hierarchies as $hierarchy) {
   if ($hierarchy->getChanged()>$hierarchy->getPublished()) {
     $title.=' !';
   }
-    $writer->startItem(array(
+    $writer->startItem([
         'icon' => 'common/hierarchy',
         'value' => $hierarchy->getId(),
         'title' => $title,
         'kind' => 'hierarchy'
-    ));
+    ]);
   encodeLevel(0,$hierarchy->getId(),$writer);
     $writer->endItem();
 }
@@ -46,12 +46,12 @@ function encodeLevel($parent,$hierarchyId,$writer) {
     if ($row['target_type']=='page' && !$row['pageid']) {
       $icon = "common/warning";
     }
-        $writer->startItem(array(
+        $writer->startItem([
             'icon' => $icon,
             'value' => $row['target_id'],
             'title' => $row['title'],
             'kind' => $row['target_type']
-        ));
+        ]);
     encodeLevel($row['id'],$hierarchyId,$writer);
     $writer->endItem();
   }

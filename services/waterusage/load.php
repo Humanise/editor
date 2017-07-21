@@ -36,28 +36,28 @@ foreach ($rows as &$row) {
 }
 
 
-Response::sendObject(array(
+Response::sendObject([
   'usage' => $rows,
   'info' => $summary,
   'graph' => buildChart($number)
-));
+]);
 
 
 function buildChart($number) {
   $sql = "select DATE_FORMAT(waterusage.date, '%d-%m-%Y') as `date`,`value`,UNIX_TIMESTAMP(waterusage.date) as time".
   " from waterusage,watermeter where waterusage.`watermeter_id`=watermeter.`object_id` and number = ".Database::text($number)." order by waterusage.`date`";
   $rows = Database::selectAll($sql);
-  $entries = array();
+  $entries = [];
   foreach ($rows as &$row) {
-    $entries[] = array('key'=>intval($row['time']),'value'=>intval($row['value']),'label' => $row['date']);
+    $entries[] = ['key'=>intval($row['time']),'value'=>intval($row['value']),'label' => $row['date']];
   }
 
 
-  return array('sets' => array(array('type'=>'line','entries'=> interpolate($entries))));
+  return ['sets' => [['type'=>'line','entries'=> interpolate($entries)]]];
 }
 
 function interpolate($entries) {
-  $interpolated = array();
+  $interpolated = [];
 
   $latestTime = -1;
   $latestValue;
@@ -70,7 +70,7 @@ function interpolate($entries) {
       while ($num < $time) {
         $num += (60*60*24);
         $x = $latestValue + ($value - $latestValue) * ($num - $latestTime) / ($time - $latestTime);
-        $interpolated[] = array('key' => $num,'value' => $x, 'label' => strftime('%d-%m-%Y',$num));
+        $interpolated[] = ['key' => $num,'value' => $x, 'label' => strftime('%d-%m-%Y',$num)];
       }
     }
 

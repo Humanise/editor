@@ -94,12 +94,12 @@ class ConfigurationService {
     if (isset($CONFIG) && isset($CONFIG['database'])) {
       return $CONFIG['database'];
     }
-    return array(
+    return [
       'host' => $database_host,
       'user' => $database_user,
       'password' => $database_password,
       'database' => $database
-    );
+    ];
   }
 
   static function getSuperUsername() {

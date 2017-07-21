@@ -8,12 +8,12 @@ if (!isset($GLOBALS['basePath'])) {
   exit;
 }
 
-Entity::$schema['TablePart'] = array(
+Entity::$schema['TablePart'] = [
   'table' => 'part_table',
-  'properties' => array(
-    'html' => array( 'type' => 'string' )
-  )
-);
+  'properties' => [
+    'html' => [ 'type' => 'string' ]
+  ]
+];
 
 class TablePart extends Part
 {

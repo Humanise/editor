@@ -37,7 +37,7 @@ class HtmlTemplateController extends TemplateController
       $data.='<content valid="false"><![CDATA['.$row['html'].']]></content>';
     }
     $data.= '</html>';
-        return array('data' => $data, 'dynamic' => false, 'index' => '');
+        return ['data' => $data, 'dynamic' => false, 'index' => ''];
     }
 
 }

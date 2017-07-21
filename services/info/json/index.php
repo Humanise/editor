@@ -1,16 +1,16 @@
 <?php
 require_once '../../../Editor/Include/Public.php';
 
-Response::sendObject(array(
+Response::sendObject([
   'date' => SystemInfo::getDate(),
-  'templates' => array(
+  'templates' => [
     'installed' => TemplateService::getInstalledTemplateKeys(),
     'used' => TemplateService::getUsedTemplates()
-  ),
-  'tools' => array(
+  ],
+  'tools' => [
     'installed' => ToolService::getInstalled()
-  ),
-  'email' => array(
+  ],
+  'email' => [
     'enabled' => MailService::getEnabled(),
     'server' => Strings::isNotBlank(MailService::getServer()),
     'username' => Strings::isNotBlank(MailService::getUsername()),
@@ -19,6 +19,6 @@ Response::sendObject(array(
     'standardName' => Strings::isNotBlank(MailService::getStandardName()),
     'feedbackEmail' => Strings::isNotBlank(MailService::getFeedbackEmail()),
     'feedbackName' => Strings::isNotBlank(MailService::getFeedbackName())
-  )
-));
+  ]
+]);
 ?>

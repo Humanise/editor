@@ -6,7 +6,7 @@
 require_once '../../../Include/Private.php';
 
 $subset = Request::getString('subset');
-$query = array($subset => true);
+$query = [$subset => true];
 
 $list = ReviewService::search($query);
 
@@ -14,12 +14,12 @@ $writer = new ListWriter();
 
 $writer->startList()->
   startHeaders()->
-    header(array('title'=>'Side','width'=>45))->
+    header(['title'=>'Side','width'=>45])->
   endHeaders();
 
 foreach ($list as $review) {
-  $writer->startRow(array( 'kind' => 'page', 'id' => $review->getPageId() ))->
-    startCell(array('icon'=>'common/page'))->
+  $writer->startRow([ 'kind' => 'page', 'id' => $review->getPageId() ])->
+    startCell(['icon'=>'common/page'])->
       text($review->getPageTitle())->
     endCell()->
   endRow();

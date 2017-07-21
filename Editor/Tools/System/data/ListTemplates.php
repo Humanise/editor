@@ -11,29 +11,29 @@ $used = TemplateService::getUsedTemplates();
 
 $writer = new ListWriter();
 
-$writer->startList(array('unicode'=>true))->
+$writer->startList(['unicode'=>true])->
   startHeaders()->
-    header(array('title'=>array('Template','da'=>'Skabelon'),'width'=>40))->
-    header(array('title'=>array('Key','da'=>'Nøgle'),'width'=>30))->
-    header(array('title'=>array('Used','da'=>'Anvendt'),'width'=>30))->
-    header(array('title'=>'','width'=>1))->
+    header(['title'=>['Template','da'=>'Skabelon'],'width'=>40])->
+    header(['title'=>['Key','da'=>'Nøgle'],'width'=>30])->
+    header(['title'=>['Used','da'=>'Anvendt'],'width'=>30])->
+    header(['title'=>'','width'=>1])->
   endHeaders();
 
 $designs = Query::after('design')->get();
 foreach ($available as $key) {
   $info = TemplateService::getTemplateInfo($key);
   $writer->
-  startRow(array('kind'=>'template','id'=>$key))->
-    startCell(array('icon'=>'common/page'))->
+  startRow(['kind'=>'template','id'=>$key])->
+    startCell(['icon'=>'common/page'])->
       startLine()->text($info['name'])->endLine()->
-      startLine(array('dimmed'=>true))->text($info['description'])->endLine()->
+      startLine(['dimmed'=>true])->text($info['description'])->endLine()->
     endCell()->
     startCell()->text($key)->endCell();
     if (in_array($key,$installed)) {
-      $writer->startCell()->icon(array('icon'=>in_array($key,$used) ? 'common/success' : 'common/stop'))->endCell();
+      $writer->startCell()->icon(['icon'=>in_array($key,$used) ? 'common/success' : 'common/stop'])->endCell();
       if (!in_array($key,$used)) {
         $writer->startCell()->
-          button(array('text'=>array('Uninstall','da'=>'Afinstallér'),'data'=>array('action'=>'uninstallTemplate','key'=>$key)))->
+          button(['text'=>['Uninstall','da'=>'Afinstallér'],'data'=>['action'=>'uninstallTemplate','key'=>$key]])->
         endCell();
       } else {
         $writer->startCell()->endCell();
@@ -41,7 +41,7 @@ foreach ($available as $key) {
     } else {
       $writer->startCell()->endCell();
       $writer->startCell()->
-        button(array('text'=>array('Install','da'=>'Installér'),'data'=>array('action'=>'installTemplate','key'=>$key)))->
+        button(['text'=>['Install','da'=>'Installér'],'data'=>['action'=>'installTemplate','key'=>$key]])->
       endCell();
     }
   $writer->endRow();

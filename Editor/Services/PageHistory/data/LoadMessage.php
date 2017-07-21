@@ -9,8 +9,8 @@ $id = Request::getInt('id');
 
 $sql = "select message from page_history where id=".Database::int($id);
 if ($row = Database::selectFirst($sql)) {
-  Response::sendObject(array(
+  Response::sendObject([
     'message' => $row['message']
-  ));
+  ]);
 }
 ?>

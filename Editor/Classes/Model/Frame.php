@@ -8,22 +8,22 @@ if (!isset($GLOBALS['basePath'])) {
   exit;
 }
 
-Entity::$schema['Frame'] = array(
+Entity::$schema['Frame'] = [
   'table' => 'frame',
-  'properties' => array(
-    'id' => array('type'=>'int'),
-    'title' => array('type'=>'string'),
-    'name' => array('type'=>'string'),
-    'bottomText' => array('type'=>'string','column'=>'bottomtext'),
-    'changed' => array('type'=>'datetime'),
-    'published' => array('type'=>'datetime'),
-    'searchEnabled' => array('type'=>'boolean','column'=>'searchenabled'),
-    'userStatusEnabled' => array('type'=>'boolean','column'=>'userstatusenabled'),
-    'searchPageId' => array('type'=>'int','column'=>'searchpage_id','relation'=>array('class'=>'Page','property'=>'id')),
-      'loginPageId' => array('type'=>'int','column'=>'userstatuspage_id','relation'=>array('class'=>'Page','property'=>'id')),
-    'hierarchyId' => array('type'=>'int','column'=>'hierarchy_id','relation'=>array('class'=>'Hierarchy','property'=>'id'))
-  )
-);
+  'properties' => [
+    'id' => ['type'=>'int'],
+    'title' => ['type'=>'string'],
+    'name' => ['type'=>'string'],
+    'bottomText' => ['type'=>'string','column'=>'bottomtext'],
+    'changed' => ['type'=>'datetime'],
+    'published' => ['type'=>'datetime'],
+    'searchEnabled' => ['type'=>'boolean','column'=>'searchenabled'],
+    'userStatusEnabled' => ['type'=>'boolean','column'=>'userstatusenabled'],
+    'searchPageId' => ['type'=>'int','column'=>'searchpage_id','relation'=>['class'=>'Page','property'=>'id']],
+      'loginPageId' => ['type'=>'int','column'=>'userstatuspage_id','relation'=>['class'=>'Page','property'=>'id']],
+    'hierarchyId' => ['type'=>'int','column'=>'hierarchy_id','relation'=>['class'=>'Hierarchy','property'=>'id']]
+  ]
+];
 class Frame extends Entity implements Loadable {
 
   var $title;

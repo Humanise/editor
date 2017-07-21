@@ -24,8 +24,8 @@ class StatisticsService {
   }
 
   static function getPageHits($rows) {
-    $ids = array();
-    $counts = array();
+    $ids = [];
+    $counts = [];
     foreach ($rows as $row) {
       $ids[] = $row['id'];
     }
@@ -69,7 +69,7 @@ class StatisticsService {
   }
 
   static function _buildWhere($query,$prepend=true) {
-    $where = array();
+    $where = [];
     if ($query->getStartTime()) {
       $where[] = 'statistics.time>='.Database::datetime($query->getStartTime());
     }
@@ -83,12 +83,12 @@ class StatisticsService {
   }
 
   static function getVisitsChart($query) {
-    $patterns = array(
-      'daily' => array('sql' => '%Y%m%d','php' => 'Ymd', 'div' => 60*60*24),
-      'hourly' => array('sql' => '%Y%m%d%H','php' => 'YmdH', 'div' => 60*60),
-      'monthly' => array('sql' => '%Y%m','php' => 'Ym', 'div' => 60*60*24*31),
-      'yearly' => array('sql' => '%Y','php' => 'Y', 'div' => 60*60*24*365)
-    );
+    $patterns = [
+      'daily' => ['sql' => '%Y%m%d','php' => 'Ymd', 'div' => 60*60*24],
+      'hourly' => ['sql' => '%Y%m%d%H','php' => 'YmdH', 'div' => 60*60],
+      'monthly' => ['sql' => '%Y%m','php' => 'Ym', 'div' => 60*60*24*31],
+      'yearly' => ['sql' => '%Y','php' => 'Y', 'div' => 60*60*24*365]
+    ];
 
     $days = 100;
 
@@ -112,7 +112,7 @@ class StatisticsService {
 
     $rows = StatisticsService::_fillGaps($rows,$days,$patterns,$resolution);
     $sets = [];
-    $dimensions = array('sessions','ips','hits');
+    $dimensions = ['sessions','ips','hits'];
 
         $labels = [];
     foreach ($rows as $row) {
@@ -124,7 +124,7 @@ class StatisticsService {
       foreach ($rows as $row) {
         $entries[$row['key']] = $row[$dim];
       }
-      $sets[] = array('type'=>'line','entries'=>$entries);
+      $sets[] = ['type'=>'line','entries'=>$entries];
     }
     return ['sets' => $sets,'axis' => ['x' => ['labels' => $labels]]];
   }
@@ -136,16 +136,16 @@ class StatisticsService {
 
     $rows = Database::selectAll($sql);
 
-    $entries = array();
+    $entries = [];
     foreach ($rows as $row) {
       $entries[$row['page_title']] = intval($row['visits']);
     }
 
-    return array('sets' => array(array('type'=>'column','entries'=>$entries)));
+    return ['sets' => [['type'=>'column','entries'=>$entries]]];
   }
 
   static function _fillGaps($rows,$days,$patterns,$resolution) {
-    $filled = array();
+    $filled = [];
     $now = time();
     for ($i=$days; $i >= 0; $i--) {
       if ($resolution=='daily') {
@@ -161,7 +161,7 @@ class StatisticsService {
       if (array_key_exists($key,$rows)) {
         $filled[$key] = $rows[$key];
       } else {
-        $filled[$key] = array('hits'=>0,'sessions'=>0,'ips'=>0,'key'=>$key,'label'=>date('j',$date));
+        $filled[$key] = ['hits'=>0,'sessions'=>0,'ips'=>0,'key'=>$key,'label'=>date('j',$date)];
       }
     }
     return $filled;

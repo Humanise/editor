@@ -14,10 +14,10 @@ class TestRenderingService extends UnitTestCase {
   function testPreview() {
     $page = TestService::createTestPage();
 
-    $preview = RenderingService::previewPage(array(
+    $preview = RenderingService::previewPage([
       'pageId' => $page->getId(),
       'relativePath' => '../../../../'
-    ));
+    ]);
 
     $this->assertTrue(Strings::isNotBlank($preview));
 

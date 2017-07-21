@@ -9,7 +9,7 @@ class Graphviz {
   var $data;
 
   function Graphviz() {
-    $this->data = array();
+    $this->data = [];
   }
 
   function canDisplay() {
@@ -18,7 +18,7 @@ class Graphviz {
   }
 
   function add($source,$target) {
-    $this->data[] = array('source' => $source, 'target' => $target);
+    $this->data[] = ['source' => $source, 'target' => $target];
   }
 
   function toDot() {

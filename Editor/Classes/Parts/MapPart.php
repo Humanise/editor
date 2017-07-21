@@ -8,21 +8,21 @@ if (!isset($GLOBALS['basePath'])) {
   exit;
 }
 
-Entity::$schema['MapPart'] = array(
+Entity::$schema['MapPart'] = [
   'table' => 'part_map',
-  'properties' => array(
-    'provider' => array( 'type' => 'string' ),
-    'latitude' => array( 'type' => 'float' ),
-    'longitude' => array( 'type' => 'float' ),
-    'text' => array( 'type' => 'string' ),
-    'maptype' => array( 'type' => 'string' ),
-    'markers' => array( 'type' => 'string' ),
-    'zoom' => array( 'type' => 'int' ),
-    'width' => array( 'type' => 'string' ),
-    'height' => array( 'type' => 'string' ),
-    'frame' => array( 'type' => 'string' )
-  )
-);
+  'properties' => [
+    'provider' => [ 'type' => 'string' ],
+    'latitude' => [ 'type' => 'float' ],
+    'longitude' => [ 'type' => 'float' ],
+    'text' => [ 'type' => 'string' ],
+    'maptype' => [ 'type' => 'string' ],
+    'markers' => [ 'type' => 'string' ],
+    'zoom' => [ 'type' => 'int' ],
+    'width' => [ 'type' => 'string' ],
+    'height' => [ 'type' => 'string' ],
+    'frame' => [ 'type' => 'string' ]
+  ]
+];
 
 class MapPart extends Part
 {

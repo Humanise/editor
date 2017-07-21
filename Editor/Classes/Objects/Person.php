@@ -11,19 +11,19 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Person'] = [
     'table' => 'person',
     'properties' => [
-      'firstname' => array('type'=>'string'),
-      'middlename' => array('type'=>'string'),
-      'surname' => array('type'=>'string'),
-      'initials' => array('type'=>'string'),
-      'nickname' => array('type'=>'string'),
-      'jobtitle' => array('type'=>'string'),
-      'sex' => array('type'=>'string'),
-      'streetname' => array('type'=>'string'),
-      'zipcode' => array('type'=>'string'),
-      'city' => array('type'=>'string'),
-      'country' => array('type'=>'string'),
-      'webaddress' => array('type'=>'string'),
-      'imageId' => array('type'=>'int','column'=>'image_id', 'relation' => ['class' => 'Image', 'property' => 'id'])
+      'firstname' => ['type'=>'string'],
+      'middlename' => ['type'=>'string'],
+      'surname' => ['type'=>'string'],
+      'initials' => ['type'=>'string'],
+      'nickname' => ['type'=>'string'],
+      'jobtitle' => ['type'=>'string'],
+      'sex' => ['type'=>'string'],
+      'streetname' => ['type'=>'string'],
+      'zipcode' => ['type'=>'string'],
+      'city' => ['type'=>'string'],
+      'country' => ['type'=>'string'],
+      'webaddress' => ['type'=>'string'],
+      'imageId' => ['type'=>'int','column'=>'image_id', 'relation' => ['class' => 'Image', 'property' => 'id']]
     ]
 ];
 
@@ -391,7 +391,7 @@ class Person extends Object {
 
   function updateEmailAddresses($new) {
     $mails = Query::after('emailaddress')->withProperty('containingObjectId',$this->getId())->get();
-    $foundIds = array();
+    $foundIds = [];
     foreach ($new as $email) {
       if (isset($email->id) && $email->id>0) {
         $old = Emailaddress::load($email->id);
@@ -421,7 +421,7 @@ class Person extends Object {
 
   function updatePhoneNumbers($new) {
     $numbers = Query::after('phonenumber')->withProperty('containingObjectId',$this->getId())->get();
-    $foundIds = array();
+    $foundIds = [];
     foreach ($new as $number) {
       if (isset($number->id) && $number->id>0) {
         $old = PhoneNumber::load($number->id);

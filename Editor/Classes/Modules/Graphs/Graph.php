@@ -9,8 +9,8 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 class Graph {
-  var $nodes = array();
-  var $edges = array();
+  var $nodes = [];
+  var $edges = [];
 
   function getNodes() {
     return $this->nodes;
@@ -41,7 +41,7 @@ class Graph {
       }
     }
     if ($fromFound && $toFound) {
-      $this->edges[] = array('from'=>$from,'to'=>$to);
+      $this->edges[] = ['from'=>$from,'to'=>$to];
     }
   }
 

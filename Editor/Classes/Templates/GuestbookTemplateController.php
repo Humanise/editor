@@ -45,7 +45,7 @@ class GuestbookTemplateController extends TemplateController
     $data.='<!--dynamic-->';
     $data.= '</guestbook>';
     $index = $row['title'].' '.$row['text'];
-        return array('data' => $data, 'dynamic' => true, 'index' => $index);
+        return ['data' => $data, 'dynamic' => true, 'index' => $index];
     }
 
   function dynamic($id,&$state) {

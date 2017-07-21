@@ -11,11 +11,11 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['File'] = [
     'table' => 'file',
-    'properties' => array(
-      'filename'  => array('type'=>'string'),
-      'size'    => array('type'=>'int'),
-      'mimetype'  => array('type'=>'string','column'=>'type')
-    )
+    'properties' => [
+      'filename'  => ['type'=>'string'],
+      'size'    => ['type'=>'int'],
+      'mimetype'  => ['type'=>'string','column'=>'type']
+    ]
 ];
 
 class File extends Object {
@@ -115,11 +115,11 @@ class File extends Object {
     }
   }
 
-    static function find($query = array()) {
-      $parts = array();
+    static function find($query = []) {
+      $parts = [];
     $parts['columns'] = 'object.id';
     $parts['tables'] = 'file,object';
-    $parts['limits'] = array();
+    $parts['limits'] = [];
     $parts['ordering'] = 'object.title';
     $parts['direction'] = $query['direction'];
 
@@ -133,7 +133,7 @@ class File extends Object {
       $parts['limits'][]='`file`.`type` = '.Database::text($query['type']);
     }
     if (isset($query['mimetypes']) && is_array($query['mimetypes'])) {
-      $ors = array();
+      $ors = [];
       foreach ($query['mimetypes'] as $type) {
         $ors[]='`file`.`type` = '.Database::text($type);
       }
@@ -149,7 +149,7 @@ class File extends Object {
       $parts['ordering']="object.title";
     }
     $list = ObjectService::_find($parts,$query);
-    $list['result'] = array();
+    $list['result'] = [];
     foreach ($list['rows'] as $row) {
       $list['result'][] = File::load($row['id']);
     }

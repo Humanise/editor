@@ -11,12 +11,12 @@ $writer->startItems();
 
 $counts = FileService::getGroupCounts();
 foreach ($counts as $row) {
-  $options = array(
+  $options = [
     'value'=>$row['id'],
     'title'=>$row['title'],
     'icon'=>'common/folder',
     'kind'=>'filegroup'
-  );
+  ];
   if ($row['count']>0) {
     $options['badge']=$row['count'];
   }

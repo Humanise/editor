@@ -13,7 +13,7 @@ class HtmlDocument {
 
   function getBodyContents() {
     $pattern = '/<body(\s*[\w\d\"=#_]*)*>([\s\W\w]*)<\/body\s*>/mi';
-    $matches = array();
+    $matches = [];
     preg_match($pattern, $this->html, $matches);
     //error_log(print_r($matches,true));
     if (@$matches[2]) {

@@ -14,7 +14,7 @@ function getBaseUrl() {
 }
 
 function buildConfig($values) {
-  $config = array();
+  $config = [];
   $config[] = "<?php";
   $config[] = "\$CONFIG = array(";
   $config[] = " 'baseUrl' => '".$values['baseUrl']."',";

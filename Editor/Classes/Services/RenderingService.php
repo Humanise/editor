@@ -242,7 +242,7 @@ class RenderingService {
   }
 
   static function applyContentDynamism($id,$template,&$data) {
-    $state = array('data' => $data,'redirect' => false,'override' => false);
+    $state = ['data' => $data,'redirect' => false,'override' => false];
     if ($controller = TemplateService::getController($template)) {
       if (method_exists($controller,'dynamic')) {
         $controller->dynamic($id,$state);
@@ -268,7 +268,7 @@ class RenderingService {
     }
   }
 
-  static function buildPage($id,$path=null,$parameters=array()) {
+  static function buildPage($id,$path=null,$parameters=[]) {
     //Log::debug('buildPage: id:('.$id.') path:('.$path.')');
     $sql="select page.id,page.path,page.secure,UNIX_TIMESTAMP(page.published) as published,".
     " page.title,page.description,page.language,page.keywords,page.data,page.dynamic,page.next_page,page.previous_page,".
@@ -313,7 +313,7 @@ class RenderingService {
         //Log::debug('Redirect: requested:('.$path.') page:('.$row['path'].') id:('.$id.')');
         if ($row['path']) {
           $redirect = Strings::concatUrl(ConfigurationService::getBaseUrl(),$row['path']);
-          $query = array();
+          $query = [];
           foreach ($parameters as $parameter) {
             if ($parameter['name']!='id' && Strings::isNotBlank($parameter['name'])) {
               $query[] = $parameter['name'].'='.$parameter['value'];
@@ -357,7 +357,7 @@ class RenderingService {
         $data.
         '</content>'.
         '</page>';
-      return array(
+      return [
         'id' => $row['id'],
         'xml' => $xml,
         'design' => $row['design'],
@@ -368,7 +368,7 @@ class RenderingService {
         'redirect' => $redirect,
         'dynamic' => $row['dynamic'],
         'framedynamic' => $row['framedynamic']
-      );
+      ];
     }
     else {
       return false;

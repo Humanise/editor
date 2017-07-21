@@ -17,14 +17,14 @@ function listSource($id,$force) {
 
   $source->synchronize($force);
 
-  $query = array('sort' => 'startDate');
+  $query = ['sort' => 'startDate'];
 
   $events = $source->getEvents($query);
 
-  $out = array();
+  $out = [];
 
   foreach ($events as $event) {
-    $out[] = array('startTime'=>$event['startDate'],'endTime'=>$event['endDate'],'text'=>$event['summary']);
+    $out[] = ['startTime'=>$event['startDate'],'endTime'=>$event['endDate'],'text'=>$event['summary']];
   }
   Response::sendObject($out);
 }

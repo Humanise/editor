@@ -10,12 +10,12 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['Productoffer'] = [
   'table' => 'productoffer',
-  'properties' => array(
-      'offer' => array('type'=>'string'),
-      'productId' => array('type'=>'int','column'=>'product_id'),
-      'personId' => array('type'=>'int','column'=>'person_id'),
-      'expiry' => array('type'=>'datetime')
-    )
+  'properties' => [
+      'offer' => ['type'=>'string'],
+      'productId' => ['type'=>'int','column'=>'product_id'],
+      'personId' => ['type'=>'int','column'=>'person_id'],
+      'expiry' => ['type'=>'datetime']
+    ]
 ];
 
 class Productoffer extends Object {
@@ -72,7 +72,7 @@ class Productoffer extends Object {
 
   function search($options = null) {
     if (!is_array($options)) {
-      $options = array();
+      $options = [];
     }
     $sql = "select object.id from productoffer,object where object.id=productoffer.object_id";
     if (isset($options['productId'])) {
@@ -80,21 +80,21 @@ class Productoffer extends Object {
     }
     $sql.=" order by object.title";
     $result = Database::select($sql);
-    $ids = array();
+    $ids = [];
     while ($row = Database::next($result)) {
       $ids[] = $row['id'];
     }
     Database::free($result);
 
-    $list = array();
+    $list = [];
     foreach ($ids as $id) {
       $list[] = Productoffer::load($id);
     }
     return $list;
   }
 
-    function find($query = array()) {
-      $parts = array();
+    function find($query = []) {
+      $parts = [];
     $parts['columns'] = 'object.id';
     $parts['tables'] = 'productoffer,object,object as product,object as person';
     $parts['limits'] = 'productoffer.object_id=object.id and productoffer.product_id=product.id and productoffer.person_id=person.id';
@@ -116,7 +116,7 @@ class Productoffer extends Object {
     }
 
     $list = ObjectService::_find($parts,$query);
-    $list['result'] = array();
+    $list['result'] = [];
     foreach ($list['rows'] as $row) {
       $list['result'][] = Productoffer::load($row['id']);
     }

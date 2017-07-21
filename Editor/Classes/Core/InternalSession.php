@@ -147,7 +147,7 @@ class InternalSession {
     }
 
     static function getPermissions($type) {
-        $permissions = array();
+        $permissions = [];
         $userId = InternalSession::getUserId();
         $sql = "select entity_id from user_permission where user_id=".$userId." and entity_type='tool'";
         $result = Database::select($sql);

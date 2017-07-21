@@ -48,7 +48,7 @@ class SitemapTemplateController extends TemplateController
     Database::free($result);
 
     $data.= '</sitemap>';
-        return array('data' => $data, 'dynamic' => false, 'index' => '');
+        return ['data' => $data, 'dynamic' => false, 'index' => ''];
     }
 
 }

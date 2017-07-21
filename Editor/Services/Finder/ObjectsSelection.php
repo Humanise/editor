@@ -9,12 +9,12 @@ $writer = new ItemsWriter();
 
 $writer->startItems();
 
-$writer->item(array(
+$writer->item([
   'value' => 'all',
-  'title' => array('All','da'=>'Alle'),
+  'title' => ['All','da'=>'Alle'],
   'icon' => 'common/files',
   'kind' => 'all'
-));
+]);
 
 $writer->endItems();
 ?>

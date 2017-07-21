@@ -13,7 +13,7 @@ class MarkupUtils {
   static function findScriptSegments($str) {
     $start = '<script';
     $stop = '</script>';
-    $segments = array();
+    $segments = [];
     $pos = 0;
     while ($pos!==false) {
       $from = strpos($str,$start,$pos);
@@ -24,7 +24,7 @@ class MarkupUtils {
       $to = strpos($str,$stop,$from+strlen($start));
       if ($to!==false) {
         $to+=strlen($stop);
-        $segments[] = array('from'=>$from,'to'=>$to);
+        $segments[] = ['from'=>$from,'to'=>$to];
         $pos = $to;
       } else {
         $pos = false;
@@ -45,7 +45,7 @@ class MarkupUtils {
       return $html;
     }
 
-    $moved = array();
+    $moved = [];
     preg_match_all("/<!--\\[if[\s\S]*endif\\]-->/uU", $html, $matches);
     $found = $matches[0];
     foreach ($found as $match) {
@@ -61,7 +61,7 @@ class MarkupUtils {
 
     preg_match_all("/<script[^>]+\\/>|<script[^>]*>[\s\S]*<\\/script>/uU", $html, $matches);
     $found = $matches[0];
-    $filtered = array();
+    $filtered = [];
     foreach ($found as $script) {
       if (strpos($script,'data-movable="false"')===false) {
         $filtered[] = $script;
@@ -85,7 +85,7 @@ class MarkupUtils {
 
     preg_match_all("/(<!--\\[if[\s\S]*endif\\]-->)|(<style[^>]+\\/>|<style[^>]*>[\s\S]*<\\/style>)/uU", $html, $matches, PREG_PATTERN_ORDER, $start);
     $found = $matches[0];
-    $filtered = array();
+    $filtered = [];
     foreach ($found as $snippet) {
       if (strpos($snippet,'<style') === false) {
         continue;

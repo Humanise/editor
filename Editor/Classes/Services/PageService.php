@@ -120,7 +120,7 @@ class PageService {
     if (count($ids)>0) {
       return Query::after('pageblueprint')->withIds($ids)->orderBy('title')->get();
     }
-    return array();
+    return [];
   }
 
   static function getPageTranslationList($id) {
@@ -255,7 +255,7 @@ class PageService {
 
     $select->addTable('page')->addTable('template');
 
-    $select->addColumns(array(
+    $select->addColumns([
       "page.id",
       "page.secure",
       "page.path",
@@ -265,7 +265,7 @@ class PageService {
       "date_format(page.changed,'%Y%m%d%h%i%s') as changedindex",
       "(page.changed-page.published) as publishdelta",
       "page.language"
-    ));
+    ]);
 
     $select->addLimit("page.template_id=template.id");
 
@@ -548,12 +548,12 @@ class PageService {
                   return false;
               }
 
-        $recipe = array(
+        $recipe = [
               'title' => $title,
               'targetType' => 'page',
                   'hidden' => false,
               'targetValue' => $page->getId()
-            );
+            ];
         if ($placement=='before') {
           $recipe['parent'] = $context_item->getParent();
           $recipe['index'] = $context_item->getIndex();

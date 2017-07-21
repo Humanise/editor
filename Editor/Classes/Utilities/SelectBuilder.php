@@ -10,10 +10,10 @@ if (!isset($GLOBALS['basePath'])) {
 
 class SelectBuilder {
 
-  private $columns = array();
-  private $tables = array();
-  private $limits = array();
-  private $orderings = array();
+  private $columns = [];
+  private $tables = [];
+  private $limits = [];
+  private $orderings = [];
   private $from = null;
   private $to = null;
 
@@ -40,7 +40,7 @@ class SelectBuilder {
   }
 
   function addOrdering($column,$descending=false) {
-    $this->orderings[] = array('column'=>$column,'descending'=>$descending);
+    $this->orderings[] = ['column'=>$column,'descending'=>$descending];
     return $this;
   }
 
@@ -55,7 +55,7 @@ class SelectBuilder {
   }
 
   function clearColumns() {
-    $this->columns = array();
+    $this->columns = [];
     return $this;
   }
 

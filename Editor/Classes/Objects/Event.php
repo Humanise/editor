@@ -10,11 +10,11 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['Event'] = [
     'table' => 'event',
-    'properties' => array(
-      'location'   => array('type'=>'string'),
-      'startdate'  => array('type'=>'datetime'),
-      'enddate'  => array('type'=>'datetime')
-    )
+    'properties' => [
+      'location'   => ['type'=>'string'],
+      'startdate'  => ['type'=>'datetime'],
+      'enddate'  => ['type'=>'datetime']
+    ]
 ];
 
 class Event extends Object {
@@ -78,8 +78,8 @@ class Event extends Object {
   /**
    * @static
    */
-    function search($query = array()) {
-        $out = array();
+    function search($query = []) {
+        $out = [];
     if (isset($query['calendarId'])) {
           $sql = "select object.id from object,event,calendar_event where object.id=event.object_id and object.id=calendar_event.event_id and calendar_event.calendar_id=".$query['calendarId'];
     } else {
@@ -90,7 +90,7 @@ class Event extends Object {
     }
     $sql.=" order by event.startdate";
         $result = Database::select($sql);
-    $ids = array();
+    $ids = [];
         while ($row = Database::next($result)) {
             $ids[] = $row['id'];
         }
@@ -104,8 +104,8 @@ class Event extends Object {
   /**
    *
    */
-    function getSimpleEvents($query = array()) {
-        $out = array();
+    function getSimpleEvents($query = []) {
+        $out = [];
     $sql = "select object.id,object.title,object.note,event.location,unix_timestamp(event.startdate) as startdate,unix_timestamp(event.enddate) as enddate ";
     if (isset($query['calendarId'])) {
           $sql .= "from object,event,calendar_event where object.id=event.object_id and object.id=calendar_event.event_id and calendar_event.calendar_id=".$query['calendarId'];
@@ -117,9 +117,9 @@ class Event extends Object {
     }
     $sql.=" order by object.title";
         $result = Database::select($sql);
-    $ids = array();
+    $ids = [];
         while ($row = Database::next($result)) {
-            $out[] = array(
+            $out[] = [
         'id' => $row['id'],
         'summary' => $row['title']."\n".$row['note'],
         'location' => $row['location'],
@@ -128,7 +128,7 @@ class Event extends Object {
         'startDate' => $row['startdate'],
         'endDate' => $row['enddate'],
         'calendarTitle' => (isset($query['calendarTitle']) ? $query['calendarTitle'] : '')
-      );
+      ];
         }
         Database::free($result);
         return $out;

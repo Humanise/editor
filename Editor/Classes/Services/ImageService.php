@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class ImageService {
 
-  static $validTypes = array("image/pjpeg","image/jpeg","image/gif","image/png","image/x-png");
-  static $validExtensions = array("jpeg","jpg","gif","png");
+  static $validTypes = ["image/pjpeg","image/jpeg","image/gif","image/png","image/x-png"];
+  static $validExtensions = ["jpeg","jpg","gif","png"];
 
   static function getUsedImageIds() {
     // Image parts
@@ -46,15 +46,15 @@ class ImageService {
   }
 
   static function getGroupCounts() {
-    $out = array();
+    $out = [];
     $sql="select distinct object.id,object.title,count(image.object_id) as imagecount from imagegroup, imagegroup_image, image,object  where imagegroup_image.imagegroup_id=imagegroup.object_id and imagegroup_image.image_id = image.object_id and object.id=imagegroup.object_id group by imagegroup.object_id union select object.id,object.title,'0' from object left join imagegroup_image on imagegroup_image.imagegroup_id=object.id where object.type='imagegroup' and imagegroup_image.image_id is null order by title";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
-      $out[] = array(
+      $out[] = [
         'id' => $row['id'],
         'title' => $row['title'],
         'count' => $row['imagecount']
-      );
+      ];
     }
     Database::free($result);
     return $out;
@@ -236,13 +236,13 @@ class ImageService {
     global $basePath;
     error_reporting(E_ERROR);
 
-    $report = array('imported' => array(), 'problems' => array());
+    $report = ['imported' => [], 'problems' => []];
     $error = false;
 
     if (Strings::isBlank($url)) {
       $result = new ImportResult();
       $result->setSuccess(false);
-      $result->setMessage(array('en'=>'The address is invalid', 'da'=>'Adressen er ikke valid'));
+      $result->setMessage(['en'=>'The address is invalid', 'da'=>'Adressen er ikke valid']);
       return $result;
     }
     $temp = $basePath.'local/cache/temp/'.basename($url);
@@ -256,7 +256,7 @@ class ImageService {
 
     $result = new ImportResult();
     $result->setSuccess(false);
-    $result->setMessage(array('en'=>'The image could not be fecthed','da'=>'Billedet kunne ikke hentes'));
+    $result->setMessage(['en'=>'The image could not be fecthed','da'=>'Billedet kunne ikke hentes']);
     return $result;
   }
 
@@ -279,7 +279,7 @@ class ImageService {
 
   static function createImageFromBase64($data,$fileName=null,$title=null) {
     global $basePath;
-    $output = array('image'=>null,'success'=>false,'message'=>null);
+    $output = ['image'=>null,'success'=>false,'message'=>null];
 
     if (Strings::isBlank($data)) {
       $output['message'] = 'No data';
@@ -364,13 +364,13 @@ class ImageService {
 
     if (!file_exists($tempPath)) {
       Log::debug('File not found: '.$tempPath);
-      return ImportResult::fail(array('en'=>'The file could not be found', 'da'=>'Filen findes ikke'));
+      return ImportResult::fail(['en'=>'The file could not be found', 'da'=>'Filen findes ikke']);
     }
 
     $info = ImageTransformationService::getImageInfo($tempPath);
     if (!$info) {
       Log::debug('Unable to get image info: '.$tempPath);
-      return ImportResult::fail(array('en'=>'The file is not a valid image', 'da'=>'Filen er ikke et validt billede'));
+      return ImportResult::fail(['en'=>'The file is not a valid image', 'da'=>'Filen er ikke et validt billede']);
     }
 
     // If no file name then extract it from the path
@@ -394,11 +394,11 @@ class ImageService {
 
     if (!in_array($info['mime'],ImageService::$validTypes)) {
       Log::debug('Unsupported: '.$info['mime']);
-      return ImportResult::fail(array('en'=>'The file format is not supported', 'da'=>'Filens format er ikke understøttet'));
+      return ImportResult::fail(['en'=>'The file format is not supported', 'da'=>'Filens format er ikke understøttet']);
     }
     else if (!@copy($tempPath, $filePath)) {
       Log::debug('Could not copy: '.$tempPath.' -> '.$filePath);
-      return ImportResult::fail(array('en'=>'Unable to copy file', 'da'=>'Kunne ikke kopiere filen'));
+      return ImportResult::fail(['en'=>'Unable to copy file', 'da'=>'Kunne ikke kopiere filen']);
     }
 
     ImageTransformationService::optimizeFile($filePath);
@@ -420,7 +420,7 @@ class ImageService {
     $image->publish();
 
     if ($group>0) {
-      $image->changeGroups(array($group));
+      $image->changeGroups([$group]);
     }
 
     $result = new ImportResult();

@@ -10,11 +10,11 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['Pageblueprint'] = [
     'table' => 'pageblueprint',
-    'properties' => array(
-      'designId' => array('type' => 'int','column' => 'design_id'),
-      'frameId' => array('type' => 'int','column' => 'frame_id'),
-      'templateId' => array('type' => 'int','column' => 'template_id'),
-    )
+    'properties' => [
+      'designId' => ['type' => 'int','column' => 'design_id'],
+      'frameId' => ['type' => 'int','column' => 'frame_id'],
+      'templateId' => ['type' => 'int','column' => 'template_id'],
+    ]
 ];
 
 class Pageblueprint extends Object {

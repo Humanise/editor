@@ -11,5 +11,5 @@ $part = Request::getString('part');
 
 $sectionId = DocumentTemplateEditor::addSection($columnId,$index,$part);
 
-Response::sendObject(array('sectionId'=>$sectionId));
+Response::sendObject(['sectionId'=>$sectionId]);
 ?>

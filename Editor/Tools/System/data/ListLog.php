@@ -9,34 +9,34 @@ $page = Request::getInt('windowPage');
 $showIpSession = Request::getBoolean('showIpSession');
 $size = 40;
 
-$result = LogService::getEntries(array(
+$result = LogService::getEntries([
   'page' => $page,
   'size' => $size,
   'category' => Request::getString('category'),
   'event' => Request::getString('event'),
   'text' => Request::getString('text')
-));
+]);
 
 $writer = new ListWriter();
 
 $writer->startList()->
   sort('time','descending')->
-  window(array( 'total' => $result->getTotal(), 'size' => $size, 'page' => $page ))->
+  window([ 'total' => $result->getTotal(), 'size' => $size, 'page' => $page ])->
   startHeaders()->
-    header(array('title'=>array('Time','da'=>'Tidspunkt'),'key'=>'time'))->
-    header(array('title'=>array('Category','da'=>'Kategori')))->
-    header(array('title'=>array('Event','da'=>'Begivenhed')))->
-    header(array('title'=>array('Entity','da'=>'Entitet')))->
-    header(array('title'=>array('Message','da'=>'Besked')))->
-    header(array('title'=>array('User','da'=>'Bruger')));
+    header(['title'=>['Time','da'=>'Tidspunkt'],'key'=>'time'])->
+    header(['title'=>['Category','da'=>'Kategori']])->
+    header(['title'=>['Event','da'=>'Begivenhed']])->
+    header(['title'=>['Entity','da'=>'Entitet']])->
+    header(['title'=>['Message','da'=>'Besked']])->
+    header(['title'=>['User','da'=>'Bruger']]);
   if ($showIpSession) {
-    $writer->header(array('title'=>'IP'));
-    $writer->header(array('title'=>'Session'));
+    $writer->header(['title'=>'IP']);
+    $writer->header(['title'=>'Session']);
   }
 $writer->endHeaders();
 
 foreach ($result->getList() as $row) {
-  $writer->startRow(array('kind'=>'logEntry'));
+  $writer->startRow(['kind'=>'logEntry']);
   $writer->startCell()->text(Dates::formatLongDateTime($row['time']))->endCell();
   $writer->startCell()->text($row['category'])->endCell();
   $writer->startCell()->text($row['event'])->endCell();

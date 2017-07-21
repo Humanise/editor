@@ -29,10 +29,10 @@ function listHierarhy() {
 
   $writer->startList()->
     startHeaders()->
-      header(array('title'=>array('Menu item','da'=>'Menupunkt'),'width'=>30))->
-      header(array('title'=>'Link / Destination','width'=>40))->
-      header(array('title'=>array('Path','da'=>'Sti')))->
-      header(array('width'=>1))->
+      header(['title'=>['Menu item','da'=>'Menupunkt'],'width'=>30])->
+      header(['title'=>'Link / Destination','width'=>40])->
+      header(['title'=>['Path','da'=>'Sti']])->
+      header(['width'=>1])->
     endHeaders();
 
   if ($kind=='hierarchy') {
@@ -41,8 +41,8 @@ function listHierarhy() {
     $hierarchy = Hierarchy::load($hierarchyId);
 
     if ($hierarchy) {
-      $writer->startRow(array('id'=>$hierarchyId,'kind'=>'hierarchy','level'=>1))->
-        startCell(array('icon'=>'common/hierarchy'))->text($hierarchy->getName())->endCell()->
+      $writer->startRow(['id'=>$hierarchyId,'kind'=>'hierarchy','level'=>1])->
+        startCell(['icon'=>'common/hierarchy'])->text($hierarchy->getName())->endCell()->
         startCell()->endCell()->
         startCell()->endCell()->
         startCell()->endCell()->
@@ -68,11 +68,11 @@ function listReview() {
 
   $writer->startList()->
     startHeaders()->
-      header(array('title'=>array('Page','da'=>'Side'),'width'=>45))->
-      header(array('width'=>1))->
-      header(array('title'=>array('User','da'=>'Bruger')))->
-      header(array('title'=>array('Time','da'=>'Tidspunkt'),'width'=>20))->
-      header(array('width'=>1))->
+      header(['title'=>['Page','da'=>'Side'],'width'=>45])->
+      header(['width'=>1])->
+      header(['title'=>['User','da'=>'Bruger']])->
+      header(['title'=>['Time','da'=>'Tidspunkt'],'width'=>20])->
+      header(['width'=>1])->
     endHeaders();
   $sql = "SELECT page.id as page_id,page.title as page_title,user.title as user_title,UNIX_TIMESTAMP(review.date) as date,review.accepted
 from page,relation as page_review,relation as review_user,review,object as user
@@ -93,26 +93,26 @@ and review_user.to_type='object' and review_user.to_object_id=user.id";
 
   $result = Database::select($sql);
   while ($row = Database::next($result)) {
-    $writer->startRow(array('kind'=>'page','id'=>$row['page_id']))->
-      startCell(array('icon'=>'common/page'))->text($row['page_title'])->
+    $writer->startRow(['kind'=>'page','id'=>$row['page_id']])->
+      startCell(['icon'=>'common/page'])->text($row['page_title'])->
       endCell()->
       startCell()->
         startIcons()->
-          icon(array('icon'=>'monochrome/info','revealing'=>true,'action'=>true,'data'=>array('action'=>'pageInfo','id'=>$row['page_id'])))->
-          icon(array('icon'=>'monochrome/edit','revealing'=>true,'action'=>true,'data'=>array('action'=>'editPage','id'=>$row['page_id'])))->
-          icon(array('icon'=>'monochrome/view','revealing'=>true,'action'=>true,'data'=>array('action'=>'viewPage','id'=>$row['page_id'])))->
-          icon(array('icon'=>'monochrome/crosshairs','revealing'=>true,'action'=>true,'data'=>array('action'=>'previewPage','id'=>$row['page_id'])))->
+          icon(['icon'=>'monochrome/info','revealing'=>true,'action'=>true,'data'=>['action'=>'pageInfo','id'=>$row['page_id']]])->
+          icon(['icon'=>'monochrome/edit','revealing'=>true,'action'=>true,'data'=>['action'=>'editPage','id'=>$row['page_id']]])->
+          icon(['icon'=>'monochrome/view','revealing'=>true,'action'=>true,'data'=>['action'=>'viewPage','id'=>$row['page_id']]])->
+          icon(['icon'=>'monochrome/crosshairs','revealing'=>true,'action'=>true,'data'=>['action'=>'previewPage','id'=>$row['page_id']]])->
         endIcons()->
       endCell();
       if ($row['user_title']) {
-        $writer->startCell(array('icon'=>'common/user'))->text($row['user_title'])->endCell();
+        $writer->startCell(['icon'=>'common/user'])->text($row['user_title'])->endCell();
       } else {
         $writer->startCell()->endCell();
       }
       $writer->startCell()->text(Dates::formatFuzzy($row['date']))->endCell()->
       startCell();
       if ($row['accepted']!=-1) {
-        $writer->icon(array('icon' => $row['accepted'] ? 'common/success' : 'common/stop'));
+        $writer->icon(['icon' => $row['accepted'] ? 'common/success' : 'common/stop']);
       }
       $writer->endCell()->
     endRow();
@@ -125,13 +125,13 @@ and review_user.to_type='object' and review_user.to_object_id=user.id";
 
 function _writeHierarchyItem($row,$level,$writer) {
   $icon = Hierarchy::getItemIcon($row['target_type']);
-  $options = array('id'=>$row['id'],'kind'=>'hierarchyItem','level'=>$level);
+  $options = ['id'=>$row['id'],'kind'=>'hierarchyItem','level'=>$level];
   if ($row['target_type']=='page' && $row['pageid']) {
-    $options['data'] = array('page'=>intval($row['pageid']));
+    $options['data'] = ['page'=>intval($row['pageid'])];
   }
   $writer->
   startRow($options)->
-  startCell(array('icon'=>'monochrome/dot'));
+  startCell(['icon'=>'monochrome/dot']);
   if ($row['hidden']) {
     $writer->startDelete()->text($row['title'])->endDelete();
   } else {
@@ -140,44 +140,44 @@ function _writeHierarchyItem($row,$level,$writer) {
   $writer->endCell();
   if ($row['target_type']=='page') {
     if (!$row['pageid']) {
-      $writer->startCell(array('icon'=>'common/warning'))->text(array('No page','da'=>'Ingen side!'))->endCell();
+      $writer->startCell(['icon'=>'common/warning'])->text(['No page','da'=>'Ingen side!'])->endCell();
     } else {
       $writer->
-        startCell(array('icon'=>$icon));
+        startCell(['icon'=>$icon]);
         if ($row['page_disabled']) {
           $writer->startDelete()->text($row['pagetitle'])->endDelete();
         } else {
           $writer->text($row['pagetitle']);
         }
         $writer->startIcons()->
-          icon(array('icon'=>'monochrome/info','revealing'=>true,'action'=>true,'data'=>array('action'=>'pageInfo','id'=>$row['pageid'])))->
-          icon(array('icon'=>'monochrome/edit','revealing'=>true,'action'=>true,'data'=>array('action'=>'editPage','id'=>$row['pageid'])))->
-          icon(array('icon'=>'monochrome/view','revealing'=>true,'action'=>true,'data'=>array('action'=>'viewPage','id'=>$row['pageid'])))->
-          icon(array('icon'=>'monochrome/crosshairs','revealing'=>true,'action'=>true,'data'=>array('action'=>'previewPage','id'=>$row['pageid'])))->
+          icon(['icon'=>'monochrome/info','revealing'=>true,'action'=>true,'data'=>['action'=>'pageInfo','id'=>$row['pageid']]])->
+          icon(['icon'=>'monochrome/edit','revealing'=>true,'action'=>true,'data'=>['action'=>'editPage','id'=>$row['pageid']]])->
+          icon(['icon'=>'monochrome/view','revealing'=>true,'action'=>true,'data'=>['action'=>'viewPage','id'=>$row['pageid']]])->
+          icon(['icon'=>'monochrome/crosshairs','revealing'=>true,'action'=>true,'data'=>['action'=>'previewPage','id'=>$row['pageid']]])->
         endIcons()->
       endCell();
     }
   } else if ($row['target_type']=='pageref') {
-    $writer->startCell(array('icon'=>$icon))->text($row['pagetitle'].'')->endCell();
+    $writer->startCell(['icon'=>$icon])->text($row['pagetitle'].'')->endCell();
   } else if ($row['target_type']=='url') {
-    $writer->startCell(array('icon'=>$icon))->text($row['target_value'].'')->
+    $writer->startCell(['icon'=>$icon])->text($row['target_value'].'')->
       startIcons()->
-        icon(array('icon'=>'monochrome/round_arrow_right','revealing'=>true,'data'=>array('action'=>'visitLink','url'=>$row['target_value'])))->
+        icon(['icon'=>'monochrome/round_arrow_right','revealing'=>true,'data'=>['action'=>'visitLink','url'=>$row['target_value']]])->
       endIcons()->
     endCell();
   } else if ($row['target_type']=='email') {
-    $writer->startCell(array('icon'=>'monochrome/email'))->text($row['target_value'].'')->endCell();
+    $writer->startCell(['icon'=>'monochrome/email'])->text($row['target_value'].'')->endCell();
   } else if ($row['target_type']=='file') {
-    $writer->startCell(array('icon'=>$icon))->text($row['filetitle'].'')->endCell();
+    $writer->startCell(['icon'=>$icon])->text($row['filetitle'].'')->endCell();
   } else {
-    $writer->startCell(array('icon'=>'monochrome/round_question'))->text($row['target_type'].'')->endCell();
+    $writer->startCell(['icon'=>'monochrome/round_question'])->text($row['target_type'].'')->endCell();
   }
   $writer->
-  startCell()->startLine(array('dimmed'=>true))->startWrap()->text($row['page_path'])->endWrap()->endLine()->endCell()->
-  startCell(array('wrap'=>false))->
+  startCell()->startLine(['dimmed'=>true])->startWrap()->text($row['page_path'])->endWrap()->endLine()->endCell()->
+  startCell(['wrap'=>false])->
   startIcons()->
-    icon(array('icon'=>'monochrome/round_arrow_up','revealing'=>true,'action'=>true,'data'=>array('action'=>'moveItem','direction'=>'up')))->
-    icon(array('icon'=>'monochrome/round_arrow_down','revealing'=>true,'action'=>true,'data'=>array('action'=>'moveItem','direction'=>'down')))->
+    icon(['icon'=>'monochrome/round_arrow_up','revealing'=>true,'action'=>true,'data'=>['action'=>'moveItem','direction'=>'up']])->
+    icon(['icon'=>'monochrome/round_arrow_down','revealing'=>true,'action'=>true,'data'=>['action'=>'moveItem','direction'=>'down']])->
   endIcons()->
   endCell()->
   endRow();
@@ -234,9 +234,9 @@ function listPages() {
     $writer->header(['title'=>['News','da'=>'Nyhed']]);
   }
   $writer->
-    header(['title'=>array('Language','da'=>'Sprog'),'key'=>'page.language','sortable'=>'true'])->
-    header(['title'=>array('Modified','da'=>'Ændret'),'width'=>1,'key'=>'page.changed','sortable'=>'true'])->
-    header(['title'=>array('Hits','da'=>'Hits'),'width'=>1])->
+    header(['title'=>['Language','da'=>'Sprog'],'key'=>'page.language','sortable'=>'true'])->
+    header(['title'=>['Modified','da'=>'Ændret'],'width'=>1,'key'=>'page.changed','sortable'=>'true'])->
+    header(['title'=>['Hits','da'=>'Hits'],'width'=>1])->
     header(['width'=>1])->
   endHeaders();
 
@@ -342,6 +342,6 @@ function buildPagesSql() {
   $sqlLimits.=" order by ".$sort.($direction=='ascending' ? ' asc' : ' desc');
 
   $listSql = $sql.$sqlLimits." limit ".($windowPage*$windowSize).",".$windowSize;
-  return array('list'=>$listSql,'total'=>$countSql.$sqlLimits);
+  return ['list'=>$listSql,'total'=>$countSql.$sqlLimits];
 }
 ?>

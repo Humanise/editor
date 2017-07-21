@@ -13,12 +13,12 @@ $writer->startItems();
 if ($frameId>0) {
   $frame = Frame::load($frameId);
   $hierarchy = Hierarchy::load($frame->getHierarchyId());
-  $writer->startItem(array(
+  $writer->startItem([
     'icon'=>'common/hierarchy',
     'value'=>$hierarchy->getId(),
     'title'=>$hierarchy->getName(),
     'kind'=>'hierarchy'
-  ));
+  ]);
   encodeLevel(0,$hierarchy->getId(),$writer);
   $writer->endItem();
 }
@@ -32,12 +32,12 @@ function encodeLevel($parent,$hierarchyId,&$writer) {
       " order by `index`";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
-    $writer->startItem(array(
+    $writer->startItem([
       'icon'=>'common/page',
       'value'=>$row['id'],
       'title'=>$row['title'],
       'kind'=>'hierarchyItem'
-    ));
+    ]);
     encodeLevel($row['id'],$hierarchyId,$writer);
     $writer->endItem();
   }

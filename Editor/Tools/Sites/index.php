@@ -12,7 +12,7 @@ $designOptions='';
 $designs = Query::after('design')->get();
 
 if ($simulate) {
-  $designs = array($designs[0]);
+  $designs = [$designs[0]];
 }
 
 foreach ($designs as $design) {

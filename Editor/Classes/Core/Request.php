@@ -8,11 +8,11 @@ class Request {
 
   static function getParameters() {
     $query = $_SERVER['QUERY_STRING'];
-    $parameters = array();
+    $parameters = [];
     $parts = explode('&',$query);
     foreach ($parts as $part) {
       $pair = explode('=',$part);
-      $parameters[] = array('name' => @$pair[0] , 'value' => @$pair[1]);
+      $parameters[] = ['name' => @$pair[0] , 'value' => @$pair[1]];
     }
     return $parameters;
   }
@@ -124,7 +124,7 @@ class Request {
    */
   static function getIntArrayComma($key) {
     $str = Request::getString($key);
-    $out = array();
+    $out = [];
     $parts = explode(",",$str);
     foreach ($parts as $part) {
       if (is_numeric($part)) {
@@ -212,7 +212,7 @@ class Request {
       return $_GET[$key];
     }
     else {
-      return array();
+      return [];
     }
   }
 
@@ -238,7 +238,7 @@ class Request {
   }
 
   static function getHeaders() {
-    $headers = array();
+    $headers = [];
     foreach ($_SERVER as $k => $v) {
       if (substr($k, 0, 5) == "HTTP_") {
         $k = str_replace('_', ' ', substr($k, 5));

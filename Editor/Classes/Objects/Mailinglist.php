@@ -36,11 +36,11 @@ class Mailinglist extends Object {
 
   function getEmails() {
     if (!is_array($options)) {
-      $options = array();
+      $options = [];
     }
     $sql = "select emailaddress.object_id as id from emailaddress,person_mailinglist where emailaddress.containing_object_id=person_mailinglist.person_id and person_mailinglist.mailinglist_id=".Database::int($this->id);
     $result = Database::select($sql);
-    $list = array();
+    $list = [];
     while ($row = Database::next($result)) {
       $list[] = Emailaddress::load($row['id']);
     }

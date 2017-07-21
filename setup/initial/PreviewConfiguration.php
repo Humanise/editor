@@ -3,8 +3,8 @@ require_once('inc.php');
 
 usleep(rand(10000,2000000));
 
-Response::sendObject(array(
-  'config' => buildConfig(array(
+Response::sendObject([
+  'config' => buildConfig([
     'baseUrl' => Request::getString('baseUrl'),
     'databaseHost' => Request::getString('databaseHost'),
     'databaseUser' => Request::getString('databaseUser'),
@@ -12,6 +12,6 @@ Response::sendObject(array(
     'database' => Request::getString('databaseName'),
     'superUser' => Request::getString('superUser'),
     'superPassword' => Request::getString('superPassword')
-  ))
-));
+  ])
+]);
 ?>

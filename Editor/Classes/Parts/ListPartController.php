@@ -155,7 +155,7 @@ class ListPartController extends PartController
   }
 
   function buildData($part) {
-    $data = array();
+    $data = [];
     $data['calendarSources'] = $this->buildValues('calendarsource',$part);
     $data['calendars'] = $this->buildValues('calendar',$part);
     $data['newsGroups'] = $this->buildValues('newsgroup',$part);
@@ -169,7 +169,7 @@ class ListPartController extends PartController
 
   function buildSub($part,$context) {
     $dirty = false;
-    $items = array();
+    $items = [];
     if (count($part->getObjectIds())>0) {
       $objects = Database::selectAll("select id,type from object where id in (".implode($part->getObjectIds(),',').")");
       $from = time();
@@ -187,7 +187,7 @@ class ListPartController extends PartController
               //Log::debug('Calendarsource is dirty: '.$id);
               $dirty = true;
             }
-            $sourceEvents = $source->getEvents(array('startDate'=>$from,'endDate'=>$to));
+            $sourceEvents = $source->getEvents(['startDate'=>$from,'endDate'=>$to]);
             foreach ($sourceEvents as $sourceEvent) {
               $item = new PartListItem();
               $item->setStartDate($sourceEvent['startDate']);
@@ -284,7 +284,7 @@ class ListPartController extends PartController
   }
 
   function sortItems(&$items) {
-    usort($items,array('ListPartController','_startDateComparator'));
+    usort($items,['ListPartController','_startDateComparator']);
   }
 
   function _startDateComparator($a, $b) {

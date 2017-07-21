@@ -13,6 +13,6 @@ class ImageTransformationRecipe {
   var $height;
   var $scale;
   var $method;
-  var $filters = array();
+  var $filters = [];
   var $format;
 }

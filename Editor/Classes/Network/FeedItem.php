@@ -14,14 +14,14 @@ class FeedItem {
   var $link;
   var $pubDate;
   var $guid;
-  var $enclosures = array();
+  var $enclosures = [];
 
   function FeedItem() {
 
   }
 
   function addEnclosure($url,$type,$length) {
-    $this->enclosures[] = array('url' => $url, 'type' => $type, 'length' => $length);
+    $this->enclosures[] = ['url' => $url, 'type' => $type, 'length' => $length];
   }
 
   function getEnclosures() {

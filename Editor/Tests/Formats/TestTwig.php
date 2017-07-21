@@ -18,7 +18,7 @@ class TestTwig extends UnitTestCase {
         $person = new Person();
         $person->setFirstname('John');
         $person->setSurname('Lennon');
-        $result = $twig->render('Hello {{ person.firstname }} {{ person.surname }}!', array('person' => $person));
+        $result = $twig->render('Hello {{ person.firstname }} {{ person.surname }}!', ['person' => $person]);
         $this->assertEqual('Hello John Lennon!',$result);
   }
 }

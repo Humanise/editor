@@ -11,10 +11,10 @@ $writer = new ListWriter();
 
 $writer->startList()->
   startHeaders()->
-    header(array('title'=>array('User','da'=>'Bruger'),'width'=>20))->
-    header(array('title'=>array('Time','da'=>'Tidspunkt'),'width'=>20))->
-    header(array('title'=>array('Description','da'=>'Beskrivelse')))->
-    header(array('width'=>1))->
+    header(['title'=>['User','da'=>'Bruger'],'width'=>20])->
+    header(['title'=>['Time','da'=>'Tidspunkt'],'width'=>20])->
+    header(['title'=>['Description','da'=>'Beskrivelse']])->
+    header(['width'=>1])->
   endHeaders();
 
 $sql="select page_history.id,UNIX_TIMESTAMP(page_history.time) as time,page_history.message,object.title".
@@ -22,11 +22,11 @@ $sql="select page_history.id,UNIX_TIMESTAMP(page_history.time) as time,page_hist
 
 $result = Database::select($sql);
 while ($row = Database::next($result)) {
-  $writer->startRow(array('id'=>$row['id']))->
-    startCell(array('icon'=>'common/user'))->text($row['title'])->endCell()->
-    startCell(array('wrap'=>false))->text(Dates::formatLongDateTime($row['time']))->endCell()->
-    startCell()->text($row['message'])->startIcons()->icon(array('icon'=>'monochrome/edit','revealing'=>true,'action'=>true,'data'=>array('action'=>'editMessage')))->endIcons()->endCell()->
-    startCell()->button(array('text'=>array('View','da'=>'Vis')))->endCell()->
+  $writer->startRow(['id'=>$row['id']])->
+    startCell(['icon'=>'common/user'])->text($row['title'])->endCell()->
+    startCell(['wrap'=>false])->text(Dates::formatLongDateTime($row['time']))->endCell()->
+    startCell()->text($row['message'])->startIcons()->icon(['icon'=>'monochrome/edit','revealing'=>true,'action'=>true,'data'=>['action'=>'editMessage']])->endIcons()->endCell()->
+    startCell()->button(['text'=>['View','da'=>'Vis']])->endCell()->
     endRow();
 }
 Database::free($result);

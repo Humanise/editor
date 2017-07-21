@@ -10,7 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 }
 class SearchResult {
 
-  private $list = array();
+  private $list = [];
   private $total = 0;
     private $windowPage = 0;
     private $windowSize = 20;

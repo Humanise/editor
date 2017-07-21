@@ -83,7 +83,7 @@ class TestDOMUtils extends UnitTestCase {
 
     function _testParseAnything($input,$xml) {
         if (!is_array($input)) {
-            $input = array($input);
+            $input = [$input];
         }
 
         foreach ($input as $value) {
@@ -95,12 +95,12 @@ class TestDOMUtils extends UnitTestCase {
 
   function testParseAnything() {
         $this->_testParseAnything(
-            array('<p>','<p></p>','<p/>'),
+            ['<p>','<p></p>','<p/>'],
             "<?xml version=\"1.0\"?>\n<p/>\n"
         );
 
         $this->_testParseAnything(
-            array('<p><</p>'),
+            ['<p><</p>'],
             "<?xml version=\"1.0\"?>\n<p>&lt;&lt;/p&gt;</p>\n"
         );
 

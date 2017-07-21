@@ -87,7 +87,7 @@ class CacheService {
     global $basePath;
     $dir = $basePath.'local/cache/images/';
     $files = FileSystemService::listFiles($dir);
-    $info = array('count'=>count($files),'size'=>0);
+    $info = ['count'=>count($files),'size'=>0];
     foreach ($files as $file) {
       $info['size']+=filesize($dir.$file);
     }
@@ -109,7 +109,7 @@ class CacheService {
     global $basePath;
     $dir = $basePath.'local/cache/temp/';
     $files = FileSystemService::listFiles($dir);
-    $info = array('count'=>count($files),'size'=>0);
+    $info = ['count'=>count($files),'size'=>0];
     foreach ($files as $file) {
       $info['size']+=filesize($dir.$file);
     }
@@ -131,7 +131,7 @@ class CacheService {
     global $basePath;
     $dir = $basePath.'local/cache/urls/';
     $files = FileSystemService::listFiles($dir);
-    $info = array('count'=>count($files),'size'=>0);
+    $info = ['count'=>count($files),'size'=>0];
     foreach ($files as $file) {
       $info['size']+=filesize($dir.$file);
     }

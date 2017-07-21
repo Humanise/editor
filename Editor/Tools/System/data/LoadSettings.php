@@ -5,12 +5,12 @@
  */
 require_once '../../../Include/Private.php';
 
-$settings = array(
-  'ui' => array(
+$settings = [
+  'ui' => [
     'experimentalRichText' => SettingService::getSetting('part','richtext','experimetal') ? true : false,
     'sharedSecret' => SettingService::getSharedSecret()
-  ),
-  'email'=>array(
+  ],
+  'email'=>[
     'enabled' => MailService::getEnabled(),
     'server' => MailService::getServer(),
     'port' => MailService::getPort(),
@@ -20,20 +20,20 @@ $settings = array(
     'standardName' => MailService::getStandardName(),
     'feedbackEmail' => MailService::getFeedbackEmail(),
     'feedbackName' => MailService::getFeedbackName()
-  ),
-  'onlineobjects' => array(
+  ],
+  'onlineobjects' => [
     'url' => SettingService::getOnlineObjectsUrl()
-  ),
-  'analytics' => array(
+  ],
+  'analytics' => [
     'username' => GoogleAnalytics::getUsername(),
     'password' => GoogleAnalytics::getPassword(),
     'profile' => GoogleAnalytics::getProfile(),
     'webProfile' => GoogleAnalytics::getWebProfile()
-  ),
-  'reports' => array(
+  ],
+  'reports' => [
     'email' => ReportService::getEmail()
-  )
-);
+  ]
+];
 
 Response::sendObject($settings);
 ?>

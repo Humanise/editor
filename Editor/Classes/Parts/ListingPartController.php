@@ -64,7 +64,7 @@ class ListingPartController extends PartController
     $list = str_replace("\r\n","\n",$list);
     $list="\n".$list;
     $items = preg_split("/\n\*/",$list);
-    $parsed = array();
+    $parsed = [];
     for ($i=1; $i<count($items); $i++) {
       $item=$items[$i];
       $lines=preg_split("/\n/",$item);
@@ -147,7 +147,7 @@ class ListingPartController extends PartController
     $text = XslService::transform($xml,$xsl);
     $text = str_replace("\n","\r\n",$text);
 
-    $types = array(
+    $types = [
       'disc' => 'disc',
       'square' => 'square',
       'circle' => 'circle',
@@ -161,7 +161,7 @@ class ListingPartController extends PartController
       'A' => 'upper-alpha',
       'i' => 'lower-roman',
       'I' => 'upper-roman'
-    );
+    ];
     $type='disc';
     if ($listing = DOMUtils::getFirstChildElement($node,'listing')) {
       if (isset($types[$listing->getAttribute('type')])) {
@@ -174,8 +174,8 @@ class ListingPartController extends PartController
   }
 
   function getToolbars() {
-    return array(
-      GuiUtils::getTranslated(array('Bullet list','da'=>'Punktopstilling')) =>
+    return [
+      GuiUtils::getTranslated(['Bullet list','da'=>'Punktopstilling']) =>
       '
       <item label="{Bullet; da:Symbol}">
         <segmented name="listStyle">
@@ -224,7 +224,7 @@ class ListingPartController extends PartController
       </item>
       ',
 
-    GuiUtils::getTranslated(array('Advanced','da'=>'Avanceret')) =>
+    GuiUtils::getTranslated(['Advanced','da'=>'Avanceret']) =>
       '
       <item label="{Word spacing; da:Ord-mellemrum}">
         <style-length-input name="wordSpacing" width="90"/>
@@ -258,7 +258,7 @@ class ListingPartController extends PartController
         </segmented>
       </item>
       '
-      );
+      ];
   }
 }
 ?>

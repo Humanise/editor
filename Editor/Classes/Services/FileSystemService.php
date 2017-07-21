@@ -45,7 +45,7 @@ class FileSystemService {
    * @return array An array of the names of the directories inside the directory
    */
   static function listDirs($dir) {
-    $out=array();
+    $out=[];
     if (is_dir($dir)) {
       if ($dh = opendir($dir)) {
         while (($file = readdir($dh)) !== false) {
@@ -103,7 +103,7 @@ class FileSystemService {
    * @todo Filenames or paths?
    */
   static function listFiles($dir) {
-    $out=array();
+    $out=[];
     if (is_dir($dir)) {
       if ($dh = opendir($dir)) {
         while (($file = readdir($dh)) !== false) {
@@ -172,7 +172,7 @@ class FileSystemService {
     if ($dir[strlen($dir)-1]!='/') {
       $dir = $dir.'/';
     }
-    $out = array();
+    $out = [];
     if (is_dir($dir)) {
       if ($dh = opendir($dir)) {
         while (($file = readdir($dh)) !== false) {

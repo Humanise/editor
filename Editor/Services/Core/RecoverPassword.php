@@ -10,27 +10,27 @@ if (Request::isPost()) {
   $text = Request::getString('text');
   if ($user = AuthenticationService::getUserByEmailOrUsername($text)) {
     if (!$user->getInternal()) {
-      Response::sendObject(array('success' => false,'message' => 'Brugeren har ikke adgang'));
+      Response::sendObject(['success' => false,'message' => 'Brugeren har ikke adgang']);
       exit;
     } else if (!Strings::isBlank($user->getEmail())) {
       if (AuthenticationService::createValidationSession($user)) {
-        Response::sendObject(array('success' => true));
+        Response::sendObject(['success' => true]);
         exit;
       } else {
-        Response::sendObject(array('success' => false,'message' => 'Det lykkedes ikke at sende e-mail'));
+        Response::sendObject(['success' => false,'message' => 'Det lykkedes ikke at sende e-mail']);
         exit;
       }
     } else {
-      Response::sendObject(array('success' => false,'message' => 'Brugeren har ingen e-mail'));
+      Response::sendObject(['success' => false,'message' => 'Brugeren har ingen e-mail']);
       exit;
     }
   } else {
-    Response::sendObject(array('success' => false,'message' => 'Brugeren blev ikke fundet'));
+    Response::sendObject(['success' => false,'message' => 'Brugeren blev ikke fundet']);
     exit;
   }
 
 } else {
-  Response::sendObject(array('success' => false,'message' => 'Invalid request'));
+  Response::sendObject(['success' => false,'message' => 'Invalid request']);
 }
 exit;
 ?>

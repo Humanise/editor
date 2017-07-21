@@ -13,11 +13,11 @@ class Query {
 
   private $type;
   private $text;
-  private $custom = array();
-  private $fields = array();
-  private $ordering = array();
-  private $relationsFrom = array();
-  private $relationsTo = array();
+  private $custom = [];
+  private $fields = [];
+  private $ordering = [];
+  private $relationsFrom = [];
+  private $relationsTo = [];
   private $direction = 'ascending';
   private $windowPage = 0;
   private $windowSize = 100;
@@ -69,19 +69,19 @@ class Query {
 
   function withRelationFrom($object,$kind=null) {
     $id = is_int($object) ? $object : $object->getId();
-    $this->relationsFrom[] = array('id'=>$id,'kind'=>$kind,'fromType'=>'object');
+    $this->relationsFrom[] = ['id'=>$id,'kind'=>$kind,'fromType'=>'object'];
     return $this;
   }
 
   function withRelationFromPage($page,$kind=null) {
     $id = is_int($page) ? $page : $page->getId();
-    $this->relationsFrom[] = array('id'=>$id,'kind'=>$kind,'fromType'=>'page');
+    $this->relationsFrom[] = ['id'=>$id,'kind'=>$kind,'fromType'=>'page'];
     return $this;
   }
 
   function withRelationTo($object,$kind=null) {
     $id = is_int($object) ? $object : $object->getId();
-    $this->relationsTo[] = array('id'=>$id,'kind'=>$kind,'toType'=>'object');
+    $this->relationsTo[] = ['id'=>$id,'kind'=>$kind,'toType'=>'object'];
     return $this;
   }
 
@@ -89,7 +89,7 @@ class Query {
     if ($page) {
       Log::debug(gettype($page));
       $id = is_int($page) ? $page : $page->getId();
-      $this->relationsTo[] = array('id'=>$id,'kind'=>$kind,'toType'=>'page');
+      $this->relationsTo[] = ['id'=>$id,'kind'=>$kind,'toType'=>'page'];
     }
     return $this;
   }
@@ -114,7 +114,7 @@ class Query {
   }
 
   function withoutProperty($field,$value) {
-    $this->fields[$field] = array('value'=>$value,'comparison'=>'not');
+    $this->fields[$field] = ['value'=>$value,'comparison'=>'not'];
     return $this;
   }
 
@@ -124,7 +124,7 @@ class Query {
   }
 
   function withPropertyBetween($field,$from,$to) {
-    $this->fields[$field] = array('from'=>$from,'to'=>$to);
+    $this->fields[$field] = ['from'=>$from,'to'=>$to];
     return $this;
   }
 

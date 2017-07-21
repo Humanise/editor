@@ -12,15 +12,15 @@ $writer->startItems();
 $statuses = Query::after('issuestatus')->get();
 
 
-$writer->item(array(
+$writer->item([
   'title'=>''
-));
+]);
 
 foreach ($statuses as $status) {
-  $writer->item(array(
+  $writer->item([
     'title'=>$status->getTitle(),
     'value'=>$status->getId()
-  ));
+  ]);
 }
 $writer->endItems();
 ?>

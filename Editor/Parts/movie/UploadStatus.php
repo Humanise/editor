@@ -7,5 +7,5 @@ require_once '../../Include/Private.php';
 
 $id = FilePartController::getLatestUploadId();
 
-Response::sendObject(array('id'=>$id));
+Response::sendObject(['id'=>$id]);
 ?>

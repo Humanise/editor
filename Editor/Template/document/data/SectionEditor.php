@@ -10,7 +10,7 @@ $sectionId = Request::getInt('id');
 
 $sql = "select part.type,document_section.page_id,part.id as part_id,document_section.left,document_section.right,document_section.bottom,document_section.top,document_section.width,document_section.float from document_section,part where part.id = document_section.part_id and document_section.id=".Database::int($sectionId);
 if ($row = Database::selectFirst($sql)) {
-  $out = array();
+  $out = [];
 
   $partType = $row['type'];
   $pageId = $row['page_id'];
@@ -45,19 +45,19 @@ if ($row = Database::selectFirst($sql)) {
   if (!empty($ui)) {
     $html.=UI::renderFragment($ui);
   }
-  Response::sendObject(array(
+  Response::sendObject([
     'html' => Strings::fromUnicode($html),
     'partType' => $partType,
     'partId' => $partId,
-    'style' => array(
+    'style' => [
       'left' => $row['left'],
       'right' => $row['right'],
       'top' => $row['top'],
       'bottom' => $row['bottom'],
       'width' => $row['width'],
       'float' => $row['float']
-    )
-  ));
+    ]
+  ]);
 } else {
   echo 'No good! id='.$sectionId;
 }

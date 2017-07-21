@@ -10,10 +10,10 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['Emailaddress'] = [
     'table' => 'emailaddress',
-    'properties' => array(
-      'address' => array('type'=>'string'),
-      'containingObjectId'   => array('type'=>'int','column'=>'containing_object_id')
-    )
+    'properties' => [
+      'address' => ['type'=>'string'],
+      'containingObjectId'   => ['type'=>'int','column'=>'containing_object_id']
+    ]
 ];
 
 class Emailaddress extends Object {

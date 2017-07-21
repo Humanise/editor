@@ -33,12 +33,12 @@ $writer = new ItemsWriter();
 $writer->startItems();
 
 foreach ($objects as $object) {
-  $writer->item(array(
+  $writer->item([
     'title' => $object->getTitle(),
     'value' => $object->getId(),
     'icon' => $object->getIcon(),
     'kind' => 'image'
-  ));
+  ]);
 }
 
 $writer->endItems();

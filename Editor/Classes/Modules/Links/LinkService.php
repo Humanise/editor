@@ -10,12 +10,12 @@ if (!isset($GLOBALS['basePath'])) {
 }
 class LinkService {
 
-  static $types = array(
-    'url' => array('da' => 'Internet adresse', 'en' => 'Internet address'),
-    'page' => array('da' => 'Side', 'en' => 'Page'),
-    'file' => array('da' => 'Fil', 'en' => 'File'),
-    'email' => array('da' => 'E-mail-adresse', 'en' => 'E-mail address')
-  );
+  static $types = [
+    'url' => ['da' => 'Internet adresse', 'en' => 'Internet address'],
+    'page' => ['da' => 'Side', 'en' => 'Page'],
+    'file' => ['da' => 'Fil', 'en' => 'File'],
+    'email' => ['da' => 'E-mail-adresse', 'en' => 'E-mail address']
+  ];
 
   static function getLinkInfo($linkId) {
     $sql = "select link.*,page.title as page_title,object.title as object_title from link left join page on link.target_id=page.id left join object on link.target_id=object.id where link.id=".Database::int($linkId);
@@ -27,7 +27,7 @@ class LinkService {
 
     // TODO : Make general search
   static function getPartLinks($partId) {
-    $list = array();
+    $list = [];
     $sql = "select part_link.id from part_link where part_id=@int(partId)";
     $result = Database::select($sql,['partId'=>$partId]);
     while ($row = Database::next($result)) {
@@ -40,7 +40,7 @@ class LinkService {
 
     // TODO : Make general search
   static function getPageLinks($pageId) {
-    $list = array();
+    $list = [];
     $sql = "select link.*,page.title as page_title,object.title as object_title from link left join page on link.target_id=page.id left join object on link.target_id=object.id where page_id=".Database::int($pageId)." order by link.source_text";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
@@ -135,31 +135,31 @@ class LinkService {
   }
 
   static function getSourceIcon($view) {
-    $icons = array(
+    $icons = [
       'hierarchy' => 'monochrome/hierarchy',
       'file' => 'monochrome/file',
       'url' => 'monochrome/globe',
       'email' => 'monochrome/email',
       'page' => 'common/page',
       'news' => 'common/news'
-    );
+    ];
     return $icons[$view->getSourceType()];
   }
 
   static function getTargetIcon($view) {
-    $icons = array(
+    $icons = [
       'hierarchy' => 'monochrome/hierarchy',
       'file' => 'monochrome/file',
       'url' => 'monochrome/globe',
       'email' => 'monochrome/email',
       'page' => 'common/page',
       'news' => 'common/news'
-    );
+    ];
     return $icons[$view->getTargetType()];
   }
 
   static function search($query) {
-    $unions = array();
+    $unions = [];
     $pageId = $query->getSourcePage();
     if (!$pageId) {
       $unions[] = "select
@@ -269,7 +269,7 @@ class LinkService {
       ,hierarchy where hierarchy_item.`hierarchy_id`=hierarchy.id";
     }
     $sql = join(' union ',$unions);
-    $list = array();
+    $list = [];
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
       if (!$query->getTargetType() || $query->getTargetType()==$row['target_type']) {
@@ -298,7 +298,7 @@ class LinkService {
       }
       $found = strpos($text,$view->getSourceText())!==false;
       if (!$found) {
-        $view->addError(LinkView::$TEXT_NOT_FOUND,array('The link text was not found','da'=>'Link-teksten kunne ikke findes'));
+        $view->addError(LinkView::$TEXT_NOT_FOUND,['The link text was not found','da'=>'Link-teksten kunne ikke findes']);
       }
     }
   }
@@ -323,7 +323,7 @@ class LinkService {
     if ($row['target_type']=='pageref') {
       $view->setTargetType('page');
       if (!$row['target_page_id']) {
-        $view->addError(LinkView::$TARGET_NOT_FOUND,array('The target page does not exist','da'=>'Siden findes ikke'));
+        $view->addError(LinkView::$TARGET_NOT_FOUND,['The target page does not exist','da'=>'Siden findes ikke']);
         $view->setTargetId(-1);
         $view->setTargetTitle('?');
       } else {
@@ -333,7 +333,7 @@ class LinkService {
 
     } else if ($row['target_type']=='page') {
       if (!$row['target_page_id']) {
-        $view->addError(LinkView::$TARGET_NOT_FOUND,array('The target page does not exist','da'=>'Siden findes ikke'));
+        $view->addError(LinkView::$TARGET_NOT_FOUND,['The target page does not exist','da'=>'Siden findes ikke']);
         $view->setTargetId(-1);
         $view->setTargetTitle('?');
       } else {
@@ -343,7 +343,7 @@ class LinkService {
     }
     else if ($row['target_type']=='file') {
       if (!$row['target_file_id']) {
-        $view->addError(LinkView::$TARGET_NOT_FOUND,array('The target file does not exist','da'=>'Filen findes ikke'));
+        $view->addError(LinkView::$TARGET_NOT_FOUND,['The target file does not exist','da'=>'Filen findes ikke']);
         $view->setTargetId(-1);
         $view->setTargetTitle('?');
       } else {
@@ -354,13 +354,13 @@ class LinkService {
       $view->setTargetId($row['target_value']);
       $view->setTargetTitle($row['target_value']);
       if (!ValidateUtils::validateEmail($row['target_value'])) {
-        $view->addError(LinkView::$INVALID_ADDRESS,array('The e-mail is invalid','da'=>'E-post-adressen er ikke valid'));
+        $view->addError(LinkView::$INVALID_ADDRESS,['The e-mail is invalid','da'=>'E-post-adressen er ikke valid']);
       }
     } else if ($row['target_type']=='url') {
       $view->setTargetId($row['target_value']);
       $view->setTargetTitle($row['target_value']);
       if (!ValidateUtils::validateHref($row['target_value'])) {
-        $view->addError(LinkView::$INVALID_ADDRESS,array('The address is invalid','da'=>'Adressen er ikke valid'));
+        $view->addError(LinkView::$INVALID_ADDRESS,['The address is invalid','da'=>'Adressen er ikke valid']);
       }
     }
     return $view;

@@ -31,17 +31,17 @@ function live() {
 
   $writer->startList();
   $writer->startHeaders();
-  $writer->header(array('title'=>array('Time','da'=>'Tidspunkt')));
-  $writer->header(array('title'=>array('Page','da'=>'Side')));
-  $writer->header(array('title'=>array('Session','da'=>'Session')));
-  $writer->header(array('title'=>array('Device','da'=>'Maskine')));
+  $writer->header(['title'=>['Time','da'=>'Tidspunkt']]);
+  $writer->header(['title'=>['Page','da'=>'Side']]);
+  $writer->header(['title'=>['Session','da'=>'Session']]);
+  $writer->header(['title'=>['Device','da'=>'Maskine']]);
   $writer->endHeaders();
 
   $sql = "select UNIX_TIMESTAMP(statistics.time) as time,statistics.type,statistics.session,statistics.ip,page.title as page_title from statistics left join page on statistics.value=page.id where statistics.type='page' order by statistics.time desc limit 100";
   $result = Database::select($sql);
   while($row = Database::next($result)) {
     $writer->startRow();
-    $writer->startCell(array('icon'=>'common/time'))->text(Dates::formatFuzzy($row['time']))->endCell();
+    $writer->startCell(['icon'=>'common/time'])->text(Dates::formatFuzzy($row['time']))->endCell();
     $writer->startCell()->icon('common/page')->text($row['page_title'])->endCell();
     $writer->startCell()->text($row['session'])->endCell();
     $writer->startCell()->text($row['ip'])->endCell();
@@ -52,7 +52,7 @@ function live() {
 }
 
 function aggregateBrowsers($list,$version=false) {
-  $agg = array();
+  $agg = [];
   foreach ($list as $row) {
     $app = $version ? getAgentAppVersion($row['agent']) : getAgentApp($row['agent']);
     if (isset($agg[$app])) {
@@ -101,12 +101,12 @@ function unknownAgents() {
 
   $writer->startList() ->
     startHeaders() ->
-      header(array('title'=>array('From','da'=>'Fra'))) ->
-      header(array('title'=>array('To','da'=>'Til'))) ->
-      header(array('title'=>array('Browser','da'=>'Browser'))) ->
-      header(array('title'=>array('Visits','da'=>'Besøg'))) ->
-      header(array('title'=>array('Sessions','da'=>'Sessioner'))) ->
-      header(array('title'=>array('Devices','da'=>'Maskiner'))) ->
+      header(['title'=>['From','da'=>'Fra']]) ->
+      header(['title'=>['To','da'=>'Til']]) ->
+      header(['title'=>['Browser','da'=>'Browser']]) ->
+      header(['title'=>['Visits','da'=>'Besøg']]) ->
+      header(['title'=>['Sessions','da'=>'Sessioner']]) ->
+      header(['title'=>['Devices','da'=>'Maskiner']]) ->
     endHeaders();
 
   foreach ($result as $row) {
@@ -115,8 +115,8 @@ function unknownAgents() {
       continue;
     }
     $writer->startRow()->
-      startCell(array('icon'=>'common/time')) -> text(Dates::formatFuzzy($row['firsttime'])) -> endCell() ->
-      startCell(array('icon'=>'common/time')) -> text(Dates::formatFuzzy($row['lasttime'])) -> endCell() ->
+      startCell(['icon'=>'common/time']) -> text(Dates::formatFuzzy($row['firsttime'])) -> endCell() ->
+      startCell(['icon'=>'common/time']) -> text(Dates::formatFuzzy($row['lasttime'])) -> endCell() ->
       startCell() -> icon('common/page') -> text($row['agent']) -> endCell() ->
       startCell() -> text($row['visits']) -> endCell() ->
       startCell() -> text($row['sessions']) -> endCell() ->
@@ -138,18 +138,18 @@ function browsers($version) {
 
   $writer->startList();
   $writer->startHeaders();
-  $writer->header(array('title'=>array('From','da'=>'Fra')));
-  $writer->header(array('title'=>array('To','da'=>'Til')));
-  $writer->header(array('title'=>array('Browser','da'=>'Browser')));
-  $writer->header(array('title'=>array('Visits','da'=>'Besøg')));
-  $writer->header(array('title'=>array('Sessions','da'=>'Sessioner')));
-  $writer->header(array('title'=>array('Devices','da'=>'Maskiner')));
+  $writer->header(['title'=>['From','da'=>'Fra']]);
+  $writer->header(['title'=>['To','da'=>'Til']]);
+  $writer->header(['title'=>['Browser','da'=>'Browser']]);
+  $writer->header(['title'=>['Visits','da'=>'Besøg']]);
+  $writer->header(['title'=>['Sessions','da'=>'Sessioner']]);
+  $writer->header(['title'=>['Devices','da'=>'Maskiner']]);
   $writer->endHeaders();
 
   foreach ($result as $row) {
     $writer->startRow();
-    $writer->startCell(array('icon'=>'common/time'))->text(Dates::formatFuzzy($row['firsttime']))->endCell();
-    $writer->startCell(array('icon'=>'common/time'))->text(Dates::formatFuzzy($row['lasttime']))->endCell();
+    $writer->startCell(['icon'=>'common/time'])->text(Dates::formatFuzzy($row['firsttime']))->endCell();
+    $writer->startCell(['icon'=>'common/time'])->text(Dates::formatFuzzy($row['lasttime']))->endCell();
     $writer->startCell()->icon('common/page')->text($row['agent'])->endCell();
     $writer->startCell()->text($row['visits'])->endCell();
     $writer->startCell()->text($row['sessions'])->endCell();
@@ -169,18 +169,18 @@ function browserVersions() {
 
   $writer->startList();
   $writer->startHeaders();
-  $writer->header(array('title'=>array('From','da'=>'Fra')));
-  $writer->header(array('title'=>array('To','da'=>'Til')));
-  $writer->header(array('title'=>array('Browser','da'=>'Browser')));
-  $writer->header(array('title'=>array('Visits','da'=>'Besøg')));
-  $writer->header(array('title'=>array('Sessions','da'=>'Sessioner')));
-  $writer->header(array('title'=>array('Devices','da'=>'Maskiner')));
+  $writer->header(['title'=>['From','da'=>'Fra']]);
+  $writer->header(['title'=>['To','da'=>'Til']]);
+  $writer->header(['title'=>['Browser','da'=>'Browser']]);
+  $writer->header(['title'=>['Visits','da'=>'Besøg']]);
+  $writer->header(['title'=>['Sessions','da'=>'Sessioner']]);
+  $writer->header(['title'=>['Devices','da'=>'Maskiner']]);
   $writer->endHeaders();
 
   foreach ($result as $row) {
     $writer->startRow();
-    $writer->startCell(array('icon'=>'common/time'))->text(Dates::formatFuzzy($row['firsttime']))->endCell();
-    $writer->startCell(array('icon'=>'common/time'))->text(Dates::formatFuzzy($row['lasttime']))->endCell();
+    $writer->startCell(['icon'=>'common/time'])->text(Dates::formatFuzzy($row['firsttime']))->endCell();
+    $writer->startCell(['icon'=>'common/time'])->text(Dates::formatFuzzy($row['lasttime']))->endCell();
     $writer->startCell()->icon('common/page')->text($row['agent'])->endCell();
     $writer->startCell()->text($row['visits'])->endCell();
     $writer->startCell()->text($row['sessions'])->endCell();
@@ -199,21 +199,21 @@ function agents() {
 
   $writer->startList();
   $writer->startHeaders();
-  $writer->header(array('title'=>array('From','da'=>'Fra')));
-  $writer->header(array('title'=>array('To','da'=>'Til')));
-  $writer->header(array('title'=>array('Browser','da'=>'Browser')));
+  $writer->header(['title'=>['From','da'=>'Fra']]);
+  $writer->header(['title'=>['To','da'=>'Til']]);
+  $writer->header(['title'=>['Browser','da'=>'Browser']]);
   $writer->header();
-  $writer->header(array('title'=>array('Visits','da'=>'Besøg')));
-  $writer->header(array('title'=>array('Sessions','da'=>'Sessioner')));
-  $writer->header(array('title'=>array('Devices','da'=>'Maskiner')));
+  $writer->header(['title'=>['Visits','da'=>'Besøg']]);
+  $writer->header(['title'=>['Sessions','da'=>'Sessioner']]);
+  $writer->header(['title'=>['Devices','da'=>'Maskiner']]);
   $writer->endHeaders();
 
   foreach ($result as $row) {
     $analyzer = new UserAgentAnalyzer($row['agent']);
     $app = $analyzer->getApplicationName().' '.$analyzer->getApplicationVersion().' / '.$analyzer->getTechnologyName().' '.$analyzer->getTechnologyVersion();
     $writer->startRow();
-    $writer->startCell(array('icon'=>'common/time'))->text(Dates::formatFuzzy($row['firsttime']))->endCell();
-    $writer->startCell(array('icon'=>'common/time'))->text(Dates::formatFuzzy($row['lasttime']))->endCell();
+    $writer->startCell(['icon'=>'common/time'])->text(Dates::formatFuzzy($row['firsttime']))->endCell();
+    $writer->startCell(['icon'=>'common/time'])->text(Dates::formatFuzzy($row['lasttime']))->endCell();
     $writer->startCell()->text($row['agent'])->endCell();
     $writer->startCell()->text($app)->endCell();
     $writer->startCell()->text($row['visits'])->endCell();
@@ -234,18 +234,18 @@ function pages() {
 
   $writer->startList() ->
     startHeaders() ->
-      header(array( 'title' => array('From','da'=>'Fra') )) ->
-      header(array( 'title' => array('To','da'=>'Til') )) ->
-      header(array( 'title' => array('Page','da'=>'Side') )) ->
-      header(array( 'title' => array('Visits','da'=>'Besøg') )) ->
-      header(array( 'title' => array('Sessions','da'=>'Sessioner') )) ->
-      header(array( 'title' => array('Devices','da'=>'Maskiner') )) ->
+      header([ 'title' => ['From','da'=>'Fra'] ]) ->
+      header([ 'title' => ['To','da'=>'Til'] ]) ->
+      header([ 'title' => ['Page','da'=>'Side'] ]) ->
+      header([ 'title' => ['Visits','da'=>'Besøg'] ]) ->
+      header([ 'title' => ['Sessions','da'=>'Sessioner'] ]) ->
+      header([ 'title' => ['Devices','da'=>'Maskiner'] ]) ->
     endHeaders();
 
   while($row = Database::next($result)) {
     $writer -> startRow() ->
-      startCell(array( 'icon' => 'common/time', 'dimmed' => true)) -> text(Dates::formatFuzzy($row['firsttime'])) -> endCell() ->
-      startCell(array( 'icon' => 'common/time', 'dimmed' => true)) -> text(Dates::formatFuzzy($row['lasttime'])) -> endCell() ->
+      startCell([ 'icon' => 'common/time', 'dimmed' => true]) -> text(Dates::formatFuzzy($row['firsttime'])) -> endCell() ->
+      startCell([ 'icon' => 'common/time', 'dimmed' => true]) -> text(Dates::formatFuzzy($row['lasttime'])) -> endCell() ->
       startCell() -> icon('common/page') -> text($row['page_title']) -> endCell() ->
       startCell() -> text($row['visits']) -> endCell() ->
       startCell() -> text($row['sessions']) -> endCell() ->
@@ -266,19 +266,19 @@ function paths() {
 
   $writer->startList()->
     startHeaders()->
-    header(array('title'=>array('From','da'=>'Fra')))->
-    header(array('title'=>array('To','da'=>'Til')))->
-    header(array('title'=>array('Path','da'=>'Sti')))->
-    header(array('title'=>array('Page','da'=>'Side')))->
-    header(array('title'=>array('Visits','da'=>'Besøg')))->
-    header(array('title'=>array('Sessions','da'=>'Sessioner')))->
-    header(array('title'=>array('Devices','da'=>'Maskiner')))->
+    header(['title'=>['From','da'=>'Fra']])->
+    header(['title'=>['To','da'=>'Til']])->
+    header(['title'=>['Path','da'=>'Sti']])->
+    header(['title'=>['Page','da'=>'Side']])->
+    header(['title'=>['Visits','da'=>'Besøg']])->
+    header(['title'=>['Sessions','da'=>'Sessioner']])->
+    header(['title'=>['Devices','da'=>'Maskiner']])->
   endHeaders();
 
   while($row = Database::next($result)) {
     $writer->startRow()->
-      startCell(array('icon'=>'common/time'))->text(Dates::formatFuzzy($row['firsttime']))->endCell()->
-      startCell(array('icon'=>'common/time'))->text(Dates::formatFuzzy($row['lasttime']))->endCell()->
+      startCell(['icon'=>'common/time'])->text(Dates::formatFuzzy($row['firsttime']))->endCell()->
+      startCell(['icon'=>'common/time'])->text(Dates::formatFuzzy($row['lasttime']))->endCell()->
       startCell()->text($row['uri'])->endCell()->
       startCell()->icon('common/page')->text($row['page_title'])->endCell()->
       startCell()->text($row['visits'])->endCell()->
@@ -295,21 +295,21 @@ function refererers() {
 
   $writer->startList()->
     startHeaders()->
-    header(array('title'=>array('From','da'=>'Fra')))->
-    header(array('title'=>array('To','da'=>'Til')))->
-    header(array('title'=>array('Path','da'=>'Sti')))->
-    header(array('title'=>array('Page','da'=>'Side')))->
-    header(array('title'=>array('Visits','da'=>'Besøg')))->
-    header(array('title'=>array('Sessions','da'=>'Sessioner')))->
-    header(array('title'=>array('Devices','da'=>'Maskiner')))->
+    header(['title'=>['From','da'=>'Fra']])->
+    header(['title'=>['To','da'=>'Til']])->
+    header(['title'=>['Path','da'=>'Sti']])->
+    header(['title'=>['Page','da'=>'Side']])->
+    header(['title'=>['Visits','da'=>'Besøg']])->
+    header(['title'=>['Sessions','da'=>'Sessioner']])->
+    header(['title'=>['Devices','da'=>'Maskiner']])->
   endHeaders();
 
   $sql = "select UNIX_TIMESTAMP(max(statistics.time)) as lasttime,UNIX_TIMESTAMP(min(statistics.time)) as firsttime,count(distinct statistics.id) as visits,count(distinct statistics.session) as sessions,count(distinct statistics.ip) as ips,statistics.`referer` from statistics group by statistics.`referer` order by statistics.time";
   $result = Database::select($sql);
   while($row = Database::next($result)) {
     $writer->startRow()->
-      startCell(array('icon'=>'common/time'))->text(Dates::formatFuzzy($row['firsttime']))->endCell()->
-      startCell(array('icon'=>'common/time'))->text(Dates::formatFuzzy($row['lasttime']))->endCell()->
+      startCell(['icon'=>'common/time'])->text(Dates::formatFuzzy($row['firsttime']))->endCell()->
+      startCell(['icon'=>'common/time'])->text(Dates::formatFuzzy($row['lasttime']))->endCell()->
       startCell()->text($row['uri'])->endCell()->
       startCell()->icon('common/page')->text($row['page_title'])->endCell()->
       startCell()->text($row['visits'])->endCell()->
@@ -331,15 +331,15 @@ function visits() {
 
   $writer->startList() ->
     startHeaders() ->
-      header(array('title'=>array('Date','da'=>'Dato'))) ->
-      header(array('title'=>array('Pageviews','da'=>'Sidevisninger'))) ->
-      header(array('title'=>array('Sessioner','da'=>'Sessions'))) ->
-      header(array('title'=>array('Devices','da'=>'Maskiner'))) ->
+      header(['title'=>['Date','da'=>'Dato']]) ->
+      header(['title'=>['Pageviews','da'=>'Sidevisninger']]) ->
+      header(['title'=>['Sessioner','da'=>'Sessions']]) ->
+      header(['title'=>['Devices','da'=>'Maskiner']]) ->
     endHeaders();
 
   foreach ($result as $row) {
     $writer->startRow()->
-      startCell(array('icon'=>'common/time')) -> text($row['label']) -> endCell()->
+      startCell(['icon'=>'common/time']) -> text($row['label']) -> endCell()->
       startCell() -> text($row['hits']) -> endCell() ->
       startCell() -> text($row['sessions']) -> endCell() ->
       startCell() -> text($row['ips']) -> endCell() ->

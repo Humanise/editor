@@ -16,7 +16,7 @@ class DocumentTemplateInspector implements Inspector {
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
       $problems = DocumentTemplateEditor::check($row['id']);
-      $entity = array('type'=>'page','title'=>$row['title'],'id'=>$row['id'],'icon'=>'common/page');
+      $entity = ['type'=>'page','title'=>$row['title'],'id'=>$row['id'],'icon'=>'common/page'];
       $inspection = new Inspection();
       $inspection->setCategory('content');
       $inspection->setEntity($entity);

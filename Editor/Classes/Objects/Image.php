@@ -10,13 +10,13 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['Image'] = [
     'table' => 'image',
-    'properties' => array(
-      'filename'   => array('type'=>'string'),
-      'size'  => array('type'=>'int'),
-      'width'  => array('type'=>'int'),
-      'height'  => array('type'=>'int'),
-      'mimetype'  => array('type'=>'string', 'column' => 'type')
-    )
+    'properties' => [
+      'filename'   => ['type'=>'string'],
+      'size'  => ['type'=>'int'],
+      'width'  => ['type'=>'int'],
+      'height'  => ['type'=>'int'],
+      'mimetype'  => ['type'=>'string', 'column' => 'type']
+    ]
 ];
 
 class Image extends Object {
@@ -98,7 +98,7 @@ class Image extends Object {
   }
 
   function getGroupIds() {
-    $ids = array();
+    $ids = [];
     $sql = "select imagegroup_id from imagegroup_image where image_id=".$this->id;
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
@@ -125,13 +125,13 @@ class Image extends Object {
   function search($options = null) {
     $sql = "select object.id from image,object where object.id=image.object_id order by object.title";
     $result = Database::select($sql);
-    $ids = array();
+    $ids = [];
     while ($row = Database::next($result)) {
       $ids[] = $row['id'];
     }
     Database::free($result);
 
-    $list = array();
+    $list = [];
     foreach ($ids as $id) {
       $image = Image::load($id);
       if ($image) {

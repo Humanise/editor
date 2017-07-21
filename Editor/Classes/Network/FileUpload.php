@@ -39,7 +39,7 @@ class FileUpload {
     } else {
       $success = true;
     }
-    return array('success' => $success,'error' => $error);
+    return ['success' => $success,'error' => $error];
   }
 
   function clean() {

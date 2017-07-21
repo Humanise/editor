@@ -34,8 +34,8 @@ class Webloggroup extends Object {
     Database::delete($sql);
   }
 
-  static function search($query = array()) {
-    $out = array();
+  static function search($query = []) {
+    $out = [];
     if (isset($out['page'])) {
       $sql = "select webloggroup_id as id from weblog_webloggroup where page_id=".$out['page'];
     } else {

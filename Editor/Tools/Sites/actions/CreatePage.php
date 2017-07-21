@@ -40,5 +40,5 @@ if ($menuItemKind=='hierarchy') {
   $hierarchy->createItemForPage($page->getId(),$menuItem,$menuItemId);
   $hierarchy->markChanged();
 }
-Response::sendObject(array('id'=>$page->getId()));
+Response::sendObject(['id'=>$page->getId()]);
 ?>

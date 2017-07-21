@@ -10,13 +10,13 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['Problem'] = [
   'table' => 'problem',
-  'properties' => array(
-      'deadline'  => array('type'=>'datetime'),
-      'completed'  => array('type'=>'boolean'),
-      'containingObjectId'  => array('type'=>'int','column'=>'containing_object_id'),
-      'milestoneId'  => array('type'=>'int','column'=>'milestone_id'),
-      'priority'  => array('type'=>'float')
-    )
+  'properties' => [
+      'deadline'  => ['type'=>'datetime'],
+      'completed'  => ['type'=>'boolean'],
+      'containingObjectId'  => ['type'=>'int','column'=>'containing_object_id'],
+      'milestoneId'  => ['type'=>'int','column'=>'milestone_id'],
+      'priority'  => ['type'=>'float']
+    ]
 ];
 
 class Problem extends Object {

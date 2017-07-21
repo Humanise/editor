@@ -9,7 +9,7 @@ $settings = OptimizationService::getSettings();
 
 $url = Request::getString('url');
 
-$newProfiles = array();
+$newProfiles = [];
 if (is_array($settings->profiles)) {
   foreach ($settings->profiles as $profile) {
     if ($url!=$profile->url) {

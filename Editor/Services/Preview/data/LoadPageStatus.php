@@ -18,8 +18,8 @@ if ($review) {
   $reviewStatus = $review->getAccepted() ? 'accepted' : 'rejected';
 }
 
-Response::sendObject(array(
+Response::sendObject([
   'changed' => PageService::isChanged($id),
   'review' => $reviewStatus
-));
+]);
 ?>

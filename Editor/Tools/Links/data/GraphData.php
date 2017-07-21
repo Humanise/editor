@@ -16,14 +16,14 @@ if ($source=='all') {
   $source=null;
 }
 
-$icons = array(
+$icons = [
   'hierarchy' => 'monochrome/hierarchy',
   'file' => 'monochrome/file',
   'url' => 'monochrome/globe',
   'email' => 'monochrome/email',
   'page' => 'monochrome/page',
   'news' => 'monochrome/news'
-);
+];
 
 $query = new LinkQuery();
 $query->withTargetType($target)->withSourceType($source);

@@ -32,7 +32,7 @@ class WeblogTemplateController extends TemplateController
     $data = '<weblog xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/weblog/1.0/">';
     $data .= '<title>'.Strings::escapeXML($row['title']).'</title>';
     $data.= '<!--dynamic--></weblog>';
-    return array('data' => $data, 'dynamic' => true, 'index' => '');
+    return ['data' => $data, 'dynamic' => true, 'index' => ''];
   }
 
   function dynamic($id,&$state) {
@@ -45,7 +45,7 @@ class WeblogTemplateController extends TemplateController
     $sql="select webloggroup_id as id from weblog_webloggroup where page_id=".Database::int($id);
     $selectedGroups = Database::getIds($sql);
 
-    $groups = Webloggroup::search(array('page'=>$id));
+    $groups = Webloggroup::search(['page'=>$id]);
     foreach ($groups as $group) {
       $xml.='<group id="'.$group->getId().'" title="'.Strings::escapeXML($group->getTitle()).'" />';
     }

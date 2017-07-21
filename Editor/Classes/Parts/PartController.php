@@ -11,7 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 class PartController
 {
   var $type;
-  static $methodToAttribute = array(
+  static $methodToAttribute = [
     'getColor' => 'color',
     'getFontFamily' => 'font-family',
     'getFontSize' => 'font-size',
@@ -28,7 +28,7 @@ class PartController
     'getFontStyle' => 'font-style',
     'getFontVariant' => 'font-variant',
     'getListStyle' => 'list-style'
-  );
+  ];
 
   function PartController($type) {
     $this->type = $type;

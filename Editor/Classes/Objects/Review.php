@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Review'] = [
   'table' => 'review',
   'properties' => [
-    'accepted' => array('type'=>'boolean'),
-    'date' => array('type'=>'datetime')
+    'accepted' => ['type'=>'boolean'],
+    'date' => ['type'=>'datetime']
   ]
 ];
 

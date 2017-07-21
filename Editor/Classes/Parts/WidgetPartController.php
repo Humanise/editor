@@ -64,9 +64,9 @@ class WidgetPartController extends PartController
 
 
   function getToolbars() {
-    return array(
-      GuiUtils::getTranslated(array('Widget','da'=>'Widget')) => ''
-    );
+    return [
+      GuiUtils::getTranslated(['Widget','da'=>'Widget']) => ''
+    ];
   }
 
   function getEditorUI($part,$context) {
