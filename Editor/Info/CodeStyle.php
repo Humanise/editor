@@ -8,10 +8,10 @@ $finder = PhpCsFixer\Finder::create()
 ;
 
 return PhpCsFixer\Config::create()
-    ->setRules([
-        'space_after_semicolon' => true,
-        'whitespace_after_comma_in_array' => true,
-        'array_syntax' => ['syntax' => 'short']
-    ])
-    ->setFinder($finder)
+  ->setRules([
+    'space_after_semicolon' => true,
+    'whitespace_after_comma_in_array' => true,
+    'array_syntax' => ['syntax' => 'short']
+  ])
+  ->setFinder($finder)
 ;
