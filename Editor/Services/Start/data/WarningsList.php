@@ -10,7 +10,7 @@ $inspections = InspectionService::performInspection(['status'=>Request::getStrin
 $writer = new ListWriter();
 
 $writer->startList(['unicode'=>true]);
-$icons = ['warning'=>'common/warning','ok'=>'common/success','error'=>'common/stop'];
+$icons = ['warning'=>'common/warning', 'ok'=>'common/success', 'error'=>'common/stop'];
 
 foreach ($inspections as $inspection) {
   $entity = $inspection->getEntity();

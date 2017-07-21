@@ -15,11 +15,11 @@ Entity::$schema['Link'] = [
     'alternative' => ['type' => 'string'],
     'targetType' => ['type' => 'string'],
     'targetValue' => ['type' => 'string'],
-    'partId' => ['type'=>'int','relation'=>['class'=>'Part','property'=>'id']],
-    'pageId' => ['type'=>'int','relation'=>['class'=>'Page','property'=>'id']],
-    'targetId' => ['type'=>'int','relations'=> [
-        ['class'=>'Page','property'=>'id'],
-        ['class'=>'File','property'=>'id']
+    'partId' => ['type'=>'int', 'relation'=>['class'=>'Part', 'property'=>'id']],
+    'pageId' => ['type'=>'int', 'relation'=>['class'=>'Page', 'property'=>'id']],
+    'targetId' => ['type'=>'int', 'relations'=> [
+        ['class'=>'Page', 'property'=>'id'],
+        ['class'=>'File', 'property'=>'id']
       ]
     ]
   ]

@@ -79,7 +79,7 @@ class TemplateService {
     $sql = "select id,`unique` from `template`";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
-      $arr[] = ["id" => $row['id'],"unique" => $row['unique']];
+      $arr[] = ["id" => $row['id'], "unique" => $row['unique']];
     }
     Database::free($result);
     return $arr;
@@ -132,7 +132,7 @@ class TemplateService {
       $info['id']=$templates[$i]['id'];
       $output[]=$info;
     }
-    usort($output,['TemplateService','compareTemplates']);
+    usort($output,['TemplateService', 'compareTemplates']);
     return $output;
   }
 
@@ -152,7 +152,7 @@ class TemplateService {
       return $out;
     }
     else {
-      $out = ['unique'=>$unique,'icon' => null,'name' => null,'description' => null];
+      $out = ['unique'=>$unique, 'icon' => null, 'name' => null, 'description' => null];
       $filename = $basePath."Editor/Template/".$unique."/info.xml";
 
       $data = implode("", file($filename));

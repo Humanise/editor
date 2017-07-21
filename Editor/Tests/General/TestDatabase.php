@@ -31,7 +31,7 @@ class TestDatabase extends UnitTestCase {
 
   function testCompiling() {
         $sql = "SELECT * from table where id=@int(id) or id>@int(id) and index=@text(query)";
-        $parameters = ['id'=>5355,'query'=>'lorem'];
+        $parameters = ['id'=>5355, 'query'=>'lorem'];
         $expected = "SELECT * from table where id=5355 or id>5355 and index='lorem'";
 
         $compiled = Database::compile($sql,$parameters);

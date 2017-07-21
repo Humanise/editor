@@ -18,13 +18,13 @@ foreach($list as $item) {
   $writer->startRow()->
     startCell(['variant'=>'card']);
     $writer->startLine(['mini'=>false])->text(Strings::shortenString($item->getNote(),300))->endLine();
-    $writer->startLine(['dimmed'=>true,'mini'=>true])->text(Dates::formatDateTime($item->getCreated()))->text(' - ')->text(IssueService::translateKind($item->getKind()))->endLine();
+    $writer->startLine(['dimmed'=>true, 'mini'=>true])->text(Dates::formatDateTime($item->getCreated()))->text(' - ')->text(IssueService::translateKind($item->getKind()))->endLine();
     if ($page) {
       $writer->startLine(['class'=>'task_page'])->
-        object(['icon'=>'common/page','text'=>$page['title']])->
+        object(['icon'=>'common/page', 'text'=>$page['title']])->
         startIcons()->
-          icon(['icon'=>'monochrome/view','action'=>true,'revealing'=>true,'data'=>['id'=>$page['id'],'action'=>'view']])->
-          icon(['icon'=>'monochrome/edit','action'=>true,'revealing'=>true,'data'=>['id'=>$page['id'],'action'=>'edit']])->
+          icon(['icon'=>'monochrome/view', 'action'=>true, 'revealing'=>true, 'data'=>['id'=>$page['id'], 'action'=>'view']])->
+          icon(['icon'=>'monochrome/edit', 'action'=>true, 'revealing'=>true, 'data'=>['id'=>$page['id'], 'action'=>'edit']])->
         endIcons()->
       endLine();
     }

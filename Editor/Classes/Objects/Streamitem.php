@@ -11,7 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Streamitem'] = [
   'table' => 'streamitem',
   'properties' => [
-    'streamId' => ['type' => 'int','column' => 'stream_id',
+    'streamId' => ['type' => 'int', 'column' => 'stream_id',
       'relation' => ['class' => 'Stream', 'property' => 'id']
     ],
     'data' => ['type' => 'string'],

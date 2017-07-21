@@ -11,7 +11,7 @@ $writer = new ListWriter();
 
 $writer->startList(['selectable' => false])
   ->startHeaders()
-    ->header(['title'=>['User','da'=>'Bruger']])
+    ->header(['title'=>['User', 'da'=>'Bruger']])
     ->header(['width'=>1])
   ->endHeaders();
 
@@ -19,9 +19,9 @@ $sql = "SELECT object.title,object.id from object,securityzone_user where securi
 
 $result = Database::select($sql,['zoneId'=>$zoneId]);
 while($row = Database::next($result)) {
-  $writer->startRow(['kind'=>'page','id'=>$row['id']])->
+  $writer->startRow(['kind'=>'page', 'id'=>$row['id']])->
     startCell([ 'icon' => 'common/page' ])->text($row['title'])->endCell()->
-    startCell()->icon(['icon'=>'common/delete','action'=>'true','key'=>'remove'])->endCell();
+    startCell()->icon(['icon'=>'common/delete', 'action'=>'true', 'key'=>'remove'])->endCell();
   $writer->endRow();
 }
 Database::free($result);

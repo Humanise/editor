@@ -29,7 +29,7 @@ class CustomPartController extends PartController
     $css = '';
     if ($view) {
       $path = $view->getPath();
-      $cssFiles = ['inline.css','async.css'];
+      $cssFiles = ['inline.css', 'async.css'];
       foreach ($cssFiles as $file) {
         $fullPath = FileSystemService::join($path, $file);
         if (FileSystemService::canRead($fullPath)) {
@@ -122,7 +122,7 @@ class CustomPartController extends PartController
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['Custom','da'=>'Speciel']) => '
+      GuiUtils::getTranslated(['Custom', 'da'=>'Speciel']) => '
       <item label="{Workflow; da:Arbejdsgang}">
         <dropdown name="workflow" width="200">'.UI::buildOptions('workflow').'</dropdown>
       </item>

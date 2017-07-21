@@ -27,11 +27,11 @@ function listSource($id,$force) {
   //$writer->sort($sort,$direction);
   //$writer->window(array( 'total' => $list['total'], 'size' => $windowSize, 'page' => $windowPage ));
   $writer->startHeaders();
-  $writer->header(['title'=>['Title','da'=>'Titel'],'width'=>30]);
-  $writer->header(['title'=>['Location','da'=>'Lokation'],'width'=>20]);
+  $writer->header(['title'=>['Title', 'da'=>'Titel'], 'width'=>30]);
+  $writer->header(['title'=>['Location', 'da'=>'Lokation'], 'width'=>20]);
   $writer->header(['title'=>'URL']);
-  $writer->header(['title'=>'Start','width'=>1]);
-  $writer->header(['title'=>['End','da'=>'Slut'],'width'=>1]);
+  $writer->header(['title'=>'Start', 'width'=>1]);
+  $writer->header(['title'=>['End', 'da'=>'Slut'], 'width'=>1]);
   $writer->header(['width'=>1]);
   $writer->endHeaders();
 

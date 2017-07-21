@@ -8,7 +8,7 @@ require_once '../../Include/Private.php';
 $maxUploadSize = GuiUtils::bytesToString(FileSystemService::getMaxUploadSize());
 
 Response::sendObject([
-  'title' => ['en' => 'Select image','da' => 'Vælg billede' ],
+  'title' => ['en' => 'Select image', 'da' => 'Vælg billede' ],
   'list' => ['url' => ConfigurationService::getBaseUrl() . 'Editor/Services/Finder/ImagesList.php'],
   'gallery' => ['url' => ConfigurationService::getBaseUrl() . 'Editor/Services/Finder/ImagesGallery.php'],
   'selection' => ['value' => 'all', 'parameter' => 'group', 'url' => ConfigurationService::getBaseUrl() . 'Editor/Services/Finder/ImagesSelection.php'],

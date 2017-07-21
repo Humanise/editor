@@ -23,7 +23,7 @@ Entity::$schema['Person'] = [
       'city' => ['type'=>'string'],
       'country' => ['type'=>'string'],
       'webaddress' => ['type'=>'string'],
-      'imageId' => ['type'=>'int','column'=>'image_id', 'relation' => ['class' => 'Image', 'property' => 'id']]
+      'imageId' => ['type'=>'int', 'column'=>'image_id', 'relation' => ['class' => 'Image', 'property' => 'id']]
     ]
 ];
 

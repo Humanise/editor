@@ -36,8 +36,8 @@ $writer->startList()->
         'page' => $result->getWindowPage()
     ])->
   startHeaders()->
-    header(['title' => ['Title','da'=>'Titel'],'key' => 'title','sortable' => true])->
-      header(['title' => ['Type','da'=>'Type'],'width' => 1,'key' => 'file.type','sortable' => true])->
+    header(['title' => ['Title', 'da'=>'Titel'], 'key' => 'title', 'sortable' => true])->
+      header(['title' => ['Type', 'da'=>'Type'], 'width' => 1, 'key' => 'file.type', 'sortable' => true])->
   endHeaders();
   foreach ($objects as $object) {
     $writer->startRow([

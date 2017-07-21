@@ -31,10 +31,10 @@ function live() {
 
   $writer->startList();
   $writer->startHeaders();
-  $writer->header(['title'=>['Time','da'=>'Tidspunkt']]);
-  $writer->header(['title'=>['Page','da'=>'Side']]);
-  $writer->header(['title'=>['Session','da'=>'Session']]);
-  $writer->header(['title'=>['Device','da'=>'Maskine']]);
+  $writer->header(['title'=>['Time', 'da'=>'Tidspunkt']]);
+  $writer->header(['title'=>['Page', 'da'=>'Side']]);
+  $writer->header(['title'=>['Session', 'da'=>'Session']]);
+  $writer->header(['title'=>['Device', 'da'=>'Maskine']]);
   $writer->endHeaders();
 
   $sql = "select UNIX_TIMESTAMP(statistics.time) as time,statistics.type,statistics.session,statistics.ip,page.title as page_title from statistics left join page on statistics.value=page.id where statistics.type='page' order by statistics.time desc limit 100";
@@ -101,12 +101,12 @@ function unknownAgents() {
 
   $writer->startList() ->
     startHeaders() ->
-      header(['title'=>['From','da'=>'Fra']]) ->
-      header(['title'=>['To','da'=>'Til']]) ->
-      header(['title'=>['Browser','da'=>'Browser']]) ->
-      header(['title'=>['Visits','da'=>'Besøg']]) ->
-      header(['title'=>['Sessions','da'=>'Sessioner']]) ->
-      header(['title'=>['Devices','da'=>'Maskiner']]) ->
+      header(['title'=>['From', 'da'=>'Fra']]) ->
+      header(['title'=>['To', 'da'=>'Til']]) ->
+      header(['title'=>['Browser', 'da'=>'Browser']]) ->
+      header(['title'=>['Visits', 'da'=>'Besøg']]) ->
+      header(['title'=>['Sessions', 'da'=>'Sessioner']]) ->
+      header(['title'=>['Devices', 'da'=>'Maskiner']]) ->
     endHeaders();
 
   foreach ($result as $row) {
@@ -138,12 +138,12 @@ function browsers($version) {
 
   $writer->startList();
   $writer->startHeaders();
-  $writer->header(['title'=>['From','da'=>'Fra']]);
-  $writer->header(['title'=>['To','da'=>'Til']]);
-  $writer->header(['title'=>['Browser','da'=>'Browser']]);
-  $writer->header(['title'=>['Visits','da'=>'Besøg']]);
-  $writer->header(['title'=>['Sessions','da'=>'Sessioner']]);
-  $writer->header(['title'=>['Devices','da'=>'Maskiner']]);
+  $writer->header(['title'=>['From', 'da'=>'Fra']]);
+  $writer->header(['title'=>['To', 'da'=>'Til']]);
+  $writer->header(['title'=>['Browser', 'da'=>'Browser']]);
+  $writer->header(['title'=>['Visits', 'da'=>'Besøg']]);
+  $writer->header(['title'=>['Sessions', 'da'=>'Sessioner']]);
+  $writer->header(['title'=>['Devices', 'da'=>'Maskiner']]);
   $writer->endHeaders();
 
   foreach ($result as $row) {
@@ -169,12 +169,12 @@ function browserVersions() {
 
   $writer->startList();
   $writer->startHeaders();
-  $writer->header(['title'=>['From','da'=>'Fra']]);
-  $writer->header(['title'=>['To','da'=>'Til']]);
-  $writer->header(['title'=>['Browser','da'=>'Browser']]);
-  $writer->header(['title'=>['Visits','da'=>'Besøg']]);
-  $writer->header(['title'=>['Sessions','da'=>'Sessioner']]);
-  $writer->header(['title'=>['Devices','da'=>'Maskiner']]);
+  $writer->header(['title'=>['From', 'da'=>'Fra']]);
+  $writer->header(['title'=>['To', 'da'=>'Til']]);
+  $writer->header(['title'=>['Browser', 'da'=>'Browser']]);
+  $writer->header(['title'=>['Visits', 'da'=>'Besøg']]);
+  $writer->header(['title'=>['Sessions', 'da'=>'Sessioner']]);
+  $writer->header(['title'=>['Devices', 'da'=>'Maskiner']]);
   $writer->endHeaders();
 
   foreach ($result as $row) {
@@ -199,13 +199,13 @@ function agents() {
 
   $writer->startList();
   $writer->startHeaders();
-  $writer->header(['title'=>['From','da'=>'Fra']]);
-  $writer->header(['title'=>['To','da'=>'Til']]);
-  $writer->header(['title'=>['Browser','da'=>'Browser']]);
+  $writer->header(['title'=>['From', 'da'=>'Fra']]);
+  $writer->header(['title'=>['To', 'da'=>'Til']]);
+  $writer->header(['title'=>['Browser', 'da'=>'Browser']]);
   $writer->header();
-  $writer->header(['title'=>['Visits','da'=>'Besøg']]);
-  $writer->header(['title'=>['Sessions','da'=>'Sessioner']]);
-  $writer->header(['title'=>['Devices','da'=>'Maskiner']]);
+  $writer->header(['title'=>['Visits', 'da'=>'Besøg']]);
+  $writer->header(['title'=>['Sessions', 'da'=>'Sessioner']]);
+  $writer->header(['title'=>['Devices', 'da'=>'Maskiner']]);
   $writer->endHeaders();
 
   foreach ($result as $row) {
@@ -234,12 +234,12 @@ function pages() {
 
   $writer->startList() ->
     startHeaders() ->
-      header([ 'title' => ['From','da'=>'Fra'] ]) ->
-      header([ 'title' => ['To','da'=>'Til'] ]) ->
-      header([ 'title' => ['Page','da'=>'Side'] ]) ->
-      header([ 'title' => ['Visits','da'=>'Besøg'] ]) ->
-      header([ 'title' => ['Sessions','da'=>'Sessioner'] ]) ->
-      header([ 'title' => ['Devices','da'=>'Maskiner'] ]) ->
+      header([ 'title' => ['From', 'da'=>'Fra'] ]) ->
+      header([ 'title' => ['To', 'da'=>'Til'] ]) ->
+      header([ 'title' => ['Page', 'da'=>'Side'] ]) ->
+      header([ 'title' => ['Visits', 'da'=>'Besøg'] ]) ->
+      header([ 'title' => ['Sessions', 'da'=>'Sessioner'] ]) ->
+      header([ 'title' => ['Devices', 'da'=>'Maskiner'] ]) ->
     endHeaders();
 
   while($row = Database::next($result)) {
@@ -266,13 +266,13 @@ function paths() {
 
   $writer->startList()->
     startHeaders()->
-    header(['title'=>['From','da'=>'Fra']])->
-    header(['title'=>['To','da'=>'Til']])->
-    header(['title'=>['Path','da'=>'Sti']])->
-    header(['title'=>['Page','da'=>'Side']])->
-    header(['title'=>['Visits','da'=>'Besøg']])->
-    header(['title'=>['Sessions','da'=>'Sessioner']])->
-    header(['title'=>['Devices','da'=>'Maskiner']])->
+    header(['title'=>['From', 'da'=>'Fra']])->
+    header(['title'=>['To', 'da'=>'Til']])->
+    header(['title'=>['Path', 'da'=>'Sti']])->
+    header(['title'=>['Page', 'da'=>'Side']])->
+    header(['title'=>['Visits', 'da'=>'Besøg']])->
+    header(['title'=>['Sessions', 'da'=>'Sessioner']])->
+    header(['title'=>['Devices', 'da'=>'Maskiner']])->
   endHeaders();
 
   while($row = Database::next($result)) {
@@ -295,13 +295,13 @@ function refererers() {
 
   $writer->startList()->
     startHeaders()->
-    header(['title'=>['From','da'=>'Fra']])->
-    header(['title'=>['To','da'=>'Til']])->
-    header(['title'=>['Path','da'=>'Sti']])->
-    header(['title'=>['Page','da'=>'Side']])->
-    header(['title'=>['Visits','da'=>'Besøg']])->
-    header(['title'=>['Sessions','da'=>'Sessioner']])->
-    header(['title'=>['Devices','da'=>'Maskiner']])->
+    header(['title'=>['From', 'da'=>'Fra']])->
+    header(['title'=>['To', 'da'=>'Til']])->
+    header(['title'=>['Path', 'da'=>'Sti']])->
+    header(['title'=>['Page', 'da'=>'Side']])->
+    header(['title'=>['Visits', 'da'=>'Besøg']])->
+    header(['title'=>['Sessions', 'da'=>'Sessioner']])->
+    header(['title'=>['Devices', 'da'=>'Maskiner']])->
   endHeaders();
 
   $sql = "select UNIX_TIMESTAMP(max(statistics.time)) as lasttime,UNIX_TIMESTAMP(min(statistics.time)) as firsttime,count(distinct statistics.id) as visits,count(distinct statistics.session) as sessions,count(distinct statistics.ip) as ips,statistics.`referer` from statistics group by statistics.`referer` order by statistics.time";
@@ -331,10 +331,10 @@ function visits() {
 
   $writer->startList() ->
     startHeaders() ->
-      header(['title'=>['Date','da'=>'Dato']]) ->
-      header(['title'=>['Pageviews','da'=>'Sidevisninger']]) ->
-      header(['title'=>['Sessioner','da'=>'Sessions']]) ->
-      header(['title'=>['Devices','da'=>'Maskiner']]) ->
+      header(['title'=>['Date', 'da'=>'Dato']]) ->
+      header(['title'=>['Pageviews', 'da'=>'Sidevisninger']]) ->
+      header(['title'=>['Sessioner', 'da'=>'Sessions']]) ->
+      header(['title'=>['Devices', 'da'=>'Maskiner']]) ->
     endHeaders();
 
   foreach ($result as $row) {

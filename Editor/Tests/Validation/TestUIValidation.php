@@ -74,7 +74,7 @@ class TestUIValidation extends UnitTestCase {
     $doc = new DOMDocument();
     $doc->load($file);
 
-    if (!$doc->documentElement || !in_array($doc->documentElement->nodeName, ['gui','subgui'])) {
+    if (!$doc->documentElement || !in_array($doc->documentElement->nodeName, ['gui', 'subgui'])) {
       return;
     }
     $xsd = FileSystemService::getFullPath('hui/xslt/schema.xsd');

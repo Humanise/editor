@@ -101,8 +101,8 @@ class VCalParser {
 
   function decodeString($string) {
     $string = utf8_decode($string);
-    $search = ['\,','\"',"\\n"];
-    $replace = [',','"',"\n"];
+    $search = ['\,', '\"', "\\n"];
+    $replace = [',', '"', "\n"];
     return str_replace($search,$replace,$string);
   }
 

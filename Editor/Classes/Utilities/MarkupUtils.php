@@ -24,7 +24,7 @@ class MarkupUtils {
       $to = strpos($str,$stop,$from+strlen($start));
       if ($to!==false) {
         $to+=strlen($stop);
-        $segments[] = ['from'=>$from,'to'=>$to];
+        $segments[] = ['from'=>$from, 'to'=>$to];
         $pos = $to;
       } else {
         $pos = false;
@@ -35,7 +35,7 @@ class MarkupUtils {
 
     // TODO Test and perfect this
   static function htmlToXhtml($html) {
-    $html = str_replace(['<br>','<hr>','&quot;','&nbsp;'], ['<br/>','<hr/>','&#34;','&#160;'], $html);
+    $html = str_replace(['<br>', '<hr>', '&quot;', '&nbsp;'], ['<br/>', '<hr/>', '&#34;', '&#160;'], $html);
     $doc = DOMUtils::parseAnything('<div>' . $html . '</div>');
     return DOMUtils::getInnerXML($doc->documentElement);
   }

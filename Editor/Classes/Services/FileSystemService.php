@@ -24,7 +24,7 @@ class FileSystemService {
     $str = str_replace('"','x',$str);
     $str = str_replace('#','x',$str);
     $str = str_replace('?','x',$str);
-    $str = preg_replace_callback('/[^!-%\x27-;?-~ ]/', function($match) {return 'x'; }, $str);
+    $str = preg_replace_callback('/[^!-%\x27-;?-~ ]/', function ($match) {return 'x'; }, $str);
     if (FileSystemService::getFileExtension($str)=='php') {
       $str = FileSystemService::overwriteExtension($str,'php.txt');
     }

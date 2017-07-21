@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class ImageService {
 
-  static $validTypes = ["image/pjpeg","image/jpeg","image/gif","image/png","image/x-png"];
-  static $validExtensions = ["jpeg","jpg","gif","png"];
+  static $validTypes = ["image/pjpeg", "image/jpeg", "image/gif", "image/png", "image/x-png"];
+  static $validExtensions = ["jpeg", "jpg", "gif", "png"];
 
   static function getUsedImageIds() {
     // Image parts
@@ -256,7 +256,7 @@ class ImageService {
 
     $result = new ImportResult();
     $result->setSuccess(false);
-    $result->setMessage(['en'=>'The image could not be fecthed','da'=>'Billedet kunne ikke hentes']);
+    $result->setMessage(['en'=>'The image could not be fecthed', 'da'=>'Billedet kunne ikke hentes']);
     return $result;
   }
 
@@ -279,7 +279,7 @@ class ImageService {
 
   static function createImageFromBase64($data,$fileName=null,$title=null) {
     global $basePath;
-    $output = ['image'=>null,'success'=>false,'message'=>null];
+    $output = ['image'=>null, 'success'=>false, 'message'=>null];
 
     if (Strings::isBlank($data)) {
       $output['message'] = 'No data';

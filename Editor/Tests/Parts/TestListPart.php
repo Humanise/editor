@@ -28,7 +28,7 @@ class TestListPart extends UnitTestCase {
 
   function testObjects() {
     $obj = new ListPart();
-    $obj->setObjectIds([10,12,345]);
+    $obj->setObjectIds([10, 12, 345]);
     $obj->save();
 
     $obj2 = ListPart::load($obj->getId());

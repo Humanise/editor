@@ -12,7 +12,7 @@ require_once $basePath.'Editor/Libraries/pclzip/pclzip.lib.php';
 class ZipService {
 
   static function uploadIsZipFile($name='file') {
-    $mimes = ["application/x-zip-compressed","application/zip"];
+    $mimes = ["application/x-zip-compressed", "application/zip"];
     return in_array($_FILES[$name]["type"],$mimes);
   }
 

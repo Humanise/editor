@@ -11,7 +11,7 @@ $writer->startItems();
 
 $writer->item([
   'value' => 'all',
-  'title' => ['All','da'=>'Alle'],
+  'title' => ['All', 'da'=>'Alle'],
   'icon' => 'common/files',
   'kind' => 'all'
 ]);

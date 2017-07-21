@@ -508,7 +508,7 @@ class UserAgentAnalyzer {
       $this->searchEngine = false;
       return;
     }
-    elseif (in_array($this->userAgent,['HaliBot','PHP','Net Probe','dandirbot','kykapeky','ia_archiver','LinkWalker','psycheclone','panscient.com','Pingdom GIGRIB (http://www.pingdom.com)','EmeraldShield.com Web Spider (http://www.emeraldshield.com/webbot.aspx)','HenryTheMiragoRobot (http://www.miragorobot.com/scripts/dkinfo.asp)','khttp'])) {
+    elseif (in_array($this->userAgent,['HaliBot', 'PHP', 'Net Probe', 'dandirbot', 'kykapeky', 'ia_archiver', 'LinkWalker', 'psycheclone', 'panscient.com', 'Pingdom GIGRIB (http://www.pingdom.com)', 'EmeraldShield.com Web Spider (http://www.emeraldshield.com/webbot.aspx)', 'HenryTheMiragoRobot (http://www.miragorobot.com/scripts/dkinfo.asp)', 'khttp'])) {
       $this->technologyName = $this->userAgent;
       $this->applicationName = $this->userAgent;
       $this->robot = true;
@@ -522,8 +522,8 @@ class UserAgentAnalyzer {
       $this->technologyVersion = $result[2];
       $this->applicationName = $result[1];
       $this->applicationVersion = $result[2];
-      $knownRobots = ['boitho.com-dc','silk','NetResearchServer','NPBot','curl','Microsoft-WebDAV-MiniRedir','findlinks','sproose','Jakarta Commons-HttpClient','Python-urllib','ccubee','Exabot','Jyxobot','Wget','khttp','HaliBot','PycURL','ConveraCrawler','Java','SiteSucker','ichiro','libwww-perl','HTTP','LinkWalker','psbot'];
-      $knownSearchEngines = ['findlinks','sproose','KompassBot','SurveyBot'];
+      $knownRobots = ['boitho.com-dc', 'silk', 'NetResearchServer', 'NPBot', 'curl', 'Microsoft-WebDAV-MiniRedir', 'findlinks', 'sproose', 'Jakarta Commons-HttpClient', 'Python-urllib', 'ccubee', 'Exabot', 'Jyxobot', 'Wget', 'khttp', 'HaliBot', 'PycURL', 'ConveraCrawler', 'Java', 'SiteSucker', 'ichiro', 'libwww-perl', 'HTTP', 'LinkWalker', 'psbot'];
+      $knownSearchEngines = ['findlinks', 'sproose', 'KompassBot', 'SurveyBot'];
       if (in_array($result[1],$knownRobots)) {
         $this->robot = true;
       }

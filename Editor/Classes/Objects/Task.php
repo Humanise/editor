@@ -13,8 +13,8 @@ Entity::$schema['Task'] = [
   'properties' => [
       'deadline' => ['type'=>'datetime'],
       'completed' => ['type'=>'boolean'],
-      'containingObjectId' => ['type'=>'int','column'=>'containing_object_id'],
-      'milestoneId' => ['type'=>'int','column'=>'milestone_id'],
+      'containingObjectId' => ['type'=>'int', 'column'=>'containing_object_id'],
+      'milestoneId' => ['type'=>'int', 'column'=>'milestone_id'],
       'priority' => ['type'=>'float']
   ]
 ];

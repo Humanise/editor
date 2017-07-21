@@ -242,7 +242,7 @@ class RenderingService {
   }
 
   static function applyContentDynamism($id,$template,&$data) {
-    $state = ['data' => $data,'redirect' => false,'override' => false];
+    $state = ['data' => $data, 'redirect' => false, 'override' => false];
     if ($controller = TemplateService::getController($template)) {
       if (method_exists($controller,'dynamic')) {
         $controller->dynamic($id,$state);

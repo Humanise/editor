@@ -30,10 +30,10 @@ $writer = new ListWriter();
 
 $writer->startList();
 $writer->startHeaders();
-$writer->header(['title'=>['Source','da'=>'Kilde']]);
+$writer->header(['title'=>['Source', 'da'=>'Kilde']]);
 $writer->header(['width'=>1]);
 $writer->header();
-$writer->header(['title'=>['Target','da'=>'Mål']]);
+$writer->header(['title'=>['Target', 'da'=>'Mål']]);
 $writer->header(['title'=>'Status']);
 $writer->endHeaders();
 
@@ -57,13 +57,13 @@ foreach ($links as $link) {
     }
     if ($link->getSourceType()=='news') {
       $writer->startIcons()->
-        icon(['icon'=>'monochrome/info','action'=>true,'revealing'=>true,'data'=>['action'=>'newsInfo','id'=>$link->getSourceId()]])->
+        icon(['icon'=>'monochrome/info', 'action'=>true, 'revealing'=>true, 'data'=>['action'=>'newsInfo', 'id'=>$link->getSourceId()]])->
       endIcons();
     }
     if ($link->getSourceType()=='page') {
       $writer->startIcons()->
-        icon(['icon'=>'monochrome/view','action'=>true,'revealing'=>true,'data'=>['action'=>'viewPage','id'=>$link->getSourceId()]])->
-        icon(['icon'=>'monochrome/edit','action'=>true,'revealing'=>true,'data'=>['action'=>'editPage','id'=>$link->getSourceId()]])->
+        icon(['icon'=>'monochrome/view', 'action'=>true, 'revealing'=>true, 'data'=>['action'=>'viewPage', 'id'=>$link->getSourceId()]])->
+        icon(['icon'=>'monochrome/edit', 'action'=>true, 'revealing'=>true, 'data'=>['action'=>'editPage', 'id'=>$link->getSourceId()]])->
       endIcons();
     }
     $writer->endCell();
@@ -71,24 +71,24 @@ foreach ($links as $link) {
     $writer->endCell()->
     startCell()->startLine(['dimmed'=>true])->text($link->getSourceText());
     if ($link->hasError(LinkView::$TEXT_NOT_FOUND)) {
-      $writer->startIcons()->icon(['icon'=>'common/warning','hint'=>['The text does not exist','Teksten findes ikke']])->endIcons();
+      $writer->startIcons()->icon(['icon'=>'common/warning', 'hint'=>['The text does not exist', 'Teksten findes ikke']])->endIcons();
     }
     $writer->endLine()->endCell()->
     startCell(['icon'=>$targetIcon])->startWrap()->text($link->getTargetTitle())->endWrap();
     if ($link->getTargetType()=='page' && !$link->hasError(LinkView::$TARGET_NOT_FOUND)) {
       $writer->startIcons()->
-        icon(['icon'=>'monochrome/view','action'=>true,'revealing'=>true,'data'=>['action'=>'viewPage','id'=>$link->getTargetId()]])->
-        icon(['icon'=>'monochrome/edit','action'=>true,'revealing'=>true,'data'=>['action'=>'editPage','id'=>$link->getTargetId()]])->
+        icon(['icon'=>'monochrome/view', 'action'=>true, 'revealing'=>true, 'data'=>['action'=>'viewPage', 'id'=>$link->getTargetId()]])->
+        icon(['icon'=>'monochrome/edit', 'action'=>true, 'revealing'=>true, 'data'=>['action'=>'editPage', 'id'=>$link->getTargetId()]])->
       endIcons();
     }
     if ($link->getTargetType()=='file' && !$link->hasError(LinkView::$TARGET_NOT_FOUND)) {
       $writer->startIcons()->
-        icon(['icon'=>'monochrome/info','action'=>true,'revealing'=>true,'data'=>['action'=>'fileInfo','id'=>$link->getTargetId()]])->
+        icon(['icon'=>'monochrome/info', 'action'=>true, 'revealing'=>true, 'data'=>['action'=>'fileInfo', 'id'=>$link->getTargetId()]])->
       endIcons();
     }
     if ($link->getTargetType()=='url') {
       $writer->startIcons()->
-        icon(['icon'=>'monochrome/view','action'=>true,'revealing'=>true,'data'=>['action'=>'viewUrl','url'=>$link->getTargetId()]])->
+        icon(['icon'=>'monochrome/view', 'action'=>true, 'revealing'=>true, 'data'=>['action'=>'viewUrl', 'url'=>$link->getTargetId()]])->
       endIcons();
     }
 

@@ -129,7 +129,7 @@ class MoviePartController extends PartController
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['Movie','da'=>'Film']) =>'
+      GuiUtils::getTranslated(['Movie', 'da'=>'Film']) =>'
         <icon icon="common/new" text="{Add file; da:Tilføj fil}" name="addFile"/>
         <icon icon="common/search" text="{Select file; da:Vælg fil}" name="chooseFile"/>
         <divider/>

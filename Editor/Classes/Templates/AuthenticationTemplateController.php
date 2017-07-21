@@ -37,7 +37,7 @@ class AuthenticationTemplateController extends TemplateController
     }
     $data.='<!--dynamic-->';
     $data.= '</authentication>';
-    return ['data' => $data,'index'=>'','dynamic'=>true];
+    return ['data' => $data, 'index'=>'', 'dynamic'=>true];
   }
 
   function dynamic($id,&$state) {

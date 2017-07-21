@@ -403,11 +403,11 @@ function displaySections(&$column,&$row) {
       '</div>';
     echo '<div style="padding: 5px;">'.
     '<a onclick="controller.showNewPartMenu({element:this,event:event,columnId:'.$column['id'].',sectionIndex:'.($lastIndex+1).'}); return false" href="javascript://" class="hui_button hui_button_light hui_button_small">'.
-    GuiUtils::getTranslated(['Add section','da'=>'Tilføj afsnit']).
+    GuiUtils::getTranslated(['Add section', 'da'=>'Tilføj afsnit']).
     '</a>'.
     '</div>';
   } else {
-    echo '<div style="padding: 5px;"><a class="hui_button hui_button_light hui_button_small '.($editedSection!=null ? 'hui_is_disabled' : '').'">'.GuiUtils::getTranslated(['Add section','da'=>'Tilføj afsnit']).'</a></div>';
+    echo '<div style="padding: 5px;"><a class="hui_button hui_button_light hui_button_small '.($editedSection!=null ? 'hui_is_disabled' : '').'">'.GuiUtils::getTranslated(['Add section', 'da'=>'Tilføj afsnit']).'</a></div>';
   }
 }
 

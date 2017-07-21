@@ -12,7 +12,7 @@ Entity::$schema['SpecialPage'] = [
   'properties' => [
     'language' => ['type'=>'string'],
     'type' => ['type'=>'string'],
-    'pageId' => ['type'=>'int','relation'=>['class'=>'Page','property'=>'id']]
+    'pageId' => ['type'=>'int', 'relation'=>['class'=>'Page', 'property'=>'id']]
   ]
 ];
 class SpecialPage extends Entity {

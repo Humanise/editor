@@ -23,12 +23,12 @@ $writer->startList()->
   sort('time','descending')->
   window([ 'total' => $result->getTotal(), 'size' => $size, 'page' => $page ])->
   startHeaders()->
-    header(['title'=>['Time','da'=>'Tidspunkt'],'key'=>'time'])->
-    header(['title'=>['Category','da'=>'Kategori']])->
-    header(['title'=>['Event','da'=>'Begivenhed']])->
-    header(['title'=>['Entity','da'=>'Entitet']])->
-    header(['title'=>['Message','da'=>'Besked']])->
-    header(['title'=>['User','da'=>'Bruger']]);
+    header(['title'=>['Time', 'da'=>'Tidspunkt'], 'key'=>'time'])->
+    header(['title'=>['Category', 'da'=>'Kategori']])->
+    header(['title'=>['Event', 'da'=>'Begivenhed']])->
+    header(['title'=>['Entity', 'da'=>'Entitet']])->
+    header(['title'=>['Message', 'da'=>'Besked']])->
+    header(['title'=>['User', 'da'=>'Bruger']]);
   if ($showIpSession) {
     $writer->header(['title'=>'IP']);
     $writer->header(['title'=>'Session']);

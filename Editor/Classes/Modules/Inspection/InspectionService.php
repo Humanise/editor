@@ -44,7 +44,7 @@ class InspectionService {
       $ok = class_exists('XSLTProcessor');
       $inspection = new Inspection();
       $inspection->setCategory('environment');
-      $inspection->setEntity(['type'=>'api','title'=>'XSL-transformation','id'=>'XSLTProcessor','icon'=>'common/object']);
+      $inspection->setEntity(['type'=>'api', 'title'=>'XSL-transformation', 'id'=>'XSLTProcessor', 'icon'=>'common/object']);
       $inspection->setStatus($ok ? 'ok' : 'error');
       $inspection->setText($ok ? 'XSLT er installeret' : 'XSLT mangler');
       $inspections[] = $inspection;
@@ -53,7 +53,7 @@ class InspectionService {
       $ok = function_exists('curl_init');
       $inspection = new Inspection();
       $inspection->setCategory('environment');
-      $inspection->setEntity(['type'=>'api','title'=>'Netværksklient (CURL)','id'=>'curl','icon'=>'common/object']);
+      $inspection->setEntity(['type'=>'api', 'title'=>'Netværksklient (CURL)', 'id'=>'curl', 'icon'=>'common/object']);
       $inspection->setStatus($ok ? 'ok' : 'error');
       $inspection->setText($ok ? 'Netværksklient er installeret' : 'Netværksklient mangler');
       $inspections[] = $inspection;
@@ -62,7 +62,7 @@ class InspectionService {
       $ok = function_exists('gd_info');
       $inspection = new Inspection();
       $inspection->setCategory('environment');
-      $inspection->setEntity(['type'=>'api','title'=>'Billedbehandling (GD)','id'=>'curl','icon'=>'common/object']);
+      $inspection->setEntity(['type'=>'api', 'title'=>'Billedbehandling (GD)', 'id'=>'curl', 'icon'=>'common/object']);
       $inspection->setStatus($ok ? 'ok' : 'error');
       $inspection->setText($ok ? 'Billedbehandling er installeret' : 'Billedbehandling mangler');
       $inspections[] = $inspection;
@@ -71,7 +71,7 @@ class InspectionService {
       $ok = function_exists('iconv_get_encoding');
       $inspection = new Inspection();
       $inspection->setCategory('environment');
-      $inspection->setEntity(['type'=>'api','title'=>'Tekstkonvertering (ICONV)','id'=>'iconv','icon'=>'common/object']);
+      $inspection->setEntity(['type'=>'api', 'title'=>'Tekstkonvertering (ICONV)', 'id'=>'iconv', 'icon'=>'common/object']);
       $inspection->setStatus($ok ? 'ok' : 'error');
       $inspection->setText($ok ? 'Tekstkonvertering er installeret' : 'Tekstkonvertering mangler');
       $inspections[] = $inspection;
@@ -80,7 +80,7 @@ class InspectionService {
       $ok = function_exists('openssl_encrypt');
       $inspection = new Inspection();
       $inspection->setCategory('environment');
-      $inspection->setEntity(['type'=>'api','title'=>'Krypteret netværk (OPENSSL)','id'=>'openssl','icon'=>'common/object']);
+      $inspection->setEntity(['type'=>'api', 'title'=>'Krypteret netværk (OPENSSL)', 'id'=>'openssl', 'icon'=>'common/object']);
       $inspection->setStatus($ok ? 'ok' : 'error');
       $inspection->setText($ok ? 'Krypteret netværk er installeret' : 'Krypteret netværk mangler');
       $inspections[] = $inspection;
@@ -90,7 +90,7 @@ class InspectionService {
       $ok = Strings::isNotBlank($text);
       $inspection = new Inspection();
       $inspection->setCategory('environment');
-      $inspection->setEntity(['type'=>'api','title'=>'JPEG optimization','id'=>'jpegoptim','icon'=>'common/object']);
+      $inspection->setEntity(['type'=>'api', 'title'=>'JPEG optimization', 'id'=>'jpegoptim', 'icon'=>'common/object']);
       $inspection->setStatus($ok ? 'ok' : 'error');
       $inspection->setText($ok ? 'JPEG optimization available' : 'JPEG optimization missing (jpegoptim from CLI)');
       $inspection->setInfo($text);
@@ -101,7 +101,7 @@ class InspectionService {
       $ok = Strings::isNotBlank($text);
       $inspection = new Inspection();
       $inspection->setCategory('environment');
-      $inspection->setEntity(['type'=>'api','title'=>'PNG optimization','id'=>'optipng','icon'=>'common/object']);
+      $inspection->setEntity(['type'=>'api', 'title'=>'PNG optimization', 'id'=>'optipng', 'icon'=>'common/object']);
       $inspection->setStatus($ok ? 'ok' : 'error');
       $inspection->setText($ok ? 'PNG optimization available' : 'PNG optimization missing (optipng from CLI)');
       $inspection->setInfo($text);
@@ -112,7 +112,7 @@ class InspectionService {
       $ok = Strings::isNotBlank($text);
       $inspection = new Inspection();
       $inspection->setCategory('environment');
-      $inspection->setEntity(['type'=>'api','title'=>'CSS/JS minification','id'=>'optipng','icon'=>'common/object']);
+      $inspection->setEntity(['type'=>'api', 'title'=>'CSS/JS minification', 'id'=>'optipng', 'icon'=>'common/object']);
       $inspection->setStatus($ok ? 'ok' : 'error');
       $inspection->setText($ok ? 'CSS/JS minification available' : 'CSS/JS minification is missing (minify from CLI)');
       $inspection->setInfo($text);
@@ -127,7 +127,7 @@ class InspectionService {
     $links = LinkService::search($query);
 
     foreach ($links as $link) {
-      $entity = ['type'=>$link->getSourceType(),'title'=>$link->getSourceTitle(),'id'=>$link->getSourceId(),'icon'=>LinkService::getSourceIcon($link)];
+      $entity = ['type'=>$link->getSourceType(), 'title'=>$link->getSourceTitle(), 'id'=>$link->getSourceId(), 'icon'=>LinkService::getSourceIcon($link)];
       $errors = $link->getErrors();
       foreach ($errors as $error) {
         $inspection = new Inspection();
@@ -144,7 +144,7 @@ class InspectionService {
     $sql = "select title,id from page where design_id not in (select object_id from design)";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
-      $entity = ['type'=>'page','title'=>$row['title'],'id'=>$row['id'],'icon'=>'common/page'];
+      $entity = ['type'=>'page', 'title'=>$row['title'], 'id'=>$row['id'], 'icon'=>'common/page'];
       $inspection = new Inspection();
       $inspection->setCategory('model');
       $inspection->setEntity($entity);
@@ -159,7 +159,7 @@ class InspectionService {
     $sql = "select object.title,object.id from image, object where object.id=image.object_id and image.type not in ('image/png','image/jpeg','image/gif')";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
-      $entity = ['type'=>'image','title'=>$row['title'],'id'=>$row['id'],'icon'=>'common/image'];
+      $entity = ['type'=>'image', 'title'=>$row['title'], 'id'=>$row['id'], 'icon'=>'common/image'];
       $inspection = new Inspection();
       $inspection->setCategory('model');
       $inspection->setEntity($entity);
@@ -174,7 +174,7 @@ class InspectionService {
     $sql = "select name,id from frame where hierarchy_id not in (select id from hierarchy)";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
-      $entity = ['type'=>'frame','title'=>$row['name'],'id'=>$row['id'],'icon'=>'common/page'];
+      $entity = ['type'=>'frame', 'title'=>$row['name'], 'id'=>$row['id'], 'icon'=>'common/page'];
       $inspection = new Inspection();
       $inspection->setCategory('model');
       $inspection->setEntity($entity);
@@ -191,7 +191,7 @@ class InspectionService {
     while ($row = Database::next($result)) {
       $loaded = Object::load($row['id']);
       if (!$loaded) {
-        $entity = ['type'=>$row['type'],'title'=>$row['title'],'id'=>$row['id'],'icon'=>'common/object'];
+        $entity = ['type'=>$row['type'], 'title'=>$row['title'], 'id'=>$row['id'], 'icon'=>'common/object'];
         $inspection = new Inspection();
         $inspection->setCategory('model');
         $inspection->setEntity($entity);
@@ -209,7 +209,7 @@ class InspectionService {
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
       $valid = true;
-      $entity = ['type'=>'page','title'=>$row['title'],'id'=>$row['id'],'icon'=>'common/page'];
+      $entity = ['type'=>'page', 'title'=>$row['title'], 'id'=>$row['id'], 'icon'=>'common/page'];
       if (Strings::isBlank($row['description'])) {
         $inspection = new Inspection();
         $inspection->setCategory('content');
@@ -242,11 +242,11 @@ class InspectionService {
 
   static function checkFolders(&$inspections) {
     global $basePath;
-    $folders = ["files","images","local/cache/images","local/cache/urls","local/cache/temp"];
+    $folders = ["files", "images", "local/cache/images", "local/cache/urls", "local/cache/temp"];
     foreach ($folders as $folder) {
       $inspection = new Inspection();
       $inspection->setCategory('system');
-      $inspection->setEntity(['title'=>$folder,'icon'=>'common/folder']);
+      $inspection->setEntity(['title'=>$folder, 'icon'=>'common/folder']);
       $path = $basePath.$folder;
       if (!file_exists($path)) {
         $inspection->setStatus('error');

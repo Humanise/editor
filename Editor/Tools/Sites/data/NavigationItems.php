@@ -10,19 +10,19 @@ $writer = new ItemsWriter();
 $writer->startItems();
 
 $writer->item([
-  'title' => ['All pages','da'=>'Alle sider'],
+  'title' => ['All pages', 'da'=>'Alle sider'],
   'icon' => 'common/page',
   'value' => 'all',
   'badge' => PageService::getTotalPageCount()
 ]);
 $writer->item([
-  'title' => ['Latest','da'=>'Seneste'],
+  'title' => ['Latest', 'da'=>'Seneste'],
   'icon' => 'common/time',
   'value' => 'latest',
   'badge' => PageService::getLatestPageCount()
 ]);
 
-$writer->title(['Hierarchies','da'=>'Hierarkier']);
+$writer->title(['Hierarchies', 'da'=>'Hierarkier']);
 
 $hierarchies = Hierarchy::search();
 
@@ -31,13 +31,13 @@ foreach ($hierarchies as $hierarchy) {
   if ($hierarchy->getChanged()>$hierarchy->getPublished()) {
     $title.=' !';
   }
-  $writer->startItem(['icon'=>'common/hierarchy','kind'=>'hierarchy','value'=>$hierarchy->getId(),'title'=>$title]);
+  $writer->startItem(['icon'=>'common/hierarchy', 'kind'=>'hierarchy', 'value'=>$hierarchy->getId(), 'title'=>$title]);
   encodeLevel(0,$hierarchy->getId(),$writer);
   $writer->endItem();
 }
 
 $writer->item([
-  'title' => ['No menu item','da'=>'Uden menupunkt'],
+  'title' => ['No menu item', 'da'=>'Uden menupunkt'],
   'icon' => 'monochrome/nomenu',
   'value' => 'nomenu',
   'kind' => 'subset',
@@ -68,7 +68,7 @@ function encodeLevel($parent,$hierarchyId,&$writer) {
 
 
 
-$writer->title(['Languages','da'=>'Sprog']);
+$writer->title(['Languages', 'da'=>'Sprog']);
 
 $counts = PageService::getLanguageCounts();
 
@@ -86,10 +86,10 @@ foreach ($counts as $row) {
   $writer->item($options);
 }
 
-$writer->title(['Overviews','da'=>'Oversigter']);
+$writer->title(['Overviews', 'da'=>'Oversigter']);
 
 $writer->item([
-  'title' => ['News','da'=>'Nyheder'],
+  'title' => ['News', 'da'=>'Nyheder'],
   'icon' => 'monochrome/news',
   'value' => 'news',
   'kind' => 'subset',
@@ -97,7 +97,7 @@ $writer->item([
 ]);
 
 $writer->item([
-  'title' => ['Warnings','da'=>'Advarsler'],
+  'title' => ['Warnings', 'da'=>'Advarsler'],
   'icon' => 'monochrome/warning',
   'value' => 'warnings',
   'kind' => 'subset',
@@ -105,7 +105,7 @@ $writer->item([
 ]);
 
 $writer->item([
-  'title' => ['Modified','da'=>'Ændret'],
+  'title' => ['Modified', 'da'=>'Ændret'],
   'icon' => 'monochrome/edit',
   'value' => 'changed',
   'kind' => 'subset',
@@ -113,7 +113,7 @@ $writer->item([
 ]);
 
 $writer->item([
-  'title' => ['Review','da'=>'Revidering'],
+  'title' => ['Review', 'da'=>'Revidering'],
   'icon' => 'monochrome/stamp',
   'value' => 'review',
   'kind' => 'subset',

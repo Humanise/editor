@@ -9,18 +9,18 @@ $writer = new ListWriter();
 
 $writer->startList();
 $writer->startHeaders();
-$writer->header(['title'=>['Name','da'=>'Navn'],'width'=>40]);
-$writer->header(['title'=>['Username','da'=>'Brugernavn']]);
-$writer->header(['title'=>['E-mail','da'=>'E-post']]);
-$writer->header(['title'=>['Language','da'=>'Sprog']]);
-$writer->header(['title'=>['Internal','da'=>'Intern'],'align'=>'center']);
-$writer->header(['title'=>['External','da'=>'Ekstern'],'align'=>'center']);
-$writer->header(['title'=>'Administrator','align'=>'center']);
+$writer->header(['title'=>['Name', 'da'=>'Navn'], 'width'=>40]);
+$writer->header(['title'=>['Username', 'da'=>'Brugernavn']]);
+$writer->header(['title'=>['E-mail', 'da'=>'E-post']]);
+$writer->header(['title'=>['Language', 'da'=>'Sprog']]);
+$writer->header(['title'=>['Internal', 'da'=>'Intern'], 'align'=>'center']);
+$writer->header(['title'=>['External', 'da'=>'Ekstern'], 'align'=>'center']);
+$writer->header(['title'=>'Administrator', 'align'=>'center']);
 $writer->endHeaders();
 
 $list = Query::after('user')->get();
 foreach ($list as $item) {
-  $writer->startRow(['kind'=>'user','id'=>$item->getId()]);
+  $writer->startRow(['kind'=>'user', 'id'=>$item->getId()]);
   $writer->startCell(['icon'=>$item->getIcon()])->text($item->getTitle())->endCell();
   $writer->startCell()->text($item->getUsername())->endCell();
   $writer->startCell()->text($item->getEmail())->endCell();

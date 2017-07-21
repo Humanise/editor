@@ -40,7 +40,7 @@ class SelectBuilder {
   }
 
   function addOrdering($column,$descending=false) {
-    $this->orderings[] = ['column'=>$column,'descending'=>$descending];
+    $this->orderings[] = ['column'=>$column, 'descending'=>$descending];
     return $this;
   }
 

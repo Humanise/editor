@@ -114,13 +114,13 @@ function buildCountryData() {
       $analyzed[$trans]['sessions']+=$row['sessions'];
       $analyzed[$trans]['ips']+=$row['ips'];
     } else {
-      $analyzed[$trans]=['hits' => $row['hits'],'sessions' => $row['sessions'],'ips' => $row['ips']];
+      $analyzed[$trans]=['hits' => $row['hits'], 'sessions' => $row['sessions'], 'ips' => $row['ips']];
     }
     $total+=$row['hits'];
   }
   Database::free($result);
   uasort($analyzed,'sortResult');
-  return ["data" => array_reverse($analyzed),"total" => $total];
+  return ["data" => array_reverse($analyzed), "total" => $total];
 }
 
 function getCountry($country,$language) {
@@ -169,13 +169,13 @@ function buildBrowserData($mode) {
       $analyzed[$trans]['sessions']+=$row['sessions'];
       $analyzed[$trans]['ips']+=$row['ips'];
     } else {
-      $analyzed[$trans]=['hits' => $row['hits'],'sessions' => $row['sessions'],'ips' => $row['ips']];
+      $analyzed[$trans]=['hits' => $row['hits'], 'sessions' => $row['sessions'], 'ips' => $row['ips']];
     }
     $total+=$row['hits'];
   }
   Database::free($result);
   uasort($analyzed,'sortResult');
-  return ["data" => array_reverse($analyzed),"total" => $total];
+  return ["data" => array_reverse($analyzed), "total" => $total];
 }
 
 function getAgentVersion($agent) {

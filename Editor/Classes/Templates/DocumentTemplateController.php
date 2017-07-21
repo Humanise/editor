@@ -123,7 +123,7 @@ class DocumentTemplateController extends TemplateController
     $result_row = Database::select($sql, ['id' => $id]);
     while ($row = Database::next($result_row)) {
       $output.= '<row id="' . $row['id'] . '"';
-      foreach (['top','bottom','spacing','class','layout'] as $key) {
+      foreach (['top', 'bottom', 'spacing', 'class', 'layout'] as $key) {
         if (!empty($row[$key])) {
           $output.= ' ' . $key . '="' . Strings::escapeXML($row[$key]) . '"';
         }
@@ -134,7 +134,7 @@ class DocumentTemplateController extends TemplateController
       $result_col = Database::select($sql, ['id' => $row['id']]);
       while ($col = Database::next($result_col)) {
         $output.= '<column id="' . $col['id'] . '"';
-        foreach (['width','left','right','top','bottom','class'] as $key) {
+        foreach (['width', 'left', 'right', 'top', 'bottom', 'class'] as $key) {
           if (!empty($col[$key])) {
             $output.= ' ' . $key . '="' . Strings::escapeXML($col[$key]) . '"';
           }
@@ -146,7 +146,7 @@ class DocumentTemplateController extends TemplateController
         while ($sec = Database::next($result_sec)) {
 
           $output.= '<section id="'.$sec['id'].'"';
-          foreach (['left','right','top','bottom','float','width','class'] as $key) {
+          foreach (['left', 'right', 'top', 'bottom', 'float', 'width', 'class'] as $key) {
             if (!empty($sec[$key])) {
               $output.= ' ' . $key . '="' . Strings::escapeXML($sec[$key]) . '"';
             }
@@ -169,7 +169,7 @@ class DocumentTemplateController extends TemplateController
     }
     Database::free($result_row);
     $output.= '</content>';
-    return ['xml'=>$output,'index'=>$index,'dynamic'=>$dynamic];
+    return ['xml'=>$output, 'index'=>$index, 'dynamic'=>$dynamic];
   }
 
   static function _getStyle($xml) {
@@ -230,7 +230,7 @@ class DocumentTemplateController extends TemplateController
       }
       $index = $ctrl->getIndex($part);
     }
-    return ['output' => $output,'index' => $index,'dynamic' => $dynamic];
+    return ['output' => $output, 'index' => $index, 'dynamic' => $dynamic];
   }
 
   function dynamic($id,&$state) {

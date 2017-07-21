@@ -6,13 +6,13 @@ $phone = Request::getString('phone');
 $email = Request::getString('email');
 
 if (Strings::isBlank($number)) {
-  Response::sendObject(['success'=>false,'message'=>'No number']);
+  Response::sendObject(['success'=>false, 'message'=>'No number']);
   exit;
 }
 
 $meter = Query::after('watermeter')->withProperty('number',$number)->first();
 if (!$meter) {
-  Response::sendObject(['success'=>false,'message'=>'Number not found','key'=>'notfound']);
+  Response::sendObject(['success'=>false, 'message'=>'Number not found', 'key'=>'notfound']);
   exit;
   $meter = new Watermeter();
   $meter->setNumber($number);

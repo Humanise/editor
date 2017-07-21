@@ -16,12 +16,12 @@ class FileService {
       'extensions' => []
     ],
      ['kind' => 'document.microsoft-word', 'label' => 'Microsoft Word', 'category' => 'document',
-      'mimetypes' => ['application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
-      'extensions' => ['doc','docx']
+      'mimetypes' => ['application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+      'extensions' => ['doc', 'docx']
     ],
     ['kind' => 'image.jpeg', 'category' => 'image', 'label' => 'JPEG billede',
-      'mimetypes' => ['image/jpeg','image/pjpeg'],
-      'extensions'=>['jpg','jpeg','pjpeg']
+      'mimetypes' => ['image/jpeg', 'image/pjpeg'],
+      'extensions'=>['jpg', 'jpeg', 'pjpeg']
     ],
     ['kind' => 'image.png', 'category' => 'image', 'label' => 'PNG billede',
       'mimetypes' => ['image/png'],
@@ -32,8 +32,8 @@ class FileService {
       'extensions'=>['gif']
     ],
     ['kind' => 'image.tiff', 'category' => 'image', 'label' => 'TIFF billede',
-      'mimetypes' => ['image/tif','image/tiff'],
-      'extensions'=>['tif','tiff']
+      'mimetypes' => ['image/tif', 'image/tiff'],
+      'extensions'=>['tif', 'tiff']
     ],
     ['kind' => 'image.photoshop', 'category' => 'image', 'label' => 'Adobe Photoshop',
       'mimetypes' => ['application/x-photoshop'],
@@ -44,20 +44,20 @@ class FileService {
       'extensions'=>['swf']
     ],
     ['kind' => 'document.html', 'category' => 'document', 'label' => 'HTML-dokument',
-      'mimetypes' => ['text/html','application/xhtml+xml'],
-      'extensions'=>['html','htm','xhtml']
+      'mimetypes' => ['text/html', 'application/xhtml+xml'],
+      'extensions'=>['html', 'htm', 'xhtml']
     ],
     ['kind' => 'document.pdf', 'category' => 'document', 'label' => 'PDF-dokument',
       'mimetypes' => ['application/pdf'],
       'extensions'=>['pdf']
     ],
     ['kind' => 'archive.zip', 'category' => 'archive', 'label' => 'ZIP-arkiv',
-      'mimetypes' => ['application/zip','application/x-gzip'],
-      'extensions'=>['zip','gz']
+      'mimetypes' => ['application/zip', 'application/x-gzip'],
+      'extensions'=>['zip', 'gz']
     ],
     ['kind' => 'data.xml', 'category' => 'data', 'label' => 'XML-data',
       'mimetypes' => ['text/xml'],
-      'extensions'=>['xml','xsl']
+      'extensions'=>['xml', 'xsl']
     ],
     ['kind' => 'document.text', 'category' => 'document', 'label' => 'Tekst',
       'mimetypes' => ['text/plain'],
@@ -99,10 +99,10 @@ class FileService {
 
   public static $categories = [
      'document' => 'Dokument'
-    ,'image' => 'Billede'
-    ,'multimedia' => 'Multimedie'
-    ,'movie' => 'Film'
-    ,'text' => 'Tekst'
+    , 'image' => 'Billede'
+    , 'multimedia' => 'Multimedie'
+    , 'movie' => 'Film'
+    , 'text' => 'Tekst'
   ];
 
   static function mimeTypeToInfo($mime) {
@@ -221,7 +221,7 @@ class FileService {
         $errorMessage='Kunne ikke finde fil med id='.$id;
       }
     }
-    return ['success' => ($errorMessage===false),'errorMessage' => $errorMessage,'errorDetails' => $errorDetails];
+    return ['success' => ($errorMessage===false), 'errorMessage' => $errorMessage, 'errorDetails' => $errorDetails];
   }
 
   /**
@@ -290,7 +290,7 @@ class FileService {
     $path = $remote->writeToTempFile();
     if (!$remote->isSuccess()) {
       @unlink($path);
-      return ['success' => false,'message' => 'Filen blev ikke fundet'];
+      return ['success' => false, 'message' => 'Filen blev ikke fundet'];
     }
     $type = $remote->getContentType();
     $filename = $remote->getFilename();
@@ -307,7 +307,7 @@ class FileService {
     $filename = FileSystemService::safeFilename($filename);
     $newPath = FileSystemService::findFreeFilePath($basePath.'files/'.$filename);
     if (!@rename($path,$newPath)) {
-      return ['success' => false,'message' => 'Der skete en uventet fejl '];
+      return ['success' => false, 'message' => 'Der skete en uventet fejl '];
     }
 
     $title = FileSystemService::filenameToTitle($filename);

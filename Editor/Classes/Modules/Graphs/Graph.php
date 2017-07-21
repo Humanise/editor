@@ -41,7 +41,7 @@ class Graph {
       }
     }
     if ($fromFound && $toFound) {
-      $this->edges[] = ['from'=>$from,'to'=>$to];
+      $this->edges[] = ['from'=>$from, 'to'=>$to];
     }
   }
 

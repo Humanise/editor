@@ -11,9 +11,9 @@ if (!isset($GLOBALS['basePath'])) {
 class IssueService {
 
   private static $KINDS = [
-    'unknown' => ['da'=>'Ukendt','en' => 'Unknown'],
-    'improvement' => ['da' => 'Forbedring','en' => 'Improvement'],
-    'task' => ['da'=>'Opgave','en' => 'Task'],
+    'unknown' => ['da'=>'Ukendt', 'en' => 'Unknown'],
+    'improvement' => ['da' => 'Forbedring', 'en' => 'Improvement'],
+    'task' => ['da'=>'Opgave', 'en' => 'Task'],
     'feedback' => ['da' => 'Tilbagemelding', 'en' => 'Feedback'],
     'error' => ['da' => 'Fejl', 'en' => 'Error']
   ];

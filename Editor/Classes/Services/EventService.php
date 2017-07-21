@@ -105,7 +105,7 @@ class EventService {
 
         // Mark pages with menu parts as changed when a hierarchy changes
         else if ($type=='hierarchy') {
-            if (in_array($event,['delete','update'])) {
+            if (in_array($event,['delete', 'update'])) {
                 // Mark pages with menu parts changed when hierarchy changes
                 $sql = "select distinct page.id
                     from document_section,part_menu,page,frame
@@ -126,7 +126,7 @@ class EventService {
             PageService::markChanged($id);
                 }
             }
-            if (in_array($event,['delete','publish'])) {
+            if (in_array($event,['delete', 'publish'])) {
             CacheService::clearCompletePageCache();
             }
         }
@@ -137,7 +137,7 @@ class EventService {
             }
         }
         else if ($type=='specialpage') {
-            if (in_array($event,['delete','update','create'])) {
+            if (in_array($event,['delete', 'update', 'create'])) {
             CacheService::clearCompletePageCache();
             }
         }
@@ -162,7 +162,7 @@ class EventService {
         if ($method) {
             $listeners = ClassService::getByInterface('ModelEventListener');
             foreach ($listeners as $listener) {
-                $listener::$method(['type' => $subType,'id' => $id]);
+                $listener::$method(['type' => $subType, 'id' => $id]);
             }
         } else {
             //Log::debug('Unknown event...');

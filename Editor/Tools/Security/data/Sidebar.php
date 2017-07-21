@@ -10,7 +10,7 @@ $writer = new ItemsWriter();
 $writer->startItems();
 
 $writer->item([
-  'title' => ['Users','da'=>'Brugere'],
+  'title' => ['Users', 'da'=>'Brugere'],
   'value' => 'users',
   'icon' => 'view/list'
 ]);

@@ -25,7 +25,7 @@ Entity::$schema['TextPart'] = [
     'textTransform' => [ 'type' => 'string', 'column' => 'texttransform' ],
     'fontStyle' => [ 'type' => 'string', 'column' => 'fontstyle' ],
     'fontVariant' => [ 'type' => 'string', 'column' => 'fontvariant' ],
-    'imageId' => ['type'=>'int', 'column' => 'image_id', 'relation'=>['class'=>'Image','property'=>'id']],
+    'imageId' => ['type'=>'int', 'column' => 'image_id', 'relation'=>['class'=>'Image', 'property'=>'id']],
     'imageFloat' => [ 'type' => 'string', 'column' => 'imagefloat' ],
     'imageWidth' => [ 'type' => 'int', 'column' => 'imagewidth' ],
     'imageHeight' => [ 'type' => 'int', 'column' => 'imageheight' ]

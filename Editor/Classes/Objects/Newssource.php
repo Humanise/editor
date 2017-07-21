@@ -13,7 +13,7 @@ Entity::$schema['Newssource'] = [
     'properties' => [
       'url' => ['type'=>'string'],
       'synchronized'    => ['type'=>'datetime'],
-      'syncInterval'    => ['type'=>'int','column'=>'sync_interval']
+      'syncInterval'    => ['type'=>'int', 'column'=>'sync_interval']
     ]
 ];
 

@@ -93,7 +93,7 @@ class PersonPartController extends PartController
     '<script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/person/script.js" type="text/javascript" charset="utf-8"></script>';
   }
 
-  function _intToBool($val){
+  function _intToBool($val) {
     return $val==1 ? "true" : "false";
   }
 

@@ -13,7 +13,7 @@ Entity::$schema['PersonPart'] = [
   'properties' => [
     'align' => [ 'type' => 'string' ],
     'personId' => [ 'type' => 'int', 'column' => 'person_id',
-      'relation'=>['class'=>'Person','property'=>'id']
+      'relation'=>['class'=>'Person', 'property'=>'id']
     ],
     'showFirstName' => [ 'type' => 'boolean', 'column' => 'show_firstname' ],
     'showMiddleName' => [ 'type' => 'boolean', 'column' => 'show_middlename' ],

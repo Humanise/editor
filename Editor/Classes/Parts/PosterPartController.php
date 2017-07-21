@@ -46,7 +46,7 @@ class PosterPartController extends PartController
         $link = new PartLink();
         $link->setPartId($part->getId());
         $link->setSourceText(DOMUtils::getText($node));
-        $types = ['url','email','page','file'];
+        $types = ['url', 'email', 'page', 'file'];
         foreach ($types as $type) {
           $value = $node->getAttribute($type);
           if ($value) {
@@ -77,7 +77,7 @@ class PosterPartController extends PartController
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['Poster','da'=>'Plakat']) => '
+      GuiUtils::getTranslated(['Poster', 'da'=>'Plakat']) => '
         <icon icon="common/previous" text="{Previous ; da:Forrige}" name="goPrevious"/>
         <icon icon="common/next" text="{Next ; da:Næste}" name="goNext"/>
         <divider/>

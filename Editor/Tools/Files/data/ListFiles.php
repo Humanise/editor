@@ -22,7 +22,7 @@ if (!$direction) {
 
 InternalSession::setToolSessionVar('files','group',$group);
 
-$query = ['windowSize' => $windowSize,'windowPage' => $windowPage,'sort' => $sort,'direction' => $direction];
+$query = ['windowSize' => $windowSize, 'windowPage' => $windowPage, 'sort' => $sort, 'direction' => $direction];
 
 //if ($type!='') $query['type'] = $type;
 if ($queryString!='') $query['query'] = $queryString;
@@ -46,15 +46,15 @@ $writer->startList();
 $writer->sort($sort,$direction);
 $writer->window([ 'total' => $list['total'], 'size' => $windowSize, 'page' => $windowPage ]);
 $writer->startHeaders();
-$writer->header(['title'=>['Title','da'=>'Titel'],'width'=>40]);
+$writer->header(['title'=>['Title', 'da'=>'Titel'], 'width'=>40]);
 $writer->header(['title'=>'Type']);
-$writer->header(['title'=>['Size','da'=>'Størrelse']]);
-$writer->header(['title'=>['Modified','da'=>'Ændret']]);
+$writer->header(['title'=>['Size', 'da'=>'Størrelse']]);
+$writer->header(['title'=>['Modified', 'da'=>'Ændret']]);
 $writer->endHeaders();
 
 foreach ($objects as $object) {
   $writer->
-  startRow(['kind'=>'file','id'=>$object->getId(),'icon'=>$object->getIcon(),'title'=>$object->getTitle()])->
+  startRow(['kind'=>'file', 'id'=>$object->getId(), 'icon'=>$object->getIcon(), 'title'=>$object->getTitle()])->
     startCell(['icon'=>$object->getIcon()])->
       startLine()->startWrap()->text($object->getTitle())->endWrap()->endLine()->
     endCell()->

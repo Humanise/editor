@@ -24,7 +24,7 @@ class VCalendar {
 
   function getEvents($comparator=null) {
     if ($comparator == 'startDate') {
-      usort($this->events,['VCalendar','startDateComparator']);
+      usort($this->events,['VCalendar', 'startDateComparator']);
     }
     return $this->events;
   }

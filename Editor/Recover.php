@@ -13,13 +13,13 @@ $error = null;
 $key = Request::getString('key');
 if (Strings::isBlank($key)) {
   $error = [
-    'title' => ['Illegal request','da'=>'Ukendt forespørgsel'],
+    'title' => ['Illegal request', 'da'=>'Ukendt forespørgsel'],
     'text' => 'Dette kan skyldes at din e-mail-klient har afskåret linket. Prøv at kopiere adressen fra e-mailen ind i browserens adresselinje.'
   ];
 } else if (!AuthenticationService::isValidEmailValidationSession($key)) {
   $error = [
-    'title' => ['The link has expired or has already been used','da'=>'Tiden er udløbet eller linket er allerede anvendt'],
-    'text' => ['For security reasons there is a limited time you can use the link from the e-mail and it can only be used one time. Please try making a new request.','da'=>'Af sikkerhedsmæssige grunde er der en begrænset periode du kan anvende linket i e-mailen og det kan kun anvendes een gang. Prøv venligst igen ved at lave en ny forespørgelse.']
+    'title' => ['The link has expired or has already been used', 'da'=>'Tiden er udløbet eller linket er allerede anvendt'],
+    'text' => ['For security reasons there is a limited time you can use the link from the e-mail and it can only be used one time. Please try making a new request.', 'da'=>'Af sikkerhedsmæssige grunde er der en begrænset periode du kan anvende linket i e-mailen og det kan kun anvendes een gang. Prøv venligst igen ved at lave en ny forespørgelse.']
   ];
 }
 

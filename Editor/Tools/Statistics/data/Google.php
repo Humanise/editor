@@ -9,7 +9,7 @@ $kind = Request::getString('kind');
 $time = Request::getString('time');
 
 $query = [
-  'metrics' => ['pageviews','visits'],
+  'metrics' => ['pageviews', 'visits'],
   'sort' => ['-pageviews'],
   'startDate' => '2007-01-01',
   'endDate' => date('Y-m-d')
@@ -26,7 +26,7 @@ if ($time=='week') {
 if ($kind=='browsers') {
   $query['dimensions'] = ['browser'];
 } else if ($kind=='browserVersions') {
-  $query['dimensions'] = ['browser','browserVersion'];
+  $query['dimensions'] = ['browser', 'browserVersion'];
 } else if ($kind=='pagePath') {
   $query['dimensions'] = ['pagePath'];
 } else {
@@ -41,8 +41,8 @@ $writer->startList();
 if ($result) {
   $writer->startHeaders();
   $writer->header(['title'=>'']);
-  $writer->header(['title'=>['Pageviews','da'=>'Sidevisninger']]);
-  $writer->header(['title'=>['Visitors','da'=>'Besøgende']]);
+  $writer->header(['title'=>['Pageviews', 'da'=>'Sidevisninger']]);
+  $writer->header(['title'=>['Visitors', 'da'=>'Besøgende']]);
   $writer->endHeaders();
 
   foreach ($result as $row) {

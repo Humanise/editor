@@ -39,7 +39,7 @@ class TestNewsPart extends UnitTestCase {
 
   function testGroups() {
     $obj = new NewsPart();
-    $obj->setNewsGroupIds([10,12,345]);
+    $obj->setNewsGroupIds([10, 12, 345]);
     $obj->save();
 
     $obj2 = NewsPart::load($obj->getId());

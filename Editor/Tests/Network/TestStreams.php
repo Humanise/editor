@@ -36,7 +36,7 @@ class TestStreams extends UnitTestCase {
     ));
     $flow->add(new FetchStage(['maxAge'=>60]));
     $flow->add(new ParseFeedStage());
-    $flow->add(new PopulateStreamStage(['id'=>$stream->getId(),'itemPath'=>'items']));
+    $flow->add(new PopulateStreamStage(['id'=>$stream->getId(), 'itemPath'=>'items']));
     $result = $flow->run();
     $this->assertNotNull($result);
     Log::debug($result->getTitle());

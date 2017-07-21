@@ -29,18 +29,18 @@ function listFeedback() {
 
   $writer->startHeaders()->
     header()->
-    header(['title'=>'Status','width'=>1])->
-    header(['title'=>'Oprettet','width'=>1])->
+    header(['title'=>'Status', 'width'=>1])->
+    header(['title'=>'Oprettet', 'width'=>1])->
   endHeaders();
 
   foreach($list as $item) {
-    $writer->startRow(['id'=>$item->getId(),'kind'=>'feedback'])->
+    $writer->startRow(['id'=>$item->getId(), 'kind'=>'feedback'])->
       startCell()->
         startLine()->startStrong()->text($item->getTitle())->endStrong()->endLine()->
         startLine(['top'=>3])->text($item->getNote())->endLine()->
       endCell()->
       startCell()->text('?')->endCell()->
-      startCell(['wrap'=>false,'dimmed'=>true])->text(Dates::formatFuzzy($item->getCreated()))->endCell()->
+      startCell(['wrap'=>false, 'dimmed'=>true])->text(Dates::formatFuzzy($item->getCreated()))->endCell()->
     endRow();
   }
   $writer->endList();
@@ -67,8 +67,8 @@ function listIssues() {
 
   $writer->startHeaders()->
     header()->
-    header(['title'=>'Status','width'=>1])->
-    header(['title'=>'Oprettet','width'=>1])->
+    header(['title'=>'Status', 'width'=>1])->
+    header(['title'=>'Oprettet', 'width'=>1])->
   endHeaders();
 
   foreach($list as $item) {
@@ -77,22 +77,22 @@ function listIssues() {
     if ($pages) {
       $page = $pages[0];
     }
-    $writer->startRow(['id'=>$item->getId(),'kind'=>'issue'])->
+    $writer->startRow(['id'=>$item->getId(), 'kind'=>'issue'])->
       startCell()->
       startLine()->startStrong()->text($item->getTitle())->endStrong()->endLine()->
       startLine(['top'=>3])->text($item->getNote())->endLine();
       if ($page) {
-        $writer->startLine(['top'=>10])->object(['icon'=>'common/page','text'=>$page['title']]);
+        $writer->startLine(['top'=>10])->object(['icon'=>'common/page', 'text'=>$page['title']]);
         $writer->startIcons()->
-          icon(['icon'=>'monochrome/view','action'=>true,'revealing'=>true,'data'=>['id'=>$page['id'],'action'=>'view']])->
-          icon(['icon'=>'monochrome/edit','action'=>true,'revealing'=>true,'data'=>['id'=>$page['id'],'action'=>'edit']])->
+          icon(['icon'=>'monochrome/view', 'action'=>true, 'revealing'=>true, 'data'=>['id'=>$page['id'], 'action'=>'view']])->
+          icon(['icon'=>'monochrome/edit', 'action'=>true, 'revealing'=>true, 'data'=>['id'=>$page['id'], 'action'=>'edit']])->
         endIcons();
         $writer->endLine();
       }
-      $writer->startLine(['dimmed'=>true,'mini'=>true,'top'=>3])->text(IssueService::translateKind($item->getKind()))->endLine()->
+      $writer->startLine(['dimmed'=>true, 'mini'=>true, 'top'=>3])->text(IssueService::translateKind($item->getKind()))->endLine()->
       endCell()->
       startCell()->text(@$states[$item->getStatusId()])->endCell()->
-      startCell(['wrap'=>false,'dimmed'=>true])->text(Dates::formatFuzzy($item->getCreated()))->endCell()->
+      startCell(['wrap'=>false, 'dimmed'=>true])->text(Dates::formatFuzzy($item->getCreated()))->endCell()->
     endRow();
   }
   $writer->endList();

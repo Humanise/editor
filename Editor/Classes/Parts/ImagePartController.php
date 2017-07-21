@@ -79,7 +79,7 @@ class ImagePartController extends PartController
   function editor($part,$context) {
     $link = $this->getSingleLink($part,'entireimage');
     if (!$link) {
-      $link = ['target_type'=>'','target_value'=>''];
+      $link = ['target_type'=>'', 'target_value'=>''];
     }
     return $this->buildHiddenFields([
       'imageId' => $part->getImageId(),
@@ -382,7 +382,7 @@ class ImagePartController extends PartController
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['Image','da'=>'Billede']) =>
+      GuiUtils::getTranslated(['Image', 'da'=>'Billede']) =>
       '
       <icon icon="common/new" text="{Add image; da:Tilføj billede}" name="addImage"/>
       <icon icon="common/search" text="{Select image; da:Vælg billede}" name="chooseImage"/>

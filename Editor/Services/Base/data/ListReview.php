@@ -14,7 +14,7 @@ $writer = new ListWriter();
 
 $writer->startList()->
   startHeaders()->
-    header(['title'=>'Side','width'=>45])->
+    header(['title'=>'Side', 'width'=>45])->
   endHeaders();
 
 foreach ($list as $review) {

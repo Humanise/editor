@@ -32,7 +32,7 @@ class WebRequest {
   }
 
   function addHeader($name,$value) {
-    $this->headers[] = ['name'=>$name,'value'=>$value];
+    $this->headers[] = ['name'=>$name, 'value'=>$value];
   }
 
   function setParameters($parameters) {

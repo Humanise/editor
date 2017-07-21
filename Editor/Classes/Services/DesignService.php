@@ -232,7 +232,7 @@ class DesignService {
   }
 
   private static function fixUrls($css, $context, $prefix) {
-    return preg_replace_callback("/(url\\(['\"]?)([^\\)]+)/u", function($matches) use ($context, $prefix) {
+    return preg_replace_callback("/(url\\(['\"]?)([^\\)]+)/u", function ($matches) use ($context, $prefix) {
       if (strpos($matches[2],'data:') === 0) {
         return $matches[0];
       }

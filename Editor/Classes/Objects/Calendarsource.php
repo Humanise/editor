@@ -13,9 +13,9 @@ Entity::$schema['Calendarsource'] = [
     'properties' => [
       'url'       => ['type'=>'string'],
       'synchronized'    => ['type'=>'datetime'],
-      'syncInterval'    => ['type'=>'int','column'=>'sync_interval'],
+      'syncInterval'    => ['type'=>'int', 'column'=>'sync_interval'],
       'filter'      => ['type'=>'string'],
-      'displayTitle'    => ['type'=>'string','column'=>'display_title']
+      'displayTitle'    => ['type'=>'string', 'column'=>'display_title']
     ]
 ];
 class Calendarsource extends Object {
@@ -277,7 +277,7 @@ class Calendarsource extends Object {
     Database::free($result);
 
     if (@$query['sort'] == 'startDate') {
-      usort($events,['Calendarsource','_startDateComparator']);
+      usort($events,['Calendarsource', '_startDateComparator']);
     }
 
     return $events;
@@ -316,7 +316,7 @@ class Calendarsource extends Object {
     $events = [];
     if ($by=='WEEKLY') {
       if ($row['byday']) {
-        $dayNums = ['MO'=>0, 'TU'=>1, 'WE'=>2, 'TH'=>3,'FR'=>4,'SA'=>5,'SU'=>6];
+        $dayNums = ['MO'=>0, 'TU'=>1, 'WE'=>2, 'TH'=>3, 'FR'=>4, 'SA'=>5, 'SU'=>6];
         $weekday = Dates::getWeekDay($row['startdate']);
         $byDays = @split(",",$row['byday']);
         foreach ($byDays as $day) {
@@ -349,7 +349,7 @@ class Calendarsource extends Object {
   }
 
   function sort(&$events) {
-    usort($events,['Calendarsource','_startDateComparator']);
+    usort($events,['Calendarsource', '_startDateComparator']);
   }
 
   static function _startDateComparator($a, $b) {

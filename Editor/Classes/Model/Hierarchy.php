@@ -130,7 +130,7 @@ class Hierarchy extends Entity implements Loadable {
   }
 
   function createItemForPage($pageId,$title,$parentId) {
-    return $this->createItem(['targetType'=>'page','targetValue'=>$pageId,'title'=>$title,'parent'=>$parentId,'hidden'=>false]);
+    return $this->createItem(['targetType'=>'page', 'targetValue'=>$pageId, 'title'=>$title, 'parent'=>$parentId, 'hidden'=>false]);
   }
 
   function createItem($options) {
@@ -162,7 +162,7 @@ class Hierarchy extends Entity implements Loadable {
   ///////////////////// Static ////////////////////
 
   static function getItemIcon($type) {
-    $icons = ['page'=>'common/page','pageref'=>'common/pagereference','email'=>'common/email','url'=>'monochrome/globe','file'=>'monochrome/file'];
+    $icons = ['page'=>'common/page', 'pageref'=>'common/pagereference', 'email'=>'common/email', 'url'=>'monochrome/globe', 'file'=>'monochrome/file'];
     return $icons[$type];
   }
 
@@ -227,7 +227,7 @@ class Hierarchy extends Entity implements Loadable {
     while ($parent>0) {
       $sql = "select * from hierarchy_item where id=".Database::int($parent);
       if ($row=Database::selectFirst($sql)) {
-        $output[] = ['type'=>'item','id'=>$row['id'],'title'=>$row['title']];
+        $output[] = ['type'=>'item', 'id'=>$row['id'], 'title'=>$row['title']];
         $parent = $row['parent'];
       } else {
         $parent = 0;
@@ -235,7 +235,7 @@ class Hierarchy extends Entity implements Loadable {
     }
     $sql = "select hierarchy.id,hierarchy.name from hierarchy,hierarchy_item where hierarchy.id=hierarchy_item.hierarchy_id and hierarchy_item.id=".Database::int($id);
     if ($row=Database::selectFirst($sql)) {
-      $output[] = ['type' => 'hierarchy','id' => $row['id'],'title' => $row['name']];
+      $output[] = ['type' => 'hierarchy', 'id' => $row['id'], 'title' => $row['name']];
     }
     return array_reverse($output);
   }
@@ -258,27 +258,27 @@ class Hierarchy extends Entity implements Loadable {
       $moveHierarchy = $row['hierarchy_id'];
       $moveParent = $row['parent'];
     } else {
-      return ['success'=>false,'message'=>['en'=>'The item could not be found', 'da'=>'Punktet findes ikke']];
+      return ['success'=>false, 'message'=>['en'=>'The item could not be found', 'da'=>'Punktet findes ikke']];
     }
     if ($targetItem>0) {
       $sql = "select * from hierarchy_item where id=".Database::int($targetItem);
       if ($row = Database::selectFirst($sql)) {
         $targetHierarchy = $row['hierarchy_id'];
       } else {
-        return ['success'=>false,'message'=>['en'=>'The target could not be found', 'da'=>'Punktet findes ikke']];
+        return ['success'=>false, 'message'=>['en'=>'The target could not be found', 'da'=>'Punktet findes ikke']];
       }
     }
 
     if ($targetHierarchy>0 && $targetHierarchy!=$moveHierarchy) {
-      return ['success'=>false,'message'=>['en'=>'The item cannot be moved to another hierarchy','da'=>'Punktet kan ikke flyttes til et andet hierarki']];
+      return ['success'=>false, 'message'=>['en'=>'The item cannot be moved to another hierarchy', 'da'=>'Punktet kan ikke flyttes til et andet hierarki']];
     } else if ($moveParent==$targetItem) {
-      return ['success'=>false,'message'=>['en'=>'The item is already located here', 'da'=>'Punktet har allerede denne position']];
+      return ['success'=>false, 'message'=>['en'=>'The item is already located here', 'da'=>'Punktet har allerede denne position']];
     } else if ($move==$targetItem) {
-      return ['success'=>false,'message'=>['en'=>'The item cannot be moved to itself','da'=>'Punktet kan ikke flyttes til sig selv']];
+      return ['success'=>false, 'message'=>['en'=>'The item cannot be moved to itself', 'da'=>'Punktet kan ikke flyttes til sig selv']];
     } else {
       $path = Hierarchy::getAncestorPath($targetItem);
       if (in_array($move,$path)) {
-        return ['success'=>false,'message'=>['en' => 'The item cannot be moved to a sub item', 'da'=>'Punktet kan ikke flyttes til et underpunkt']];
+        return ['success'=>false, 'message'=>['en' => 'The item cannot be moved to a sub item', 'da'=>'Punktet kan ikke flyttes til et underpunkt']];
       }
     }
 

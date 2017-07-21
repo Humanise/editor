@@ -19,7 +19,7 @@ Entity::$schema['Object'] = [
     'type' => ['type' => 'string'],
     'note' => ['type' => 'string'],
     'searchable' => ['type'=>'boolean'],
-    'ownerId' => ['type' => 'int','column' => 'owner_id','relation' => ['class' => 'User','property' => 'id']]
+    'ownerId' => ['type' => 'int', 'column' => 'owner_id', 'relation' => ['class' => 'User', 'property' => 'id']]
     ]
 ];
 class Object extends Entity implements Loadable {

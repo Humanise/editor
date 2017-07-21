@@ -13,7 +13,7 @@ Entity::$schema['Phonenumber'] = [
   'properties' => [
       'number' => ['type'=>'string'],
       'context' => ['type'=>'string'],
-      'containingObjectId'   => ['type'=>'int','column'=>'containing_object_id']
+      'containingObjectId'   => ['type'=>'int', 'column'=>'containing_object_id']
     ]
 ];
 

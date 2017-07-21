@@ -103,7 +103,7 @@ class TextDecorator {
     while ($pos !== false) {
       $pos = strpos( $text, $subject , $pos+1);
       if ($pos!==false) {
-        $rules[$pos] = ['start' => $pos, 'stop' => $pos+strlen($subject),'openTag' => $openTag,'closeTag' => $closeTag];
+        $rules[$pos] = ['start' => $pos, 'stop' => $pos+strlen($subject), 'openTag' => $openTag, 'closeTag' => $closeTag];
       }
     }
   }
@@ -121,7 +121,7 @@ class TextDecorator {
         $open = '<'.$replacement.'>';
         $close = '</'.$replacement.'>';
       }
-      $rules[$pos] = ['start' => $pos, 'stop' => $pos+strlen($old),'openTag' => $open,'closeTag' => $close,'subject' => $subject];
+      $rules[$pos] = ['start' => $pos, 'stop' => $pos+strlen($old), 'openTag' => $open, 'closeTag' => $close, 'subject' => $subject];
     }
     foreach ($matches[0] as $match) {
     }
@@ -134,7 +134,7 @@ class TextDecorator {
       $pos = $match[1];
       $subject = $match[0];
       $openTag = str_replace('{subject}', $subject, $this->emailOpenTag);
-      $rules[$pos] = ['start' => $pos, 'stop' => $pos+strlen($subject),'openTag' => $openTag,'closeTag' => $this->emailCloseTag];
+      $rules[$pos] = ['start' => $pos, 'stop' => $pos+strlen($subject), 'openTag' => $openTag, 'closeTag' => $this->emailCloseTag];
     }
   }
 
@@ -146,7 +146,7 @@ class TextDecorator {
       $pos = $match[1];
       $subject = trim($match[0]);
       $openTag = str_replace('{subject}', $subject, $this->httpOpenTag);
-      $rules[$pos] = ['start' => $pos, 'stop' => $pos+strlen($subject),'openTag' => $openTag,'closeTag' => $this->httpCloseTag];
+      $rules[$pos] = ['start' => $pos, 'stop' => $pos+strlen($subject), 'openTag' => $openTag, 'closeTag' => $this->httpCloseTag];
     }
   }
 

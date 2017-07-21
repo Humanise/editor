@@ -84,10 +84,10 @@ class StatisticsService {
 
   static function getVisitsChart($query) {
     $patterns = [
-      'daily' => ['sql' => '%Y%m%d','php' => 'Ymd', 'div' => 60*60*24],
-      'hourly' => ['sql' => '%Y%m%d%H','php' => 'YmdH', 'div' => 60*60],
-      'monthly' => ['sql' => '%Y%m','php' => 'Ym', 'div' => 60*60*24*31],
-      'yearly' => ['sql' => '%Y','php' => 'Y', 'div' => 60*60*24*365]
+      'daily' => ['sql' => '%Y%m%d', 'php' => 'Ymd', 'div' => 60*60*24],
+      'hourly' => ['sql' => '%Y%m%d%H', 'php' => 'YmdH', 'div' => 60*60],
+      'monthly' => ['sql' => '%Y%m', 'php' => 'Ym', 'div' => 60*60*24*31],
+      'yearly' => ['sql' => '%Y', 'php' => 'Y', 'div' => 60*60*24*365]
     ];
 
     $days = 100;
@@ -112,7 +112,7 @@ class StatisticsService {
 
     $rows = StatisticsService::_fillGaps($rows,$days,$patterns,$resolution);
     $sets = [];
-    $dimensions = ['sessions','ips','hits'];
+    $dimensions = ['sessions', 'ips', 'hits'];
 
         $labels = [];
     foreach ($rows as $row) {
@@ -124,9 +124,9 @@ class StatisticsService {
       foreach ($rows as $row) {
         $entries[$row['key']] = $row[$dim];
       }
-      $sets[] = ['type'=>'line','entries'=>$entries];
+      $sets[] = ['type'=>'line', 'entries'=>$entries];
     }
-    return ['sets' => $sets,'axis' => ['x' => ['labels' => $labels]]];
+    return ['sets' => $sets, 'axis' => ['x' => ['labels' => $labels]]];
   }
 
   static function getPagesChart($query) {
@@ -141,7 +141,7 @@ class StatisticsService {
       $entries[$row['page_title']] = intval($row['visits']);
     }
 
-    return ['sets' => [['type'=>'column','entries'=>$entries]]];
+    return ['sets' => [['type'=>'column', 'entries'=>$entries]]];
   }
 
   static function _fillGaps($rows,$days,$patterns,$resolution) {
@@ -161,7 +161,7 @@ class StatisticsService {
       if (array_key_exists($key,$rows)) {
         $filled[$key] = $rows[$key];
       } else {
-        $filled[$key] = ['hits'=>0,'sessions'=>0,'ips'=>0,'key'=>$key,'label'=>date('j',$date)];
+        $filled[$key] = ['hits'=>0, 'sessions'=>0, 'ips'=>0, 'key'=>$key, 'label'=>date('j',$date)];
       }
     }
     return $filled;

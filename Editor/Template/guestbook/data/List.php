@@ -9,7 +9,7 @@ $writer = new ListWriter();
 
 $writer->startList()->
   startHeaders()->
-    header(['title'=>'Tid / Navn','width'=>30])->
+    header(['title'=>'Tid / Navn', 'width'=>30])->
     header(['title'=>'Besked'])->
     header(['width'=>1])->
   endHeaders();
@@ -20,10 +20,10 @@ while ($row = Database::next($result)) {
   $writer->startRow(['id'=>$row['id']])->
     startCell(['wrap'=>true])->
       startLine()->text($row['name'])->endLine()->
-      startLine(['minor'=>true,'dimmed'=>true,'top'=>5])->text(Dates::formatLongDateTime($row['time']))->endLine()->
+      startLine(['minor'=>true, 'dimmed'=>true, 'top'=>5])->text(Dates::formatLongDateTime($row['time']))->endLine()->
     endCell()->
     startCell()->text($row['text'])->endCell()->
-    startCell()->startIcons()->icon(['icon'=>'monochrome/delete','action'=>true,'revealing'=>true,'data'=>['action'=>'delete']])->endIcons()->endCell()->
+    startCell()->startIcons()->icon(['icon'=>'monochrome/delete', 'action'=>true, 'revealing'=>true, 'data'=>['action'=>'delete']])->endIcons()->endCell()->
   endRow();
 }
 Database::free($result);

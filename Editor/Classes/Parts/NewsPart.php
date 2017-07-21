@@ -13,7 +13,7 @@ Entity::$schema['NewsPart'] = [
   'properties' => [
     'align' => [ 'type' => 'string' ],
     'width' => [ 'type' => 'string' ],
-    'newsId' => ['type'=>'int', 'column' => 'news_id','relation'=>['class'=>'News','property'=>'id']],
+    'newsId' => ['type'=>'int', 'column' => 'news_id', 'relation'=>['class'=>'News', 'property'=>'id']],
     'mode' => [ 'type' => 'string' ],
     'title' => [ 'type' => 'string' ],
     'sortBy' => [ 'type' => 'string', 'column' => 'sortby' ],

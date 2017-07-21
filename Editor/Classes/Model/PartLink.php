@@ -12,15 +12,15 @@ Entity::$schema['PartLink'] = [
   'table' => 'part_link',
   'properties' => [
     'id' => ['type' => 'int'],
-    'partId' => ['type'=>'int','column'=>'part_id','relation'=>['class'=>'Part','property'=>'id']],
-    'sourceType' => ['type' => 'string','column'=>'source_type'],
-    'sourceText' => ['type' => 'string','column'=>'source_text'],
-    'targetValue' => ['type'=>'string','column'=>'target_value','relations'=>[
-      ['class'=>'Page','property'=>'id'],
-      ['class'=>'File','property'=>'id']
+    'partId' => ['type'=>'int', 'column'=>'part_id', 'relation'=>['class'=>'Part', 'property'=>'id']],
+    'sourceType' => ['type' => 'string', 'column'=>'source_type'],
+    'sourceText' => ['type' => 'string', 'column'=>'source_text'],
+    'targetValue' => ['type'=>'string', 'column'=>'target_value', 'relations'=>[
+      ['class'=>'Page', 'property'=>'id'],
+      ['class'=>'File', 'property'=>'id']
     ]
     ],
-    'targetType' => ['type' => 'string','column'=>'target_type']
+    'targetType' => ['type' => 'string', 'column'=>'target_type']
   ]
 ];
 class PartLink extends Entity {

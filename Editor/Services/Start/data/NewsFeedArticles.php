@@ -32,12 +32,12 @@ foreach($feed->getItems() as $item) {
   $writer->startRow()->
     startCell(['class'=>'news'])->startLine()->startStrong()->text($item->getTitle())->endStrong()->endLine()->
       startLine(['minor'=>true])->text($item->getDescription())->endline()->
-      startLine(['dimmed'=>true,'mini'=>true])->text(Dates::formatFuzzy($item->getPubDate()))->endLine()->
+      startLine(['dimmed'=>true, 'mini'=>true])->text(Dates::formatFuzzy($item->getPubDate()))->endLine()->
     endCell()->
     startCell(['class'=>'news']);
     if (Strings::isNotBlank($item->getLink())) {
       $writer->startIcons()->
-        icon(['icon'=>'monochrome/round_arrow_right','action'=>true,'revealing'=>true,'data'=>['url'=>$item->getLink()]])->
+        icon(['icon'=>'monochrome/round_arrow_right', 'action'=>true, 'revealing'=>true, 'data'=>['url'=>$item->getLink()]])->
       endIcons();
       //$writer->button(array('text'=>Strings::fromUnicode('Læs'),'data'=>array('url'=>$item->getLink())));
     }

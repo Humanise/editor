@@ -11,7 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['News'] = [
     'table' => 'news',
     'properties' => [
-      'imageId'   => ['type'=>'int','column'=>'image_id'],
+      'imageId'   => ['type'=>'int', 'column'=>'image_id'],
       'startdate'  => ['type'=>'datetime'],
       'enddate'  => ['type'=>'datetime']
     ]

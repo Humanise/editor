@@ -12,7 +12,7 @@ Entity::$schema['Emailaddress'] = [
     'table' => 'emailaddress',
     'properties' => [
       'address' => ['type'=>'string'],
-      'containingObjectId'   => ['type'=>'int','column'=>'containing_object_id']
+      'containingObjectId'   => ['type'=>'int', 'column'=>'containing_object_id']
     ]
 ];
 

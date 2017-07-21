@@ -14,7 +14,7 @@ Entity::$schema['File'] = [
     'properties' => [
       'filename'  => ['type'=>'string'],
       'size'    => ['type'=>'int'],
-      'mimetype'  => ['type'=>'string','column'=>'type']
+      'mimetype'  => ['type'=>'string', 'column'=>'type']
     ]
 ];
 

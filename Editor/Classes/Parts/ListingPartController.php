@@ -175,7 +175,7 @@ class ListingPartController extends PartController
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['Bullet list','da'=>'Punktopstilling']) =>
+      GuiUtils::getTranslated(['Bullet list', 'da'=>'Punktopstilling']) =>
       '
       <item label="{Bullet; da:Symbol}">
         <segmented name="listStyle">
@@ -224,7 +224,7 @@ class ListingPartController extends PartController
       </item>
       ',
 
-    GuiUtils::getTranslated(['Advanced','da'=>'Avanceret']) =>
+    GuiUtils::getTranslated(['Advanced', 'da'=>'Avanceret']) =>
       '
       <item label="{Word spacing; da:Ord-mellemrum}">
         <style-length-input name="wordSpacing" width="90"/>

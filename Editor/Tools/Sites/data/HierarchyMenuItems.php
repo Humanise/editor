@@ -22,7 +22,7 @@ foreach ($hierarchies as $hierarchy) {
   if ($hierarchy->getChanged()>$hierarchy->getPublished()) {
     $title.=' !';
   }
-  $writer->startItem(['icon'=>'common/hierarchy','kind'=>'hierarchy','value'=>$hierarchy->getId(),'title'=>$title]);
+  $writer->startItem(['icon'=>'common/hierarchy', 'kind'=>'hierarchy', 'value'=>$hierarchy->getId(), 'title'=>$title]);
   encodeLevel(0,$hierarchy->getId(),$writer);
   $writer->endItem();
 }

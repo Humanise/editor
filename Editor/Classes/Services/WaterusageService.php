@@ -10,9 +10,9 @@ if (!isset($GLOBALS['basePath'])) {
 
 class WaterusageService {
 
-  static $STATUS_ICONS = [0 => 'monochrome/round_question',1 => 'common/success',-1 => 'common/stop'];
-  static $STATUS_TEXT = [0 => 'Ukendt',1 => 'Valideret',-1 => 'Afvist'];
-  static $SOURCE_TEXT = [0 => 'Administrator',1 => 'Import',2 => 'Kunde'];
+  static $STATUS_ICONS = [0 => 'monochrome/round_question', 1 => 'common/success', -1 => 'common/stop'];
+  static $STATUS_TEXT = [0 => 'Ukendt', 1 => 'Valideret', -1 => 'Afvist'];
+  static $SOURCE_TEXT = [0 => 'Administrator', 1 => 'Import', 2 => 'Kunde'];
 
   static function overwrite($dummy) {
     $sql="select object_id from waterusage where number=".Database::text($dummy->getNumber())." and year=".Database::int($dummy->getYear());
@@ -183,10 +183,10 @@ class WaterusageService {
 
   static function parseAddress($str) {
     if (preg_match("/([^,]+),([\\w ]+,)[ ]?([0-9]+) ([\\w]+)/", $str,$matches)) {
-      return ['street'=>$matches[1],'zipcode'=>$matches[3],'city'=>$matches[4]];
+      return ['street'=>$matches[1], 'zipcode'=>$matches[3], 'city'=>$matches[4]];
     }
     if (preg_match("/([^,]+),[ ]?([0-9]+) ([\\w]+)/", $str,$matches)) {
-      return ['street'=>$matches[1],'zipcode'=>$matches[2],'city'=>$matches[3]];
+      return ['street'=>$matches[1], 'zipcode'=>$matches[2], 'city'=>$matches[3]];
     }
     return null;
   }

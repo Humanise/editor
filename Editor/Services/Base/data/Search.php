@@ -19,18 +19,18 @@ $sql.=" order by title";
 
 $result = Database::select($sql);
 
-$icons = ['page' => 'common/page','file' => 'file/generic', 'image' => 'common/image'];
+$icons = ['page' => 'common/page', 'file' => 'file/generic', 'image' => 'common/image'];
 
 $writer->startList();
   while ($row = Database::next($result)) {
     $icon = $icons[$row['kind']];
 
-    $writer->startRow(['id'=>$row['id'],'kind'=>$row['kind']])->
+    $writer->startRow(['id'=>$row['id'], 'kind'=>$row['kind']])->
       startCell(['icon'=>$icon])->startWrap()->text($row['title'])->endWrap()->endCell()->
       startCell(['width'=>1]);
       if ($row['kind']=='page') {
         $writer->startIcons()->
-          icon(['icon'=>'monochrome/edit','revealing'=>true,'action'=>true,'data'=>['action'=>'view']])->
+          icon(['icon'=>'monochrome/edit', 'revealing'=>true, 'action'=>true, 'data'=>['action'=>'view']])->
         endIcons();
       }
       $writer->endCell()->

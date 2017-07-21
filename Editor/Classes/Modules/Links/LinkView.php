@@ -139,7 +139,7 @@ class LinkView {
   }
 
   function addError($key,$message) {
-    $this->errors[] = ['key'=>$key,'message'=>$message];
+    $this->errors[] = ['key'=>$key, 'message'=>$message];
   }
 
   function hasError($key=null) {

@@ -82,7 +82,7 @@ class CalendarTemplateController extends TemplateController
 
         $result = Database::select($sql);
         while ($row = Database::next($result)) {
-      $eventQuery = ['calendarId'=>$row['id'],'startDate' => $query['startDate'],'endDate' => $query['endDate'],'calendarTitle' => $row['title']];
+      $eventQuery = ['calendarId'=>$row['id'], 'startDate' => $query['startDate'], 'endDate' => $query['endDate'], 'calendarTitle' => $row['title']];
       $events = array_merge($events,Event::getSimpleEvents($eventQuery));
     }
         Database::free($result);
@@ -132,7 +132,7 @@ class CalendarTemplateController extends TemplateController
       $xml.='<hour value="'.$i.'"/>';
     }
     $xml.='</weekview>';
-    return ['xml'=>$xml,'first'=>$firstWeekDay,'last' => $lastWeekDay,'next' => Dates::addDays($date,7),'previous' => Dates::addDays($date,-7)];
+    return ['xml'=>$xml, 'first'=>$firstWeekDay, 'last' => $lastWeekDay, 'next' => Dates::addDays($date,7), 'previous' => Dates::addDays($date,-7)];
   }
 
 
@@ -153,7 +153,7 @@ class CalendarTemplateController extends TemplateController
       if ($weekday==0) {
         $xml.='<week>';
       }
-      $title = Dates::formatDate($timestamp,['shortWeekday'=>true,'year'=>false]);
+      $title = Dates::formatDate($timestamp,['shortWeekday'=>true, 'year'=>false]);
       $title = mb_convert_encoding($title, "ISO-8859-1","UTF-8");
       $xml.='<day date="'.date("Ymd",$timestamp).'" today="'.(date("Ymd",$timestamp)==date("Ymd",time()) ? 'true' : 'false').'" selected="'.(date("Ymd",$timestamp)==date("Ymd",$date) ? 'true' : 'false').'" title="'.$title.'">';
       $xml.=Dates::buildTag('date',$timestamp);
@@ -174,7 +174,7 @@ class CalendarTemplateController extends TemplateController
       }
     }
     $xml.='</monthview>';
-    return ['xml'=>$xml,'first'=>$startDay,'last' => $endDay,'next' => Dates::addMonths($date,1),'previous' => Dates::addMonths($date,-1)];
+    return ['xml'=>$xml, 'first'=>$startDay, 'last' => $endDay, 'next' => Dates::addMonths($date,1), 'previous' => Dates::addMonths($date,-1)];
   }
 
   function buildEventXML(&$event) {
@@ -199,7 +199,7 @@ class CalendarTemplateController extends TemplateController
     for ($i=0; $i<$days; $i++) {
       $timestamp = Dates::addDays($startDay,$i);
       $timestampEnd = Dates::addDays($startDay,$i+1)-1;
-      $title = Dates::formatDate($timestamp,['shortWeekday'=>true,'year'=>false]);
+      $title = Dates::formatDate($timestamp,['shortWeekday'=>true, 'year'=>false]);
       $title = mb_convert_encoding($title, "ISO-8859-1","UTF-8");
       $xml.='<day date="'.date("Ymd",$timestamp).'" today="'.(date("Ymd",$timestamp)==date("Ymd",time()) ? 'true' : 'false').'" selected="'.(date("Ymd",$timestamp)==date("Ymd",$date) ? 'true' : 'false').'" title="'.$title.'">';
       $xml.=Dates::buildTag('date',$timestamp);
@@ -217,7 +217,7 @@ class CalendarTemplateController extends TemplateController
       $xml.='</day>';
     }
     $xml.='</listview>';
-    return ['xml'=>$xml,'first'=>$startDay,'last' => $endDay,'next' => Dates::addMonths($date,1),'previous' => Dates::addMonths($date,-1)];
+    return ['xml'=>$xml, 'first'=>$startDay, 'last' => $endDay, 'next' => Dates::addMonths($date,1), 'previous' => Dates::addMonths($date,-1)];
   }
 
   function buildAgendaView($date,$id,$refresh) {
@@ -231,7 +231,7 @@ class CalendarTemplateController extends TemplateController
       $xml.=$this->buildEventXML($event);
     }
     $xml.='</agendaview>';
-    return ['xml'=>$xml,'first'=>$startDay,'last' => $endDay,'next' => Dates::addMonths($date,1),'previous' => Dates::addMonths($date,-1)];
+    return ['xml'=>$xml, 'first'=>$startDay, 'last' => $endDay, 'next' => Dates::addMonths($date,1), 'previous' => Dates::addMonths($date,-1)];
   }
 
   function analyzeOverlaps(&$events,$day) {
@@ -270,7 +270,7 @@ class CalendarTemplateController extends TemplateController
       }
     }
     if (count($groups)==0 || !$found) {
-      $groups[] = [$first,$second];
+      $groups[] = [$first, $second];
     }
     return $groups;
   }

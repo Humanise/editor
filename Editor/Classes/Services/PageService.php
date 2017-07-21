@@ -196,7 +196,7 @@ class PageService {
             Log::warn('Page not found: ' . $pageId);
             return;
         }
-        $parameters = ['pageId'=>$pageId,'zoneId'=>$zoneId];
+        $parameters = ['pageId'=>$pageId, 'zoneId'=>$zoneId];
         $sql = "DELETE from securityzone_page where page_id=@int(pageId) and securityzone_id=@int(zoneId)";
         Database::delete($sql,$parameters);
         $sql = "INSERT into securityzone_page (page_id,securityzone_id) values (@int(pageId),@int(zoneId))";
@@ -213,7 +213,7 @@ class PageService {
             Log::warn('Page not found: ' . $pageId);
             return;
         }
-        $parameters = ['pageId'=>$pageId,'zoneId'=>$zoneId];
+        $parameters = ['pageId'=>$pageId, 'zoneId'=>$zoneId];
         $sql = "DELETE from securityzone_page where page_id=@int(pageId) and securityzone_id=@int(zoneId)";
         Database::delete($sql,$parameters);
         PageService::updateSecureStateOfAllPages();
@@ -228,7 +228,7 @@ class PageService {
             Log::warn('Zone not found: ' . $zoneId);
             return;
         }
-        $parameters = ['userId'=>$userId,'zoneId'=>$zoneId];
+        $parameters = ['userId'=>$userId, 'zoneId'=>$zoneId];
         $sql = "DELETE from securityzone_user where user_id=@int(userId) and securityzone_id=@int(zoneId)";
         Database::delete($sql,$parameters);
         $sql = "INSERT into securityzone_user (user_id,securityzone_id) values (@int(userId),@int(zoneId))";
@@ -244,7 +244,7 @@ class PageService {
             Log::warn('Zone not found: ' . $zoneId);
             return;
         }
-        $parameters = ['userId'=>$userId,'zoneId'=>$zoneId];
+        $parameters = ['userId'=>$userId, 'zoneId'=>$zoneId];
         $sql = "DELETE from securityzone_user where user_id=@int(userId) and securityzone_id=@int(zoneId)";
         Database::delete($sql,$parameters);
     }

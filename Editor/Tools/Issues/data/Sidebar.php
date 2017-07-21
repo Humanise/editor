@@ -10,13 +10,13 @@ $writer = new ItemsWriter();
 $writer->startItems();
 
 $writer->item([
-  'title' => ['Issues','da'=>'Sager'],
-  'value' => 'all','icon'=>'view/list',
+  'title' => ['Issues', 'da'=>'Sager'],
+  'value' => 'all', 'icon'=>'view/list',
   'badge' => IssueService::getTotalIssueCount()
 ]);
 
 $writer->item([
-  'title' => ['Feedback','da'=>'Feedback'],
+  'title' => ['Feedback', 'da'=>'Feedback'],
   'value' => 'babbelab',
   'kind' => 'feedback',
   'icon' => 'view/list'

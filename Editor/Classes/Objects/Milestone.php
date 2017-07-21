@@ -13,7 +13,7 @@ Entity::$schema['Milestone'] = [
     'properties' => [
       'deadline'  => ['type'=>'datetime'],
       'completed'  => ['type'=>'boolean'],
-      'containingObjectId'  => ['type'=>'int','column'=>'containing_object_id']
+      'containingObjectId'  => ['type'=>'int', 'column'=>'containing_object_id']
     ]
 ];
 

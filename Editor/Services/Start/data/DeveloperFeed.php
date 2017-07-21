@@ -29,7 +29,7 @@ foreach($feed->getItems() as $item) {
   $title = str_replace('in2isoft: ','',$title);
   $writer->startRow()->
     startCell(['class'=>'news'])->startLine()->text($title)->endLine()->
-    startLine(['dimmed'=>true,'mini'=>true])->text(Dates::formatFuzzy($item->getPubDate()))->endLine()->
+    startLine(['dimmed'=>true, 'mini'=>true])->text(Dates::formatFuzzy($item->getPubDate()))->endLine()->
     endCell()->
     endRow();
 }

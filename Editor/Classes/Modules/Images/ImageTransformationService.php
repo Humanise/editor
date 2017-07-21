@@ -54,7 +54,7 @@ class ImageTransformationService {
     if ($size[0]===null) {
       return null;
     }
-    return ['width'=>$size[0],'height'=>$size[1],'mime'=>$size['mime']];
+    return ['width'=>$size[0], 'height'=>$size[1], 'mime'=>$size['mime']];
   }
 
   static function fitInside($size,$box) {
@@ -67,7 +67,7 @@ class ImageTransformationService {
       $height = $box['height'];
       $width = round($size['width']*($box['height']/$size['height']));
     }
-    return ['width'=>$width,'height'=>$height];
+    return ['width'=>$width, 'height'=>$height];
   }
 
   static function cropInside($size,$box) {
@@ -112,7 +112,7 @@ class ImageTransformationService {
       $amount = 1;
     }
     $amount = $amount * -1;
-    $sharpenMatrix = [[$amount,$amount,$amount],[$amount,16,$amount],[$amount,$amount,$amount]];
+    $sharpenMatrix = [[$amount, $amount, $amount], [$amount, 16, $amount], [$amount, $amount, $amount]];
     $divisor = array_sum(array_map('array_sum', $sharpenMatrix));
     $offset = 0;
     imageconvolution($image, $sharpenMatrix, $divisor, $offset);
@@ -187,11 +187,11 @@ class ImageTransformationService {
         if (@$recipe['method']=='stretch') {
           // noop
         } else if (@$recipe['method']=='fit') {
-          $finalSize = ImageTransformationService::fitInside($originalInfo,['width'=>$finalWidth,'height'=>$finalHeight]);
+          $finalSize = ImageTransformationService::fitInside($originalInfo,['width'=>$finalWidth, 'height'=>$finalHeight]);
           $finalWidth = $finalSize['width'];
           $finalHeight = $finalSize['height'];
         } else if (@$recipe['method']=='crop') {
-          $pos = ImageTransformationService::cropInside($originalInfo,['width'=>$finalWidth,'height'=>$finalHeight]);
+          $pos = ImageTransformationService::cropInside($originalInfo,['width'=>$finalWidth, 'height'=>$finalHeight]);
           $left = $pos['left'];
           $top = $pos['top'];
           $originalWidth = $pos['width'];
@@ -251,7 +251,7 @@ class ImageTransformationService {
     @imagedestroy($image);
   }
 
-  static function _memoryCheck ($x, $y, $rgb=3) {
+  static function _memoryCheck($x, $y, $rgb=3) {
     $maxmem = 32*1024*1024;
     return ( $x * $y * $rgb * 1.7 < $maxmem - memory_get_usage() );
   }

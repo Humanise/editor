@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['CustomPart'] = [
   'table' => 'part_custom',
   'properties' => [
-    'workflowId' => [ 'type' => 'int', 'column' => 'workflow_id', 'relation' => ['class' => 'Workflow','property' => 'id'] ],
-    'viewId' => [ 'type' => 'int', 'column' => 'view_id', 'relation' => ['class' => 'View','property' => 'id'] ]
+    'workflowId' => [ 'type' => 'int', 'column' => 'workflow_id', 'relation' => ['class' => 'Workflow', 'property' => 'id'] ],
+    'viewId' => [ 'type' => 'int', 'column' => 'view_id', 'relation' => ['class' => 'View', 'property' => 'id'] ]
   ]
 ];
 

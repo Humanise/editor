@@ -28,7 +28,7 @@ class TestMailinglistPart extends UnitTestCase {
 
   function testMailinglists() {
     $obj = new MailinglistPart();
-    $obj->setMailinglistIds([10,12,345]);
+    $obj->setMailinglistIds([10, 12, 345]);
     $obj->save();
 
     $obj2 = MailinglistPart::load($obj->getId());
@@ -43,7 +43,7 @@ class TestMailinglistPart extends UnitTestCase {
 
   function testImport() {
     $obj = new MailinglistPart();
-    $obj->setMailinglistIds([10,12,345]);
+    $obj->setMailinglistIds([10, 12, 345]);
     $ctrl = new MailinglistPartController();
 
     $xml = $ctrl->build($obj,new PartContext());

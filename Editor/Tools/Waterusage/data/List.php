@@ -34,7 +34,7 @@ function listMeters($windowSize, $windowPage, $text, $sort, $direction) {
   $writer->sort($sort,$direction);
   $writer->window([ 'total' => $result->getTotal(), 'size' => $windowSize, 'page' => $windowPage ]);
   $writer->startHeaders();
-  $writer->header(['title'=>'Nummer','width'=>20,'key'=>'number','sortable'=>'true']);
+  $writer->header(['title'=>'Nummer', 'width'=>20, 'key'=>'number', 'sortable'=>'true']);
   $writer->header(['title'=>'Adresse']);
   $writer->header(['title'=>'Kontakt']);
   $writer->header(['title'=>'Seneste værdi']);
@@ -50,7 +50,7 @@ function listMeters($windowSize, $windowPage, $text, $sort, $direction) {
     $writer->startCell([ 'icon'=>$object->getIcon() ])->
       text( $object->getNumber() )->
       startIcons()->
-        icon(['icon'=>'monochrome/info','revealing'=>true,'action'=>true,'data'=>['action'=>'meterInfo','id'=>$object->getId()]])->
+        icon(['icon'=>'monochrome/info', 'revealing'=>true, 'action'=>true, 'data'=>['action'=>'meterInfo', 'id'=>$object->getId()]])->
       endIcons()->
     endCell()->
     startCell();
@@ -103,8 +103,8 @@ function listUsage($windowSize, $windowPage, $text, $filterKind, $year=null) {
   $writer->sort($sort,$direction);
   $writer->window([ 'total' => $result->getTotal(), 'size' => $windowSize, 'page' => $windowPage ]);
   $writer->startHeaders();
-  $writer->header(['title'=>'Målernummer','width'=>30]);
-  $writer->header(['title'=>'Værdi','width'=>30]);
+  $writer->header(['title'=>'Målernummer', 'width'=>30]);
+  $writer->header(['title'=>'Værdi', 'width'=>30]);
   $writer->header(['title'=>'Aflæsningsdato']);
   $writer->header(['title'=>'Opdateret']);
   $writer->header(['title'=>'Status']);
@@ -117,7 +117,7 @@ function listUsage($windowSize, $windowPage, $text, $filterKind, $year=null) {
     if ($meter) {
       $writer->startCell([ 'icon'=>$meter->getIcon() ])->text( $meter->getNumber() )->
         startIcons()->
-          icon(['icon'=>'monochrome/info','revealing'=>true,'action'=>true,'data'=>['action'=>'meterInfo','id'=>$meter->getId()]])->
+          icon(['icon'=>'monochrome/info', 'revealing'=>true, 'action'=>true, 'data'=>['action'=>'meterInfo', 'id'=>$meter->getId()]])->
         endIcons()->
       endCell();
     } else {
@@ -126,14 +126,14 @@ function listUsage($windowSize, $windowPage, $text, $filterKind, $year=null) {
     $writer->startCell([ 'icon'=>$object->getIcon() ])->
       text($object->getValue())->
       startIcons()->
-        icon(['icon'=>'monochrome/info','revealing'=>true,'action'=>true,'data'=>['action'=>'usageInfo','id'=>$object->getId()]])->
+        icon(['icon'=>'monochrome/info', 'revealing'=>true, 'action'=>true, 'data'=>['action'=>'usageInfo', 'id'=>$object->getId()]])->
       endIcons()->
     endCell()->
     startCell()->text(Dates::formatLongDate($object->getDate()))->endCell()->
     startCell()->text(Dates::formatFuzzy($object->getUpdated()))->endCell()->
     startCell(['align'=>'center'])->
       startIcons()->
-        icon(['icon'=>WaterusageService::getStatusIcon($object->getStatus()),'action'=>true,'data'=>['action'=>'usageStatus','id'=>$object->getId()]])->
+        icon(['icon'=>WaterusageService::getStatusIcon($object->getStatus()), 'action'=>true, 'data'=>['action'=>'usageStatus', 'id'=>$object->getId()]])->
       endIcons()->
 
     endCell()->
@@ -144,7 +144,7 @@ function listUsage($windowSize, $windowPage, $text, $filterKind, $year=null) {
 }
 
 function listLog($size, $page, $text) {
-  $result = LogService::getEntries(['category'=>'waterusage','page'=>$page, 'size'=>$size]);
+  $result = LogService::getEntries(['category'=>'waterusage', 'page'=>$page, 'size'=>$size]);
 
   $writer = new ListWriter();
 
@@ -152,7 +152,7 @@ function listLog($size, $page, $text) {
   $writer->sort($sort,$direction);
   $writer->window([ 'total' => $result->getTotal(), 'size' => $result->getWindowSize(), 'page' => $result->getWindowPage() ]);
   $writer->startHeaders();
-  $writer->header(['title'=>'Tid','width'=>30]);
+  $writer->header(['title'=>'Tid', 'width'=>30]);
   $writer->header(['title'=>'Besked']);
   $writer->endHeaders();
 

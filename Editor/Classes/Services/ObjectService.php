@@ -534,7 +534,7 @@ class ObjectService {
   }
 
   static function _find($parts,$query) {
-    $list = ['result' => [],'rows' => [],'windowPage' => 0,'windowSize' => 0,'total' => 0];
+    $list = ['result' => [], 'rows' => [], 'windowPage' => 0, 'windowSize' => 0, 'total' => 0];
 
     $sql = "select ".$parts['columns']." from ".$parts['tables'];
     if (isset($parts['joins']) && is_array($parts['joins']) && count($parts['joins'])>0) {

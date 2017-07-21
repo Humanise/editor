@@ -11,7 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Path'] = [
   'table' => 'path',
   'properties' => [
-      'pageId'   => ['type'=>'int','column'=>'page_id','relation'=> ['class'=>'Page','property'=>'id']],
+      'pageId'   => ['type'=>'int', 'column'=>'page_id', 'relation'=> ['class'=>'Page', 'property'=>'id']],
       'path'  => ['type'=>'string']
   ]
 ];

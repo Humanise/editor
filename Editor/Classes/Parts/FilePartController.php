@@ -69,7 +69,7 @@ class FilePartController extends PartController
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['File','da'=>'Fil']) => '
+      GuiUtils::getTranslated(['File', 'da'=>'Fil']) => '
       <icon icon="common/new" text="{Add file; da:Tilføj fil}" name="addFile"/>
       <icon icon="common/search" text="{Select file; da:Vælg fil}" name="chooseFile"/>
       <divider/>

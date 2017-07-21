@@ -32,7 +32,7 @@ foreach ($parameters as $parameter) {
   $name = $parameter['name'];
   $value = $parameter['value'];
   if ($name === 'sharpen') {
-    $recipe['filters'][] = ['name' => 'sharpen','amount' => ($value==='true' ? 1 : floatval($value))];
+    $recipe['filters'][] = ['name' => 'sharpen', 'amount' => ($value==='true' ? 1 : floatval($value))];
   } else if ($name === 'sharpen') {
     $recipe['filters'][] = ['name' => 'sharpen'];
   } else if ($name === 'greyscale' && $value==='true') {

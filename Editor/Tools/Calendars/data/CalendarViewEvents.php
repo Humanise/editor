@@ -24,7 +24,7 @@ function listSource($id,$force) {
   $out = [];
 
   foreach ($events as $event) {
-    $out[] = ['startTime'=>$event['startDate'],'endTime'=>$event['endDate'],'text'=>$event['summary']];
+    $out[] = ['startTime'=>$event['startDate'], 'endTime'=>$event['endDate'], 'text'=>$event['summary']];
   }
   Response::sendObject($out);
 }

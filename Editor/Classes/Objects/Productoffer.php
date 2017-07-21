@@ -12,8 +12,8 @@ Entity::$schema['Productoffer'] = [
   'table' => 'productoffer',
   'properties' => [
       'offer' => ['type'=>'string'],
-      'productId' => ['type'=>'int','column'=>'product_id'],
-      'personId' => ['type'=>'int','column'=>'person_id'],
+      'productId' => ['type'=>'int', 'column'=>'product_id'],
+      'personId' => ['type'=>'int', 'column'=>'person_id'],
       'expiry' => ['type'=>'datetime']
     ]
 ];

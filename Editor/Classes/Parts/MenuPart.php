@@ -11,7 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['MenuPart'] = [
   'table' => 'part_menu',
   'properties' => [
-    'hierarchyId' => [ 'type' => 'int', 'column' => 'hierarchy_id', 'relation' => ['class' => 'Hierarchy','property' => 'id'] ],
+    'hierarchyId' => [ 'type' => 'int', 'column' => 'hierarchy_id', 'relation' => ['class' => 'Hierarchy', 'property' => 'id'] ],
     'header' => [ 'type' => 'string' ],
     'variant' => [ 'type' => 'string' ],
         'depth' => [ 'type' => 'int' ],

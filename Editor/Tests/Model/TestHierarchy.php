@@ -30,10 +30,10 @@ class TestHierarchy extends UnitTestCase {
 
     $this->assertFalse($loaded->createItem([]));
     $this->assertFalse($loaded->createItem(['title'=>'My item']));
-    $this->assertFalse($loaded->createItem(['title'=>'My item','targetType'=>'url']));
-    $this->assertFalse($loaded->createItem(['title'=>'My item','targetType'=>'url','targetValue'=>'http://www.onlineobjects.com/']));
+    $this->assertFalse($loaded->createItem(['title'=>'My item', 'targetType'=>'url']));
+    $this->assertFalse($loaded->createItem(['title'=>'My item', 'targetType'=>'url', 'targetValue'=>'http://www.onlineobjects.com/']));
 
-    $itemId = $loaded->createItem(['title'=>'My item','targetType'=>'url','targetValue'=>'http://www.onlineobjects.com/','parent'=>0,'hidden'=>false]);
+    $itemId = $loaded->createItem(['title'=>'My item', 'targetType'=>'url', 'targetValue'=>'http://www.onlineobjects.com/', 'parent'=>0, 'hidden'=>false]);
     $this->assertTrue($itemId!==false);
     $this->assertFalse($hierarchy->canDelete());
 

@@ -11,7 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Securityzone'] = [
   'table' => 'securityzone',
   'properties' => [
-    'authenticationPageId'   => ['type'=>'int','column'=>'authentication_page_id', 'relation' => ['class' => 'Page', 'property' => 'id']]
+    'authenticationPageId'   => ['type'=>'int', 'column'=>'authentication_page_id', 'relation' => ['class' => 'Page', 'property' => 'id']]
   ]
 ];
 
@@ -50,12 +50,12 @@ class Securityzone extends Object {
 
   function addUser($userId) {
     $sql = "INSERT into securityzone_user (securityzone_id,user_id) values (@int(zoneId),@int(userId))";
-    Database::insert($sql,['zoneId'=>$this->id,'userId'=>$userId]);
+    Database::insert($sql,['zoneId'=>$this->id, 'userId'=>$userId]);
   }
 
   function removeUser($userId) {
     $sql = "DELETE from securityzone_user where securityzone_id=@int(zoneId) and user_id=@int(userId)";
-    Database::delete($sql,['zoneId'=>$this->id,'userId'=>$userId]);
+    Database::delete($sql,['zoneId'=>$this->id, 'userId'=>$userId]);
   }
 }
 ?>

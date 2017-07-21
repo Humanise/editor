@@ -47,7 +47,7 @@ class ToolService {
       }
     }
     foreach ($categorized as $key => &$value) {
-      usort($value,['ToolService','_priorityComparator']);
+      usort($value,['ToolService', '_priorityComparator']);
     }
     return $categorized;
   }

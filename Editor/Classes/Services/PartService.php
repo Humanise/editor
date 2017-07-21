@@ -215,28 +215,28 @@ class PartService {
     /** A map of all available parts */
     static function getParts() {
         return [
-            'header' =>  [ 'name' => ['da'=>'Overskrift','en'=>'Header'] ],
-            'text' =>  [ 'name' => ['da'=>'Tekst','en'=>'Text'] ],
-            'listing' =>  [ 'name' => ['da'=>'Punktopstilling','en'=>'Bullet list'] ],
-            'image' =>  [ 'name' => ['da'=>'Billede','en'=>'Image'] ],
-            'imagegallery' =>  [ 'name' => ['da'=>'Billedgalleri','en'=>'Image gallery'] ],
-            'horizontalrule' =>  [ 'name' => ['da'=>'Adskiller','en'=>'Divider'] ],
-            'table' =>  [ 'name' => ['da'=>'Tabel','en'=>'Table'] ],
-            'richtext' =>  [ 'name' => ['da'=>'Rig tekst','en'=>'Rich text'] ],
-            'file' =>  [ 'name' => ['da'=>'Fil','en'=>'File'] ],
-            'person' =>  [ 'name' => ['da'=>'Person','en'=>'Person'] ],
-            'news' =>  [ 'name' => ['da'=>'Nyheder','en'=>'News'] ],
-            'formula' =>  [ 'name' => ['da'=>'Formular','en'=>'Formula'] ],
-            'list' =>  [ 'name' => ['da'=>'Liste','en'=>'List'] ],
-            'mailinglist' =>  [ 'name' => ['da'=>'Postliste','en'=>'Mailing list'] ],
-            'html' =>  [ 'name' => ['da'=>'HTML','en'=>'HTML'] ],
-            'poster' =>  [ 'name' => ['da'=>'Plakat','en'=>'Poster'] ],
-            'map' =>  [ 'name' => ['da'=>'Kort','en'=>'Map'] ],
-            'movie' =>  [ 'name' => ['da'=>'Film','en'=>'Movie'] ],
-            'menu' =>  [ 'name' => ['da'=>'Menu','en'=>'Menu'] ],
-            'widget' =>  [ 'name' => ['da'=>'Widget','en'=>'Widget'] ],
-            'authentication' =>  [ 'name' => ['da'=>'Adgangskontrol','en'=>'Authentication'] ],
-            'custom' =>  [ 'name' => ['da'=>'Speciel','en'=>'Custom'] ]
+            'header' =>  [ 'name' => ['da'=>'Overskrift', 'en'=>'Header'] ],
+            'text' =>  [ 'name' => ['da'=>'Tekst', 'en'=>'Text'] ],
+            'listing' =>  [ 'name' => ['da'=>'Punktopstilling', 'en'=>'Bullet list'] ],
+            'image' =>  [ 'name' => ['da'=>'Billede', 'en'=>'Image'] ],
+            'imagegallery' =>  [ 'name' => ['da'=>'Billedgalleri', 'en'=>'Image gallery'] ],
+            'horizontalrule' =>  [ 'name' => ['da'=>'Adskiller', 'en'=>'Divider'] ],
+            'table' =>  [ 'name' => ['da'=>'Tabel', 'en'=>'Table'] ],
+            'richtext' =>  [ 'name' => ['da'=>'Rig tekst', 'en'=>'Rich text'] ],
+            'file' =>  [ 'name' => ['da'=>'Fil', 'en'=>'File'] ],
+            'person' =>  [ 'name' => ['da'=>'Person', 'en'=>'Person'] ],
+            'news' =>  [ 'name' => ['da'=>'Nyheder', 'en'=>'News'] ],
+            'formula' =>  [ 'name' => ['da'=>'Formular', 'en'=>'Formula'] ],
+            'list' =>  [ 'name' => ['da'=>'Liste', 'en'=>'List'] ],
+            'mailinglist' =>  [ 'name' => ['da'=>'Postliste', 'en'=>'Mailing list'] ],
+            'html' =>  [ 'name' => ['da'=>'HTML', 'en'=>'HTML'] ],
+            'poster' =>  [ 'name' => ['da'=>'Plakat', 'en'=>'Poster'] ],
+            'map' =>  [ 'name' => ['da'=>'Kort', 'en'=>'Map'] ],
+            'movie' =>  [ 'name' => ['da'=>'Film', 'en'=>'Movie'] ],
+            'menu' =>  [ 'name' => ['da'=>'Menu', 'en'=>'Menu'] ],
+            'widget' =>  [ 'name' => ['da'=>'Widget', 'en'=>'Widget'] ],
+            'authentication' =>  [ 'name' => ['da'=>'Adgangskontrol', 'en'=>'Authentication'] ],
+            'custom' =>  [ 'name' => ['da'=>'Speciel', 'en'=>'Custom'] ]
         ];
     }
 
@@ -255,7 +255,7 @@ class PartService {
             'file' => $parts['file'],
             'imagegallery' => $parts['imagegallery'],
             'y' => 'divider',
-            'advanced' => ['name'=>['da'=>'Avanceret','en'=>'Advanced'],'children'=>[
+            'advanced' => ['name'=>['da'=>'Avanceret', 'en'=>'Advanced'], 'children'=>[
                 'person' => $parts['person'],
                 'news' => $parts['news'],
                 'formula' => $parts['formula'],

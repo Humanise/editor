@@ -14,5 +14,5 @@ if (Request::isPost()) {
 
   }
 }
-Response::sendObject(['success' => false,'message' => 'Det lykkedes desværre ikke at ændre kodeordet']);
+Response::sendObject(['success' => false, 'message' => 'Det lykkedes desværre ikke at ændre kodeordet']);
 ?>

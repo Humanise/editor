@@ -20,8 +20,8 @@ if ($info = LinkService::getLinkInfo($id)) {
       <p class="hui_rendering_dimmed">' . LinkService::translateLinkType($info->getTargetType()) . '</p>' .
       '<p style="margin-top: 5px;">' .
       ( $info->getPartId()>0 ?
-          GuiUtils::getTranslated(['Only inserted in this section','da'=>'Kun indsat i dette afsnit']) :
-          GuiUtils::getTranslated(['Inserted everywhere on page','da'=>'Indsat overalt på siden'])
+          GuiUtils::getTranslated(['Only inserted in this section', 'da'=>'Kun indsat i dette afsnit']) :
+          GuiUtils::getTranslated(['Inserted everywhere on page', 'da'=>'Indsat overalt på siden'])
       ) .
       '</p>'
   ]);

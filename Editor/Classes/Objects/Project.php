@@ -11,7 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Project'] = [
   'table' => 'project',
   'properties' => [
-      'parentProjectId' => ['type'=>'int','column'=>'parent_project_id']
+      'parentProjectId' => ['type'=>'int', 'column'=>'parent_project_id']
   ]
 ];
 
@@ -65,7 +65,7 @@ class Project extends Object {
       while ($parent>0) {
           $sql = "select object.id,object.title,project.parent_project_id from project,object where project.object_id = object.id and object.id=".Database::int($parent);
           if ($row=Database::selectFirst($sql)) {
-              $output[] = ['id'=>$row['id'],'title'=>$row['title']];
+              $output[] = ['id'=>$row['id'], 'title'=>$row['title']];
               $parent = $row['parent_project_id'];
           } else {
               $parent = 0;
@@ -151,7 +151,7 @@ class Project extends Object {
       $ids = $this->getSubProjectIds();
     }
     $ids[] = $this->id;
-    $milestoneFilter = ['projects'=>$ids,'sort'=>'deadline'];
+    $milestoneFilter = ['projects'=>$ids, 'sort'=>'deadline'];
     if (isset($filter['completed'])) {
       $milestoneFilter['completed'] = $filter['completed'];
     }

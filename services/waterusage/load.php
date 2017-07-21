@@ -49,11 +49,11 @@ function buildChart($number) {
   $rows = Database::selectAll($sql);
   $entries = [];
   foreach ($rows as &$row) {
-    $entries[] = ['key'=>intval($row['time']),'value'=>intval($row['value']),'label' => $row['date']];
+    $entries[] = ['key'=>intval($row['time']), 'value'=>intval($row['value']), 'label' => $row['date']];
   }
 
 
-  return ['sets' => [['type'=>'line','entries'=> interpolate($entries)]]];
+  return ['sets' => [['type'=>'line', 'entries'=> interpolate($entries)]]];
 }
 
 function interpolate($entries) {
@@ -70,7 +70,7 @@ function interpolate($entries) {
       while ($num < $time) {
         $num += (60*60*24);
         $x = $latestValue + ($value - $latestValue) * ($num - $latestTime) / ($time - $latestTime);
-        $interpolated[] = ['key' => $num,'value' => $x, 'label' => strftime('%d-%m-%Y',$num)];
+        $interpolated[] = ['key' => $num, 'value' => $x, 'label' => strftime('%d-%m-%Y',$num)];
       }
     }
 

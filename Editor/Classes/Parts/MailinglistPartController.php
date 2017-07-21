@@ -147,7 +147,7 @@ class MailinglistPartController extends PartController
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['Mailing list','da'=>'Postliste']) => '
+      GuiUtils::getTranslated(['Mailing list', 'da'=>'Postliste']) => '
         <item label="{Mailing lists; da:Postlister}">
           <checkboxes name="lists">
           '.UI::buildOptions('mailinglist').'

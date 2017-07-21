@@ -68,52 +68,52 @@ class TestImageTransformationService extends UnitTestCase {
   }
 
   function testFitInside() {
-    $result = ImageTransformationService::fitInside(['width'=>200,'height'=>300],['width'=>100,'height'=>100]);
+    $result = ImageTransformationService::fitInside(['width'=>200, 'height'=>300],['width'=>100, 'height'=>100]);
     $this->assertEqual($result['height'],100);
     $this->assertEqual($result['width'],67);
 
-    $result = ImageTransformationService::fitInside(['width'=>2,'height'=>3],['width'=>100,'height'=>100]);
+    $result = ImageTransformationService::fitInside(['width'=>2, 'height'=>3],['width'=>100, 'height'=>100]);
     $this->assertEqual($result['height'],100);
     $this->assertEqual($result['width'],67);
 
-    $result = ImageTransformationService::fitInside(['width'=>300,'height'=>200],['width'=>100,'height'=>100]);
+    $result = ImageTransformationService::fitInside(['width'=>300, 'height'=>200],['width'=>100, 'height'=>100]);
     $this->assertEqual($result['height'],67);
     $this->assertEqual($result['width'],100);
 
-    $result = ImageTransformationService::fitInside(['width'=>300,'height'=>200],['width'=>200,'height'=>100]);
+    $result = ImageTransformationService::fitInside(['width'=>300, 'height'=>200],['width'=>200, 'height'=>100]);
     $this->assertEqual($result['height'],100);
     $this->assertEqual($result['width'],150);
 
     // Rectangular box
-    $result = ImageTransformationService::fitInside(['width'=>300,'height'=>200],['width'=>200,'height'=>100]);
+    $result = ImageTransformationService::fitInside(['width'=>300, 'height'=>200],['width'=>200, 'height'=>100]);
     $this->assertEqual($result['height'],100);
     $this->assertEqual($result['width'],150);
 
     // Rectangular box (scale up)
-    $result = ImageTransformationService::fitInside(['width'=>30,'height'=>20],['width'=>200,'height'=>100]);
+    $result = ImageTransformationService::fitInside(['width'=>30, 'height'=>20],['width'=>200, 'height'=>100]);
     $this->assertEqual($result['height'],100);
     $this->assertEqual($result['width'],150);
 
     // Same aspect ratio
-    $result = ImageTransformationService::fitInside(['width'=>400,'height'=>200],['width'=>200,'height'=>100]);
+    $result = ImageTransformationService::fitInside(['width'=>400, 'height'=>200],['width'=>200, 'height'=>100]);
     $this->assertEqual($result['height'],100);
     $this->assertEqual($result['width'],200);
   }
 
   function testCropInside() {
-    $result = ImageTransformationService::cropInside(['width'=>400,'height'=>200],['width'=>200,'height'=>200]);
+    $result = ImageTransformationService::cropInside(['width'=>400, 'height'=>200],['width'=>200, 'height'=>200]);
     $this->assertEqual($result['top'],0);
     $this->assertEqual($result['left'],100);
     $this->assertEqual($result['width'],200);
     $this->assertEqual($result['height'],200);
 
-    $result = ImageTransformationService::cropInside(['width'=>400,'height'=>200],['width'=>200,'height'=>400]);
+    $result = ImageTransformationService::cropInside(['width'=>400, 'height'=>200],['width'=>200, 'height'=>400]);
     $this->assertEqual($result['top'],0);
     $this->assertEqual($result['left'],150);
     $this->assertEqual($result['width'],100);
     $this->assertEqual($result['height'],200);
 
-    $result = ImageTransformationService::cropInside(['width'=>500,'height'=>400],['width'=>200,'height'=>200]);
+    $result = ImageTransformationService::cropInside(['width'=>500, 'height'=>400],['width'=>200, 'height'=>200]);
     $this->assertEqual($result['top'],0);
     $this->assertEqual($result['left'],50);
     $this->assertEqual($result['width'],400);

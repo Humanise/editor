@@ -41,7 +41,7 @@ class UI {
 
     $result = preg_replace("/<!DOCTYPE[^>]+>/u", "", $result);
     $result = str_replace(
-      [' xmlns="http://www.w3.org/1999/xhtml"',' xmlns:html="http://www.w3.org/1999/xhtml"']
+      [' xmlns="http://www.w3.org/1999/xhtml"', ' xmlns:html="http://www.w3.org/1999/xhtml"']
       ,'',$result);
     return $result;
   }

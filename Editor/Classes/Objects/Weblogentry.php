@@ -13,7 +13,7 @@ Entity::$schema['Weblogentry'] = [
   'properties' => [
       'text' => ['type'=>'string'],
       'date'  => ['type'=>'datetime'],
-      'pageId' => ['type'=>'int','column'=>'page_id']
+      'pageId' => ['type'=>'int', 'column'=>'page_id']
   ]
 ];
 

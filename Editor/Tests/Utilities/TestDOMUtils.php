@@ -95,7 +95,7 @@ class TestDOMUtils extends UnitTestCase {
 
   function testParseAnything() {
         $this->_testParseAnything(
-            ['<p>','<p></p>','<p/>'],
+            ['<p>', '<p></p>', '<p/>'],
             "<?xml version=\"1.0\"?>\n<p/>\n"
         );
 

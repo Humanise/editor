@@ -15,9 +15,9 @@ Entity::$schema['HierarchyItem'] = [
     'hidden' => ['type'=>'boolean'],
     'targetType' => ['type'=>'string'],
     'parent' => ['type' => 'int'],
-    'targetValue' => ['type'=>'int','relations' => [
-      ['class'=>'Page','property'=>'id'],
-      ['class'=>'File','property'=>'id']
+    'targetValue' => ['type'=>'int', 'relations' => [
+      ['class'=>'Page', 'property'=>'id'],
+      ['class'=>'File', 'property'=>'id']
       ]
     ]
   ]

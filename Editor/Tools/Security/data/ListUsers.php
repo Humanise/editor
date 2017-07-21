@@ -11,18 +11,18 @@ $writer = new ListWriter();
 
 $writer->startList()
   ->startHeaders()
-    ->header(['title'=>['Name','da'=>'Navn'],'width'=>40])
-    ->header(['title'=>['Username','da'=>'Brugernavn']])
-    ->header(['title'=>['E-mail','da'=>'E-post']])
-    ->header(['title'=>['Language','da'=>'Sprog']])
-    ->header(['title'=>['Internal','da'=>'Intern'],'align'=>'center'])
-    ->header(['title'=>['External','da'=>'Ekstern'],'align'=>'center'])
-    ->header(['title'=>'Administrator','align'=>'center'])
+    ->header(['title'=>['Name', 'da'=>'Navn'], 'width'=>40])
+    ->header(['title'=>['Username', 'da'=>'Brugernavn']])
+    ->header(['title'=>['E-mail', 'da'=>'E-post']])
+    ->header(['title'=>['Language', 'da'=>'Sprog']])
+    ->header(['title'=>['Internal', 'da'=>'Intern'], 'align'=>'center'])
+    ->header(['title'=>['External', 'da'=>'Ekstern'], 'align'=>'center'])
+    ->header(['title'=>'Administrator', 'align'=>'center'])
   ->endHeaders();
 
 $list = Query::after('user')->withText($text)->get();
 foreach ($list as $item) {
-  $writer->startRow(['kind'=>'user','id'=>$item->getId()])->
+  $writer->startRow(['kind'=>'user', 'id'=>$item->getId()])->
     startCell([ 'icon' => $item->getIcon() ])->text($item->getTitle())->endCell()->
     startCell()->text($item->getUsername())->endCell()->
     startCell()->text($item->getEmail())->endCell()->

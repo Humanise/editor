@@ -13,7 +13,7 @@ Entity::$schema['Newssourceitem'] = [
     'properties' => [
       'text' => ['type'=>'string'],
       'url' => ['type'=>'string'],
-      'newssourceId' => ['type' => 'int','column' => 'newssource_id'],
+      'newssourceId' => ['type' => 'int', 'column' => 'newssource_id'],
       'date' => ['type'=>'datetime'],
       'guid' => ['type'=>'string']
     ]

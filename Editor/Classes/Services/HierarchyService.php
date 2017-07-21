@@ -126,7 +126,7 @@ class HierarchyService {
       Log::debug('No title');
       return false;
     }
-    if (!in_array(@$options['targetType'],['page','pageref','file','email','url'])) {
+    if (!in_array(@$options['targetType'],['page', 'pageref', 'file', 'email', 'url'])) {
       Log::debug('Invalid targetType');
       return false;
     }
@@ -161,7 +161,7 @@ class HierarchyService {
     // find index
     if (isset($options['index'])) {
       $sql = "select id, `index` from hierarchy_item where `index` >= @int(index) and parent = @int(parent) and hierarchy_id = @int(hierarchy) order by `index`";
-      $result = Database::select($sql,['index'=>$options['index'],'parent'=>$options['parent'],'hierarchy'=>$options['hierarchyId']]);
+      $result = Database::select($sql,['index'=>$options['index'], 'parent'=>$options['parent'], 'hierarchy'=>$options['hierarchyId']]);
       while ($row = Database::next($result)) {
         Database::update("update hierarchy_item set `index`=@int(index) where `id`=@int(id)",[
           'id' => $row['id'],

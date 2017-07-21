@@ -12,7 +12,7 @@ $writer = new ListWriter();
 $writer->startList()->
   startHeaders()->
     header(['title'=>'Side'])->
-    header(['title'=>'Sprog','width'=>1])->
+    header(['title'=>'Sprog', 'width'=>1])->
     header(['width'=>1])->
   endHeaders();
 
@@ -25,7 +25,7 @@ foreach ($list as $row) {
     startCell()->icon(['icon'=>GuiUtils::getLanguageIcon($row['language'])])->endCell()->
     startCell()->
       startIcons()->
-        icon(['icon'=>'monochrome/delete','action'=>true,'data'=>['action'=>'delete']])->
+        icon(['icon'=>'monochrome/delete', 'action'=>true, 'data'=>['action'=>'delete']])->
       endIcons()->
     endCell()->
   endRow();

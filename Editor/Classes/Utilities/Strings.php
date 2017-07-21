@@ -106,8 +106,8 @@ class Strings {
     return Strings::escapeXML($str);
   }
 
-  static function htmlNumericEntities(&$str){
-    return preg_replace_callback('/[^!-%\x27-;=?-~ ]/', function($matches) {
+  static function htmlNumericEntities(&$str) {
+    return preg_replace_callback('/[^!-%\x27-;=?-~ ]/', function ($matches) {
       return "&#" . ord($matches[0]) . chr(59);
     }, $str);
   }
@@ -128,7 +128,7 @@ class Strings {
   }
 
   static function insertLineBreakTags($input,$tag) {
-    return str_replace(["\r\n","\r","\n"], $tag, $input);
+    return str_replace(["\r\n", "\r", "\n"], $tag, $input);
   }
 
   static function toBoolean($var) {

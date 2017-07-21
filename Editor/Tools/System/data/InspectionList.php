@@ -9,7 +9,7 @@ $writer = new ListWriter();
 
 $writer->startList();
 $writer->startHeaders();
-$writer->header(['title'=>'Problem','width'=>40]);
+$writer->header(['title'=>'Problem', 'width'=>40]);
 $writer->header(['title'=>'Objekt']);
 $writer->header(['title'=>'Kategori']);
 $writer->header(['width'=>1]);
@@ -41,7 +41,7 @@ foreach ($inspections as $inspection) {
     $writer->startCell()->endCell();
   }
   $writer->startCell()->text($inspection->getCategory())->endCell();
-  $writer->startCell()->button(['text'=>'Fiks','data'=>['type'=>'pages']])->endCell();
+  $writer->startCell()->button(['text'=>'Fiks', 'data'=>['type'=>'pages']])->endCell();
   $writer->endRow();
 }
 

@@ -56,7 +56,7 @@ class LogService {
 
   static function getPageNotFoundOverview($query = []) {
     $order = 'last';
-    if (isset($query['sort']) && in_array($query['sort'],['count','last','first','message'])) {
+    if (isset($query['sort']) && in_array($query['sort'],['count', 'last', 'first', 'message'])) {
       $order = $query['sort'];
     }
     $dir = 'desc';

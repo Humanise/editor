@@ -187,7 +187,7 @@ class ListPartController extends PartController
               //Log::debug('Calendarsource is dirty: '.$id);
               $dirty = true;
             }
-            $sourceEvents = $source->getEvents(['startDate'=>$from,'endDate'=>$to]);
+            $sourceEvents = $source->getEvents(['startDate'=>$from, 'endDate'=>$to]);
             foreach ($sourceEvents as $sourceEvent) {
               $item = new PartListItem();
               $item->setStartDate($sourceEvent['startDate']);
@@ -284,7 +284,7 @@ class ListPartController extends PartController
   }
 
   function sortItems(&$items) {
-    usort($items,['ListPartController','_startDateComparator']);
+    usort($items,['ListPartController', '_startDateComparator']);
   }
 
   function _startDateComparator($a, $b) {

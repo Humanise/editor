@@ -30,16 +30,16 @@ $writer = new ListWriter();
 
 $writer->startList()->
     sort($sort,$direction)->
-    window(['total'=>$result->getTotal(),'size'=>$windowSize,'page'=>$windowPage])->
+    window(['total'=>$result->getTotal(), 'size'=>$windowSize, 'page'=>$windowPage])->
     startHeaders()->
-      header(['title'=>['Name','da'=>'Navn'],'key'=>'title','sortable'=>true,'width'=>30])->
-      header(['title'=>['E-mail','da'=>'E-post'],'width'=>20])->
-      header(['title'=>['Phone','da'=>'Telefon'],'width'=>20])->
-      header(['title'=>['Address','da'=>'Adresse'],'width'=>20])->
+      header(['title'=>['Name', 'da'=>'Navn'], 'key'=>'title', 'sortable'=>true, 'width'=>30])->
+      header(['title'=>['E-mail', 'da'=>'E-post'], 'width'=>20])->
+      header(['title'=>['Phone', 'da'=>'Telefon'], 'width'=>20])->
+      header(['title'=>['Address', 'da'=>'Adresse'], 'width'=>20])->
       header(['width'=>1])->
     endHeaders();
 foreach ($result->getList() as $object) {
-  $writer->startRow(['id'=>$object->getId(),'kind'=>$object->getType(),'icon'=>'common/person','title'=>$object->getTitle()])->
+  $writer->startRow(['id'=>$object->getId(), 'kind'=>$object->getType(), 'icon'=>'common/person', 'title'=>$object->getTitle()])->
     startCell(['icon'=>'common/person'])->text($object->getTitle())->endCell();
   $writer->startCell();
   buildEmails($object,$writer);
@@ -79,14 +79,14 @@ function buildAddress($person,$writer) {
 function buildEmails($person,$writer) {
   $mails = Query::after('emailaddress')->withProperty('containingObjectId',$person->getId())->get();
   foreach ($mails as $mail) {
-    $writer->object(['icon'=>'common/email','text'=>$mail->getAddress()]);
+    $writer->object(['icon'=>'common/email', 'text'=>$mail->getAddress()]);
   }
 }
 
 function buildPhones($person,$writer) {
   $phones = Query::after('phonenumber')->withProperty('containingObjectId',$person->getId())->get();
   foreach ($phones as $phone) {
-    $writer->object(['icon'=>'common/phone','text'=>$phone->getNumber()]);
+    $writer->object(['icon'=>'common/phone', 'text'=>$phone->getNumber()]);
   }
 }
 ?>

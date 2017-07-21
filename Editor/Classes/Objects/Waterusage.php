@@ -11,7 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Waterusage'] = [
   'table' => 'waterusage',
   'properties' => [
-    'watermeterId'   => ['type'=>'int','column'=>'watermeter_id','relation'=> ['class'=>'Watermeter','property'=>'id']],
+    'watermeterId'   => ['type'=>'int', 'column'=>'watermeter_id', 'relation'=> ['class'=>'Watermeter', 'property'=>'id']],
     'value'  => ['type'=>'int'],
     'date'  => ['type'=>'datetime'],
     'status'  => ['type'=>'int'],

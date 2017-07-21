@@ -12,9 +12,9 @@ Entity::$schema['Product'] = [
   'table' => 'product',
   'properties' => [
       'number' => ['type'=>'string'],
-      'productTypeId' => ['type'=>'int','column'=>'producttype_id'],
-      'imageId' => ['type'=>'int','column'=>'image_id'],
-      'allowOffer' => ['type'=>'boolean','column'=>'allow_offer']
+      'productTypeId' => ['type'=>'int', 'column'=>'producttype_id'],
+      'imageId' => ['type'=>'int', 'column'=>'image_id'],
+      'allowOffer' => ['type'=>'boolean', 'column'=>'allow_offer']
     ]
 ];
 
@@ -121,7 +121,7 @@ class Product extends Object {
     $sql="select * from productattribute where product_id=".$this->id." order by `index`";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
-      $atts[] = ['name' => $row['name'],'value' => $row['value']];
+      $atts[] = ['name' => $row['name'], 'value' => $row['value']];
     }
     Database::free($result);
     return $atts;
@@ -132,7 +132,7 @@ class Product extends Object {
     $sql="select * from productprice where product_id=".$this->id." order by `index`";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
-      $atts[] = ['amount' => $row['amount'],'type' => $row['type'],'price' => floatval($row['price']),'currency' => $row['currency']];
+      $atts[] = ['amount' => $row['amount'], 'type' => $row['type'], 'price' => floatval($row['price']), 'currency' => $row['currency']];
     }
     Database::free($result);
     return $atts;
