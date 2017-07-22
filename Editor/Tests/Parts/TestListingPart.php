@@ -47,19 +47,19 @@ class TestListingPart extends UnitTestCase {
     $obj->setFontFamily('Verdana');
     $ctrl = new ListingPartController();
     $xml = $ctrl->build($obj,new PartContext());
-    $expected = '<part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="listing" id="20">'.
-      '<sub>'.
-      '<listing xmlns="http://uri.in2isoft.com/onlinepublisher/part/listing/1.0/">'.
-      '<style color="#eee" font-family="Verdana"/>'.
-      '<list type="">'.
-      '<item>'.
-        '<first> Lorem <strong>ipsum</strong> dolor <em>sit</em> amet,</first>'.
-        '<break/>'.
-        ' consectetur&lt;tag&gt; <del>adipisicing</del> elit<break/><break/>New paragraph<break/><break/><break/>Three &amp; new lines'.
-      '</item>'.
-      '</list>'.
-      '</listing>'.
-      '</sub>'.
+    $expected = '<part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="listing" id="20">' .
+      '<sub>' .
+      '<listing xmlns="http://uri.in2isoft.com/onlinepublisher/part/listing/1.0/">' .
+      '<style color="#eee" font-family="Verdana"/>' .
+      '<list type="">' .
+      '<item>' .
+        '<first> Lorem <strong>ipsum</strong> dolor <em>sit</em> amet,</first>' .
+        '<break/>' .
+        ' consectetur&lt;tag&gt; <del>adipisicing</del> elit<break/><break/>New paragraph<break/><break/><break/>Three &amp; new lines' .
+      '</item>' .
+      '</list>' .
+      '</listing>' .
+      '</sub>' .
       '</part>';
     $this->assertEqual($xml,$expected);
   }

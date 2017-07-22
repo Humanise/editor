@@ -11,7 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Source'] = [
     'table' => 'source',
     'properties' => [
-      'url' => ['type'=>'string'],
+      'url' => ['type' => 'string'],
       'synchronized' => ['type' => 'datetime'],
       'interval' => ['type' => 'int']
     ]

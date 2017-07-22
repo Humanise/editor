@@ -10,7 +10,7 @@ if (Request::exists('id')) {
 }
 $edit = Request::getBoolean('edit');
 
-$gui='
+$gui = '
 <gui xmlns="uri:hui" title="OnlinePublisher editor">
   <controller url="controller.js"/>
   <rows>
@@ -43,7 +43,7 @@ $gui='
     </tabs>
   </row>
   <row>
-    <media-simulator name="simulator" url="viewer/'.($edit ? '#edit' : '').'"/>
+    <media-simulator name="simulator" url="viewer/' . ($edit ? '#edit' : '') . '"/>
   </row>
   </rows>
   <!--

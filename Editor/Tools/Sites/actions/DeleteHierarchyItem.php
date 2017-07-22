@@ -9,7 +9,7 @@ $id = Request::getInt('id');
 
 $result = Hierarchy::deleteItem($id);
 
-if ($result===null) {
+if ($result === null) {
   Response::badRequest();
 }
 ?>

@@ -13,14 +13,14 @@ class TestLogin extends UnitTestCase {
 
     function testNotAllowed() {
         global $baseUrl, $basePath;
-        $url = ConfigurationService::getCompleteBaseUrl().'Editor/Services/Core/Authentication.php';
+        $url = ConfigurationService::getCompleteBaseUrl() . 'Editor/Services/Core/Authentication.php';
         $response = HttpClient::send(new WebRequest($url));
         $this->assertEqual(200,$response->getStatusCode());
         $obj = Strings::fromJSON($response->getBody());
         $this->assertFalse($obj->success);
         $this->assertNull($response->getHeader('Set-Cookie'));
 
-        $url = ConfigurationService::getCompleteBaseUrl().'Editor/index.php';
+        $url = ConfigurationService::getCompleteBaseUrl() . 'Editor/index.php';
         $request = new WebRequest($url);
 
         $response = HttpClient::send($request);
@@ -40,7 +40,7 @@ class TestLogin extends UnitTestCase {
         $user->setSecure(true);
         $user->save();
 
-        $url = ConfigurationService::getCompleteBaseUrl().'Editor/Services/Core/Authentication.php';
+        $url = ConfigurationService::getCompleteBaseUrl() . 'Editor/Services/Core/Authentication.php';
         $request = new WebRequest($url);
         $request->addParameter('username',$username);
         $request->addParameter('password',$password);
@@ -55,7 +55,7 @@ class TestLogin extends UnitTestCase {
         $cookie = $response->getHeader('Set-Cookie');
         $cookie = substr($cookie,0,strpos($cookie,';'));
 
-        $url = ConfigurationService::getCompleteBaseUrl().'Editor/index.php';
+        $url = ConfigurationService::getCompleteBaseUrl() . 'Editor/index.php';
         $request = new WebRequest($url);
         $request->addHeader('Cookie',$cookie);
 
@@ -65,7 +65,7 @@ class TestLogin extends UnitTestCase {
 
         // Try loading the user
 
-        $url = ConfigurationService::getCompleteBaseUrl().'Editor/Services/Model/LoadObject.php';
+        $url = ConfigurationService::getCompleteBaseUrl() . 'Editor/Services/Model/LoadObject.php';
         $request = new WebRequest($url);
         $request->addHeader('Cookie',$cookie);
         $request->addParameter('id',$user->getId());

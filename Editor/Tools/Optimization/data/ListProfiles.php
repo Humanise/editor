@@ -20,7 +20,7 @@ if (is_object($settings) && is_array($settings->profiles)) {
   foreach ($settings->profiles as $profile) {
 
     $writer->startRow()->
-      startCell(['icon'=>'common/page'])->text($profile->name)->endCell()->
+      startCell(['icon' => 'common/page'])->text($profile->name)->endCell()->
       startCell()->
         text($profile->url)->
         startIcons()->

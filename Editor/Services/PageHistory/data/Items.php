@@ -11,8 +11,8 @@ $writer = new ItemsWriter();
 
 
 
-$sql="select page_history.id,UNIX_TIMESTAMP(page_history.time) as time,page_history.message,object.title".
-" from page_history left join object on object.id=page_history.user_id where page_id=".Database::int($pageId)." order by page_history.time desc";
+$sql = "select page_history.id,UNIX_TIMESTAMP(page_history.time) as time,page_history.message,object.title" .
+" from page_history left join object on object.id=page_history.user_id where page_id=" . Database::int($pageId) . " order by page_history.time desc";
 
 $writer->startItems();
 

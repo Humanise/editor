@@ -29,8 +29,8 @@ class VCalParser {
       $latestLine = '';
         while (!feof($handle)) {
             $line = fgets($handle, 4096);
-        if ($line[0]==' ') {
-          $latestLine.=trim($line);
+        if ($line[0] == ' ') {
+          $latestLine .= trim($line);
         } else {
           $this->parseLine($latestLine,$cal);
           //echo 'PARSE!: '.$latestLine.'<br>';
@@ -48,52 +48,52 @@ class VCalParser {
 
   function parseLine($line,&$cal) {
     $parts = $this->splitLine($line);
-    if ($parts[0]=='BEGIN' && $parts[1]=='VEVENT') {
+    if ($parts[0] == 'BEGIN' && $parts[1] == 'VEVENT') {
       $this->latestEvent = new VEvent();
     }
-    elseif ($parts[0]=='END' && $parts[1]=='VEVENT') {
+    elseif ($parts[0] == 'END' && $parts[1] == 'VEVENT') {
       $cal->addEvent($this->latestEvent);
       $this->latestEvent = null;
     }
-    elseif ($parts[0]=='SUMMARY' && $this->latestEvent) {
+    elseif ($parts[0] == 'SUMMARY' && $this->latestEvent) {
       $this->latestEvent->setSummary($this->parseSummary($line));
     }
-    elseif ($parts[0]=='DESCRIPTION' && $this->latestEvent) {
+    elseif ($parts[0] == 'DESCRIPTION' && $this->latestEvent) {
       $this->latestEvent->setDescription($this->parseDescription($line));
     }
-    elseif ($parts[0]=='DTSTART' && $this->latestEvent) {
+    elseif ($parts[0] == 'DTSTART' && $this->latestEvent) {
       $date = $this->parseDateLine($parts);
       $this->latestEvent->setStartDate($date);
     }
-    elseif ($parts[0]=='DTEND' && $this->latestEvent) {
+    elseif ($parts[0] == 'DTEND' && $this->latestEvent) {
       $date = $this->parseDateLine($parts);
       $this->latestEvent->setEndDate($date);
     }
-    elseif ($parts[0]=='DURATION' && $this->latestEvent) {
+    elseif ($parts[0] == 'DURATION' && $this->latestEvent) {
       $dur = $this->parseDuration($parts[1]);
       $this->latestEvent->setDuration($dur);
     }
-    elseif ($parts[0]=='DTSTAMP' && $this->latestEvent) {
+    elseif ($parts[0] == 'DTSTAMP' && $this->latestEvent) {
       $date = $this->parseDateLine($parts);
       $this->latestEvent->setTimeStamp($date);
     }
-    elseif ($parts[0]=='UID' && $this->latestEvent) {
+    elseif ($parts[0] == 'UID' && $this->latestEvent) {
       $this->latestEvent->setUniqueId($parts[1]);
     }
-    elseif ($parts[0]=='LOCATION' && $this->latestEvent) {
+    elseif ($parts[0] == 'LOCATION' && $this->latestEvent) {
       $this->latestEvent->setLocation($this->decodeString($parts[1]));
     }
-    elseif ($parts[0]=='URL' && $this->latestEvent) {
+    elseif ($parts[0] == 'URL' && $this->latestEvent) {
       $this->latestEvent->setUrl($this->parseURLLine($line));
     }
-    elseif ($parts[0]=='RRULE' && $this->latestEvent) {
+    elseif ($parts[0] == 'RRULE' && $this->latestEvent) {
       $rule = $this->parseRecurrenceRule($parts);
       $this->latestEvent->addRecurrenceRule($rule);
-    } elseif ($parts[0]=='VERSION') {
+    } elseif ($parts[0] == 'VERSION') {
       $cal->setVersion($parts[1]);
-    } elseif ($parts[0]=='X-WR-CALNAME') {
+    } elseif ($parts[0] == 'X-WR-CALNAME') {
       $cal->setTitle($parts[1]);
-    } elseif ($parts[0]=='X-WR-TIMEZONE') {
+    } elseif ($parts[0] == 'X-WR-TIMEZONE') {
       $cal->setTimeZone($parts[1]);
     }
 
@@ -127,25 +127,25 @@ class VCalParser {
     $rule = new VRecurrenceRule();
     foreach ($parts as $part) {
       $elements = explode('=',$part);
-      if ($elements[0]=='FREQ') {
+      if ($elements[0] == 'FREQ') {
         $rule->setFrequency($elements[1]);
-      } elseif ($elements[0]=='INTERVAL') {
+      } elseif ($elements[0] == 'INTERVAL') {
         $rule->setInterval($elements[1]);
-      } elseif ($elements[0]=='COUNT') {
+      } elseif ($elements[0] == 'COUNT') {
         $rule->setCount($elements[1]);
-      } elseif ($elements[0]=='WKST') {
+      } elseif ($elements[0] == 'WKST') {
         $rule->setWeekStart($elements[1]);
-      } elseif ($elements[0]=='UNTIL') {
+      } elseif ($elements[0] == 'UNTIL') {
         $rule->setUntil($this->parseDate($elements[1]));
-      } elseif ($elements[0]=='BYMONTH') {
+      } elseif ($elements[0] == 'BYMONTH') {
         $rule->setByMonth(explode(',',$elements[1]));
-      } elseif ($elements[0]=='BYMONTHDAY') {
+      } elseif ($elements[0] == 'BYMONTHDAY') {
         $rule->setByMonthDay(explode(',',$elements[1]));
-      } elseif ($elements[0]=='BYDAY') {
+      } elseif ($elements[0] == 'BYDAY') {
         $rule->setByDay(explode(',',$elements[1]));
-      } elseif ($elements[0]=='BYYEARDAY') {
+      } elseif ($elements[0] == 'BYYEARDAY') {
         $rule->setByYearDay(explode(',',$elements[1]));
-      } elseif ($elements[0]=='BYWEEKNO') {
+      } elseif ($elements[0] == 'BYWEEKNO') {
         $rule->setByWeekNumber(explode(',',$elements[1]));
       }
     }
@@ -156,19 +156,19 @@ class VCalParser {
     if (preg_match("/PT([0-9]*)S/mi",$dur, $matches)) {
       return $matches[1];
     } elseif (preg_match("/PT([0-9]*)H([0-9]*)M/mi",$dur, $matches)) {
-      return $matches[1]*60*60+$matches[2]*60;
+      return $matches[1] * 60 * 60 + $matches[2] * 60;
     } elseif (preg_match("/PT([0-9]*)H/mi",$dur, $matches)) {
-      return $matches[1]*60*60;
+      return $matches[1] * 60 * 60;
     } else {
-      error_log("Could not parse duration: ".$dur);
+      error_log("Could not parse duration: " . $dur);
       return 0;
     }
   }
 
   function parseDateLine($parts) {
-    if (count($parts)==3) {
+    if (count($parts) == 3) {
       return $this->parseDate($parts[2]);
-    } elseif (count($parts)==2) {
+    } elseif (count($parts) == 2) {
       return $this->parseDate($parts[1]);
     } else {
       return null;
@@ -183,7 +183,7 @@ class VCalParser {
     } elseif (preg_match("/([0-9]{4})([0-9]{2})([0-9]{2})/mi",$date, $matches)) {
       return mktime ( 0,0, 0, $matches[2],$matches[3], $matches[1]);
     } else {
-      error_log('Could not parse date: '.$date);
+      error_log('Could not parse date: ' . $date);
       return 0;
     }
   }

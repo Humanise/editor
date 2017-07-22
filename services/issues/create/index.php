@@ -19,7 +19,7 @@ if (Strings::isBlank($description)) {
 }
 
 $issue = new Issue();
-$issue->setTitle($user.' from '.$site);
+$issue->setTitle($user . ' from ' . $site);
 $issue->setNote($description);
 $issue->setKind(Issue::$feedback);
 $issue->save();

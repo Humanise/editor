@@ -17,31 +17,31 @@ if (!$partType) {
 
 $part = PartService::getController($partType);
 
-$gui='
+$gui = '
 <gui xmlns="uri:hui" title="Toolbar">
   <controller url="js/PartToolbar.js"/>
-  <controller url="../../Parts/'.$partType.'/toolbar.js"/>
+  <controller url="../../Parts/' . $partType . '/toolbar.js"/>
   <script>
-  partToolbar.pageId='.InternalSession::getPageId().';
-  partToolbar.sectionId='.$sectionId.';
-  partToolbar.partId='.$partId.';
+  partToolbar.pageId=' . InternalSession::getPageId() . ';
+  partToolbar.sectionId=' . $sectionId . ';
+  partToolbar.partId=' . $partId . ';
   </script>
   <tabs small="true" below="true">';
-    if ($part!=null && is_array($part->getToolbars())) {
+    if ($part != null && is_array($part->getToolbars())) {
       foreach ($part->getToolbars() as $title => $body) {
-        $gui.='<tab title="'.$title.'" background="light">
+        $gui .= '<tab title="' . $title . '" background="light">
         <toolbar>
           <icon icon="common/stop" text="{Cancel; da:Annuller}" click="partToolbar.cancel()"/>
           <icon icon="common/ok" text="{Save; da:Gem}" click="partToolbar.save()"/>
           <icon icon="common/delete" text="{Delete; da:Slet}" click="partToolbar.deletePart()">
             <confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete; da:Ja, slet}" cancel="{Cancel; da:Annuller}"/>
           </icon>
-          <divider/>'.$body.
+          <divider/>' . $body .
         '</toolbar>
         </tab>';
       }
     }
-    $gui.='
+    $gui .= '
     <tab title="{Positioning; da:Afstande}" background="light">
       <toolbar>
         <icon icon="common/stop" text="{Cancel; da:Annuller}" click="partToolbar.cancel()"/>

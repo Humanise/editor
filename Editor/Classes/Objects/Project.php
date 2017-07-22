@@ -11,7 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Project'] = [
   'table' => 'project',
   'properties' => [
-      'parentProjectId' => ['type'=>'int', 'column'=>'parent_project_id']
+      'parentProjectId' => ['type' => 'int', 'column' => 'parent_project_id']
   ]
 ];
 
@@ -40,32 +40,32 @@ class Project extends Object {
 
   function sub_publish() {
     $data =
-    '<project xmlns="'.parent::_buildnamespace('1.0').'">'.
+    '<project xmlns="' . parent::_buildnamespace('1.0') . '">' .
     '</project>';
     return $data;
   }
 
   function removeMore() {
     // Set parent of subProjects to parent of this project
-    $sql = "update project set parent_project_id = ".Database::int($this->parentProjectId)." where parent_project_id=".Database::int($this->id);
+    $sql = "update project set parent_project_id = " . Database::int($this->parentProjectId) . " where parent_project_id=" . Database::int($this->id);
     Database::delete($sql);
     // Move task to parent project (or no containing object)
-    $sql = "update task set containing_object_id = ".Database::int($this->parentProjectId)." where containing_object_id=".Database::int($this->id);
+    $sql = "update task set containing_object_id = " . Database::int($this->parentProjectId) . " where containing_object_id=" . Database::int($this->id);
     Database::delete($sql);
   }
 
   //////////////////////// Convenience /////////////////////////
 
-  function getPath($includeSelf=false) {
+  function getPath($includeSelf = false) {
       $output = [];
       if ($includeSelf) {
           $output[] = ['id' => $this->id, 'title' => $this->title];
       }
       $parent = $this->parentProjectId;
-      while ($parent>0) {
-          $sql = "select object.id,object.title,project.parent_project_id from project,object where project.object_id = object.id and object.id=".Database::int($parent);
-          if ($row=Database::selectFirst($sql)) {
-              $output[] = ['id'=>$row['id'], 'title'=>$row['title']];
+      while ($parent > 0) {
+          $sql = "select object.id,object.title,project.parent_project_id from project,object where project.object_id = object.id and object.id=" . Database::int($parent);
+          if ($row = Database::selectFirst($sql)) {
+              $output[] = ['id' => $row['id'], 'title' => $row['title']];
               $parent = $row['parent_project_id'];
           } else {
               $parent = 0;
@@ -81,7 +81,7 @@ class Project extends Object {
   }
 
   function _getSubProjectIdsSpider($parent,&$ids) {
-    $sql = "select object_id from project where parent_project_id=".$parent;
+    $sql = "select object_id from project where parent_project_id=" . $parent;
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
         $ids[] = $row['object_id'];
@@ -90,16 +90,16 @@ class Project extends Object {
     Database::free($result);
   }
 
-  function getSubProjects($filter=[]) {
+  function getSubProjects($filter = []) {
     $output = [];
 
     $ids = [];
-    if ($filter['includeSubProjects']==true) {
+    if ($filter['includeSubProjects'] == true) {
       $ids = $this->getSubProjectIds();
     }
     $ids[] = $this->id;
 
-    $sql = "select object_id from project,object where project.object_id=object.id and parent_project_id in (".implode(",",$ids).") order by object.title";
+    $sql = "select object_id from project,object where project.object_id=object.id and parent_project_id in (" . implode(",",$ids) . ") order by object.title";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
         $output[] = Project::load($row['object_id']);
@@ -107,16 +107,16 @@ class Project extends Object {
     return $output;
   }
 
-  function getSubTasks($filter=[]) {
+  function getSubTasks($filter = []) {
     $output = [];
     $ids = [];
-    if ($filter['includeSubProjects']==true) {
+    if ($filter['includeSubProjects'] == true) {
       $ids = $this->getSubProjectIds();
     }
     $ids[] = $this->id;
 
-    $sql = "select object_id from task,object where task.object_id = object.id and containing_object_id in (".implode(",",$ids).")".
-    (isset($filter['completed']) ? " and task.completed=".Database::boolean($filter['completed']) : "").
+    $sql = "select object_id from task,object where task.object_id = object.id and containing_object_id in (" . implode(",",$ids) . ")" .
+    (isset($filter['completed']) ? " and task.completed=" . Database::boolean($filter['completed']) : "") .
     " order by object.title";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
@@ -126,7 +126,7 @@ class Project extends Object {
     return $output;
   }
 
-  function getSubProblems($filter=[]) {
+  function getSubProblems($filter = []) {
     $output = [];
     $ids = [];
     if ($filter['includeSubProjects']) {
@@ -134,8 +134,8 @@ class Project extends Object {
     }
     $ids[] = $this->id;
 
-    $sql = "select object_id from problem,object where problem.object_id = object.id and containing_object_id in (".implode(",",$ids).")".
-    (isset($filter['completed']) ? " and problem.completed=".Database::boolean($filter['completed']) : "").
+    $sql = "select object_id from problem,object where problem.object_id = object.id and containing_object_id in (" . implode(",",$ids) . ")" .
+    (isset($filter['completed']) ? " and problem.completed=" . Database::boolean($filter['completed']) : "") .
     " order by object.title";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
@@ -144,14 +144,14 @@ class Project extends Object {
     return $output;
   }
 
-  function getMilestones($filter=[]) {
+  function getMilestones($filter = []) {
 
     $ids = [];
-    if ($filter['includeSubProjects']==true) {
+    if ($filter['includeSubProjects'] == true) {
       $ids = $this->getSubProjectIds();
     }
     $ids[] = $this->id;
-    $milestoneFilter = ['projects'=>$ids, 'sort'=>'deadline'];
+    $milestoneFilter = ['projects' => $ids, 'sort' => 'deadline'];
     if (isset($filter['completed'])) {
       $milestoneFilter['completed'] = $filter['completed'];
     }
@@ -166,12 +166,12 @@ class Project extends Object {
   function getMaxFutureDeadlineOfChildren() {
       $maxTask = 0;
       $maxProblem = 0;
-      $sql = "select UNIX_TIMESTAMP(max(deadline)) as deadline from task where deadline>now() and containing_object_id=".$this->id;
-      if ($row=Database::selectFirst($sql)) {
+      $sql = "select UNIX_TIMESTAMP(max(deadline)) as deadline from task where deadline>now() and containing_object_id=" . $this->id;
+      if ($row = Database::selectFirst($sql)) {
           $maxTask = $row['deadline'];
       }
-      $sql = "select UNIX_TIMESTAMP(max(deadline)) as deadline from problem where deadline>now() and containing_object_id=".$this->id;
-      if ($row=Database::selectFirst($sql)) {
+      $sql = "select UNIX_TIMESTAMP(max(deadline)) as deadline from problem where deadline>now() and containing_object_id=" . $this->id;
+      if ($row = Database::selectFirst($sql)) {
           $maxProblem = $row['deadline'];
       }
       return max($maxTask,$maxProblem);
@@ -180,14 +180,14 @@ class Project extends Object {
   ////////////////////////// UI-support ////////////////////////
 
   function optionSpider($prefix,$parent,$ignore) {
-        $gui='';
-        $sql="SELECT object.id,object.title FROM project,object WHERE object.id=project.object_id and project.parent_project_id=".$parent." order by title";
+        $gui = '';
+        $sql = "SELECT object.id,object.title FROM project,object WHERE object.id=project.object_id and project.parent_project_id=" . $parent . " order by title";
         $result = Database::select($sql);
         while ($row = Database::next($result)) {
-            if ($row['id']!=$ignore) {
-                $title = $prefix.Strings::shortenString($row['title'],20);
-              $gui.='<option title="'.Strings::escapeEncodedXML($title).'" value="'.$row['id'].'"/>'.
-              Project::optionSpider($prefix.'··',$row['id'],$ignore);
+            if ($row['id'] != $ignore) {
+                $title = $prefix . Strings::shortenString($row['title'],20);
+              $gui .= '<option title="' . Strings::escapeEncodedXML($title) . '" value="' . $row['id'] . '"/>' .
+              Project::optionSpider($prefix . '··',$row['id'],$ignore);
           }
         }
         Database::free($result);

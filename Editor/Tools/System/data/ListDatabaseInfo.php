@@ -16,8 +16,8 @@ $writer = new ListWriter();
 
 $writer->startList()->
   startHeaders()->
-    header(['title'=>['Property', 'da'=>'Egenskab'], 'width'=>30])->
-    header(['title'=>['Value', 'da'=>'Værdi'], 'width'=>70])->
+    header(['title' => ['Property', 'da' => 'Egenskab'], 'width' => 30])->
+    header(['title' => ['Value', 'da' => 'Værdi'], 'width' => 70])->
   endHeaders()->
   startRow()->
     cell('Server')->cell($server)->

@@ -12,7 +12,7 @@ $type = Request::getString('type');
 $section = Request::getObject('section');
 
 
-$sql="update document_section set".
+$sql = "update document_section set" .
 " `left`=" . Database::text($section->left) .
 ",`right`=" . Database::text($section->right) .
 ",`top`=" . Database::text($section->top) .

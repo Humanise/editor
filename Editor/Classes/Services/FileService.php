@@ -21,79 +21,79 @@ class FileService {
     ],
     ['kind' => 'image.jpeg', 'category' => 'image', 'label' => 'JPEG billede',
       'mimetypes' => ['image/jpeg', 'image/pjpeg'],
-      'extensions'=>['jpg', 'jpeg', 'pjpeg']
+      'extensions' => ['jpg', 'jpeg', 'pjpeg']
     ],
     ['kind' => 'image.png', 'category' => 'image', 'label' => 'PNG billede',
       'mimetypes' => ['image/png'],
-      'extensions'=>['png']
+      'extensions' => ['png']
     ],
     ['kind' => 'image.gif', 'category' => 'image', 'label' => 'GIF billede',
       'mimetypes' => ['image/gif'],
-      'extensions'=>['gif']
+      'extensions' => ['gif']
     ],
     ['kind' => 'image.tiff', 'category' => 'image', 'label' => 'TIFF billede',
       'mimetypes' => ['image/tif', 'image/tiff'],
-      'extensions'=>['tif', 'tiff']
+      'extensions' => ['tif', 'tiff']
     ],
     ['kind' => 'image.photoshop', 'category' => 'image', 'label' => 'Adobe Photoshop',
       'mimetypes' => ['application/x-photoshop'],
-      'extensions'=>['psd']
+      'extensions' => ['psd']
     ],
     ['kind' => 'multimedia.flash', 'category' => 'multimedia', 'label' => 'Adobe Flash',
       'mimetypes' => ['application/x-shockwave-flash'],
-      'extensions'=>['swf']
+      'extensions' => ['swf']
     ],
     ['kind' => 'document.html', 'category' => 'document', 'label' => 'HTML-dokument',
       'mimetypes' => ['text/html', 'application/xhtml+xml'],
-      'extensions'=>['html', 'htm', 'xhtml']
+      'extensions' => ['html', 'htm', 'xhtml']
     ],
     ['kind' => 'document.pdf', 'category' => 'document', 'label' => 'PDF-dokument',
       'mimetypes' => ['application/pdf'],
-      'extensions'=>['pdf']
+      'extensions' => ['pdf']
     ],
     ['kind' => 'archive.zip', 'category' => 'archive', 'label' => 'ZIP-arkiv',
       'mimetypes' => ['application/zip', 'application/x-gzip'],
-      'extensions'=>['zip', 'gz']
+      'extensions' => ['zip', 'gz']
     ],
     ['kind' => 'data.xml', 'category' => 'data', 'label' => 'XML-data',
       'mimetypes' => ['text/xml'],
-      'extensions'=>['xml', 'xsl']
+      'extensions' => ['xml', 'xsl']
     ],
     ['kind' => 'document.text', 'category' => 'document', 'label' => 'Tekst',
       'mimetypes' => ['text/plain'],
-      'extensions'=>['txt']
+      'extensions' => ['txt']
     ],
     ['kind' => 'document.rtf', 'category' => 'document', 'label' => 'RTF-dokument',
       'mimetypes' => ['text/rtf'],
-      'extensions'=>['rtf']
+      'extensions' => ['rtf']
     ],
     ['kind' => 'document.excel', 'category' => 'document', 'label' => 'Microsoft Excel',
       'mimetypes' => ['application/vnd.ms-excel'],
-      'extensions'=>['xls']
+      'extensions' => ['xls']
     ],
     ['kind' => 'document.powerpoint', 'category' => 'document', 'label' => 'Microsoft PowerPoint',
       'mimetypes' => ['application/vnd.ms-powerpoint'],
-      'extensions'=>['ppt']
+      'extensions' => ['ppt']
     ],
     ['kind' => 'audio.windowsmedia', 'category' => 'audio', 'label' => 'Windows Media Audio',
       'mimetypes' => ['audio/x-ms-wma'],
-      'extensions'=>[]
+      'extensions' => []
     ],
     ['kind' => 'audio.windowsmedia.playlist', 'category' => 'audio', 'label' => 'Windows Media Playlist',
       'mimetypes' => ['application/vnd.ms-wpl'],
-      'extensions'=>['wpl']
+      'extensions' => ['wpl']
     ],
     ['kind' => 'video.mpeg4', 'category' => 'video', 'label' => 'MPEG-4 film',
       'mimetypes' => ['video/mp4'],
-      'extensions'=>['mp4']
+      'extensions' => ['mp4']
     ],
     ['kind' => 'video.quicktime', 'category' => 'video', 'label' => 'QuickTime film',
       'mimetypes' => ['video/quicktime'],
-      'extensions'=>['mov']
+      'extensions' => ['mov']
     ],
     ['kind' => 'document.ibooks', 'category' => 'document', 'label' => 'iBooks bog',
       'mimetypes' => ['application/x-ibooks+zip'],
-      'extensions'=>['ibooks']
+      'extensions' => ['ibooks']
     ]
   ];
 
@@ -108,7 +108,7 @@ class FileService {
   static function mimeTypeToInfo($mime) {
     foreach (FileService::$types as $type) {
       foreach ($type['mimetypes'] as $mimeType) {
-        if ($mime===$mimeType) {
+        if ($mime === $mimeType) {
           return $type;
         }
       }
@@ -119,7 +119,7 @@ class FileService {
   static function extensionToInfo($ext) {
     foreach (FileService::$types as $type) {
       foreach ($type['extensions'] as $extension) {
-        if ($ext===$extension) {
+        if ($ext === $extension) {
           return $type;
         }
       }
@@ -144,7 +144,7 @@ class FileService {
   static function mimeTypeToExtension($mime) {
     if ($info = FileService::mimeTypeToInfo($mime)) {
       $ext = $info['extensions'];
-      if (count($ext)>0) {
+      if (count($ext) > 0) {
         return $ext[0];
       }
     }
@@ -153,7 +153,7 @@ class FileService {
 
   static function kindToMimeTypes($kind) {
     foreach (FileService::$types as $type) {
-      if ($type['kind']===$kind) {
+      if ($type['kind'] === $kind) {
         return $type['mimetypes'];
       }
     }
@@ -163,7 +163,7 @@ class FileService {
   static function extensionToMimeType($ext) {
     if ($info = FileService::extensionToInfo($ext)) {
       $mimes = $info['mimetypes'];
-      if (count($mimes)>0) {
+      if (count($mimes) > 0) {
         return $mimes[0];
       }
     }
@@ -185,7 +185,7 @@ class FileService {
     $fileName = FileSystemService::safeFilename($_FILES['file']['name']);
     $fileType = $_FILES["file"]["type"];
     $tempFile = $_FILES['file']['tmp_name'];
-    $uploadDir = $basePath.'files/';
+    $uploadDir = $basePath . 'files/';
     $filePath = $uploadDir . $fileName;
     $fileSize = $_FILES["file"]["size"];
 
@@ -193,10 +193,10 @@ class FileService {
     $fileName = FileSystemService::getFileBaseName($filePath);
 
     $errorMessage = false;
-    $errorDetails='';
+    $errorDetails = '';
 
     if (file_exists($filePath)) {
-      $errorMessage='Filen findes allerede';
+      $errorMessage = 'Filen findes allerede';
     }
     else if (!move_uploaded_file($tempFile, $filePath)) {
       $errorMessage = 'Kunne ikke flytte filen fra cachen';
@@ -209,8 +209,8 @@ class FileService {
         // Delete old file
         $oldFilename = $file->getFilename();
 
-        if (!unlink ($basePath.'files/'.$oldFilename)) {
-          $errorMessage='Kunne ikke slette alt fra serveren';
+        if (!unlink ($basePath . 'files/' . $oldFilename)) {
+          $errorMessage = 'Kunne ikke slette alt fra serveren';
         }
         $file->setFilename($fileName);
         $file->setSize($fileSize);
@@ -218,10 +218,10 @@ class FileService {
         $file->save();
         $file->publish();
       } else {
-        $errorMessage='Kunne ikke finde fil med id='.$id;
+        $errorMessage = 'Kunne ikke finde fil med id=' . $id;
       }
     }
-    return ['success' => ($errorMessage===false), 'errorMessage' => $errorMessage, 'errorDetails' => $errorDetails];
+    return ['success' => ($errorMessage === false), 'errorMessage' => $errorMessage, 'errorDetails' => $errorDetails];
   }
 
   /**
@@ -230,36 +230,36 @@ class FileService {
    * @param int $group Optional ID of FileGroup to place the file in
    * @return array An array describing the success of the procedure
    */
-  static function createUploadedFile($title='',$group=0) {
+  static function createUploadedFile($title = '',$group = 0) {
     global $basePath;
     $fileName = $_FILES['file']['name'];
     $fileType = $_FILES["file"]["type"];
     $tempFile = $_FILES['file']['tmp_name'];
     $fileSize = $_FILES["file"]["size"];
 
-    if ($fileType=='application/octet-stream') {
+    if ($fileType == 'application/octet-stream') {
       $fileType = FileService::fileNameToMimeType($fileName);
     }
     $fileName = FileSystemService::safeFilename($fileName);
-    $uploadDir = $basePath.'files/';
+    $uploadDir = $basePath . 'files/';
     $filePath = $uploadDir . $fileName;
 
     $filePath = FileSystemService::findFreeFilePath($filePath);
     $fileName = FileSystemService::getFileBaseName($filePath);
 
-    $errorMessage=false;
-    $errorDetails='';
+    $errorMessage = false;
+    $errorDetails = '';
 
     if (file_exists($filePath)) {
-      $errorMessage='Filen findes allerede';
+      $errorMessage = 'Filen findes allerede';
     }
     else if (!move_uploaded_file($tempFile, $filePath)) {
-      $errorMessage='Kunne ikke flytte filen fra cachen';
+      $errorMessage = 'Kunne ikke flytte filen fra cachen';
     }
     $result = new ImportResult();
     if (!$errorMessage) {
 
-      if ($title=='') {
+      if ($title == '') {
         $title = FileSystemService::filenameToTitle($fileName);
       }
 
@@ -274,8 +274,8 @@ class FileService {
       $fileId = $file->getId();
 
       // Add to group
-      if ($group>0) {
-        $sql="insert into filegroup_file (file_id,filegroup_id) values (".Database::int($fileId).",".Database::int($group).")";
+      if ($group > 0) {
+        $sql = "insert into filegroup_file (file_id,filegroup_id) values (" . Database::int($fileId) . "," . Database::int($group) . ")";
         Database::insert($sql);
       }
       $result->setSuccess(true);
@@ -295,17 +295,17 @@ class FileService {
     $type = $remote->getContentType();
     $filename = $remote->getFilename();
     $size = filesize($path);
-    if ($filename==='') {
+    if ($filename === '') {
       $filename = 'newfile';
-      if ($type!=null) {
+      if ($type != null) {
         $extension = FileService::mimeTypeToExtension($type);
-        if ($extension!=null) {
-          $filename.='.'.$extension;
+        if ($extension != null) {
+          $filename .= '.' . $extension;
         }
       }
     }
     $filename = FileSystemService::safeFilename($filename);
-    $newPath = FileSystemService::findFreeFilePath($basePath.'files/'.$filename);
+    $newPath = FileSystemService::findFreeFilePath($basePath . 'files/' . $filename);
     if (!@rename($path,$newPath)) {
       return ['success' => false, 'message' => 'Der skete en uventet fejl '];
     }
@@ -336,7 +336,7 @@ class FileService {
   }
 
   static function getFileFilename($id) {
-    $sql = "select filename from file where object_id=".Database::int($id);
+    $sql = "select filename from file where object_id=" . Database::int($id);
     if ($row = Database::selectFirst($sql)) {
       return $row['filename'];
     }
@@ -345,7 +345,7 @@ class FileService {
 
   static function getGroupCounts() {
     $out = [];
-    $sql="select distinct object.id,object.title,count(file.object_id) as filecount from filegroup, filegroup_file, file,object  where filegroup_file.filegroup_id=filegroup.object_id and filegroup_file.file_id = file.object_id and object.id=filegroup.object_id group by filegroup.object_id union select object.id,object.title,'0' from object left join filegroup_file on filegroup_file.filegroup_id=object.id where object.type='filegroup' and filegroup_file.file_id is null order by title";
+    $sql = "select distinct object.id,object.title,count(file.object_id) as filecount from filegroup, filegroup_file, file,object  where filegroup_file.filegroup_id=filegroup.object_id and filegroup_file.file_id = file.object_id and object.id=filegroup.object_id group by filegroup.object_id union select object.id,object.title,'0' from object left join filegroup_file on filegroup_file.filegroup_id=object.id where object.type='filegroup' and filegroup_file.file_id is null order by title";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
       $out[] = [

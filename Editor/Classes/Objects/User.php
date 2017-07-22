@@ -11,14 +11,14 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['User'] = [
   'table' => 'user',
   'properties' => [
-      'username'   => ['type'=>'string'],
-      'password'  => ['type'=>'string'],
-      'email'  => ['type'=>'string'],
-      'language'  => ['type'=>'string'],
-      'internal'  => ['type'=>'boolean'],
-      'external'  => ['type'=>'boolean'],
-      'administrator'  => ['type'=>'boolean'],
-      'secure'  => ['type'=>'boolean']
+      'username' => ['type' => 'string'],
+      'password' => ['type' => 'string'],
+      'email' => ['type' => 'string'],
+      'language' => ['type' => 'string'],
+      'internal' => ['type' => 'boolean'],
+      'external' => ['type' => 'boolean'],
+      'administrator' => ['type' => 'boolean'],
+      'secure' => ['type' => 'boolean']
   ]
 ];
 
@@ -110,21 +110,21 @@ class User extends Object {
   }
 
   function removeMore() {
-    $sql = "delete from securityzone_user where user_id=".Database::int($this->id);
+    $sql = "delete from securityzone_user where user_id=" . Database::int($this->id);
     Database::delete($sql);
-    $sql = "delete from user_permission where user_id=".Database::int($this->id);
+    $sql = "delete from user_permission where user_id=" . Database::int($this->id);
     Database::delete($sql);
   }
 
   function sub_publish() {
-    return '<user xmlns="'.parent::_buildnamespace('1.0').'">'.
-      '<username>'.Strings::escapeEncodedXML($this->username).'</username>'.
+    return '<user xmlns="' . parent::_buildnamespace('1.0') . '">' .
+      '<username>' . Strings::escapeEncodedXML($this->username) . '</username>' .
       '</user>';
   }
 
   function isValid() {
     if (!AuthenticationService::isValidUsername($this->username)) {
-      Log::debug('Invalid username: '.$this->username);
+      Log::debug('Invalid username: ' . $this->username);
       return false;
     }
     return true;

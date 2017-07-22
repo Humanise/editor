@@ -13,31 +13,31 @@ class TestHtmlDocument extends UnitTestCase {
 
     function testGetBodyContents() {
     $doc = new HtmlDocument();
-    $this->assertTrue($doc->getBodyContents()=='');
+    $this->assertTrue($doc->getBodyContents() == '');
 
     $doc = new HtmlDocument('<html><body></body></html>');
-    $this->assertTrue($doc->getBodyContents()=='');
+    $this->assertTrue($doc->getBodyContents() == '');
 
     $doc = new HtmlDocument('<html><body><p>fsdfjskjfsl</p></body></html>');
-    $this->assertTrue($doc->getBodyContents()=='<p>fsdfjskjfsl</p>');
+    $this->assertTrue($doc->getBodyContents() == '<p>fsdfjskjfsl</p>');
 
     $doc = new HtmlDocument('<html><body<p>fsdfjskjfsl</p></body></html>');
-    $this->assertTrue($doc->getBodyContents()=='');
+    $this->assertTrue($doc->getBodyContents() == '');
 
     $doc = new HtmlDocument('<html><body><p>fsdfjskjfsl</p></body</html>');
-    $this->assertTrue($doc->getBodyContents()=='');
+    $this->assertTrue($doc->getBodyContents() == '');
 
     $doc = new HtmlDocument('<html><body><p>¡“§£∞™¶[≤<>]”</p></body></html>');
-    $this->assertTrue($doc->getBodyContents()=='<p>¡“§£∞™¶[≤<>]”</p>');
+    $this->assertTrue($doc->getBodyContents() == '<p>¡“§£∞™¶[≤<>]”</p>');
 
     $doc = new HtmlDocument('<html><body           ><p>fsdfjskjfsl</p></body    ></html>');
-    $this->assertTrue($doc->getBodyContents()=='<p>fsdfjskjfsl</p>');
+    $this->assertTrue($doc->getBodyContents() == '<p>fsdfjskjfsl</p>');
 
     //$doc = new HtmlDocument('<html><body ƒƒ†¥=ƒ†ƒƒƒƒƒ††¥ƒ†ƒ©«ƒ«≠≠""><p>fsdfjskjfsl</p></body></html>');
     //$this->assertTrue($doc->getBodyContents()=='<p>fsdfjskjfsl</p>');
 
     $doc = new HtmlDocument('<html><body abx=""><p>fsdfjskjfsl</p></body></html>');
-    $this->assertTrue($doc->getBodyContents()=='<p>fsdfjskjfsl</p>');
+    $this->assertTrue($doc->getBodyContents() == '<p>fsdfjskjfsl</p>');
     }
 }
 ?>

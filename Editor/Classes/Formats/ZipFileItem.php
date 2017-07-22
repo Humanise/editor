@@ -20,8 +20,8 @@ class ZipFileItem {
 
   function extract() {
     global $basePath;
-    $extracted = $this->delegate->extractByIndex($this->info['index'],$basePath.'local/cache/temp');
-    if ($extracted[0]['status']=='ok') {
+    $extracted = $this->delegate->extractByIndex($this->info['index'],$basePath . 'local/cache/temp');
+    if ($extracted[0]['status'] == 'ok') {
       return $extracted[0]['filename'];
     }
     return null;

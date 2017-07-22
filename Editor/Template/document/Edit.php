@@ -5,7 +5,7 @@
  */
 require_once '../../Include/Private.php';
 
-$gui='
+$gui = '
 <frames xmlns="uri:hui">
   <frame url="Toolbar.php" scrolling="false" name="Toolbar"/>
   <frame url="Editor.php" name="Frame"/>

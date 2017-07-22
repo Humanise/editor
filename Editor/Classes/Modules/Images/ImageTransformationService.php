@@ -10,34 +10,34 @@ if (!isset($GLOBALS['basePath'])) {
 
 class ImageTransformationService {
 
-  static function loadImage($path,$ext=null) {
+  static function loadImage($path,$ext = null) {
     if (file_exists($path) && is_readable($path)) {
-      if ($ext==null) {
+      if ($ext == null) {
         $ext = FileSystemService::getFileExtension($path);
         $ext = strtolower($ext);
       }
       if (!$ext) {
         $info = ImageTransformationService::getImageInfo($path);
-        if ($info['mime']=='image/png') {
+        if ($info['mime'] == 'image/png') {
           $ext = 'png';
-        } else if ($info['mime']=='image/jpeg') {
+        } else if ($info['mime'] == 'image/jpeg') {
           $ext = 'jpg';
-        } else if ($info['mime']=='image/gif') {
+        } else if ($info['mime'] == 'image/gif') {
           $ext = 'gif';
         }
       }
       // create an image of the given filetype
-      if ($ext=="jpg" || $ext == "jpeg") {
+      if ($ext == "jpg" || $ext == "jpeg") {
         if ($image = @ImageCreateFromJpeg($path)) {
           return $image;
         }
       }
-      elseif ($ext=="png") {
+      elseif ($ext == "png") {
         if ($image = @ImageCreateFromPng($path)) {
           return $image;
         }
       }
-      elseif ($ext=="gif") {
+      elseif ($ext == "gif") {
         if ($image = @ImageCreateFromGif($path)) {
           return $image;
         }
@@ -51,23 +51,23 @@ class ImageTransformationService {
       return null;
     }
     $size = getimagesize($path);
-    if ($size[0]===null) {
+    if ($size[0] === null) {
       return null;
     }
-    return ['width'=>$size[0], 'height'=>$size[1], 'mime'=>$size['mime']];
+    return ['width' => $size[0], 'height' => $size[1], 'mime' => $size['mime']];
   }
 
   static function fitInside($size,$box) {
     // If the width is one to focus on
-    if ($size['width']/$size['height'] > $box['width']/$box['height']) {
+    if ($size['width'] / $size['height'] > $box['width'] / $box['height']) {
       $width = $box['width'];
-      $height = round($size['height']*($box['width']/$size['width']));
+      $height = round($size['height'] * ($box['width'] / $size['width']));
     }
-    else if ($size['width']/$size['height'] <= $box['width']/$box['height']) {
+    else if ($size['width'] / $size['height'] <= $box['width'] / $box['height']) {
       $height = $box['height'];
-      $width = round($size['width']*($box['height']/$size['height']));
+      $width = round($size['width'] * ($box['height'] / $size['height']));
     }
-    return ['width'=>$width, 'height'=>$height];
+    return ['width' => $width, 'height' => $height];
   }
 
   static function cropInside($size,$box) {
@@ -84,19 +84,19 @@ class ImageTransformationService {
       $width = $size['width'];
       $height = round( $size['width'] * $box['height'] / $box['width'] );
     }
-    $left = round(($size['width']-$width) / 2);
-    $top = round(($size['height']-$height) / 2);
+    $left = round(($size['width'] - $width) / 2);
+    $top = round(($size['height'] - $height) / 2);
     return ['top' => $top, 'left' => $left, 'width' => $width, 'height' => $height];
   }
 
-  static function blur(&$image,$level=1) {
+  static function blur(&$image,$level = 1) {
     if (true) {
-      for ($i=0; $i < $level; $i++) {
+      for ($i = 0; $i < $level; $i++) {
         imagefilter($image,IMG_FILTER_GAUSSIAN_BLUR);
       }
     } else {
       $x = 1;
-      $gaussian = [[$x*1.0, $x*2.0, $x*1.0], [$x*2.0, $x*4.0, $x*2.0], [$x*1.0, $x*2.0, $x*1.0]];
+      $gaussian = [[$x * 1.0, $x * 2.0, $x * 1.0], [$x * 2.0, $x * 4.0, $x * 2.0], [$x * 1.0, $x * 2.0, $x * 1.0]];
       ImageConvolution($image, $gaussian, 16, 0);
     }
   }
@@ -105,7 +105,7 @@ class ImageTransformationService {
     $cols = [];
     // TODO Hack to fix transparent images that get black line on top
     // Save the first row
-    for ($i=0; $i < $width; $i++) {
+    for ($i = 0; $i < $width; $i++) {
       $cols[$i] = ImageColorAt($image, $i, 0);
     }
     if (!$amount) {
@@ -117,39 +117,39 @@ class ImageTransformationService {
     $offset = 0;
     imageconvolution($image, $sharpenMatrix, $divisor, $offset);
     // Re-apply the first row
-    for ($i=0; $i < count($cols); $i++) {
+    for ($i = 0; $i < count($cols); $i++) {
       ImageSetPixel($image, $i, 0, $cols[$i]);
     }
   }
 
   static function applyFilter($image,$filter,$width,$height) {
-    if ($filter['name']=='blur') {
+    if ($filter['name'] == 'blur') {
       ImageTransformationService::blur($image,$filter['amount']);
     }
-    else if ($filter['name']=='sharpen') {
+    else if ($filter['name'] == 'sharpen') {
       $amount = isset($filter['amount']) ? $filter['amount'] : 1;
       ImageTransformationService::sharpen($image,$amount,$width,$height);
     }
-    else if ($filter['name']=='greyscale') {
+    else if ($filter['name'] == 'greyscale') {
       imagefilter($image,IMG_FILTER_GRAYSCALE);
     }
-    else if ($filter['name']=='contrast') {
+    else if ($filter['name'] == 'contrast') {
       imagefilter($image,IMG_FILTER_CONTRAST,$filter['amount']);
     }
-    else if ($filter['name']=='brightness') {
+    else if ($filter['name'] == 'brightness') {
       imagefilter($image,IMG_FILTER_BRIGHTNESS,$filter['amount']);
     }
-    else if ($filter['name']=='border') {
-      for ($i=0; $i < $filter['width']; $i++) {
-        imagerectangle($image,$i,$i,$width-$i,$height-$i,imagecolorallocate($image,255,255,255));
+    else if ($filter['name'] == 'border') {
+      for ($i = 0; $i < $filter['width']; $i++) {
+        imagerectangle($image,$i,$i,$width - $i,$height - $i,imagecolorallocate($image,255,255,255));
       }
     }
   }
 
   static function transform($recipe) {
     $image = ImageTransformationService::loadImage($recipe['path']);
-    if ($image==null) {
-      Log::warn('Unable to load image: '.$recipe['path']);
+    if ($image == null) {
+      Log::warn('Unable to load image: ' . $recipe['path']);
       return;
     }
     $originalInfo = ImageTransformationService::getImageInfo($recipe['path']);
@@ -178,20 +178,20 @@ class ImageTransformationService {
         $finalHeight = round($originalInfo['height'] * $scale / 100);
         //Log::debug(array($originalInfo,$finalWidth,$finalHeight));
       } else {
-        if ($finalWidth==null) {
-          $finalWidth = round($originalInfo['width']/$originalInfo['height']*$finalHeight);
+        if ($finalWidth == null) {
+          $finalWidth = round($originalInfo['width'] / $originalInfo['height'] * $finalHeight);
         }
-        if ($finalHeight==null) {
-          $finalHeight = round($originalInfo['height']/$originalInfo['width']*$finalWidth);
+        if ($finalHeight == null) {
+          $finalHeight = round($originalInfo['height'] / $originalInfo['width'] * $finalWidth);
         }
-        if (@$recipe['method']=='stretch') {
+        if (@$recipe['method'] == 'stretch') {
           // noop
-        } else if (@$recipe['method']=='fit') {
-          $finalSize = ImageTransformationService::fitInside($originalInfo,['width'=>$finalWidth, 'height'=>$finalHeight]);
+        } else if (@$recipe['method'] == 'fit') {
+          $finalSize = ImageTransformationService::fitInside($originalInfo,['width' => $finalWidth, 'height' => $finalHeight]);
           $finalWidth = $finalSize['width'];
           $finalHeight = $finalSize['height'];
-        } else if (@$recipe['method']=='crop') {
-          $pos = ImageTransformationService::cropInside($originalInfo,['width'=>$finalWidth, 'height'=>$finalHeight]);
+        } else if (@$recipe['method'] == 'crop') {
+          $pos = ImageTransformationService::cropInside($originalInfo,['width' => $finalWidth, 'height' => $finalHeight]);
           $left = $pos['left'];
           $top = $pos['top'];
           $originalWidth = $pos['width'];
@@ -200,12 +200,12 @@ class ImageTransformationService {
       }
       // TODO Maybe detect if memory will get exhausted
       if (false && !ImageTransformationService::_memoryCheck($finalWidth, $finalHeight)) {
-        Log::debug('Not enough memory: width='.$finalWidth.',height='.$finalHeight);
+        Log::debug('Not enough memory: width=' . $finalWidth . ',height=' . $finalHeight);
         Log::debug($recipe);
         return;
       }
       $thumb = imagecreatetruecolor ($finalWidth, $finalHeight);
-      if ($format=='png' && $recipe['background'] == 'transparent') {
+      if ($format == 'png' && $recipe['background'] == 'transparent') {
         imagesavealpha($image, true);
         imagealphablending($thumb, false);
         imagesavealpha($thumb, true);
@@ -228,14 +228,14 @@ class ImageTransformationService {
     }
     if (!isset($recipe['destination'])) {
       //header("Content-Length: " . filesize($basePath.$cache));
-      header('Last-Modified: '.gmdate('D, d M Y H:i:s', filemtime($recipe['path'])).' GMT');
-      header('Expires: '.gmdate('D, d M Y H:i:s',time()+(60*60)) . ' GMT');
-      header('Date: '.gmdate('D, d M Y H:i:s') . ' GMT');
-      header('Content-Type: '.FileService::extensionToMimeType($format));
+      header('Last-Modified: ' . gmdate('D, d M Y H:i:s', filemtime($recipe['path'])) . ' GMT');
+      header('Expires: ' . gmdate('D, d M Y H:i:s',time() + (60 * 60)) . ' GMT');
+      header('Date: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+      header('Content-Type: ' . FileService::extensionToMimeType($format));
     }
-    if ($format=='png') {
+    if ($format == 'png') {
       @imagepng($image,$recipe['destination']);
-    } else if ($format=='gif') {
+    } else if ($format == 'gif') {
       @imagegif($image,$recipe['destination']);
     } else {
       //imageinterlace($image,1); TODO Maybe interlace JPEGs
@@ -251,8 +251,8 @@ class ImageTransformationService {
     @imagedestroy($image);
   }
 
-  static function _memoryCheck($x, $y, $rgb=3) {
-    $maxmem = 32*1024*1024;
+  static function _memoryCheck($x, $y, $rgb = 3) {
+    $maxmem = 32 * 1024 * 1024;
     return ( $x * $y * $rgb * 1.7 < $maxmem - memory_get_usage() );
   }
 
@@ -269,7 +269,7 @@ class ImageTransformationService {
           return;
         }
         $level = $size > 1024 * 1024 ? 1 : 7;
-        ShellService::execute('optipng -o'. $level .' "' . $file . '"');
+        ShellService::execute('optipng -o' . $level . ' "' . $file . '"');
       } else if ($ext == 'jpg' || $ext == 'jpeg') {
         ShellService::execute('jpegoptim "' . $file . '"');
       } else {
@@ -281,11 +281,11 @@ class ImageTransformationService {
 
   static function sendFile($path,$mimeType) {
     if (!file_exists($path)) {
-      Log::warn('Cannot send image, path does not exist: '.$path);
+      Log::warn('Cannot send image, path does not exist: ' . $path);
       return;
     }
     if (!is_readable($path)) {
-      Log::warn('Cannot send image, path is not readable: '.$path);
+      Log::warn('Cannot send image, path is not readable: ' . $path);
       return;
     }
     if (!$mimeType) {
@@ -293,56 +293,56 @@ class ImageTransformationService {
         $mimeType = $info['mime'];
       }
     }
-    if ($mimeType=='png') {
-      $mimeType='image/png';
-    } else if ($mimeType=='jpg') {
-      $mimeType='image/jpeg';
-    } else if ($mimeType=='gif') {
-      $mimeType='image/gif';
+    if ($mimeType == 'png') {
+      $mimeType = 'image/png';
+    } else if ($mimeType == 'jpg') {
+      $mimeType = 'image/jpeg';
+    } else if ($mimeType == 'gif') {
+      $mimeType = 'image/gif';
     }
-    header('Content-Type: '.$mimeType);
-    header('Last-Modified: ' . gmdate('D, d M Y H:i:s', filemtime($path)).' GMT');
+    header('Content-Type: ' . $mimeType);
+    header('Last-Modified: ' . gmdate('D, d M Y H:i:s', filemtime($path)) . ' GMT');
     header("Content-Length: " . filesize($path));
     header('Pragma: public');
     header("Cache-Control: public");
-    header('Expires: '.gmdate('D, d M Y H:i:s',time()+(7*24*60*60)) . ' GMT');
-    header('Date: '.gmdate('D, d M Y H:i:s') . ' GMT');
+    header('Expires: ' . gmdate('D, d M Y H:i:s',time() + (7 * 24 * 60 * 60)) . ' GMT');
+    header('Date: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 
     readfile($path);
   }
 
   static function buildCachePath($id,$recipe) {
     global $basePath;
-    $path = $basePath.'local/cache/images/'.$id;
+    $path = $basePath . 'local/cache/images/' . $id;
     if ($recipe['width']) {
-      $path.='_width-'.$recipe['width'];
+      $path .= '_width-' . $recipe['width'];
     }
     if ($recipe['height']) {
-      $path.='_height-'.$recipe['height'];
+      $path .= '_height-' . $recipe['height'];
     }
     if ($recipe['scale']) {
-      $path.='_scale-'.$recipe['scale'];
+      $path .= '_scale-' . $recipe['scale'];
     }
     if ($recipe['method']) {
-      $path.='_method-'.$recipe['method'];
+      $path .= '_method-' . $recipe['method'];
     }
     if ($recipe['quality']) {
-      $path.='_quality-'.$recipe['quality'];
+      $path .= '_quality-' . $recipe['quality'];
     }
     if ($recipe['background']) {
-      $path.='_background-'.$recipe['background'];
+      $path .= '_background-' . $recipe['background'];
     }
     foreach ($recipe['filters'] as $filter) {
-      $path.='_'.$filter['name'];
+      $path .= '_' . $filter['name'];
       if (isset($filter['amount'])) {
-        $path.='-'.$filter['amount'];
+        $path .= '-' . $filter['amount'];
       }
       if (isset($filter['width'])) {
-        $path.='-'.$filter['width'];
+        $path .= '-' . $filter['width'];
       }
     }
     if ($recipe['format']) {
-      $path.='.'.$recipe['format'];
+      $path .= '.' . $recipe['format'];
     }
     return $path;
   }

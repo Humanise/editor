@@ -33,7 +33,7 @@ class AuthenticationPartController extends PartController
   }
 
   function buildSub($part,$context) {
-    return '<authentication xmlns="'.$this->getNamespace().'"/>';
+    return '<authentication xmlns="' . $this->getNamespace() . '"/>';
   }
 }
 ?>

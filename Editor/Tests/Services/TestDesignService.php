@@ -33,9 +33,9 @@ class TestDesignService extends UnitTestCase {
 
     $parameters = DesignService::loadParameters($custom->getId());
 
-    $this->assertTrue(count($parameters)>0);
+    $this->assertTrue(count($parameters) > 0);
 
-    DesignService::saveParameters($custom->getId(),['title'=>'Ullamcorper Magna Parturient']);
+    DesignService::saveParameters($custom->getId(),['title' => 'Ullamcorper Magna Parturient']);
 
     $parameters = DesignService::loadParameters($custom->getId());
     $this->assertEqual($parameters[0]['value'],'Ullamcorper Magna Parturient');

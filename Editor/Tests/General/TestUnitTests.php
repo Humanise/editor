@@ -18,8 +18,8 @@ class TestUnitTests extends UnitTestCase {
     $this->assertEqual(2,true);
     $this->assertIdentical(2,2);
     $this->assertNotIdentical(1,true);
-    $this->assertTrue(2==true);
-    $this->assertTrue(2==true);
+    $this->assertTrue(2 == true);
+    $this->assertTrue(2 == true);
 
     $this->assertNull(null);
     $this->assertNotNull('');

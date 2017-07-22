@@ -99,7 +99,7 @@ class TestRichtextPart extends UnitTestCase {
 
     // Check that the ID is stored in the data
     $dataPart = '&quot;id&quot;:' . $link->getId();
-    $this->assertTrue(strpos($part->getHtml(),$dataPart)!==false);
+    $this->assertTrue(strpos($part->getHtml(),$dataPart) !== false);
 
     // TODO Check that removing the link in the markup will delete the link object
 

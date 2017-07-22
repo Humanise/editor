@@ -7,8 +7,8 @@ require_once '../../Include/Private.php';
 
 $simulate = Request::getBoolean('simulate');
 
-$designItems='';
-$designOptions='';
+$designItems = '';
+$designOptions = '';
 $designs = Query::after('design')->get();
 
 if ($simulate) {
@@ -16,23 +16,23 @@ if ($simulate) {
 }
 
 foreach ($designs as $design) {
-  $designItems.='<item text="'.Strings::escapeXML($design->getTitle()).'" image="../../../style/'.$design->getUnique().'/info/Preview128.png" value="'.$design->getId().'"/>';
-  $designOptions.='<option text="'.Strings::escapeXML($design->getTitle()).'" value="'.$design->getId().'"/>';
+  $designItems .= '<item text="' . Strings::escapeXML($design->getTitle()) . '" image="../../../style/' . $design->getUnique() . '/info/Preview128.png" value="' . $design->getId() . '"/>';
+  $designOptions .= '<option text="' . Strings::escapeXML($design->getTitle()) . '" value="' . $design->getId() . '"/>';
 }
 
-$frameItems='';
-$frameOptions='';
+$frameItems = '';
+$frameOptions = '';
 $frames = Frame::search();
 foreach ($frames as $frame) {
-  $frameItems.='<option icon="common/settings" text="'.Strings::escapeXML($frame->getName()).'" value="'.$frame->getId().'"/>';
-  $frameOptions.='<option text="'.Strings::escapeXML($frame->getName()).'" value="'.$frame->getId().'"/>';
+  $frameItems .= '<option icon="common/settings" text="' . Strings::escapeXML($frame->getName()) . '" value="' . $frame->getId() . '"/>';
+  $frameOptions .= '<option text="' . Strings::escapeXML($frame->getName()) . '" value="' . $frame->getId() . '"/>';
 }
 
-$templateItems='';
+$templateItems = '';
 $templates = TemplateService::getInstalledTemplates();
 foreach ($templates as $template) {
   $info = TemplateService::getTemplateInfo($template['unique']);
-  $templateItems.='<item text="'.$info['name'].'" image="../../Template/'.$template['unique'].'/thumbnail128.jpg" value="'.$template['id'].'"/>';
+  $templateItems .= '<item text="' . $info['name'] . '" image="../../Template/' . $template['unique'] . '/thumbnail128.jpg" value="' . $template['id'] . '"/>';
 }
 
 $languageItems = '
@@ -42,7 +42,7 @@ $languageItems = '
   <option value="DE" text="{German;da:Tysk}"/>
 ';
 
-$gui='
+$gui = '
 <gui xmlns="uri:hui" title="Sites" padding="10">
   <controller url="controller.js"/>
   <controller url="hierarchy.js"/>
@@ -153,17 +153,17 @@ $gui='
         <fields>
           <field label="{Language; da:Sprog}:">
             <dropdown key="language" placeholder="Vælg sprog...">
-              '.$languageItems.'
+              ' . $languageItems . '
             </dropdown>
           </field>
           <field label="Design:">
             <dropdown key="designId">
-              '.$designOptions.'
+              ' . $designOptions . '
             </dropdown>
           </field>
           <field label="{Setup; da:Opsætning}:">
             <dropdown key="frameId">
-              '.$frameOptions.'
+              ' . $frameOptions . '
             </dropdown>
           </field>
           <field label="{Path; da:Sti}:">
@@ -215,7 +215,7 @@ $gui='
         </field>
         <field label="{Language; da:Sprog}:">
           <dropdown key="language" placeholder="{Choose language; da:Vælg sprog...}">
-            '.$languageItems.'
+            ' . $languageItems . '
           </dropdown>
         </field>
       </fields>
@@ -272,18 +272,18 @@ $gui='
     <wizard name="newPageWizard">
       <step title="{Type; da:Type}" icon="file/generic">
         <picker title="{Choose type; da:Vælg type}" name="templatePicker" shadow="true" item-height="128" item-width="96">
-        '.$templateItems.'
+        ' . $templateItems . '
         </picker>
       </step>
       <step title="Design" key="design" icon="common/color">
         <picker title="{Choose design; da:Vælg design}" item-height="128" item-width="128" name="designPicker" shadow="true">
-        '.$designItems.'
+        ' . $designItems . '
         </picker>
       </step>
       <step title="{Setup; da:Grundopsætning}" icon="common/settings" padding="10" frame="true">
         <overflow max-height="200" min-height="160">
           <selection name="frameSelection">
-            '.$frameItems.'
+            ' . $frameItems . '
           </selection>
         </overflow>
       </step>
@@ -312,7 +312,7 @@ $gui='
             </field>
             <field label="{Language; da:Sprog}:">
               <dropdown key="language" placeholder="{Choose language...; da:Vælg sprog...}">
-                '.$languageItems.'
+                ' . $languageItems . '
               </dropdown>
             </field>
             <field label="{Description; da:Beskrivelse}:">

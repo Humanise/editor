@@ -23,11 +23,11 @@ class ShellService {
 
       $proc = popen("$cmd 2>&1 ; echo Exit status : $?", 'r');
 
-      $live_output     = "";
+      $live_output = "";
       $complete_output = "";
 
       while (!feof($proc)) {
-        $live_output     = fread($proc, 4096);
+        $live_output = fread($proc, 4096);
         $complete_output = $complete_output . $live_output;
         echo "$live_output";
         @ flush();

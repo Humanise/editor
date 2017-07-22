@@ -34,7 +34,7 @@ class HttpClient {
       $info = curl_getinfo($session);
       $statusCode = $info['http_code'];
     } else {
-      Log::debug('Error number: '.$errorNumber.' / URL: '.$request->getUrl());
+      Log::debug('Error number: ' . $errorNumber . ' / URL: ' . $request->getUrl());
     }
     curl_close($session);
     $response = WebResponse::newFromData($data);

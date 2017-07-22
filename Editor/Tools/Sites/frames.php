@@ -5,7 +5,7 @@
  */
 require_once '../../Include/Private.php';
 
-$gui='
+$gui = '
 <gui xmlns="uri:hui" title="Special pages">
   <source url="data/ListFrames.php" name="listSource"/>
   <controller url="frames.js"/>

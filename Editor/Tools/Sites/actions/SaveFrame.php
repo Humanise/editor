@@ -13,7 +13,7 @@ $search = Request::getObject('search');
 $user = Request::getObject('user');
 $newsBlocks = Request::getObject('newsBlocks');
 
-if ($id>0) {
+if ($id > 0) {
   $object = Frame::load($id);
 } else {
   $object = new Frame();

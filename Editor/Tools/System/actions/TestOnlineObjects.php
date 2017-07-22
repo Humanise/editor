@@ -7,5 +7,5 @@ require_once '../../../Include/Private.php';
 
 $result = OnlineObjectsService::test(Request::getString('url'));
 
-Response::sendObject(['success'=>$result]);
+Response::sendObject(['success' => $result]);
 ?>

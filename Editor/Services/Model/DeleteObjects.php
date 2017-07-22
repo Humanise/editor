@@ -16,7 +16,7 @@ foreach ($ids as $id) {
   if ($object = Object::load($id)) {
     $object->remove();
   } else {
-    Log::debug('Unable to load object with id='.$id);
+    Log::debug('Unable to load object with id=' . $id);
   }
 }
 ?>

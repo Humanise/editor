@@ -9,11 +9,11 @@ $source = Request::getString('source');
 $target = Request::getString('target');
 $state = Request::getString('state');
 
-if ($target=='all') {
-  $target=null;
+if ($target == 'all') {
+  $target = null;
 }
-if ($source=='all') {
-  $source=null;
+if ($source == 'all') {
+  $source = null;
 }
 
 $icons = [
@@ -27,7 +27,7 @@ $icons = [
 
 $query = new LinkQuery();
 $query->withTargetType($target)->withSourceType($source);
-if ($state=='warnings') {
+if ($state == 'warnings') {
   $query->withOnlyWarnings();
 }
 
@@ -35,8 +35,8 @@ $links = LinkService::search($query);
 
 $graph = new Graph();
 foreach ($links as $link) {
-  $sourceId = $link->getSourceType().'_'.$link->getSourceId();
-  $targetId = $link->getTargetType().'_'.$link->getTargetId();
+  $sourceId = $link->getSourceType() . '_' . $link->getSourceId();
+  $targetId = $link->getTargetType() . '_' . $link->getTargetId();
   $targetIcon = $icons[$link->getTargetType()];
   if ($link->hasError(LinkView::$TARGET_NOT_FOUND) || $link->hasError(LinkView::$INVALID_ADDRESS)) {
     $targetIcon = 'monochrome/warning';

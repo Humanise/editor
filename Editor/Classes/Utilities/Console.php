@@ -11,7 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 class Console {
 
   static function isFromConsole() {
-    return php_sapi_name()==='cli';
+    return php_sapi_name() === 'cli';
   }
 
   static function exitIfNotConsole() {

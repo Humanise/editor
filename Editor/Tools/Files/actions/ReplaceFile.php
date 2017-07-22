@@ -14,7 +14,7 @@ if (!$id) {
 
 $response = FileService::replaceUploadedFile($id);
 
-if ($response['success']==true) {
+if ($response['success'] == true) {
   Response::uploadSuccess();
 } else {
   Response::uploadFailure();

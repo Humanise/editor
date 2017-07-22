@@ -35,7 +35,7 @@ class TestUser extends AbstractObjectTest {
   }
 
   function testAuthentication() {
-    $username = "u".time();
+    $username = "u" . time();
     $obj = new User();
     $obj->setTitle('Testo Samplo');
     $obj->setUsername($username);
@@ -68,7 +68,7 @@ class TestUser extends AbstractObjectTest {
   }
 
   function testEnsureSecure() {
-    $username = "2u".time();
+    $username = "2u" . time();
     $obj = new User();
     $obj->setTitle('Testo Samplo');
     $obj->setUsername($username);

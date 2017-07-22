@@ -31,15 +31,15 @@ class MenuPartController extends PartController
   }
 
   function editor($part,$context) {
-    return '<div id="part_menu_container">'.$this->render($part,$context).'</div>'.
+    return '<div id="part_menu_container">' . $this->render($part,$context) . '</div>' .
 
     $this->buildHiddenFields([
       'hierarchyId' => $part->getHierarchyId(),
       'variant' => $part->getVariant(),
       'header' => $part->getHeader(),
       'depth' => $part->getDepth()
-    ]).
-    '<script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/menu/editor.js" type="text/javascript" charset="utf-8"></script>';
+    ]) .
+    '<script src="' . ConfigurationService::getBaseUrl() . 'Editor/Parts/menu/editor.js" type="text/javascript" charset="utf-8"></script>';
   }
 
   function getFromRequest($id) {
@@ -52,14 +52,14 @@ class MenuPartController extends PartController
   }
 
   function buildSub($part,$context) {
-    $xml='<menu xmlns="'.$this->getNamespace().'"' .
+    $xml = '<menu xmlns="' . $this->getNamespace() . '"' .
       ' hierarchy-id="' . Strings::escapeXML($part->getHierarchyId()) . '"' .
       ' variant="' . Strings::escapeXML($part->getVariant()) . '"' .
       ' depth="' . Strings::escapeXML($part->getDepth()) . '"' .
       '>';
 
     if (Strings::isNotBlank($part->getHeader())) {
-      $xml.= '<header>' . Strings::escapeXML($part->getHeader()) . '</header>';
+      $xml .= '<header>' . Strings::escapeXML($part->getHeader()) . '</header>';
     }
 
     $depth = $part->getDepth() > 0 ? $part->getDepth() : 100;
@@ -77,12 +77,12 @@ class MenuPartController extends PartController
       }
     }
     if ($hierarchyId > 0) {
-      $xml.= '<items>';
-      $xml.= HierarchyService::hierarchyTraveller($hierarchyId,$itemId,false,$depth);
-      $xml.= '</items>';
+      $xml .= '<items>';
+      $xml .= HierarchyService::hierarchyTraveller($hierarchyId,$itemId,false,$depth);
+      $xml .= '</items>';
     }
 
-    $xml.='</menu>';
+    $xml .= '</menu>';
     return $xml;
   }
 
@@ -98,7 +98,7 @@ class MenuPartController extends PartController
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['Menu', 'da'=>'Menu']) => '
+      GuiUtils::getTranslated(['Menu', 'da' => 'Menu']) => '
       <icon icon="common/info" text="{Info; da:Info}" name="info"/>
       <divider/>
       <item label="{Variant; da:Variant}">
@@ -145,7 +145,7 @@ class MenuPartController extends PartController
     $gui = '';
     $hiers = Hierarchy::search();
     foreach ($hiers as $hierarchy) {
-      $gui.= '<option value="' . $hierarchy->getId() . '" text="' . $hierarchy->getName() . '"/>';
+      $gui .= '<option value="' . $hierarchy->getId() . '" text="' . $hierarchy->getName() . '"/>';
     }
     return $gui;
   }

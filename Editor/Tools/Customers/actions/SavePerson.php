@@ -7,7 +7,7 @@ require_once '../../../Include/Private.php';
 
 $data = Request::getObject('data');
 
-if (intval($data->person->id)>0) {
+if (intval($data->person->id) > 0) {
   $person = Person::load($data->person->id);
 } else {
   $person = new Person();

@@ -17,7 +17,7 @@ Response::sendObject([
     'url' => ConfigurationService::getBaseUrl() . 'Editor/Services/Finder/ImagesUpload.php',
     'placeholder' => [
       'title' => ['en' => 'Upload image', 'da' => 'Overfør billede'],
-      'text' => ['en' => 'The file can at most be '.$maxUploadSize.' large', 'da' => 'Filen kan højest være '.$maxUploadSize.' stor']
+      'text' => ['en' => 'The file can at most be ' . $maxUploadSize . ' large', 'da' => 'Filen kan højest være ' . $maxUploadSize . ' stor']
     ]
   ]
 ])

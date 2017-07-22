@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 }
 class SearchTemplate {
 
-  static $TYPES = ['pages'=>'Sider', 'images'=>'Billeder', 'files'=>'Filer', 'news'=>'Nyheder', 'products'=>'Produkter', 'persons'=>'Personer'];
-  static $PARTS = ['label'=>'text', 'enabled'=>'boolean', 'default'=>'boolean', 'hidden'=>'boolean'];
+  static $TYPES = ['pages' => 'Sider', 'images' => 'Billeder', 'files' => 'Filer', 'news' => 'Nyheder', 'products' => 'Produkter', 'persons' => 'Personer'];
+  static $PARTS = ['label' => 'text', 'enabled' => 'boolean', 'default' => 'boolean', 'hidden' => 'boolean'];
 
   var $id;
   var $title;
@@ -74,29 +74,29 @@ class SearchTemplate {
 
 
   function save() {
-    $sql = "update search set ".
-      "title=".Database::text($this->title).",`text`=".Database::text($this->text);
+    $sql = "update search set " .
+      "title=" . Database::text($this->title) . ",`text`=" . Database::text($this->text);
 
     foreach (SearchTemplate::$TYPES as $type => $label) {
       foreach (SearchTemplate::$PARTS as $part => $kind) {
-        $method = $type.ucfirst($part);
-        $sql.=",".$type.$part."=";
-        if ($kind=='boolean') {
-          $sql.=Database::boolean($this->$method);
+        $method = $type . ucfirst($part);
+        $sql .= "," . $type . $part . "=";
+        if ($kind == 'boolean') {
+          $sql .= Database::boolean($this->$method);
         } else {
-          $sql.=Database::text($this->$method);
+          $sql .= Database::text($this->$method);
         }
       }
     }
 
-    $sql.=" where page_id=".Database::int($this->id);
+    $sql .= " where page_id=" . Database::int($this->id);
     Database::update($sql);
 
     PageService::markChanged($this->id);
   }
 
   static function load($id) {
-    $sql="select * from search where page_id=".Database::int($id);
+    $sql = "select * from search where page_id=" . Database::int($id);
     if ($row = Database::getRow($sql)) {
       $obj = new SearchTemplate();
       $obj->setId(intval($row['page_id']));
@@ -105,8 +105,8 @@ class SearchTemplate {
 
       foreach (SearchTemplate::$TYPES as $type => $label) {
         foreach (SearchTemplate::$PARTS as $part => $kind) {
-          $method = $type.ucfirst($part);
-          $obj->$method = $kind=='boolean' ? ($row[$type.$part] ? true : false) : $row[$type.$part];
+          $method = $type . ucfirst($part);
+          $obj->$method = $kind == 'boolean' ? ($row[$type . $part] ? true : false) : $row[$type . $part];
         }
       }
       return $obj;

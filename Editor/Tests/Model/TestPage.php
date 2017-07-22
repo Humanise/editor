@@ -101,7 +101,7 @@ class TestPage extends UnitTestCase {
     $this->assertNull($loaded);
 
 
-    Log::debug('Design id: '.$design->getId());
+    Log::debug('Design id: ' . $design->getId());
     $this->assertTrue($design->canRemove());
     $this->assertTrue($design->remove());
     $this->assertFalse(Design::load($design->getId()));
@@ -168,7 +168,7 @@ class TestPage extends UnitTestCase {
   function TestRendering() {
     $page = TestService::createTestPage();
 
-    $url = ConfigurationService::getCompleteBaseUrl().'?id='.$page->getId();
+    $url = ConfigurationService::getCompleteBaseUrl() . '?id=' . $page->getId();
 
     $response = HttpClient::send(new WebRequest($url));
     $this->assertEqual($response->getStatusCode(),200);

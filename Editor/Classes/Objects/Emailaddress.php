@@ -11,14 +11,14 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Emailaddress'] = [
     'table' => 'emailaddress',
     'properties' => [
-      'address' => ['type'=>'string'],
-      'containingObjectId'   => ['type'=>'int', 'column'=>'containing_object_id']
+      'address' => ['type' => 'string'],
+      'containingObjectId' => ['type' => 'int', 'column' => 'containing_object_id']
     ]
 ];
 
 class Emailaddress extends Object {
   var $address;
-  var $containingObjectId=0;
+  var $containingObjectId = 0;
 
   function Emailaddress() {
     parent::Object('emailaddress');
@@ -49,7 +49,7 @@ class Emailaddress extends Object {
 
   function sub_publish() {
     $data =
-    '<emailaddress xmlns="'.parent::_buildnamespace('1.0').'">'.
+    '<emailaddress xmlns="' . parent::_buildnamespace('1.0') . '">' .
     '</emailaddress>';
     return $data;
   }

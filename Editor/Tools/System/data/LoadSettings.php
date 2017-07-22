@@ -10,7 +10,7 @@ $settings = [
     'experimentalRichText' => SettingService::getSetting('part','richtext','experimetal') ? true : false,
     'sharedSecret' => SettingService::getSharedSecret()
   ],
-  'email'=>[
+  'email' => [
     'enabled' => MailService::getEnabled(),
     'server' => MailService::getServer(),
     'port' => MailService::getPort(),

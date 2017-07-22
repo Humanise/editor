@@ -20,7 +20,7 @@ class PosterPartController extends PartController
     $imageId = ObjectService::getLatestId('image');
     $recipe = '<pages>
   <page>
-    '.($imageId ? '<image id="'.$imageId.'"/>' : '').'
+    ' . ($imageId ? '<image id="' . $imageId . '"/>' : '') . '
     <title>Vehicula Tellus Tristique Ornare</title>
     <text>Vestibulum id ligula porta felis euismod semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</text>
   </page>
@@ -41,7 +41,7 @@ class PosterPartController extends PartController
     $dom = DOMUtils::parse($recipe);
     if ($dom) {
       $links = $dom->getElementsByTagName('link');
-      for ($i=0; $i < $links->length; $i++) {
+      for ($i = 0; $i < $links->length; $i++) {
         $node = $links->item($i);
         $link = new PartLink();
         $link->setPartId($part->getId());
@@ -67,17 +67,17 @@ class PosterPartController extends PartController
     $html =
     $this->buildHiddenFields([
       "recipe" => $part->getRecipe()
-    ]).
-    '<div id="part_poster_container">'.
-    $this->render($part,$context).
+    ]) .
+    '<div id="part_poster_container">' .
+    $this->render($part,$context) .
     '</div>
-    <script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/poster/poster_editor.js" type="text/javascript" charset="utf-8"></script>';
+    <script src="' . ConfigurationService::getBaseUrl() . 'Editor/Parts/poster/poster_editor.js" type="text/javascript" charset="utf-8"></script>';
     return $html;
   }
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['Poster', 'da'=>'Plakat']) => '
+      GuiUtils::getTranslated(['Poster', 'da' => 'Plakat']) => '
         <icon icon="common/previous" text="{Previous ; da:Forrige}" name="goPrevious"/>
         <icon icon="common/next" text="{Next ; da:Næste}" name="goNext"/>
         <divider/>
@@ -181,8 +181,8 @@ class PosterPartController extends PartController
     // Important to convert to unicode before validating
     $valid = DOMUtils::isValidFragment(Strings::toUnicode($part->getRecipe()));
     $xml =
-    '<poster xmlns="'.$this->getNamespace().'">'.
-    ($valid ? '<recipe>'.$part->getRecipe().'</recipe>' : '<invalid/>').
+    '<poster xmlns="' . $this->getNamespace() . '">' .
+    ($valid ? '<recipe>' . $part->getRecipe() . '</recipe>' : '<invalid/>') .
     '</poster>';
     return $xml;
   }

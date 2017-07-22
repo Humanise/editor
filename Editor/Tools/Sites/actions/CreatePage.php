@@ -16,7 +16,7 @@ $language = Request::getString('language');
 $menuItemKind = Request::getString('menuItemKind');
 $menuItemId = Request::getInt('menuItemId');
 
-if ($menuItem=='') {
+if ($menuItem == '') {
   $menuItem = $title;
 }
 
@@ -31,14 +31,14 @@ $page->setPath($path);
 $page->setLanguage($language);
 $page->create();
 
-if ($menuItemKind=='hierarchy') {
+if ($menuItemKind == 'hierarchy') {
   $hierarchy = Hierarchy::load($menuItemId);
   $hierarchy->createItemForPage($page->getId(),$menuItem,0);
   $hierarchy->markChanged();
-} else if ($menuItemKind=='hierarchyItem') {
+} else if ($menuItemKind == 'hierarchyItem') {
   $hierarchy = Hierarchy::loadFromItemId($menuItemId);
   $hierarchy->createItemForPage($page->getId(),$menuItem,$menuItemId);
   $hierarchy->markChanged();
 }
-Response::sendObject(['id'=>$page->getId()]);
+Response::sendObject(['id' => $page->getId()]);
 ?>

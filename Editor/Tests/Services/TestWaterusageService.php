@@ -54,9 +54,9 @@ class TestWaterusageService extends UnitTestCase {
 
   function testParsingAll() {
     global $basePath;
-    $path = $basePath.'Editor/Tests/Resources/watermeters.csv';
+    $path = $basePath . 'Editor/Tests/Resources/watermeters.csv';
     $handle = @fopen($path, "r");
-    $this->assertTrue($handle,'Could not open: '.$path);
+    $this->assertTrue($handle,'Could not open: ' . $path);
     if ($handle) {
       while (!feof($handle)) {
         $line = fgets($handle, 4096);
@@ -68,7 +68,7 @@ class TestWaterusageService extends UnitTestCase {
           continue;
         }
         $parsed = WaterusageService::parseAddress($address);
-        $this->assertNotNull($parsed,'Unable to parse: "'.$address.'"');
+        $this->assertNotNull($parsed,'Unable to parse: "' . $address . '"');
 
       }
       fclose($handle);

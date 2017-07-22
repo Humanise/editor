@@ -15,11 +15,11 @@ Entity::$schema['Link'] = [
     'alternative' => ['type' => 'string'],
     'targetType' => ['type' => 'string'],
     'targetValue' => ['type' => 'string'],
-    'partId' => ['type'=>'int', 'relation'=>['class'=>'Part', 'property'=>'id']],
-    'pageId' => ['type'=>'int', 'relation'=>['class'=>'Page', 'property'=>'id']],
-    'targetId' => ['type'=>'int', 'relations'=> [
-        ['class'=>'Page', 'property'=>'id'],
-        ['class'=>'File', 'property'=>'id']
+    'partId' => ['type' => 'int', 'relation' => ['class' => 'Part', 'property' => 'id']],
+    'pageId' => ['type' => 'int', 'relation' => ['class' => 'Page', 'property' => 'id']],
+    'targetId' => ['type' => 'int', 'relations' => [
+        ['class' => 'Page', 'property' => 'id'],
+        ['class' => 'File', 'property' => 'id']
       ]
     ]
   ]
@@ -75,19 +75,19 @@ class Link extends Entity implements Loadable {
   }
 
   function setTypeAndValue($type,$value) {
-    if ($type=='page' || $type=='file') {
+    if ($type == 'page' || $type == 'file') {
       $this->targetType = $type;
-      $this->targetId=intval($value);
-      $this->targetValue=null;
-    } else if ($type=='url' || $type=='email') {
+      $this->targetId = intval($value);
+      $this->targetValue = null;
+    } else if ($type == 'url' || $type == 'email') {
       $this->targetType = $type;
-      $this->targetValue=$value;
-      $this->targetId=null;
+      $this->targetValue = $value;
+      $this->targetId = null;
     }
   }
 
   function getUrl() {
-    if ($this->targetType=='url') {
+    if ($this->targetType == 'url') {
       return $this->targetValue;
     } else {
       return '';
@@ -95,7 +95,7 @@ class Link extends Entity implements Loadable {
   }
 
   function getEmail() {
-    if ($this->targetType=='email') {
+    if ($this->targetType == 'email') {
       return $this->targetValue;
     } else {
       return '';
@@ -103,7 +103,7 @@ class Link extends Entity implements Loadable {
   }
 
   function getPage() {
-    if ($this->targetType=='page') {
+    if ($this->targetType == 'page') {
       return $this->targetId;
     } else {
       return null;
@@ -111,7 +111,7 @@ class Link extends Entity implements Loadable {
   }
 
   function getFile() {
-    if ($this->targetType=='file') {
+    if ($this->targetType == 'file') {
       return $this->targetId;
     } else {
       return null;

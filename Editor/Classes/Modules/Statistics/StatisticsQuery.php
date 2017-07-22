@@ -15,13 +15,13 @@ class StatisticsQuery {
   var $resolution;
 
   function withTime($time) {
-    if ($time=='year') {
+    if ($time == 'year') {
       $this->startTime = Dates::getYearStart();
       $this->endTime = Dates::getYearEnd();
-    } else if ($time=='month') {
+    } else if ($time == 'month') {
       $this->startTime = Dates::getMonthStart();
       $this->endTime = Dates::getMonthEnd();
-    } else if ($time=='week') {
+    } else if ($time == 'week') {
       $this->startTime = Dates::getWeekStart();
       $this->endTime = Dates::getWeekEnd();
     }

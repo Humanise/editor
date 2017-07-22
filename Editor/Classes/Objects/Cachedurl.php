@@ -11,9 +11,9 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Cachedurl'] = [
     'table' => 'cachedurl',
     'properties' => [
-        'url'     => ['type'=>'string'],
-        'synchronized'  => ['type'=>'datetime'],
-        'mimeType'    => ['type'=>'string']
+        'url' => ['type' => 'string'],
+        'synchronized' => ['type' => 'datetime'],
+        'mimeType' => ['type' => 'string']
     ]
 ];
 

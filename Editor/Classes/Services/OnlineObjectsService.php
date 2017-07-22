@@ -22,11 +22,11 @@ class OnlineObjectsService {
     return Strings::fromJSON($response->getBody());
   }
 
-  static function getServiceUrl($service,$method,$baseUrl=null) {
-    if ($baseUrl==null) {
+  static function getServiceUrl($service,$method,$baseUrl = null) {
+    if ($baseUrl == null) {
       $baseUrl = SettingService::getOnlineObjectsUrl();
     }
-    return Strings::concatUrl($baseUrl,'v1.0/'.$service.'/'.$method);
+    return Strings::concatUrl($baseUrl,'v1.0/' . $service . '/' . $method);
   }
 
   static function test($url) {

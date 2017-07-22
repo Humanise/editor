@@ -19,18 +19,18 @@ foreach ($groups as $group) {
     'icon' => 'common/folder',
     'kind' => 'imagegroup'
   ];
-  if ($group['count']>0) {
+  if ($group['count'] > 0) {
     $options['badge'] = $group['count'];
   }
   $writer->startItem($options)->endItem();
 }
 
-if ($notInGroup>0) {
+if ($notInGroup > 0) {
   $options = [
-    'value'=>-1,
-    'title'=>'Ikke i gruppe',
-    'icon'=>'common/folder_grey',
-    'kind'=>'nogroup',
+    'value' => -1,
+    'title' => 'Ikke i gruppe',
+    'icon' => 'common/folder_grey',
+    'kind' => 'nogroup',
     'badge' => $notInGroup,
   ];
   $writer->startItem($options)->endItem();

@@ -11,10 +11,10 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Address'] = [
   'table' => 'address',
   'properties' => [
-    'street' => ['type'=>'string'],
-    'zipcode' => ['type'=>'string'],
-    'city' => ['type'=>'string'],
-    'country' => ['type'=>'string']
+    'street' => ['type' => 'string'],
+    'zipcode' => ['type' => 'string'],
+    'city' => ['type' => 'string'],
+    'country' => ['type' => 'string']
   ]
 ];
 class Address extends Object {

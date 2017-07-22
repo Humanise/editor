@@ -33,15 +33,15 @@ class RichtextPartController extends PartController
     $modern = SettingService::getSetting('part','richtext','experimetal');
     if ($modern) {
       return
-      '<div id="part_richtext">'.$this->render($part,$context).'</div>'.
-      '<input type="hidden" name="html" value="'.Strings::escapeXML(Strings::fromUnicode($part->getHtml())).'"/>'.
-      '<script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/richtext/script.js" type="text/javascript" charset="utf-8"></script>';
+      '<div id="part_richtext">' . $this->render($part,$context) . '</div>' .
+      '<input type="hidden" name="html" value="' . Strings::escapeXML(Strings::fromUnicode($part->getHtml())) . '"/>' .
+      '<script src="' . ConfigurationService::getBaseUrl() . 'Editor/Parts/richtext/script.js" type="text/javascript" charset="utf-8"></script>';
     } else {
       return
-      '<textarea class="Part-richtext" id="PartRichtextTextarea" name="html" style="width: 100%; height: 250px;">'.
-      Strings::escapeXML($part->getHtml()).
-      '</textarea>'.
-      '<script language="javascript" type="text/javascript" src="'.ConfigurationService::getBaseUrl().'Editor/Libraries/tinymce/tiny_mce.js"></script>
+      '<textarea class="Part-richtext" id="PartRichtextTextarea" name="html" style="width: 100%; height: 250px;">' .
+      Strings::escapeXML($part->getHtml()) .
+      '</textarea>' .
+      '<script language="javascript" type="text/javascript" src="' . ConfigurationService::getBaseUrl() . 'Editor/Libraries/tinymce/tiny_mce.js"></script>
       <script language="javascript" type="text/javascript">
       tinyMCE.init({
         mode : "textareas",
@@ -49,7 +49,7 @@ class RichtextPartController extends PartController
         entity_encoding : "numeric",
         convert_fonts_to_spans : true,
         language : "en",
-        content_css : "'.ConfigurationService::getBaseUrl().'style/'.$context->getDesign().'/editors/'.$context->getTemplate().'_richtext.css",
+        content_css : "' . ConfigurationService::getBaseUrl() . 'style/' . $context->getDesign() . '/editors/' . $context->getTemplate() . '_richtext.css",
         theme_advanced_toolbar_location : "top",
         theme_advanced_toolbar_align : "left",
         theme_advanced_path_location : "bottom", //preview,emotions,iespell,flash,advimage,
@@ -84,7 +84,7 @@ class RichtextPartController extends PartController
     }
     $doc = DOMUtils::parseHTMLFragment($part->getHtml());
     $tags = $doc->getElementsByTagName('a');
-    for ($i=$tags->length-1; $i >= 0; $i--) {
+    for ($i = $tags->length - 1; $i >= 0; $i--) {
       $tag = $tags->item($i);
       $data = Strings::fromJSON($tag->getAttribute('data'));
       if (isset($data->id) && isset($linksById[$data->id])) {
@@ -135,7 +135,7 @@ class RichtextPartController extends PartController
     $links = $doc->getElementsByTagName('a');
     $linkArray = [];
 
-    for ($i=$links->length-1; $i >= 0; $i--) {
+    for ($i = $links->length - 1; $i >= 0; $i--) {
       $linkArray[] = $links->item($i);
     }
     foreach ($linkArray as $link) {
@@ -168,7 +168,7 @@ class RichtextPartController extends PartController
       }
       $replaced->setAttribute('data',$data);
 
-      for ($j=0; $j < $link->childNodes->length; $j++) {
+      for ($j = 0; $j < $link->childNodes->length; $j++) {
         $child = $link->childNodes->item($j);
         $link->removeChild($child);
         $replaced->appendChild($child);
@@ -186,22 +186,22 @@ class RichtextPartController extends PartController
     $html = $this->_convert($html);
       //$html = MarkupUtils::htmlToXhtml($html);
     if (DOMUtils::isValidFragment(Strings::toUnicode($html))) {
-      return '<richtext xmlns="'.$this->getNamespace().'" valid="true">'.
-      $html.
+      return '<richtext xmlns="' . $this->getNamespace() . '" valid="true">' .
+      $html .
       '</richtext>';
     } else {
       Log::debug('RichtextPartController: The markup is invalid...');
       Log::debug($html);
       return
-      '<richtext xmlns="'.$this->getNamespace().'" valid="false">'.
-      '<![CDATA['.$html.']]>'.
+      '<richtext xmlns="' . $this->getNamespace() . '" valid="false">' .
+      '<![CDATA[' . $html . ']]>' .
       '</richtext>';
     }
   }
 
   function importSub($node,$part) {
     if ($richtext = DOMUtils::getFirstDescendant($node,'richtext')) {
-      if ($richtext->getAttribute('valid')=='false') {
+      if ($richtext->getAttribute('valid') == 'false') {
         $part->setHtml(DOMUtils::getText($richtext));
       } else {
         $str = DOMUtils::getInnerXML($richtext);

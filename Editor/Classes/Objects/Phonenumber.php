@@ -11,16 +11,16 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Phonenumber'] = [
   'table' => 'phonenumber',
   'properties' => [
-      'number' => ['type'=>'string'],
-      'context' => ['type'=>'string'],
-      'containingObjectId'   => ['type'=>'int', 'column'=>'containing_object_id']
+      'number' => ['type' => 'string'],
+      'context' => ['type' => 'string'],
+      'containingObjectId' => ['type' => 'int', 'column' => 'containing_object_id']
     ]
 ];
 
 class Phonenumber extends Object {
   var $number;
   var $context;
-  var $containingObjectId=0;
+  var $containingObjectId = 0;
 
   function Phonenumber() {
     parent::Object('phonenumber');
@@ -59,7 +59,7 @@ class Phonenumber extends Object {
 
   function sub_publish() {
     $data =
-    '<phonenumber xmlns="'.parent::_buildnamespace('1.0').'">'.
+    '<phonenumber xmlns="' . parent::_buildnamespace('1.0') . '">' .
     '</phonenumber>';
     return $data;
   }

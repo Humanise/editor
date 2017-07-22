@@ -7,7 +7,7 @@ require_once '../../Include/Private.php';
 
 $user = User::load(InternalSession::getUserId());
 
-$gui='
+$gui = '
 <gui xmlns="uri:hui" padding="10" title="Start">
   <style url="style.css"/>
   <controller name="controller" url="controller.js"/>
@@ -21,11 +21,11 @@ $gui='
 
   <div class="box">
     <div class="header">
-      <span class="date"> version: '.SystemInfo::getFormattedDate().'</span>
+      <span class="date"> version: ' . SystemInfo::getFormattedDate() . '</span>
       <span class="user">
         <icon icon="common/user" size="16"/>
-        <strong>'.Strings::escapeXml($user->getTitle()).'</strong>
-        <em>('.Strings::escapeXml($user->getUsername()).')</em>
+        <strong>' . Strings::escapeXml($user->getTitle()) . '</strong>
+        <em>(' . Strings::escapeXml($user->getUsername()) . ')</em>
         <button mini="true" variant="light" text="{Settings ; da:Indstillinger}" name="userSettings"/>
       </span>
     </div>
@@ -175,7 +175,7 @@ $gui='
     <formula name="settingsFormula">
       <fields>
         <field label="{Language; da: Sprog}">
-          <dropdown key="language" value="'.InternalSession::getLanguage().'">
+          <dropdown key="language" value="' . InternalSession::getLanguage() . '">
             <option text="{Danish; da: Dansk}" value="da"/>
             <option text="{English; da: Engelsk}" value="en"/>
           </dropdown>

@@ -8,7 +8,7 @@ require_once '../../../Editor/Include/Public.php';
 $requestSecret = Request::getString('secret');
 $secret = SettingService::getSharedSecret();
 
-if (Strings::isBlank($secret) || Strings::isBlank($requestSecret) || $requestSecret!==$secret) {
+if (Strings::isBlank($secret) || Strings::isBlank($requestSecret) || $requestSecret !== $secret) {
   exit;
 }
 
@@ -24,10 +24,10 @@ $sql = "select log.*,UNIX_TIMESTAMP(log.time) as timestamp,object.title as user 
 $result = Database::select($sql);
 while ($row = Database::next($result)) {
   $item = new FeedItem();
-  $item->setTitle($row['event'].': '.$row['user']);
-  $item->setDescription('USER: '.$row['user'].' - '.$row['message']);
+  $item->setTitle($row['event'] . ': ' . $row['user']);
+  $item->setDescription('USER: ' . $row['user'] . ' - ' . $row['message']);
   $item->setPubDate($row['timestamp']);
-  $item->setGuid(ConfigurationService::getBaseUrl().$row['id']);
+  $item->setGuid(ConfigurationService::getBaseUrl() . $row['id']);
   $feed->addItem($item);
 }
 Database::free($result);

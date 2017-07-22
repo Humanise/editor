@@ -32,9 +32,9 @@ class Request {
    * @param string $key The name of the variable
    * @return boolean True if variable was set, False otherwise
    */
-  static function exists($key,$value=null) {
-    if ($value!=null) {
-      return isset($_REQUEST[$key]) && $_REQUEST[$key]==$value;
+  static function exists($key,$value = null) {
+    if ($value != null) {
+      return isset($_REQUEST[$key]) && $_REQUEST[$key] == $value;
     }
     return isset($_REQUEST[$key]);
   }
@@ -44,22 +44,22 @@ class Request {
    * @param string $key The name of the variable
    * @return string The value of the variable, '' if variable not set
    */
-  static function getString($key,$default='') {
+  static function getString($key,$default = '') {
     if (!ConfigurationService::isUnicode()) {
       return Strings::fromUnicode(Request::getStringAsUnicode($key,$default));
     }
     return Request::getStringAsUnicode($key,$default);
   }
 
-  static function getStringAsUnicode($key,$default='') {
+  static function getStringAsUnicode($key,$default = '') {
     if (isset($_POST[$key])) {
-      $output=$_POST[$key];
+      $output = $_POST[$key];
     } else if (isset($_GET[$key])) {
-      $output=$_GET[$key];
+      $output = $_GET[$key];
     } else {
       return $default;
     }
-    if ($default!=='' && Strings::isBlank($output)) {
+    if ($default !== '' && Strings::isBlank($output)) {
       return $default;
     }
 // Very old and probably no longer applies
@@ -75,7 +75,7 @@ class Request {
    * @return boolean True if the checkbox was checked, false otherwise
    */
   static function getCheckbox($key) {
-    return Request::getString($key)=='on';
+    return Request::getString($key) == 'on';
   }
 
   /**
@@ -85,7 +85,7 @@ class Request {
    * or not a number. Defaults to 0.
    * @return int The value of the variable, $default if variable not set or not numeric
    */
-  static function getInt($key,$default=0) {
+  static function getInt($key,$default = 0) {
     if (isset($_POST[$key]) && is_numeric($_POST[$key])) {
       return intval($_POST[$key]);
     } else if (isset($_GET[$key]) && is_numeric($_GET[$key])) {
@@ -102,7 +102,7 @@ class Request {
    * or not a number. Defaults to 0.
    * @return int The value of the variable, $default if variable not set or not numeric
    */
-  static function getFloat($key,$default=0) {
+  static function getFloat($key,$default = 0) {
     if (isset($_POST[$key]) && is_numeric($_POST[$key])) {
       return floatval($_POST[$key]);
     } else if (isset($_GET[$key]) && is_numeric($_GET[$key])) {
@@ -156,11 +156,11 @@ class Request {
    */
   static function getDate($key) {
     if (isset($_GET[$key])) {
-      $d=$_GET[$key];
+      $d = $_GET[$key];
       return mktime(0,0,0,substr($d,4,2),substr($d,6,2),substr($d,0,4));
     }
     else if (isset($_POST[$key])) {
-      $d=$_POST[$key];
+      $d = $_POST[$key];
       return mktime(0,0,0,substr($d,4,2),substr($d,6,2),substr($d,0,4));
     }
     else {
@@ -175,7 +175,7 @@ class Request {
    */
   static function getDateTime($key) {
     if (isset($_POST[$key])) {
-      $d=$_POST[$key];
+      $d = $_POST[$key];
       return mktime(substr($d,8,2),substr($d,10,2),substr($d,12,2),substr($d,4,2),substr($d,6,2),substr($d,0,4));
     }
     else {
@@ -185,7 +185,7 @@ class Request {
 
   static function getObject($key) {
     $obj = Strings::fromJSON(Request::getStringAsUnicode($key));
-    if ($obj!==null) {
+    if ($obj !== null) {
       if (!ConfigurationService::isUnicode()) {
         Strings::fromUnicode($obj);
       }
@@ -195,7 +195,7 @@ class Request {
 
 
   static function isPost() {
-    return $_SERVER['REQUEST_METHOD']=='POST';
+    return $_SERVER['REQUEST_METHOD'] == 'POST';
   }
 
   /**
@@ -217,7 +217,7 @@ class Request {
   }
 
   static function isLocalhost() {
-    return $_SERVER['SERVER_NAME']==='localhost';
+    return $_SERVER['SERVER_NAME'] === 'localhost';
   }
 
   static function supportsGzip() {
@@ -229,7 +229,7 @@ class Request {
       if (substr($k, 0, 5) == "HTTP_") {
         $k = str_replace('_', ' ', substr($k, 5));
         $k = str_replace(' ', '-', ucwords(strtolower($k)));
-        if ($name==$k) {
+        if ($name == $k) {
           return $v;
         }
       }
@@ -256,18 +256,18 @@ class Request {
    * @param array $keys The parameters to transfer
    */
   static function transfer($object,$keys) {
-    foreach ($keys as $key=>$type) {
+    foreach ($keys as $key => $type) {
       if (is_int($key)) {
         $key = $type;
         $type = 'string';
       }
       if (Request::exists($key)) {
-        $method = 'set'.ucfirst($key);
-        $value = $type=='int' ? Request::getInt($key) : Request::getString($key);
+        $method = 'set' . ucfirst($key);
+        $value = $type == 'int' ? Request::getInt($key) : Request::getString($key);
         if (method_exists($object,$method)) {
           $object->$method($value);
         } else {
-          Log::debug('Method: '.$method.' does not exists on...');
+          Log::debug('Method: ' . $method . ' does not exists on...');
           Log::debug($object);
         }
       }

@@ -40,7 +40,7 @@ class TestImagePart extends UnitTestCase {
   function testImport() {
     $obj = new ImagePart();
     $latest = ImageService::getLatestImageId();
-    if ($latest==null) {
+    if ($latest == null) {
       Log::debug('This test can only run with at least one image present');
       return;
     }
@@ -75,7 +75,7 @@ class TestImagePart extends UnitTestCase {
   function testImportPercent() {
     $obj = new ImagePart();
     $latest = ImageService::getLatestImageId();
-    if ($latest==null) {
+    if ($latest == null) {
       Log::debug('This test can only run with at least one image present');
       return;
     }

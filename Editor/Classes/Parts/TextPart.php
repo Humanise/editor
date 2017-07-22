@@ -11,7 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['TextPart'] = [
   'table' => 'part_text',
   'properties' => [
-    'text'   => ['type'=>'string'],
+    'text' => ['type' => 'string'],
     'textAlign' => [ 'type' => 'string', 'column' => 'textalign' ],
     'fontFamily' => [ 'type' => 'string', 'column' => 'fontfamily' ],
     'fontSize' => [ 'type' => 'string', 'column' => 'fontsize' ],
@@ -25,7 +25,7 @@ Entity::$schema['TextPart'] = [
     'textTransform' => [ 'type' => 'string', 'column' => 'texttransform' ],
     'fontStyle' => [ 'type' => 'string', 'column' => 'fontstyle' ],
     'fontVariant' => [ 'type' => 'string', 'column' => 'fontvariant' ],
-    'imageId' => ['type'=>'int', 'column' => 'image_id', 'relation'=>['class'=>'Image', 'property'=>'id']],
+    'imageId' => ['type' => 'int', 'column' => 'image_id', 'relation' => ['class' => 'Image', 'property' => 'id']],
     'imageFloat' => [ 'type' => 'string', 'column' => 'imagefloat' ],
     'imageWidth' => [ 'type' => 'int', 'column' => 'imagewidth' ],
     'imageHeight' => [ 'type' => 'int', 'column' => 'imageheight' ]

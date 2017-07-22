@@ -6,7 +6,7 @@
 require_once '../../Include/Private.php';
 
 $maxUploadSize = GuiUtils::bytesToString(FileSystemService::getMaxUploadSize());
-$gui='
+$gui = '
 <gui xmlns="uri:hui" title="Filer" padding="10">
   <controller url="controller.js"/>
   <controller url="replace.js"/>
@@ -64,7 +64,7 @@ $gui='
     <tabs small="true" centered="true">
       <tab title="{Upload; da:Overførsel}" padding="10">
         <upload name="file" url="actions/UploadFile.php" widget="upload" multiple="true">
-          <placeholder title="{Select files on your computer; da:Vælg filer på din computer...}" text="{The file can at most be '.$maxUploadSize.' large; da:Filen kan højest være '.$maxUploadSize.' stor}"/>
+          <placeholder title="{Select files on your computer; da:Vælg filer på din computer...}" text="{The file can at most be ' . $maxUploadSize . ' large; da:Filen kan højest være ' . $maxUploadSize . ' stor}"/>
         </upload>
         <buttons align="center" top="10">
           <button name="cancelUpload" text="{Close; da:Luk}"/>
@@ -87,7 +87,7 @@ $gui='
 
   <window title="{Replacement of file; da:Erstatning af fil}" name="replaceWindow" width="300" padding="10">
     <upload name="replaceFile" url="actions/ReplaceFile.php" widget="replaceUpload">
-      <placeholder title="{Select a new file on your computer; da:Vælg en ny fil på din computer...}" text="{The file can at most be '.$maxUploadSize.' large; da:Filen kan højest være '.$maxUploadSize.' stor}"/>
+      <placeholder title="{Select a new file on your computer; da:Vælg en ny fil på din computer...}" text="{The file can at most be ' . $maxUploadSize . ' large; da:Filen kan højest være ' . $maxUploadSize . ' stor}"/>
     </upload>
     <buttons align="center" top="10">
       <button name="cancelReplaceUpload" text="{Cancel; da:Annuller}"/>

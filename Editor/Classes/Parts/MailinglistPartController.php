@@ -24,8 +24,8 @@ class MailinglistPartController extends PartController
   function editor($part,$context) {
     $ids = $part->getMailinglistIds();
     return
-    $this->render($part,$context).
-    '<input type="hidden" name="mailinglists" value="'.implode(',',$ids).'"/>';
+    $this->render($part,$context) .
+    '<input type="hidden" name="mailinglists" value="' . implode(',',$ids) . '"/>';
   }
 
   function display($part,$context) {
@@ -43,60 +43,60 @@ class MailinglistPartController extends PartController
   }
 
   function buildSub($part,$context) {
-    $action = Request::getString($part->getId().'_action');
-    $name = Request::getString($part->getId().'_name');
-    $email = Request::getString($part->getId().'_email');
+    $action = Request::getString($part->getId() . '_action');
+    $name = Request::getString($part->getId() . '_name');
+    $email = Request::getString($part->getId() . '_email');
     $subscribe_error = '';
     $subscribe_body = '';
     $unsubscribe_error = '';
     $unsubscribe_body = '';
-    if ($action=='subscribe') {
-      if ($name=='') {
+    if ($action == 'subscribe') {
+      if ($name == '') {
         $subscribe_error = 'noname';
-      } else if ($email=='') {
+      } else if ($email == '') {
         $subscribe_error = 'noemail';
       } else if (!ValidateUtils::validateEmail($email)) {
         $subscribe_error = 'invalidemail';
       }
-      if ($subscribe_error!='') {
-        $subscribe_body .= '<value key="name" value="'.Strings::escapeXML($name).'"/>';
-        $subscribe_body .= '<value key="email" value="'.Strings::escapeXML($email).'"/>';
+      if ($subscribe_error != '') {
+        $subscribe_body .= '<value key="name" value="' . Strings::escapeXML($name) . '"/>';
+        $subscribe_body .= '<value key="email" value="' . Strings::escapeXML($email) . '"/>';
       } else {
         $this->subscribe($part,$name,$email);
         $subscribe_body .= '<success/>';
       }
-    } else if ($action=='unsubscribe') {
-      if ($email=='') {
+    } else if ($action == 'unsubscribe') {
+      if ($email == '') {
         $unsubscribe_error = 'noemail';
-        $unsubscribe_body .= '<value key="email" value="'.Strings::escapeXML($email).'"/>';
+        $unsubscribe_body .= '<value key="email" value="' . Strings::escapeXML($email) . '"/>';
       } else if (!ValidateUtils::validateEmail($email)) {
         $unsubscribe_error = 'invalidemail';
-        $unsubscribe_body .= '<value key="email" value="'.Strings::escapeXML($email).'"/>';
+        $unsubscribe_body .= '<value key="email" value="' . Strings::escapeXML($email) . '"/>';
       } else {
         if ($this->unsubscribe($part,$email)) {
           $unsubscribe_body .= '<success/>';
         } else {
           $unsubscribe_error = 'notsubscribed';
-          $unsubscribe_body .= '<value key="email" value="'.Strings::escapeXML($email).'"/>';
+          $unsubscribe_body .= '<value key="email" value="' . Strings::escapeXML($email) . '"/>';
         }
       }
     }
     $ids = $part->getMailinglistIds();
     $xml =
-    '<mailinglist xmlns="'.$this->getNamespace().'">'.
+    '<mailinglist xmlns="' . $this->getNamespace() . '">' .
     '<lists>';
     foreach ($ids as $id) {
-      $xml.='<id>'.$id.'</id>';
+      $xml .= '<id>' . $id . '</id>';
     }
-    $xml.='</lists>'.
-    '<subscribe>'.
-    ($subscribe_error!='' ? '<error key="'.$subscribe_error.'"/>' : '').
-    $subscribe_body.
-    '</subscribe>'.
-    '<unsubscribe>'.
-    ($unsubscribe_error!='' ? '<error key="'.$unsubscribe_error.'"/>' : '').
-    $unsubscribe_body.
-    '</unsubscribe>'.
+    $xml .= '</lists>' .
+    '<subscribe>' .
+    ($subscribe_error != '' ? '<error key="' . $subscribe_error . '"/>' : '') .
+    $subscribe_body .
+    '</subscribe>' .
+    '<unsubscribe>' .
+    ($unsubscribe_error != '' ? '<error key="' . $unsubscribe_error . '"/>' : '') .
+    $unsubscribe_body .
+    '</unsubscribe>' .
     '</mailinglist>';
     return $xml;
   }
@@ -127,7 +127,7 @@ class MailinglistPartController extends PartController
 
     $lists = $part->getMailinglistIds();
     foreach ($lists as $list) {
-      $sql = "insert into person_mailinglist (person_id,mailinglist_id) values (".Database::int($person->getId()).",".Database::int($list).")";
+      $sql = "insert into person_mailinglist (person_id,mailinglist_id) values (" . Database::int($person->getId()) . "," . Database::int($list) . ")";
       Database::insert($sql);
     }
   }
@@ -135,22 +135,22 @@ class MailinglistPartController extends PartController
   function unsubscribe($part,$address) {
     $lists = $part->getMailingListIds();
 
-    $sql = "delete from person_mailinglist using person_mailinglist,emailaddress where emailaddress.containing_object_id=person_mailinglist.person_id and emailaddress.address=".Database::text($address)." and (";
-    for ($i=0; $i < count($lists); $i++) {
-      if ($i>0) $sql.=' or ';
-      $sql.='person_mailinglist.mailinglist_id='.$lists[$i];
+    $sql = "delete from person_mailinglist using person_mailinglist,emailaddress where emailaddress.containing_object_id=person_mailinglist.person_id and emailaddress.address=" . Database::text($address) . " and (";
+    for ($i = 0; $i < count($lists); $i++) {
+      if ($i > 0) $sql .= ' or ';
+      $sql .= 'person_mailinglist.mailinglist_id=' . $lists[$i];
     }
-    $sql.=")";
+    $sql .= ")";
     $rows = Database::delete($sql);
-    return $rows>0;
+    return $rows > 0;
   }
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['Mailing list', 'da'=>'Postliste']) => '
+      GuiUtils::getTranslated(['Mailing list', 'da' => 'Postliste']) => '
         <item label="{Mailing lists; da:Postlister}">
           <checkboxes name="lists">
-          '.UI::buildOptions('mailinglist').'
+          ' . UI::buildOptions('mailinglist') . '
           </checkboxes>
         </item>
       '

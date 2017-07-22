@@ -32,10 +32,10 @@ foreach ($parameters as $parameter) {
   $name = $parameter['name'];
   $value = $parameter['value'];
   if ($name === 'sharpen') {
-    $recipe['filters'][] = ['name' => 'sharpen', 'amount' => ($value==='true' ? 1 : floatval($value))];
+    $recipe['filters'][] = ['name' => 'sharpen', 'amount' => ($value === 'true' ? 1 : floatval($value))];
   } else if ($name === 'sharpen') {
     $recipe['filters'][] = ['name' => 'sharpen'];
-  } else if ($name === 'greyscale' && $value==='true') {
+  } else if ($name === 'greyscale' && $value === 'true') {
     $recipe['filters'][] = ['name' => 'greyscale'];
   } else if ($name === 'blur') {
     $recipe['filters'][] = ['name' => 'blur', 'amount' => intval($value)];
@@ -49,7 +49,7 @@ foreach ($parameters as $parameter) {
 }
 // Bypass transformation if not required
 if ($recipe['width'] == null && $recipe['height'] == null && $recipe['scale'] == null && count($recipe['filters']) == 0 && !$recipe['format']) {
-  $sql = 'select `filename`,`type`,`width`,`height` from image where object_id='.Database::int($id);
+  $sql = 'select `filename`,`type`,`width`,`height` from image where object_id=' . Database::int($id);
   if ($row = Database::selectFirst($sql)) {
     $path = ConfigurationService::getImagePath($row['filename']);
     if (file_exists($path)) {
@@ -67,7 +67,7 @@ $cache = ImageTransformationService::buildCachePath($id,$recipe);
 if (file_exists($cache)) {
   ImageTransformationService::sendFile($cache,$recipe['format']);
 } else {
-  $sql = 'select `filename`,`type`,`width`,`height` from image where object_id='.Database::int($id);
+  $sql = 'select `filename`,`type`,`width`,`height` from image where object_id=' . Database::int($id);
   if ($row = Database::selectFirst($sql)) {
     $recipe['path'] = ConfigurationService::getImagePath($row['filename']);
     if (Request::getBoolean('nocache')) {

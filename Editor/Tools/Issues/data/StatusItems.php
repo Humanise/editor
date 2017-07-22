@@ -13,13 +13,13 @@ $statuses = Query::after('issuestatus')->get();
 
 
 $writer->item([
-  'title'=>''
+  'title' => ''
 ]);
 
 foreach ($statuses as $status) {
   $writer->item([
-    'title'=>$status->getTitle(),
-    'value'=>$status->getId()
+    'title' => $status->getTitle(),
+    'value' => $status->getId()
   ]);
 }
 $writer->endItems();

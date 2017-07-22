@@ -11,14 +11,14 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Path'] = [
   'table' => 'path',
   'properties' => [
-      'pageId'   => ['type'=>'int', 'column'=>'page_id', 'relation'=> ['class'=>'Page', 'property'=>'id']],
-      'path'  => ['type'=>'string']
+      'pageId' => ['type' => 'int', 'column' => 'page_id', 'relation' => ['class' => 'Page', 'property' => 'id']],
+      'path' => ['type' => 'string']
   ]
 ];
 
 class Path extends Object {
   var $path;
-  var $pageId=0;
+  var $pageId = 0;
 
   function Path() {
     parent::Object('path');
@@ -47,7 +47,7 @@ class Path extends Object {
   }
 
   function _updateTitle() {
-    $this->setTitle($this->path.' -> '.$this->pageId);
+    $this->setTitle($this->path . ' -> ' . $this->pageId);
   }
 
   /////////////////////////// GUI /////////////////////////

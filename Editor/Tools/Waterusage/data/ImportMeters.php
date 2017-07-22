@@ -38,7 +38,7 @@ function handleLine($line) {
   $street = '';
   $zipcode = '';
   $city = '';
-  if (count($words)==2) {
+  if (count($words) == 2) {
     $number = $words[0];
     $address = $words[1];
     $parsed = WaterusageService::parseAddress($address);
@@ -47,20 +47,20 @@ function handleLine($line) {
       $zipcode = $parsed['zipcode'];
       $city = $parsed['city'];
     } else {
-      Log::debug('Unable to parse address: '.$address);
-      Log::logTool('waterusage','import','Unable to parse address: '.$address);
+      Log::debug('Unable to parse address: ' . $address);
+      Log::logTool('waterusage','import','Unable to parse address: ' . $address);
     }
-  } else if (count($words)==4) {
+  } else if (count($words) == 4) {
     $number = $words[0];
     $street = $words[1];
     $zipcode = $words[2];
     $city = $words[3];
   } else {
-    Log::logTool('waterusage','import','Unable to parse line: '.$line);
+    Log::logTool('waterusage','import','Unable to parse line: ' . $line);
     return;
   }
   if (!ValidateUtils::validateDigits($number)) {
-    Log::logTool('waterusage','import','The number is not made of pure digits: '.$line);
+    Log::logTool('waterusage','import','The number is not made of pure digits: ' . $line);
     return;
   }
   $meter = Query::after('watermeter')->withProperty('number',$number)->first();

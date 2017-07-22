@@ -32,9 +32,9 @@ class HtmlTableParser {
     $parsed = HtmlTableParser::parse($html);
     foreach ($parsed as $rows) {
       $table = [];
-      for ($i=1; $i < count($rows); $i++) {
+      for ($i = 1; $i < count($rows); $i++) {
         $row = [];
-        for ($j=0; $j < count($rows[$i]); $j++) {
+        for ($j = 0; $j < count($rows[$i]); $j++) {
           if (isset($rows[0][$j])) {
             $row[$rows[0][$j]] = $rows[$i][$j];
           }

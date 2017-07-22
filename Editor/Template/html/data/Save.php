@@ -11,14 +11,14 @@ $html = Request::getString('html');
 
 $valid = DOMUtils::isValidFragment($html);
 
-$sql="update html set".
-" html=".Database::text($html).
-",title=".Database::text($title).
-",valid=".Database::boolean($valid).
-" where page_id=".$id;
+$sql = "update html set" .
+" html=" . Database::text($html) .
+",title=" . Database::text($title) .
+",valid=" . Database::boolean($valid) .
+" where page_id=" . $id;
 Database::update($sql);
 
 PageService::markChanged($id);
 
-Response::sendObject(['valid'=>$valid]);
+Response::sendObject(['valid' => $valid]);
 ?>

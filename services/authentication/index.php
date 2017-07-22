@@ -13,7 +13,7 @@ $username = Request::getString('username');
 $password = Request::getString('password');
 
 if ($user = ExternalSession::logIn($username,$password)) {
-    Log::debug('User loggend in: '.$username);
+    Log::debug('User loggend in: ' . $username);
 } else {
     Response::unauthorized();
 }

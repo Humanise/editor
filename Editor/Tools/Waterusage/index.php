@@ -7,7 +7,7 @@ require_once '../../Include/Private.php';
 
 $maxUploadSize = GuiUtils::bytesToString(FileSystemService::getMaxUploadSize());
 
-$gui='
+$gui = '
 <gui xmlns="uri:hui" title="Vandforbrug" padding="10" state="list">
   <controller url="controller.js?v=1"/>
   <source name="listSource" url="data/List.php">
@@ -140,7 +140,7 @@ $gui='
     <tabs centered="true" small="true">
       <tab title="Vandmålere" padding="10">
         <upload name="metersUpload" url="data/ImportMeters.php" widget="meterImportButton">
-          <placeholder title="Upload af CSV-fil med vandmålere" text="Filen skal have formatet (nummer;vej;postnummer;by) f.eks. (6778888;Toldbodvej 1;9370;Hals) eller (nummer;adresse) f.eks. (6778888;Toldbodvej 1,9370 Hals) og kan højest være '.$maxUploadSize.' stor"/>
+          <placeholder title="Upload af CSV-fil med vandmålere" text="Filen skal have formatet (nummer;vej;postnummer;by) f.eks. (6778888;Toldbodvej 1;9370;Hals) eller (nummer;adresse) f.eks. (6778888;Toldbodvej 1,9370 Hals) og kan højest være ' . $maxUploadSize . ' stor"/>
         </upload>
         <buttons align="center" top="10">
           <button name="meterImportButton" text="Vælg filer..." highlighted="true"/>
@@ -148,7 +148,7 @@ $gui='
       </tab>
       <tab title="Aflæsninger" padding="10">
         <upload name="usagesUpload" url="data/ImportUsages.php" widget="usagesImportButton">
-          <placeholder title="Upload af CSV-fil med aflæsninger" text="Filen skal have formatet (nummer;værdi;dato) f.eks. (6778888;21361;15/04/2011) og kan højest være '.$maxUploadSize.' stor"/>
+          <placeholder title="Upload af CSV-fil med aflæsninger" text="Filen skal have formatet (nummer;værdi;dato) f.eks. (6778888;21361;15/04/2011) og kan højest være ' . $maxUploadSize . ' stor"/>
         </upload>
         <buttons align="center" top="10">
           <button name="usagesImportButton" text="Vælg filer..." highlighted="true"/>

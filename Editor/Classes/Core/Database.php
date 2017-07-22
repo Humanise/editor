@@ -14,7 +14,7 @@ class Database {
     if (!function_exists('mysqli_connect')) {
       return false;
     }
-    return Database::getConnection()!==false;
+    return Database::getConnection() !== false;
   }
 
   static function testServerConnection($host,$user,$password) {
@@ -26,7 +26,7 @@ class Database {
     if (!$con) {
       return false;
     }
-    if (mysqli_errno($con)>0) {
+    if (mysqli_errno($con) > 0) {
       return false;
     }
     return true;
@@ -38,7 +38,7 @@ class Database {
       return false;
     }
     mysqli_select_db($con,$name);
-    if (mysqli_errno($con)>0) {
+    if (mysqli_errno($con) > 0) {
       return false;
     }
     return true;
@@ -64,7 +64,7 @@ class Database {
         mysqli_set_charset($con,'latin1');
       }
       mysqli_select_db($con,$config['database']);
-      if (mysqli_errno($con)>0) {
+      if (mysqli_errno($con) > 0) {
         return false;
       }
       $GLOBALS['OP_CON'] = $con;
@@ -72,19 +72,19 @@ class Database {
     return $GLOBALS['OP_CON'];
   }
 
-  static function select($sql,$parameters=null) {
+  static function select($sql,$parameters = null) {
     $con = Database::getConnection();
     if (!$con) {
       error_log('No database connection');
       return false;
     }
-    if ($parameters!==null) {
+    if ($parameters !== null) {
       $sql = Database::compile($sql,$parameters);
     }
     Database::debug($sql);
     $result = mysqli_query($con,$sql);
-    if (mysqli_errno($con)>0) {
-      error_log(mysqli_error($con).': '.$sql);
+    if (mysqli_errno($con) > 0) {
+      error_log(mysqli_error($con) . ': ' . $sql);
       return false;
     }
     else {
@@ -92,9 +92,9 @@ class Database {
     }
   }
 
-  static function selectFirst($sql,$parameters=null) {
+  static function selectFirst($sql,$parameters = null) {
     $output = false;
-    if ($parameters!==null) {
+    if ($parameters !== null) {
       $sql = Database::compile($sql,$parameters);
     }
     $result = Database::select($sql);
@@ -105,11 +105,11 @@ class Database {
     return $output;
   }
 
-  static function selectAll($sql,$key=null) {
+  static function selectAll($sql,$key = null) {
     $output = [];
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
-      if ($key!=null) {
+      if ($key != null) {
         $output[$row['key']] = $row;
       } else {
         $output[] = $row;
@@ -123,7 +123,7 @@ class Database {
     return mysqli_num_rows($result);
   }
 
-  static function isEmpty($sql,$parameters=null) {
+  static function isEmpty($sql,$parameters = null) {
     $output = true;
     $result = Database::select($sql,$parameters);
     if ($row = Database::next($result)) {
@@ -133,11 +133,11 @@ class Database {
     return $output;
   }
 
-  static function update($sql,$parameters=null) {
+  static function update($sql,$parameters = null) {
     if (is_array($sql)) {
       $sql = Database::buildUpdateSql($sql);
     }
-    if ($parameters!==null) {
+    if ($parameters !== null) {
       $sql = Database::compile($sql,$parameters);
     }
     $con = Database::getConnection();
@@ -145,8 +145,8 @@ class Database {
     return Database::_checkError($sql,$con);
   }
 
-  static function delete($sql,$parameters=null) {
-    if ($parameters!==null) {
+  static function delete($sql,$parameters = null) {
+    if ($parameters !== null) {
       $sql = Database::compile($sql,$parameters);
     }
     Database::debug($sql);
@@ -156,11 +156,11 @@ class Database {
     return mysqli_affected_rows($con);
   }
 
-  static function insert($sql,$parameters=null) {
+  static function insert($sql,$parameters = null) {
     if (is_array($sql)) {
       $sql = Database::buildInsertSql($sql);
     }
-    if ($parameters!==null) {
+    if ($parameters !== null) {
       $sql = Database::compile($sql,$parameters);
     }
     Database::debug($sql);
@@ -175,8 +175,8 @@ class Database {
   }
 
   static function _checkError($sql,&$con) {
-    if (mysqli_errno($con)>0) {
-      error_log(mysqli_error($con).': '.$sql);
+    if (mysqli_errno($con) > 0) {
+      error_log(mysqli_error($con) . ': ' . $sql);
       return false;
     }
     else {
@@ -202,7 +202,7 @@ class Database {
     return $ids;
   }
 
-  static function selectMap($sql,$parameters=null) {
+  static function selectMap($sql,$parameters = null) {
     $result = Database::select($sql,$parameters);
     $map = [];
     while($row = Database::next($result)) {
@@ -212,7 +212,7 @@ class Database {
     return $map;
   }
 
-  static function selectIntArray($sql,$parameters=null) {
+  static function selectIntArray($sql,$parameters = null) {
     $result = Database::select($sql,$parameters);
     $ids = [];
     while($row = Database::next($result)) {
@@ -222,8 +222,8 @@ class Database {
     return $ids;
   }
 
-  static function getIds($sql,$parameters=null) {
-    if ($parameters!==null) {
+  static function getIds($sql,$parameters = null) {
+    if ($parameters !== null) {
       $sql = Database::compile($sql,$parameters);
     }
     $result = Database::select($sql);
@@ -255,7 +255,7 @@ class Database {
    * @return string The formattet string
    */
   static function text($text) {
-    return "'".mysqli_real_escape_string(Database::getConnection(),$text)."'";
+    return "'" . mysqli_real_escape_string(Database::getConnection(),$text) . "'";
   }
 
   /**
@@ -296,7 +296,7 @@ class Database {
    */
   static function datetime($stamp) {
     if (is_numeric($stamp)) {
-      return "'".date('Y-m-d H:i:s',intval($stamp))."'";
+      return "'" . date('Y-m-d H:i:s',intval($stamp)) . "'";
     }
     else {
       return "NULL";
@@ -310,7 +310,7 @@ class Database {
    */
   static function date($stamp) {
     if (is_numeric($stamp)) {
-      return "'".date('Y-m-d',intval($stamp))."'";
+      return "'" . date('Y-m-d',intval($stamp)) . "'";
     }
     else {
       return "NULL";
@@ -323,50 +323,50 @@ class Database {
    * @return string The formattet string
    */
   static function search($text) {
-    return "'%".mysqli_real_escape_string(Database::getConnection(),$text)."%'";
+    return "'%" . mysqli_real_escape_string(Database::getConnection(),$text) . "%'";
   }
 
   static function buildUpdateSql($arr) {
-    $sql = "update ".$arr['table']." set ";
+    $sql = "update " . $arr['table'] . " set ";
     $num = 0;
     foreach ($arr['values'] as $column => $value) {
-      if ($num>0) {
-        $sql.=',';
+      if ($num > 0) {
+        $sql .= ',';
       }
-      $sql.="`".$column."`=".$value;
+      $sql .= "`" . $column . "`=" . $value;
       $num++;
     }
-    $sql.=" where ";
+    $sql .= " where ";
     $num = 0;
     foreach ($arr['where'] as $column => $value) {
-      if ($num>0) {
-        $sql.=' and ';
+      if ($num > 0) {
+        $sql .= ' and ';
       }
-      $sql.="`".$column."`=".$value;
+      $sql .= "`" . $column . "`=" . $value;
     }
     return $sql;
   }
 
   static function buildInsertSql($arr) {
-    $sql = "insert into ".$arr['table']." (";
+    $sql = "insert into " . $arr['table'] . " (";
     $num = 0;
     foreach ($arr['values'] as $column => $value) {
-      if ($num>0) {
-        $sql.=',';
+      if ($num > 0) {
+        $sql .= ',';
       }
-      $sql.="`".$column."`";
+      $sql .= "`" . $column . "`";
       $num++;
     }
-    $sql.=") values (";
+    $sql .= ") values (";
     $num = 0;
     foreach ($arr['values'] as $column => $value) {
-      if ($num>0) {
-        $sql.=',';
+      if ($num > 0) {
+        $sql .= ',';
       }
-      $sql.=$value;
+      $sql .= $value;
       $num++;
     }
-    $sql.=")";
+    $sql .= ")";
     return $sql;
   }
 
@@ -375,15 +375,15 @@ class Database {
     if (preg_match_all("/@[a-z]+\\([a-zA-Z]+\\)/u", $sql,$matches) > 0) {
       foreach ($matches[0] as $expression) {
         $pos = strpos($expression,'(');
-        $type = substr($expression,1,$pos-1);
-        $name = substr($expression,$pos+1,-1);
+        $type = substr($expression,1,$pos - 1);
+        $name = substr($expression,$pos + 1,-1);
         if (array_key_exists($name,$vars)) {
           $value = $vars[$name];
-          if ($type=='int') {
+          if ($type == 'int') {
             $value = Database::int($value);
-          } else if ($type=='text') {
+          } else if ($type == 'text') {
             $value = Database::text($value);
-          } else if ($type=='boolean') {
+          } else if ($type == 'boolean') {
             $value = Database::boolean($value);
           } else {
             continue;

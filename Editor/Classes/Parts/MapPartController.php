@@ -45,13 +45,13 @@ class MapPartController extends PartController
       "mapwidth" => $part->getWidth(),
       "mapheight" => $part->getHeight(),
       "frame" => $part->getFrame()
-    ]).
-    '<div id="part_map_container">'.
-    $this->render($part,$context).
+    ]) .
+    '<div id="part_map_container">' .
+    $this->render($part,$context) .
     '</div>
-    <script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/map/editor.js" type="text/javascript" charset="utf-8"></script>
+    <script src="' . ConfigurationService::getBaseUrl() . 'Editor/Parts/map/editor.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
-    //partController.setMarkers('.Strings::fromJSON($part->getMarkers()).');
+    //partController.setMarkers(' . Strings::fromJSON($part->getMarkers()) . ');
     </script>';
   }
 
@@ -71,43 +71,43 @@ class MapPartController extends PartController
   }
 
   function buildSub($part,$context) {
-    $xml = '<map xmlns="'.$this->getNamespace().'" maptype="'.$part->getMaptype().'" zoom="'.$part->getZoom().'" provider="'.$part->getProvider().'"';
+    $xml = '<map xmlns="' . $this->getNamespace() . '" maptype="' . $part->getMaptype() . '" zoom="' . $part->getZoom() . '" provider="' . $part->getProvider() . '"';
     if ($part->getFrame()) {
-      $xml.=' frame="'.$part->getFrame().'"';
+      $xml .= ' frame="' . $part->getFrame() . '"';
     }
     if ($part->getWidth()) {
-      if ($part->getProvider()=='google-static') {
-        $xml.=' width="'.intval($part->getWidth()).'"';
+      if ($part->getProvider() == 'google-static') {
+        $xml .= ' width="' . intval($part->getWidth()) . '"';
       } else {
-        $xml.=' width="'.$part->getWidth().'"';
+        $xml .= ' width="' . $part->getWidth() . '"';
       }
     }
     if ($part->getHeight()) {
-      if ($part->getProvider()=='google-static') {
-        $xml.=' height="'.intval($part->getHeight()).'"';
+      if ($part->getProvider() == 'google-static') {
+        $xml .= ' height="' . intval($part->getHeight()) . '"';
       } else {
-        $xml.=' height="'.$part->getHeight().'"';
+        $xml .= ' height="' . $part->getHeight() . '"';
       }
     }
     if ($part->getLongitude()) {
-      $xml.=' longitude="'.$part->getLongitude().'"';
+      $xml .= ' longitude="' . $part->getLongitude() . '"';
     }
     if ($part->getLatitude()) {
-      $xml.=' latitude="'.$part->getLatitude().'"';
+      $xml .= ' latitude="' . $part->getLatitude() . '"';
     }
-    $xml.='>';
+    $xml .= '>';
     if ($part->getText()) {
-      $xml.='<text>'.Strings::escapeSimpleXML($part->getText()).'</text>';
+      $xml .= '<text>' . Strings::escapeSimpleXML($part->getText()) . '</text>';
     }
     $markers = Strings::fromJSON(Strings::toUnicode($part->getMarkers()));
     if (is_array($markers)) {
       foreach ($markers as $marker) {
         if ($marker->point) {
-          $xml.='<marker latitude="'.$marker->point->latitude.'" longitude="'.$marker->point->longitude.'"/>';
+          $xml .= '<marker latitude="' . $marker->point->latitude . '" longitude="' . $marker->point->longitude . '"/>';
         }
       }
     }
-    $xml.= '</map>';
+    $xml .= '</map>';
     return $xml;
   }
 
@@ -161,7 +161,7 @@ class MapPartController extends PartController
           </field>
           <field label="Ramme">
             <dropdown key="frame">
-              '.DesignService::getFrameOptions().'
+              ' . DesignService::getFrameOptions() . '
             </dropdown>
           </field>
           <field label="Bredde">

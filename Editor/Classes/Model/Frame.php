@@ -11,17 +11,17 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Frame'] = [
   'table' => 'frame',
   'properties' => [
-    'id' => ['type'=>'int'],
-    'title' => ['type'=>'string'],
-    'name' => ['type'=>'string'],
-    'bottomText' => ['type'=>'string', 'column'=>'bottomtext'],
-    'changed' => ['type'=>'datetime'],
-    'published' => ['type'=>'datetime'],
-    'searchEnabled' => ['type'=>'boolean', 'column'=>'searchenabled'],
-    'userStatusEnabled' => ['type'=>'boolean', 'column'=>'userstatusenabled'],
-    'searchPageId' => ['type'=>'int', 'column'=>'searchpage_id', 'relation'=>['class'=>'Page', 'property'=>'id']],
-      'loginPageId' => ['type'=>'int', 'column'=>'userstatuspage_id', 'relation'=>['class'=>'Page', 'property'=>'id']],
-    'hierarchyId' => ['type'=>'int', 'column'=>'hierarchy_id', 'relation'=>['class'=>'Hierarchy', 'property'=>'id']]
+    'id' => ['type' => 'int'],
+    'title' => ['type' => 'string'],
+    'name' => ['type' => 'string'],
+    'bottomText' => ['type' => 'string', 'column' => 'bottomtext'],
+    'changed' => ['type' => 'datetime'],
+    'published' => ['type' => 'datetime'],
+    'searchEnabled' => ['type' => 'boolean', 'column' => 'searchenabled'],
+    'userStatusEnabled' => ['type' => 'boolean', 'column' => 'userstatusenabled'],
+    'searchPageId' => ['type' => 'int', 'column' => 'searchpage_id', 'relation' => ['class' => 'Page', 'property' => 'id']],
+      'loginPageId' => ['type' => 'int', 'column' => 'userstatuspage_id', 'relation' => ['class' => 'Page', 'property' => 'id']],
+    'hierarchyId' => ['type' => 'int', 'column' => 'hierarchy_id', 'relation' => ['class' => 'Hierarchy', 'property' => 'id']]
   ]
 ];
 class Frame extends Entity implements Loadable {
@@ -41,7 +41,7 @@ class Frame extends Entity implements Loadable {
   }
 
   function isPersistent() {
-    return $this->id>0;
+    return $this->id > 0;
   }
 
   function setTitle($title) {

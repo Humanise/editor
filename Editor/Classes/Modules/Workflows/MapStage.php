@@ -45,7 +45,7 @@ class MapStage extends WorkflowStage {
     } else if (is_array($data)) {
       $items = $data;
     }
-    for ($i=0; $i < count($items); $i++) {
+    for ($i = 0; $i < count($items); $i++) {
       $item = $items[$i];
       $this->apply($item);
     }

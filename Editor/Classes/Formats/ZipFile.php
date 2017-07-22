@@ -22,7 +22,7 @@ class ZipFile {
 
     foreach ($list as $file) {
       $base = basename($file['filename']);
-      if ($base{0}!='.' && !$file['folder']) {
+      if ($base{0} != '.' && !$file['folder']) {
         $files[] = new ZipFileItem($file,$this->delegate);
       }
     }
@@ -38,7 +38,7 @@ class ZipFile {
 
   function extract($file) {
     global $basePath;
-    $extracted = $this->delegate->extractByIndex($file['index'],$basePath.'local/cache/temp');
+    $extracted = $this->delegate->extractByIndex($file['index'],$basePath . 'local/cache/temp');
     Log::debug($extracted);
   }
 }

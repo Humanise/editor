@@ -31,25 +31,25 @@ class ListingPartController extends PartController
   }
 
   function buildSub($part,$context) {
-    $data = '<listing xmlns="'.$this->getNamespace().'">'.
-    $this->buildXMLStyle($part).
-    '<list type="'.$part->getListStyle().'">';
+    $data = '<listing xmlns="' . $this->getNamespace() . '">' .
+    $this->buildXMLStyle($part) .
+    '<list type="' . $part->getListStyle() . '">';
     $parsed = $this->_parse($part->getText());
     foreach ($parsed as $point) {
-      $data.='<item>';
+      $data .= '<item>';
       $lines = count($point);
-      for ($i=0; $i<$lines; $i++) {
+      for ($i = 0; $i < $lines; $i++) {
         $formatted = $this->_formatBuildText($point[$i],$context,$part);
-        if ($i>0) {
-          $data.='<break/>'.$formatted;
+        if ($i > 0) {
+          $data .= '<break/>' . $formatted;
         } else {
-          $data.='<first>'.$formatted.'</first>';
+          $data .= '<first>' . $formatted . '</first>';
         }
       }
-      $data.='</item>';
+      $data .= '</item>';
     }
-    $data.='</list>';
-    $data.='</listing>';
+    $data .= '</list>';
+    $data .= '</listing>';
     return $data;
   }
 
@@ -62,13 +62,13 @@ class ListingPartController extends PartController
 
   function _parse($list) {
     $list = str_replace("\r\n","\n",$list);
-    $list="\n".$list;
+    $list = "\n" . $list;
     $items = preg_split("/\n\*/",$list);
     $parsed = [];
-    for ($i=1; $i<count($items); $i++) {
-      $item=$items[$i];
-      $lines=preg_split("/\n/",$item);
-      $parsed[]=$lines;
+    for ($i = 1; $i < count($items); $i++) {
+      $item = $items[$i];
+      $lines = preg_split("/\n/",$item);
+      $parsed[] = $lines;
     }
     return $parsed;
   }
@@ -77,7 +77,7 @@ class ListingPartController extends PartController
     $parsed = $this->_parse($part->getText());
     $text = '';
     foreach ($parsed as $line) {
-      $text.= join("\n",$line)."\n";
+      $text .= join("\n",$line) . "\n";
     }
     $context = new PartContext();
     $text = $context->decorateForIndex($text);
@@ -108,40 +108,40 @@ class ListingPartController extends PartController
 
   function editor($part,$context) {
     return
-    '<textarea class="part_listing common_font" name="text" id="PartListingTextarea" style="border: 1px solid lightgrey; width: 100%; height: 200px; background: transparent; padding: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;'.$this->buildCSSStyle($part).'">'.
-    Strings::escapeEncodedXML($part->getText()).
-    '</textarea>'.
-    '<input type="hidden" name="type" value="'.Strings::escapeXML($part->getListStyle()).'"/>'.
-    '<input type="hidden" name="fontSize" value="'.Strings::escapeXML($part->getFontSize()).'"/>'.
-    '<input type="hidden" name="fontFamily" value="'.Strings::escapeXML($part->getFontFamily()).'"/>'.
-    '<input type="hidden" name="textAlign" value="'.Strings::escapeXML($part->getTextAlign()).'"/>'.
-    '<input type="hidden" name="lineHeight" value="'.Strings::escapeXML($part->getLineHeight()).'"/>'.
-    '<input type="hidden" name="fontWeight" value="'.Strings::escapeXML($part->getFontWeight()).'"/>'.
-    '<input type="hidden" name="fontStyle" value="'.Strings::escapeXML($part->getFontStyle()).'"/>'.
-    '<input type="hidden" name="color" value="'.Strings::escapeXML($part->getColor()).'"/>'.
-    '<input type="hidden" name="wordSpacing" value="'.Strings::escapeXML($part->getWordSpacing()).'"/>'.
-    '<input type="hidden" name="letterSpacing" value="'.Strings::escapeXML($part->getLetterSpacing()).'"/>'.
-    '<input type="hidden" name="textIndent" value="'.Strings::escapeXML($part->getTextIndent()).'"/>'.
-    '<input type="hidden" name="textTransform" value="'.Strings::escapeXML($part->getTextTransform()).'"/>'.
-    '<input type="hidden" name="fontVariant" value="'.Strings::escapeXML($part->getFontVariant()).'"/>'.
-    '<input type="hidden" name="textDecoration" value="'.Strings::escapeXML($part->getTextDecoration()).'"/>'.
-    '<script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/listing/script.js" type="text/javascript" charset="utf-8"></script>';
+    '<textarea class="part_listing common_font" name="text" id="PartListingTextarea" style="border: 1px solid lightgrey; width: 100%; height: 200px; background: transparent; padding: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;' . $this->buildCSSStyle($part) . '">' .
+    Strings::escapeEncodedXML($part->getText()) .
+    '</textarea>' .
+    '<input type="hidden" name="type" value="' . Strings::escapeXML($part->getListStyle()) . '"/>' .
+    '<input type="hidden" name="fontSize" value="' . Strings::escapeXML($part->getFontSize()) . '"/>' .
+    '<input type="hidden" name="fontFamily" value="' . Strings::escapeXML($part->getFontFamily()) . '"/>' .
+    '<input type="hidden" name="textAlign" value="' . Strings::escapeXML($part->getTextAlign()) . '"/>' .
+    '<input type="hidden" name="lineHeight" value="' . Strings::escapeXML($part->getLineHeight()) . '"/>' .
+    '<input type="hidden" name="fontWeight" value="' . Strings::escapeXML($part->getFontWeight()) . '"/>' .
+    '<input type="hidden" name="fontStyle" value="' . Strings::escapeXML($part->getFontStyle()) . '"/>' .
+    '<input type="hidden" name="color" value="' . Strings::escapeXML($part->getColor()) . '"/>' .
+    '<input type="hidden" name="wordSpacing" value="' . Strings::escapeXML($part->getWordSpacing()) . '"/>' .
+    '<input type="hidden" name="letterSpacing" value="' . Strings::escapeXML($part->getLetterSpacing()) . '"/>' .
+    '<input type="hidden" name="textIndent" value="' . Strings::escapeXML($part->getTextIndent()) . '"/>' .
+    '<input type="hidden" name="textTransform" value="' . Strings::escapeXML($part->getTextTransform()) . '"/>' .
+    '<input type="hidden" name="fontVariant" value="' . Strings::escapeXML($part->getFontVariant()) . '"/>' .
+    '<input type="hidden" name="textDecoration" value="' . Strings::escapeXML($part->getTextDecoration()) . '"/>' .
+    '<script src="' . ConfigurationService::getBaseUrl() . 'Editor/Parts/listing/script.js" type="text/javascript" charset="utf-8"></script>';
   }
 
   function importSub($node,$part) {
-    $xml = '<?xml version="1.0" encoding="ISO-8859-1"?>'.DOMUtils::getInnerXML($node);
+    $xml = '<?xml version="1.0" encoding="ISO-8859-1"?>' . DOMUtils::getInnerXML($node);
     $xsl = '<?xml version="1.0" encoding="ISO-8859-1"?>
     <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
       xmlns:t="http://uri.in2isoft.com/onlinepublisher/part/listing/1.0/" exclude-result-prefixes="t">
     <xsl:output method="text" encoding="ISO-8859-1"/>
 
     <xsl:template match="t:listing"><xsl:apply-templates/></xsl:template>
-    <xsl:template match="t:break"><xsl:text>'."\n".'</xsl:text></xsl:template>
+    <xsl:template match="t:break"><xsl:text>' . "\n" . '</xsl:text></xsl:template>
     <xsl:template match="t:strong">[s]<xsl:apply-templates/>[s]</xsl:template>
     <xsl:template match="t:em">[e]<xsl:apply-templates/>[e]</xsl:template>
     <xsl:template match="t:del">[slet]<xsl:apply-templates/>[slet]</xsl:template>
     <xsl:template match="t:link"><xsl:apply-templates/></xsl:template>
-    <xsl:template match="t:item"><xsl:if test="position()>1">'."<xsl:text>\n</xsl:text>".'</xsl:if>*<xsl:apply-templates/></xsl:template>
+    <xsl:template match="t:item"><xsl:if test="position()>1">' . "<xsl:text>\n</xsl:text>" . '</xsl:if>*<xsl:apply-templates/></xsl:template>
 
     </xsl:stylesheet>';
     $text = XslService::transform($xml,$xsl);
@@ -162,7 +162,7 @@ class ListingPartController extends PartController
       'i' => 'lower-roman',
       'I' => 'upper-roman'
     ];
-    $type='disc';
+    $type = 'disc';
     if ($listing = DOMUtils::getFirstChildElement($node,'listing')) {
       if (isset($types[$listing->getAttribute('type')])) {
         $type = $types[$listing->getAttribute('type')];
@@ -175,7 +175,7 @@ class ListingPartController extends PartController
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['Bullet list', 'da'=>'Punktopstilling']) =>
+      GuiUtils::getTranslated(['Bullet list', 'da' => 'Punktopstilling']) =>
       '
       <item label="{Bullet; da:Symbol}">
         <segmented name="listStyle">
@@ -224,7 +224,7 @@ class ListingPartController extends PartController
       </item>
       ',
 
-    GuiUtils::getTranslated(['Advanced', 'da'=>'Avanceret']) =>
+    GuiUtils::getTranslated(['Advanced', 'da' => 'Avanceret']) =>
       '
       <item label="{Word spacing; da:Ord-mellemrum}">
         <style-length-input name="wordSpacing" width="90"/>

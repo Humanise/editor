@@ -8,11 +8,11 @@ require_once '../../../Include/Private.php';
 $subset = Request::getString('subset');
 $group = Request::getInt('group',null);
 
-if ($subset=='pages') {
+if ($subset == 'pages') {
   listPages();
-} else if ($subset=='products') {
+} else if ($subset == 'products') {
   listProducts();
-} else if ($subset=='persons') {
+} else if ($subset == 'persons') {
   listPersons();
 } else if ($group !== null && $group > 0) {
   listGroup($group);
@@ -29,24 +29,24 @@ function listGroup($group) {
 
   $writer = new ListWriter();
   $writer->
-  startList(['unicode'=>true, 'checkboxes'=>true])->
+  startList(['unicode' => true, 'checkboxes' => true])->
     sort($sort,$direction)->
     //window(['total'=>$result->getTotal(),'size'=>$windowSize,'page'=>$windowPage])->
     startHeaders()->
-      header(['title'=>['Image', 'da'=>'Billede'], 'width'=>40, 'key' => 'object.title', 'sortable' => true])->
-      header(['title'=>['Size', 'da'=>'Størrelse'], 'key' => 'image.size', 'sortable' => true])->
-      header(['title'=>['Height', 'da'=>'Højde'], 'key' => 'image.height', 'sortable' => true])->
-      header(['title'=>['Width', 'da'=>'Bredde'], 'key' => 'image.width', 'sortable' => true])->
-      header(['title'=>'Type'])->
+      header(['title' => ['Image', 'da' => 'Billede'], 'width' => 40, 'key' => 'object.title', 'sortable' => true])->
+      header(['title' => ['Size', 'da' => 'Størrelse'], 'key' => 'image.size', 'sortable' => true])->
+      header(['title' => ['Height', 'da' => 'Højde'], 'key' => 'image.height', 'sortable' => true])->
+      header(['title' => ['Width', 'da' => 'Bredde'], 'key' => 'image.width', 'sortable' => true])->
+      header(['title' => 'Type'])->
       header(['title' => 'Position', 'width' => 1, 'key' => 'position', 'sortable' => true])->
     endHeaders();
 
   $moveUp = $direction == 'ascending';
-  $images = ImageService::search(['direction'=>$direction, 'sort' => $sort, 'text' => $text, 'group' => $group]);
+  $images = ImageService::search(['direction' => $direction, 'sort' => $sort, 'text' => $text, 'group' => $group]);
   foreach ($images as $row) {
     $writer->
-    startRow(['kind'=>'image', 'id'=>$row['id'], 'icon'=>'common/image', 'title'=>$row['title']])->
-      startCell(['icon'=>'common/image'])->
+    startRow(['kind' => 'image', 'id' => $row['id'], 'icon' => 'common/image', 'title' => $row['title']])->
+      startCell(['icon' => 'common/image'])->
         startLine()->text($row['title'])->endLine()->
       endCell()->
       startCell()->
@@ -61,12 +61,12 @@ function listGroup($group) {
       startCell()->
         text(FileService::mimeTypeToLabel($row['type']))->
       endCell()->
-      startCell(['wrap'=>false])->
+      startCell(['wrap' => false])->
         text($row['position']);
     if ($sort == 'position') {
       $writer->startIcons()->
-        icon(['icon'=>'monochrome/round_arrow_up', 'revealing'=>true, 'action'=>true, 'data'=>['action'=>'moveItem', 'direction'=>$moveUp ? 'up' : 'down', 'group'=>$group]])->
-        icon(['icon'=>'monochrome/round_arrow_down', 'revealing'=>true, 'action'=>true, 'data'=>['action'=>'moveItem', 'direction'=>$moveUp ? 'down' : 'up', 'group'=>$group]])->
+        icon(['icon' => 'monochrome/round_arrow_up', 'revealing' => true, 'action' => true, 'data' => ['action' => 'moveItem', 'direction' => $moveUp ? 'up' : 'down', 'group' => $group]])->
+        icon(['icon' => 'monochrome/round_arrow_down', 'revealing' => true, 'action' => true, 'data' => ['action' => 'moveItem', 'direction' => $moveUp ? 'down' : 'up', 'group' => $group]])->
       endIcons();
     }
     $writer->endCell()->endRow();
@@ -97,9 +97,9 @@ function listImages() {
   } else if ($group) {
     $query->withCustom('group',$group);
   }
-  if ($subset=='latest') {
+  if ($subset == 'latest') {
     $query->withCustom('createdAfter',Dates::addDays(time(),-1));
-  } else if ($subset=='unused') {
+  } else if ($subset == 'unused') {
     $query->withCustom('unused',true);
   }
   $positions = [];
@@ -114,15 +114,15 @@ function listImages() {
   $writer = new ListWriter();
 
   $writer->
-  startList(['unicode'=>true, 'checkboxes'=>true, 'ordering'=>$isGroup])->
+  startList(['unicode' => true, 'checkboxes' => true, 'ordering' => $isGroup])->
     sort($sort,$direction)->
-    window(['total'=>$result->getTotal(), 'size'=>$windowSize, 'page'=>$windowPage])->
+    window(['total' => $result->getTotal(), 'size' => $windowSize, 'page' => $windowPage])->
     startHeaders()->
-      header(['title'=>['Image', 'da'=>'Billede'], 'width'=>40, 'key' => 'object.title', 'sortable' => true])->
-      header(['title'=>['Size', 'da'=>'Størrelse'], 'key' => 'image.size', 'sortable' => true])->
-      header(['title'=>['Height', 'da'=>'Højde'], 'key' => 'image.height', 'sortable' => true])->
-      header(['title'=>['Width', 'da'=>'Bredde'], 'key' => 'image.width', 'sortable' => true])->
-      header(['title'=>'Type']);
+      header(['title' => ['Image', 'da' => 'Billede'], 'width' => 40, 'key' => 'object.title', 'sortable' => true])->
+      header(['title' => ['Size', 'da' => 'Størrelse'], 'key' => 'image.size', 'sortable' => true])->
+      header(['title' => ['Height', 'da' => 'Højde'], 'key' => 'image.height', 'sortable' => true])->
+      header(['title' => ['Width', 'da' => 'Bredde'], 'key' => 'image.width', 'sortable' => true])->
+      header(['title' => 'Type']);
   if ($isGroup) {
     $writer->header(['title' => 'Position', 'width' => 1, 'key' => 'imagegroup_image.position', 'sortable' => true]);
   }
@@ -131,8 +131,8 @@ function listImages() {
 
   foreach ($list as $image) {
     $writer->
-    startRow(['kind'=>'image', 'id'=>$image->getId(), 'icon'=>$image->getIcon(), 'title'=>$image->getTitle()])->
-      startCell(['icon'=>'common/image'])->
+    startRow(['kind' => 'image', 'id' => $image->getId(), 'icon' => $image->getIcon(), 'title' => $image->getTitle()])->
+      startCell(['icon' => 'common/image'])->
         startLine()->text($image->getTitle())->endLine()->
       endCell()->
       startCell()->
@@ -148,11 +148,11 @@ function listImages() {
         text(FileService::mimeTypeToLabel($image->getMimetype()))->
       endCell();
     if ($isGroup) {
-      $writer->startCell(['wrap'=>false])->
+      $writer->startCell(['wrap' => false])->
         text($positions[$image->getId()])->
         startIcons()->
-          icon(['icon'=>'monochrome/round_arrow_up', 'revealing'=>true, 'action'=>true, 'data'=>['action'=>'moveItem', 'direction'=>'up', 'group'=>$group]])->
-          icon(['icon'=>'monochrome/round_arrow_down', 'revealing'=>true, 'action'=>true, 'data'=>['action'=>'moveItem', 'direction'=>'down', 'group'=>$group]])->
+          icon(['icon' => 'monochrome/round_arrow_up', 'revealing' => true, 'action' => true, 'data' => ['action' => 'moveItem', 'direction' => 'up', 'group' => $group]])->
+          icon(['icon' => 'monochrome/round_arrow_down', 'revealing' => true, 'action' => true, 'data' => ['action' => 'moveItem', 'direction' => 'down', 'group' => $group]])->
         endIcons()->
       endCell();
     }
@@ -167,21 +167,21 @@ function listProducts() {
   $writer = new ListWriter();
 
   $writer->
-  startList(['unicode'=>true])->
+  startList(['unicode' => true])->
     startHeaders()->
-      header(['title'=>['Image', 'da'=>'Billede'], 'width'=>40])->
-      header(['title'=>['Product', 'da'=>'Produkt']])->
+      header(['title' => ['Image', 'da' => 'Billede'], 'width' => 40])->
+      header(['title' => ['Product', 'da' => 'Produkt']])->
     endHeaders();
 
   $result = ImageService::getProductImageRelations();
 
   foreach ($result as $row) {
     $writer->
-    startRow(['kind'=>'image', 'id'=>$row['image_id'], 'icon'=>'common/image', 'title'=>$row['image_title']])->
-      startCell(['icon'=>'common/image'])->
+    startRow(['kind' => 'image', 'id' => $row['image_id'], 'icon' => 'common/image', 'title' => $row['image_title']])->
+      startCell(['icon' => 'common/image'])->
         startLine()->text($row['image_title'])->endLine()->
       endCell()->
-      startCell(['icon'=>'common/product'])->
+      startCell(['icon' => 'common/product'])->
         text($row['product_title'])->
         /*startIcons()->
           icon(array(
@@ -203,21 +203,21 @@ function listPersons() {
   $writer = new ListWriter();
 
   $writer->
-  startList(['unicode'=>true])->
+  startList(['unicode' => true])->
     startHeaders()->
-      header(['title'=>['Image', 'da'=>'Billede'], 'width'=>40])->
-      header(['title'=>'Person'])->
+      header(['title' => ['Image', 'da' => 'Billede'], 'width' => 40])->
+      header(['title' => 'Person'])->
     endHeaders();
 
   $result = ImageService::getPersonImageRelations();
 
   foreach ($result as $row) {
     $writer->
-    startRow(['kind'=>'image', 'id'=>$row['image_id'], 'icon'=>'common/image', 'title'=>$row['image_title']])->
-      startCell(['icon'=>'common/image'])->
+    startRow(['kind' => 'image', 'id' => $row['image_id'], 'icon' => 'common/image', 'title' => $row['image_title']])->
+      startCell(['icon' => 'common/image'])->
         startLine()->text($row['image_title'])->endLine()->
       endCell()->
-      startCell(['icon'=>'common/person'])->
+      startCell(['icon' => 'common/person'])->
         text($row['person_title'])->
         startIcons()->
           icon([
@@ -240,22 +240,22 @@ function listPages() {
   $writer = new ListWriter();
 
   $writer->
-  startList(['unicode'=>true])->
+  startList(['unicode' => true])->
     startHeaders()->
-      header(['title'=>['Image', 'da'=>'Billede'], 'width'=>40])->
-      header(['title'=>['Page', 'da'=>'Side']])->
-      header(['title'=>['Section', 'da'=>'Afsnit']])->
+      header(['title' => ['Image', 'da' => 'Billede'], 'width' => 40])->
+      header(['title' => ['Page', 'da' => 'Side']])->
+      header(['title' => ['Section', 'da' => 'Afsnit']])->
     endHeaders();
 
   $result = ImageService::getPageImageRelations();
 
   foreach ($result as $row) {
     $writer->
-    startRow(['kind'=>'image', 'id'=>$row['image_id'], 'icon'=>'common/image', 'title'=>$row['image_title']])->
-      startCell(['icon'=>'common/image'])->
+    startRow(['kind' => 'image', 'id' => $row['image_id'], 'icon' => 'common/image', 'title' => $row['image_title']])->
+      startCell(['icon' => 'common/image'])->
         startLine()->text($row['image_title'])->endLine()->
       endCell()->
-      startCell(['icon'=>'common/page'])->
+      startCell(['icon' => 'common/page'])->
         text($row['page_title'])->
         badge($row['template'])->
         startIcons()->

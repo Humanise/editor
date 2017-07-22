@@ -9,10 +9,10 @@ $writer = new ListWriter();
 
 $writer->startList();
 $writer->startHeaders();
-$writer->header(['title'=>'Problem', 'width'=>40]);
-$writer->header(['title'=>'Objekt']);
-$writer->header(['title'=>'Kategori']);
-$writer->header(['width'=>1]);
+$writer->header(['title' => 'Problem', 'width' => 40]);
+$writer->header(['title' => 'Objekt']);
+$writer->header(['title' => 'Kategori']);
+$writer->header(['width' => 1]);
 $writer->endHeaders();
 
 $inspections = InspectionService::performInspection([
@@ -29,19 +29,19 @@ $icons = [
 foreach ($inspections as $inspection) {
   $entity = $inspection->getEntity();
   $writer->startRow();
-  $writer->startCell(['icon'=>$icons[$inspection->getStatus()]]);
+  $writer->startCell(['icon' => $icons[$inspection->getStatus()]]);
   $writer->text($inspection->getText());
   if ($inspection->getInfo()) {
-    $writer->startLine(['minor'=>true])->text($inspection->getInfo())->endLine();
+    $writer->startLine(['minor' => true])->text($inspection->getInfo())->endLine();
   }
   $writer->endCell();
   if ($entity) {
-    $writer->startCell(['icon'=>$entity['icon']])->text($entity['title'])->endCell();
+    $writer->startCell(['icon' => $entity['icon']])->text($entity['title'])->endCell();
   } else {
     $writer->startCell()->endCell();
   }
   $writer->startCell()->text($inspection->getCategory())->endCell();
-  $writer->startCell()->button(['text'=>'Fiks', 'data'=>['type'=>'pages']])->endCell();
+  $writer->startCell()->button(['text' => 'Fiks', 'data' => ['type' => 'pages']])->endCell();
   $writer->endRow();
 }
 

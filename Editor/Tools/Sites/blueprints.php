@@ -5,7 +5,7 @@
  */
 require_once '../../Include/Private.php';
 
-$gui='
+$gui = '
 <gui xmlns="uri:hui" title="Blueprints">
   <source url="data/ListBlueprints.php" name="listSource"/>
   <controller url="blueprints.js"/>

@@ -17,7 +17,7 @@ class TestStreams extends UnitTestCase {
       'type' => WorkflowState::$URL,
       'data' => 'https://daringfireball.net/feeds/main']
     ));
-    $flow->add(new FetchStage(['maxAge'=>60]));
+    $flow->add(new FetchStage(['maxAge' => 60]));
     $flow->add(new ParseFeedStage());
     $result = $flow->run();
     $this->assertNotNull($result);
@@ -34,9 +34,9 @@ class TestStreams extends UnitTestCase {
       'type' => WorkflowState::$URL,
       'data' => 'https://daringfireball.net/feeds/main']
     ));
-    $flow->add(new FetchStage(['maxAge'=>60]));
+    $flow->add(new FetchStage(['maxAge' => 60]));
     $flow->add(new ParseFeedStage());
-    $flow->add(new PopulateStreamStage(['id'=>$stream->getId(), 'itemPath'=>'items']));
+    $flow->add(new PopulateStreamStage(['id' => $stream->getId(), 'itemPath' => 'items']));
     $result = $flow->run();
     $this->assertNotNull($result);
     Log::debug($result->getTitle());

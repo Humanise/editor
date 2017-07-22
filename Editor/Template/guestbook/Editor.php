@@ -5,14 +5,14 @@
  */
 require_once '../../Include/Private.php';
 
-$gui='
+$gui = '
 <gui xmlns="uri:hui" padding="10">
   <controller url="js/controller.js"/>
   <source name="listSource" url="data/List.php">
-    <parameter key="id" value="'.Request::getId().'"/>
+    <parameter key="id" value="' . Request::getId() . '"/>
   </source>
   <script>
-    controller.id = '.Request::getId().';
+    controller.id = ' . Request::getId() . ';
   </script>
   <box width="600" top="30" title="Indstillinger til gæstebog">
     <toolbar>

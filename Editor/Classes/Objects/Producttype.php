@@ -28,7 +28,7 @@ class Producttype extends Object {
   }
 
   function canRemove() {
-    $sql = "select object_id from product where producttype_id=".Database::int($this->id);
+    $sql = "select object_id from product where producttype_id=" . Database::int($this->id);
     return Database::isEmpty($sql);
   }
 

@@ -20,7 +20,7 @@ if (Request::exists("page")) {
 }
 
 $unpublished = PublishingService::getTotalUnpublishedCount();
-if ($unpublished==0) {
+if ($unpublished == 0) {
   $unpublished = '';
 }
 
@@ -28,7 +28,7 @@ $categorized = ToolService::getCategorized();
 
 $lang = InternalSession::getLanguage();
 
-$gui='
+$gui = '
 <gui xmlns="uri:hui" title="Humanise Editor">
 
   <source name="searchSource" url="Services/Base/data/Search.php">
@@ -42,7 +42,7 @@ $gui='
 
   <controller url="Services/Base/controller.js"/>
 
-  <dock url="'.$start.'" name="dock" position="bottom" frame-name="Desktop">
+  <dock url="' . $start . '" name="dock" position="bottom" frame-name="Desktop">
     <sidebar collapsed="true">
       <bar variant="layout_mini">
         <button icon="monochrome/hierarchy" name="navPages" selected="true"/>
@@ -76,20 +76,20 @@ $gui='
     </sidebar>
 
     <tabs small="true">';
-      $tabs = ['edit'=>'{ Editing ; da: Redigering }', 'analyse'=>'{Analysis ; da:Analyse}', 'setup'=>'{ Setup ; da:Opsætning }'];
+      $tabs = ['edit' => '{ Editing ; da: Redigering }', 'analyse' => '{Analysis ; da:Analyse}', 'setup' => '{ Setup ; da:Opsætning }'];
       foreach ($tabs as $tab => $tabTitle) {
         $tools = @$categorized[$tab];
         if ($tools) {
-          $gui.='<tab title="'.$tabTitle.'" background="light"><toolbar name="'.$tab.'Toolbar" left="5">';
+          $gui .= '<tab title="' . $tabTitle . '" background="light"><toolbar name="' . $tab . 'Toolbar" left="5">';
           foreach ($tools as $key => $tool) {
             $deprecated = $tool->key == 'Pages';
-            $gui.='<icon text="'.$tool->name->$lang.'" icon="'.$tool->icon.'" click="dock.setUrl(\'Tools/'.$tool->key.'/\')" key="tool:'.$tool->key.'"'.($deprecated ? ' overlay="warning"' : '').'/>';
+            $gui .= '<icon text="' . $tool->name->$lang . '" icon="' . $tool->icon . '" click="dock.setUrl(\'Tools/' . $tool->key . '/\')" key="tool:' . $tool->key . '"' . ($deprecated ? ' overlay="warning"' : '') . '/>';
           }
-          $gui.='
+          $gui .= '
           <right>
           <icon text="{ View ; da:Vis }" icon="common/view" click="dock.setUrl(\'Services/Preview/\')" key="service:preview"/>
           <icon text="{ Edit ; da:Rediger }" icon="common/edit" click="dock.setUrl(\'Template/Edit.php/\')" key="service:edit"/>
-          <icon text="{ Publish ; da:Udgiv }" icon="common/internet" overlay="upload" click="baseController.goPublish()" badge="'.$unpublished.'" key="service:publish"/>
+          <icon text="{ Publish ; da:Udgiv }" icon="common/internet" overlay="upload" click="baseController.goPublish()" badge="' . $unpublished . '" key="service:publish"/>
           <divider/>
           <icon text="Start" icon="common/play" click="dock.setUrl(\'Services/Start/\')" key="service:start"/>
           <icon text="{ Exit ; da: Log ud }" icon="common/stop" click="document.location=\'Authentication.php?logout=true\'"/>
@@ -97,7 +97,7 @@ $gui='
           </toolbar></tab>';
         }
       }
-      $gui.='
+      $gui .= '
     </tabs>
   </dock>
 

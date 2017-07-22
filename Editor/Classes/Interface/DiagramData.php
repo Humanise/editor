@@ -17,7 +17,7 @@ class DiagramData {
       $this->nodes[] = $node;
   }
 
-  function addEdge($edge=null) {
+  function addEdge($edge = null) {
     if ($edge == null) {
       $edge = new DiagramEdge();
       $this->edges[] = $edge;

@@ -19,13 +19,13 @@ $writer = new ListWriter();
 
 $writer->startList()->
   sort($sort,$direction)->
-  window(['total'=>$result->getTotal(), 'size'=>$result->getWindowSize(), 'page'=>$result->getWindowPage()])->
+  window(['total' => $result->getTotal(), 'size' => $result->getWindowSize(), 'page' => $result->getWindowPage()])->
   startHeaders()->
-    header(['title'=>['Title', 'da'=>'Titel'], 'width'=>30, 'key'=>'title', 'sortable'=>true])->
+    header(['title' => ['Title', 'da' => 'Titel'], 'width' => 30, 'key' => 'title', 'sortable' => true])->
   endHeaders();
     foreach ($list as $obj) {
-    $writer->startRow(['id'=>$obj->getId(), 'kind'=>$obj->getType()])->
-      startCell(['icon'=>$obj->getIcon()])->startWrap()->text($obj->getTitle())->endWrap()->endCell()->
+    $writer->startRow(['id' => $obj->getId(), 'kind' => $obj->getType()])->
+      startCell(['icon' => $obj->getIcon()])->startWrap()->text($obj->getTitle())->endWrap()->endCell()->
     endRow();
   }
 $writer->endList();

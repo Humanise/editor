@@ -12,13 +12,13 @@ if (!isset($GLOBALS['basePath'])) {
 class TestFeeds extends UnitTestCase {
 
   function testRSS() {
-    $url = ConfigurationService::getBaseUrl().'Editor/Tests/Resources/twitter.rss';
-    if ($url[0]=='/') {
-      $url = 'http://localhost'.$url;
+    $url = ConfigurationService::getBaseUrl() . 'Editor/Tests/Resources/twitter.rss';
+    if ($url[0] == '/') {
+      $url = 'http://localhost' . $url;
     }
     $parser = new FeedParser();
     $feed = $parser->parseURL($url);
-    $this->assertTrue($feed!==false,'Unable to parse url: '.$url);
+    $this->assertTrue($feed !== false,'Unable to parse url: ' . $url);
     $this->assertEqual($feed->getTitle(),'Twitter / in2isoft');
     $this->assertEqual($feed->getPubDate(),null);
     $this->assertEqual($feed->getLink(),'http://twitter.com/in2isoft');
@@ -31,13 +31,13 @@ class TestFeeds extends UnitTestCase {
   }
 
   function testAtom() {
-    $url = ConfigurationService::getBaseUrl().'Editor/Tests/Resources/github.atom';
-    if ($url[0]=='/') {
-      $url = 'http://localhost'.$url;
+    $url = ConfigurationService::getBaseUrl() . 'Editor/Tests/Resources/github.atom';
+    if ($url[0] == '/') {
+      $url = 'http://localhost' . $url;
     }
     $parser = new FeedParser();
     $feed = $parser->parseURL($url);
-    $this->assertTrue($feed!==false,'Unable to parse url: '.$url);
+    $this->assertTrue($feed !== false,'Unable to parse url: ' . $url);
     $this->assertEqual($feed->getTitle(),'Recent Commits to OnlinePublisher:master');
 
     $items = $feed->getItems();
@@ -49,9 +49,9 @@ class TestFeeds extends UnitTestCase {
   }
 
   function testNewsService() {
-    $url = ConfigurationService::getBaseUrl().'Editor/Tests/Resources/twitter.rss';
-    if ($url[0]=='/') {
-      $url = 'http://localhost'.$url;
+    $url = ConfigurationService::getBaseUrl() . 'Editor/Tests/Resources/twitter.rss';
+    if ($url[0] == '/') {
+      $url = 'http://localhost' . $url;
     }
     $src = new Newssource();
     $src->setUrl($url);

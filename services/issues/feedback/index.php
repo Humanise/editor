@@ -14,10 +14,10 @@ $page = Page::load($pageId);
 
 $title = 'Feedback';
 if ($page) {
-  $title.=' : '.$page->getTitle();
+  $title .= ' : ' . $page->getTitle();
 }
 if (Strings::isNotBlank($email)) {
-  $title.=' : '.$email;
+  $title .= ' : ' . $email;
 }
 
 $issue = new Issue();

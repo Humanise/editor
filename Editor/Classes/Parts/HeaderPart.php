@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['HeaderPart'] = [
   'table' => 'part_header',
   'properties' => [
-    'text'   => ['type'=>'string'],
-    'level'   => ['type'=>'int' , 'column' => 'level'],
+    'text' => ['type' => 'string'],
+    'level' => ['type' => 'int' , 'column' => 'level'],
     'textAlign' => [ 'type' => 'string', 'column' => 'textalign' ],
     'fontFamily' => [ 'type' => 'string', 'column' => 'fontfamily' ],
     'fontSize' => [ 'type' => 'string', 'column' => 'fontsize' ],

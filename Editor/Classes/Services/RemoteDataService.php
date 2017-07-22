@@ -65,11 +65,11 @@ class RemoteDataService {
           if (!$existing) {
             unlink($path);
           }
-          Log::debug('Unable to load url: '.$url);
+          Log::debug('Unable to load url: ' . $url);
           Log::debug($info);
         }
       } else {
-        Log::debug('Unable to open file path: '.$path);
+        Log::debug('Unable to open file path: ' . $path);
       }
       curl_close($ch);
     }
@@ -78,13 +78,13 @@ class RemoteDataService {
 
   static function getPathOfUrl($url) {
     global $basePath;
-    return $basePath.'local/cache/urls/'.sha1($url);
+    return $basePath . 'local/cache/urls/' . sha1($url);
   }
 
   /**
    * @param $maxAge The number of seconds
    */
-  static function getRemoteData($url,$maxAge=0) {
+  static function getRemoteData($url,$maxAge = 0) {
     $now = time();
     $cached = Query::after('cachedurl')->withProperty('url',$url)->first();
     $path = RemoteDataService::getPathOfUrl($url);
@@ -109,7 +109,7 @@ class RemoteDataService {
     $data->setAge($age);
     $data->setFile($path);
     $data->setSuccess($success);
-    $data->setHasData(file_exists($path) && filesize($path)>0);
+    $data->setHasData(file_exists($path) && filesize($path) > 0);
     return $data;
   }
 }

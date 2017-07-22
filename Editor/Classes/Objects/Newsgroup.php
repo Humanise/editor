@@ -24,14 +24,14 @@ class Newsgroup extends Object {
   }
 
   function removeMore() {
-    $sql="delete from newsgroup_news where newsgroup_id=".$this->id;
+    $sql = "delete from newsgroup_news where newsgroup_id=" . $this->id;
     Database::delete($sql);
-    $sql="delete from part_news_newsgroup where newsgroup_id=".$this->id;
+    $sql = "delete from part_news_newsgroup where newsgroup_id=" . $this->id;
     Database::delete($sql);
   }
 
   function canDelete() {
-    $sql="select id from frame_newsblock_newsgroup where newsgroup_id=".$this->id;
+    $sql = "select id from frame_newsblock_newsgroup where newsgroup_id=" . $this->id;
     if (Database::selectFirst($sql)) {
       return FALSE;
     } else {

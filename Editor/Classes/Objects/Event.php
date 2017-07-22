@@ -11,9 +11,9 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Event'] = [
     'table' => 'event',
     'properties' => [
-      'location'   => ['type'=>'string'],
-      'startdate'  => ['type'=>'datetime'],
-      'enddate'  => ['type'=>'datetime']
+      'location' => ['type' => 'string'],
+      'startdate' => ['type' => 'datetime'],
+      'enddate' => ['type' => 'datetime']
     ]
 ];
 
@@ -31,7 +31,7 @@ class Event extends Object {
   }
 
   function removeMore() {
-    $sql="delete from calendar_event where event_id=".$this->id;
+    $sql = "delete from calendar_event where event_id=" . $this->id;
     Database::delete($sql);
   }
 
@@ -62,15 +62,15 @@ class Event extends Object {
   ////////////////////////////// Utils ///////////////////////////
 
   function getCalendarIds() {
-    $sql="select calendar_id as id from calendar_event where event_id=".$this->id;
+    $sql = "select calendar_id as id from calendar_event where event_id=" . $this->id;
     return Database::getIds($sql);
   }
 
   function updateCalendarIds($ids) {
-    $sql="delete from calendar_event where event_id=".$this->id;
+    $sql = "delete from calendar_event where event_id=" . $this->id;
     Database::delete($sql);
     foreach ($ids as $id) {
-      $sql="insert into calendar_event (event_id, calendar_id) values (".$this->id.",".$id.")";
+      $sql = "insert into calendar_event (event_id, calendar_id) values (" . $this->id . "," . $id . ")";
       Database::insert($sql);
     }
   }
@@ -81,14 +81,14 @@ class Event extends Object {
     function search($query = []) {
         $out = [];
     if (isset($query['calendarId'])) {
-          $sql = "select object.id from object,event,calendar_event where object.id=event.object_id and object.id=calendar_event.event_id and calendar_event.calendar_id=".$query['calendarId'];
+          $sql = "select object.id from object,event,calendar_event where object.id=event.object_id and object.id=calendar_event.event_id and calendar_event.calendar_id=" . $query['calendarId'];
     } else {
           $sql = "select id from object,event where object.id=event.object_id";
     }
     if (isset($query['startDate']) && isset($query['endDate'])) {
-      $sql.=" and not (startdate>".Database::datetime($query['endDate'])." or endDate<".Database::datetime($query['startDate']).")";
+      $sql .= " and not (startdate>" . Database::datetime($query['endDate']) . " or endDate<" . Database::datetime($query['startDate']) . ")";
     }
-    $sql.=" order by event.startdate";
+    $sql .= " order by event.startdate";
         $result = Database::select($sql);
     $ids = [];
         while ($row = Database::next($result)) {
@@ -108,20 +108,20 @@ class Event extends Object {
         $out = [];
     $sql = "select object.id,object.title,object.note,event.location,unix_timestamp(event.startdate) as startdate,unix_timestamp(event.enddate) as enddate ";
     if (isset($query['calendarId'])) {
-          $sql .= "from object,event,calendar_event where object.id=event.object_id and object.id=calendar_event.event_id and calendar_event.calendar_id=".$query['calendarId'];
+          $sql .= "from object,event,calendar_event where object.id=event.object_id and object.id=calendar_event.event_id and calendar_event.calendar_id=" . $query['calendarId'];
     } else {
           $sql .= " from object,event where object.id=event.object_id";
     }
     if (isset($query['startDate']) && isset($query['endDate'])) {
-      $sql.=" and not (startdate>".Database::datetime($query['endDate'])." or endDate<".Database::datetime($query['startDate']).")";
+      $sql .= " and not (startdate>" . Database::datetime($query['endDate']) . " or endDate<" . Database::datetime($query['startDate']) . ")";
     }
-    $sql.=" order by object.title";
+    $sql .= " order by object.title";
         $result = Database::select($sql);
     $ids = [];
         while ($row = Database::next($result)) {
             $out[] = [
         'id' => $row['id'],
-        'summary' => $row['title']."\n".$row['note'],
+        'summary' => $row['title'] . "\n" . $row['note'],
         'location' => $row['location'],
         'uniqueId' => $row['id'],
         'recurring' => false,
@@ -138,14 +138,14 @@ class Event extends Object {
   ////////////////////////////// Persistence ////////////////////////
 
   function sub_publish() {
-    $data = '<event xmlns="'.parent::_buildnamespace('1.0').'">';
+    $data = '<event xmlns="' . parent::_buildnamespace('1.0') . '">';
     if (isset($this->startdate)) {
-      $data.=Dates::buildTag('startdate',$this->startdate);
+      $data .= Dates::buildTag('startdate',$this->startdate);
     }
     if (isset($this->enddate)) {
-      $data.=Dates::buildTag('enddate',$this->enddate);
+      $data .= Dates::buildTag('enddate',$this->enddate);
     }
-    $data.='</event>';
+    $data .= '</event>';
     return $data;
   }
 }

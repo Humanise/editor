@@ -72,7 +72,7 @@ class ClassService {
         }
       } else {
         $info->setHierarchy([$name]);
-        Log::debug('Class '.$name.' does not exist');
+        Log::debug('Class ' . $name . ' does not exist');
       }
       $info->setProperties($properties);
       $info->setRelations($relations);
@@ -106,7 +106,7 @@ class ClassService {
 
   static function _getFiles() {
     global $basePath;
-    $dir = $basePath.'Editor/Classes/';
+    $dir = $basePath . 'Editor/Classes/';
     $files = FileSystemService::find([
       'dir' => $dir,
       'extension' => 'php'
@@ -136,7 +136,7 @@ class ClassService {
 
   static function getClasses() {
     global $basePath;
-    $dir = $basePath.'Editor/Classes/';
+    $dir = $basePath . 'Editor/Classes/';
     $files = ClassService::_getFiles();
     foreach ($files as $path) {
       preg_match('/([A-Za-z0-9]+)\.php/i', $path,$matches);
@@ -199,9 +199,9 @@ class ClassService {
     "   header('HTTP/1.1 403 Forbidden');\n" .
     " exit;\n" .
     "}\n\n" .
-    "\$HUMANISE_EDITOR_CLASSES = ".$text."\n?>";
+    "\$HUMANISE_EDITOR_CLASSES = " . $text . "\n?>";
 
-    $success = FileSystemService::writeStringToFile($text,$basePath.'Editor/Info/Classes.php');
+    $success = FileSystemService::writeStringToFile($text,$basePath . 'Editor/Info/Classes.php');
     return $success;
   }
 }

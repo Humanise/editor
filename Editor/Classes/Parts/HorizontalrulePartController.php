@@ -33,7 +33,7 @@ class HorizontalrulePartController extends PartController
   }
 
   function buildSub($part,$context) {
-    return '<horizontalrule xmlns="'.$this->getNamespace().'"/>';
+    return '<horizontalrule xmlns="' . $this->getNamespace() . '"/>';
   }
 }
 ?>

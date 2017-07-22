@@ -13,7 +13,7 @@ echo '<images>';
 
 $images = Image::search();
 foreach ($images as $image) {
-  echo '<image id="'.$image->getId().'"/>';
+  echo '<image id="' . $image->getId() . '"/>';
 }
 
 echo '</images>';

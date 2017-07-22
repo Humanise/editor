@@ -11,7 +11,7 @@ $title = Request::getString('title');
 $result = ImageService::createImageFromBase64($data,null,$title);
 if ($result['success']) {
   $image = $result['image'];
-  Response::sendObject(['id'=>$image->getId()]);
+  Response::sendObject(['id' => $image->getId()]);
 } else {
   Response::badRequest();
 }

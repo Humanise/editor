@@ -7,7 +7,7 @@ require_once '../../../Include/Private.php';
 
 $data = Request::getObject('data');
 
-if ($data->id>0) {
+if ($data->id > 0) {
   $design = Filegroup::load($data->id);
 } else {
   $design = new Filegroup();

@@ -49,28 +49,28 @@ class ListPartController extends PartController
 
   function editor($part,$context) {
     return
-      '<input type="hidden" name="time_count" value="'.$part->getTimeCount().'"/>'.
-      '<input type="hidden" name="maxitems" value="'.$part->getMaxItems().'"/>'.
-      '<input type="hidden" name="maxtextlength" value="'.$part->getMaxTextLength().'"/>'.
-      '<input type="hidden" name="title" value="'.Strings::escapeEncodedXML($part->getTitle()).'"/>'.
-      '<input type="hidden" name="sort_direction" value="'.Strings::escapeXML($part->getSortDirection()).'"/>'.
-      '<input type="hidden" name="objects" value="'.implode(',',$part->getObjectIds()).'"/>'.
-      '<input type="hidden" name="show_source" value="'.($part->getShowSource() ? 'true' : 'false').'"/>'.
-      '<input type="hidden" name="show_text" value="'.($part->getShowText() ? 'true' : 'false').'"/>'.
-      '<input type="hidden" name="show_timezone" value="'.($part->getShowTimezone() ? 'true' : 'false').'"/>'.
-    '<script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/list/script.js" type="text/javascript" charset="utf-8"></script>'.
+      '<input type="hidden" name="time_count" value="' . $part->getTimeCount() . '"/>' .
+      '<input type="hidden" name="maxitems" value="' . $part->getMaxItems() . '"/>' .
+      '<input type="hidden" name="maxtextlength" value="' . $part->getMaxTextLength() . '"/>' .
+      '<input type="hidden" name="title" value="' . Strings::escapeEncodedXML($part->getTitle()) . '"/>' .
+      '<input type="hidden" name="sort_direction" value="' . Strings::escapeXML($part->getSortDirection()) . '"/>' .
+      '<input type="hidden" name="objects" value="' . implode(',',$part->getObjectIds()) . '"/>' .
+      '<input type="hidden" name="show_source" value="' . ($part->getShowSource() ? 'true' : 'false') . '"/>' .
+      '<input type="hidden" name="show_text" value="' . ($part->getShowText() ? 'true' : 'false') . '"/>' .
+      '<input type="hidden" name="show_timezone" value="' . ($part->getShowTimezone() ? 'true' : 'false') . '"/>' .
+    '<script src="' . ConfigurationService::getBaseUrl() . 'Editor/Parts/list/script.js" type="text/javascript" charset="utf-8"></script>' .
     '<script type="text/javascript">
-    op.part.List.setData('.$this->buildData($part).');'.
-    '</script>'.
-    '<div id="part_list_container">'.
-    $this->render($part,$context).
+    op.part.List.setData(' . $this->buildData($part) . ');' .
+    '</script>' .
+    '<div id="part_list_container">' .
+    $this->render($part,$context) .
     '</div>';
   }
 
   function getEditorUI($part,$context) {
     $zoneItems = '';
     foreach (Dates::getTimeZones() as $zone) {
-      $zoneItems.='<option text="'.$zone.'" value="'.$zone.'"/>';
+      $zoneItems .= '<option text="' . $zone . '" value="' . $zone . '"/>';
     }
     return '
     <window title="Liste" name="listWindow" width="300" closable="false">
@@ -79,16 +79,16 @@ class ListPartController extends PartController
           <formula name="formula">
             <fields labels="above">
               <field label="{Title; da:Titel}">
-                <text-input value="'.Strings::escapeEncodedXML($part->getTitle()).'" key="title"/>
+                <text-input value="' . Strings::escapeEncodedXML($part->getTitle()) . '" key="title"/>
               </field>
             </fields>
             <fieldset legend="{Limitation; da:Begrænsning}">
               <fields labels="before">
                 <field label="{Days; da:Dage}">
-                  <number-input value="'.$part->getTimeCount().'" key="time_count" max="1000"/>
+                  <number-input value="' . $part->getTimeCount() . '" key="time_count" max="1000"/>
                 </field>
                 <field label="{Maximum count; da:Maksimalt antal}">
-                  <number-input value="'.$part->getMaxItems().'" key="maxitems" min="0" max="100"/>
+                  <number-input value="' . $part->getMaxItems() . '" key="maxitems" min="0" max="100"/>
                 </field>
               </fields>
             </fieldset>
@@ -96,27 +96,27 @@ class ListPartController extends PartController
             <fieldset legend="{Appearance; da:Visning}">
               <fields>
                 <field label="{Direction; da:Retning}">
-                  <radiobuttons key="sort_direction" value="'.Strings::escapeEncodedXML($part->getSortDirection()).'">
+                  <radiobuttons key="sort_direction" value="' . Strings::escapeEncodedXML($part->getSortDirection()) . '">
                     <option value="descending" text="{Descending; da:Faldende}"/>
                     <option value="ascending" text="{Ascending; da:Stigende}"/>
                   </radiobuttons>
                 </field>
                 <field label="{Show text; da:Vis tekst}">
-                  <checkbox value="'.($part->getShowText() ? 'true' : 'false').'" key="show_text"/>
+                  <checkbox value="' . ($part->getShowText() ? 'true' : 'false') . '" key="show_text"/>
                 </field>
                 <field label="{Text length; da:Tekstlængde}">
-                  <number-input value="'.$part->getMaxTextLength().'" key="maxtextlength" min="0" max="2000"/>
+                  <number-input value="' . $part->getMaxTextLength() . '" key="maxtextlength" min="0" max="2000"/>
                 </field>
                 <field label="{Show source; da:Vis kilde}">
-                  <checkbox value="'.($part->getShowSource() ? 'true' : 'false').'" key="show_source"/>
+                  <checkbox value="' . ($part->getShowSource() ? 'true' : 'false') . '" key="show_source"/>
                 </field>
                 <field label="{Show time zone; da:Vis tidszone}">
-                  <checkbox value="'.($part->getShowTimezone() ? 'true' : 'false').'" key="show_timezone"/>
+                  <checkbox value="' . ($part->getShowTimezone() ? 'true' : 'false') . '" key="show_timezone"/>
                 </field>
                 <field label="{Time zone; da:Tidszone}">
                   <dropdown>
                     <option value="" text="Standard"/>
-                    '.$zoneItems.'
+                    ' . $zoneItems . '
                   </dropdown>
                 </field>
               </fields>
@@ -129,10 +129,10 @@ class ListPartController extends PartController
             <fieldset legend="{News; da:Nyheder}">
               <fields labels="above">
                 <field label="{Groups; da:Grupper}">
-                  <checkboxes key="newsGroups">'.UI::buildOptions('newsgroup').'</checkboxes>
+                  <checkboxes key="newsGroups">' . UI::buildOptions('newsgroup') . '</checkboxes>
                 </field>
                 <field label="{Sources; da:Kilder}">
-                  <checkboxes key="newsSources">'.UI::buildOptions('newssource').'</checkboxes>
+                  <checkboxes key="newsSources">' . UI::buildOptions('newssource') . '</checkboxes>
                 </field>
               </fields>
             </fieldset>
@@ -140,10 +140,10 @@ class ListPartController extends PartController
             <fieldset legend="{Events; da:Begivenheder}">
               <fields labels="above">
                 <field label="{Calendars; da:Kalendere}">
-                  <checkboxes key="calendars">'.UI::buildOptions('calendar').'</checkboxes>
+                  <checkboxes key="calendars">' . UI::buildOptions('calendar') . '</checkboxes>
                 </field>
                 <field label="{Sources; da:Kilder}">
-                  <checkboxes key="calendarSources">'.UI::buildOptions('calendarsource').'</checkboxes>
+                  <checkboxes key="calendarSources">' . UI::buildOptions('calendarsource') . '</checkboxes>
                 </field>
               </fields>
             </fieldset>
@@ -164,20 +164,20 @@ class ListPartController extends PartController
   }
 
   function buildValues($type,$part) {
-    return Database::selectIntArray("select object.id from part_list_object,object where part_list_object.object_id=object.id and object.type='".$type."' and part_id=".$part->getId());
+    return Database::selectIntArray("select object.id from part_list_object,object where part_list_object.object_id=object.id and object.type='" . $type . "' and part_id=" . $part->getId());
   }
 
   function buildSub($part,$context) {
     $dirty = false;
     $items = [];
-    if (count($part->getObjectIds())>0) {
-      $objects = Database::selectAll("select id,type from object where id in (".implode($part->getObjectIds(),',').")");
+    if (count($part->getObjectIds()) > 0) {
+      $objects = Database::selectAll("select id,type from object where id in (" . implode($part->getObjectIds(),',') . ")");
       $from = time();
       $to = Dates::addDays($from,$part->getTimeCount());
       foreach ($objects as $object) {
         $type = $object['type'];
         $id = $object['id'];
-        if ($type=='calendarsource') {
+        if ($type == 'calendarsource') {
           $source = Calendarsource::load($id);
           if ($source) {
             if ($context->getSynchronize()) {
@@ -187,7 +187,7 @@ class ListPartController extends PartController
               //Log::debug('Calendarsource is dirty: '.$id);
               $dirty = true;
             }
-            $sourceEvents = $source->getEvents(['startDate'=>$from, 'endDate'=>$to]);
+            $sourceEvents = $source->getEvents(['startDate' => $from, 'endDate' => $to]);
             foreach ($sourceEvents as $sourceEvent) {
               $item = new PartListItem();
               $item->setStartDate($sourceEvent['startDate']);
@@ -203,7 +203,7 @@ class ListPartController extends PartController
               $items[] = $item;
             }
           }
-        } else if ($type=='newsgroup') {
+        } else if ($type == 'newsgroup') {
           $newsItems = Query::after('news')->withCustom('group',$id)->withCustom('startdate',$from)->withCustom('enddate',$to)->orderBy('startdate')->get();
           foreach ($newsItems as $newsItem) {
             $item = new PartListItem();
@@ -215,7 +215,7 @@ class ListPartController extends PartController
             }
             $items[] = $item;
           }
-        } else if ($type=='newssource') {
+        } else if ($type == 'newssource') {
           if ($source = Newssource::load($id)) {
             if ($context->getSynchronize()) {
               $source->synchronize();
@@ -224,7 +224,7 @@ class ListPartController extends PartController
               //Log::debug('Newssource is dirty: '.$id);
               $dirty = true;
             }
-            $newsItems = Query::after('newssourceitem')->withProperty('newssource_id',$id)->withCustom('minDate',Dates::addDays(time(),$part->getTimeCount()*-1))->orderBy('date')->descending()->get();
+            $newsItems = Query::after('newssourceitem')->withProperty('newssource_id',$id)->withCustom('minDate',Dates::addDays(time(),$part->getTimeCount() * -1))->orderBy('date')->descending()->get();
             foreach ($newsItems as $newsItem) {
               $item = new PartListItem();
               $item->setDate($newsItem->getDate());
@@ -242,44 +242,44 @@ class ListPartController extends PartController
       }
     }
 
-    $data = '<list xmlns="'.$this->getNamespace().'" dirty="'.($dirty ? 'true' : 'false').'">';
-    $data.='<settings show-timezone="'.($part->getShowTimeZone() ? 'true' : 'false').'"/>';
+    $data = '<list xmlns="' . $this->getNamespace() . '" dirty="' . ($dirty ? 'true' : 'false') . '">';
+    $data .= '<settings show-timezone="' . ($part->getShowTimeZone() ? 'true' : 'false') . '"/>';
     if (Strings::isNotBlank($part->getTitle())) {
-      $data.='<title>'.Strings::escapeEncodedXML($part->getTitle()).'</title>';
+      $data .= '<title>' . Strings::escapeEncodedXML($part->getTitle()) . '</title>';
     }
     $this->sortItems($items);
-    if ($part->getSortDirection()=='ascending') {
+    if ($part->getSortDirection() == 'ascending') {
       $items = array_reverse($items);
     }
     $items = array_slice($items,0,$part->getMaxItems());
     foreach ($items as $item) {
-      $data.='<item>'.
-      '<title>'.Strings::escapeEncodedXML($item->getTitle()).'</title>';
+      $data .= '<item>' .
+      '<title>' . Strings::escapeEncodedXML($item->getTitle()) . '</title>';
       if (Strings::isNotBlank($item->getText())) {
         $text = Strings::removeTags($item->getText());
         if ($part->getMaxTextLength()) {
           $text = Strings::shortenString($text,$part->getMaxTextLength());
         }
-        $data.='<text>'.Strings::escapeXMLBreak($text,'<break/>').'</text>';
+        $data .= '<text>' . Strings::escapeXMLBreak($text,'<break/>') . '</text>';
       }
       if (Strings::isNotBlank($item->getUrl())) {
-        $data.='<url>'.Strings::escapeEncodedXML($item->getUrl()).'</url>';
+        $data .= '<url>' . Strings::escapeEncodedXML($item->getUrl()) . '</url>';
       }
       if ($item->getSource()) {
-        $data.='<source>'.Strings::escapeEncodedXML($item->getSource()).'</source>';
+        $data .= '<source>' . Strings::escapeEncodedXML($item->getSource()) . '</source>';
       }
       if ($item->getDate()) {
-        $data.=Dates::buildTag('date',$item->getDate());
+        $data .= Dates::buildTag('date',$item->getDate());
       }
       if ($item->getStartDate()) {
-        $data.=Dates::buildTag('start-date',$item->getStartDate());
+        $data .= Dates::buildTag('start-date',$item->getStartDate());
       }
       if ($item->getEndDate()) {
-        $data.=Dates::buildTag('end-date',$item->getEndDate());
+        $data .= Dates::buildTag('end-date',$item->getEndDate());
       }
-      $data.='</item>';
+      $data .= '</item>';
     }
-    $data.='</list>';
+    $data .= '</list>';
     return $data;
   }
 
@@ -296,8 +296,8 @@ class ListPartController extends PartController
     if (!$date2) {
       $date2 = $b->getDate();
     }
-    if (!$date1) $date1=0;
-    if (!$date2) $date2=0;
+    if (!$date1) $date1 = 0;
+    if (!$date2) $date2 = 0;
       if ($date1 == $date2) {
           return 0;
       }

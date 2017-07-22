@@ -35,7 +35,7 @@ class TestImageService extends UnitTestCase {
 
   function testCreateImageFromFile() {
     global $basePath;
-    $path = $basePath.'Editor/Tests/Resources/actually_a_jpeg.png';
+    $path = $basePath . 'Editor/Tests/Resources/actually_a_jpeg.png';
     $result = ImageService::createImageFromFile($path);
 
     $this->assertNotNull($result);
@@ -47,7 +47,7 @@ class TestImageService extends UnitTestCase {
     $this->assertEqual($image->getMimetype(),'image/jpeg');
     $this->assertEqual($image->getSize(),109338);
 
-    $imagePath = $basePath.'images/'.$image->getFilename();
+    $imagePath = $basePath . 'images/' . $image->getFilename();
     $this->assertTrue(file_exists($imagePath));
 
     $ext = FileSystemService::getFileExtension($imagePath);
@@ -58,7 +58,7 @@ class TestImageService extends UnitTestCase {
 
   function testCreateImageFromUnknownFile() {
     global $basePath;
-    $path = $basePath.'Editor/Tests/Resources/jpeg_with_no_extension';
+    $path = $basePath . 'Editor/Tests/Resources/jpeg_with_no_extension';
     $result = ImageService::createImageFromFile($path);
 
     $this->assertNotNull($result);
@@ -70,7 +70,7 @@ class TestImageService extends UnitTestCase {
     $this->assertEqual($image->getMimetype(),'image/jpeg');
     $this->assertEqual($image->getSize(),109338);
 
-    $imagePath = $basePath.'images/'.$image->getFilename();
+    $imagePath = $basePath . 'images/' . $image->getFilename();
     $this->assertTrue(file_exists($imagePath));
 
     $ext = FileSystemService::getFileExtension($imagePath);
@@ -83,8 +83,8 @@ class TestImageService extends UnitTestCase {
   function testCustomFileName() {
     global $basePath;
     $unique = md5(uniqid(rand(), true));
-    $path = $basePath.'Editor/Tests/Resources/jonasmunk.jpg';
-    $result = ImageService::createImageFromFile($path,$unique.'.png');
+    $path = $basePath . 'Editor/Tests/Resources/jonasmunk.jpg';
+    $result = ImageService::createImageFromFile($path,$unique . '.png');
 
     $this->assertNotNull($result);
     $this->assertTrue($result->getSuccess());
@@ -97,7 +97,7 @@ class TestImageService extends UnitTestCase {
       $this->assertEqual($image->getMimetype(),'image/jpeg');
       $this->assertEqual($image->getSize(),109338);
 
-      $this->assertEqual($image->getFilename(),$unique.'.jpg');
+      $this->assertEqual($image->getFilename(),$unique . '.jpg');
 
       $image->remove();
     }

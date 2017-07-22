@@ -11,9 +11,9 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Weblogentry'] = [
   'table' => 'weblogentry',
   'properties' => [
-      'text' => ['type'=>'string'],
-      'date'  => ['type'=>'datetime'],
-      'pageId' => ['type'=>'int', 'column'=>'page_id']
+      'text' => ['type' => 'string'],
+      'date' => ['type' => 'datetime'],
+      'pageId' => ['type' => 'int', 'column' => 'page_id']
   ]
 ];
 
@@ -57,7 +57,7 @@ class Weblogentry extends Object {
 
   function loadGroups() {
     $this->groups = [];
-    $sql = "select object.title,object.id from webloggroup_weblogentry,object where webloggroup_weblogentry.webloggroup_id=object.id and weblogentry_id=".$this->id." order by object.title";
+    $sql = "select object.title,object.id from webloggroup_weblogentry,object where webloggroup_weblogentry.webloggroup_id=object.id and weblogentry_id=" . $this->id . " order by object.title";
     $subResult = Database::select($sql);
     while ($subRow = Database::next($subResult)) {
       $this->groups[] = $subRow['id'];
@@ -69,15 +69,15 @@ class Weblogentry extends Object {
 
   function sub_publish() {
     $data =
-    '<weblogentry xmlns="'.parent::_buildnamespace('1.0').'">'.
-    Dates::buildTag('date',$this->date).
-    '<text><![CDATA['.Strings::escapeSimpleXMLwithLineBreak($this->text,'<br/>').']]></text>';
-    $data.='</weblogentry>';
+    '<weblogentry xmlns="' . parent::_buildnamespace('1.0') . '">' .
+    Dates::buildTag('date',$this->date) .
+    '<text><![CDATA[' . Strings::escapeSimpleXMLwithLineBreak($this->text,'<br/>') . ']]></text>';
+    $data .= '</weblogentry>';
     return $data;
   }
 
   function removeMore() {
-    $sql = "delete from webloggroup_weblogentry where weblogentry_id=".Database::int($this->id);
+    $sql = "delete from webloggroup_weblogentry where weblogentry_id=" . Database::int($this->id);
     Database::delete($sql);
   }
 
@@ -91,10 +91,10 @@ class Weblogentry extends Object {
       Log::debug('Not a group');
       return;
     }
-    $sql="delete from webloggroup_weblogentry where weblogentry_id=".Database::int($this->id);
+    $sql = "delete from webloggroup_weblogentry where weblogentry_id=" . Database::int($this->id);
     Database::delete($sql);
     foreach ($groups as $id) {
-      $sql="insert into webloggroup_weblogentry (weblogentry_id,webloggroup_id) values (".Database::int($this->id).",".Database::int($id).")";
+      $sql = "insert into webloggroup_weblogentry (weblogentry_id,webloggroup_id) values (" . Database::int($this->id) . "," . Database::int($id) . ")";
       Database::insert($sql);
     }
   }

@@ -12,7 +12,7 @@ $url = Request::getString('url');
 $newProfiles = [];
 if (is_array($settings->profiles)) {
   foreach ($settings->profiles as $profile) {
-    if ($url!=$profile->url) {
+    if ($url != $profile->url) {
       $newProfiles[] = $profile;
     }
   }

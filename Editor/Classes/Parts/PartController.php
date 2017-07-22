@@ -46,19 +46,19 @@ class PartController
     if (!$part) {
       return '';
     }
-    $xml = '<part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="'.$part->getType().'" id="'.$part->getId().'">'.
+    $xml = '<part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="' . $part->getType() . '" id="' . $part->getId() . '">' .
     '<sub>';
     if (method_exists($this,'buildSub')) {
-      $xml.=$this->buildSub($part,$context);
+      $xml .= $this->buildSub($part,$context);
     }
-    $xml.=
-    '</sub>'.
-    DocumentTemplateController::_getStyle($part->getStyle()).
+    $xml .=
+    '</sub>' .
+    DocumentTemplateController::_getStyle($part->getStyle()) .
     '</part>';
     return $xml;
   }
 
-  function getSingleLink($part,$sourceType=null) {
+  function getSingleLink($part,$sourceType = null) {
     return PartService::getSingleLink($part,$sourceType);
   }
 
@@ -86,8 +86,8 @@ class PartController
     return $part;
   }
 
-  function getNamespace($version='1.0') {
-    return 'http://uri.in2isoft.com/onlinepublisher/part/'.$this->type.'/'.$version.'/';
+  function getNamespace($version = '1.0') {
+    return 'http://uri.in2isoft.com/onlinepublisher/part/' . $this->type . '/' . $version . '/';
   }
 
   function isLiveEnabled() {
@@ -99,41 +99,41 @@ class PartController
     return false;
   }
 
-  function render($part,$context,$editor=true) {
+  function render($part,$context,$editor = true) {
     global $basePath;
     $encoding = ConfigurationService::isUnicode() ? 'UTF-8' : 'ISO-8859-1';
 
-    $xmlData = '<?xml version="1.0" encoding="'.$encoding.'"?>'.$this->build($part,$context);
+    $xmlData = '<?xml version="1.0" encoding="' . $encoding . '"?>' . $this->build($part,$context);
 
-    $xsl='<?xml version="1.0" encoding="UTF-8"?>'.
-    '<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">'.
+    $xsl = '<?xml version="1.0" encoding="UTF-8"?>' .
+    '<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">' .
     '<xsl:output method="html" indent="no" encoding="UTF-8"/>';
     if ($this->renderUsingDesign()) {
-      $xsl.='<xsl:include href="'.$basePath.'style/basic/xslt/part_'.$this->type.'.xsl"/>'.
-        '<xsl:include href="'.$basePath.'style/' . $context->design . '/xslt/main.xsl"/>';
+      $xsl .= '<xsl:include href="' . $basePath . 'style/basic/xslt/part_' . $this->type . '.xsl"/>' .
+        '<xsl:include href="' . $basePath . 'style/' . $context->design . '/xslt/main.xsl"/>';
     } else {
-      $xsl.='<xsl:include href="'.$basePath.'style/basic/xslt/util.xsl"/>'.
-        '<xsl:include href="'.$basePath.'style/basic/xslt/part_'.$this->type.'.xsl"/>';
+      $xsl .= '<xsl:include href="' . $basePath . 'style/basic/xslt/util.xsl"/>' .
+        '<xsl:include href="' . $basePath . 'style/basic/xslt/part_' . $this->type . '.xsl"/>';
     }
-    $xsl.=
-    '<xsl:variable name="design"></xsl:variable>'.
-    '<xsl:variable name="development">false</xsl:variable>'.
-    '<xsl:variable name="path">../../../</xsl:variable>'.
-    '<xsl:variable name="navigation-path"></xsl:variable>'.
-    '<xsl:variable name="page-path"></xsl:variable>'.
-    '<xsl:variable name="protocol">' . (Request::isSecure() ? 'https' : 'http') . '</xsl:variable>'.
-    '<xsl:variable name="data-path">' . ConfigurationService::getDataUrl() . '</xsl:variable>'.
-    '<xsl:variable name="template"></xsl:variable>'.
-    '<xsl:variable name="userid"></xsl:variable>'.
-    '<xsl:variable name="username"></xsl:variable>'.
-    '<xsl:variable name="usertitle"></xsl:variable>'.
-    '<xsl:variable name="preview"></xsl:variable>'.
-    '<xsl:variable name="mini">false</xsl:variable>'.
-    '<xsl:variable name="editor">'.($editor ? 'true' : 'false').'</xsl:variable>'.
-    '<xsl:variable name="urlrewrite">'.(ConfigurationService::isUrlRewrite() ? 'true' : 'false').'</xsl:variable>'.
-    '<xsl:variable name="timestamp">'.ConfigurationService::getDeploymentTime().'</xsl:variable>'.
-    '<xsl:variable name="language">'.strtolower($context->getLanguage()).'</xsl:variable>'.
-    '<xsl:template match="/"><xsl:apply-templates/></xsl:template>'.
+    $xsl .=
+    '<xsl:variable name="design"></xsl:variable>' .
+    '<xsl:variable name="development">false</xsl:variable>' .
+    '<xsl:variable name="path">../../../</xsl:variable>' .
+    '<xsl:variable name="navigation-path"></xsl:variable>' .
+    '<xsl:variable name="page-path"></xsl:variable>' .
+    '<xsl:variable name="protocol">' . (Request::isSecure() ? 'https' : 'http') . '</xsl:variable>' .
+    '<xsl:variable name="data-path">' . ConfigurationService::getDataUrl() . '</xsl:variable>' .
+    '<xsl:variable name="template"></xsl:variable>' .
+    '<xsl:variable name="userid"></xsl:variable>' .
+    '<xsl:variable name="username"></xsl:variable>' .
+    '<xsl:variable name="usertitle"></xsl:variable>' .
+    '<xsl:variable name="preview"></xsl:variable>' .
+    '<xsl:variable name="mini">false</xsl:variable>' .
+    '<xsl:variable name="editor">' . ($editor ? 'true' : 'false') . '</xsl:variable>' .
+    '<xsl:variable name="urlrewrite">' . (ConfigurationService::isUrlRewrite() ? 'true' : 'false') . '</xsl:variable>' .
+    '<xsl:variable name="timestamp">' . ConfigurationService::getDeploymentTime() . '</xsl:variable>' .
+    '<xsl:variable name="language">' . strtolower($context->getLanguage()) . '</xsl:variable>' .
+    '<xsl:template match="/"><xsl:apply-templates/></xsl:template>' .
     '</xsl:stylesheet>';
     $html = XslService::transform($xmlData,$xsl);
     return str_replace("<br></br>","<br/>",$html);
@@ -142,13 +142,13 @@ class PartController
   function buildHiddenFields($items) {
     $str = '';
     foreach ($items as $key => $value) {
-      $str.='<input type="hidden" name="'.$key.'" value="'.Strings::escapeEncodedXML($value).'"/>';
+      $str .= '<input type="hidden" name="' . $key . '" value="' . Strings::escapeEncodedXML($value) . '"/>';
     }
     return $str;
   }
 
   function getEditorScript() {
-    return '<script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/' . $this->type . '/script.js" type="text/javascript" charset="utf-8"></script>';
+    return '<script src="' . ConfigurationService::getBaseUrl() . 'Editor/Parts/' . $this->type . '/script.js" type="text/javascript" charset="utf-8"></script>';
   }
 
   function getIndex($part) {
@@ -197,11 +197,11 @@ class PartController
       if (method_exists($part,$method)) {
         $value = $part->$method();
         if (Strings::isNotBlank($value)) {
-          $xml.=' '.$attribute.'="'.Strings::escapeXML($value).'"';
+          $xml .= ' ' . $attribute . '="' . Strings::escapeXML($value) . '"';
         }
       }
     }
-    $xml.='/>';
+    $xml .= '/>';
     return $xml;
   }
 
@@ -211,7 +211,7 @@ class PartController
       if (method_exists($part,$method)) {
         $value = $part->$method();
         if (Strings::isNotBlank($value)) {
-          $css.=$attribute.': '.Strings::escapeXML($value).';';
+          $css .= $attribute . ': ' . Strings::escapeXML($value) . ';';
         }
       }
     }

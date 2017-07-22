@@ -30,12 +30,12 @@ class TextDecorator {
     $this->tags[] = ['from' => $from, 'to' => $to];
   }
 
-  function addReplacement($subject,$open,$close,$condition=null) {
+  function addReplacement($subject,$open,$close,$condition = null) {
     $this->replacements[] = ['subject' => $subject, 'open' => $open, 'close' => $close, 'condition' => $condition];
   }
 
-  function _getFilteredReplacements($condition=null) {
-    if ($condition==null) {
+  function _getFilteredReplacements($condition = null) {
+    if ($condition == null) {
       return $this->replacements;
     }
     $filtered = [];
@@ -43,14 +43,14 @@ class TextDecorator {
       $subject = $replacement['subject'];
       $shouldAdd = true;
       foreach ($filtered as $key => $value) {
-        $overlaps = strpos($key,$subject)!==false || strpos($subject,$key)!==false;
+        $overlaps = strpos($key,$subject) !== false || strpos($subject,$key) !== false;
         if ($overlaps) {
           //Log::debug("$subject and $key overlap");
-          if ($value['condition']!=$condition && $replacement['condition']==$condition) {
+          if ($value['condition'] != $condition && $replacement['condition'] == $condition) {
             //Log::debug("Removing «$key» since «$subject» matches condition");
             unset($filtered[$key]);
-          } elseif ($value['condition']==$replacement['condition']) {
-            if (strlen($key)<strlen($subject)) {
+          } elseif ($value['condition'] == $replacement['condition']) {
+            if (strlen($key) < strlen($subject)) {
               //Log::debug("Removing: $key since it is shorter than $subject with same condition");
               unset($filtered[$key]);
             } else {
@@ -64,7 +64,7 @@ class TextDecorator {
         }
       }
       if ($shouldAdd) {
-        if ($replacement['condition']!=null && $replacement['condition']!=$condition) {
+        if ($replacement['condition'] != null && $replacement['condition'] != $condition) {
           //Log::debug("Will NOT add $subject since its condition is not correct");
         } else {
           //Log::debug("Adding $subject");
@@ -78,12 +78,12 @@ class TextDecorator {
     return array_values($filtered);
   }
 
-    function decorate($text,$condition=null) {
+    function decorate($text,$condition = null) {
     $rules = [];
     $filtered = $this->_getFilteredReplacements($condition);
     foreach ($filtered as $replacement) {
-      if ($condition==null || $replacement['condition']==null || $replacement['condition']==$condition) {
-        if ($replacement['condition']!=null) {
+      if ($condition == null || $replacement['condition'] == null || $replacement['condition'] == $condition) {
+        if ($replacement['condition'] != null) {
           //Log::debug('Condition='.$condition.' ,replacement.condition='.$replacement['condition']);
         }
         $this->replacement($text,$rules,$replacement['subject'],$replacement['open'],$replacement['close']);
@@ -101,27 +101,27 @@ class TextDecorator {
   function replacement($text,&$rules,$subject,$openTag,$closeTag) {
     $pos = -1;
     while ($pos !== false) {
-      $pos = strpos( $text, $subject , $pos+1);
-      if ($pos!==false) {
-        $rules[$pos] = ['start' => $pos, 'stop' => $pos+strlen($subject), 'openTag' => $openTag, 'closeTag' => $closeTag];
+      $pos = strpos( $text, $subject , $pos + 1);
+      if ($pos !== false) {
+        $rules[$pos] = ['start' => $pos, 'stop' => $pos + strlen($subject), 'openTag' => $openTag, 'closeTag' => $closeTag];
       }
     }
   }
 
   function tags($text,&$rules,$orig,$replacement) {
-    $pattern = "/\[".$orig."\]([^\[\]\n]+)\[".$orig."\]/i";
+    $pattern = "/\[" . $orig . "\]([^\[\]\n]+)\[" . $orig . "\]/i";
     preg_match_all($pattern, $text, $matches,PREG_OFFSET_CAPTURE);
-    for ($i=0; $i<count($matches[0]); $i++) {
+    for ($i = 0; $i < count($matches[0]); $i++) {
       $pos = $matches[0][$i][1];
       $old = $matches[0][$i][0];
       $subject = $matches[1][$i][0];
       $open = '';
       $close = '';
       if ($replacement) {
-        $open = '<'.$replacement.'>';
-        $close = '</'.$replacement.'>';
+        $open = '<' . $replacement . '>';
+        $close = '</' . $replacement . '>';
       }
-      $rules[$pos] = ['start' => $pos, 'stop' => $pos+strlen($old), 'openTag' => $open, 'closeTag' => $close, 'subject' => $subject];
+      $rules[$pos] = ['start' => $pos, 'stop' => $pos + strlen($old), 'openTag' => $open, 'closeTag' => $close, 'subject' => $subject];
     }
     foreach ($matches[0] as $match) {
     }
@@ -134,7 +134,7 @@ class TextDecorator {
       $pos = $match[1];
       $subject = $match[0];
       $openTag = str_replace('{subject}', $subject, $this->emailOpenTag);
-      $rules[$pos] = ['start' => $pos, 'stop' => $pos+strlen($subject), 'openTag' => $openTag, 'closeTag' => $this->emailCloseTag];
+      $rules[$pos] = ['start' => $pos, 'stop' => $pos + strlen($subject), 'openTag' => $openTag, 'closeTag' => $this->emailCloseTag];
     }
   }
 
@@ -146,7 +146,7 @@ class TextDecorator {
       $pos = $match[1];
       $subject = trim($match[0]);
       $openTag = str_replace('{subject}', $subject, $this->httpOpenTag);
-      $rules[$pos] = ['start' => $pos, 'stop' => $pos+strlen($subject), 'openTag' => $openTag, 'closeTag' => $this->httpCloseTag];
+      $rules[$pos] = ['start' => $pos, 'stop' => $pos + strlen($subject), 'openTag' => $openTag, 'closeTag' => $this->httpCloseTag];
     }
   }
 
@@ -154,20 +154,20 @@ class TextDecorator {
     $output = '';
     $index = -1;
     foreach ($rules as $rule) {
-      if ($rule['start']>$index) {
-        if ($index<0) $index=0;
-        $output .= substr($text,$index,$rule['start']-$index);
+      if ($rule['start'] > $index) {
+        if ($index < 0) $index = 0;
+        $output .= substr($text,$index,$rule['start'] - $index);
         $output .= $rule['openTag'];
         if (isset($rule['subject'])) {
-          $output.=$rule['subject'];
+          $output .= $rule['subject'];
         } else {
-          $output .= substr($text,$rule['start'],$rule['stop']-$rule['start']);
+          $output .= substr($text,$rule['start'],$rule['stop'] - $rule['start']);
         }
         $output .= $rule['closeTag'];
         $index = $rule['stop'];
       }
     }
-    if ($index<0) $index=0;
+    if ($index < 0) $index = 0;
     $output .= substr($text,$index);
     return $output;
   }

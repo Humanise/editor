@@ -5,7 +5,7 @@
  */
 require_once '../../Include/Private.php';
 
-$gui='
+$gui = '
 <gui xmlns="uri:hui" title="Vis ændringer" padding="5">
   <iframe source="Editor.php" name="EditorFrame" id="Editor" border="true"/>
 </gui>';

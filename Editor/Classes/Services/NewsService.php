@@ -10,11 +10,11 @@ if (!isset($GLOBALS['basePath'])) {
 
 class NewsService {
 
-  static function synchronizeSource($id,$force=false) {
+  static function synchronizeSource($id,$force = false) {
     // TODO: Dont remove old items, only update existing
     $source = Newssource::load($id);
     if (!$source) return;
-    if ($source->isInSync() && $force==false) {
+    if ($source->isInSync() && $force == false) {
       return;
     }
     NewsService::clearSource($id);
@@ -37,7 +37,7 @@ class NewsService {
         }
       }
     }
-    $sql = 'update newssource set synchronized=now() where object_id='.Database::int($id);
+    $sql = 'update newssource set synchronized=now() where object_id=' . Database::int($id);
     Database::update($sql);
   }
 
@@ -51,7 +51,7 @@ class NewsService {
   static function createArticle($article) {
     $blueprint = Pageblueprint::load($article->getPageBlueprintId());
     if (!$blueprint) {
-      Log::debug('Unable to load blueprint with id='.$article->getPageBlueprintId());
+      Log::debug('Unable to load blueprint with id=' . $article->getPageBlueprintId());
       return;
     }
     $page = new Page();

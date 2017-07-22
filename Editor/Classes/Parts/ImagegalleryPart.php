@@ -12,9 +12,9 @@ Entity::$schema['ImagegalleryPart'] = [
   'table' => 'part_imagegallery',
   'properties' => [
     'variant' => [ 'type' => 'string' ],
-    'height'  => [ 'type' => 'int' ],
+    'height' => [ 'type' => 'int' ],
     'width' => [ 'type' => 'int' ],
-    'imageGroupId' => ['type'=>'int', 'column' => 'imagegroup_id', 'relation'=>['class'=>'Imagegroup', 'property'=>'id']],
+    'imageGroupId' => ['type' => 'int', 'column' => 'imagegroup_id', 'relation' => ['class' => 'Imagegroup', 'property' => 'id']],
     'framed' => [ 'type' => 'boolean' ],
     'frame' => [ 'type' => 'string' ],
     'showTitle' => [ 'type' => 'boolean', 'column' => 'show_title' ]

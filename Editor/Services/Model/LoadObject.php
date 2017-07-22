@@ -15,7 +15,7 @@ if (!$id) {
 } else {
   $obj = Object::load($id);
   if (!$obj) {
-    Response::notFound('Unable to load object with id='.$id);
+    Response::notFound('Unable to load object with id=' . $id);
   } else {
     Response::sendObject($obj);
   }

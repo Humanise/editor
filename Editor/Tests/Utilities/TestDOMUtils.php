@@ -20,19 +20,19 @@ class TestDOMUtils extends UnitTestCase {
 
     $this->assertEqual($name->getAttribute('initials'),'jbm');
 
-    $this->assertTrue($name->getAttribute('nothing')==='');
-    $this->assertTrue($name->getAttribute('nothing')!==null);
+    $this->assertTrue($name->getAttribute('nothing') === '');
+    $this->assertTrue($name->getAttribute('nothing') !== null);
   }
 
   function testParseFail() {
-    $this->assertTrue(DOMUtils::parse(null)===null);
-    $this->assertTrue(DOMUtils::parse('')===null);
-    $this->assertTrue(DOMUtils::parse('abc')===null);
-    $this->assertTrue(DOMUtils::parse('<abc>')===null);
+    $this->assertTrue(DOMUtils::parse(null) === null);
+    $this->assertTrue(DOMUtils::parse('') === null);
+    $this->assertTrue(DOMUtils::parse('abc') === null);
+    $this->assertTrue(DOMUtils::parse('<abc>') === null);
   }
 
   function testParseSuccess() {
-    $this->assertTrue(DOMUtils::parse('<abc/>')!==null);
+    $this->assertTrue(DOMUtils::parse('<abc/>') !== null);
   }
 
   function testVaild() {

@@ -27,8 +27,8 @@ if (Request::exists('language')) {
 }
 
 
-$gui='
-<gui xmlns="uri:hui" padding="10" title="'.SystemInfo::getTitle().'" state="'.$state.'">
+$gui = '
+<gui xmlns="uri:hui" padding="10" title="' . SystemInfo::getTitle() . '" state="' . $state . '">
 
   <controller name="controller" url="Authentication.js"/>
 
@@ -50,7 +50,7 @@ $gui='
         </buttons>
       </formula>
       <formula name="recoveryForm" state="recover">
-        '.($mailEnabled ? '
+        ' . ($mailEnabled ? '
         <header>{Recover password; da:Genfind kodeord}</header>
         <text><p>{Please provide your username or e-mail and we will send you an e-mail describing how you can change your password...; da:Skriv dit brugernavn eller e-mail, så sender vi dig en e-mail om hvordan du kan ændre din kode...}</p></text>
         <fields labels="above">
@@ -74,7 +74,7 @@ $gui='
           <button text="{New user; da:Ny bruger}" name="createAdmin"/>
         </buttons>
         '
-        ).'
+        ) . '
       </formula>
       <fragment state="recoveryMessage">
         <space all="5">

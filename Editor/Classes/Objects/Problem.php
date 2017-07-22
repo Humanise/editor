@@ -11,19 +11,19 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Problem'] = [
   'table' => 'problem',
   'properties' => [
-      'deadline'  => ['type'=>'datetime'],
-      'completed'  => ['type'=>'boolean'],
-      'containingObjectId'  => ['type'=>'int', 'column'=>'containing_object_id'],
-      'milestoneId'  => ['type'=>'int', 'column'=>'milestone_id'],
-      'priority'  => ['type'=>'float']
+      'deadline' => ['type' => 'datetime'],
+      'completed' => ['type' => 'boolean'],
+      'containingObjectId' => ['type' => 'int', 'column' => 'containing_object_id'],
+      'milestoneId' => ['type' => 'int', 'column' => 'milestone_id'],
+      'priority' => ['type' => 'float']
     ]
 ];
 
 class Problem extends Object {
 
   var $deadline;
-  var $completed=false;
-  var $containingObjectId=0;
+  var $completed = false;
+  var $containingObjectId = 0;
   var $milestoneId;
   var $priority;
 
@@ -77,7 +77,7 @@ class Problem extends Object {
 
   function sub_publish() {
     $data =
-    '<problem xmlns="'.parent::_buildnamespace('1.0').'">'.
+    '<problem xmlns="' . parent::_buildnamespace('1.0') . '">' .
     '</problem>';
     return $data;
   }

@@ -16,19 +16,19 @@ $width = Request::getString('width');
 $class = Request::getString('section_class');
 
 $sql = "select page_id from document_section where id=@int(id)";
-if ($sectionRow = Database::selectFirst($sql,['id'=>$section])) {
+if ($sectionRow = Database::selectFirst($sql,['id' => $section])) {
   $pageId = intval($sectionRow['page_id']);
 
   // update the section
-  $sql="update document_section set".
-  " `left`=".Database::text($left).
-  ",`right`=".Database::text($right).
-  ",`top`=".Database::text($top).
-  ",`bottom`=".Database::text($bottom).
-  ",`float`=".Database::text($float).
-  ",`width`=".Database::text($width).
-  ",`class`=".Database::text($class).
-  " where id=".Database::int($section);
+  $sql = "update document_section set" .
+  " `left`=" . Database::text($left) .
+  ",`right`=" . Database::text($right) .
+  ",`top`=" . Database::text($top) .
+  ",`bottom`=" . Database::text($bottom) .
+  ",`float`=" . Database::text($float) .
+  ",`width`=" . Database::text($width) .
+  ",`class`=" . Database::text($class) .
+  " where id=" . Database::int($section);
   Database::update($sql);
 
   $controller = PartService::getController($type);

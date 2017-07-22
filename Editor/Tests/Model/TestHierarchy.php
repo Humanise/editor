@@ -29,19 +29,19 @@ class TestHierarchy extends UnitTestCase {
     $this->assertEqual('EN',$loaded->getLanguage());
 
     $this->assertFalse($loaded->createItem([]));
-    $this->assertFalse($loaded->createItem(['title'=>'My item']));
-    $this->assertFalse($loaded->createItem(['title'=>'My item', 'targetType'=>'url']));
-    $this->assertFalse($loaded->createItem(['title'=>'My item', 'targetType'=>'url', 'targetValue'=>'http://www.onlineobjects.com/']));
+    $this->assertFalse($loaded->createItem(['title' => 'My item']));
+    $this->assertFalse($loaded->createItem(['title' => 'My item', 'targetType' => 'url']));
+    $this->assertFalse($loaded->createItem(['title' => 'My item', 'targetType' => 'url', 'targetValue' => 'http://www.onlineobjects.com/']));
 
-    $itemId = $loaded->createItem(['title'=>'My item', 'targetType'=>'url', 'targetValue'=>'http://www.onlineobjects.com/', 'parent'=>0, 'hidden'=>false]);
-    $this->assertTrue($itemId!==false);
+    $itemId = $loaded->createItem(['title' => 'My item', 'targetType' => 'url', 'targetValue' => 'http://www.onlineobjects.com/', 'parent' => 0, 'hidden' => false]);
+    $this->assertTrue($itemId !== false);
     $this->assertFalse($hierarchy->canDelete());
 
     $response = Hierarchy::deleteItem($itemId);
     $this->assertEqual($response,$loaded->getId());
 
     $itemId = $loaded->createItemForPage(1,'My item',0);
-    $this->assertTrue($itemId!==false);
+    $this->assertTrue($itemId !== false);
     $this->assertFalse($hierarchy->canDelete());
 
     $response = Hierarchy::deleteItem($itemId);

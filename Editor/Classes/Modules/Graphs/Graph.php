@@ -33,24 +33,24 @@ class Graph {
     $fromFound = false;
     $toFound = false;
     foreach ($this->nodes as $node) {
-      if ($node->getId()===$from) {
-        $fromFound=true;
+      if ($node->getId() === $from) {
+        $fromFound = true;
       }
-      if ($node->getId()===$to) {
-        $toFound=true;
+      if ($node->getId() === $to) {
+        $toFound = true;
       }
     }
     if ($fromFound && $toFound) {
-      $this->edges[] = ['from'=>$from, 'to'=>$to];
+      $this->edges[] = ['from' => $from, 'to' => $to];
     }
   }
 
   function isConnected($from,$to) {
     foreach ($this->edges as $edge) {
-      if ($edge['from']===$from && $edge['to']===$to) {
+      if ($edge['from'] === $from && $edge['to'] === $to) {
         return true;
       }
-      if ($edge['to']===$from && $edge['from']===$to) {
+      if ($edge['to'] === $from && $edge['from'] === $to) {
         return true;
       }
     }

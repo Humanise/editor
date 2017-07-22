@@ -9,8 +9,8 @@ if (!isset($GLOBALS['basePath'])) {
   exit;
 }
 class ListWriter {
-  function startList($options=[]) {
-    if (@$options['unicode']==true || ConfigurationService::isUnicode()) {
+  function startList($options = []) {
+    if (@$options['unicode'] == true || ConfigurationService::isUnicode()) {
       header('Content-Type: text/xml; charset=utf-8');
       echo '<?xml version="1.0" encoding="UTF-8"?>';
     } else {
@@ -18,10 +18,10 @@ class ListWriter {
       echo '<?xml version="1.0" encoding="ISO-8859-1"?>';
     }
     echo '<list';
-    if (@$options['checkboxes']==true) {
+    if (@$options['checkboxes'] == true) {
       echo ' checkboxes="true"';
     }
-    if (isset($options['ordering']) && $options['ordering']==true) {
+    if (isset($options['ordering']) && $options['ordering'] == true) {
       echo ' ordering="true"';
     }
     echo '>';
@@ -38,7 +38,7 @@ class ListWriter {
   }
 
   function window($options) {
-    echo '<window total="'.$options['total'].'" size="'.$options['size'].'" page="'.$options['page'].'"/>';
+    echo '<window total="' . $options['total'] . '" size="' . $options['size'] . '" page="' . $options['page'] . '"/>';
     return $this;
   }
 
@@ -52,48 +52,48 @@ class ListWriter {
     return $this;
   }
 
-  function header($options=[]) {
+  function header($options = []) {
     echo '<header';
     if (is_string($options)) {
-      echo ' title="'.Strings::escapeEncodedXML($options).'"';
+      echo ' title="' . Strings::escapeEncodedXML($options) . '"';
     }
     else if (is_array($options)) {
       if (isset($options['title'])) {
-        echo ' title="'.Strings::escapeEncodedXML(GuiUtils::getTranslated($options['title'])).'"';
+        echo ' title="' . Strings::escapeEncodedXML(GuiUtils::getTranslated($options['title'])) . '"';
       }
       if (isset($options['width'])) {
-        echo ' width="'.$options['width'].'"';
+        echo ' width="' . $options['width'] . '"';
       }
       if (isset($options['key'])) {
-        echo ' key="'.$options['key'].'"';
+        echo ' key="' . $options['key'] . '"';
       }
       if (isset($options['align'])) {
-        echo ' align="'.$options['align'].'"';
+        echo ' align="' . $options['align'] . '"';
       }
       if (isset($options['sortable'])) {
-        echo ' sortable="'.($options['sortable'] ? 'true' : 'false').'"';
+        echo ' sortable="' . ($options['sortable'] ? 'true' : 'false') . '"';
       }
     }
     echo '/>';
     return $this;
   }
 
-  function startRow($options=[]) {
+  function startRow($options = []) {
     echo '<row';
     if (isset($options['id'])) {
-      echo ' id="'.$options['id'].'"';
+      echo ' id="' . $options['id'] . '"';
     }
     if (isset($options['value'])) {
-      echo ' value="'.$options['value'].'"';
+      echo ' value="' . $options['value'] . '"';
     }
     if (isset($options['kind'])) {
-      echo ' kind="'.$options['kind'].'"';
+      echo ' kind="' . $options['kind'] . '"';
     }
     if (isset($options['level'])) {
-      echo ' level="'.$options['level'].'"';
+      echo ' level="' . $options['level'] . '"';
     }
     if (isset($options['data'])) {
-      echo ' data="'.Strings::escapeXML(Strings::toJSON($options['data'])).'"';
+      echo ' data="' . Strings::escapeXML(Strings::toJSON($options['data'])) . '"';
     }
     echo '>';
     return $this;
@@ -104,28 +104,28 @@ class ListWriter {
     return $this;
   }
 
-  function startCell($options=[]) {
+  function startCell($options = []) {
     echo '<cell';
     if (isset($options['icon'])) {
-      echo ' icon="'.$options['icon'].'"';
+      echo ' icon="' . $options['icon'] . '"';
     }
     if (isset($options['wrap'])) {
-      echo ' wrap="'.($options['wrap'] ? 'true' : 'false').'"';
+      echo ' wrap="' . ($options['wrap'] ? 'true' : 'false') . '"';
     }
     if (@$options['dimmed']) {
       echo ' dimmed="true"';
     }
     if (isset($options['width'])) {
-      echo ' width="'.$options['width'].'"';
+      echo ' width="' . $options['width'] . '"';
     }
     if (isset($options['variant'])) {
-      echo ' variant="'.$options['variant'].'"';
+      echo ' variant="' . $options['variant'] . '"';
     }
     if (isset($options['class'])) {
-      echo ' class="'.$options['class'].'"';
+      echo ' class="' . $options['class'] . '"';
     }
     if (isset($options['align'])) {
-      echo ' align="'.$options['align'].'"';
+      echo ' align="' . $options['align'] . '"';
     }
     echo '>';
     return $this;
@@ -140,13 +140,13 @@ class ListWriter {
     return $this;
   }
 
-  function startLine($options=[]) {
-    echo '<line'.
-    (@$options['dimmed'] ? ' dimmed="true"' : '').
-    (@$options['minor'] ? ' minor="true"' : '').
-    (@$options['mini'] ? ' mini="true"' : '').
-    (@$options['top'] ? ' top="'.$options['top'].'"' : '').
-    (@$options['class'] ? ' class="'.$options['class'].'"' : '').
+  function startLine($options = []) {
+    echo '<line' .
+    (@$options['dimmed'] ? ' dimmed="true"' : '') .
+    (@$options['minor'] ? ' minor="true"' : '') .
+    (@$options['mini'] ? ' mini="true"' : '') .
+    (@$options['top'] ? ' top="' . $options['top'] . '"' : '') .
+    (@$options['class'] ? ' class="' . $options['class'] . '"' : '') .
     '>';
     return $this;
   }
@@ -203,20 +203,20 @@ class ListWriter {
     return $this;
   }
 
-  function object($options=[]) {
-    echo '<object icon="'.$options['icon'].'">';
+  function object($options = []) {
+    echo '<object icon="' . $options['icon'] . '">';
     $this->text($options['text']);
     echo '</object>';
     return $this;
   }
 
-  function icon($options=[]) {
+  function icon($options = []) {
     if (is_string($options)) {
-      $options = ['icon'=>$options];
+      $options = ['icon' => $options];
     }
-    echo '<icon icon="'.$options['icon'].'"';
+    echo '<icon icon="' . $options['icon'] . '"';
     if (isset($options['data'])) {
-      echo ' data="'.Strings::escapeXML(Strings::toJSON(Strings::toUnicode($options['data']))).'"';
+      echo ' data="' . Strings::escapeXML(Strings::toJSON(Strings::toUnicode($options['data']))) . '"';
     }
     if (@$options['revealing']) {
       echo ' revealing="true"';
@@ -225,28 +225,28 @@ class ListWriter {
       echo ' action="true"';
     }
     if (isset($options['hint'])) {
-      echo ' hint="'.Strings::escapeXML(GuiUtils::getTranslated($options['hint'])).'"';
+      echo ' hint="' . Strings::escapeXML(GuiUtils::getTranslated($options['hint'])) . '"';
     }
     if (isset($options['size'])) {
-      echo ' size="'.Strings::escapeXML($options['size']).'"';
+      echo ' size="' . Strings::escapeXML($options['size']) . '"';
     }
     echo '/>';
     return $this;
   }
 
-  function button($options=[]) {
-    echo '<button text="'.Strings::escapeEncodedXML(GuiUtils::getTranslated($options['text'])).'"';
+  function button($options = []) {
+    echo '<button text="' . Strings::escapeEncodedXML(GuiUtils::getTranslated($options['text'])) . '"';
     if (isset($options['data'])) {
-      echo ' data="'.Strings::escapeXML(Strings::toJSON($options['data'])).'"';
+      echo ' data="' . Strings::escapeXML(Strings::toJSON($options['data'])) . '"';
     }
     echo '/>';
     return $this;
   }
 
-  function startIcons($options=[]) {
+  function startIcons($options = []) {
     echo '<icons';
     if (isset($options['left'])) {
-      echo ' left="'.Strings::escapeXML($options['left']).'"';
+      echo ' left="' . Strings::escapeXML($options['left']) . '"';
     }
     echo '>';
     return $this;

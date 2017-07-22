@@ -12,6 +12,6 @@ if ($link = Link::load($linkId)) {
   $link->setPartId($partId);
   $link->save();
 } else {
-  Log::debug('Link with id='.$id.' not found');
+  Log::debug('Link with id=' . $id . ' not found');
 }
 ?>

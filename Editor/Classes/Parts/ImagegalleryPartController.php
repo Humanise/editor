@@ -42,39 +42,39 @@ class ImagegalleryPartController extends PartController
 
   function editor($part,$context) {
     return
-      '<input type="hidden" name="group" value="'.$part->getImageGroupId().'"/>'.
-      '<input type="hidden" name="height" value="'.$part->getHeight().'"/>'.
-      '<input type="hidden" name="imageWidth" value="'.$part->getWidth().'"/>'.
-      '<input type="hidden" name="framed" value="'.Strings::toBoolean($part->getFramed()).'"/>'.
-      '<input type="hidden" name="showTitle" value="'.Strings::toBoolean($part->getShowTitle()).'"/>'.
-      '<input type="hidden" name="variant" value="'.$part->getVariant().'"/>'.
-      '<input type="hidden" name="frame" value="'.$part->getFrame().'"/>'.
-      '<script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/imagegallery/editor.js" type="text/javascript" charset="utf-8"></script>'.
-      '<div id="part_imagegallery_container">'.$this->render($part,$context).'</div>';
+      '<input type="hidden" name="group" value="' . $part->getImageGroupId() . '"/>' .
+      '<input type="hidden" name="height" value="' . $part->getHeight() . '"/>' .
+      '<input type="hidden" name="imageWidth" value="' . $part->getWidth() . '"/>' .
+      '<input type="hidden" name="framed" value="' . Strings::toBoolean($part->getFramed()) . '"/>' .
+      '<input type="hidden" name="showTitle" value="' . Strings::toBoolean($part->getShowTitle()) . '"/>' .
+      '<input type="hidden" name="variant" value="' . $part->getVariant() . '"/>' .
+      '<input type="hidden" name="frame" value="' . $part->getFrame() . '"/>' .
+      '<script src="' . ConfigurationService::getBaseUrl() . 'Editor/Parts/imagegallery/editor.js" type="text/javascript" charset="utf-8"></script>' .
+      '<div id="part_imagegallery_container">' . $this->render($part,$context) . '</div>';
   }
 
   function buildSub($part,$context) {
-    $data = '<imagegallery xmlns="'.$this->getNamespace().'" image-group="'.$part->getImageGroupId().'">';
-    $data.= '<display';
-    $data.= ' height="'.$part->getHeight().'"';
+    $data = '<imagegallery xmlns="' . $this->getNamespace() . '" image-group="' . $part->getImageGroupId() . '">';
+    $data .= '<display';
+    $data .= ' height="' . $part->getHeight() . '"';
     if ($part->getWidth()) {
-      $data.= ' width="'.$part->getWidth().'"';
+      $data .= ' width="' . $part->getWidth() . '"';
     }
-    $data.= ' variant="'.Strings::escapeXML($part->getVariant()).'"';
-    $data.= ' framed="'.Strings::toBoolean($part->getFramed()).'"';
+    $data .= ' variant="' . Strings::escapeXML($part->getVariant()) . '"';
+    $data .= ' framed="' . Strings::toBoolean($part->getFramed()) . '"';
     if ($part->getFrame()) {
-      $data.= ' frame="'.Strings::escapeXML($part->getFrame()).'"';
+      $data .= ' frame="' . Strings::escapeXML($part->getFrame()) . '"';
     }
-    $data.= ' show-title="'.Strings::toBoolean($part->getShowTitle()).'"/>';
+    $data .= ' show-title="' . Strings::toBoolean($part->getShowTitle()) . '"/>';
     if ($part->getImageGroupId()) {
-      $sql="SELECT object.data from object,imagegroup_image where imagegroup_image.image_id = object.id and imagegroup_image.imagegroup_id=@int(group) order by imagegroup_image.position, object.title";
-      $result = Database::select($sql,['group'=>$part->getImageGroupId()]);
+      $sql = "SELECT object.data from object,imagegroup_image where imagegroup_image.image_id = object.id and imagegroup_image.imagegroup_id=@int(group) order by imagegroup_image.position, object.title";
+      $result = Database::select($sql,['group' => $part->getImageGroupId()]);
       while ($row = Database::next($result)) {
-        $data.=$row['data'];
+        $data .= $row['data'];
       }
       Database::free($result);
     }
-    $data.='</imagegallery>';
+    $data .= '</imagegallery>';
     return $data;
   }
 
@@ -88,7 +88,7 @@ class ImagegalleryPartController extends PartController
         $part->setWidth(intval($display->getAttribute('width')));
         $part->setVariant($display->getAttribute('variant'));
         $part->setFrame($display->getAttribute('frame'));
-        $part->setFramed($display->getAttribute('framed')=='true' ? true : false);
+        $part->setFramed($display->getAttribute('framed') == 'true' ? true : false);
       }
     }
   }
@@ -98,7 +98,7 @@ class ImagegalleryPartController extends PartController
       'Billedgalleri' => '
         <item label="{Image group; da:Billedgruppe}">
           <dropdown width="200" name="group">
-          '.UI::buildOptions('imagegroup').'
+          ' . UI::buildOptions('imagegroup') . '
           </dropdown>
         </item>
         <item label="{Height; da:Højde}">
@@ -117,7 +117,7 @@ class ImagegalleryPartController extends PartController
         </item>
         <item label="{Frame; da:Ramme}">
           <dropdown name="imageFrame">
-            '.DesignService::getFrameOptions().'
+            ' . DesignService::getFrameOptions() . '
           </dropdown>
         </item>
         <grid>

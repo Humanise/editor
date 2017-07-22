@@ -7,10 +7,10 @@ require_once '../../../Include/Private.php';
 
 $id = Request::getInt('id');
 
-$page=Page::load($id);
+$page = Page::load($id);
 $page->setData(null);
 
 Response::sendObject([
-  'page'=>$page
+  'page' => $page
 ]);
 ?>

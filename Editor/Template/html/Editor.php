@@ -5,11 +5,11 @@
  */
 require_once '../../Include/Private.php';
 
-$gui='
+$gui = '
 <gui xmlns="uri:hui" padding="10">
   <controller url="controller.js"/>
   <script>
-    controller.id = '.Request::getId().';
+    controller.id = ' . Request::getId() . ';
   </script>
   <box width="800" top="10" padding="10" title="HTML">
     <formula name="formula">

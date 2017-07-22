@@ -31,7 +31,7 @@ class WorkflowDescription {
     if (!$state) {
       $state = new WorkflowState();
     }
-    for ($i=0; $i < count($this->stages); $i++) {
+    for ($i = 0; $i < count($this->stages); $i++) {
       $stage = $this->stages[$i];
       $state->log('Running: ' . get_class($stage));
       $state->clean();

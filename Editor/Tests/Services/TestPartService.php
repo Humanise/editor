@@ -35,7 +35,7 @@ class TestPartService extends UnitTestCase {
 
     $loaded = $loadedLinks[0];
 
-    $this->assertTrue($link->getId()>0);
+    $this->assertTrue($link->getId() > 0);
     $this->assertEqual($loaded->getSourceType(),$link->getSourceType());
     $this->assertEqual($loaded->getTargetType(),$link->getTargetType());
     $this->assertEqual($loaded->getTargetValue(),$link->getTargetValue());
@@ -53,7 +53,7 @@ class TestPartService extends UnitTestCase {
 
     $loaded = $loadedLinks[0];
 
-    $this->assertTrue($link->getId()>0);
+    $this->assertTrue($link->getId() > 0);
     $this->assertEqual($loaded->getSourceType(),$link->getSourceType());
     $this->assertEqual($loaded->getTargetType(),$link->getTargetType());
     $this->assertEqual($loaded->getTargetValue(),$link->getTargetValue());

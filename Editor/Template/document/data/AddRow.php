@@ -10,5 +10,5 @@ $index = Request::getInt('index');
 
 $rowId = DocumentTemplateEditor::addRow($pageId,$index);
 
-Response::redirect('../Editor.php?row='.$rowId);
+Response::redirect('../Editor.php?row=' . $rowId);
 ?>

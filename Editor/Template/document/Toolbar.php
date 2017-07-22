@@ -3,18 +3,18 @@ require_once '../../Include/Private.php';
 
 $changed = PageService::isChanged(InternalSession::getPageId());
 
-$gui='
+$gui = '
 <gui xmlns="uri:hui" title="Dokument">
   <controller url="js/Toolbar.js"/>
   <script>
-  controller.pageId='.InternalSession::getPageId().';
+  controller.pageId=' . InternalSession::getPageId() . ';
   </script>
   <tabs small="true" below="true">
     <tab title="{da:Dokument ; en:Document}" background="light">
       <toolbar>
         <icon icon="common/close" text="{da: Luk ; en: Close}" name="close"/>
         <divider/>
-        <icon icon="common/internet" overlay="upload" text="{da:Udgiv;en:Publish}" name="publish" disabled="'.($changed ? 'false' : 'true').'"/>
+        <icon icon="common/internet" overlay="upload" text="{da:Udgiv;en:Publish}" name="publish" disabled="' . ($changed ? 'false' : 'true') . '"/>
         <icon icon="common/view" text="{da:Vis;en:View}" name="preview"/>
         <icon icon="common/info" text="{da:Info;en:Info}" name="properties"/>
         <divider/>

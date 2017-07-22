@@ -13,7 +13,7 @@ class StringBuilder {
   var $str = '';
   var $separator = null;
 
-  function StringBuilder($str='') {
+  function StringBuilder($str = '') {
     $this->str = $str;
   }
 
@@ -21,14 +21,14 @@ class StringBuilder {
     if (!$this) {
       return new StringBuilder($str);
     }
-    if (strlen($str)==0) {
+    if (strlen($str) == 0) {
       return $this;
     }
-    if ($this->separator!==null && strlen($this->str)>0) {
-      $this->str.=$this->separator;
+    if ($this->separator !== null && strlen($this->str) > 0) {
+      $this->str .= $this->separator;
     }
     $this->separator = null;
-    $this->str.=$str;
+    $this->str .= $str;
     return $this;
   }
 

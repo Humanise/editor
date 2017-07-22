@@ -14,7 +14,7 @@ if (!$meter) {
   $meter->save();
   $meter->publish();
 }
-if ($data->id>0) {
+if ($data->id > 0) {
   $obj = Waterusage::load($data->id);
 } else {
   $obj = new Waterusage();

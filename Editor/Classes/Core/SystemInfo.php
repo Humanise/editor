@@ -23,7 +23,7 @@ class SystemInfo {
   }
 
   static function getTitle() {
-    return 'OnlinePublisher '.SystemInfo::getFormattedDate();
+    return 'OnlinePublisher ' . SystemInfo::getFormattedDate();
   }
 
   static function getFeedbackMail() {

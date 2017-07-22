@@ -16,7 +16,7 @@ class UserAgentAnalyzer {
   var $phone;
   var $tablet;
 
-  function UserAgentAnalyzer($userAgent=null) {
+  function UserAgentAnalyzer($userAgent = null) {
     if (!is_null($userAgent)) {
       $this->userAgent = $userAgent;
       $this->_analyze();
@@ -26,13 +26,13 @@ class UserAgentAnalyzer {
   function getShortID() {
     $str = '';
     if (is_string($this->applicationName)) {
-      $str.=strtolower($this->applicationName).' '.strtolower($this->applicationName).$this->_toInt($this->applicationVersion);
+      $str .= strtolower($this->applicationName) . ' ' . strtolower($this->applicationName) . $this->_toInt($this->applicationVersion);
     }
     if (is_string($this->technologyName)) {
       if ($str) {
-        $str.=' ';
+        $str .= ' ';
       }
-      $str.=strtolower($this->technologyName).' '.strtolower($this->technologyName).$this->_toInt($this->technologyVersion);
+      $str .= strtolower($this->technologyName) . ' ' . strtolower($this->technologyName) . $this->_toInt($this->technologyVersion);
     }
     return $str;
   }
@@ -515,7 +515,7 @@ class UserAgentAnalyzer {
     }
     //[name]/[version]
     elseif (preg_match ("/([a-zA-Z\-\. ]*)\/([0-9a-zA-Z\.\-]+)( \([.]*\))?/i",$this->userAgent,$result)) {
-      if ($result[1]=='Mozilla') {
+      if ($result[1] == 'Mozilla') {
         return;
       }
       $this->technologyName = $result[1];
@@ -533,7 +533,7 @@ class UserAgentAnalyzer {
       }
       return;
     }
-    elseif (strlen($this->userAgent)==0) {
+    elseif (strlen($this->userAgent) == 0) {
       $this->robot = true;
     }
   }

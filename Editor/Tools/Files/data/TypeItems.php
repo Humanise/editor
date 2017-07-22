@@ -9,12 +9,12 @@ $counts = File::getTypeCounts();
 
 $types = [];
 foreach ($counts as $row) {
-  if ($row['type']!='') {
+  if ($row['type'] != '') {
     $info = FileService::mimeTypeToInfo($row['type']);
     if ($info) {
       $kind = $info['kind'];
       if (array_key_exists($kind,$types)) {
-        $types[$kind]['count']+=$row['count'];
+        $types[$kind]['count'] += $row['count'];
       } else {
         $types[$kind] = ['count' => $row['count'], 'label' => $info['label']];
       }

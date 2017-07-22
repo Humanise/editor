@@ -13,7 +13,7 @@ if ($obj) {
   $obj->setText($data->text);
   foreach (SearchTemplate::$TYPES as $type => $label) {
     foreach (SearchTemplate::$PARTS as $part => $kind) {
-      $method = $type.ucfirst($part);
+      $method = $type . ucfirst($part);
       $obj->$method = $data->$method;
     }
   }

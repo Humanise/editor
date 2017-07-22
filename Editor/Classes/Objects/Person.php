@@ -11,19 +11,19 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Person'] = [
     'table' => 'person',
     'properties' => [
-      'firstname' => ['type'=>'string'],
-      'middlename' => ['type'=>'string'],
-      'surname' => ['type'=>'string'],
-      'initials' => ['type'=>'string'],
-      'nickname' => ['type'=>'string'],
-      'jobtitle' => ['type'=>'string'],
-      'sex' => ['type'=>'string'],
-      'streetname' => ['type'=>'string'],
-      'zipcode' => ['type'=>'string'],
-      'city' => ['type'=>'string'],
-      'country' => ['type'=>'string'],
-      'webaddress' => ['type'=>'string'],
-      'imageId' => ['type'=>'int', 'column'=>'image_id', 'relation' => ['class' => 'Image', 'property' => 'id']]
+      'firstname' => ['type' => 'string'],
+      'middlename' => ['type' => 'string'],
+      'surname' => ['type' => 'string'],
+      'initials' => ['type' => 'string'],
+      'nickname' => ['type' => 'string'],
+      'jobtitle' => ['type' => 'string'],
+      'sex' => ['type' => 'string'],
+      'streetname' => ['type' => 'string'],
+      'zipcode' => ['type' => 'string'],
+      'city' => ['type' => 'string'],
+      'country' => ['type' => 'string'],
+      'webaddress' => ['type' => 'string'],
+      'imageId' => ['type' => 'int', 'column' => 'image_id', 'relation' => ['class' => 'Image', 'property' => 'id']]
     ]
 ];
 
@@ -34,7 +34,7 @@ class Person extends Object {
   var $initials;
   var $nickname;
   var $jobtitle;
-  var $sex=1;
+  var $sex = 1;
   var $email_job;
   var $email_private;
   var $phone_job;
@@ -55,23 +55,23 @@ class Person extends Object {
   }
 
   function setFullName($name) {
-    $this->firstname='';
-    $this->middlename='';
-    $this->surname='';
+    $this->firstname = '';
+    $this->middlename = '';
+    $this->surname = '';
     $names = preg_split('/\s+/', $name);
-    if (count($names)>0) {
+    if (count($names) > 0) {
       $this->firstname = $names[0];
     }
-    if (count($names)==2) {
+    if (count($names) == 2) {
       $this->surname = $names[1];
     }
-    else if (count($names)>2) {
+    else if (count($names) > 2) {
       $this->middlename = $names[1];
-      for ($i=2; $i < count($names); $i++) {
-        if (strlen($this->surname)>0) {
-          $this->surname.=' ';
+      for ($i = 2; $i < count($names); $i++) {
+        if (strlen($this->surname) > 0) {
+          $this->surname .= ' ';
         }
-        $this->surname.=$names[$i];
+        $this->surname .= $names[$i];
       }
     }
     $this->_updateTitle();
@@ -106,16 +106,16 @@ class Person extends Object {
 
   function _updateTitle() {
     $title = '';
-    if ($this->firstname!='') {
-      $title.= $this->firstname;
+    if ($this->firstname != '') {
+      $title .= $this->firstname;
     }
-    if ($this->middlename!='') {
-      if ($title!='') $title.=' ';
-      $title.= $this->middlename;
+    if ($this->middlename != '') {
+      if ($title != '') $title .= ' ';
+      $title .= $this->middlename;
     }
-    if ($this->surname!='') {
-      if ($title!='') $title.=' ';
-      $title.= $this->surname;
+    if ($this->surname != '') {
+      if ($title != '') $title .= ' ';
+      $title .= $this->surname;
     }
     $this->title = $title;
   }
@@ -233,40 +233,40 @@ class Person extends Object {
   }
 
   function getMailinglistIds() {
-    $sql = "select mailinglist_id as id from person_mailinglist where person_id=".$this->id;
+    $sql = "select mailinglist_id as id from person_mailinglist where person_id=" . $this->id;
     return Database::getIds($sql);
   }
 
   function updateMailinglistIds($ids) {
     $ids = ObjectService::getValidIds($ids);
-    $sql = "delete from person_mailinglist where person_id=".$this->id;
+    $sql = "delete from person_mailinglist where person_id=" . $this->id;
     Database::delete($sql);
     foreach ($ids as $id) {
-      $sql = "insert into person_mailinglist (mailinglist_id,person_id) values (".$id.",".$this->id.")";
+      $sql = "insert into person_mailinglist (mailinglist_id,person_id) values (" . $id . "," . $this->id . ")";
       Database::insert($sql);
     }
   }
 
   function getGroupIds() {
-    $sql = "select persongroup_id as id from persongroup_person where person_id=".$this->id;
+    $sql = "select persongroup_id as id from persongroup_person where person_id=" . $this->id;
     return Database::getIds($sql);
   }
 
   function updateGroupIds($ids) {
     $ids = ObjectService::getValidIds($ids);
-    $sql = "delete from persongroup_person where person_id=".$this->id;
+    $sql = "delete from persongroup_person where person_id=" . $this->id;
     Database::delete($sql);
     foreach ($ids as $id) {
-      $sql = "insert into persongroup_person (persongroup_id,person_id) values (".$id.",".$this->id.")";
+      $sql = "insert into persongroup_person (persongroup_id,person_id) values (" . $id . "," . $this->id . ")";
       Database::insert($sql);
     }
   }
 
   function addGroupId($id) {
 
-    $sql = "delete from persongroup_person where person_id=".$this->id." and persongroup_id=".$id;
+    $sql = "delete from persongroup_person where person_id=" . $this->id . " and persongroup_id=" . $id;
     Database::delete($sql);
-    $sql = "insert into persongroup_person (persongroup_id,person_id) values (".$id.",".$this->id.")";
+    $sql = "insert into persongroup_person (persongroup_id,person_id) values (" . $id . "," . $this->id . ")";
     Database::insert($sql);
   }
 
@@ -275,17 +275,17 @@ class Person extends Object {
     if (isset($custom['group'])) {
       $parts['tables'][] = 'persongroup_person';
       $parts['limits'][] = 'persongroup_person.person_id = object.id';
-      $parts['limits'][] = 'persongroup_person.persongroup_id = '.Database::int($custom['group']);
+      $parts['limits'][] = 'persongroup_person.persongroup_id = ' . Database::int($custom['group']);
     }
     if (isset($custom['mailinglist'])) {
       $parts['tables'][] = 'person_mailinglist';
       $parts['limits'][] = 'person_mailinglist.person_id = object.id';
-      $parts['limits'][] = 'person_mailinglist.mailinglist_id = '.Database::int($custom['mailinglist']);
+      $parts['limits'][] = 'person_mailinglist.mailinglist_id = ' . Database::int($custom['mailinglist']);
     }
   }
 
   static function loadByEmail($email) {
-    $sql = "select object.id from emailaddress, object where emailaddress.containing_object_id=object.id and object.type='person' and emailaddress.address=".Database::text($email);
+    $sql = "select object.id from emailaddress, object where emailaddress.containing_object_id=object.id and object.type='person' and emailaddress.address=" . Database::text($email);
     $row = Database::selectFirst($sql);
     if ($row) {
       return Person::load($row['id']);
@@ -296,90 +296,90 @@ class Person extends Object {
 
   function sub_publish() {
 
-    $data = '<person xmlns="'.parent::_buildnamespace('1.0').'">';
-    if ($this->firstname!='') {
-      $data.='<firstname>'.Strings::escapeEncodedXML($this->firstname).'</firstname>';
+    $data = '<person xmlns="' . parent::_buildnamespace('1.0') . '">';
+    if ($this->firstname != '') {
+      $data .= '<firstname>' . Strings::escapeEncodedXML($this->firstname) . '</firstname>';
     }
-    if ($this->middlename!='') {
-      $data.='<middlename>'.Strings::escapeEncodedXML($this->middlename).'</middlename>';
+    if ($this->middlename != '') {
+      $data .= '<middlename>' . Strings::escapeEncodedXML($this->middlename) . '</middlename>';
     }
-    if ($this->surname!='') {
-      $data.='<surname>'.Strings::escapeEncodedXML($this->surname).'</surname>';
+    if ($this->surname != '') {
+      $data .= '<surname>' . Strings::escapeEncodedXML($this->surname) . '</surname>';
     }
-    if ($this->initials!='') {
-      $data.='<initials>'.Strings::escapeEncodedXML($this->initials).'</initials>';
+    if ($this->initials != '') {
+      $data .= '<initials>' . Strings::escapeEncodedXML($this->initials) . '</initials>';
     }
-    if ($this->nickname!='') {
-      $data.='<nickname>'.Strings::escapeEncodedXML($this->nickname).'</nickname>';
+    if ($this->nickname != '') {
+      $data .= '<nickname>' . Strings::escapeEncodedXML($this->nickname) . '</nickname>';
     }
-    if ($this->jobtitle!='') {
-      $data.='<jobtitle>'.Strings::escapeEncodedXML($this->jobtitle).'</jobtitle>';
+    if ($this->jobtitle != '') {
+      $data .= '<jobtitle>' . Strings::escapeEncodedXML($this->jobtitle) . '</jobtitle>';
     }
     if (isset($this->sex)) {
-      $data.='<sex>'.($this->sex ? 'male' : 'female').'</sex>';
+      $data .= '<sex>' . ($this->sex ? 'male' : 'female') . '</sex>';
     }
-    if ($this->email_job!='') {
-      $data.='<email context="job">'.Strings::escapeEncodedXML($this->email_job).'</email>';
+    if ($this->email_job != '') {
+      $data .= '<email context="job">' . Strings::escapeEncodedXML($this->email_job) . '</email>';
     }
-    if ($this->email_private!='') {
-      $data.='<email context="private">'.Strings::escapeEncodedXML($this->email_private).'</email>';
+    if ($this->email_private != '') {
+      $data .= '<email context="private">' . Strings::escapeEncodedXML($this->email_private) . '</email>';
     }
-    if ($this->phone_job!='') {
-      $data.='<phone context="job">'.Strings::escapeEncodedXML($this->phone_job).'</phone>';
+    if ($this->phone_job != '') {
+      $data .= '<phone context="job">' . Strings::escapeEncodedXML($this->phone_job) . '</phone>';
     }
-    if ($this->phone_private!='') {
-      $data.='<phone context="private">'.Strings::escapeEncodedXML($this->phone_private).'</phone>';
+    if ($this->phone_private != '') {
+      $data .= '<phone context="private">' . Strings::escapeEncodedXML($this->phone_private) . '</phone>';
     }
-    if ($this->streetname!='') {
-      $data.='<streetname>'.Strings::escapeEncodedXML($this->streetname).'</streetname>';
+    if ($this->streetname != '') {
+      $data .= '<streetname>' . Strings::escapeEncodedXML($this->streetname) . '</streetname>';
     }
-    if ($this->zipcode!='') {
-      $data.='<zipcode>'.Strings::escapeEncodedXML($this->zipcode).'</zipcode>';
+    if ($this->zipcode != '') {
+      $data .= '<zipcode>' . Strings::escapeEncodedXML($this->zipcode) . '</zipcode>';
     }
-    if ($this->city!='') {
-      $data.='<city>'.Strings::escapeEncodedXML($this->city).'</city>';
+    if ($this->city != '') {
+      $data .= '<city>' . Strings::escapeEncodedXML($this->city) . '</city>';
     }
-    if ($this->country!='') {
-      $data.='<country>'.Strings::escapeEncodedXML($this->country).'</country>';
+    if ($this->country != '') {
+      $data .= '<country>' . Strings::escapeEncodedXML($this->country) . '</country>';
     }
-    if ($this->webaddress!='') {
-      $data.='<webaddress>'.Strings::escapeEncodedXML($this->webaddress).'</webaddress>';
+    if ($this->webaddress != '') {
+      $data .= '<webaddress>' . Strings::escapeEncodedXML($this->webaddress) . '</webaddress>';
     }
-    if ($this->imageId>0) {
-      $sql="select * from object where id=".$this->imageId;
+    if ($this->imageId > 0) {
+      $sql = "select * from object where id=" . $this->imageId;
       if ($img = Database::selectFirst($sql)) {
-        $data.='<image>'.$img['data'].'</image>';
+        $data .= '<image>' . $img['data'] . '</image>';
       }
     }
 
 
-    $sql = "select address from emailaddress where containing_object_id=".$this->id;
+    $sql = "select address from emailaddress where containing_object_id=" . $this->id;
     $result = Database::select($sql);
       while ($row = Database::next($result)) {
-      $data.='<email>'.Strings::escapeEncodedXML($row['address']).'</email>';
+      $data .= '<email>' . Strings::escapeEncodedXML($row['address']) . '</email>';
       }
     Database::free($result);
 
-    $sql = "select number,context from phonenumber where containing_object_id=".$this->id;
+    $sql = "select number,context from phonenumber where containing_object_id=" . $this->id;
     $result = Database::select($sql);
       while ($row = Database::next($result)) {
-      $data.='<phone context="'.Strings::escapeEncodedXML($row['context']).'">'.Strings::escapeEncodedXML($row['number']).'</phone>';
+      $data .= '<phone context="' . Strings::escapeEncodedXML($row['context']) . '">' . Strings::escapeEncodedXML($row['number']) . '</phone>';
       }
     Database::free($result);
 
-    $data.='</person>';
+    $data .= '</person>';
     return $data;
 
   }
 
   function removeMore() {
-    $sql="delete from person_mailinglist where person_id=".$this->id;
+    $sql = "delete from person_mailinglist where person_id=" . $this->id;
     Database::delete($sql);
-    $sql="delete from emailaddress where containing_object_id=".$this->id;
+    $sql = "delete from emailaddress where containing_object_id=" . $this->id;
     Database::delete($sql);
-    $sql="delete from phonenumber where containing_object_id=".$this->id;
+    $sql = "delete from phonenumber where containing_object_id=" . $this->id;
     Database::delete($sql);
-    $sql="delete from persongroup_person where person_id=".$this->id;
+    $sql = "delete from persongroup_person where person_id=" . $this->id;
     Database::delete($sql);
   }
 
@@ -393,9 +393,9 @@ class Person extends Object {
     $mails = Query::after('emailaddress')->withProperty('containingObjectId',$this->getId())->get();
     $foundIds = [];
     foreach ($new as $email) {
-      if (isset($email->id) && $email->id>0) {
+      if (isset($email->id) && $email->id > 0) {
         $old = Emailaddress::load($email->id);
-        if ($old==null) {
+        if ($old == null) {
           $old = new Emailaddress();
         } else {
           $foundIds[] = $old->getId();
@@ -403,12 +403,12 @@ class Person extends Object {
       } else {
         $old = new Emailaddress();
       }
-      if (strlen($email->address)>0) {
+      if (strlen($email->address) > 0) {
         $old->setAddress($email->address);
         $old->setContainingObjectId($this->getId());
         $old->save();
         $old->publish();
-      } else if ($old->getId()>0) {
+      } else if ($old->getId() > 0) {
         $old->remove();
       }
     }
@@ -423,9 +423,9 @@ class Person extends Object {
     $numbers = Query::after('phonenumber')->withProperty('containingObjectId',$this->getId())->get();
     $foundIds = [];
     foreach ($new as $number) {
-      if (isset($number->id) && $number->id>0) {
+      if (isset($number->id) && $number->id > 0) {
         $old = PhoneNumber::load($number->id);
-        if ($old==null) {
+        if ($old == null) {
           $old = new PhoneNumber();
         } else {
           $foundIds[] = $old->getId();
@@ -433,13 +433,13 @@ class Person extends Object {
       } else {
         $old = new PhoneNumber();
       }
-      if (strlen($number->number)>0 || strlen($number->context)>0) {
+      if (strlen($number->number) > 0 || strlen($number->context) > 0) {
         $old->setNumber($number->number);
         $old->setContext($number->context);
         $old->setContainingObjectId($this->getId());
         $old->save();
         $old->publish();
-      } else if ($old->getId()>0) {
+      } else if ($old->getId() > 0) {
         $old->remove();
       }
     }

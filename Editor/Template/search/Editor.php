@@ -5,11 +5,11 @@
  */
 require_once '../../Include/Private.php';
 
-$gui='
+$gui = '
 <gui xmlns="uri:hui" padding="10">
   <controller url="controller.js"/>
   <script>
-    controller.id = '.Request::getId().';
+    controller.id = ' . Request::getId() . ';
   </script>
   <box width="360" top="30" padding="10" title="Indstillinger til søgeside">
     <toolbar>
@@ -27,26 +27,26 @@ $gui='
       <overflow max-height="200">
       ';
       foreach (SearchTemplate::$TYPES as $key => $label) {
-        $gui.='
+        $gui .= '
         <space height="10"/>
-        <fieldset legend="'.$label.'">
+        <fieldset legend="' . $label . '">
           <fields>
             <field label="Tekst">
-              <text-input key="'.$key.'Label"/>
+              <text-input key="' . $key . 'Label"/>
             </field>
             <field label="Aktiv">
-              <checkbox key="'.$key.'Enabled"/>
+              <checkbox key="' . $key . 'Enabled"/>
             </field>
             <field label="Skjult">
-              <checkbox key="'.$key.'Hidden"/>
+              <checkbox key="' . $key . 'Hidden"/>
             </field>
             <field label="Valgt">
-              <checkbox key="'.$key.'Default"/>
+              <checkbox key="' . $key . 'Default"/>
             </field>
           </fields>
         </fieldset>';
       }
-      $gui.='
+      $gui .= '
       </overflow>
     </formula>
   </box>

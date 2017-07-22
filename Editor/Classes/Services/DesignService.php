@@ -19,7 +19,7 @@ class DesignService {
    */
   static function getAvailableDesigns() {
     global $basePath;
-    $names = FileSystemService::listDirs($basePath."style/");
+    $names = FileSystemService::listDirs($basePath . "style/");
     $out = [];
     foreach ($names as $name) {
       $out[$name] = DesignService::getInfo($name);
@@ -29,7 +29,7 @@ class DesignService {
 
   static function getInfo($name) {
     global $basePath;
-    $path = $basePath."style/".$name."/info/info.json";
+    $path = $basePath . "style/" . $name . "/info/info.json";
     $info = JsonService::readFile($path);
     return $info;
   }
@@ -37,10 +37,10 @@ class DesignService {
   static function _getPartStyleFiles() {
     global $basePath;
     $files = [];
-    $names = FileSystemService::listFiles($basePath."style/basic/css/");
+    $names = FileSystemService::listFiles($basePath . "style/basic/css/");
     foreach ($names as $name) {
       if (Strings::startsWith($name,'part_')) {
-        $files[] = "style/basic/css/".$name;
+        $files[] = "style/basic/css/" . $name;
       }
     }
     return $files;
@@ -64,7 +64,7 @@ class DesignService {
         }
 
         $compiledParam = Strings::extract($template,'<xsl:with-param name="compiled">','</xsl:with-param>');
-        if (count($compiledParam)==1) {
+        if (count($compiledParam) == 1) {
           $compiledParam = $compiledParam[0];
           $new = '<xsl:with-param name="compiled"><![CDATA[' . $minified . ']]></xsl:with-param>';
           $replacement = str_replace($compiledParam,$new,$template);
@@ -75,7 +75,7 @@ class DesignService {
     }
   }
 
-  static function _getFileParameter($xsl,$default='inline.css') {
+  static function _getFileParameter($xsl,$default = 'inline.css') {
     if (preg_match("/<xsl:with-param[\\W]+name=\"file\"[\\W]+select=\"'([^']+)'\"/uim", $xsl,$matches)) {
       return $matches[1];
     }
@@ -83,7 +83,7 @@ class DesignService {
   }
 
   static function adjustURLs($css,$design) {
-    return preg_replace("/url\((['\"]{0,1})..\//um", 'url($1<xsl:value-of select="\$path"/><xsl:value-of select="\$timestamp-url"/>style/'.$design.'/', $css);
+    return preg_replace("/url\((['\"]{0,1})..\//um", 'url($1<xsl:value-of select="\$path"/><xsl:value-of select="\$timestamp-url"/>style/' . $design . '/', $css);
   }
 
   static function writeJS($design) {
@@ -112,7 +112,7 @@ class DesignService {
     $files[] = 'style/basic/js/OnlinePublisher.js';
     $files = array_merge($files, DesignService::getJavaScriptFiles($design, 'async'));
 
-    $key = sha1(join($files,'|').'|'.ConfigurationService::getDeploymentTime());
+    $key = sha1(join($files,'|') . '|' . ConfigurationService::getDeploymentTime());
     $cachedFile = FileSystemService::getFullPath('local/cache/temp/' . $key . '.js');
     header('Content-type: text/javascript');
     if (!$dev && file_exists($cachedFile)) {
@@ -122,12 +122,12 @@ class DesignService {
     $out = '';
     foreach ($files as $file) {
       $path = FileSystemService::getFullPath($file);
-      $out.= file_get_contents($path);
-      $out.= "\n";
+      $out .= file_get_contents($path);
+      $out .= "\n";
     }
     echo $out;
     if (!$dev) {
-      $tempFile = $cachedFile.'.tmp.js';
+      $tempFile = $cachedFile . '.tmp.js';
       if (FileSystemService::writeStringToFile($out, $tempFile)) {
         DesignService::_compress($tempFile,$cachedFile);
         unlink($tempFile);
@@ -138,7 +138,7 @@ class DesignService {
   /**
    * Get a list of JavaScript files for a design
    */
-  private static function getJavaScriptFiles($design,$target='async') {
+  private static function getJavaScriptFiles($design,$target = 'async') {
     $info = DesignService::getInfo($design);
     $files = [];
     if (isset($info) && isset($info->js)) {
@@ -156,7 +156,7 @@ class DesignService {
     return $files;
   }
 
-  private static function getCSS($design,$target='async') {
+  private static function getCSS($design,$target = 'async') {
     $info = DesignService::getInfo($design);
     $files = [];
     if (isset($info) && isset($info->css)) {
@@ -183,7 +183,7 @@ class DesignService {
     $dev = Request::getBoolean('development');
     $preview = Request::getBoolean('preview');
     $files = DesignService::getCSSFiles($design, $preview);
-    $key = sha1(join($files,'|').'|'.ConfigurationService::getDeploymentTime());
+    $key = sha1(join($files,'|') . '|' . ConfigurationService::getDeploymentTime());
     $cachedFile = FileSystemService::getFullPath('local/cache/temp/' . $key . '.css');
     header('Content-type: text/css');
     if (file_exists($cachedFile) && !$dev) {
@@ -194,7 +194,7 @@ class DesignService {
     if ($dev) {
       echo $out;
     } else {
-      $tempFile = $cachedFile.'.tmp.css';
+      $tempFile = $cachedFile . '.tmp.css';
       if (FileSystemService::writeStringToFile($out, $tempFile)) {
         DesignService::_compress($tempFile, $cachedFile);
         if (file_exists($cachedFile)) {
@@ -239,7 +239,7 @@ class DesignService {
       $local = rtrim($matches[2],"'\"");
       $joined = FileSystemService::join($context,$local);
 
-      return 'url(\'' . $prefix . 'version' . ConfigurationService::getDeploymentTime() . '/' .  DesignService::normalizePath($joined) . '\'';
+      return 'url(\'' . $prefix . 'version' . ConfigurationService::getDeploymentTime() . '/' . DesignService::normalizePath($joined) . '\'';
     }, $css);
   }
 
@@ -281,7 +281,7 @@ class DesignService {
     return $js;
   }
 
-  public static function getCustomInlineCSS($design, $file, $development='false') {
+  public static function getCustomInlineCSS($design, $file, $development = 'false') {
     if ($development == 'true') {
       $folder = FileSystemService::folderOfPath($file);
       $str = DesignService::_read($file);
@@ -300,7 +300,7 @@ class DesignService {
     return file_get_contents($cacheFile);
   }
 
-  public static function getCustomInlineJS($file, $development='false') {
+  public static function getCustomInlineJS($file, $development = 'false') {
     Log::debug($file);
     if ($development == 'true') {
       return DesignService::_read($file);
@@ -315,7 +315,7 @@ class DesignService {
     return file_get_contents($cacheFile);
   }
 
-  public static function getInlineCSS($design,$development='false') {
+  public static function getInlineCSS($design,$development = 'false') {
     if ($development == 'true') {
       return DesignService::loadInlineCSS($design);
     }
@@ -330,7 +330,7 @@ class DesignService {
     return file_get_contents($cacheFile);
   }
 
-  public static function getInlineJS($design,$development='false') {
+  public static function getInlineJS($design,$development = 'false') {
     if ($development == 'true') {
       return DesignService::loadInlineJS($design);
     }
@@ -360,7 +360,7 @@ class DesignService {
   }
 
   static function _read($path) {
-    $data = PHP_EOL . '/* '.$path.' */' . PHP_EOL;
+    $data = PHP_EOL . '/* ' . $path . ' */' . PHP_EOL;
     $data .= file_get_contents(FileSystemService::getFullPath($path));
     return $data;
   }
@@ -368,9 +368,9 @@ class DesignService {
   static function _compress($in,$out) {
     global $basePath;
     if (DesignService::$useYUI) {
-      $cmd = "java -jar ".$basePath."hui/tools/yuicompressor-2.4.8.jar ".$in." --charset UTF-8 -o ".$out;
+      $cmd = "java -jar " . $basePath . "hui/tools/yuicompressor-2.4.8.jar " . $in . " --charset UTF-8 -o " . $out;
     } else {
-      $cmd = "minify --no-comments ".$in." -o ".$out;
+      $cmd = "minify --no-comments " . $in . " -o " . $out;
     }
     ShellService::execute($cmd);
     if (!file_exists($out)) {
@@ -392,12 +392,12 @@ class DesignService {
     $design = Design::load($id);
     $info = DesignService::getInfo($design->getUnique());
     if (isset($info->parameters)) {
-      $sql = "select * from design_parameter where design_id=".Database::int($id);
+      $sql = "select * from design_parameter where design_id=" . Database::int($id);
       $rows = Database::selectAll($sql);
       foreach ($info->parameters as $parameter) {
         $arr = get_object_vars($parameter);
         foreach ($rows as $row) {
-          if ($row['key']==$arr['key']) {
+          if ($row['key'] == $arr['key']) {
             $arr['value'] = $row['value'];
             break;
           }
@@ -422,24 +422,24 @@ class DesignService {
   static function saveParameters($id,$parameters) {
     $design = Design::load($id);
     $info = DesignService::getInfo($design->getUnique());
-    $sql = "delete from design_parameter where design_id=".Database::int($id);
+    $sql = "delete from design_parameter where design_id=" . Database::int($id);
     Database::delete($sql);
     $xml = '';
     foreach ($parameters as $key => $value) {
       $type = DesignService::_getType($key,$info);
-      $sql = "insert into design_parameter (design_id,`key`,`value`) values (".Database::int($id).",".Database::text($key).",".Database::text($value).")";
+      $sql = "insert into design_parameter (design_id,`key`,`value`) values (" . Database::int($id) . "," . Database::text($key) . "," . Database::text($value) . ")";
       Database::insert($sql);
       if (Strings::isNotBlank($value)) {
-        $xml.='<parameter key="'.$key.'">';
-        if ($type=='image') {
+        $xml .= '<parameter key="' . $key . '">';
+        if ($type == 'image') {
           $image = Image::load($value);
           if ($image) {
-            $xml.='<image id="'.$image->getId().'" width="'.$image->getWidth().'" height="'.$image->getHeight().'"/>';
+            $xml .= '<image id="' . $image->getId() . '" width="' . $image->getWidth() . '" height="' . $image->getHeight() . '"/>';
           }
         } else {
-          $xml.=Strings::escapeXML($value);
+          $xml .= Strings::escapeXML($value);
         }
-        $xml.='</parameter>';
+        $xml .= '</parameter>';
       }
     }
 
@@ -461,24 +461,24 @@ class DesignService {
     global $basePath;
     $valid = true;
     $info = DesignService::getInfo($name);
-    if ($info!==null) {
+    if ($info !== null) {
       $valid = $valid && Strings::isNotBlank($info->name);
       $valid = $valid && Strings::isNotBlank($info->description);
       $valid = $valid && Strings::isNotBlank($info->owner);
     } else {
       $valid = false;
     }
-    $valid = $valid && file_exists($basePath."style/".$name."/info/Preview128.png");
-    $valid = $valid && file_exists($basePath."style/".$name."/info/Preview64.png");
-    $valid = $valid && file_exists($basePath."style/".$name."/xslt/main.xsl");
+    $valid = $valid && file_exists($basePath . "style/" . $name . "/info/Preview128.png");
+    $valid = $valid && file_exists($basePath . "style/" . $name . "/info/Preview64.png");
+    $valid = $valid && file_exists($basePath . "style/" . $name . "/xslt/main.xsl");
     if ((!isset($info->js) || !isset($info->css))) {
       $valid = false;
     } else {
-      $valid = $valid && !file_exists($basePath."style/".$name."/css/style.php");
+      $valid = $valid && !file_exists($basePath . "style/" . $name . "/css/style.php");
     }
-    $valid = $valid && !file_exists($basePath."style/".$name."/css/style.php");
+    $valid = $valid && !file_exists($basePath . "style/" . $name . "/css/style.php");
     // TODO (jm)
-    $valid = $valid && file_exists($basePath."style/".$name."/css/editor.css");
+    $valid = $valid && file_exists($basePath . "style/" . $name . "/css/editor.css");
     return $valid;
   }
 }

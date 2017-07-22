@@ -11,9 +11,9 @@ if (!isset($GLOBALS['basePath'])) {
 class IssueService {
 
   private static $KINDS = [
-    'unknown' => ['da'=>'Ukendt', 'en' => 'Unknown'],
+    'unknown' => ['da' => 'Ukendt', 'en' => 'Unknown'],
     'improvement' => ['da' => 'Forbedring', 'en' => 'Improvement'],
-    'task' => ['da'=>'Opgave', 'en' => 'Task'],
+    'task' => ['da' => 'Opgave', 'en' => 'Task'],
     'feedback' => ['da' => 'Tilbagemelding', 'en' => 'Feedback'],
     'error' => ['da' => 'Fejl', 'en' => 'Error']
   ];
@@ -22,8 +22,8 @@ class IssueService {
     return IssueService::$KINDS;
   }
 
-  static function translateKind($kind,$lang=null) {
-    if ($lang==null) {
+  static function translateKind($kind,$lang = null) {
+    if ($lang == null) {
       $lang = InternalSession::getLanguage();
     }
     if (isset(IssueService::$KINDS[$kind]) && isset(IssueService::$KINDS[$kind][$lang])) {

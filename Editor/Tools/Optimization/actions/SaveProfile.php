@@ -18,7 +18,7 @@ if (!is_array(@$settings->profiles)) {
   $settings->profiles = [];
 }
 
-$settings->profiles[] = ['name'=>$name, 'url'=>$url];
+$settings->profiles[] = ['name' => $name, 'url' => $url];
 
 OptimizationService::setSettings($settings);
 ?>

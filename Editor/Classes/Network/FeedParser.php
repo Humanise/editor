@@ -27,21 +27,21 @@ class FeedParser {
     $feed = new Feed();
     $doc = new DOMDocument('1.0','UTF-8');
     if (@$doc->load($url)) {
-      if ($doc->documentElement->nodeName=='rss') {
+      if ($doc->documentElement->nodeName == 'rss') {
         $this->parseRSS($doc,$feed);
-      } else if ($doc->documentElement->nodeName=='feed') {
+      } else if ($doc->documentElement->nodeName == 'feed') {
         $this->parseAtom($doc,$feed);
       }
       return $feed;
     } else {
-      Log::debug('Could not load: '.$url);
-      $log[] = 'Could not load: '.$url;
+      Log::debug('Could not load: ' . $url);
+      $log[] = 'Could not load: ' . $url;
       return false;
     }
   }
 
   function parseRSS(&$doc,&$feed) {
-    $feed->format = "RSS ".$doc->documentElement->getAttribute('version');
+    $feed->format = "RSS " . $doc->documentElement->getAttribute('version');
     $xpath = new DOMXPath($doc);
     $channel = $xpath->query('/rss/channel',$doc)->item(0);
     if ($channel) {
@@ -67,7 +67,7 @@ class FeedParser {
   function parseRSSItems(&$doc,&$feed) {
     $nodes = $doc->getElementsByTagName('item');
     $len = $nodes->length;
-    for ($i=0; $i < $len; $i++) {
+    for ($i = 0; $i < $len; $i++) {
       $node = $nodes->item($i);
       $item = new FeedItem();
       $item->setTitle(DOMUtils::getFirstChildText($node,'title'));
@@ -83,7 +83,7 @@ class FeedParser {
     $root = $doc->documentElement;
     $feed->setTitle(DOMUtils::getFirstChildText($root,'title'));
     $entries = $doc->getElementsByTagName('entry');
-    for ($i=0,$len=$entries->length; $i < $len; $i++) {
+    for ($i = 0,$len = $entries->length; $i < $len; $i++) {
       $node = $entries->item($i);
       $item = new FeedItem();
       $item->setTitle(DOMUtils::getFirstChildText($node,'title'));

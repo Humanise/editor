@@ -10,7 +10,7 @@ $maxUploadSize = GuiUtils::bytesToString(FileSystemService::getMaxUploadSize());
 $blueprints = PageService::getBlueprintsByTemplate('document');
 $blueprintItems = UI::buildOptions($blueprints);
 
-$gui='
+$gui = '
 <gui xmlns="uri:hui" title="{News; da:Nyheder}" padding="10">
   <controller url="controller.js"/>
   <controller url="sources.js"/>
@@ -32,7 +32,7 @@ $gui='
     <top>
       <toolbar>
         <icon icon="common/news" text="{New news item; da:Ny nyhed}" name="newNews" overlay="new"/>
-        '.($blueprintItems ? '<icon icon="common/page" text="{New article; da:Ny artikel}" name="newArticle" overlay="new"/>' : '').'
+        ' . ($blueprintItems ? '<icon icon="common/page" text="{New article; da:Ny artikel}" name="newArticle" overlay="new"/>' : '') . '
         <icon icon="common/folder" text="{New group; da:Ny gruppe}" name="newGroup" overlay="new"/>
         <icon icon="common/internet" text="{New source; da:Ny kilde}" name="newSource" overlay="new"/>
         <divider/>
@@ -209,7 +209,7 @@ $gui='
           <text-input key="linkText"/>
         </field>
         <field label="{Template; da:Skabelon}">
-          <dropdown key="blueprint" name="articleBlueprint">'.$blueprintItems.'</dropdown>
+          <dropdown key="blueprint" name="articleBlueprint">' . $blueprintItems . '</dropdown>
         </field>
       </fields>
       <columns flexible="true">

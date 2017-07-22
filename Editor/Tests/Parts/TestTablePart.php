@@ -49,8 +49,8 @@ class TestTablePart extends UnitTestCase {
     $this->assertTrue(DOMUtils::isValidFragment($html));
 
     $result = $ctrl->display($obj,new PartContext());
-    Log::debug('Display:'.$result);
-    $this->assertEqual(trim($result),'<div xmlns="http://www.w3.org/1999/xhtml" class="part_table common_font">'.$html.'</div>');
+    Log::debug('Display:' . $result);
+    $this->assertEqual(trim($result),'<div xmlns="http://www.w3.org/1999/xhtml" class="part_table common_font">' . $html . '</div>');
   }
 
   function testImportValid() {

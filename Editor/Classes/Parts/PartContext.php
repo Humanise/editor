@@ -71,7 +71,7 @@ class PartContext {
       return $this->synchronize;
   }
 
-  function decorateForBuild($text,$partId=null) {
+  function decorateForBuild($text,$partId = null) {
     return $this->buildDecorator->decorate($text,$partId);
   }
 
@@ -81,40 +81,40 @@ class PartContext {
 
   /////////////////////////////// Links ///////////////////////////
 
-  function addBuildLink($text,$type,$id,$value,$target,$title,$path,$linkId=0,$partId=null) {
+  function addBuildLink($text,$type,$id,$value,$target,$title,$path,$linkId = 0,$partId = null) {
     //$this->buildLinks[] = array('text' => $text, 'type' => $type, 'id' => $id, 'value' => $value , 'target' => $target, 'title' => $title, 'linkId' => $linkId, 'partId' => $partId);
-    $atts='';
-    if ($type=='url') {
-      $atts.=' url="'.Strings::escapeXML($value).'"';
+    $atts = '';
+    if ($type == 'url') {
+      $atts .= ' url="' . Strings::escapeXML($value) . '"';
     }
-    else if ($type=='page') {
-      $atts.=' page="'.$id.'"';
+    else if ($type == 'page') {
+      $atts .= ' page="' . $id . '"';
     }
-    else if ($type=='email') {
-      $atts.=' email="'.$value.'"';
+    else if ($type == 'email') {
+      $atts .= ' email="' . $value . '"';
     }
-    else if ($type=='file') {
-      $atts.=' file="'.$id.'"';
+    else if ($type == 'file') {
+      $atts .= ' file="' . $id . '"';
     }
-    if ($target!='') {
-      $atts.=' target="'.$target.'"';
+    if ($target != '') {
+      $atts .= ' target="' . $target . '"';
     }
-    if ($path!='') {
-      $atts.=' path="'.$path.'"';
+    if ($path != '') {
+      $atts .= ' path="' . $path . '"';
     }
     if (Strings::isNotBlank($title)) {
-      $atts.=' title="'.Strings::escapeXML($title).'"';
+      $atts .= ' title="' . Strings::escapeXML($title) . '"';
     }
-    if ($linkId>0) {
-      $atts.=' id="'.$linkId.'"';
+    if ($linkId > 0) {
+      $atts .= ' id="' . $linkId . '"';
     }
-    if ($partId>0) {
-      $atts.=' part-id="'.$partId.'"';
+    if ($partId > 0) {
+      $atts .= ' part-id="' . $partId . '"';
     }
-    if ($partId!=null) {
+    if ($partId != null) {
       //Log::debug('Build link added: '.$partId);
     }
-    $this->buildDecorator->addReplacement($text,'<link'.$atts.'>','</link>',$partId);
+    $this->buildDecorator->addReplacement($text,'<link' . $atts . '>','</link>',$partId);
   }
 }
 ?>

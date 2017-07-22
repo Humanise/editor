@@ -7,7 +7,7 @@ require_once 'Include/Public.php';
 
 error_reporting(E_ALL);
 ini_set("log_errors" , "1");
-ini_set("error_log" , $basePath."local/logs/test.log");
+ini_set("error_log" , $basePath . "local/logs/test.log");
 ini_set("display_errors" , "0");
 
 Console::exitIfNotConsole();
@@ -20,14 +20,14 @@ if (method_exists('Commander',$args[1])) {
   Commander::$args[1]($args);
 } else {
   $methods = get_class_methods('Commander');
-  echo "Tell me what to do: ".join(', ',$methods);
+  echo "Tell me what to do: " . join(', ',$methods);
   echo "\n: ";
   $handle = fopen ("php://stdin","r");
   $cmd = trim(fgets($handle));
   if (method_exists('Commander',$cmd)) {
     Commander::$cmd();
   } else {
-    echo "No action: ".$cmd;
+    echo "No action: " . $cmd;
   }
 }
 
@@ -67,7 +67,7 @@ class Commander {
 
     $schema = var_export(SchemaService::getDatabaseSchema(),true);
 
-    $file = $basePath."Editor/Info/Schema.php";
+    $file = $basePath . "Editor/Info/Schema.php";
 
     $data = "<?php
 /**

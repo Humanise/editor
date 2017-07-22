@@ -11,6 +11,6 @@ $feedback->setEmail($email);
 $feedback->setMessage($message);
 $feedback->save();
 
-$body = "Besked fra ".$name." (".$email.")\n\n".$message;
-MailService::sendToFeedback("Feedback fra website (".$name.")",$body);
+$body = "Besked fra " . $name . " (" . $email . ")\n\n" . $message;
+MailService::sendToFeedback("Feedback fra website (" . $name . ")",$body);
 ?>

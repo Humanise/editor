@@ -170,6 +170,9 @@ module.exports = function(grunt) {
             return 'Config/scripts/deploy.sh ' + clients[client].production.folder;
           }
           return '';
+        },
+        format {
+          command : 'php php-cs-fixer-v2.phar fix --config Editor/Info/CodeStyle.php'
         }
       }
     }

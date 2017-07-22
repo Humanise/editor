@@ -7,18 +7,18 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Page'] = [
   'table' => 'page',
   'properties' => [
-    'title' => ['type'=>'string'],
-    'description' => ['type'=>'string'],
-    'keywords' => ['type'=>'string'],
-    'templateId' => ['type'=>'int', 'column'=>'template_id', 'relation'=>['class'=>'Template', 'property'=>'id']],
+    'title' => ['type' => 'string'],
+    'description' => ['type' => 'string'],
+    'keywords' => ['type' => 'string'],
+    'templateId' => ['type' => 'int', 'column' => 'template_id', 'relation' => ['class' => 'Template', 'property' => 'id']],
 //    'templateUnique' => array('type'=>'string'),
-    'frameId' => ['type'=>'int', 'column'=>'frame_id', 'relation'=>['class'=>'Frame', 'property'=>'id']],
-    'designId' => ['type'=>'int', 'column'=>'design_id', 'relation'=>['class'=>'Design', 'property'=>'id']],
-    'language' => ['type'=>'string'],
-    'searchable' => ['type'=>'boolean'],
-    'disabled' => ['type'=>'boolean'],
-    'changed' => ['type'=>'datetime'],
-    'published' => ['type'=>'datetime']
+    'frameId' => ['type' => 'int', 'column' => 'frame_id', 'relation' => ['class' => 'Frame', 'property' => 'id']],
+    'designId' => ['type' => 'int', 'column' => 'design_id', 'relation' => ['class' => 'Design', 'property' => 'id']],
+    'language' => ['type' => 'string'],
+    'searchable' => ['type' => 'boolean'],
+    'disabled' => ['type' => 'boolean'],
+    'changed' => ['type' => 'datetime'],
+    'published' => ['type' => 'datetime']
   ]
 ];
 class Page extends Entity {

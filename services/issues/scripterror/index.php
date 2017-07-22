@@ -10,7 +10,7 @@ if (Strings::isBlank($message) && Strings::isBlank($url) && Strings::isBlank($fi
   exit;
 }
 
-$note = $message."\n\nFile: ".$file."\nLine: ".$line."\n\nURL: ".$url."\n\nAgent: ".$_SERVER['HTTP_USER_AGENT'];
+$note = $message . "\n\nFile: " . $file . "\nLine: " . $line . "\n\nURL: " . $url . "\n\nAgent: " . $_SERVER['HTTP_USER_AGENT'];
 
 $issue = new Issue();
 $issue->setTitle($message);

@@ -14,18 +14,18 @@ $latest = Query::after('image')->withCustom('createdAfter',Dates::addDays(time()
 
 $writer->
 startItems()->
-  startItem(['title'=>['All images', 'da'=>'Alle billeder'], 'badge'=>ImageService::getTotalImageCount(), 'icon'=>'common/image', 'value'=>'all'])->endItem()->
-  startItem(['title'=>['Latest 24 hours', 'da'=>'Seneste døgn'], 'icon'=>'common/time', 'value'=>'latest', 'badge'=>$latest])->endItem()->
-  title(['Usage', 'da'=>'Anvendelse'])->
+  startItem(['title' => ['All images', 'da' => 'Alle billeder'], 'badge' => ImageService::getTotalImageCount(), 'icon' => 'common/image', 'value' => 'all'])->endItem()->
+  startItem(['title' => ['Latest 24 hours', 'da' => 'Seneste døgn'], 'icon' => 'common/time', 'value' => 'latest', 'badge' => $latest])->endItem()->
+  title(['Usage', 'da' => 'Anvendelse'])->
   item([
-    'title' => ['Unused', 'da'=>'Ikke anvendt'],
+    'title' => ['Unused', 'da' => 'Ikke anvendt'],
     'badge' => ImageService::getUnusedImagesCount(),
     'icon' => 'monochrome/round_question',
     'value' => 'unused']
   );
 if ($pages > 0) {
   $writer->item([
-    'title' => ['Pages', 'da'=>'Sider'],
+    'title' => ['Pages', 'da' => 'Sider'],
     'badge' => $pages,
     'icon' => 'monochrome/file',
     'value' => 'pages']
@@ -33,7 +33,7 @@ if ($pages > 0) {
 }
 if ($persons > 0) {
   $writer->item([
-    'title' => ['Persons', 'da'=>'Personer'],
+    'title' => ['Persons', 'da' => 'Personer'],
     'badge' => $persons,
     'icon' => 'monochrome/person',
     'value' => 'persons']
@@ -41,7 +41,7 @@ if ($persons > 0) {
 }
 if ($products > 0) {
   $writer->item([
-    'title' => ['Products', 'da'=>'Produkter'],
+    'title' => ['Products', 'da' => 'Produkter'],
     'badge' => $products,
     'icon' => 'monochrome/package',
     'value' => 'products']

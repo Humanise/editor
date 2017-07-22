@@ -11,11 +11,11 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Task'] = [
   'table' => 'task',
   'properties' => [
-      'deadline' => ['type'=>'datetime'],
-      'completed' => ['type'=>'boolean'],
-      'containingObjectId' => ['type'=>'int', 'column'=>'containing_object_id'],
-      'milestoneId' => ['type'=>'int', 'column'=>'milestone_id'],
-      'priority' => ['type'=>'float']
+      'deadline' => ['type' => 'datetime'],
+      'completed' => ['type' => 'boolean'],
+      'containingObjectId' => ['type' => 'int', 'column' => 'containing_object_id'],
+      'milestoneId' => ['type' => 'int', 'column' => 'milestone_id'],
+      'priority' => ['type' => 'float']
   ]
 ];
 
@@ -77,7 +77,7 @@ class Task extends Object {
 
   function sub_publish() {
     $data =
-    '<task xmlns="'.parent::_buildnamespace('1.0').'">'.
+    '<task xmlns="' . parent::_buildnamespace('1.0') . '">' .
     '</task>';
     return $data;
   }

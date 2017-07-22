@@ -7,7 +7,7 @@ require_once '../../Include/Private.php';
 
 $maxUploadSize = GuiUtils::bytesToString(FileSystemService::getMaxUploadSize());
 
-$gui='
+$gui = '
 <gui xmlns="uri:hui" title="Billeder" padding="10" state="gallery">
   <controller url="controller.js"/>
   <controller url="groups.js"/>
@@ -115,7 +115,7 @@ $gui='
     <tabs small="true" centered="true">
       <tab title="{Upload; da:Overførsel}" padding="10">
         <upload name="file" url="actions/UploadImage.php" widget="upload" multiple="true">
-          <placeholder title="{Select images on your computer...; da:Vælg billeder på din computer...}" text="{The file can at most be '.$maxUploadSize.' large; da:Filen kan højest være '.$maxUploadSize.' stor}"/>
+          <placeholder title="{Select images on your computer...; da:Vælg billeder på din computer...}" text="{The file can at most be ' . $maxUploadSize . ' large; da:Filen kan højest være ' . $maxUploadSize . ' stor}"/>
         </upload>
         <buttons align="center" top="10">
           <button name="cancelUpload" text="{Close; da:Luk}"/>

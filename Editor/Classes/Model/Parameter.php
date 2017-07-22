@@ -11,11 +11,11 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Parameter'] = [
   'table' => 'parameter',
   'properties' => [
-    'id' => ['type'=>'int'],
-    'name' => ['type'=>'string'],
-    'level' => ['type'=>'string'],
-    'language' => ['type'=>'string'],
-    'value' => ['type'=>'string'],
+    'id' => ['type' => 'int'],
+    'name' => ['type' => 'string'],
+    'level' => ['type' => 'string'],
+    'language' => ['type' => 'string'],
+    'value' => ['type' => 'string'],
   ]
 ];
 class Parameter extends Entity implements Loadable {

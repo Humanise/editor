@@ -10,7 +10,7 @@ $title = Request::getString('title');
 $placement = Request::getString('placement');
 
 $page = PageService::createPageContextually($pageId,$title,$placement);
-if ($page==false) {
+if ($page == false) {
     Response::badRequest();
 } else {
     Response::sendObject(['id' => $page->getId()]);

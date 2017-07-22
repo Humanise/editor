@@ -49,11 +49,11 @@ class FormulaPartController extends PartController
       "receiverName" => $part->getReceiverName(),
       "receiverEmail" => $part->getReceiverEmail(),
       "recipe" => $part->getRecipe()
-    ]).
-    '<div id="part_formula_container">'.
-    $this->render($part,$context).
-    '</div>'.
-    '<script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/formula/formula_editor.js" type="text/javascript" charset="utf-8"></script>';
+    ]) .
+    '<div id="part_formula_container">' .
+    $this->render($part,$context) .
+    '</div>' .
+    '<script src="' . ConfigurationService::getBaseUrl() . 'Editor/Parts/formula/formula_editor.js" type="text/javascript" charset="utf-8"></script>';
   }
 
   function getFromRequest($id) {
@@ -66,8 +66,8 @@ class FormulaPartController extends PartController
 
   function buildSub($part,$context) {
     $valid = DOMUtils::isValidFragment(Strings::toUnicode($part->getRecipe()));
-    return '<formula xmlns="'.$this->getNamespace().'">'.
-      ($valid ? '<recipe>'.$part->getRecipe().'</recipe>' : '<invalid/>').
+    return '<formula xmlns="' . $this->getNamespace() . '">' .
+      ($valid ? '<recipe>' . $part->getRecipe() . '</recipe>' : '<invalid/>') .
       '</formula>';
   }
 
@@ -80,7 +80,7 @@ class FormulaPartController extends PartController
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['Formula', 'da'=>'Formular']) => '
+      GuiUtils::getTranslated(['Formula', 'da' => 'Formular']) => '
       <icon icon="file/text" overlay="edit" text="{Show source;da:Vis kilde}" name="showSource"/>
       <divider/>
       <grid>

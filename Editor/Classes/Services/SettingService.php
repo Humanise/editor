@@ -16,24 +16,24 @@ class SettingService {
    * @param int $user Optinal User ID, defaults to all users (0)
    * @return boolean True on success, False otherwise
    */
-  static function setSetting($domain,$subdomain,$key,$value,$user=0) {
-    $sql="select * from `setting` where ".
-    "`domain`=".Database::text($domain)." and ".
-    "`subdomain`=".Database::text($subdomain)." and ".
-    "`key`=".Database::text($key)." and ".
-    "`user_id`=".Database::int($user);
+  static function setSetting($domain,$subdomain,$key,$value,$user = 0) {
+    $sql = "select * from `setting` where " .
+    "`domain`=" . Database::text($domain) . " and " .
+    "`subdomain`=" . Database::text($subdomain) . " and " .
+    "`key`=" . Database::text($key) . " and " .
+    "`user_id`=" . Database::int($user);
     if ($row = Database::selectFirst($sql)) {
-      $sql="update `setting` set `value`=".Database::text($value)." where `id`=".$row['id'];
+      $sql = "update `setting` set `value`=" . Database::text($value) . " where `id`=" . $row['id'];
       return Database::update($sql);
     } else {
-      $sql="insert into `setting` (`domain`,`subdomain`,`key`,`value`,`user_id`) values (".
-      Database::text($domain).",".
-      Database::text($subdomain).",".
-      Database::text($key).",".
-      Database::text($value).",".
-      Database::int($user).
+      $sql = "insert into `setting` (`domain`,`subdomain`,`key`,`value`,`user_id`) values (" .
+      Database::text($domain) . "," .
+      Database::text($subdomain) . "," .
+      Database::text($key) . "," .
+      Database::text($value) . "," .
+      Database::int($user) .
       ")";
-      return (Database::insert($sql)!==false);
+      return (Database::insert($sql) !== false);
     }
   }
 
@@ -48,12 +48,12 @@ class SettingService {
   /**
    * @static
    */
-  static function getSetting($domain,$subdomain,$key,$user=0) {
-    $sql="select * from `setting` where ".
-    "`domain`=".Database::text($domain)." and ".
-    "`subdomain`=".Database::text($subdomain)." and ".
-    "`key`=".Database::text($key)." and ".
-    "`user_id`=".Database::int($user);
+  static function getSetting($domain,$subdomain,$key,$user = 0) {
+    $sql = "select * from `setting` where " .
+    "`domain`=" . Database::text($domain) . " and " .
+    "`subdomain`=" . Database::text($subdomain) . " and " .
+    "`key`=" . Database::text($key) . " and " .
+    "`user_id`=" . Database::int($user);
     if ($row = Database::selectFirst($sql)) {
       return $row['value'];
     } else {

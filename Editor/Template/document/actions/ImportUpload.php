@@ -14,7 +14,7 @@ $type = Request::getString('type');
 $part = null;
 
 if (Strings::isNotBlank($text)) {
-  if ($type=='header') {
+  if ($type == 'header') {
     $ctrl = new HeaderPartController();
   } else {
     $ctrl = new TextPartController();
@@ -23,7 +23,7 @@ if (Strings::isNotBlank($text)) {
   $part->setText($text);
   $part->save();
 
-} else if ($type=='image' && Strings::isNotBlank($url)) {
+} else if ($type == 'image' && Strings::isNotBlank($url)) {
   $response = ImageService::createImageFromUrl($url);
   if ($response->getSuccess()) {
     $image = $response->getObject();
@@ -31,20 +31,20 @@ if (Strings::isNotBlank($text)) {
     $part = $ctrl->createPart();
   }
 
-} else if ($type=='movie' && Strings::isNotBlank($url)) {
+} else if ($type == 'movie' && Strings::isNotBlank($url)) {
   $ctrl = new MoviePartController();
   $part = $ctrl->createPart();
   $part->setUrl($url);
   $part->save();
 
-} else if ($type=='image' && ImageService::isUploadedFileValid()) {
+} else if ($type == 'image' && ImageService::isUploadedFileValid()) {
   $response = ImageService::createUploadedImage();
   if ($response->getSuccess()) {
     $image = $response->getObject();
     $ctrl = new ImagePartController();
     $part = $ctrl->createPart();
   }
-} else if ($type=='file') {
+} else if ($type == 'file') {
 
   $response = FileService::createUploadedFile();
   if ($response->getSuccess()) {
@@ -55,7 +55,7 @@ if (Strings::isNotBlank($text)) {
   }
 }
 
-if ($part!=null) {
+if ($part != null) {
   $sectionId = DocumentTemplateEditor::addSectionFromPart($columnId,$sectionIndex,$part);
 }
 

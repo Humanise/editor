@@ -44,6 +44,6 @@ class GraphNode {
   }
 
   function equals($node) {
-    return $node->getId()==$this->id;
+    return $node->getId() == $this->id;
   }
 }

@@ -6,7 +6,7 @@
 require_once '../../../Include/Private.php';
 
 $url = 'https://github.com/in2isoft/OnlinePublisher/commits/master.atom';
-$data = RemoteDataService::getRemoteData($url,60*30); // 30 minutes
+$data = RemoteDataService::getRemoteData($url,60 * 30); // 30 minutes
 if (!$data->isHasData()) {
   Response::badGateway();
   exit;
@@ -29,9 +29,9 @@ foreach($feed->getItems() as $item) {
     continue;
   }
   $writer->startRow()->
-    startCell(['class'=>'news'])->
+    startCell(['class' => 'news'])->
       startLine()->text(trim($title))->endLine()->
-      startLine(['dimmed'=>true, 'mini'=>true])->text(Dates::formatFuzzy($item->getPubDate()))->endLine()->
+      startLine(['dimmed' => true, 'mini' => true])->text(Dates::formatFuzzy($item->getPubDate()))->endLine()->
     endCell()->
   endRow();
 

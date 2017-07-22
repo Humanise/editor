@@ -11,21 +11,21 @@ $phone = Request::getString('phone');
 $email = Request::getString('email');
 
 if (Strings::isBlank($number)) {
-  Response::sendObject(['success'=>false, 'message'=>'No number']);
+  Response::sendObject(['success' => false, 'message' => 'No number']);
   exit;
 }
 if (!$value) {
-  Response::sendObject(['success'=>false, 'message'=>'No value']);
+  Response::sendObject(['success' => false, 'message' => 'No value']);
   exit;
 }
 if (!$date) {
-  Response::sendObject(['success'=>false, 'message'=>'No date']);
+  Response::sendObject(['success' => false, 'message' => 'No date']);
   exit;
 }
 
 $meter = Query::after('watermeter')->withProperty('number',$number)->first();
 if (!$meter) {
-  Response::sendObject(['success'=>false, 'message'=>'Number not found', 'key'=>'notfound']);
+  Response::sendObject(['success' => false, 'message' => 'Number not found', 'key' => 'notfound']);
   exit;
   $meter = new Watermeter();
   $meter->setNumber($number);
@@ -50,5 +50,5 @@ if (Strings::isNotBlank($phone)) {
   WaterusageService::updatePhoneOfMeter($meter,$phone);
 }
 
-Response::sendObject(['success'=>true, 'id'=>$usage->getId()]);
+Response::sendObject(['success' => true, 'id' => $usage->getId()]);
 ?>

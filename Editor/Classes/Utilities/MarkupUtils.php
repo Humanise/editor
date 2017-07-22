@@ -15,16 +15,16 @@ class MarkupUtils {
     $stop = '</script>';
     $segments = [];
     $pos = 0;
-    while ($pos!==false) {
+    while ($pos !== false) {
       $from = strpos($str,$start,$pos);
-      if ($from===false) {
+      if ($from === false) {
         $pos = false;
         continue;
       }
-      $to = strpos($str,$stop,$from+strlen($start));
-      if ($to!==false) {
-        $to+=strlen($stop);
-        $segments[] = ['from'=>$from, 'to'=>$to];
+      $to = strpos($str,$stop,$from + strlen($start));
+      if ($to !== false) {
+        $to += strlen($stop);
+        $segments[] = ['from' => $from, 'to' => $to];
         $pos = $to;
       } else {
         $pos = false;
@@ -63,7 +63,7 @@ class MarkupUtils {
     $found = $matches[0];
     $filtered = [];
     foreach ($found as $script) {
-      if (strpos($script,'data-movable="false"')===false) {
+      if (strpos($script,'data-movable="false"') === false) {
         $filtered[] = $script;
       }
     }
@@ -90,7 +90,7 @@ class MarkupUtils {
       if (strpos($snippet,'<style') === false) {
         continue;
       }
-      if (strpos($snippet,'data-movable="false"')===false) {
+      if (strpos($snippet,'data-movable="false"') === false) {
         $filtered[] = $snippet;
       }
     }

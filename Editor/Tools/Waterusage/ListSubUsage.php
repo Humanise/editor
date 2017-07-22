@@ -19,13 +19,13 @@ $writer->startList();
 $writer->sort($sort,$direction);
 $writer->window([ 'total' => $result->getTotal(), 'size' => $windowSize, 'page' => $windowPage ]);
 $writer->startHeaders();
-$writer->header(['title'=>'Værdi']);
-$writer->header(['title'=>'Dato']);
-$writer->header(['title'=>'Opdateret']);
+$writer->header(['title' => 'Værdi']);
+$writer->header(['title' => 'Dato']);
+$writer->header(['title' => 'Opdateret']);
 $writer->endHeaders();
 
 foreach ($result->getList() as $object) {
-  $writer->startRow([ 'kind'=>'waterusage', 'id'=>$object->getId(), 'icon'=>$object->getIcon(), 'title'=>$object->getTitle() ]);
+  $writer->startRow([ 'kind' => 'waterusage', 'id' => $object->getId(), 'icon' => $object->getIcon(), 'title' => $object->getTitle() ]);
   $writer->startCell()->text($object->getValue())->endCell();
   $writer->startCell()->text(Dates::formatLongDate($object->getDate()))->endCell();
   $writer->startCell()->text(Dates::formatLongDateTime($object->getUpdated()))->endCell();

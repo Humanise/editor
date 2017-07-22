@@ -14,12 +14,12 @@ class RemoteFile {
     $data = null;
   }
 
-  function _get($returnTransfer=false,$path=null) {
+  function _get($returnTransfer = false,$path = null) {
     $ch = curl_init();
 
     curl_setopt($ch, CURLOPT_URL, $this->url);
     curl_setopt($ch, CURLOPT_HEADER, 0);
-    if ($path!==null) {
+    if ($path !== null) {
       $file = fopen($path, "wb");
       curl_setopt($ch, CURLOPT_FILE, $file);
       curl_exec($ch);
@@ -44,17 +44,17 @@ class RemoteFile {
     if (!$this->info) {
       return false;
     }
-    return $this->info['http_code']===200;
+    return $this->info['http_code'] === 200;
   }
 
   function getFilename() {
     $parsed = @parse_url($this->url);
-    if ($parsed===false) {
+    if ($parsed === false) {
       return '';
     }
     $path = $parsed['path'];
     $splitted = explode('/',$path);
-    return $splitted[count($splitted)-1];
+    return $splitted[count($splitted) - 1];
   }
 
   function getContentType() {
@@ -75,7 +75,7 @@ class RemoteFile {
 
   function writeToTempFile() {
     global $basePath;
-    $path = $basePath.'local/cache/temp/'.time();
+    $path = $basePath . 'local/cache/temp/' . time();
     $this->writeToFile($path);
     return $path;
   }

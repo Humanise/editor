@@ -11,7 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 class Strings {
 
   static function isBlank($str) {
-    return $str===null || strlen(trim($str))===0;
+    return $str === null || strlen(trim($str)) === 0;
   }
 
   static function isNotBlank($str) {
@@ -19,11 +19,11 @@ class Strings {
   }
 
   static function escapeSimpleXML($input) {
-    $output=$input;
-    $output=str_replace('&', '&amp;', $output);
-    $output=str_replace('<', '&lt;', $output);
-    $output=str_replace('>', '&gt;', $output);
-    $output=str_replace('"', '&quot;', $output);
+    $output = $input;
+    $output = str_replace('&', '&amp;', $output);
+    $output = str_replace('<', '&lt;', $output);
+    $output = str_replace('>', '&gt;', $output);
+    $output = str_replace('"', '&quot;', $output);
     return $output;
   }
 
@@ -34,13 +34,13 @@ class Strings {
    * @return string Escaped XML string with break tags
    */
   static function escapeSimpleXMLwithLineBreak($input,$tag) {
-    $output=$input;
-    $output=str_replace('&', '&amp;', $output);
-    $output=str_replace('<', '&lt;', $output);
-    $output=str_replace('>', '&gt;', $output);
-    $output=str_replace("\r\n", $tag, $output);
-    $output=str_replace("\r", $tag, $output);
-    $output=str_replace("\n", $tag, $output);
+    $output = $input;
+    $output = str_replace('&', '&amp;', $output);
+    $output = str_replace('<', '&lt;', $output);
+    $output = str_replace('>', '&gt;', $output);
+    $output = str_replace("\r\n", $tag, $output);
+    $output = str_replace("\r", $tag, $output);
+    $output = str_replace("\n", $tag, $output);
     return $output;
   }
   /*
@@ -155,11 +155,11 @@ class Strings {
    * @return string The resulting text
    */
   static function appendWordToString($str,$word,$separator) {
-    if (strlen($word)==0) {
+    if (strlen($word) == 0) {
       return $str;
     }
-    else if (strlen($str)>0) {
-      return $str.$separator.$word;
+    else if (strlen($str) > 0) {
+      return $str . $separator . $word;
     }
     else {
       return $word;
@@ -171,10 +171,10 @@ class Strings {
     if (is_array($array)) {
       foreach ($array as $value) {
         $trimmed = trim($value);
-        if (strlen($str)>0 && strlen($trimmed)>0) {
-          $str.=' ';
+        if (strlen($str) > 0 && strlen($trimmed) > 0) {
+          $str .= ' ';
         }
-        $str.=$trimmed;
+        $str .= $trimmed;
       }
     }
     return $str;
@@ -189,18 +189,18 @@ class Strings {
    * @return string A highlighted summary of the text
    */
   static function summarizeAndHighlight($keywords,$text) {
-    $lower=mb_strtolower($text,'UTF-8');
+    $lower = mb_strtolower($text,'UTF-8');
     $positions = [];
     $out = '';
-    for ($i=0; $i<count($keywords); $i++) {
-      $word=mb_strtolower($keywords[$i],'UTF-8');
-      $index=0;
+    for ($i = 0; $i < count($keywords); $i++) {
+      $word = mb_strtolower($keywords[$i],'UTF-8');
+      $index = 0;
       $endIsReached = false;
       while(!$endIsReached) {
         $pos = mb_strpos($lower, $word,$index,'UTF-8');
-        if ($pos!==false) {
+        if ($pos !== false) {
           $positions[$pos] = $word;
-          $index=$pos+mb_strlen($word,'UTF-8');
+          $index = $pos + mb_strlen($word,'UTF-8');
         }
         else {
           $endIsReached = true;
@@ -208,39 +208,39 @@ class Strings {
       }
     }
     ksort($positions);
-    $lastPos=0;
+    $lastPos = 0;
     foreach ($positions as $pos => $word) {
-      if ($pos>=$lastPos) {
-        $dist = $pos-$lastPos;
-        if ($lastPos==0) {
-          if ($dist>17) {
-            $out.='... '.Strings::escapeEncodedXML(mb_substr($text,$dist-14,14,'UTF-8'));
+      if ($pos >= $lastPos) {
+        $dist = $pos - $lastPos;
+        if ($lastPos == 0) {
+          if ($dist > 17) {
+            $out .= '... ' . Strings::escapeEncodedXML(mb_substr($text,$dist - 14,14,'UTF-8'));
           }
           else {
-            $out.=Strings::escapeEncodedXML(mb_substr($text,0,$dist,'UTF-8'));
+            $out .= Strings::escapeEncodedXML(mb_substr($text,0,$dist,'UTF-8'));
           }
         }
         else {
           $middle = mb_substr($text,$lastPos,$dist,'UTF-8');
-          if (mb_strlen($middle,'UTF-8')>30) {
-            $out.=
-            Strings::escapeEncodedXML(mb_substr($middle,0,14,'UTF-8')).
-            ' ... '.
-            Strings::escapeEncodedXML(mb_substr($middle,strlen($middle)-14,14,'UTF-8'));
+          if (mb_strlen($middle,'UTF-8') > 30) {
+            $out .=
+            Strings::escapeEncodedXML(mb_substr($middle,0,14,'UTF-8')) .
+            ' ... ' .
+            Strings::escapeEncodedXML(mb_substr($middle,strlen($middle) - 14,14,'UTF-8'));
           }
           else {
-            $out.=Strings::escapeEncodedXML($middle);
+            $out .= Strings::escapeEncodedXML($middle);
           }
         }
-        $out.='<highlight>'.Strings::escapeEncodedXML($word).'</highlight>';
+        $out .= '<highlight>' . Strings::escapeEncodedXML($word) . '</highlight>';
       }
-      $lastPos=$pos+strlen($word);
+      $lastPos = $pos + strlen($word);
     }
-    if ((mb_strlen($text,'UTF-8')-$lastPos)>14) {
-      $out.=Strings::escapeEncodedXML(mb_substr($text,$lastPos,14,'UTF-8')).' ...';
+    if ((mb_strlen($text,'UTF-8') - $lastPos) > 14) {
+      $out .= Strings::escapeEncodedXML(mb_substr($text,$lastPos,14,'UTF-8')) . ' ...';
     }
     else {
-      $out.=Strings::escapeEncodedXML(mb_substr($text,$lastPos,null,'UTF-8'));
+      $out .= Strings::escapeEncodedXML(mb_substr($text,$lastPos,null,'UTF-8'));
     }
     return $out;
   }
@@ -253,9 +253,9 @@ class Strings {
    * @param string $protocol The protocol prefix to use, fx: mailto: og "nothing"
    * @return string The text with inserted email links
    */
-  static function insertEmailLinks($string,$tag='a',$attr='href',$protocol='mailto:',$class='') {
+  static function insertEmailLinks($string,$tag = 'a',$attr = 'href',$protocol = 'mailto:',$class = '') {
     $pattern = "/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.([a-zA-Z]{2,4}))\b/i";
-    $replacement = '<'.$tag.' '.$attr.'="'.$protocol.'${1}"'.($class!='' ? ' class="'.$class.'"' : '').'>${1}</'.$tag.'>';
+    $replacement = '<' . $tag . ' ' . $attr . '="' . $protocol . '${1}"' . ($class != '' ? ' class="' . $class . '"' : '') . '>${1}</' . $tag . '>';
     return preg_replace($pattern, $replacement, $string);
   }
 
@@ -267,11 +267,11 @@ class Strings {
    * @return string The shortened string
    */
   static function shortenString($str,$maxLength) {
-    if (strlen($str)>$maxLength) {
-      $half = floor($maxLength/2);
+    if (strlen($str) > $maxLength) {
+      $half = floor($maxLength / 2);
       $first = substr($str,0,$half);
-      $last = substr($str,strlen($str)-$half);
-      return $first.' ... '.$last;
+      $last = substr($str,strlen($str) - $half);
+      return $first . ' ... ' . $last;
     }
     else {
       return (string) $str;
@@ -279,11 +279,11 @@ class Strings {
   }
 
   static function startsWith($str,$find) {
-    return strpos($str,$find)===0;
+    return strpos($str,$find) === 0;
   }
 
   static function endsWith($str,$find) {
-    return strrpos($str,$find)===strlen($str)-strlen($find);
+    return strrpos($str,$find) === strlen($str) - strlen($find);
   }
 
   static function removeTags($string) {
@@ -312,7 +312,7 @@ class Strings {
     $value = Strings::toString($value);
     $ret = "";
     $length = strlen($value);
-    for ($i=0; $i < $length; $i++) {
+    for ($i = 0; $i < $length; $i++) {
       $current = ord($value{$i});
       if (($current == 0x9) ||
           ($current == 0xA) ||
@@ -331,37 +331,37 @@ class Strings {
   static function concatUrl($str1,$str2) {
     $str1 = trim(Strings::toString($str1));
     $str2 = trim(Strings::toString($str2));
-    if ($str1==='' && $str2==='') {
+    if ($str1 === '' && $str2 === '') {
       return '';
     }
-    else if ($str1==='') {
+    else if ($str1 === '') {
       return $str2;
     }
-    else if ($str2==='') {
+    else if ($str2 === '') {
       return $str1;
     }
     else if (Strings::endsWith($str1,'/') && Strings::startsWith($str2,'/')) {
-      return $str1.substr($str2,1);
+      return $str1 . substr($str2,1);
     }
     else if (Strings::endsWith($str1,'/') || Strings::startsWith($str2,'/')) {
-      return $str1.$str2;
+      return $str1 . $str2;
     }
-    return $str1.'/'.$str2;
+    return $str1 . '/' . $str2;
   }
 
-  static function extract($str,$start,$stop,$encoding='UTF-8') {
+  static function extract($str,$start,$stop,$encoding = 'UTF-8') {
     $extracted = [];
     $pos = 0;
-    while ($pos!==false) {
+    while ($pos !== false) {
       $from = mb_strpos($str,$start,$pos,$encoding);
-      if ($from===false) {
+      if ($from === false) {
         $pos = false;
         continue;
       }
-      $to = mb_strpos($str,$stop,$from+strlen($start),$encoding);
-      if ($to!==false) {
-        $to+=mb_strlen($stop,'UTF-8');
-        $extracted[] = mb_substr($str,$from,$to-$from,$encoding);
+      $to = mb_strpos($str,$stop,$from + strlen($start),$encoding);
+      if ($to !== false) {
+        $to += mb_strlen($stop,'UTF-8');
+        $extracted[] = mb_substr($str,$from,$to - $from,$encoding);
         $pos = $to;
       } else {
         $pos = false;
@@ -382,10 +382,10 @@ class Strings {
   static function analyzeMovieURL($url) {
     if (!Strings::isBlank($url)) {
       if (preg_match("/http[s]?:\/\/vimeo.com\/([0-9]+)/uim", $url,$matches)) {
-        return ['type' => 'vimeo', 'id'=>$matches[1]];
+        return ['type' => 'vimeo', 'id' => $matches[1]];
       }
       if (preg_match("/www.youtube.com\\/watch\\?v=([a-zA-Z0-9\-_]+)/uim", $url,$matches)) {
-        return ['type' => 'youtube', 'id'=>$matches[1]];
+        return ['type' => 'youtube', 'id' => $matches[1]];
       }
     }
     return null;

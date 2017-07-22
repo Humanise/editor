@@ -20,24 +20,24 @@ class ReviewService {
     }
     if ($query['accepted'] || $query['rejected']) {
       if ($sql) {
-        $sql.=' union ';
+        $sql .= ' union ';
       }
-      $sql.= "select page.id as page_id,page.title as page_title,user.title as user_title,UNIX_TIMESTAMP(review.date) as date,review.accepted
+      $sql .= "select page.id as page_id,page.title as page_title,user.title as user_title,UNIX_TIMESTAMP(review.date) as date,review.accepted
           from page,relation as page_review,relation as review_user,review,object as user
           where page_review.from_type='page' and page_review.from_object_id=page.id
           and page_review.to_type='object' and page_review.to_object_id=review.object_id
           and review_user.from_type='object' and review_user.from_object_id=review.object_id
           and review_user.to_type='object' and review_user.to_object_id=user.id";
       if ($query['accepted'] && !$query['rejected']) {
-        $sql.=' and review.accepted=1';
+        $sql .= ' and review.accepted=1';
       }
       if (!$query['accepted'] && $query['rejected']) {
-        $sql.=' and review.accepted=0';
+        $sql .= ' and review.accepted=0';
       }
-      if ($span=='day') {
-        $sql.=' and review.date<'.Database::datetime(Dates::addDays(time(),-1));
-      } else if ($span=='week') {
-        $sql.=' and review.date<'.Database::datetime(Dates::addDays(time(),-7));
+      if ($span == 'day') {
+        $sql .= ' and review.date<' . Database::datetime(Dates::addDays(time(),-1));
+      } else if ($span == 'week') {
+        $sql .= ' and review.date<' . Database::datetime(Dates::addDays(time(),-7));
       }
 
     }

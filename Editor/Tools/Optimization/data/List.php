@@ -7,13 +7,13 @@ require_once '../../../Include/Private.php';
 
 $kind = Request::getString('kind');
 
-if ($kind=='index') {
+if ($kind == 'index') {
   listIndex();
-} else if ($kind=='words') {
+} else if ($kind == 'words') {
   listWords();
-} else if ($kind=='wordcheck') {
+} else if ($kind == 'wordcheck') {
   listWordCheck();
-} else if ($kind=='pagenotfound') {
+} else if ($kind == 'pagenotfound') {
   listPageNotFound();
 } else {
   listWarning();
@@ -24,15 +24,15 @@ function listIndex() {
 
   $writer->startList();
   $writer->startHeaders();
-  $writer->header(['title'=>['Page', 'da'=>'Side'], 'width'=>'30']);
-  $writer->header(['title'=>['Index', 'da'=>'Indeks']]);
+  $writer->header(['title' => ['Page', 'da' => 'Side'], 'width' => '30']);
+  $writer->header(['title' => ['Index', 'da' => 'Indeks']]);
   $writer->endHeaders();
 
   $sql = "select id,`index`,title from page order by title";
   $result = Database::select($sql);
   while ($row = Database::next($result)) {
-    $writer->startRow(['id'=>$row['id'], 'kind'=>'page']);
-    $writer->startCell(['icon'=>'common/page'])->text($row['title'])->endCell();
+    $writer->startRow(['id' => $row['id'], 'kind' => 'page']);
+    $writer->startCell(['icon' => 'common/page'])->text($row['title'])->endCell();
     $writer->startCell()->startWrap()->text($row['index'])->endWrap()->endCell();
     $writer->endRow();
   }
@@ -49,30 +49,30 @@ function listWordCheck() {
 
   $writer->startList();
   $writer->startHeaders();
-  $writer->header(['title'=>['Page', 'da'=>'Side'], 'width'=>'30']);
-  $writer->header(['title'=>['Count', 'da'=>'Antal']]);
-  $writer->header(['width'=>'1']);
+  $writer->header(['title' => ['Page', 'da' => 'Side'], 'width' => '30']);
+  $writer->header(['title' => ['Count', 'da' => 'Antal']]);
+  $writer->header(['width' => '1']);
   $writer->endHeaders();
 
   foreach ($list as $word) {
-    $sql = "select count(id) as `count` from page where lower(`index`) like '%".strtolower($word->getTitle())."%'";
+    $sql = "select count(id) as `count` from page where lower(`index`) like '%" . strtolower($word->getTitle()) . "%'";
     $row = Database::selectFirst($sql);
 
-    $writer->startRow(['id'=>$word->getId()]);
-    $writer->startCell(['icon'=>'monochrome/dot'])->text($word->getTitle())->endCell();
-    if ($row['count']==0) {
-      $writer->startCell(['icon'=>'common/warning'])->text(['Not found', 'da'=>'Ikke findet'])->endCell();
+    $writer->startRow(['id' => $word->getId()]);
+    $writer->startCell(['icon' => 'monochrome/dot'])->text($word->getTitle())->endCell();
+    if ($row['count'] == 0) {
+      $writer->startCell(['icon' => 'common/warning'])->text(['Not found', 'da' => 'Ikke findet'])->endCell();
     } else {
-      $writer->startCell(['icon'=>'common/page'])->
+      $writer->startCell(['icon' => 'common/page'])->
         text($row['count'])->
         startIcons()->
-          icon(['icon'=>'monochrome/info_light', 'revealing'=>true, 'action'=>true, 'data'=>['action'=>'view']])->
+          icon(['icon' => 'monochrome/info_light', 'revealing' => true, 'action' => true, 'data' => ['action' => 'view']])->
         endIcons()->
       endCell();
     }
-    $writer->startCell(['wrap'=>false])->
+    $writer->startCell(['wrap' => false])->
       startIcons()->
-        icon(['icon'=>'monochrome/delete', 'revealing'=>true, 'action'=>true, 'data'=>['action'=>'delete']])->
+        icon(['icon' => 'monochrome/delete', 'revealing' => true, 'action' => true, 'data' => ['action' => 'delete']])->
       endIcons()->
     endCell();
     $writer->endRow();
@@ -87,7 +87,7 @@ function listWords() {
   $sql = "select `index` from page";
   $result = Database::select($sql);
   while ($row = Database::next($result)) {
-    $allText.=' '.$row['index'];
+    $allText .= ' ' . $row['index'];
   }
   Database::free($result);
 
@@ -102,13 +102,13 @@ function listWords() {
   $total = count($counts);
   $page = Request::getInt('windowPage');
   $size = 300;
-  $counts = array_slice($counts,$page*$size,$size);
+  $counts = array_slice($counts,$page * $size,$size);
 
   $writer->startList();
   $writer->window([ 'total' => $total, 'size' => $size, 'page' => $page ]);
   $writer->startHeaders();
-  $writer->header(['title'=>['Word', 'da'=>'Ord'], 'width'=>'50']);
-  $writer->header(['title'=>['Count', 'da'=>'Antal']]);
+  $writer->header(['title' => ['Word', 'da' => 'Ord'], 'width' => '50']);
+  $writer->header(['title' => ['Count', 'da' => 'Antal']]);
   $writer->endHeaders();
 
   foreach ($counts as $word => $freq) {
@@ -130,22 +130,22 @@ function listWarning() {
 
   $writer->startList();
   $writer->startHeaders();
-  $writer->header(['title'=>'Enhed']);
-  $writer->header(['title'=>'Problem']);
+  $writer->header(['title' => 'Enhed']);
+  $writer->header(['title' => 'Problem']);
   $writer->header();
   $writer->endHeaders();
 
 
-  $problems = InspectionService::performInspection(['status'=>'warning', 'category'=>'content']);
+  $problems = InspectionService::performInspection(['status' => 'warning', 'category' => 'content']);
   foreach ($problems as $problem) {
     $entity = $problem->getEntity();
     $writer->startRow();
     if ($entity) {
-      $writer->startCell(['icon'=>'common/page'])->text($entity['title'])->endCell();
+      $writer->startCell(['icon' => 'common/page'])->text($entity['title'])->endCell();
     } else {
       $writer->startCell()->endCell();
     }
-    $writer->startCell(['icon'=>'common/warning'])->text($problem->getText())->endCell();
+    $writer->startCell(['icon' => 'common/warning'])->text($problem->getText())->endCell();
     $writer->startCell()->endCell();
     $writer->endRow();
   }
@@ -157,7 +157,7 @@ function listPageNotFound() {
   $sort = Request::getString('sort','last');
   $dir = Request::getString('direction','descending');
 
-  $query = ['sort'=>$sort, 'direction'=>$dir];
+  $query = ['sort' => $sort, 'direction' => $dir];
   $result = LogService::getPageNotFoundOverview($query);
 
   $writer = new ListWriter();
@@ -165,18 +165,18 @@ function listPageNotFound() {
   $writer->startList();
   $writer->sort($sort,$dir);
   $writer->startHeaders();
-  $writer->header(['title'=>['Hit count', 'da'=>'Antal forspørgsler'], 'sortable'=>true, 'key'=>'count']);
-  $writer->header(['title'=>['From', 'da'=>'Fra'], 'sortable'=>true, 'key'=>'first']);
-  $writer->header(['title'=>['To', 'da'=>'Til'], 'sortable'=>true, 'key'=>'last']);
-  $writer->header(['title'=>['Path', 'da'=>'Sti'], 'sortable'=>true, 'key'=>'message']);
+  $writer->header(['title' => ['Hit count', 'da' => 'Antal forspørgsler'], 'sortable' => true, 'key' => 'count']);
+  $writer->header(['title' => ['From', 'da' => 'Fra'], 'sortable' => true, 'key' => 'first']);
+  $writer->header(['title' => ['To', 'da' => 'Til'], 'sortable' => true, 'key' => 'last']);
+  $writer->header(['title' => ['Path', 'da' => 'Sti'], 'sortable' => true, 'key' => 'message']);
   $writer->endHeaders();
 
 
   foreach ($result->getList() as $row) {
     $writer->startRow();
     $writer->startCell()->text($row['count'])->endCell();
-    $writer->startCell(['wrap'=>false])->text(Dates::formatFuzzy($row['first']))->endCell();
-    $writer->startCell(['wrap'=>false])->text(Dates::formatFuzzy($row['last']))->endCell();
+    $writer->startCell(['wrap' => false])->text(Dates::formatFuzzy($row['first']))->endCell();
+    $writer->startCell(['wrap' => false])->text(Dates::formatFuzzy($row['last']))->endCell();
     $writer->startCell()->text(substr($row['message'],4))->endCell();
     $writer->endRow();
   }

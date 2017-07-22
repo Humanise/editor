@@ -22,7 +22,7 @@ class WorkflowState {
     $this->status = 'undefined';
   }
 
-  public function log($value='') {
+  public function log($value = '') {
     Log::debug($value);
   }
 

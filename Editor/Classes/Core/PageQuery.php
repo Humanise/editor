@@ -59,7 +59,7 @@ class PageQuery {
   }
 
   function withDirection($direction) {
-    $this->direction = $direction=='ascending' ? 'ascending' : 'descending';
+    $this->direction = $direction == 'ascending' ? 'ascending' : 'descending';
     return $this;
   }
 
@@ -83,27 +83,27 @@ class PageQuery {
     return $this->ordering;
   }
 
-  function withRelationFrom($object,$kind=null) {
+  function withRelationFrom($object,$kind = null) {
     $id = is_int($object) ? $object : $object->getId();
-    $this->relationsFrom[] = ['id'=>$id, 'kind'=>$kind, 'fromType'=>'object'];
+    $this->relationsFrom[] = ['id' => $id, 'kind' => $kind, 'fromType' => 'object'];
     return $this;
   }
 
-  function withRelationFromPage($page,$kind=null) {
+  function withRelationFromPage($page,$kind = null) {
     $id = is_int($page) ? $page : $page->getId();
-    $this->relationsFrom[] = ['id'=>$id, 'kind'=>$kind, 'fromType'=>'page'];
+    $this->relationsFrom[] = ['id' => $id, 'kind' => $kind, 'fromType' => 'page'];
     return $this;
   }
 
-  function withRelationTo($object,$kind=null) {
+  function withRelationTo($object,$kind = null) {
     $id = is_int($object) ? $object : $object->getId();
-    $this->relationsTo[] = ['id'=>$id, 'kind'=>$kind, 'toType'=>'object'];
+    $this->relationsTo[] = ['id' => $id, 'kind' => $kind, 'toType' => 'object'];
     return $this;
   }
 
-  function withRelationToPage($page,$kind=null) {
+  function withRelationToPage($page,$kind = null) {
     $id = is_int($page) ? $page : $page->getId();
-    $this->relationsTo[] = ['id'=>$id, 'kind'=>$kind, 'toType'=>'page'];
+    $this->relationsTo[] = ['id' => $id, 'kind' => $kind, 'toType' => 'page'];
     return $this;
   }
 

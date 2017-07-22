@@ -13,25 +13,25 @@ $error = null;
 $key = Request::getString('key');
 if (Strings::isBlank($key)) {
   $error = [
-    'title' => ['Illegal request', 'da'=>'Ukendt forespørgsel'],
+    'title' => ['Illegal request', 'da' => 'Ukendt forespørgsel'],
     'text' => 'Dette kan skyldes at din e-mail-klient har afskåret linket. Prøv at kopiere adressen fra e-mailen ind i browserens adresselinje.'
   ];
 } else if (!AuthenticationService::isValidEmailValidationSession($key)) {
   $error = [
-    'title' => ['The link has expired or has already been used', 'da'=>'Tiden er udløbet eller linket er allerede anvendt'],
-    'text' => ['For security reasons there is a limited time you can use the link from the e-mail and it can only be used one time. Please try making a new request.', 'da'=>'Af sikkerhedsmæssige grunde er der en begrænset periode du kan anvende linket i e-mailen og det kan kun anvendes een gang. Prøv venligst igen ved at lave en ny forespørgelse.']
+    'title' => ['The link has expired or has already been used', 'da' => 'Tiden er udløbet eller linket er allerede anvendt'],
+    'text' => ['For security reasons there is a limited time you can use the link from the e-mail and it can only be used one time. Please try making a new request.', 'da' => 'Af sikkerhedsmæssige grunde er der en begrænset periode du kan anvende linket i e-mailen og det kan kun anvendes een gang. Prøv venligst igen ved at lave en ny forespørgelse.']
   ];
 }
 
-$gui='
-<gui xmlns="uri:hui" padding="10" title="'.SystemInfo::getTitle().'" state="login">
+$gui = '
+<gui xmlns="uri:hui" padding="10" title="' . SystemInfo::getTitle() . '" state="login">
   <controller name="controller" source="Recover.js"/>
   <box width="300" top="100" variant="rounded">
     <space all="10" top="5" bottom="5">
-    '.($error ? '
+    ' . ($error ? '
       <text>
-        <h>'.GuiUtils::getTranslated($error['title']).'</h>
-        <p>'.GuiUtils::getTranslated($error['text']).'</p>
+        <h>' . GuiUtils::getTranslated($error['title']) . '</h>
+        <p>' . GuiUtils::getTranslated($error['text']) . '</p>
       </text>
       <buttons align="right" top="5">
         <button highlighted="true" title="OK" url="Authentication.php"/>
@@ -61,7 +61,7 @@ $gui='
           <button highlighted="true" title="{Log in...; da;Log ind...}" url="Authentication.php"/>
         </buttons>
       </fragment>
-    ').'
+    ') . '
     </space>
   </box>
   <text align="center">

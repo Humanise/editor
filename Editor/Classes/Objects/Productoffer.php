@@ -11,10 +11,10 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Productoffer'] = [
   'table' => 'productoffer',
   'properties' => [
-      'offer' => ['type'=>'string'],
-      'productId' => ['type'=>'int', 'column'=>'product_id'],
-      'personId' => ['type'=>'int', 'column'=>'person_id'],
-      'expiry' => ['type'=>'datetime']
+      'offer' => ['type' => 'string'],
+      'productId' => ['type' => 'int', 'column' => 'product_id'],
+      'personId' => ['type' => 'int', 'column' => 'person_id'],
+      'expiry' => ['type' => 'datetime']
     ]
 ];
 
@@ -76,9 +76,9 @@ class Productoffer extends Object {
     }
     $sql = "select object.id from productoffer,object where object.id=productoffer.object_id";
     if (isset($options['productId'])) {
-      $sql.=" and productoffer.product_id=".$options['productId'];
+      $sql .= " and productoffer.product_id=" . $options['productId'];
     }
-    $sql.=" order by object.title";
+    $sql .= " order by object.title";
     $result = Database::select($sql);
     $ids = [];
     while ($row = Database::next($result)) {
@@ -100,19 +100,19 @@ class Productoffer extends Object {
     $parts['limits'] = 'productoffer.object_id=object.id and productoffer.product_id=product.id and productoffer.person_id=person.id';
     $parts['ordering'] = '';
 
-    if ($query['sort']=='offer') {
-      $parts['ordering']="productoffer.offer";
-    } else if ($query['sort']=='product') {
-      $parts['ordering']="product.title";
-    } else if ($query['sort']=='person') {
-      $parts['ordering']="person.title";
-    } else if ($query['sort']=='expiry') {
-      $parts['ordering']="productoffer.expiry";
+    if ($query['sort'] == 'offer') {
+      $parts['ordering'] = "productoffer.offer";
+    } else if ($query['sort'] == 'product') {
+      $parts['ordering'] = "product.title";
+    } else if ($query['sort'] == 'person') {
+      $parts['ordering'] = "person.title";
+    } else if ($query['sort'] == 'expiry') {
+      $parts['ordering'] = "productoffer.expiry";
     }
-    if ($query['direction']=='descending') {
-      $parts['ordering'].=' desc';
+    if ($query['direction'] == 'descending') {
+      $parts['ordering'] .= ' desc';
     } else {
-      $parts['ordering'].=' asc';
+      $parts['ordering'] .= ' asc';
     }
 
     $list = ObjectService::_find($parts,$query);

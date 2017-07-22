@@ -17,10 +17,10 @@ if (isset($data->id)) {
   }
   $item->save();
 } else if ($data->parent) {
-  if ($data->parent->kind=='hierarchy') {
+  if ($data->parent->kind == 'hierarchy') {
     $hierarchy = Hierarchy::load($data->parent->id);
     $parent = 0;
-  } else if ($data->parent->kind=='hierarchyItem') {
+  } else if ($data->parent->kind == 'hierarchyItem') {
     $hierarchy = Hierarchy::loadFromItemId($data->parent->id);
     $parent = $data->parent->id;
   } else {
@@ -34,7 +34,7 @@ if (isset($data->id)) {
     'targetValue' => $data->targetValue,
     'parent' => $parent
   ]);
-  if ($result===false) {
+  if ($result === false) {
     Response::badRequest();
   }
 } else {

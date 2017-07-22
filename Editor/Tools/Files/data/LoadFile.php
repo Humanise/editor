@@ -6,7 +6,7 @@
 require_once '../../../Include/Private.php';
 
 $id = Request::getInt('id');
-if ($file=File::load($id)) {
+if ($file = File::load($id)) {
 
   $groups = $file->getGroupIds();
 

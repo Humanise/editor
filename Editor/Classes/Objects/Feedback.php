@@ -11,9 +11,9 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Feedback'] = [
     'table' => 'feedback',
     'properties' => [
-      'name'   => ['type'=>'string'],
-      'email'  => ['type'=>'string'],
-      'message'  => ['type'=>'string']
+      'name' => ['type' => 'string'],
+      'email' => ['type' => 'string'],
+      'message' => ['type' => 'string']
     ]
 ];
 
@@ -55,8 +55,8 @@ class Feedback extends Object {
   }
 
   function sub_publish() {
-    $data = '<feedback xmlns="'.parent::_buildnamespace('1.0').'">';
-    $data.='</feedback>';
+    $data = '<feedback xmlns="' . parent::_buildnamespace('1.0') . '">';
+    $data .= '</feedback>';
     return $data;
   }
 

@@ -12,7 +12,7 @@ class ConfigurationService {
 
   static function isDebug() {
     global $CONFIG;
-    return (isset($CONFIG) && isset($CONFIG['debug']) && $CONFIG['debug']==true);
+    return (isset($CONFIG) && isset($CONFIG['debug']) && $CONFIG['debug'] == true);
   }
 
   private static function _getConfig($name,$default = null) {
@@ -25,7 +25,7 @@ class ConfigurationService {
 
   static function isUnicode() {
     global $CONFIG;
-    return (isset($CONFIG) && (!isset($CONFIG['unicode']) || $CONFIG['unicode']==true));
+    return (isset($CONFIG) && (!isset($CONFIG['unicode']) || $CONFIG['unicode'] == true));
   }
 
   static function isGatherStatistics() {
@@ -38,7 +38,7 @@ class ConfigurationService {
 
   static function getDeploymentTime() {
     $time = ConfigurationService::_getConfig('deployed',0);
-    if ($time==0) {
+    if ($time == 0) {
       $time = SystemInfo::getDate();
     }
     return $time;
@@ -121,7 +121,7 @@ class ConfigurationService {
   static function getCompleteBaseUrl() {
     $url = ConfigurationService::getBaseUrl();
     if (!Strings::startsWith($url,'http')) {
-      $url = 'http://localhost'.$url;
+      $url = 'http://localhost' . $url;
     }
     return $url;
   }
@@ -129,9 +129,9 @@ class ConfigurationService {
   static function getImagePath($filename) {
     global $CONFIG,$basePath;
     if (isset($CONFIG['dataDir'])) {
-      return $basePath.$CONFIG['dataDir'].'images/'.$filename;
+      return $basePath . $CONFIG['dataDir'] . 'images/' . $filename;
     }
-    return $basePath.'images/'.$filename;
+    return $basePath . 'images/' . $filename;
   }
 
   static function getDataPath($path) {

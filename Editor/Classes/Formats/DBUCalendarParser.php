@@ -40,7 +40,7 @@ class DBUCalendarParser {
           $parsed = Dates::parse($date);
           $parsed = Dates::addHours($parsed,intval($parts[0]));
           $startDate = Dates::addMinutes($parsed,intval($parts[1]));
-          $endDate = Dates::addMinutes($parsed,60*1.75);
+          $endDate = Dates::addMinutes($parsed,60 * 1.75);
 
           $event = new DBUCalendarEvent();
           $event->setStartDate($startDate);

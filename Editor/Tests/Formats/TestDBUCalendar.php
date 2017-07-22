@@ -14,7 +14,7 @@ class TestDBUCalendar extends UnitTestCase {
   function testIt() {
     $url = TestService::getResourceUrl('Kampprogram.xls');
     $calendar = DBUCalendarParser::parseUrl($url);
-    $this->assertTrue($calendar!=false);
+    $this->assertTrue($calendar != false);
     $events = $calendar->getEvents();
     $this->assertEqual(count($events),30,'There must be 30 events');
     $first = $events[0];
@@ -34,7 +34,7 @@ class TestDBUCalendar extends UnitTestCase {
 
     $url = TestService::getResourceUrl('Kampprogram_other_date.xls');
     $calendar = DBUCalendarParser::parseUrl($url);
-    $this->assertTrue($calendar!=false);
+    $this->assertTrue($calendar != false);
     $events = $calendar->getEvents();
     $this->assertEqual(count($events),30,'There must be 30 events');
     $first = $events[0];
@@ -50,9 +50,9 @@ class TestDBUCalendar extends UnitTestCase {
   function testHandball() {
     $url = TestService::getResourceUrl('Kampprogram_haandbold.xls');
     $calendar = DBUCalendarParser::parseUrl($url);
-    $this->assertTrue($calendar!=false);
+    $this->assertTrue($calendar != false);
     $events = $calendar->getEvents();
-    $this->assertEqual(count($events),62,'There must be 62 events, there are: '.count($events));
+    $this->assertEqual(count($events),62,'There must be 62 events, there are: ' . count($events));
     $first = $events[0];
     $this->assertEqual("Flauenskjoldhallen",$first->getLocation());
     $this->assertEqual("Dybvad Håndbold Flauenskjold IF",$first->getHomeTeam());
@@ -68,9 +68,9 @@ class TestDBUCalendar extends UnitTestCase {
 
     $url = TestService::getResourceUrl('Kampprogram_U19drenge.xls');
     $calendar = DBUCalendarParser::parseUrl($url);
-    $this->assertTrue($calendar!=false);
+    $this->assertTrue($calendar != false);
     $events = $calendar->getEvents();
-    $this->assertEqual(count($events),24,'There must be 24 events, there are: '.count($events));
+    $this->assertEqual(count($events),24,'There must be 24 events, there are: ' . count($events));
     $first = $events[0];
     $this->assertEqual("Holtet Stadion",$first->getLocation());
     $this->assertEqual("VHG/GS/UB/HIF/HFS",$first->getHomeTeam());

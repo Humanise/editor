@@ -10,5 +10,5 @@ $news = News::load($id);
 if ($news) {
   $news->remove();
 }
-Response::sendObject(['success'=>true]);
+Response::sendObject(['success' => true]);
 ?>

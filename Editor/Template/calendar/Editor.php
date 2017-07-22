@@ -5,11 +5,11 @@
  */
 require_once '../../Include/Private.php';
 
-$gui='
+$gui = '
 <gui xmlns="uri:hui" padding="10">
   <controller url="controller.js"/>
   <script>
-    controller.id = '.Request::getId().';
+    controller.id = ' . Request::getId() . ';
   </script>
   <box width="500" top="10" padding="10" title="Kalender">
     <formula name="formula">
@@ -21,10 +21,10 @@ $gui='
           <number-input key="weekview_starthour" min="0" max="23"/>
         </field>
         <field label="Calendars">
-          <checkboxes key="calendar">'.UI::buildOptions('calendar').'</checkboxes>
+          <checkboxes key="calendar">' . UI::buildOptions('calendar') . '</checkboxes>
         </field>
         <field label="Sources">
-          <checkboxes key="calendarsource">'.UI::buildOptions('calendarsource').'</checkboxes>
+          <checkboxes key="calendarsource">' . UI::buildOptions('calendarsource') . '</checkboxes>
         </field>
       </fields>
       <buttons>

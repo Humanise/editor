@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Design'] = [
     'table' => 'design',
     'properties' => [
-      'unique' => ['type'=>'string'],
-      'parameters' => ['type'=>'string']
+      'unique' => ['type' => 'string'],
+      'parameters' => ['type' => 'string']
     ]
 ];
 
@@ -51,15 +51,15 @@ class Design extends Object {
     //////////////////// Special ////////////////////
 
   function canRemove() {
-    $sql="select count(id) as num from page where design_id=".Database::int($this->id);
+    $sql = "select count(id) as num from page where design_id=" . Database::int($this->id);
     if ($row = Database::selectFirst($sql)) {
-      return $row['num']==0;
+      return $row['num'] == 0;
     }
     return true;
   }
 
   function removeMore() {
-    $sql='delete from design_parameter where design_id='.Database::int($this->id);
+    $sql = 'delete from design_parameter where design_id=' . Database::int($this->id);
     Database::delete($sql);
   }
 }

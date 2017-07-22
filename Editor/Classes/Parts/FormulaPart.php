@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['FormulaPart'] = [
   'table' => 'part_formula',
   'properties' => [
-    'receiverName'   => ['type'=>'string', 'column'=>'receivername'],
-    'receiverEmail'   => ['type'=>'string', 'column'=>'receiveremail'],
+    'receiverName' => ['type' => 'string', 'column' => 'receivername'],
+    'receiverEmail' => ['type' => 'string', 'column' => 'receiveremail'],
     'recipe' => ['type' => 'string']
   ]
 ];

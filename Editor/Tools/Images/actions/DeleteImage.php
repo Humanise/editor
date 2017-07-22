@@ -10,5 +10,5 @@ $obj = Image::load($id);
 if ($obj) {
   $obj->remove();
 }
-Response::sendObject(['success'=>true]);
+Response::sendObject(['success' => true]);
 ?>

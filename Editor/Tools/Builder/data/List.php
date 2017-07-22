@@ -8,13 +8,13 @@ require_once '../../../Include/Private.php';
 $kind = Request::getString('kind');
 $value = Request::getString('value');
 
-if ($kind=='stream') {
+if ($kind == 'stream') {
   listStreamItems($value);
-} else if ($kind=='category' && $value=='sources') {
+} else if ($kind == 'category' && $value == 'sources') {
   listSources();
-} else if ($kind=='category' && $value=='views') {
+} else if ($kind == 'category' && $value == 'views') {
   listViews();
-} else if ($kind=='category' && $value=='listeners') {
+} else if ($kind == 'category' && $value == 'listeners') {
   listListeners();
 }
 
@@ -26,19 +26,19 @@ function listStreamItems($streamId) {
 
   $writer->startList()
     ->startHeaders()
-      ->header(['title'=>['Data', 'da'=>'Data']])
-      ->header(['title'=>['Date', 'da'=>'Dato']])
-      ->header(['title'=>['Synched']])
+      ->header(['title' => ['Data', 'da' => 'Data']])
+      ->header(['title' => ['Date', 'da' => 'Dato']])
+      ->header(['title' => ['Synched']])
     ->endHeaders();
 
   foreach ($items as $item) {
     $writer
-      ->startRow(['kind'=>'streamitem', 'id'=>$item->getId()])
+      ->startRow(['kind' => 'streamitem', 'id' => $item->getId()])
       ->startCell()->startLine()->text($item->getIdentity())->endLine()->startWrap()->text($item->getData())->endWrap()->endCell()
-      ->startCell(['wrap'=>false])
+      ->startCell(['wrap' => false])
         ->text(Dates::formatLongDateTime($item->getOriginalDate()))
       ->endCell()
-      ->startCell(['wrap'=>false])
+      ->startCell(['wrap' => false])
         ->text(Dates::formatLongDateTime($item->getRetrievalDate()))
       ->endCell()
     ->endRow();
@@ -51,18 +51,18 @@ function listSources() {
   $writer = new ListWriter();
   $writer->startList()
     ->startHeaders()
-      ->header(['title'=>['Title', 'da'=>'Titel']])
-      ->header(['title'=>['Address', 'da'=>'Adresse']])
-      ->header(['title'=>['Synchronized', 'da'=>'Synkroniseret']])
-      ->header(['title'=>['Interval']])
+      ->header(['title' => ['Title', 'da' => 'Titel']])
+      ->header(['title' => ['Address', 'da' => 'Adresse']])
+      ->header(['title' => ['Synchronized', 'da' => 'Synkroniseret']])
+      ->header(['title' => ['Interval']])
     ->endHeaders();
 
   foreach ($items as $item) {
     $writer
-      ->startRow(['kind'=>'source', 'id'=>$item->getId()])
+      ->startRow(['kind' => 'source', 'id' => $item->getId()])
       ->startCell()->text($item->getTitle())->endCell()
       ->startCell()->text($item->getUrl())->endCell()
-      ->startCell(['wrap'=>false])
+      ->startCell(['wrap' => false])
         ->text(Dates::formatLongDateTime($item->getSynchronized()))
       ->endCell()
       ->startCell()->text($item->getInterval())->endCell()
@@ -76,21 +76,21 @@ function listListeners() {
   $writer = new ListWriter();
   $writer->startList()
     ->startHeaders()
-      ->header(['title'=>['Title', 'da'=>'Titel']])
-      ->header(['title'=>['Event', 'da'=>'Begivenhed']])
-      ->header(['title'=>['Latest execution', 'da'=>'Seneste afvikling']])
-      ->header(['title'=>['Interval']])
-      ->header(['title'=>['Runnable', 'da'=>'Eksekvérbar']])
+      ->header(['title' => ['Title', 'da' => 'Titel']])
+      ->header(['title' => ['Event', 'da' => 'Begivenhed']])
+      ->header(['title' => ['Latest execution', 'da' => 'Seneste afvikling']])
+      ->header(['title' => ['Interval']])
+      ->header(['title' => ['Runnable', 'da' => 'Eksekvérbar']])
     ->endHeaders();
 
   foreach ($items as $item) {
 
     $flow = Query::after('workflow')->withRelationFrom($item)->first();
     $writer
-      ->startRow(['kind'=>$item->getType(), 'id'=>$item->getId()])
+      ->startRow(['kind' => $item->getType(), 'id' => $item->getId()])
       ->startCell()->text($item->getTitle())->endCell()
       ->startCell()->text($item->getEvent())->endCell()
-      ->startCell(['wrap'=>false])
+      ->startCell(['wrap' => false])
         ->text(Dates::formatFuzzy($item->getLatestExecution()))
       ->endCell()
       ->startCell()->text($item->getInterval())->endCell()
@@ -105,13 +105,13 @@ function listViews() {
   $writer = new ListWriter();
   $writer->startList()
     ->startHeaders()
-      ->header(['title'=>['Title', 'da'=>'Titel']])
-      ->header(['title'=>['Path', 'da'=>'Sti']])
+      ->header(['title' => ['Title', 'da' => 'Titel']])
+      ->header(['title' => ['Path', 'da' => 'Sti']])
     ->endHeaders();
 
   foreach ($items as $item) {
     $writer
-      ->startRow(['kind'=>'view', 'id'=>$item->getId()])
+      ->startRow(['kind' => 'view', 'id' => $item->getId()])
       ->startCell()->text($item->getTitle())->endCell()
       ->startCell()->text($item->getPath())->endCell()
     ->endRow();

@@ -52,7 +52,7 @@ class CustomPartController extends PartController
       'workflowId' => $part->getWorkflowId(),
       'viewId' => $part->getViewId()
     ]) .
-    '<script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/custom/editor.js" type="text/javascript" charset="utf-8"></script>';
+    '<script src="' . ConfigurationService::getBaseUrl() . 'Editor/Parts/custom/editor.js" type="text/javascript" charset="utf-8"></script>';
   }
 
   function getFromRequest($id) {
@@ -67,7 +67,7 @@ class CustomPartController extends PartController
   }
 
   function buildSub($part,$context) {
-    $xml='<custom xmlns="'.$this->getNamespace().'">';
+    $xml = '<custom xmlns="' . $this->getNamespace() . '">';
     $workflow = Workflow::load($part->getWorkflowId());
     $view = View::load($part->getViewId());
     if ($workflow && $view) {
@@ -88,23 +88,23 @@ class CustomPartController extends PartController
         }
         $inlineCSS = FileSystemService::join($path, 'inline.css');
         $asyncCSS = FileSystemService::join($path, 'async.css');
-        $xml.= '<css xmlns="http://uri.in2isoft.com/onlinepublisher/resource/"';
+        $xml .= '<css xmlns="http://uri.in2isoft.com/onlinepublisher/resource/"';
         if (FileSystemService::canRead($inlineCSS)) {
-          $xml.= ' inline="' . Strings::escapeXML($inlineCSS) . '"';
+          $xml .= ' inline="' . Strings::escapeXML($inlineCSS) . '"';
         }
         if (FileSystemService::canRead($asyncCSS)) {
-          $xml.= ' async="' . Strings::escapeXML($asyncCSS) . '"';
+          $xml .= ' async="' . Strings::escapeXML($asyncCSS) . '"';
         }
-        $xml.= '/>';
+        $xml .= '/>';
         // TODO: optimize performance + maybe handle invalid XML
         if (!DomUtils::isValidFragment($rendered)) {
           // TODO: Output <error> instead
           $rendered = '';
         }
-        $xml.= '<rendered xmlns="http://www.w3.org/1999/xhtml">' . $rendered . '</rendered>';
+        $xml .= '<rendered xmlns="http://www.w3.org/1999/xhtml">' . $rendered . '</rendered>';
       }
     }
-    $xml.='</custom>';
+    $xml .= '</custom>';
     return $xml;
   }
 
@@ -122,12 +122,12 @@ class CustomPartController extends PartController
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['Custom', 'da'=>'Speciel']) => '
+      GuiUtils::getTranslated(['Custom', 'da' => 'Speciel']) => '
       <item label="{Workflow; da:Arbejdsgang}">
-        <dropdown name="workflow" width="200">'.UI::buildOptions('workflow').'</dropdown>
+        <dropdown name="workflow" width="200">' . UI::buildOptions('workflow') . '</dropdown>
       </item>
       <item label="{View; da:Visning}">
-        <dropdown name="view" width="200">'.UI::buildOptions('view').'</dropdown>
+        <dropdown name="view" width="200">' . UI::buildOptions('view') . '</dropdown>
       </item>
     '
     ];

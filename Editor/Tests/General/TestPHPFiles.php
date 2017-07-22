@@ -14,11 +14,11 @@ class TestPHPFiles extends UnitTestCase {
   function testIt() {
     global $basePath;
 
-    $base = $basePath.'Editor/';
+    $base = $basePath . 'Editor/';
 
     $files = FileSystemService::find([
       'dir' => $base,
-      'exclude' => [$base.'Libraries'],
+      'exclude' => [$base . 'Libraries'],
       'extension' => 'php'
     ]);
     $this->assertTrue(is_dir($base));
@@ -36,7 +36,7 @@ class TestPHPFiles extends UnitTestCase {
     ];
     foreach ($files as $file) {
       $rel = substr($file,strlen($base));
-      $url = ConfigurationService::getCompleteBaseUrl().'Editor/'.$rel;
+      $url = ConfigurationService::getCompleteBaseUrl() . 'Editor/' . $rel;
       if (in_array($rel,$excluded)) {
         continue;
       }
@@ -55,13 +55,13 @@ class TestPHPFiles extends UnitTestCase {
     $result = curl_exec($ch);
     $error = curl_errno($ch);
     if ($error) {
-      $this->assertTrue($error===0,'The result of url: '.$url.' had the error: '.$error);
+      $this->assertTrue($error === 0,'The result of url: ' . $url . ' had the error: ' . $error);
       continue;
     }
     $info = curl_getinfo($ch);
     $httpCode = $info['http_code'];
-    $this->assertTrue($httpCode===403 || $httpCode===302,'Http response code for '.$url.' is: '.$httpCode);
-    $this->assertTrue(Strings::isBlank($result),'The result of url: '.$url.' should be blank, it is: '.$result);
+    $this->assertTrue($httpCode === 403 || $httpCode === 302,'Http response code for ' . $url . ' is: ' . $httpCode);
+    $this->assertTrue(Strings::isBlank($result),'The result of url: ' . $url . ' should be blank, it is: ' . $result);
 
     curl_close($ch);
   }

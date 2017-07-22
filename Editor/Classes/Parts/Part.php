@@ -69,7 +69,7 @@ class Part extends Entity
   }
 
   function isPersistent() {
-    return $this->id!=null;
+    return $this->id != null;
   }
 
   static function get($type,$id) {

@@ -35,11 +35,11 @@ foreach ($years as $info) {
     continue;
   }
   $writer->item([
-    'value'=>$info['year'],
-    'title'=>$info['year'],
-    'badge'=>$info['count'],
-    'icon'=>'common/time',
-    'kind'=>'year'
+    'value' => $info['year'],
+    'title' => $info['year'],
+    'badge' => $info['count'],
+    'icon' => 'common/time',
+    'kind' => 'year'
   ]);
 }
 $writer->endItems();

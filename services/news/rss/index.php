@@ -7,7 +7,7 @@
 require_once '../../../Editor/Include/Public.php';
 
 $group = Request::getInt('group');
-if ($group>0) {
+if ($group > 0) {
   group($group);
 } else {
   Response::badRequest();
@@ -23,7 +23,7 @@ function group($id) {
   $feed->setLink(ConfigurationService::getBaseUrl());
 
 
-  $sql = "select object.id,object.title,object.note,UNIX_TIMESTAMP(news.startdate) as startdate,object_link.target_type,object_link.target_value from news,newsgroup_news,object left join object_link on object.id = object_link.object_id where object.id=news.object_id and newsgroup_news.news_id = news.object_id and newsgroup_news.newsgroup_id=".Database::int($id)." order by startdate desc,id,object_link.position";
+  $sql = "select object.id,object.title,object.note,UNIX_TIMESTAMP(news.startdate) as startdate,object_link.target_type,object_link.target_value from news,newsgroup_news,object left join object_link on object.id = object_link.object_id where object.id=news.object_id and newsgroup_news.news_id = news.object_id and newsgroup_news.newsgroup_id=" . Database::int($id) . " order by startdate desc,id,object_link.position";
   $result = Database::select($sql);
   $ids[] = [];
   while ($row = Database::next($result)) {
@@ -39,7 +39,7 @@ function group($id) {
         $item->setGuid($link);
         $item->setLink($link);
       } else {
-        $item->setGuid(ConfigurationService::getBaseUrl().$row['id']);
+        $item->setGuid(ConfigurationService::getBaseUrl() . $row['id']);
       }
       $feed->addItem($item);
       $ids[] = $row['id'];
@@ -54,13 +54,13 @@ function group($id) {
 }
 
 function buildLink($type,$value) {
-  if ($type=='page') {
-       return ConfigurationService::getBaseUrl().'?id='.$value;
+  if ($type == 'page') {
+       return ConfigurationService::getBaseUrl() . '?id=' . $value;
   }
-    else if ($type=='file') {
-       return ConfigurationService::getBaseUrl().'?file='.$value;
+    else if ($type == 'file') {
+       return ConfigurationService::getBaseUrl() . '?file=' . $value;
   }
-    else if ($type=='url' || $type=='email') {
+    else if ($type == 'url' || $type == 'email') {
         return $value;
   } else {
     return null;

@@ -29,11 +29,11 @@ class WidgetPartController extends PartController
   }
 
   function editor($part,$context) {
-    return '<div id="part_widget_container">'.$this->render($part,$context).'</div>'.
+    return '<div id="part_widget_container">' . $this->render($part,$context) . '</div>' .
       $this->buildHiddenFields([
       'key' => $part->getKey(),
       'data' => $part->getData()
-      ]).
+      ]) .
       $this->getEditorScript();
   }
 
@@ -45,11 +45,11 @@ class WidgetPartController extends PartController
   }
 
   function buildSub($part,$context) {
-    $xml = '<widget xmlns="'.$this->getNamespace().'" key="'.Strings::escapeXML($part->getKey()).'">';
+    $xml = '<widget xmlns="' . $this->getNamespace() . '" key="' . Strings::escapeXML($part->getKey()) . '">';
     if (DOMUtils::isValidFragment($part->getData())) {
-      $xml.= $part->getData();
+      $xml .= $part->getData();
     }
-    $xml.= '</widget>';
+    $xml .= '</widget>';
     return $xml;
   }
 
@@ -65,7 +65,7 @@ class WidgetPartController extends PartController
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['Widget', 'da'=>'Widget']) => ''
+      GuiUtils::getTranslated(['Widget', 'da' => 'Widget']) => ''
     ];
   }
 

@@ -27,15 +27,15 @@ class Response {
     echo $str;
   }
 
-  static function setExpiresInDays($days=0) {
+  static function setExpiresInDays($days = 0) {
     Response::setExpiresInHours($days * 24);
   }
 
-  static function setExpiresInHours($hours=0) {
+  static function setExpiresInHours($hours = 0) {
     $offset = 60 * 60 * $hours;
 
     $modified = ConfigurationService::getDeploymentTime();
-    header('Last-Modified: '.gmdate('D, d M Y H:i:s', $modified).' GMT', true, 200);
+    header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $modified) . ' GMT', true, 200);
     header("Expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT");
     header("Cache-Control: max-age=$offset, must-revalidate");
     header("Pragma: hack");
@@ -43,14 +43,14 @@ class Response {
 
   static function redirect($url) {
     session_write_close();
-    header('Location: '.$url);
+    header('Location: ' . $url);
     exit();
   }
 
   static function redirectMoved($url) {
     session_write_close();
     header('HTTP/1.1 301 Moved Permanently',true,301);
-    header('Location: '.$url);
+    header('Location: ' . $url);
     exit();
   }
 
@@ -58,27 +58,27 @@ class Response {
     header("Content-Disposition: attachment; filename=\"$filename\"");
   }
 
-  static function internalServerError($text=null) {
+  static function internalServerError($text = null) {
     Response::sendStatus(500,$text);
   }
 
-  static function badGateway($text=null) {
+  static function badGateway($text = null) {
     Response::sendStatus(502,$text);
   }
 
-  static function badRequest($text=null) {
+  static function badRequest($text = null) {
     Response::sendStatus(400,$text);
   }
 
-  static function notFound($text=null) {
+  static function notFound($text = null) {
     Response::sendStatus(404,$text);
   }
 
-  static function unauthorized($text=null) {
+  static function unauthorized($text = null) {
     Response::sendStatus(Response::$UNAUTHORIZED,$text);
   }
 
-  static function forbidden($text=null) {
+  static function forbidden($text = null) {
     Response::sendStatus(Response::$FORBIDDEN,$text);
   }
 
@@ -93,10 +93,10 @@ class Response {
     echo 'FAILURE';
   }
 
-  static function sendStatus($number,$text=null) {
+  static function sendStatus($number,$text = null) {
     http_response_code($number);
     if ($text) {
-      echo '<!DOCTYPE html><html><head><title>'.$text.'</title></head><body><h1>'.$text.'</h1></body><p>'.$number.'</p></html>';
+      echo '<!DOCTYPE html><html><head><title>' . $text . '</title></head><body><h1>' . $text . '</h1></body><p>' . $number . '</p></html>';
     }
   }
 }

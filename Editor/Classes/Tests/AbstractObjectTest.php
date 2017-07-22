@@ -9,7 +9,7 @@ if (!isset($GLOBALS['basePath'])) {
   exit;
 }
 
-require_once($basePath.'Editor/Libraries/simpletest/unit_tester.php');
+require_once($basePath . 'Editor/Libraries/simpletest/unit_tester.php');
 
 class AbstractObjectTest extends UnitTestCase {
 

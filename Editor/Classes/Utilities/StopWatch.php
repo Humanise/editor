@@ -16,7 +16,7 @@ class StopWatch {
 
   function log($msg) {
     $x = microtime(true);
-    Log::debug($msg.' : '.($x - $this->latest));
+    Log::debug($msg . ' : ' . ($x - $this->latest));
     $this->latest = $x;
   }
 

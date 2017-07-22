@@ -18,10 +18,10 @@ if (Request::exists('section')) {
 $pageId = InternalSession::getPageId();
 
 $stylesheets = ['hui/bin/minimized.css', 'style/basic/css/parts.php', 'style/basic/css/document.css'];
-if (FileSystemService::canRead('style/'.$design.'/css/editor.css')) {
-  $stylesheets[] = 'style/'.$design.'/css/editor.css';
-} else if (FileSystemService::canRead('style/'.$design.'/css/overwrite.css')) {
-  $stylesheets[] = 'style/'.$design.'/css/overwrite.css';
+if (FileSystemService::canRead('style/' . $design . '/css/editor.css')) {
+  $stylesheets[] = 'style/' . $design . '/css/editor.css';
+} else if (FileSystemService::canRead('style/' . $design . '/css/overwrite.css')) {
+  $stylesheets[] = 'style/' . $design . '/css/overwrite.css';
 }
 $stylesheets[] = 'Editor/Template/document/css/stylesheet.css';
 
@@ -43,18 +43,18 @@ echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.or
     <script type="text/javascript">
       op.context = "../../../";
       hui.ui.context = "../../../";
-      hui.ui.language = "'.$language.'";
-      controller.context = "'.ConfigurationService::getBaseUrl().'";
-      controller.pageId = '.$pageId.';
-      controller.changed = '.(PageService::isChanged($pageId) ? 'true' : 'false')."\n";
-    if ($editedSection==null) {
+      hui.ui.language = "' . $language . '";
+      controller.context = "' . ConfigurationService::getBaseUrl() . '";
+      controller.pageId = ' . $pageId . ';
+      controller.changed = ' . (PageService::isChanged($pageId) ? 'true' : 'false') . "\n";
+    if ($editedSection == null) {
       echo "controller.setMainToolbar();\n";
-    } else if ($editedSection>0) {
-      echo "controller.activeSection=".$editedSection.";\n";
+    } else if ($editedSection > 0) {
+      echo "controller.activeSection=" . $editedSection . ";\n";
     }
     echo '</script>
   </head>
-  <body class="editor'.($editedSection!=null ? ' editor_edit_section_mode' : '').'">
+  <body class="editor' . ($editedSection != null ? ' editor_edit_section_mode' : '') . '">
   <div class="editor_body">
     ';
 
@@ -64,7 +64,7 @@ echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.or
 
   echo '</div>';
 
-if ($editedSection==null) {
+if ($editedSection == null) {
   $gui = '
     <source name="pageSource" url="../../Services/Model/Items.php?type=page"/>
     <source name="fileSource" url="../../Services/Model/Items.php?type=file"/>
@@ -177,19 +177,19 @@ if ($editedSection==null) {
     ';
     $parts = PartService::getPartMenu();
     foreach ($parts as $part => $info) {
-      if ($info=='divider') {
-        $gui.='<divider/>';
+      if ($info == 'divider') {
+        $gui .= '<divider/>';
         continue;
       }
-      $gui.='<item text="'.$info['name'][$language].'" value="'.$part.'">';
+      $gui .= '<item text="' . $info['name'][$language] . '" value="' . $part . '">';
       if (isset($info['children']) && is_array($info['children'])) {
         foreach ($info['children'] as $subPart => $subInfo) {
-          $gui.='<item text="'.$subInfo['name'][$language].'" value="'.$subPart.'"/>';
+          $gui .= '<item text="' . $subInfo['name'][$language] . '" value="' . $subPart . '"/>';
         }
       }
-      $gui.='</item>';
+      $gui .= '</item>';
     }
-    $gui.='
+    $gui .= '
       <divider/>
       <item text="{Paste; da:Indsæt}" value="paste"/>
     </menu>
@@ -267,7 +267,7 @@ if ($editedSection==null) {
 
     <window width="300" name="importWindow" padding="5" title="{Import; da:Importering}">
       <upload name="importUpload" url="actions/ImportUpload.php" widget="upload">
-        <placeholder title="{Select an file on you computer...; da:Vælg en fil på din computer...}" text="{Image can be in the format JPEG, PNG or GIF. The file size can at most be; da: Billeders format skal være JPEG, PNG eller GIF. Filens størrelse må højest være} '.GuiUtils::bytesToString(FileSystemService::getMaxUploadSize()).'."/>
+        <placeholder title="{Select an file on you computer...; da:Vælg en fil på din computer...}" text="{Image can be in the format JPEG, PNG or GIF. The file size can at most be; da: Billeders format skal være JPEG, PNG eller GIF. Filens størrelse må højest være} ' . GuiUtils::bytesToString(FileSystemService::getMaxUploadSize()) . '."/>
       </upload>
       <buttons align="center" top="10">
         <button name="cancelImport" text="{Close; da:Luk}"/>
@@ -310,18 +310,18 @@ function displayRows($pageId) {
   foreach ($structure as $row) {
     echo '<div class="editor_row_container"';
     if ($row['spacing']) {
-      echo 'style="margin: 0 -'.$row['spacing'].';"';
+      echo 'style="margin: 0 -' . $row['spacing'] . ';"';
     }
     echo '>';
-    echo '<table class="editor_row" border="0" width="100%" cellpadding="0" cellspacing="0" id="row'.$row['id'].'" style="';
+    echo '<table class="editor_row" border="0" width="100%" cellpadding="0" cellspacing="0" id="row' . $row['id'] . '" style="';
     if ($row['top']) {
-      echo 'margin-top: '.$row['top'].';';
+      echo 'margin-top: ' . $row['top'] . ';';
     }
     if ($row['bottom']) {
-      echo 'margin-bottom: '.$row['bottom'].';';
+      echo 'margin-bottom: ' . $row['bottom'] . ';';
     }
     if ($row['spacing']) {
-      echo 'border-spacing: '.$row['spacing'].' 0;';
+      echo 'border-spacing: ' . $row['spacing'] . ' 0;';
     }
     echo '"><tr>';
     displayColumns($row);
@@ -336,33 +336,33 @@ function displayColumns(&$row) {
   foreach ($row['columns'] as $column) {
     $style = '';
     $columnWidth = $column['width'];
-    if ($columnWidth!='') {
-      if ($columnWidth=='min') {
-        $style.= 'width: 1%;';
+    if ($columnWidth != '') {
+      if ($columnWidth == 'min') {
+        $style .= 'width: 1%;';
       }
-      elseif ($columnWidth=='max') {
-        $style.= 'width: 100%;';
+      elseif ($columnWidth == 'max') {
+        $style .= 'width: 100%;';
       }
       else {
-        $style.= 'width: '.$columnWidth.';';
+        $style .= 'width: ' . $columnWidth . ';';
       }
     }
     if ($column['left']) {
-      $style.= 'padding-left: '.$column['left'].';';
+      $style .= 'padding-left: ' . $column['left'] . ';';
     }
     if ($column['right']) {
-      $style.= 'padding-right: '.$column['right'].';';
+      $style .= 'padding-right: ' . $column['right'] . ';';
     }
     if ($column['top']) {
-      $style.= 'padding-top: '.$column['top'].';';
+      $style .= 'padding-top: ' . $column['top'] . ';';
     }
     if ($column['bottom']) {
-      $style.= 'padding-bottom: '.$column['bottom'].';';
+      $style .= 'padding-bottom: ' . $column['bottom'] . ';';
     }
     echo "\n";
-    echo '<td class="editor_column" data-id="'.$column['id'].'" id="column'.$column['id'].'" style="'.$style.'"';
+    echo '<td class="editor_column" data-id="' . $column['id'] . '" id="column' . $column['id'] . '" style="' . $style . '"';
     echo ' onmouseover="controller.columnOver(this)" onmouseout="controller.columnOut(this)"';
-    echo ' oncontextmenu="return controller.showColumnMenu(this,event,'.$column['id'].','.$column['index'].','.$row['id'].','.$row['index'].');">';
+    echo ' oncontextmenu="return controller.showColumnMenu(this,event,' . $column['id'] . ',' . $column['index'] . ',' . $row['id'] . ',' . $row['index'] . ');">';
     displaySections($column,$row);
     echo "</td>\n";
   }
@@ -370,23 +370,23 @@ function displayColumns(&$row) {
 
 function displaySections(&$column,&$row) {
   global $language,$editedSection;
-  $lastIndex=0;
+  $lastIndex = 0;
 
   foreach ($column['sections'] as $sectionRow) {
-    $style=buildSectionStyle($sectionRow);
-    if ($editedSection==null) {
-      echo '<div class="editor_section_adder_container">'.
-          '<div class="editor_section_adder" data=\'{"columnId":'.$column['id'].',"sectionIndex":'.$sectionRow['index'].'}\' onclick="controller.showAdderMenu({element:this,event:event}); return false">'.
-            '<div><span><em></em><strong></strong></span></div>'.
-          '</div>'.
+    $style = buildSectionStyle($sectionRow);
+    if ($editedSection == null) {
+      echo '<div class="editor_section_adder_container">' .
+          '<div class="editor_section_adder" data=\'{"columnId":' . $column['id'] . ',"sectionIndex":' . $sectionRow['index'] . '}\' onclick="controller.showAdderMenu({element:this,event:event}); return false">' .
+            '<div><span><em></em><strong></strong></span></div>' .
+          '</div>' .
         '</div>';
     }
-    echo '<div id="section'.$sectionRow['id'].'"';
+    echo '<div id="section' . $sectionRow['id'] . '"';
     if ($sectionRow['width']) {
-      echo ' style="width: '.$sectionRow['width'].'"';
+      echo ' style="width: ' . $sectionRow['width'] . '"';
     }
     echo '>';
-    if ($sectionRow['id']==$editedSection) {
+    if ($sectionRow['id'] == $editedSection) {
       partEditor($sectionRow);
     }
     else {
@@ -395,28 +395,28 @@ function displaySections(&$column,&$row) {
     echo '</div>';
     $lastIndex = $sectionRow['index'];
   }
-  if ($editedSection==null) {
-    echo '<div class="editor_section_adder_container">'.
-        '<div class="editor_section_adder" data=\'{"columnId":'.$column['id'].',"sectionIndex":'.($lastIndex+1).'}\' onclick="controller.showAdderMenu({element:this,event:event}); return false">'.
-          '<div><span><em></em><strong></strong></span></div>'.
-        '</div>'.
+  if ($editedSection == null) {
+    echo '<div class="editor_section_adder_container">' .
+        '<div class="editor_section_adder" data=\'{"columnId":' . $column['id'] . ',"sectionIndex":' . ($lastIndex + 1) . '}\' onclick="controller.showAdderMenu({element:this,event:event}); return false">' .
+          '<div><span><em></em><strong></strong></span></div>' .
+        '</div>' .
       '</div>';
-    echo '<div style="padding: 5px;">'.
-    '<a onclick="controller.showNewPartMenu({element:this,event:event,columnId:'.$column['id'].',sectionIndex:'.($lastIndex+1).'}); return false" href="javascript://" class="hui_button hui_button_light hui_button_small">'.
-    GuiUtils::getTranslated(['Add section', 'da'=>'Tilføj afsnit']).
-    '</a>'.
+    echo '<div style="padding: 5px;">' .
+    '<a onclick="controller.showNewPartMenu({element:this,event:event,columnId:' . $column['id'] . ',sectionIndex:' . ($lastIndex + 1) . '}); return false" href="javascript://" class="hui_button hui_button_light hui_button_small">' .
+    GuiUtils::getTranslated(['Add section', 'da' => 'Tilføj afsnit']) .
+    '</a>' .
     '</div>';
   } else {
-    echo '<div style="padding: 5px;"><a class="hui_button hui_button_light hui_button_small '.($editedSection!=null ? 'hui_is_disabled' : '').'">'.GuiUtils::getTranslated(['Add section', 'da'=>'Tilføj afsnit']).'</a></div>';
+    echo '<div style="padding: 5px;"><a class="hui_button hui_button_light hui_button_small ' . ($editedSection != null ? 'hui_is_disabled' : '') . '">' . GuiUtils::getTranslated(['Add section', 'da' => 'Tilføj afsnit']) . '</a></div>';
   }
 }
 
 function buildSectionStyle(&$row) {
-  $style='';
-  if ($row['left']!='') $style.='padding-left: '.$row['left'].';';
-  if ($row['right']!='') $style.='padding-right: '.$row['right'].';';
-  if ($row['top']!='') $style.='padding-top: '.$row['top'].';';
-  if ($row['bottom']!='') $style.='padding-bottom: '.$row['bottom'].';';
+  $style = '';
+  if ($row['left'] != '') $style .= 'padding-left: ' . $row['left'] . ';';
+  if ($row['right'] != '') $style .= 'padding-right: ' . $row['right'] . ';';
+  if ($row['top'] != '') $style .= 'padding-top: ' . $row['top'] . ';';
+  if ($row['bottom'] != '') $style .= 'padding-bottom: ' . $row['bottom'] . ';';
   return $style;
 }
 
@@ -431,12 +431,12 @@ function displayPart(&$sectionRow,&$column,&$row) {
   if ($ctrl) {
     $part = PartService::load($sectionRow['partType'],$sectionRow['partId']);
     if ($part) {
-      echo '<div id="part'.$part->getId().'" style="'.buildSectionStyle($sectionRow).'"';
-        echo ' class="editor_section part_section_'.$part->getType().' '.$ctrl->getSectionClass($part).'"';
-        echo ' oncontextmenu="return controller.showSectionMenu(this,event,'.$sectionRow['id'].','.$sectionRow['index'].','.$column['id'].','.$column['index'].','.$row['id'].','.$row['index'].');"';
-        echo ' onmouseover="controller.sectionOver(this,'.$sectionRow['id'].','.$column['id'].','.$sectionRow['index'].')"';
+      echo '<div id="part' . $part->getId() . '" style="' . buildSectionStyle($sectionRow) . '"';
+        echo ' class="editor_section part_section_' . $part->getType() . ' ' . $ctrl->getSectionClass($part) . '"';
+        echo ' oncontextmenu="return controller.showSectionMenu(this,event,' . $sectionRow['id'] . ',' . $sectionRow['index'] . ',' . $column['id'] . ',' . $column['index'] . ',' . $row['id'] . ',' . $row['index'] . ');"';
+        echo ' onmouseover="controller.sectionOver(this,' . $sectionRow['id'] . ',' . $column['id'] . ',' . $sectionRow['index'] . ')"';
         echo ' onmouseout="controller.sectionOut(this,event)"';
-        echo ' data=\'{"part":'.$part->getId().'}\' onclick="controller.clickSection({event:event,node:this,id:'.$sectionRow['id'].'})">';
+        echo ' data=\'{"part":' . $part->getId() . '}\' onclick="controller.clickSection({event:event,node:this,id:' . $sectionRow['id'] . '})">';
       echo $ctrl->display($part,$partContext);
       echo '</div>';
     } else {
@@ -456,18 +456,18 @@ function partEditor($section) {
     return;
   }
   echo
-  '<div style="'.buildSectionStyle($section).'" id="selectedSection" class="part_section_'.$section['partType'].' '.$ctrl->getSectionClass($part).' editor_section_selected">'.
-  '<form name="PartForm" action="data/UpdatePart.php" method="post" charset="utf-8">'.
-  '<input type="hidden" name="id" value="'.$part->getId().'"/>'.
-  '<input type="hidden" name="part_type" value="'.$part->getType().'"/>'.
-  '<input type="hidden" name="section" value="'.$section['id'].'"/>'.
-  '<input type="hidden" name="left" value="'.Strings::escapeXML($section['left']).'"/>'.
-  '<input type="hidden" name="right" value="'.Strings::escapeXML($section['right']).'"/>'.
-  '<input type="hidden" name="bottom" value="'.Strings::escapeXML($section['bottom']).'"/>'.
-  '<input type="hidden" name="top" value="'.Strings::escapeXML($section['top']).'"/>'.
-  '<input type="hidden" name="width" value="'.Strings::escapeXML($section['width']).'"/>'.
-  '<input type="hidden" name="float" value="'.Strings::escapeXML($section['float']).'"/>'.
-  '<input type="hidden" name="section_class" value="'.Strings::escapeXML($section['class']).'"/>';
+  '<div style="' . buildSectionStyle($section) . '" id="selectedSection" class="part_section_' . $section['partType'] . ' ' . $ctrl->getSectionClass($part) . ' editor_section_selected">' .
+  '<form name="PartForm" action="data/UpdatePart.php" method="post" charset="utf-8">' .
+  '<input type="hidden" name="id" value="' . $part->getId() . '"/>' .
+  '<input type="hidden" name="part_type" value="' . $part->getType() . '"/>' .
+  '<input type="hidden" name="section" value="' . $section['id'] . '"/>' .
+  '<input type="hidden" name="left" value="' . Strings::escapeXML($section['left']) . '"/>' .
+  '<input type="hidden" name="right" value="' . Strings::escapeXML($section['right']) . '"/>' .
+  '<input type="hidden" name="bottom" value="' . Strings::escapeXML($section['bottom']) . '"/>' .
+  '<input type="hidden" name="top" value="' . Strings::escapeXML($section['top']) . '"/>' .
+  '<input type="hidden" name="width" value="' . Strings::escapeXML($section['width']) . '"/>' .
+  '<input type="hidden" name="float" value="' . Strings::escapeXML($section['float']) . '"/>' .
+  '<input type="hidden" name="section_class" value="' . Strings::escapeXML($section['class']) . '"/>';
   echo $ctrl->editor($part,$partContext);
   echo '</form></div>';
   $ui = $ctrl->getEditorUI($part,$partContext);
@@ -476,13 +476,13 @@ function partEditor($section) {
   }
   echo '<script type="text/javascript">
   try {
-    parent.frames[0].location="PartToolbar.php?sectionId='.$section['id'].'&partId='.$part->getId().'&partType='.$part->getType().'&'.time().'"
+    parent.frames[0].location="PartToolbar.php?sectionId=' . $section['id'] . '&partId=' . $part->getId() . '&partType=' . $part->getType() . '&' . time() . '"
   } catch(e) {
     hui.log("Unable to set toolbar");hui.log(e);
-  };'.
+  };' .
   'function saveSection() {
     document.forms.PartForm.submit();
-  }'.
+  }' .
   '</script>';
 }
 ?>

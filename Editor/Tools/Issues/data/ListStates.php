@@ -16,8 +16,8 @@ $writer->startHeaders()->
 endHeaders();
 
 foreach($list as $item) {
-  $writer->startRow(['id'=>$item->getId()])->
-    startCell(['icon'=>$item->getIcon()])->text($item->getTitle())->endCell()->
+  $writer->startRow(['id' => $item->getId()])->
+    startCell(['icon' => $item->getIcon()])->text($item->getTitle())->endCell()->
   endRow();
 }
 $writer->endList();

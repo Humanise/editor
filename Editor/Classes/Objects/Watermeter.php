@@ -11,7 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Watermeter'] = [
   'table' => 'watermeter',
   'properties' => [
-      'number' => ['type'=>'string']
+      'number' => ['type' => 'string']
   ]
 ];
 

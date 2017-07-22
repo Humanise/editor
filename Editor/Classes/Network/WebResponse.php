@@ -21,12 +21,12 @@ class WebResponse {
 
   static function newFromData($data) {
     $response = new WebResponse();
-    if (strlen($data)>0) {
-      if (preg_match("/^HTTP\\/([0-9\\.]+) ([0-9]+)/u", $data, $matches)===1) {
+    if (strlen($data) > 0) {
+      if (preg_match("/^HTTP\\/([0-9\\.]+) ([0-9]+)/u", $data, $matches) === 1) {
         $response->setHttpVersion(floatval($matches[1]));
         $response->setStatusCode(intval($matches[2]));
         $parts = explode("\r\n\r\nHTTP/", $data);
-        $parts = (count($parts) > 1 ? 'HTTP/' : '').array_pop($parts);
+        $parts = (count($parts) > 1 ? 'HTTP/' : '') . array_pop($parts);
         list($header, $body) = explode("\r\n\r\n", $parts, 2);
         $response->setBody($body);
         $response->setHeaderRaw($header);
@@ -35,7 +35,7 @@ class WebResponse {
         $lines = explode("\r\n",$header);
         foreach ($lines as $line) {
           if ($pos = strpos($line,':')) {
-            $headers[] = ['name' => substr($line,0,$pos), 'value' => ltrim(substr($line,$pos+1))];
+            $headers[] = ['name' => substr($line,0,$pos), 'value' => ltrim(substr($line,$pos + 1))];
           }
         }
         $response->setHeaders($headers);

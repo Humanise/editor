@@ -7,21 +7,21 @@ if (!isset($GLOBALS['basePath'])) {
 class EventUtils {
 
   static function getEventInsidePeriod($startDate,$endDate,$event) {
-    if (($event['startDate']<=$startDate && $event['endDate']<=$startDate) || ($event['startDate']>=$endDate && $event['endDate']>=$endDate)) {
+    if (($event['startDate'] <= $startDate && $event['endDate'] <= $startDate) || ($event['startDate'] >= $endDate && $event['endDate'] >= $endDate)) {
       return null;
     } else {
-      if ($event['startDate']<$startDate) {
-        $event['startDate']=$startDate;
+      if ($event['startDate'] < $startDate) {
+        $event['startDate'] = $startDate;
       }
-      if ($event['endDate']>$endDate) {
-        $event['endDate']=$endDate;
+      if ($event['endDate'] > $endDate) {
+        $event['endDate'] = $endDate;
       }
       return $event;
     }
   }
 
   static function isEventsColliding($event,$other) {
-    if (($event['startDate']<=$other['startDate'] && $event['endDate']<=$other['startDate']) || ($event['startDate']>=$other['endDate'] && $event['endDate']>=$other['endDate'])) {
+    if (($event['startDate'] <= $other['startDate'] && $event['endDate'] <= $other['startDate']) || ($event['startDate'] >= $other['endDate'] && $event['endDate'] >= $other['endDate'])) {
       return false;
     } else {
       return true;

@@ -18,23 +18,23 @@ class MailService {
     return MailService::send(MailService::getFeedbackEmail(), MailService::getFeedbackName(),$subject,$body);
   }
 
-  static function send($email,$name,$subject,$body,$html=null) {
+  static function send($email,$name,$subject,$body,$html = null) {
         global $basePath;
-        require_once($basePath.'Editor/Include/Zend.php');
-        require_once($basePath.'Editor/Libraries/Zend/Mail.php');
-        require_once($basePath.'Editor/Libraries/Zend/Mail/Transport/Smtp.php');
+        require_once($basePath . 'Editor/Include/Zend.php');
+        require_once($basePath . 'Editor/Libraries/Zend/Mail.php');
+        require_once($basePath . 'Editor/Libraries/Zend/Mail/Transport/Smtp.php');
 
     $username = MailService::getUsername();
     $password = MailService::getPassword();
     $port = MailService::getPort();
-    if (strlen($username)>0 && strlen($password)>0) {
+    if (strlen($username) > 0 && strlen($password) > 0) {
       $config = ['auth' => 'login', 'username' => $username, 'password' => $password, 'ssl' => 'tls'];
       if ($port) {
         $config['port'] = $port;
       }
-      if (MailService::getServer()=='smtp.gmail.com') {
-        $config['ssl']='ssl';
-        $config['port']='465';
+      if (MailService::getServer() == 'smtp.gmail.com') {
+        $config['ssl'] = 'ssl';
+        $config['port'] = '465';
       }
       // 'ssl' => 'ssl', 'port' => '995'
       Log::debug('Sending mail with config...');
@@ -45,7 +45,7 @@ class MailService {
 
     $mail = new Zend_Mail('UTF-8');
     $mail->setBodyText($body);
-    if ($html!=null) {
+    if ($html != null) {
       $mail->setBodyHtml($html);
     }
     $mail->setFrom(MailService::getStandardEmail(), MailService::getStandardName());
@@ -62,7 +62,7 @@ class MailService {
   }
 
   static function getEnabled() {
-    return SettingService::getSetting('system','mail','enabled')=='true';
+    return SettingService::getSetting('system','mail','enabled') == 'true';
   }
 
   static function setEnabled($value) {

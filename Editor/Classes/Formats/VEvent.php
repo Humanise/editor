@@ -33,7 +33,7 @@ class VEvent {
   }
 
   function isRecurring() {
-    return count($this->recurrenceRules)>0;
+    return count($this->recurrenceRules) > 0;
   }
 
   function setSummary($summary) {

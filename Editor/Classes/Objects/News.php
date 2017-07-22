@@ -11,9 +11,9 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['News'] = [
     'table' => 'news',
     'properties' => [
-      'imageId'   => ['type'=>'int', 'column'=>'image_id'],
-      'startdate'  => ['type'=>'datetime'],
-      'enddate'  => ['type'=>'datetime']
+      'imageId' => ['type' => 'int', 'column' => 'image_id'],
+      'startdate' => ['type' => 'datetime'],
+      'enddate' => ['type' => 'datetime']
     ]
 ];
 
@@ -57,25 +57,25 @@ class News extends Object {
   ////////////////////////////////// Groups //////////////////////////////
 
   function getGroupIds() {
-    $sql="select newsgroup_id as id from newsgroup_news where news_id=".$this->id;
+    $sql = "select newsgroup_id as id from newsgroup_news where news_id=" . $this->id;
     return Database::getIds($sql);
   }
 
   function updateGroupIds($ids) {
-    $sql="delete from newsgroup_news where news_id=".$this->id;
+    $sql = "delete from newsgroup_news where news_id=" . $this->id;
     Database::delete($sql);
     if (is_array($ids)) {
       foreach ($ids as $id) {
-        $sql="insert into newsgroup_news (news_id, newsgroup_id) values (".$this->id.",".$id.")";
+        $sql = "insert into newsgroup_news (news_id, newsgroup_id) values (" . $this->id . "," . $id . ")";
         Database::insert($sql);
       }
     }
   }
 
   function addGroupId($id) {
-    $sql = "delete from newsgroup_news where news_id=".Database::int($this->id)." and newsgroup_id=".Database::int($id);
+    $sql = "delete from newsgroup_news where news_id=" . Database::int($this->id) . " and newsgroup_id=" . Database::int($id);
     Database::delete($sql);
-    $sql = "insert into newsgroup_news (newsgroup_id,news_id) values (".Database::int($id).",".Database::int($this->id).")";
+    $sql = "insert into newsgroup_news (newsgroup_id,news_id) values (" . Database::int($id) . "," . Database::int($this->id) . ")";
     Database::insert($sql);
   }
 
@@ -83,15 +83,15 @@ class News extends Object {
 
   function addCustomSearch($query,&$parts) {
     $custom = $query->getCustom();
-    if ($custom['group']>0) {
+    if ($custom['group'] > 0) {
       $parts['tables'][] = 'newsgroup_news';
       $parts['limits'][] = 'newsgroup_news.news_id=object.id';
-      $parts['limits'][] = 'newsgroup_news.newsgroup_id='.$custom['group'];
+      $parts['limits'][] = 'newsgroup_news.newsgroup_id=' . $custom['group'];
     }
     if (isset($custom['startdate']) && isset($custom['enddate'])) {
       $start = $custom['startdate'];
       $end = $custom['enddate'];
-      $parts['limits'][] = "((news.startdate is null and news.enddate is null) or (news.startdate>=".Database::datetime($start)." and news.startdate<=".Database::datetime($end).") or (news.enddate>=".Database::datetime($start)." and news.enddate<=".Database::datetime($end).") or (news.enddate>=".Database::datetime($start)." and news.startdate is null) or (news.startdate<=".Database::datetime($end)." and news.enddate is null))";
+      $parts['limits'][] = "((news.startdate is null and news.enddate is null) or (news.startdate>=" . Database::datetime($start) . " and news.startdate<=" . Database::datetime($end) . ") or (news.enddate>=" . Database::datetime($start) . " and news.enddate<=" . Database::datetime($end) . ") or (news.enddate>=" . Database::datetime($start) . " and news.startdate is null) or (news.startdate<=" . Database::datetime($end) . " and news.enddate is null))";
     }
     if (isset($custom['active'])) {
       if ($custom['active']) {
@@ -103,7 +103,7 @@ class News extends Object {
     if (isset($custom['linkType'])) {
       $parts['tables'][] = 'object_link';
       $parts['limits'][] = 'object_link.object_id=object.id';
-      $parts['limits'][] = 'object_link.target_type='.Database::text($custom['linkType']);
+      $parts['limits'][] = 'object_link.target_type=' . Database::text($custom['linkType']);
     }
   }
 
@@ -111,22 +111,22 @@ class News extends Object {
 
 
   function sub_publish() {
-    $data = '<news xmlns="'.parent::_buildnamespace('1.0').'">';
+    $data = '<news xmlns="' . parent::_buildnamespace('1.0') . '">';
     if (isset($this->startdate)) {
-      $data.=Dates::buildTag('startdate',$this->startdate);
+      $data .= Dates::buildTag('startdate',$this->startdate);
     }
     if (isset($this->enddate)) {
-      $data.=Dates::buildTag('enddate',$this->enddate);
+      $data .= Dates::buildTag('enddate',$this->enddate);
     }
     if ($this->imageId) {
-      $data.=ObjectService::getObjectData($this->imageId);
+      $data .= ObjectService::getObjectData($this->imageId);
     }
-    $data.='</news>';
+    $data .= '</news>';
     return $data;
   }
 
   function removeMore() {
-    $sql="delete from newsgroup_news where news_id=".$this->id;
+    $sql = "delete from newsgroup_news where news_id=" . $this->id;
     Database::delete($sql);
   }
 

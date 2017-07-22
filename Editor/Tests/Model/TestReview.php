@@ -52,7 +52,7 @@ class TestReview extends AbstractObjectTest {
     RelationsService::relateObjectToObject($review,$user,'reviewer');
 
     $reviews = Query::after('review')->withRelationTo($user,'reviewer')->withRelationFromPage($page,'reviewed')->get();
-    $this->assertTrue(count($reviews)==1);
+    $this->assertTrue(count($reviews) == 1);
 
     TestService::removeTestPage($page);
 

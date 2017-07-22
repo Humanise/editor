@@ -13,25 +13,25 @@ if (!function_exists('xslt_create') && !class_exists('xsltProcessor')) {
   exit;
 }
 
-$canWrite = is_dir($basePath."Config/") && is_writable($basePath."Config/");
+$canWrite = is_dir($basePath . "Config/") && is_writable($basePath . "Config/");
 
-$gui='
+$gui = '
 <gui xmlns="uri:hui" padding="10">
   <controller url="controller.js"/>
   <box width="500" top="30" padding="10" title="Initial setup">
     <space left="10" right="10" top="5" bottom="10">
     <text>
       <p>The configuration file "Config/Setup.php" was not found, this will help you create it...</p>
-      '.($canWrite
+      ' . ($canWrite
         ? '<p>It looks like we can create the file for you.</p>'
         : '<p>It looks like we cannot write the file so you have to create it yourself</p>'
-      ).'
+      ) . '
     </text>
     </space>
     <formula name="formula">
       <fields>
         <field label="Base address:">
-          <text-input name="baseUrl" value="'.Strings::escapeXML($baseUrl).'"/>
+          <text-input name="baseUrl" value="' . Strings::escapeXML($baseUrl) . '"/>
         </field>
         <field label="Database host:">
           <text-input name="databaseHost" value="localhost"/>
@@ -58,9 +58,9 @@ $gui='
     </field>
     <buttons align="right" top="20">
       <button title="Test database" name="test"/>
-      '.($canWrite 
+      ' . ($canWrite 
       ? '<button text="Create configuration file" name="save" highlighted="true"/>'
-      : '').'
+      : '') . '
     </buttons>
   </box>
 </gui>

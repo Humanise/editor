@@ -11,9 +11,9 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Newssource'] = [
     'table' => 'newssource',
     'properties' => [
-      'url' => ['type'=>'string'],
-      'synchronized'    => ['type'=>'datetime'],
-      'syncInterval'    => ['type'=>'int', 'column'=>'sync_interval']
+      'url' => ['type' => 'string'],
+      'synchronized' => ['type' => 'datetime'],
+      'syncInterval' => ['type' => 'int', 'column' => 'sync_interval']
     ]
 ];
 
@@ -58,7 +58,7 @@ class Newssource extends Object {
     return (time() - $this->synchronized < $this->syncInterval);
   }
 
-  function synchronize($force=false) {
+  function synchronize($force = false) {
     NewsService::synchronizeSource($this->id,$force);
   }
 

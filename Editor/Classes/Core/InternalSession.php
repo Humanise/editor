@@ -33,14 +33,14 @@ class InternalSession {
     static function logOut() {
     session_start();
     Log::logUser('logout','');
-    $_SESSION['core.user.id']=0;
-    $_SESSION['core.user.username']=null;
-    $_SESSION['core.user.administrator']=0;
+    $_SESSION['core.user.id'] = 0;
+    $_SESSION['core.user.username'] = null;
+    $_SESSION['core.user.administrator'] = 0;
     }
 
     // Static
     static function registerActivity() {
-        $_SESSION['core.user.lastaccesstime']=time();
+        $_SESSION['core.user.lastaccesstime'] = time();
     }
 
   static function getLanguage() {
@@ -52,7 +52,7 @@ class InternalSession {
   }
 
   static function setLanguage($language) {
-    if ($language=='da' || $language=='en') {
+    if ($language == 'da' || $language == 'en') {
       $_SESSION['core.user.language'] = $language;
     } else {
       $_SESSION['core.user.language'] = 'da';
@@ -79,7 +79,7 @@ class InternalSession {
    */
   static function setPageId($id) {
     if (!is_int($id)) {
-      Log::debug('Not an int: ' . gettype($id) . '('.$id.')');
+      Log::debug('Not an int: ' . gettype($id) . '(' . $id . ')');
     }
     $_SESSION['core.page.id'] = intval($id);
   }
@@ -102,7 +102,7 @@ class InternalSession {
    * @param string $unique The unique name of the design
    */
   static function setPageDesign($unique) {
-    $_SESSION['core.page.design']=$unique;
+    $_SESSION['core.page.design'] = $unique;
   }
 
   /**
@@ -135,11 +135,11 @@ class InternalSession {
   }
 
     static function isLoggedIn() {
-        return (isset($_SESSION['core.user.id']) && $_SESSION['core.user.id']>0);
+        return (isset($_SESSION['core.user.id']) && $_SESSION['core.user.id'] > 0);
     }
 
     static function isTimedOut() {
-        return (time()-($_SESSION['core.user.lastaccesstime'])>86400);
+        return (time() - ($_SESSION['core.user.lastaccesstime']) > 86400);
     }
 
     static function isAdministrator() {
@@ -149,7 +149,7 @@ class InternalSession {
     static function getPermissions($type) {
         $permissions = [];
         $userId = InternalSession::getUserId();
-        $sql = "select entity_id from user_permission where user_id=".$userId." and entity_type='tool'";
+        $sql = "select entity_id from user_permission where user_id=" . $userId . " and entity_type='tool'";
         $result = Database::select($sql);
         while ($row = Database::next($result)) {
             $permissions[] = $row['entity_id'];
@@ -159,9 +159,9 @@ class InternalSession {
     }
 
 
-  static function getToolSessionVar($tool,$key,$default=NULL) {
-    if (isset($_SESSION['tools.'.$tool.'.'.$key])) {
-      return $_SESSION['tools.'.$tool.'.'.$key];
+  static function getToolSessionVar($tool,$key,$default = NULL) {
+    if (isset($_SESSION['tools.' . $tool . '.' . $key])) {
+      return $_SESSION['tools.' . $tool . '.' . $key];
     }
     else {
       InternalSession::setToolSessionVar($tool,$key,$default);
@@ -173,7 +173,7 @@ class InternalSession {
     InternalSession::setToolSessionVar($tool,$key,!InternalSession::getToolSessionVar($tool,$key));
   }
 
-  static function getRequestToolSessionVar($tool,$key,$query,$default=NULL) {
+  static function getRequestToolSessionVar($tool,$key,$query,$default = NULL) {
     if (Request::exists($query)) {
       InternalSession::setToolSessionVar($tool,$key,Request::getString($query));
     }
@@ -181,12 +181,12 @@ class InternalSession {
   }
 
   static function setToolSessionVar($tool,$key,$value) {
-    $_SESSION['tools.'.$tool.'.'.$key]=$value;
+    $_SESSION['tools.' . $tool . '.' . $key] = $value;
   }
 
   static function getSessionCacheVar($key) {
-    if (isset($_SESSION['cache.'.$key])) {
-      return $_SESSION['cache.'.$key];
+    if (isset($_SESSION['cache.' . $key])) {
+      return $_SESSION['cache.' . $key];
     }
     else {
       return null;
@@ -194,23 +194,23 @@ class InternalSession {
   }
 
   static function setSessionCacheVar($key,$value) {
-    $_SESSION['cache.'.$key]=$value;
+    $_SESSION['cache.' . $key] = $value;
   }
 
 
   /**************** services ****************/
 
 
-  static function getRequestServiceSessionVar($service,$key,$query,$default=NULL) {
+  static function getRequestServiceSessionVar($service,$key,$query,$default = NULL) {
     if (Request::exists($query)) {
       InternalSession::setServiceSessionVar($service,$key,Request::getString($query));
     }
     return InternalSession::getServiceSessionVar($service,$key,$default);
   }
 
-  static function getServiceSessionVar($service,$key,$default=NULL) {
-    if (isset($_SESSION['services.'.$service.'.'.$key])) {
-      return $_SESSION['services.'.$service.'.'.$key];
+  static function getServiceSessionVar($service,$key,$default = NULL) {
+    if (isset($_SESSION['services.' . $service . '.' . $key])) {
+      return $_SESSION['services.' . $service . '.' . $key];
     }
     else {
       InternalSession::setServiceSessionVar($service,$key,$default);
@@ -219,7 +219,7 @@ class InternalSession {
   }
 
   static function setServiceSessionVar($service,$key,$value) {
-    $_SESSION['services.'.$service.'.'.$key]=$value;
+    $_SESSION['services.' . $service . '.' . $key] = $value;
   }
 }
 ?>

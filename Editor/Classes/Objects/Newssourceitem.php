@@ -11,11 +11,11 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Newssourceitem'] = [
     'table' => 'newssourceitem',
     'properties' => [
-      'text' => ['type'=>'string'],
-      'url' => ['type'=>'string'],
+      'text' => ['type' => 'string'],
+      'url' => ['type' => 'string'],
       'newssourceId' => ['type' => 'int', 'column' => 'newssource_id'],
-      'date' => ['type'=>'datetime'],
-      'guid' => ['type'=>'string']
+      'date' => ['type' => 'datetime'],
+      'guid' => ['type' => 'string']
     ]
 ];
 
@@ -83,7 +83,7 @@ class Newssourceitem extends Object {
   function addCustomSearch($query,&$parts) {
     $custom = $query->getCustom();
     if (isset($custom['minDate'])) {
-      $parts['limits'][] = 'newssourceitem.date>='.Database::date($custom['minDate']);
+      $parts['limits'][] = 'newssourceitem.date>=' . Database::date($custom['minDate']);
     }
   }
 }

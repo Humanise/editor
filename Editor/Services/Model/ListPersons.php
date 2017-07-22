@@ -10,26 +10,26 @@ $windowPage = Request::getInt('windowPage',0);
 $queryString = Request::getString('query');
 $sort = Request::getString('sort');
 $direction = Request::getString('direction');
-if ($sort=='') $sort='title';
-if ($direction=='') $direction='ascending';
+if ($sort == '') $sort = 'title';
+if ($direction == '') $direction = 'ascending';
 
 $result = Query::after('person')->orderBy('title')->withWindowSize($windowSize)->withWindowPage($windowPage)->withDirection($direction)->withText($queryString)->search();
 $persons = $result->getList();
 
 $writer = new ListWriter();
 
-$writer->startList(['unicode'=>true])->
+$writer->startList(['unicode' => true])->
   sort($sort,$direction)->
-  window(['total'=>$result->getTotal(), 'size'=>$windowSize, 'page'=>$windowPage])->
+  window(['total' => $result->getTotal(), 'size' => $windowSize, 'page' => $windowPage])->
   startHeaders()->
-    header(['title'=>'Navn', 'width'=>60, 'key'=>'title', 'sortable'=>true])->
-    header(['title'=>'Adresse', 'width'=>40])->
+    header(['title' => 'Navn', 'width' => 60, 'key' => 'title', 'sortable' => true])->
+    header(['title' => 'Adresse', 'width' => 40])->
   endHeaders();
 
 foreach ($persons as $object) {
   $writer->
-    startRow(['id'=>$object->getId(), 'kind'=>$object->getType(), 'icon'=>"common/person", 'title'=>$object->getTitle()])->
-      startCell(['icon'=>'common/person'])->startWrap()->text($object->getTitle())->endWrap()->endCell()->
+    startRow(['id' => $object->getId(), 'kind' => $object->getType(), 'icon' => "common/person", 'title' => $object->getTitle()])->
+      startCell(['icon' => 'common/person'])->startWrap()->text($object->getTitle())->endWrap()->endCell()->
       startCell();
       buildAddress($object,$writer);
       buildEmails($object,$writer);
@@ -44,13 +44,13 @@ function buildAddress($person,$writer) {
   $zipcode = $person->getZipcode();
   $city = $person->getCity();
   $country = $person->getCountry();
-  if ($zipcode!='' || $city!='') {
-    if ($addr!='') $addr.="\n";
-    $addr.=$zipcode.' '.$city;
+  if ($zipcode != '' || $city != '') {
+    if ($addr != '') $addr .= "\n";
+    $addr .= $zipcode . ' ' . $city;
   }
-  if ($country!='') {
-    if ($addr!='') $addr.="\n";
-    $addr.=$country;
+  if ($country != '') {
+    if ($addr != '') $addr .= "\n";
+    $addr .= $country;
   }
   $writer->text($addr);
 }
@@ -58,14 +58,14 @@ function buildAddress($person,$writer) {
 function buildEmails($person,$writer) {
   $mails = Query::after('emailaddress')->withProperty('containingObjectId',$person->getId())->get();
   foreach ($mails as $mail) {
-    $writer->object(['icon'=>"common/email", 'text'=>$mail->getAddress()]);
+    $writer->object(['icon' => "common/email", 'text' => $mail->getAddress()]);
   }
 }
 
 function buildPhones($person,$writer) {
   $phones = Query::after('phonenumber')->withProperty('containingObjectId',$person->getId())->get();
   foreach ($phones as $phone) {
-    $writer->object(['icon'=>"common/phone", 'text'=>$phone->getNumber()]);
+    $writer->object(['icon' => "common/phone", 'text' => $phone->getNumber()]);
   }
 }
 ?>

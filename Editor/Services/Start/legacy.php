@@ -5,7 +5,7 @@
  */
 require_once '../../Include/Private.php';
 
-$gui='
+$gui = '
 <gui xmlns="uri:hui" padding="10" title="Start">
   <css url="style.css"/>
   <controller name="controller" source="controller.js"/>
@@ -17,7 +17,7 @@ $gui='
   <box variant="rounded">
     <html xmlns="http://www.w3.org/1999/xhtml">
       <div class="header">
-      <span class="date"> version: '.SystemInfo::getFormattedDate().'</span>
+      <span class="date"> version: ' . SystemInfo::getFormattedDate() . '</span>
       </div>
     </html>
     <space all="25" bottom="15">

@@ -12,13 +12,13 @@ $text = Request::getString('text');
 InternalSession::setToolSessionVar('images','group',$group);
 
 $query = Query::after('image')->withText($text)->withWindowSize(500);
-if ($subset=='unused') {
+if ($subset == 'unused') {
   $query->withCustom('unused',true);
 }
-if ($subset=='latest') {
+if ($subset == 'latest') {
   $query->withCustom('createdAfter',Dates::addDays(mktime(),-1));
 }
-if ($group===-1) {
+if ($group === -1) {
   $query->withCustom('nogroup',true);
   $query->orderBy('title');
 } else if ($group) {

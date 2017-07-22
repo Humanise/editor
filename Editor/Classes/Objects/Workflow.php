@@ -11,7 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Workflow'] = [
   'table' => 'workflow',
   'properties' => [
-    'recipe' => ['type'=>'string']
+    'recipe' => ['type' => 'string']
   ]
 ];
 

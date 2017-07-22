@@ -5,7 +5,7 @@
  */
 require_once '../../Include/Private.php';
 
-$gui='
+$gui = '
 <gui xmlns="uri:hui" padding="10" title="Issues">
   <controller url="controller.js"/>
   <controller url="status.js"/>
@@ -36,7 +36,7 @@ $gui='
         </icon>
         <item label="{Change type; da:Skift type}">
           <dropdown name="changeKind" placeholder="{Change type...;da:Skift type...}">
-          '.UI::buildTranslatedOptions(IssueService::getKinds()).'
+          ' . UI::buildTranslatedOptions(IssueService::getKinds()) . '
           </dropdown>
         </item>
         <right>
@@ -94,7 +94,7 @@ $gui='
         </field>
         <field label="Type">
           <dropdown key="kind">
-            '.UI::buildTranslatedOptions(IssueService::getKinds()).'
+            ' . UI::buildTranslatedOptions(IssueService::getKinds()) . '
           </dropdown>
         </field>
         <field label="Status">

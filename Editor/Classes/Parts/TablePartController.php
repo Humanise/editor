@@ -31,9 +31,9 @@ class TablePartController extends PartController
 
   function editor($part,$context) {
     return
-    '<div id="part_table" class="part_table common_font" style="min-height: 20px;">'.$part->getHtml().'</div>'.
-    '<input type="hidden" name="html" value="'.Strings::escapeSimpleXML($part->getHtml()).'"/>'. // Important not to use Strings::escapeXML since it messes with unicode chars
-    '<script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/table/script.js" type="text/javascript" charset="utf-8"></script>';
+    '<div id="part_table" class="part_table common_font" style="min-height: 20px;">' . $part->getHtml() . '</div>' .
+    '<input type="hidden" name="html" value="' . Strings::escapeSimpleXML($part->getHtml()) . '"/>' . // Important not to use Strings::escapeXML since it messes with unicode chars
+    '<script src="' . ConfigurationService::getBaseUrl() . 'Editor/Parts/table/script.js" type="text/javascript" charset="utf-8"></script>';
   }
 
   function getEditorUI($part,$context) {
@@ -118,13 +118,13 @@ class TablePartController extends PartController
     if (DOMUtils::isValidFragment($html)) {
       $html = $this->insertLinks($part,$context);
       //$html = $context->decorateForBuild($html,$part->getId());
-      return '<table xmlns="'.$this->getNamespace().'" valid="true">'.
-      $html.
+      return '<table xmlns="' . $this->getNamespace() . '" valid="true">' .
+      $html .
       '</table>';
     } else {
       return
-      '<table xmlns="'.$this->getNamespace().'" valid="false">'.
-      '<![CDATA['.$html.']]>'.
+      '<table xmlns="' . $this->getNamespace() . '" valid="false">' .
+      '<![CDATA[' . $html . ']]>' .
       '</table>';
     }
   }
@@ -135,20 +135,20 @@ class TablePartController extends PartController
     $out = '';
     $index = 0;
     foreach ($matches[0] as $found) {
-      if ($found[1]-$index > 0) {
-        $str = substr($html,$index,$found[1]-$index);
+      if ($found[1] - $index > 0) {
+        $str = substr($html,$index,$found[1] - $index);
         $str = $context->decorateForBuild($str,$part->getId());
-        $out.=$str;
+        $out .= $str;
       }
       $index = $found[1] + strlen($found[0]);
-      $out.= $found[0];
+      $out .= $found[0];
     }
     return $out;
   }
 
   function importSub($node,$part) {
     if ($table = DOMUtils::getFirstDescendant($node,'table')) {
-      if ($table->getAttribute('valid')=='false') {
+      if ($table->getAttribute('valid') == 'false') {
         $part->setHtml(DOMUtils::getText($table));
       } else {
         $str = DOMUtils::getInnerXML($table);

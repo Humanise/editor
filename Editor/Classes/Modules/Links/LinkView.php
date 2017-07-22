@@ -139,15 +139,15 @@ class LinkView {
   }
 
   function addError($key,$message) {
-    $this->errors[] = ['key'=>$key, 'message'=>$message];
+    $this->errors[] = ['key' => $key, 'message' => $message];
   }
 
-  function hasError($key=null) {
-    if ($key===null && count($this->errors)>0) {
+  function hasError($key = null) {
+    if ($key === null && count($this->errors) > 0) {
       return true;
     }
     foreach ($this->errors as $error) {
-      if ($error['key']==$key) {
+      if ($error['key'] == $key) {
         return true;
       }
     }

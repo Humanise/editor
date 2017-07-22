@@ -45,13 +45,13 @@ class TestTextPart extends UnitTestCase {
     $obj->setFontFamily('Verdana');
     $ctrl = new TextPartController();
     $xml = $ctrl->build($obj,new PartContext());
-    $expected = '<part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="20">'.
-      '<sub><text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">'.
-      '<style color="#eee" font-family="Verdana"/>'.
-      '<p>Lorem <strong>ipsum</strong> dolor <em>sit</em> amet,<break/> consectetur&lt;tag&gt; <del>adipisicing</del> elit</p>'.
-      '<p>New paragraph</p>'.
-      '<p><break/>Three &amp; new lines</p>'.
-      '</text></sub>'.
+    $expected = '<part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="20">' .
+      '<sub><text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">' .
+      '<style color="#eee" font-family="Verdana"/>' .
+      '<p>Lorem <strong>ipsum</strong> dolor <em>sit</em> amet,<break/> consectetur&lt;tag&gt; <del>adipisicing</del> elit</p>' .
+      '<p>New paragraph</p>' .
+      '<p><break/>Three &amp; new lines</p>' .
+      '</text></sub>' .
       '</part>';
     $this->assertEqual($xml,$expected);
   }
@@ -68,11 +68,11 @@ class TestTextPart extends UnitTestCase {
     $context->addBuildLink('dol','url',null,'#',null,'OnlineObjects',null,null,null);
     $context->addBuildLink('l','url',null,'http://www.onlineobjects.com/',null,null,null,null,null);
     $xml = $ctrl->build($obj,$context);
-    $expected = '<part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="20">'.
-      '<sub><text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">'.
-      '<style/>'.
-      '<p>Lorem ipsum <link url="http://www.onlineobjects.com/" title="My title" part-id="20">dolor</link> sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et <link url="http://www.onlineobjects.com/" title="My title" part-id="20">dolor</link>e magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure <link url="http://www.onlineobjects.com/" title="My title" part-id="20">dolor</link> in reprehenderit in voluptate velit esse cillum <link url="http://www.onlineobjects.com/" title="My title" part-id="20">dolor</link>e eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>'.
-      '</text></sub>'.
+    $expected = '<part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="20">' .
+      '<sub><text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">' .
+      '<style/>' .
+      '<p>Lorem ipsum <link url="http://www.onlineobjects.com/" title="My title" part-id="20">dolor</link> sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et <link url="http://www.onlineobjects.com/" title="My title" part-id="20">dolor</link>e magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure <link url="http://www.onlineobjects.com/" title="My title" part-id="20">dolor</link> in reprehenderit in voluptate velit esse cillum <link url="http://www.onlineobjects.com/" title="My title" part-id="20">dolor</link>e eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' .
+      '</text></sub>' .
       '</part>';
     $this->assertEqual($xml,$expected);
   }
@@ -89,11 +89,11 @@ class TestTextPart extends UnitTestCase {
     $context->addBuildLink('l','url',null,'http://www.onlineobjects.com/',null,'OnlineObjects',null,10,null);
     $context->addBuildLink('dol','url',null,'#',null,null,null,null,null);
     $xml = $ctrl->build($obj,$context);
-    $expected = '<part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="20">'.
-      '<sub><text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">'.
-      '<style/>'.
-      '<p>Lorem ipsum <link url="#">dol</link>or sit amet, consectetur adipisicing elit.</p>'.
-      '</text></sub>'.
+    $expected = '<part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="20">' .
+      '<sub><text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">' .
+      '<style/>' .
+      '<p>Lorem ipsum <link url="#">dol</link>or sit amet, consectetur adipisicing elit.</p>' .
+      '</text></sub>' .
       '</part>';
     $this->assertEqual($xml,$expected);
   }
@@ -112,11 +112,11 @@ class TestTextPart extends UnitTestCase {
     $context->addBuildLink('dol','url',null,'#ok',null,null,null,null,null);
     $context->addBuildLink('dol','url',null,'#error',null,null,null,null,434242);
     $xml = $ctrl->build($obj,$context);
-    $expected = '<part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="20">'.
-      '<sub><text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">'.
-      '<style/>'.
-      '<p>Lorem ipsum <link url="#ok">dol</link>or sit amet, consectetur adipisicing elit.</p>'.
-      '</text></sub>'.
+    $expected = '<part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="20">' .
+      '<sub><text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">' .
+      '<style/>' .
+      '<p>Lorem ipsum <link url="#ok">dol</link>or sit amet, consectetur adipisicing elit.</p>' .
+      '</text></sub>' .
       '</part>';
     $this->assertEqual($xml,$expected);
   }

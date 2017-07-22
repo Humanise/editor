@@ -5,7 +5,7 @@
  */
 require_once '../../Include/Private.php';
 
-$gui='
+$gui = '
 <gui xmlns="uri:hui" padding="10" title="Developer" state="settings">
   <controller url="controller.js"/>
   <source name="testsSource" url="data/TestSelection.php"/>
@@ -50,10 +50,10 @@ $gui='
                 <button text="Rebuild classes" name="rebuildClasses"/>
                 <fields>
                   <field label="Simulate network latency:">
-                    <checkbox key="simulateLatency" value="'.(@$_SESSION['core.debug.simulateLatency'] ? 'true' : 'false').'"/>
+                    <checkbox key="simulateLatency" value="' . (@$_SESSION['core.debug.simulateLatency'] ? 'true' : 'false') . '"/>
                   </field>
                   <field label="Log database queries:">
-                    <checkbox key="logDatabaseQueries" value="'.(@$_SESSION['core.debug.logDatabaseQueries'] ? 'true' : 'false').'"/>
+                    <checkbox key="logDatabaseQueries" value="' . (@$_SESSION['core.debug.logDatabaseQueries'] ? 'true' : 'false') . '"/>
                   </field>
                 </fields>
               </formula>

@@ -26,12 +26,12 @@ class FilePartController extends PartController
   }
 
   function editor($part,$context) {
-    return '<div id="part_file_container">'.$this->render($part,$context).'</div>'.
+    return '<div id="part_file_container">' . $this->render($part,$context) . '</div>' .
 
     $this->buildHiddenFields([
       'fileId' => $part->getFileId(),
-      'text' => $part->getText()]).
-    '<script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/file/script.js" type="text/javascript" charset="utf-8"></script>';
+      'text' => $part->getText()]) .
+    '<script src="' . ConfigurationService::getBaseUrl() . 'Editor/Parts/file/script.js" type="text/javascript" charset="utf-8"></script>';
   }
 
   function getFromRequest($id) {
@@ -42,16 +42,16 @@ class FilePartController extends PartController
   }
 
   function buildSub($part,$context) {
-    $xml='<file xmlns="'.$this->getNamespace().'">';
-    $sql="select object.data,file.type from object,file where file.object_id = object.id and object.id=".Database::int($part->getFileId());
+    $xml = '<file xmlns="' . $this->getNamespace() . '">';
+    $sql = "select object.data,file.type from object,file where file.object_id = object.id and object.id=" . Database::int($part->getFileId());
     if ($row = Database::selectFirst($sql)) {
-      $xml.='<info type="'.FileService::mimeTypeToLabel($row['type']).'"/>';
+      $xml .= '<info type="' . FileService::mimeTypeToLabel($row['type']) . '"/>';
       if (Strings::isNotBlank($part->getText())) {
-        $xml.='<text>'.Strings::escapeEncodedXML($part->getText()).'</text>';
+        $xml .= '<text>' . Strings::escapeEncodedXML($part->getText()) . '</text>';
       }
-      $xml.=$row['data'];
+      $xml .= $row['data'];
     }
-    $xml.='</file>';
+    $xml .= '</file>';
     return $xml;
   }
 
@@ -69,7 +69,7 @@ class FilePartController extends PartController
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['File', 'da'=>'Fil']) => '
+      GuiUtils::getTranslated(['File', 'da' => 'Fil']) => '
       <icon icon="common/new" text="{Add file; da:Tilføj fil}" name="addFile"/>
       <icon icon="common/search" text="{Select file; da:Vælg fil}" name="chooseFile"/>
       <divider/>
@@ -87,7 +87,7 @@ class FilePartController extends PartController
       <upload name="fileUpload" url="../../Parts/file/Upload.php" widget="upload">
         <placeholder
           title="{Select a file on your computer; da:Vælg en fil på din computer...}"
-          text="{The file size can at most be; da:Filens størrelse må højest være} '.GuiUtils::bytesToString(FileSystemService::getMaxUploadSize()).'."/>
+          text="{The file size can at most be; da:Filens størrelse må højest være} ' . GuiUtils::bytesToString(FileSystemService::getMaxUploadSize()) . '."/>
       </upload>
       <buttons align="center" top="10">
         <button name="cancelUpload" text="{Close; da:Luk}"/>

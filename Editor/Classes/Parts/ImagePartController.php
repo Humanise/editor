@@ -51,23 +51,23 @@ class ImagePartController extends PartController
   function updateAdditional($part) {
     $linkType = Request::getString('linkType');
     $linkValue = Request::getString('linkValue');
-    if ($linkType=='sameimage') {
-      $linkValue='';
+    if ($linkType == 'sameimage') {
+      $linkValue = '';
     }
-    $sql = "select * from part_link where source_type='entireimage' and part_id=".Database::int($part->getId());
-    if ($row=Database::selectFirst($sql)) {
-      if ($linkType!="") {
-        $sql = "update part_link set target_type=".Database::text($linkType).
-          ",target_value=".Database::text($linkValue)." where source_type='entireimage'".
-          " and part_id=".Database::int($part->getId());
+    $sql = "select * from part_link where source_type='entireimage' and part_id=" . Database::int($part->getId());
+    if ($row = Database::selectFirst($sql)) {
+      if ($linkType != "") {
+        $sql = "update part_link set target_type=" . Database::text($linkType) .
+          ",target_value=" . Database::text($linkValue) . " where source_type='entireimage'" .
+          " and part_id=" . Database::int($part->getId());
           Database::update($sql);
       } else {
-        $sql="delete from part_link where source_type='entireimage' and part_id=".Database::int($part->getId());
+        $sql = "delete from part_link where source_type='entireimage' and part_id=" . Database::int($part->getId());
         Database::delete($sql);
       }
-    } elseif ($linkType!="") {
-      $sql = "insert into part_link (target_type,target_value,source_type,part_id)".
-        " values (".Database::text($linkType).",".Database::text($linkValue).",'entireimage',".Database::int($part->getId()).")";
+    } elseif ($linkType != "") {
+      $sql = "insert into part_link (target_type,target_value,source_type,part_id)" .
+        " values (" . Database::text($linkType) . "," . Database::text($linkValue) . ",'entireimage'," . Database::int($part->getId()) . ")";
       Database::insert($sql);
     }
   }
@@ -79,7 +79,7 @@ class ImagePartController extends PartController
   function editor($part,$context) {
     $link = $this->getSingleLink($part,'entireimage');
     if (!$link) {
-      $link = ['target_type'=>'', 'target_value'=>''];
+      $link = ['target_type' => '', 'target_value' => ''];
     }
     return $this->buildHiddenFields([
       'imageId' => $part->getImageId(),
@@ -89,15 +89,15 @@ class ImagePartController extends PartController
       'linkType' => $link['target_type'],
       'linkValue' => $link['target_value'],
       'scalemethod' => $part->getScaleMethod(),
-      'scalepercent' => $part->getScalePercent()>0 ? $part->getScalePercent() : '',
-      'scalewidth' => $part->getScaleWidth()>0 ? $part->getScaleWidth() : '',
-      'scaleheight' => $part->getScaleHeight()>0 ? $part->getScaleHeight() : '',
+      'scalepercent' => $part->getScalePercent() > 0 ? $part->getScalePercent() : '',
+      'scalewidth' => $part->getScaleWidth() > 0 ? $part->getScaleWidth() : '',
+      'scaleheight' => $part->getScaleHeight() > 0 ? $part->getScaleHeight() : '',
       'text' => $part->getText(),
       'frame' => $part->getFrame()
-    ]).
-    '<div id="part_image_container">'.$this->render($part,$context).'</div>'.
-    '<script src="'.ConfigurationService::getBaseUrl().'hui/ext/ImagePaster.js" type="text/javascript" charset="utf-8"></script>'.
-    '<script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/image/script.js" type="text/javascript" charset="utf-8"></script>';
+    ]) .
+    '<div id="part_image_container">' . $this->render($part,$context) . '</div>' .
+    '<script src="' . ConfigurationService::getBaseUrl() . 'hui/ext/ImagePaster.js" type="text/javascript" charset="utf-8"></script>' .
+    '<script src="' . ConfigurationService::getBaseUrl() . 'Editor/Parts/image/script.js" type="text/javascript" charset="utf-8"></script>';
   }
 
   function display($part,$context) {
@@ -105,66 +105,66 @@ class ImagePartController extends PartController
   }
 
   function buildSub($part,$context) {
-    $xml = '<image xmlns="'.$this->getNamespace().'">';
-    $xml.='<style';
-    if ($part->getAlign()!='') {
-      $xml.=' align="'.Strings::escapeXML($part->getAlign()).'"';
+    $xml = '<image xmlns="' . $this->getNamespace() . '">';
+    $xml .= '<style';
+    if ($part->getAlign() != '') {
+      $xml .= ' align="' . Strings::escapeXML($part->getAlign()) . '"';
     }
-    if ($part->getFrame()!='') {
-      $xml.=' frame="'.Strings::escapeXML($part->getFrame()).'"';
+    if ($part->getFrame() != '') {
+      $xml .= ' frame="' . Strings::escapeXML($part->getFrame()) . '"';
     }
-    $xml.=' adaptive="'.($part->getAdaptive() ? 'true' : 'false').'"';
-    $xml.='/>';
-    if ($part->getImageId()>0) {
-      $sql="select object.data,image.* from object,image where image.object_id = object.id and object.id=".Database::int($part->getImageId());
+    $xml .= ' adaptive="' . ($part->getAdaptive() ? 'true' : 'false') . '"';
+    $xml .= '/>';
+    if ($part->getImageId() > 0) {
+      $sql = "select object.data,image.* from object,image where image.object_id = object.id and object.id=" . Database::int($part->getImageId());
       if ($image = Database::selectFirst($sql)) {
-        $xml.=$this->buildTransformTag($image,$part);
+        $xml .= $this->buildTransformTag($image,$part);
         if ($link = $this->getSingleLink($part,'entireimage')) {
-          $xml.=$this->_buildLinkTag($link,$part->getImageId());
+          $xml .= $this->_buildLinkTag($link,$part->getImageId());
         }
-        $xml.=$image['data'];
+        $xml .= $image['data'];
       } else {
-        $xml.='<transform scale-method="'.$part->getScaleMethod().'" scale-width="'.$part->getScaleWidth().'" scale-height="'.$part->getScaleHeight().'"/>';
-        Log::debug('Unable to load image with id='.$part->getImageId());
+        $xml .= '<transform scale-method="' . $part->getScaleMethod() . '" scale-width="' . $part->getScaleWidth() . '" scale-height="' . $part->getScaleHeight() . '"/>';
+        Log::debug('Unable to load image with id=' . $part->getImageId());
       }
     }
     if (Strings::isNotBlank($part->getText())) {
-      $xml.='<text>'.Strings::escapeEncodedXML($part->getText()).'</text>';
+      $xml .= '<text>' . Strings::escapeEncodedXML($part->getText()) . '</text>';
     }
-    $xml.='</image>';
+    $xml .= '</image>';
     return $xml;
   }
 
   function _buildLinkTag($link,$imageId) {
     $atts = '';
-    if ($link['target_type']=='url') {
-      $atts.=' url="'.Strings::escapeXML($link['target_value']).'"';
+    if ($link['target_type'] == 'url') {
+      $atts .= ' url="' . Strings::escapeXML($link['target_value']) . '"';
     }
-    else if ($link['target_type']=='page') {
-      $atts.=' page="'.Strings::escapeXML($link['target_value']).'"';
+    else if ($link['target_type'] == 'page') {
+      $atts .= ' page="' . Strings::escapeXML($link['target_value']) . '"';
     }
-    else if ($link['target_type']=='email') {
-      $atts.=' email="'.Strings::escapeXML($link['target_value']).'"';
+    else if ($link['target_type'] == 'email') {
+      $atts .= ' email="' . Strings::escapeXML($link['target_value']) . '"';
     }
-    else if ($link['target_type']=='file') {
-      $atts.=' file="'.Strings::escapeXML($link['target_value']).'"';
+    else if ($link['target_type'] == 'file') {
+      $atts .= ' file="' . Strings::escapeXML($link['target_value']) . '"';
     }
-    else if ($link['target_type']=='image') {
+    else if ($link['target_type'] == 'image') {
       $image = Image::load($link['target_value']);
       if ($image) {
-        $atts.=' image="'.$image->getId().'" width="'.$image->getWidth().'" height="'.$image->getHeight().'" note="'.Strings::escapeXML($image->getNote()).'"';
+        $atts .= ' image="' . $image->getId() . '" width="' . $image->getWidth() . '" height="' . $image->getHeight() . '" note="' . Strings::escapeXML($image->getNote()) . '"';
       }
     }
-    else if ($link['target_type']=='sameimage') {
+    else if ($link['target_type'] == 'sameimage') {
       $image = Image::load($imageId);
       if ($image) {
-        $atts.=' image="'.$image->getId().'" width="'.$image->getWidth().'" height="'.$image->getHeight().'" note="'.Strings::escapeXML($image->getNote()).'"';
+        $atts .= ' image="' . $image->getId() . '" width="' . $image->getWidth() . '" height="' . $image->getHeight() . '" note="' . Strings::escapeXML($image->getNote()) . '"';
       }
     }
-      if ($link['path']!='') {
-      $atts.=' path="'.Strings::escapeXML($link['path']).'"';
+      if ($link['path'] != '') {
+      $atts .= ' path="' . Strings::escapeXML($link['path']) . '"';
     }
-      return '<link'.$atts.'/>';
+      return '<link' . $atts . '/>';
   }
 
   /**
@@ -175,34 +175,34 @@ class ImagePartController extends PartController
    * @private
    */
   function buildTransformTag($image,$part) {
-    $tag='';
+    $tag = '';
     if ($part->getGreyscale() || $part->getScaleMethod()) {
       $dims = $this->calculateComputedDimensions($part,$image);
-      $tag.='<transform display-width="'.$dims['width'].'" display-height="'.$dims['height'].'"';
-      $tag.=' scale-method="'.$part->getScaleMethod().'" scale-width="'.$part->getScaleWidth().'" scale-height="'.$part->getScaleHeight().'"';
+      $tag .= '<transform display-width="' . $dims['width'] . '" display-height="' . $dims['height'] . '"';
+      $tag .= ' scale-method="' . $part->getScaleMethod() . '" scale-width="' . $part->getScaleWidth() . '" scale-height="' . $part->getScaleHeight() . '"';
       if ($part->getGreyscale()) {
-        $tag.=' greyscale="true"';
+        $tag .= ' greyscale="true"';
       }
-      if ($part->getScaleMethod()=='percent' && $part->getScalePercent()) {
-        $tag.=' scale-percent="'.$part->getScalePercent().'"';
+      if ($part->getScaleMethod() == 'percent' && $part->getScalePercent()) {
+        $tag .= ' scale-percent="' . $part->getScalePercent() . '"';
       }
-      elseif ($part->getScaleMethod()=='exact') {
+      elseif ($part->getScaleMethod() == 'exact') {
         if ($part->getScaleWidth()) {
-          $tag.=' width="'.$part->getScaleWidth().'"';
+          $tag .= ' width="' . $part->getScaleWidth() . '"';
         }
         if ($part->getScaleHeight()) {
-          $tag.=' height="'.$part->getScaleHeight().'"';
+          $tag .= ' height="' . $part->getScaleHeight() . '"';
         }
       }
-      elseif ($part->getScaleMethod()=='max') {
+      elseif ($part->getScaleMethod() == 'max') {
         if ($part->getScaleWidth()) {
-          $tag.=' max-width="'.$part->getScaleWidth().'"';
+          $tag .= ' max-width="' . $part->getScaleWidth() . '"';
         }
         if ($part->getScaleHeight()) {
-          $tag.=' max-height="'.$part->getScaleHeight().'"';
+          $tag .= ' max-height="' . $part->getScaleHeight() . '"';
         }
       }
-      $tag.='/>';
+      $tag .= '/>';
     }
     return $tag;
   }
@@ -210,45 +210,45 @@ class ImagePartController extends PartController
   function calculateComputedDimensions($part,$image) {
     $width = $image['width'];
     $height = $image['height'];
-    if ($part->getScaleMethod()=='percent') {
-      $width=round($part->getScalePercent()*$image['width']/100);
-      $height=round($part->getScalePercent()*$image['height']/100);
-    } elseif ($part->getScaleMethod()=='max') {
+    if ($part->getScaleMethod() == 'percent') {
+      $width = round($part->getScalePercent() * $image['width'] / 100);
+      $height = round($part->getScalePercent() * $image['height'] / 100);
+    } elseif ($part->getScaleMethod() == 'max') {
       // If only height is set
       if ($part->getScaleHeight() && !$part->getScaleWidth()) {
-        $height=$part->getScaleHeight();
-        $width=($part->getScaleHeight()/$image['height'])*$width;
+        $height = $part->getScaleHeight();
+        $width = ($part->getScaleHeight() / $image['height']) * $width;
       }
       // If only width is set
       else if ($part->getScaleWidth() && !$part->getScaleHeight()) {
-        $width=$part->getScaleWidth();
-        $height=($part->getScaleWidth()/$image['width'])*$height;
+        $width = $part->getScaleWidth();
+        $height = ($part->getScaleWidth() / $image['width']) * $height;
       }
       // If both are set
       else if ($part->getScaleWidth() && $part->getScaleHeight()) {
-        if ($part->getScaleHeight()/$part->getScaleWidth() > $image['height']/$image['width']) {
-          $width=$part->getScaleHeight();
-          $height=($part->getScaleWidth()/$image['width'])*$image['height'];
+        if ($part->getScaleHeight() / $part->getScaleWidth() > $image['height'] / $image['width']) {
+          $width = $part->getScaleHeight();
+          $height = ($part->getScaleWidth() / $image['width']) * $image['height'];
         } else {
-          $height=$part->getScaleHeight();
-          $width=($part->getScaleHeight()/$image['height'])*$image['width'];
+          $height = $part->getScaleHeight();
+          $width = ($part->getScaleHeight() / $image['height']) * $image['width'];
         }
       }
-    } elseif ($part->getScaleMethod()=='exact') {
+    } elseif ($part->getScaleMethod() == 'exact') {
       // If only width is set
       if (!$part->getScaleHeight() && $part->getScaleWidth()) {
-        $width=$part->getScaleWidth();
-        $height=($part->getScaleWidth()/$image['width'])*$image['height'];
+        $width = $part->getScaleWidth();
+        $height = ($part->getScaleWidth() / $image['width']) * $image['height'];
       }
       // if only height is set
       elseif ($part->getScaleHeight() && !$part->getScaleWidth()) {
-        $width=($part->getScaleHeight()/$image['height'])*$image['width'];
-        $height=$part->getScaleHeight();
+        $width = ($part->getScaleHeight() / $image['height']) * $image['width'];
+        $height = $part->getScaleHeight();
       }
       // if both are set
       elseif ($part->getScaleHeight() && $part->getScaleWidth()) {
-        $width=$part->getScaleWidth();
-        $height=$part->getScaleHeight();
+        $width = $part->getScaleWidth();
+        $height = $part->getScaleHeight();
       }
     }
     return ['width' => $width, 'height' => $height];
@@ -266,11 +266,11 @@ class ImagePartController extends PartController
       }
     }
     if ($style = DOMUtils::getFirstDescendant($node,'style')) {
-      $part->setAdaptive($style->getAttribute('adaptive')==='true');
+      $part->setAdaptive($style->getAttribute('adaptive') === 'true');
       $part->setFrame($style->getAttribute('frame'));
         }
     if ($transform = DOMUtils::getFirstDescendant($node,'transform')) {
-      $part->setGreyscale($transform->getAttribute('greyscale')==='true');
+      $part->setGreyscale($transform->getAttribute('greyscale') === 'true');
       $part->setScaleMethod($transform->getAttribute('scale-method'));
       $part->setScaleWidth(intval($transform->getAttribute('scale-width')));
       $part->setScaleHeight(intval($transform->getAttribute('scale-height')));
@@ -290,7 +290,7 @@ class ImagePartController extends PartController
       <tabs small="true" centered="true">
         <tab title="{Upload; da:Overførsel}" padding="10">
           <upload name="imageUpload" url="../../Parts/image/Upload.php" widget="upload">
-            <placeholder title="{Select an image on you computer...; da:Vælg et billede på din computer...}" text="{The image format can be JPEG, PNG or GIF. The file size can at most be; da: Billedets format skal være JPEG, PNG eller GIF. Filens størrelse må højest være} '.GuiUtils::bytesToString(FileSystemService::getMaxUploadSize()).'."/>
+            <placeholder title="{Select an image on you computer...; da:Vælg et billede på din computer...}" text="{The image format can be JPEG, PNG or GIF. The file size can at most be; da: Billedets format skal være JPEG, PNG eller GIF. Filens størrelse må højest være} ' . GuiUtils::bytesToString(FileSystemService::getMaxUploadSize()) . '."/>
           </upload>
           <buttons align="center" top="10">
             <button name="cancelUpload" text="{Close; da:Luk}"/>
@@ -325,7 +325,7 @@ class ImagePartController extends PartController
           </field>
           <field label="{Frame; da:Ramme}:">
             <dropdown key="frame">
-              '.DesignService::getFrameOptions().'
+              ' . DesignService::getFrameOptions() . '
             </dropdown>
           </field>
         </fields>
@@ -382,7 +382,7 @@ class ImagePartController extends PartController
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['Image', 'da'=>'Billede']) =>
+      GuiUtils::getTranslated(['Image', 'da' => 'Billede']) =>
       '
       <icon icon="common/new" text="{Add image; da:Tilføj billede}" name="addImage"/>
       <icon icon="common/search" text="{Select image; da:Vælg billede}" name="chooseImage"/>
@@ -430,7 +430,7 @@ class ImagePartController extends PartController
         <row>
           <cell label="{Page; da:Side}:" width="200" right="10">
             <dropdown name="page" adaptive="true">
-              '.UI::buildOptions('page').'
+              ' . UI::buildOptions('page') . '
             </dropdown>
           </cell>
           <cell label="{Address; da:Adresse}:" width="100" right="10">
@@ -438,14 +438,14 @@ class ImagePartController extends PartController
           </cell>
           <cell label="{Image; da:Billede}:" width="200" right="10">
             <dropdown name="image" adaptive="true">
-              '.UI::buildOptions('image').'
+              ' . UI::buildOptions('image') . '
             </dropdown>
           </cell>
         </row>
         <row>
           <cell label="{File; da:Fil}:" width="200" right="10">
             <dropdown name="file" adaptive="true">
-              '.UI::buildOptions('file').'
+              ' . UI::buildOptions('file') . '
             </dropdown>
           </cell>
           <cell label="{E-mail; da:E-post}:" width="100" right="10">

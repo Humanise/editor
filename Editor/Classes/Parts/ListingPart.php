@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['ListingPart'] = [
   'table' => 'part_listing',
   'properties' => [
-    'text'   => ['type'=>'string'],
-    'listStyle'   => ['type'=>'string' , 'column' => 'type'],
+    'text' => ['type' => 'string'],
+    'listStyle' => ['type' => 'string' , 'column' => 'type'],
     'textAlign' => [ 'type' => 'string', 'column' => 'textalign' ],
     'fontFamily' => [ 'type' => 'string', 'column' => 'fontfamily' ],
     'fontSize' => [ 'type' => 'string', 'column' => 'fontsize' ],

@@ -11,13 +11,13 @@ if (!isset($GLOBALS['basePath'])) {
 class ObjectLinkService {
 
   static function search($query = []) {
-    $sql = "select object_link.*,page.title as page_title, object.title as file_title from object_link ".
-        "left join page on page.id=object_link.target_value ".
+    $sql = "select object_link.*,page.title as page_title, object.title as file_title from object_link " .
+        "left join page on page.id=object_link.target_value " .
         "left join object on object.id=object_link.target_value and object.type='file'";
     if ($query['objectId']) {
-      $sql.=" where object_id=".$query['objectId'];
+      $sql .= " where object_id=" . $query['objectId'];
     }
-    $sql.=" order by object_link.position";
+    $sql .= " order by object_link.position";
     $list = [];
     foreach (Database::selectAll($sql) as $row) {
       $link = new ObjectLink();
@@ -27,9 +27,9 @@ class ObjectLinkService {
       $link->setType($row['target_type']);
       $link->setValue($row['target_value']);
       $link->setPosition(intval($row['title']));
-      if ($row['target_type']=='page') {
+      if ($row['target_type'] == 'page') {
         $link->setInfo($row['page_title']);
-      } else if ($row['target_type']=='file') {
+      } else if ($row['target_type'] == 'file') {
         $link->setInfo($row['file_title']);
       } else {
         $link->setInfo($row['target_value']);
@@ -40,23 +40,23 @@ class ObjectLinkService {
   }
 
   static function getLinks($object) {
-    return ObjectLinkService::search(['objectId'=>$object->getId()]);
+    return ObjectLinkService::search(['objectId' => $object->getId()]);
   }
 
   static function updateLinks($id,$links) {
-    $sql = "delete from object_link where object_id=".$id;
+    $sql = "delete from object_link where object_id=" . $id;
     Database::delete($sql);
     $position = 1;
     foreach ($links as $link) {
-      $sql = "insert into object_link (object_id,title,target_type,target_value,position)".
-      " values (".$id.",".Database::text($link->getText()).",".Database::text($link->getType()).",".Database::text($link->getValue()).",".$position.")";
+      $sql = "insert into object_link (object_id,title,target_type,target_value,position)" .
+      " values (" . $id . "," . Database::text($link->getText()) . "," . Database::text($link->getType()) . "," . Database::text($link->getValue()) . "," . $position . ")";
       Database::insert($sql);
       $position++;
     }
   }
 
   static function getLinkCounts($objects) {
-    if (count($objects)==0) {
+    if (count($objects) == 0) {
       return [];
     }
     $ids = [];
@@ -64,7 +64,7 @@ class ObjectLinkService {
       $ids[] = $object->getId();
     }
     $counts = [];
-    $sql = "select object_id as id,count(object_id) as count from object_link where object_id in (".implode($ids,",").") group by object_id";
+    $sql = "select object_id as id,count(object_id) as count from object_link where object_id in (" . implode($ids,",") . ") group by object_id";
     foreach (Database::selectAll($sql) as $row) {
       $counts[$row['id']] = $row['count'];
     }
@@ -74,44 +74,44 @@ class ObjectLinkService {
   static function deleteLink($object,$linkId) {
 
     // Delete item
-    $sql="delete from object_link where id=".Database::int($linkId);
+    $sql = "delete from object_link where id=" . Database::int($linkId);
     Database::delete($sql);
 
     // Fix positions
-    $sql="select id from object_link where object_id=".Database::int($object->id)." order by position";
+    $sql = "select id from object_link where object_id=" . Database::int($object->id) . " order by position";
     $result = Database::select($sql);
-    $pos=1;
+    $pos = 1;
     while ($row = Database::next($result)) {
-      $sql="update object_link set position=".Database::int($pos)." where id=".Database::int($row['id']);
+      $sql = "update object_link set position=" . Database::int($pos) . " where id=" . Database::int($row['id']);
       Database::update($sql);
       $pos++;
     }
     Database::free($result);
 
-    $sql = "update `object` set updated=now() where id=".Database::int($object->id);
+    $sql = "update `object` set updated=now() where id=" . Database::int($object->id);
     Database::update($sql);
   }
 
   static function moveLink($object,$linkId,$dir) {
 
-    $sql="select * from object_link where id=".Database::int($linkId);
+    $sql = "select * from object_link where id=" . Database::int($linkId);
     $row = Database::selectFirst($sql);
-    $pos=$row['position'];
+    $pos = $row['position'];
 
-    $sql="select id from object_link where object_id=".Database::int($object->id)." and `position`=".Database::int($pos+$dir);
+    $sql = "select id from object_link where object_id=" . Database::int($object->id) . " and `position`=" . Database::int($pos + $dir);
     $result = Database::select($sql);
     if ($row = Database::next($result)) {
-      $otherid=$row['id'];
+      $otherid = $row['id'];
 
-      $sql="update object_link set `position`=".Database::int($pos+$dir)." where id=".Database::int($linkId);
+      $sql = "update object_link set `position`=" . Database::int($pos + $dir) . " where id=" . Database::int($linkId);
       Database::update($sql);
 
-      $sql="update object_link set `position`=".Database::int($pos)." where id=".Database::int($otherid);
+      $sql = "update object_link set `position`=" . Database::int($pos) . " where id=" . Database::int($otherid);
       Database::update($sql);
     }
     Database::free($result);
 
-    $sql = "update `object` set updated=now() where id=".Database::int($object->id);
+    $sql = "update `object` set updated=now() where id=" . Database::int($object->id);
     Database::update($sql);
   }
 
@@ -120,39 +120,39 @@ class ObjectLinkService {
   }
 
   static function addLink($object,$title,$alternative,$target,$targetType,$targetValue) {
-    $sql="select max(`position`) as `position` from object_link where object_id=".Database::int($object->id);
+    $sql = "select max(`position`) as `position` from object_link where object_id=" . Database::int($object->id);
     if ($row = Database::selectFirst($sql)) {
-      $pos=$row['position']+1;
+      $pos = $row['position'] + 1;
     } else {
-      $pos=1;
+      $pos = 1;
     }
 
-    $sql="insert into object_link (object_id,title,alternative,target,position,target_type,target_value) values (".
-    Database::int($object->id).
-    ",".Database::text($title).
-    ",".Database::text($alternative).
-    ",".Database::text($target).
-    ",".Database::int($pos).
-    ",".Database::text($targetType).
-    ",".Database::text($targetValue).
+    $sql = "insert into object_link (object_id,title,alternative,target,position,target_type,target_value) values (" .
+    Database::int($object->id) .
+    "," . Database::text($title) .
+    "," . Database::text($alternative) .
+    "," . Database::text($target) .
+    "," . Database::int($pos) .
+    "," . Database::text($targetType) .
+    "," . Database::text($targetValue) .
     ")";
     Database::insert($sql);
 
-    $sql = "update `object` set updated=now() where id=".Database::int($object->id);
+    $sql = "update `object` set updated=now() where id=" . Database::int($object->id);
     Database::update($sql);
   }
 
   static function updateLink($object,$id,$title,$alternative,$target,$targetType,$targetValue) {
 
-    $sql="update object_link set title=".Database::text($title).
-    ",alternative=".Database::text($alternative).
-    ",target_type=".Database::text($targetType).
-    ",target=".Database::text($target).
-    ",target_value=".Database::text($targetValue).
-    " where id = ".$id;
+    $sql = "update object_link set title=" . Database::text($title) .
+    ",alternative=" . Database::text($alternative) .
+    ",target_type=" . Database::text($targetType) .
+    ",target=" . Database::text($target) .
+    ",target_value=" . Database::text($targetValue) .
+    " where id = " . $id;
     Database::update($sql);
 
-    $sql = "update `object` set updated=now() where id=".$this->id;
+    $sql = "update `object` set updated=now() where id=" . $this->id;
     Database::update($sql);
 
   }

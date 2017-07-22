@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Issue'] = [
   'table' => 'issue',
   'properties' => [
-    'kind' => ['type'=>'string'],
-    'statusId' => ['type'=>'int', 'column'=>'issuestatus_id', 'relation'=>['class'=>'Issuestatus', 'property'=>'id']]
+    'kind' => ['type' => 'string'],
+    'statusId' => ['type' => 'int', 'column' => 'issuestatus_id', 'relation' => ['class' => 'Issuestatus', 'property' => 'id']]
   ]
 ];
 

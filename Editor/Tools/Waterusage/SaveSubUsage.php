@@ -7,7 +7,7 @@ require_once '../../Include/Private.php';
 
 $data = Request::getObject('data');
 
-if ($data->id>0) {
+if ($data->id > 0) {
   $obj = Waterusage::load($data->id);
 } else {
   $obj = new Waterusage();

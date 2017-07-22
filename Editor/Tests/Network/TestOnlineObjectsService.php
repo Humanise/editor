@@ -14,7 +14,7 @@ class TestOnlineObjectsService extends UnitTestCase {
     function testAnalyseText() {
     $text = "Et mitokondrie er inden for cellebiologi betegnelsen for et organel, som findes i de fleste eukaryote celler.";
     $response = OnlineObjectsService::analyseText($text);
-    if ($response!=null) {
+    if ($response != null) {
       $uniqueWords = $response->uniqueWords;
 
       $this->assertEqual('da',$response->language);
@@ -27,7 +27,7 @@ class TestOnlineObjectsService extends UnitTestCase {
   function testAnalyseEnglish() {
     $text = "Jones, sitting on the set of 'Piers Morgan Tonight' on Monday, nodded in agreement, as Morgan framed the gun advocate's desire to have the Englishman thrown out of the United States.";
     $response = OnlineObjectsService::analyseText($text);
-    if ($response!=null) {
+    if ($response != null) {
       $this->assertEqual('en',$response->language);
     }
   }

@@ -8,5 +8,5 @@ require_once '../../Include/Private.php';
 
 $id = ImagePartController::getLatestUploadId();
 
-Response::sendObject(['id'=>$id]);
+Response::sendObject(['id' => $id]);
 ?>

@@ -7,11 +7,11 @@ if (!isset($GLOBALS['basePath'])) {
   header('HTTP/1.1 403 Forbidden');
   exit;
 }
-require_once $basePath.'Editor/Libraries/pclzip/pclzip.lib.php';
+require_once $basePath . 'Editor/Libraries/pclzip/pclzip.lib.php';
 
 class ZipService {
 
-  static function uploadIsZipFile($name='file') {
+  static function uploadIsZipFile($name = 'file') {
     $mimes = ["application/x-zip-compressed", "application/zip"];
     return in_array($_FILES[$name]["type"],$mimes);
   }
@@ -21,7 +21,7 @@ class ZipService {
     return new ZipFile($zip);
   }
 
-  static function getUploadedZip($name='file') {
+  static function getUploadedZip($name = 'file') {
     return ZipService::getArchive($_FILES[$name]["tmp_name"]);
   }
 }

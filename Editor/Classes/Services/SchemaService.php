@@ -10,7 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 class SchemaService {
 
-  static function buildSqlSetters($obj,$schema,$exclude=[]) {
+  static function buildSqlSetters($obj,$schema,$exclude = []) {
     $sql = '';
     $fields = $schema;
     if (isset($schema['properties'])) {
@@ -26,15 +26,15 @@ class SchemaService {
                 continue;
             }
       if (strlen($sql) > 0) {
-        $sql.=',';
+        $sql .= ',';
       }
-      $sql.= "`".$column."`=";
-      $getter = "get".ucfirst($field);
+      $sql .= "`" . $column . "`=";
+      $getter = "get" . ucfirst($field);
       if (!method_exists($obj,$getter)) {
-        Log::warn($getter.' does not exist');
+        Log::warn($getter . ' does not exist');
       }
       $value = $obj->$getter();
-      $sql.= SchemaService::_formatValue($info['type'],$value);
+      $sql .= SchemaService::_formatValue($info['type'],$value);
     }
     return $sql;
   }
@@ -57,10 +57,10 @@ class SchemaService {
       return intval($value);
     } else if ($type == 'float') {
       return floatval($row[$column]);
-    } else if ($type=='datetime') {
+    } else if ($type == 'datetime') {
       return $value ? intval($value) : null;
-    } else if ($type=='boolean') {
-      return $value==1 ? true : false;
+    } else if ($type == 'boolean') {
+      return $value == 1 ? true : false;
     }
     return $value;
   }
@@ -72,7 +72,7 @@ class SchemaService {
     return $property;
   }
 
-  static function buildSqlColumns($schema,$exclude=[]) {
+  static function buildSqlColumns($schema,$exclude = []) {
     $sql = '';
     foreach ($schema['properties'] as $field => $info) {
       $column = $field;
@@ -82,15 +82,15 @@ class SchemaService {
             if (in_array($column,$exclude)) {
                 continue;
             }
-      if (strlen($sql)>0) {
-        $sql.=',';
+      if (strlen($sql) > 0) {
+        $sql .= ',';
       }
-      $sql.='`'.$column.'`';
+      $sql .= '`' . $column . '`';
     }
     return $sql;
   }
 
-  static function buildSqlValues($obj,$schema,$exclude=[]) {
+  static function buildSqlValues($obj,$schema,$exclude = []) {
     $sql = '';
     foreach ($schema['properties'] as $field => $info) {
       $column = $field;
@@ -100,15 +100,15 @@ class SchemaService {
             if (in_array($column,$exclude)) {
                 continue;
             }
-      if (strlen($sql)>0) {
-        $sql.=',';
+      if (strlen($sql) > 0) {
+        $sql .= ',';
       }
-      $getter = "get".ucfirst($field);
+      $getter = "get" . ucfirst($field);
       if (!method_exists($obj,$getter)) {
-        Log::warn($getter.' does not exist');
+        Log::warn($getter . ' does not exist');
       }
       $value = $obj->$getter();
-      $sql.= SchemaService::_formatValue($info['type'],$value);
+      $sql .= SchemaService::_formatValue($info['type'],$value);
     }
     return $sql;
   }

@@ -28,16 +28,16 @@ class Webloggroup extends Object {
   }
 
   function removeMore() {
-    $sql="delete from webloggroup_weblogentry where webloggroup_id=".Database::int($this->id);
+    $sql = "delete from webloggroup_weblogentry where webloggroup_id=" . Database::int($this->id);
     Database::delete($sql);
-    $sql="delete from weblog_webloggroup where webloggroup_id=".Database::int($this->id);
+    $sql = "delete from weblog_webloggroup where webloggroup_id=" . Database::int($this->id);
     Database::delete($sql);
   }
 
   static function search($query = []) {
     $out = [];
     if (isset($out['page'])) {
-      $sql = "select webloggroup_id as id from weblog_webloggroup where page_id=".$out['page'];
+      $sql = "select webloggroup_id as id from weblog_webloggroup where page_id=" . $out['page'];
     } else {
       $sql = "select id from object,webloggroup where object.id=webloggroup.object_id order by object.title";
     }

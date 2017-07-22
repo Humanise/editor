@@ -39,8 +39,8 @@ class SelectBuilder {
     return $this;
   }
 
-  function addOrdering($column,$descending=false) {
-    $this->orderings[] = ['column'=>$column, 'descending'=>$descending];
+  function addOrdering($column,$descending = false) {
+    $this->orderings[] = ['column' => $column, 'descending' => $descending];
     return $this;
   }
 
@@ -67,42 +67,42 @@ class SelectBuilder {
 
   function toSQL() {
     $sql = 'select ';
-    for ($i=0; $i < count($this->columns); $i++) {
-      if ($i>0) {
-        $sql.= ',';
+    for ($i = 0; $i < count($this->columns); $i++) {
+      if ($i > 0) {
+        $sql .= ',';
       }
-      $sql.=$this->columns[$i];
+      $sql .= $this->columns[$i];
     }
 
-    $sql.=' from ';
-    for ($i=0; $i < count($this->tables); $i++) {
-      if ($i>0) {
-        $sql.= ',';
+    $sql .= ' from ';
+    for ($i = 0; $i < count($this->tables); $i++) {
+      if ($i > 0) {
+        $sql .= ',';
       }
-      $sql.=$this->tables[$i];
+      $sql .= $this->tables[$i];
     }
 
-    if (count($this->limits)>0) {
-      $sql.=' where ';
-      for ($i=0; $i < count($this->limits); $i++) {
-        if ($i>0) {
-          $sql.=' and ';
+    if (count($this->limits) > 0) {
+      $sql .= ' where ';
+      for ($i = 0; $i < count($this->limits); $i++) {
+        if ($i > 0) {
+          $sql .= ' and ';
         }
-        $sql.= $this->limits[$i];
+        $sql .= $this->limits[$i];
       }
     }
-    if (count($this->orderings)>0) {
-      $sql.=' order by ';
-      for ($i=0; $i < count($this->orderings); $i++) {
-        if ($i>0) {
-          $sql.=',';
+    if (count($this->orderings) > 0) {
+      $sql .= ' order by ';
+      for ($i = 0; $i < count($this->orderings); $i++) {
+        if ($i > 0) {
+          $sql .= ',';
         }
-        $sql.= $this->orderings[$i]['column'];
-        $sql.= $this->orderings[$i]['descending'] ? ' desc' : ' asc';
+        $sql .= $this->orderings[$i]['column'];
+        $sql .= $this->orderings[$i]['descending'] ? ' desc' : ' asc';
       }
     }
-    if ($this->from!==null && $this->to!==null) {
-      $sql.=' limit '.$this->from.','.$this->to;
+    if ($this->from !== null && $this->to !== null) {
+      $sql .= ' limit ' . $this->from . ',' . $this->to;
     }
     return $sql;
   }

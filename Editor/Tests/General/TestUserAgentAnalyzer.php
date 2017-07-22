@@ -13,10 +13,10 @@ class TestUserAgentAnalyzer extends UnitTestCase {
 
   function testBasic() {
     $analyzer = new UserAgentAnalyzer();
-    $this->assertTrue($analyzer->getApplicationVersion()=='');
-    $this->assertTrue($analyzer->getApplicationName()=='');
-    $this->assertTrue($analyzer->getTechnologyName()=='');
-    $this->assertTrue($analyzer->getTechnologyVersion()=='');
+    $this->assertTrue($analyzer->getApplicationVersion() == '');
+    $this->assertTrue($analyzer->getApplicationName() == '');
+    $this->assertTrue($analyzer->getTechnologyName() == '');
+    $this->assertTrue($analyzer->getTechnologyVersion() == '');
     $this->assertNull($analyzer->isRobot());
     $this->assertNull($analyzer->isSearchEngine());
   }
@@ -59,58 +59,58 @@ Mozilla/5.0 (Macintosh; U; PPC Mac OS X; da-dk) AppleWebKit/412.7 (KHTML, like G
     $analyzer = new UserAgentAnalyzer();
 
     $analyzer->setUserAgent('Mozilla/5.0 (Macintosh; U; PPC Mac OS X; da-dk) AppleWebKit/412.7 (KHTML, like Gecko)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='');
-        $this->assertTrue($analyzer->getApplicationName()=='AppleWebKit');
-        $this->assertTrue($analyzer->getTechnologyName()=='AppleWebKit');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='412.7');
+        $this->assertTrue($analyzer->getApplicationVersion() == '');
+        $this->assertTrue($analyzer->getApplicationName() == 'AppleWebKit');
+        $this->assertTrue($analyzer->getTechnologyName() == 'AppleWebKit');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '412.7');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/5.0 (Macintosh; U; PPC Mac OS X; da-dk) AppleWebKit/125.5 (KHTML, like Gecko) Safari/125.9');
-        $this->assertTrue($analyzer->getApplicationVersion()=='125.9');
-        $this->assertTrue($analyzer->getApplicationName()=='Safari');
-        $this->assertTrue($analyzer->getTechnologyName()=='AppleWebKit');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='125.5');
+        $this->assertTrue($analyzer->getApplicationVersion() == '125.9');
+        $this->assertTrue($analyzer->getApplicationName() == 'Safari');
+        $this->assertTrue($analyzer->getTechnologyName() == 'AppleWebKit');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '125.5');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/5.0 (Macintosh; U; PPC Mac OS X; da-dk) AppleWebKit/125.5.5 (KHTML, like Gecko) Safari/125.11');
-        $this->assertTrue($analyzer->getApplicationVersion()=='125.11');
-        $this->assertTrue($analyzer->getApplicationName()=='Safari');
-        $this->assertTrue($analyzer->getTechnologyName()=='AppleWebKit');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='125.5.5');
+        $this->assertTrue($analyzer->getApplicationVersion() == '125.11');
+        $this->assertTrue($analyzer->getApplicationName() == 'Safari');
+        $this->assertTrue($analyzer->getTechnologyName() == 'AppleWebKit');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '125.5.5');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/5.0 (Macintosh; U; PPC Mac OS X; da-dk) AppleWebKit/420+ (KHTML, like Gecko) Safari/417.8');
-        $this->assertTrue($analyzer->getApplicationVersion()=='417.8');
-        $this->assertTrue($analyzer->getApplicationName()=='Safari');
-        $this->assertTrue($analyzer->getTechnologyName()=='AppleWebKit');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='420+');
+        $this->assertTrue($analyzer->getApplicationVersion() == '417.8');
+        $this->assertTrue($analyzer->getApplicationName() == 'Safari');
+        $this->assertTrue($analyzer->getTechnologyName() == 'AppleWebKit');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '420+');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Safari/419.3');
-        $this->assertTrue($analyzer->getApplicationVersion()=='419.3');
-        $this->assertTrue($analyzer->getApplicationName()=='Safari');
-        $this->assertTrue($analyzer->getTechnologyName()=='AppleWebKit');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='420+');
+        $this->assertTrue($analyzer->getApplicationVersion() == '419.3');
+        $this->assertTrue($analyzer->getApplicationName() == 'Safari');
+        $this->assertTrue($analyzer->getTechnologyName() == 'AppleWebKit');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '420+');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/417.9 (KHTML, like Gecko) Safari/417.8');
-        $this->assertTrue($analyzer->getApplicationVersion()=='417.8');
-        $this->assertTrue($analyzer->getApplicationName()=='Safari');
-        $this->assertTrue($analyzer->getTechnologyName()=='AppleWebKit');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='417.9');
+        $this->assertTrue($analyzer->getApplicationVersion() == '417.8');
+        $this->assertTrue($analyzer->getApplicationName() == 'Safari');
+        $this->assertTrue($analyzer->getTechnologyName() == 'AppleWebKit');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '417.9');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/5.0 (Macintosh; U; Intel Mac OS X; da-dk) AppleWebKit/418.9.1 (KHTML, like Gecko) Safari/419.3');
-        $this->assertTrue($analyzer->getApplicationVersion()=='419.3');
-        $this->assertTrue($analyzer->getApplicationName()=='Safari');
-        $this->assertTrue($analyzer->getTechnologyName()=='AppleWebKit');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='418.9.1');
+        $this->assertTrue($analyzer->getApplicationVersion() == '419.3');
+        $this->assertTrue($analyzer->getApplicationName() == 'Safari');
+        $this->assertTrue($analyzer->getTechnologyName() == 'AppleWebKit');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '418.9.1');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
@@ -137,18 +137,18 @@ Mozilla/5.0 (Macintosh; U; PPC Mac OS X; da-dk) AppleWebKit/412.7 (KHTML, like G
     // Other apps than safari
 
     $analyzer->setUserAgent('Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en-US) AppleWebKit/125.4 (KHTML, like Gecko, Safari) OmniWeb/v563.34');
-        $this->assertTrue($analyzer->getApplicationVersion()=='563.34');
-        $this->assertTrue($analyzer->getApplicationName()=='OmniWeb');
-        $this->assertTrue($analyzer->getTechnologyName()=='AppleWebKit');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='125.4');
+        $this->assertTrue($analyzer->getApplicationVersion() == '563.34');
+        $this->assertTrue($analyzer->getApplicationName() == 'OmniWeb');
+        $this->assertTrue($analyzer->getTechnologyName() == 'AppleWebKit');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '125.4');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/5.0 (Macintosh; U; PPC Mac OS X; da-dk) AppleWebKit/418.8 (KHTML, like Gecko) Paparazzi!/0.4.3');
-        $this->assertTrue($analyzer->getApplicationVersion()=='0.4.3');
-        $this->assertTrue($analyzer->getApplicationName()=='Paparazzi!');
-        $this->assertTrue($analyzer->getTechnologyName()=='AppleWebKit');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='418.8');
+        $this->assertTrue($analyzer->getApplicationVersion() == '0.4.3');
+        $this->assertTrue($analyzer->getApplicationName() == 'Paparazzi!');
+        $this->assertTrue($analyzer->getTechnologyName() == 'AppleWebKit');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '418.8');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
@@ -287,242 +287,242 @@ Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; GTB7.4; Mozilla/
     $analyzer = new UserAgentAnalyzer();
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='6.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='6.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '6.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '6.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 5.00; Windows 98)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='5.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='5.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '5.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '5.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 5.01; Windows 98; SYMPA)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='5.01');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='5.01');
+        $this->assertTrue($analyzer->getApplicationVersion() == '5.01');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '5.01');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0; MathPlayer 2.0; SV1; .NET CLR 1.1.4322)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='5.01');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='5.01');
+        $this->assertTrue($analyzer->getApplicationVersion() == '5.01');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '5.01');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0; IE55SP2-2002.06.03-NC; IE55SP2-2002.06.03)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='5.5');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='5.5');
+        $this->assertTrue($analyzer->getApplicationVersion() == '5.5');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '5.5');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0; IE55SP2-2002.06.03-NC; IE55SP2-2002.06.03)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='5.5');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='5.5');
+        $this->assertTrue($analyzer->getApplicationVersion() == '5.5');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '5.5');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='6.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='6.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '6.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '6.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='6.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='6.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '6.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '6.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; Hotbar 4.2.13.0; MSN 6.1; MSNbMSFT; MSNmfr-ca; MSNc00; v5m)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='6.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='6.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '6.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '6.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; SV1; .NET CLR 1.1.4322; InfoPath.1)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='6.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='6.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '6.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '6.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 5.0b1; Mac_PowerPC)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='5.0b1');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='5.0b1');
+        $this->assertTrue($analyzer->getApplicationVersion() == '5.0b1');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '5.0b1');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; acc=kimochiz; acc=none; (none); (); .NET CLR 1.1.4322)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='6.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='6.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '6.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '6.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 6.0; Windows XP)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='6.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='6.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '6.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '6.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/2.0 (compatible; MSIE 3.0B; Windows NT)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='3.0B');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='3.0B');
+        $this->assertTrue($analyzer->getApplicationVersion() == '3.0B');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '3.0B');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; FunWebProducts; SIMBAR Enabled; SIMBAR=0; SIMBAR={3D7C862C-1B8B-4e9b-BE7E-490350C8A7AF}; .NET CLR 1.1.4322)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='6.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='6.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '6.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '6.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; EmbeddedWB 14,52 from: http://www.bsalsa.com/ EmbeddedWB 14,52; .NET CLR 1.1.4322)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='7.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='7.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '7.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '7.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; EmbeddedWB 14,52 from: http://www.bsalsa.com/ EmbeddedWB 14,52; .NET CLR 1.1.4322)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='6.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='6.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '6.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '6.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; SIMBAR Enabled; SIMBAR={89B84771-DEAF-4b89-AB55-86C6DBE4E38D}; .NET CLR 1.1.4322)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='6.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='6.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '6.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '6.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; ESB{A79DE66A-1A52-43FD-8E3E-A87A14867BBF}; SV1; .NET CLR 1.1.4322)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='6.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='6.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '6.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '6.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; SIMBAR={BC764ED8-0CCA-483a-9546-E275EA8B348A}; .NET CLR 1.1.4322)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='6.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='6.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '6.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '6.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; Sgrunt|V109|155|S-728657281|dial; snprtz|S26140800000000|2600#Service Pack 2#2#5#1)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='6.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='6.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '6.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '6.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; FunWebProducts; SIMBAR Enabled; SIMBAR=0; SIMBAR={3D7C862C-1B8B-4e9b-BE7E-490350C8A7AF}; .NET CLR 1.1.4322)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='6.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='6.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '6.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '6.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; SIMBAR Enabled; SIMBAR={5851FEF0-8C5A-4796-9A88-9CE73BD176C1}; .NET CLR 1.1.4322)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='6.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='6.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '6.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '6.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; {CCB25D1F-EFD8-6D88-7FAB-EAC458474602})');
-        $this->assertTrue($analyzer->getApplicationVersion()=='6.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='6.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '6.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '6.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; %username%; .NET CLR 1.1.4322)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='6.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='6.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '6.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '6.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; ESB{E1B0C493-3C63-4320-BBC0-8EB2881B67BF}; SV1; .NET CLR 1.1.4322)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='6.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='6.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '6.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '6.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; SIMBAR Enabled; SIMBAR={1401E86A-705D-4e24-BBD7-452FE6C53250})');
-        $this->assertTrue($analyzer->getApplicationVersion()=='6.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='6.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '6.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '6.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; SIMBAR Enabled; SIMBAR={7807FBC3-78FA-452e-9831-D95471D64800}; .NET CLR 1.1.4322)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='6.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='6.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '6.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '6.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; SIMBAR Enabled; SIMBAR=0; SIMBAR={E1A9EF6D-AEBC-4141-834F-D081FD070336}; i-NavFourF; .NET CLR 1.1.4322)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='6.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='6.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '6.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '6.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; SIMBAR Enabled; SIMBAR={AAF80D7F-0746-439a-A61F-94E2400D3F68}; .NET CLR 1.1.4322)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='7.0');
-        $this->assertTrue($analyzer->getApplicationName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='7.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '7.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '7.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
@@ -575,18 +575,18 @@ Mozilla/4.0 (compatible; MSIE 6.0; AOL 8.0; Windows NT 5.1; FIPID-{0KUZjWJqnnqw{
     $analyzer = new UserAgentAnalyzer();
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 6.0; AOL 8.0; Windows NT 5.1; FIPID-{0KUZjWJqnnqw{05je1XAf1sUU356964111; (R1 1.3); .NET CLR 1.1.4322)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='8.0');
-        $this->assertTrue($analyzer->getApplicationName()=='AOL');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='6.0');
+        $this->assertTrue($analyzer->getApplicationVersion() == '8.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'AOL');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '6.0');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
 
     $analyzer->setUserAgent('Mozilla/4.0 (compatible; MSIE 5.5; AOL 7.0; Windows 98; Win 9x 4.90; KITV4.6 Wanadoo)');
-        $this->assertTrue($analyzer->getApplicationVersion()=='7.0');
-        $this->assertTrue($analyzer->getApplicationName()=='AOL');
-        $this->assertTrue($analyzer->getTechnologyName()=='InternetExplorer');
-        $this->assertTrue($analyzer->getTechnologyVersion()=='5.5');
+        $this->assertTrue($analyzer->getApplicationVersion() == '7.0');
+        $this->assertTrue($analyzer->getApplicationName() == 'AOL');
+        $this->assertTrue($analyzer->getTechnologyName() == 'InternetExplorer');
+        $this->assertTrue($analyzer->getTechnologyVersion() == '5.5');
         $this->assertTrue(!$analyzer->isRobot());
         $this->assertTrue(!$analyzer->isSearchEngine());
   }

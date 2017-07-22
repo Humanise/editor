@@ -23,12 +23,12 @@ class FileUpload {
 
   function process($field) {
     global $basePath;
-    $this->fileName=FileSystemService::safeFilename($_FILES[$field]['name']);
-    $this->mimeType=$_FILES[$field]["type"];
-    $tempFile=$_FILES['file']['tmp_name'];
-    $uploadDir = $basePath.'local/cache/temp/';
+    $this->fileName = FileSystemService::safeFilename($_FILES[$field]['name']);
+    $this->mimeType = $_FILES[$field]["type"];
+    $tempFile = $_FILES['file']['tmp_name'];
+    $uploadDir = $basePath . 'local/cache/temp/';
     $filePath = $uploadDir . $this->fileName;
-    $this->size=$_FILES[$field]["size"];
+    $this->size = $_FILES[$field]["size"];
 
     $this->path = FileSystemService::findFreeFilePath($filePath);
 

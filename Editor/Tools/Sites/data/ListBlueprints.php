@@ -17,17 +17,17 @@ $writer->startList();
 $writer->sort($sort,$direction);
 $writer->window([ 'total' => $result->getTotal(), 'size' => $windowSize, 'page' => $windowPage ]);
 $writer->startHeaders();
-$writer->header(['title'=>'Titel']);
-$writer->header(['title'=>'Ramme']);
-$writer->header(['title'=>'Type']);
-$writer->header(['title'=>'Design']);
+$writer->header(['title' => 'Titel']);
+$writer->header(['title' => 'Ramme']);
+$writer->header(['title' => 'Type']);
+$writer->header(['title' => 'Design']);
 $writer->endHeaders();
 
 foreach ($result->getList() as $object) {
   $frame = Frame::load($object->getFrameId());
   $template = TemplateService::getTemplateById($object->getTemplateId());
   $design = Design::load($object->getDesignId());
-  $writer->startRow([ 'kind'=>'blueprint', 'id'=>$object->getId(), 'icon'=>$object->getIcon(), 'title'=>$object->getTitle() ]);
+  $writer->startRow([ 'kind' => 'blueprint', 'id' => $object->getId(), 'icon' => $object->getIcon(), 'title' => $object->getTitle() ]);
   $writer->startCell()->text($object->getTitle())->endCell();
   $writer->startCell()->text($frame ? $frame->getName() : '?')->endCell();
   $writer->startCell()->text($template ? $template->getName() : '?')->endCell();

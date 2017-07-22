@@ -18,7 +18,7 @@ Entity::$schema['Object'] = [
     'published' => ['type' => 'datetime'],
     'type' => ['type' => 'string'],
     'note' => ['type' => 'string'],
-    'searchable' => ['type'=>'boolean'],
+    'searchable' => ['type' => 'boolean'],
     'ownerId' => ['type' => 'int', 'column' => 'owner_id', 'relation' => ['class' => 'User', 'property' => 'id']]
     ]
 ];
@@ -69,11 +69,11 @@ class Object extends Entity implements Loadable {
   }
 
   function setSearchable($searchable) {
-    $this->searchable = ($searchable==true);
+    $this->searchable = ($searchable == true);
   }
 
   function isPublished() {
-    return ($this->updated<=$this->published);
+    return ($this->updated <= $this->published);
   }
 
   function setPublished($published) {
@@ -113,7 +113,7 @@ class Object extends Entity implements Loadable {
   }
 
   function isPersistent() {
-    return $this->id>0;
+    return $this->id > 0;
   }
 
   function create() {
@@ -148,10 +148,10 @@ class Object extends Entity implements Loadable {
 
   function getIndex() {
     $index = '';
-    $index.=$this->title.' ';
-    $index.=$this->note.' ';
+    $index .= $this->title . ' ';
+    $index .= $this->note . ' ';
     if (method_exists($this,'sub_index')) {
-      $index.=$this->sub_index();
+      $index .= $this->sub_index();
     }
     return $index;
   }
@@ -161,7 +161,7 @@ class Object extends Entity implements Loadable {
   }
 
   function _buildnamespace($version) {
-    return 'http://uri.in2isoft.com/onlinepublisher/class/'.$this->type.'/'.$version.'/';
+    return 'http://uri.in2isoft.com/onlinepublisher/class/' . $this->type . '/' . $version . '/';
   }
 
 
@@ -172,7 +172,7 @@ class Object extends Entity implements Loadable {
   }
 
   function getLinks() {
-    return ObjectLinkService::search(['objectId'=>$this->id]);
+    return ObjectLinkService::search(['objectId' => $this->id]);
   }
 
 

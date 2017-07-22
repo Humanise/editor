@@ -10,7 +10,7 @@ if (!$id) {
   $data = Request::getObject('data');
   $id = $data->id;
 }
-$obj=Object::load($id);
+$obj = Object::load($id);
 if ($obj) {
   $obj->remove();
 } else {

@@ -63,7 +63,7 @@ class TestStrings extends UnitTestCase {
     $this->assertEqual("Ã¦",Strings::toUnicode('æ'));
     $this->assertEqual("æ",Strings::toUnicode(Strings::fromUnicode('æ')));
 
-    $obj = ['first'=>'æ', 'sub'=>['one'=>'æ']];
+    $obj = ['first' => 'æ', 'sub' => ['one' => 'æ']];
     $obj = Strings::toUnicode($obj);
     $this->assertEqual("Ã¦",$obj['first']);
     $this->assertEqual("Ã¦",$obj['sub']['one']);

@@ -4,7 +4,7 @@ if (!isset($GLOBALS['basePath'])) {
  exit;
 }
 
-$HUMANISE_EDITOR_CLASSES =  [
+$HUMANISE_EDITOR_CLASSES = [
   'all' =>
    [
     'Console' => 'Utilities/Console.php',

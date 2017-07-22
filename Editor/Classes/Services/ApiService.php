@@ -17,8 +17,8 @@ class ApiService {
       $sub = substr($matches[1], 1);
       $parts = explode('/',$sub);
       $method = $parts[0];
-      for ($i=1; $i < count($parts); $i++) {
-        $method.=ucfirst($parts[$i]);
+      for ($i = 1; $i < count($parts); $i++) {
+        $method .= ucfirst($parts[$i]);
       }
     }
     if (method_exists('ApiService', $method)) {

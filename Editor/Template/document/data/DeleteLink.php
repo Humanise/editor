@@ -11,6 +11,6 @@ if ($link = Link::load($id)) {
   Log::debug($link);
   $link->remove();
 } else {
-  Log::debug('Link with id='.$id.' not found');
+  Log::debug('Link with id=' . $id . ' not found');
 }
 ?>

@@ -15,12 +15,12 @@ class AuthenticationTemplateController extends TemplateController
   }
 
   function create($page) {
-    $sql="insert into authentication (page_id,title) values (".Database::int($page->getId()).",".Database::text($page->getTitle()).")";
+    $sql = "insert into authentication (page_id,title) values (" . Database::int($page->getId()) . "," . Database::text($page->getTitle()) . ")";
     Database::insert($sql);
   }
 
   function delete($page) {
-    $sql="delete from authentication where page_id=".Database::int($page->getId());
+    $sql = "delete from authentication where page_id=" . Database::int($page->getId());
     Database::delete($sql);
   }
 
@@ -30,41 +30,41 @@ class AuthenticationTemplateController extends TemplateController
 
   function build($id) {
     $data = '<authentication xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/authentication/1.0/">';
-    $sql="select * from authentication where page_id=".Database::int($id);
+    $sql = "select * from authentication where page_id=" . Database::int($id);
     if ($row = Database::selectFirst($sql)) {
-      $data.='<title>'.Strings::escapeXML($row['title']).'</title>';
+      $data .= '<title>' . Strings::escapeXML($row['title']) . '</title>';
       $index = $row['title'];
     }
-    $data.='<!--dynamic-->';
-    $data.= '</authentication>';
-    return ['data' => $data, 'index'=>'', 'dynamic'=>true];
+    $data .= '<!--dynamic-->';
+    $data .= '</authentication>';
+    return ['data' => $data, 'index' => '', 'dynamic' => true];
   }
 
   function dynamic($id,&$state) {
     $xml = '';
 
     if (Request::exists('page')) {
-      $xml .= '<target type="page" id="'.Request::getInt('page').'"/>';
+      $xml .= '<target type="page" id="' . Request::getInt('page') . '"/>';
     }
     if (Request::getBoolean('logout')) {
       if (Request::exists('page')) {
-        $state['redirect'] = './?id='.Request::getInt('page');
+        $state['redirect'] = './?id=' . Request::getInt('page');
       } else {
         $xml .= '<message type="loggedout"/>';
       }
     }
 
     if (Request::exists('username') && Request::exists('password')) {
-      if (strlen(Request::getString('username'))==0) {
+      if (strlen(Request::getString('username')) == 0) {
           $xml .= '<message type="nousername"/>';
       }
-      elseif (strlen(Request::getString('password'))==0) {
+      elseif (strlen(Request::getString('password')) == 0) {
           $xml .= '<message type="nopassword"/>';
       }
       else {
         if ($user = ExternalSession::logIn(Request::getString('username'),Request::getString('password'))) {
           if (Request::exists('page')) {
-            $state['redirect'] = './?id='.Request::getInt('page');
+            $state['redirect'] = './?id=' . Request::getInt('page');
           }
           else {
             $xml .= '<message type="loggedin"/>';

@@ -13,11 +13,11 @@ class TestVCal extends UnitTestCase {
 
   function testIt() {
     global $basePath;
-    $path = $basePath.'/Editor/Tests/Resources/ical.ics';
+    $path = $basePath . '/Editor/Tests/Resources/ical.ics';
     $this->assertTrue(file_exists($path));
     $parser = new VCalParser();
     $cal = $parser->parseUrl($path);
-    $this->assertTrue($cal!==false);
+    $this->assertTrue($cal !== false);
 
     $this->assertEqual('2.0',$cal->getVersion());
     $this->assertEqual('My calendar',$cal->getTitle());

@@ -13,7 +13,7 @@ class TestZipFile extends UnitTestCase {
 
   function testParseFile() {
     global $basePath;
-    $path = $basePath.'Editor/Tests/Resources/images.zip';
+    $path = $basePath . 'Editor/Tests/Resources/images.zip';
     $archive = ZipService::getArchive($path);
 
     $this->assertNotNull($archive);
@@ -31,7 +31,7 @@ class TestZipFile extends UnitTestCase {
 
   function testParsePages() {
     global $basePath;
-    $path = $basePath.'Editor/Tests/Resources/pages.pages';
+    $path = $basePath . 'Editor/Tests/Resources/pages.pages';
     $archive = ZipService::getArchive($path);
 
     $this->assertNotNull($archive);

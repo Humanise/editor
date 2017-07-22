@@ -11,10 +11,10 @@ $windowSize = Request::getInt('windowSize',30);
 $windowNumber = Request::getInt('windowNumber',1);
 
 $query = ['windowSize' => $windowSize, 'windowNumber' => $windowNumber];
-if ($producttype>0) {
+if ($producttype > 0) {
   $query['producttype'] = $producttype;
 }
-if ($productgroup>0) {
+if ($productgroup > 0) {
   $query['productgroup'] = $productgroup;
 }
 
@@ -24,18 +24,18 @@ $products = $list['result'];
 $writer = new ListWriter();
 
 $writer->startList()->
-  window(['total'=>$list['total'], 'size'=>$list['windowSize'], 'page'=>$list['windowPage']])->
+  window(['total' => $list['total'], 'size' => $list['windowSize'], 'page' => $list['windowPage']])->
   startHeaders()->
-    header(['title'=>['Product', 'da'=>'Produkt'], 'width'=>40])->
-    header(['title'=>['Number', 'da'=>'Nummer'], 'width'=>30])->
-    header(['title'=>'Type', 'width'=>30])->
+    header(['title' => ['Product', 'da' => 'Produkt'], 'width' => 40])->
+    header(['title' => ['Number', 'da' => 'Nummer'], 'width' => 30])->
+    header(['title' => 'Type', 'width' => 30])->
   endHeaders();
 
 foreach ($products as $product) {
   $type = Producttype::load($product->getProductTypeId());
   $writer->
-  startRow(['id'=>$product->getId(), 'kind'=>$product->getType(), 'icon'=>'common/product', 'title'=>$product->getTitle()])->
-    startCell(['icon'=>'common/product'])->text($product->getTitle())->endCell()->
+  startRow(['id' => $product->getId(), 'kind' => $product->getType(), 'icon' => 'common/product', 'title' => $product->getTitle()])->
+    startCell(['icon' => 'common/product'])->text($product->getTitle())->endCell()->
     startCell()->text($product->getNumber())->endCell()->
     startCell()->text($type ? $type->getTitle() : '?')->endCell()->
   endRow();

@@ -16,7 +16,7 @@ if (!$part) {
 $body = '';
 
 foreach ($data->fields as $field) {
-  $body.= $field->label.": ".$field->value."\n\n";
+  $body .= $field->label . ": " . $field->value . "\n\n";
 }
 
 $issue = new Issue();

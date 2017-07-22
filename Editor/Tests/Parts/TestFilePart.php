@@ -40,7 +40,7 @@ class TestFilePart extends UnitTestCase {
   function testImport() {
     $obj = new FilePart();
     $latest = FileService::getLatestFileId();
-    if ($latest==null) {
+    if ($latest == null) {
       Log::debug('This test can only run with at least one file present');
       return;
     }

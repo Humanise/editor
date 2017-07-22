@@ -17,7 +17,7 @@ if (Request::getBoolean('includeEmpty')) {
       'value' => ''
     ]);
 }
-if ($type=='page') {
+if ($type == 'page') {
   $sql = "select page.id,page.title from page order by page.title";
   $result = Database::select($sql);
   while ($row = Database::next($result)) {
@@ -27,7 +27,7 @@ if ($type=='page') {
     ]);
   }
   Database::free($result);
-} else if ($type=='template') {
+} else if ($type == 'template') {
   $templates = TemplateService::getTemplatesSorted();
   foreach ($templates as $template) {
     $writer->item([
@@ -35,7 +35,7 @@ if ($type=='page') {
       'value' => $template['id']
     ]);
   }
-} else if ($type=='frame') {
+} else if ($type == 'frame') {
   $frames = Frame::search();
   foreach ($frames as $frame) {
     $writer->item([

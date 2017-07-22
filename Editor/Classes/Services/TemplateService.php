@@ -11,7 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 class TemplateService {
 
   static function getTemplateByUnique($unique) {
-    $sql = "select id,`unique` from `template` where `unique`=".Database::text($unique);
+    $sql = "select id,`unique` from `template` where `unique`=" . Database::text($unique);
     if ($row = Database::selectFirst($sql)) {
       $template = new Template();
       $template->setId(intval($row['id']));
@@ -22,7 +22,7 @@ class TemplateService {
   }
 
   static function getTemplateById($id) {
-    $sql = "select id,`unique` from `template` where id=".Database::int($id);
+    $sql = "select id,`unique` from `template` where id=" . Database::int($id);
     if ($row = Database::selectFirst($sql)) {
       $template = new Template();
       $template->setId(intval($row['id']));
@@ -34,8 +34,8 @@ class TemplateService {
 
   static function getController($type) {
     global $basePath;
-    $class = ucfirst($type).'TemplateController';
-    $path = $basePath.'Editor/Classes/Templates/'.$class.'.php';
+    $class = ucfirst($type) . 'TemplateController';
+    $path = $basePath . 'Editor/Classes/Templates/' . $class . '.php';
     if (!file_exists($path)) {
       return null;
     }
@@ -45,9 +45,9 @@ class TemplateService {
 
   static function getAvailableTemplates() {
     global $basePath;
-    $arr = FileSystemService::listDirs($basePath."Editor/Template/");
-    for ($i=0; $i<count($arr); $i++) {
-      if (substr($arr[$i],0,3)=='CVS') {
+    $arr = FileSystemService::listDirs($basePath . "Editor/Template/");
+    for ($i = 0; $i < count($arr); $i++) {
+      if (substr($arr[$i],0,3) == 'CVS') {
         unset($arr[$i]);
       }
     }
@@ -55,22 +55,22 @@ class TemplateService {
   }
 
   static function install($key) {
-    $sql = "select id from `template` where `unique`=".Database::text($key);
+    $sql = "select id from `template` where `unique`=" . Database::text($key);
     if (Database::isEmpty($sql)) {
-      $sql = "insert into template (`unique`) values (".Database::text($key).")";
+      $sql = "insert into template (`unique`) values (" . Database::text($key) . ")";
       Database::insert($sql);
     } else {
-      Log::debug('Unable to install template ('.$key.') since it already exists');
+      Log::debug('Unable to install template (' . $key . ') since it already exists');
     }
   }
 
   static function uninstall($key) {
-    $sql = "select `template`.`id` from `template`,`page` where page.template_id=template.id and `template`.`unique`=".Database::text($key);
+    $sql = "select `template`.`id` from `template`,`page` where page.template_id=template.id and `template`.`unique`=" . Database::text($key);
     if (Database::isEmpty($sql)) {
-      $sql = "delete from `template` where `unique`=".Database::text($key);
+      $sql = "delete from `template` where `unique`=" . Database::text($key);
       Database::delete($sql);
     } else {
-      Log::debug('Unable to delete template ('.$key.') since it is in use');
+      Log::debug('Unable to delete template (' . $key . ') since it is in use');
     }
   }
 
@@ -113,11 +113,11 @@ class TemplateService {
   static function getTemplatesKeyed() {
     $output = [];
     $templates = TemplateService::getInstalledTemplates();
-    for ($i=0; $i<count($templates); $i++) {
+    for ($i = 0; $i < count($templates); $i++) {
       $unique = $templates[$i]['unique'];
       $info = TemplateService::getTemplateInfo($unique);
-      $info['id']=$templates[$i]['id'];
-      $output[$unique]=$info;
+      $info['id'] = $templates[$i]['id'];
+      $output[$unique] = $info;
     }
     return $output;
   }
@@ -126,11 +126,11 @@ class TemplateService {
   static function getTemplatesSorted() {
     $output = [];
     $templates = TemplateService::getInstalledTemplates();
-    for ($i=0; $i<count($templates); $i++) {
+    for ($i = 0; $i < count($templates); $i++) {
       $unique = $templates[$i]['unique'];
       $info = TemplateService::getTemplateInfo($unique);
-      $info['id']=$templates[$i]['id'];
-      $output[]=$info;
+      $info['id'] = $templates[$i]['id'];
+      $output[] = $info;
     }
     usort($output,['TemplateService', 'compareTemplates']);
     return $output;
@@ -148,12 +148,12 @@ class TemplateService {
 
   static function getTemplateInfo($unique) {
     global $basePath;
-    if ($out = InternalSession::getSessionCacheVar('template.info.'.$unique)) {
+    if ($out = InternalSession::getSessionCacheVar('template.info.' . $unique)) {
       return $out;
     }
     else {
-      $out = ['unique'=>$unique, 'icon' => null, 'name' => null, 'description' => null];
-      $filename = $basePath."Editor/Template/".$unique."/info.xml";
+      $out = ['unique' => $unique, 'icon' => null, 'name' => null, 'description' => null];
+      $filename = $basePath . "Editor/Template/" . $unique . "/info.xml";
 
       $data = implode("", file($filename));
 
@@ -164,13 +164,13 @@ class TemplateService {
       xml_parser_free($parser);
       foreach ($values as $key) {
         switch($key['tag']) {
-          case 'icon' : $out['icon']=$key['value']; break;
-          case 'name' : $out['name']=$key['value']; break;
-          case 'status' : $out['status']=$key['value']; break;
-          case 'description' : $out['description']=$key['value']; break;
+          case 'icon' : $out['icon'] = $key['value']; break;
+          case 'name' : $out['name'] = $key['value']; break;
+          case 'status' : $out['status'] = $key['value']; break;
+          case 'description' : $out['description'] = $key['value']; break;
         }
       }
-      InternalSession::setSessionCacheVar('template.info.'.$unique,$out);
+      InternalSession::setSessionCacheVar('template.info.' . $unique,$out);
       return $out;
     }
   }

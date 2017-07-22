@@ -16,7 +16,7 @@ hui.ui.listen({
     <?php
     foreach ($controllers as $controller) {
       if ($controller->isLiveEnabled()) {
-        echo "editor.addPartController('".$controller->getType()."','".$controller->getType()."',op.Editor.".ucfirst($controller->getType()).");\n";
+        echo "editor.addPartController('" . $controller->getType() . "','" . $controller->getType() . "',op.Editor." . ucfirst($controller->getType()) . ");\n";
       }
     }
     ?>
@@ -28,7 +28,7 @@ hui.ui.listen({
 <?php
 foreach ($controllers as $controller) {
   if ($controller->isLiveEnabled()) {
-    require_once '../../../Parts/'.$controller->getType().'/live.js';
+    require_once '../../../Parts/' . $controller->getType() . '/live.js';
     echo "\n\n\n\n";
   }
 }

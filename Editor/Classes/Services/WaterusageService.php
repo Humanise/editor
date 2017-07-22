@@ -15,7 +15,7 @@ class WaterusageService {
   static $SOURCE_TEXT = [0 => 'Administrator', 1 => 'Import', 2 => 'Kunde'];
 
   static function overwrite($dummy) {
-    $sql="select object_id from waterusage where number=".Database::text($dummy->getNumber())." and year=".Database::int($dummy->getYear());
+    $sql = "select object_id from waterusage where number=" . Database::text($dummy->getNumber()) . " and year=" . Database::int($dummy->getYear());
     if ($row = Database::selectFirst($sql)) {
       $usage = Waterusage::load($row['object_id']);
     }
@@ -88,7 +88,7 @@ class WaterusageService {
     if ($meter) {
       return WaterusageService::getSummaryByMeter($meter);
     } else {
-      Log::debug('Unable to load summary with id='.$id);
+      Log::debug('Unable to load summary with id=' . $id);
     }
     return null;
   }
@@ -139,7 +139,7 @@ class WaterusageService {
       WaterusageService::updateEmailOfMeter($meter,$summary->getEmail());
       WaterusageService::updatePhoneOfMeter($meter,$summary->getPhone());
     } else {
-      Log::debug('Meter not found: '.$summary->getWatermeterId());
+      Log::debug('Meter not found: ' . $summary->getWatermeterId());
     }
   }
 
@@ -183,10 +183,10 @@ class WaterusageService {
 
   static function parseAddress($str) {
     if (preg_match("/([^,]+),([\\w ]+,)[ ]?([0-9]+) ([\\w]+)/", $str,$matches)) {
-      return ['street'=>$matches[1], 'zipcode'=>$matches[3], 'city'=>$matches[4]];
+      return ['street' => $matches[1], 'zipcode' => $matches[3], 'city' => $matches[4]];
     }
     if (preg_match("/([^,]+),[ ]?([0-9]+) ([\\w]+)/", $str,$matches)) {
-      return ['street'=>$matches[1], 'zipcode'=>$matches[2], 'city'=>$matches[3]];
+      return ['street' => $matches[1], 'zipcode' => $matches[2], 'city' => $matches[3]];
     }
     return null;
   }

@@ -10,7 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 class LogService {
 
-  static function getEntries($query=[]) {
+  static function getEntries($query = []) {
     $page = 0;
     $size = 10;
     if (isset($query['page'])) {
@@ -23,27 +23,27 @@ class LogService {
     $sql = "select UNIX_TIMESTAMP(`time`) as `time`,`category`,`event`,`entity`,`message`,`user_id`,`ip`,`session`,user.username from log left join `user` on object_id=log.user_id";
     $where = '';
     if (isset($query['category']) && $query['category'] != 'all') {
-      $where.=" `category`=".Database::text($query['category']);
+      $where .= " `category`=" . Database::text($query['category']);
     }
     if (isset($query['event']) && $query['event'] != 'all') {
       if ($where) {
-        $where.=' and ';
+        $where .= ' and ';
       }
-      $where.=" `event`=".Database::text($query['event']);
+      $where .= " `event`=" . Database::text($query['event']);
     }
     if (isset($query['text']) && Strings::isNotBlank($query['text'])) {
       if ($where) {
-        $where.=' and ';
+        $where .= ' and ';
       }
-      $where.=" `message` like ".Database::search($query['text']);
+      $where .= " `message` like " . Database::search($query['text']);
     }
-    if ($where!='') {
-      $sql.=' where '.$where;
+    if ($where != '') {
+      $sql .= ' where ' . $where;
     }
-    $sql.= " order by time desc,log.id desc";
-    $sql.= " limit ".($page * $size).",".$size;
+    $sql .= " order by time desc,log.id desc";
+    $sql .= " limit " . ($page * $size) . "," . $size;
 
-    $countSql = "select count(id) as num from log".($where!='' ? ' where '.$where : '');
+    $countSql = "select count(id) as num from log" . ($where != '' ? ' where ' . $where : '');
     $result = new SearchResult();
     $result->setWindowSize($size);
     $result->setWindowPage($page);
@@ -60,7 +60,7 @@ class LogService {
       $order = $query['sort'];
     }
     $dir = 'desc';
-    if (isset($query['direction']) && $query['direction']=='ascending') {
+    if (isset($query['direction']) && $query['direction'] == 'ascending') {
       $dir = 'asc';
     }
 

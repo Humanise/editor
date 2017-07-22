@@ -25,28 +25,28 @@ Response::uploadSuccess();
 
 function handleLine($line) {
   $words = preg_split('/;/',$line);
-  if (count($words)!=3) {
-    Log::logTool('waterusage','import','Line does not have 3 words: '.$line);
+  if (count($words) != 3) {
+    Log::logTool('waterusage','import','Line does not have 3 words: ' . $line);
     return;
   }
   $number = $words[0];
   $value = $words[1];
   $date = Dates::parse($words[2]);
   if (!ValidateUtils::validateDigits($number)) {
-    Log::logTool('waterusage','import','The number is not made of pure digits: '.$line);
+    Log::logTool('waterusage','import','The number is not made of pure digits: ' . $line);
     return;
   }
   if (!ValidateUtils::validateDigits($value)) {
-    Log::logTool('waterusage','import','The value is not made of pure digits: '.$line);
+    Log::logTool('waterusage','import','The value is not made of pure digits: ' . $line);
     return;
   }
-  if ($date==null) {
-    Log::logTool('waterusage','import','Unable to parse date: '.$line);
+  if ($date == null) {
+    Log::logTool('waterusage','import','Unable to parse date: ' . $line);
     return;
   }
   $meter = Query::after('watermeter')->withProperty('number',$number)->first();
   if (!$meter) {
-    Log::logTool('waterusage','import','Meter not found, creating it: number='.$number);
+    Log::logTool('waterusage','import','Meter not found, creating it: number=' . $number);
     $meter = new Watermeter();
     $meter->setNumber($number);
     $meter->save();
@@ -64,7 +64,7 @@ function handleLine($line) {
     $usage->save();
     $usage->publish();
   } else {
-    Log::logTool('waterusage','import','Usage already found: meter='.$meter->getNumber().', value='.$usage->getValue().', date='.Dates::formatLongDate($date));
+    Log::logTool('waterusage','import','Usage already found: meter=' . $meter->getNumber() . ', value=' . $usage->getValue() . ', date=' . Dates::formatLongDate($date));
   }
 }
 ?>

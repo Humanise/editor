@@ -12,10 +12,10 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['ObjectLink'] = [
   'table' => 'object_link',
   'properties' => [
-    'objectId' => ['type'=>'int', 'relation'=>['class'=>'Object', 'property'=>'id']],
-    'value' => ['type'=>'int', 'relations'=>[
-      ['class'=>'Page', 'property'=>'id'],
-      ['class'=>'File', 'property'=>'id']
+    'objectId' => ['type' => 'int', 'relation' => ['class' => 'Object', 'property' => 'id']],
+    'value' => ['type' => 'int', 'relations' => [
+      ['class' => 'Page', 'property' => 'id'],
+      ['class' => 'File', 'property' => 'id']
       ]
     ]
   ]

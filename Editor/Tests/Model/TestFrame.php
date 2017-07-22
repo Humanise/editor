@@ -34,7 +34,7 @@ class TestFrame extends UnitTestCase {
     $this->assertEqual($loaded->getTitle(),'My frame title');
     $this->assertEqual($loaded->getBottomText(),'This is the bottom text');
     $this->assertEqual($loaded->getHierarchyId(),$hierarchy->getId());
-    $this->assertTrue($loaded->getChanged()<=time());
+    $this->assertTrue($loaded->getChanged() <= time());
 
     $loaded->remove();
 

@@ -34,27 +34,27 @@ class TextPartController extends PartController
 
   function editor($part,$context) {
     return
-    '<textarea class="part_text common_font" name="text" id="PartTextTextarea" style="border: 1px solid lightgrey; width: 100%; height: 200px; background: transparent; padding: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;'.$this->buildCSSStyle($part).'">'.
-    (ConfigurationService::isUnicode() ? Strings::escapeSimpleXML($part->getText()) : Strings::escapeXML($part->getText())).
-    '</textarea>'.
-    '<input type="hidden" name="fontSize" value="'.Strings::escapeXML($part->getFontSize()).'"/>'.
-    '<input type="hidden" name="fontFamily" value="'.Strings::escapeXML($part->getFontfamily()).'"/>'.
-    '<input type="hidden" name="textAlign" value="'.Strings::escapeXML($part->getTextAlign()).'"/>'.
-    '<input type="hidden" name="lineHeight" value="'.Strings::escapeXML($part->getLineHeight()).'"/>'.
-    '<input type="hidden" name="fontWeight" value="'.Strings::escapeXML($part->getFontWeight()).'"/>'.
-    '<input type="hidden" name="fontStyle" value="'.Strings::escapeXML($part->getFontStyle()).'"/>'.
-    '<input type="hidden" name="color" value="'.Strings::escapeXML($part->getColor()).'"/>'.
-    '<input type="hidden" name="wordSpacing" value="'.Strings::escapeXML($part->getWordSpacing()).'"/>'.
-    '<input type="hidden" name="letterSpacing" value="'.Strings::escapeXML($part->getLetterSpacing()).'"/>'.
-    '<input type="hidden" name="textIndent" value="'.Strings::escapeXML($part->getTextIndent()).'"/>'.
-    '<input type="hidden" name="textTransform" value="'.Strings::escapeXML($part->getTextTransform()).'"/>'.
-    '<input type="hidden" name="fontVariant" value="'.Strings::escapeXML($part->getFontVariant()).'"/>'.
-    '<input type="hidden" name="textDecoration" value="'.Strings::escapeXML($part->getTextDecoration()).'"/>'.
-    '<input type="hidden" name="imageId" value="'.Strings::escapeXML($part->getImageId()).'"/>'.
-    '<input type="hidden" name="imageFloat" value="'.Strings::escapeXML($part->getImageFloat()).'"/>'.
-    '<input type="hidden" name="imageWidth" value="'.Strings::escapeXML($part->getImageWidth()).'"/>'.
-    '<input type="hidden" name="imageHeight" value="'.Strings::escapeXML($part->getImageHeight()).'"/>'.
-    '<script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/text/script.js" type="text/javascript" charset="utf-8"></script>';
+    '<textarea class="part_text common_font" name="text" id="PartTextTextarea" style="border: 1px solid lightgrey; width: 100%; height: 200px; background: transparent; padding: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;' . $this->buildCSSStyle($part) . '">' .
+    (ConfigurationService::isUnicode() ? Strings::escapeSimpleXML($part->getText()) : Strings::escapeXML($part->getText())) .
+    '</textarea>' .
+    '<input type="hidden" name="fontSize" value="' . Strings::escapeXML($part->getFontSize()) . '"/>' .
+    '<input type="hidden" name="fontFamily" value="' . Strings::escapeXML($part->getFontfamily()) . '"/>' .
+    '<input type="hidden" name="textAlign" value="' . Strings::escapeXML($part->getTextAlign()) . '"/>' .
+    '<input type="hidden" name="lineHeight" value="' . Strings::escapeXML($part->getLineHeight()) . '"/>' .
+    '<input type="hidden" name="fontWeight" value="' . Strings::escapeXML($part->getFontWeight()) . '"/>' .
+    '<input type="hidden" name="fontStyle" value="' . Strings::escapeXML($part->getFontStyle()) . '"/>' .
+    '<input type="hidden" name="color" value="' . Strings::escapeXML($part->getColor()) . '"/>' .
+    '<input type="hidden" name="wordSpacing" value="' . Strings::escapeXML($part->getWordSpacing()) . '"/>' .
+    '<input type="hidden" name="letterSpacing" value="' . Strings::escapeXML($part->getLetterSpacing()) . '"/>' .
+    '<input type="hidden" name="textIndent" value="' . Strings::escapeXML($part->getTextIndent()) . '"/>' .
+    '<input type="hidden" name="textTransform" value="' . Strings::escapeXML($part->getTextTransform()) . '"/>' .
+    '<input type="hidden" name="fontVariant" value="' . Strings::escapeXML($part->getFontVariant()) . '"/>' .
+    '<input type="hidden" name="textDecoration" value="' . Strings::escapeXML($part->getTextDecoration()) . '"/>' .
+    '<input type="hidden" name="imageId" value="' . Strings::escapeXML($part->getImageId()) . '"/>' .
+    '<input type="hidden" name="imageFloat" value="' . Strings::escapeXML($part->getImageFloat()) . '"/>' .
+    '<input type="hidden" name="imageWidth" value="' . Strings::escapeXML($part->getImageWidth()) . '"/>' .
+    '<input type="hidden" name="imageHeight" value="' . Strings::escapeXML($part->getImageHeight()) . '"/>' .
+    '<script src="' . ConfigurationService::getBaseUrl() . 'Editor/Parts/text/script.js" type="text/javascript" charset="utf-8"></script>';
   }
 
   function getEditorUI($part,$context) {
@@ -130,35 +130,35 @@ class TextPartController extends PartController
     $text = $context->decorateForBuild($text,$part->getId());
     $text = Strings::insertLineBreakTags($text,'<break/>');
     $text = str_replace('<break/><break/>', '</p><p>', $text);
-    $xml = '<text xmlns="'.$this->getNamespace().'">';
-    $xml.= $this->buildXMLStyle($part);
-    if ($part->getImageId()>0) {
+    $xml = '<text xmlns="' . $this->getNamespace() . '">';
+    $xml .= $this->buildXMLStyle($part);
+    if ($part->getImageId() > 0) {
       $data = ObjectService::getObjectData($part->getImageId());
       if (Strings::isNotBlank($data)) {
-        $xml.='<image float="'.Strings::escapeXML($part->getImageFloat()).'"';
+        $xml .= '<image float="' . Strings::escapeXML($part->getImageFloat()) . '"';
         if ($part->getImageWidth() > 0) {
-          $xml.=' width="'.$part->getImageWidth().'"';
+          $xml .= ' width="' . $part->getImageWidth() . '"';
         }
         if ($part->getImageHeight() > 0) {
-          $xml.=' height="'.$part->getImageHeight().'"';
+          $xml .= ' height="' . $part->getImageHeight() . '"';
         }
-        $xml.='>'.$data.'</image>';
+        $xml .= '>' . $data . '</image>';
       }
     }
-    $xml.= '<p>'.$text.'</p>';
-    $xml.= '</text>';
+    $xml .= '<p>' . $text . '</p>';
+    $xml .= '</text>';
     return $xml;
   }
 
   function importSub($node,$part) {
-    $xml = '<?xml version="1.0" encoding="ISO-8859-1"?>'.DOMUtils::getInnerXML($node);
+    $xml = '<?xml version="1.0" encoding="ISO-8859-1"?>' . DOMUtils::getInnerXML($node);
     $xsl = '<?xml version="1.0" encoding="ISO-8859-1"?>
     <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
      xmlns:t="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/" exclude-result-prefixes="t">
     <xsl:output method="text" encoding="ISO-8859-1"/>
 
     <xsl:template match="t:text"><xsl:apply-templates/></xsl:template>
-    <xsl:template match="t:break"><xsl:text>'."\n".'</xsl:text></xsl:template>
+    <xsl:template match="t:break"><xsl:text>' . "\n" . '</xsl:text></xsl:template>
     <xsl:template match="t:strong">[s]<xsl:apply-templates/>[s]</xsl:template>
     <xsl:template match="t:em">[e]<xsl:apply-templates/>[e]</xsl:template>
     <xsl:template match="t:del">[slet]<xsl:apply-templates/>[slet]</xsl:template>
@@ -176,7 +176,7 @@ class TextPartController extends PartController
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['Text', 'da'=>'Tekst']) =>
+      GuiUtils::getTranslated(['Text', 'da' => 'Tekst']) =>
       '
       <item label="{Size; da:Størrelse}">
         <style-length-input name="fontSize" width="90"/>
@@ -213,7 +213,7 @@ class TextPartController extends PartController
       </item>
       ',
 
-    GuiUtils::getTranslated(['Advanced', 'da'=>'Avanceret']) =>
+    GuiUtils::getTranslated(['Advanced', 'da' => 'Avanceret']) =>
       '
       <item label="{Word spacing; da:Ord-mellemrum}">
         <style-length-input name="wordSpacing" width="90"/>
@@ -248,13 +248,13 @@ class TextPartController extends PartController
       </item>
       ',
 
-    GuiUtils::getTranslated(['Image', 'da'=>'Billede']) =>
+    GuiUtils::getTranslated(['Image', 'da' => 'Billede']) =>
       '
       <icon text="{Select image; da:Vælg billede}" icon="common/image" overlay="search" name="chooseImage"/>
       <item label="{Image; da:Billede}">
         <dropdown name="imageId" width="180">
           <option value="" text=""/>
-          '.UI::buildOptions('image').'
+          ' . UI::buildOptions('image') . '
         </dropdown>
       </item>
       <divider/>

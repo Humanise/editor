@@ -24,19 +24,19 @@ class TestNewsService extends UnitTestCase {
     $design = new Design();
     $design->setUnique('custom');
     $design->save();
-    $this->assertTrue($design->getId()>0,'The design was not saved');
+    $this->assertTrue($design->getId() > 0,'The design was not saved');
 
     $frame = new Frame();
     $frame->setHierarchyId($hierarchy->getId());
     $frame->save();
-    $this->assertTrue($frame->getId()>0,'The frame was not saved');
+    $this->assertTrue($frame->getId() > 0,'The frame was not saved');
 
     $blueprint = new Pageblueprint();
     $blueprint->setTemplateId($template->getId());
     $blueprint->setDesignId($design->getId());
     $blueprint->setFrameId($frame->getId());
     $blueprint->save();
-    $this->assertTrue($blueprint->getId()>0,'The blueprint was not saved');
+    $this->assertTrue($blueprint->getId() > 0,'The blueprint was not saved');
 
     $article = new NewsArticle();
     $article->setTitle('My fantastic new article');
@@ -49,10 +49,10 @@ class TestNewsService extends UnitTestCase {
     $news = $response['news'];
 
     $this->assertNotNull($page,'No page in the response');
-    $this->assertTrue($page->getId()>0,'The page was not saved');
+    $this->assertTrue($page->getId() > 0,'The page was not saved');
 
     $this->assertNotNull($news,'No news in the response');
-    $this->assertTrue($news->getId()>0,'The news was not saved');
+    $this->assertTrue($news->getId() > 0,'The news was not saved');
 
     $links = ObjectLinkService::getLinks($news);
     $this->assertEqual(count($links),1,'There should be exactly one link');

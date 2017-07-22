@@ -11,14 +11,14 @@ if (!isset($GLOBALS['basePath'])) {
 class XmlService {
 
   static function validateSnippet($data) {
-    $code=0;
+    $code = 0;
     $parser = xml_parser_create();
     xml_parser_set_option($parser,XML_OPTION_CASE_FOLDING,0);
     xml_parser_set_option($parser,XML_OPTION_SKIP_WHITE,1);
     xml_parse_into_struct($parser,$data,$values,$tags);
-    $code=xml_get_error_code($parser);
+    $code = xml_get_error_code($parser);
     xml_parser_free($parser);
-    if ($code==false) {
+    if ($code == false) {
       return true;
     }
     else {

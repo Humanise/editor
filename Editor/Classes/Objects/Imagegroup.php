@@ -28,7 +28,7 @@ class Imagegroup extends Object {
   }
 
   function removeMore() {
-    $sql="delete from imagegroup_image where imagegroup_id=".Database::int($this->id);
+    $sql = "delete from imagegroup_image where imagegroup_id=" . Database::int($this->id);
     Database::delete($sql);
   }
 

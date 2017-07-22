@@ -25,7 +25,7 @@ class FileSystemService {
     $str = str_replace('#','x',$str);
     $str = str_replace('?','x',$str);
     $str = preg_replace_callback('/[^!-%\x27-;?-~ ]/', function ($match) {return 'x'; }, $str);
-    if (FileSystemService::getFileExtension($str)=='php') {
+    if (FileSystemService::getFileExtension($str) == 'php') {
       $str = FileSystemService::overwriteExtension($str,'php.txt');
     }
     return $str;
@@ -45,11 +45,11 @@ class FileSystemService {
    * @return array An array of the names of the directories inside the directory
    */
   static function listDirs($dir) {
-    $out=[];
+    $out = [];
     if (is_dir($dir)) {
       if ($dh = opendir($dir)) {
         while (($file = readdir($dh)) !== false) {
-          if (is_dir($dir.$file) && !($file=='.' || $file=='..' || $file=='CVS') ) {
+          if (is_dir($dir . $file) && !($file == '.' || $file == '..' || $file == 'CVS') ) {
             array_push($out,$file);
           }
         }
@@ -65,7 +65,7 @@ class FileSystemService {
       if ($dh = opendir($dir)) {
         while (($file = readdir($dh)) !== false) {
           $path = FileSystemService::join($dir, $file);
-          if ($file=='.' || $file=='..') {
+          if ($file == '.' || $file == '..') {
             // Skip
           }
           else if (strpos($file, '.') === 0) {
@@ -103,11 +103,11 @@ class FileSystemService {
    * @todo Filenames or paths?
    */
   static function listFiles($dir) {
-    $out=[];
+    $out = [];
     if (is_dir($dir)) {
       if ($dh = opendir($dir)) {
         while (($file = readdir($dh)) !== false) {
-          if (is_file(FileSystemService::join($dir, $file)) && !($file=='.' || $file=='..') ) {
+          if (is_file(FileSystemService::join($dir, $file)) && !($file == '.' || $file == '..') ) {
             array_push($out,$file);
           }/* else {
             Log::debug('not a file: ' . $dir.$file);
@@ -123,43 +123,43 @@ class FileSystemService {
 
   static function join($base,$end) {
     $out = '';
-    if (substr($base,-1)=='/') {
+    if (substr($base,-1) == '/') {
       $base = substr($base,0,-1);
     }
-    if (strlen($end)>0 && $end{0}=='/') {
+    if (strlen($end) > 0 && $end{0} == '/') {
       $end = substr($end,1);
     }
     $out = $base;
     if ($out && $end) {
-      $out.='/';
+      $out .= '/';
     }
-    $out.=$end;
+    $out .= $end;
     return $out;
   }
 
   static function remove($path) {
     if (!file_exists($path)) {
-      error_log('Not found: '.$path);
+      error_log('Not found: ' . $path);
       return true;
     }
     if (is_dir($path)) {
       if ($dh = opendir($path)) {
         while (($file = readdir($dh)) !== false) {
           $filePath = FileSystemService::join($path,$file);
-          if (!($file=='.' || $file=='..')) {
+          if (!($file == '.' || $file == '..')) {
             FileSystemService::remove($filePath);
           }
         }
         closedir($dh);
       } else {
-        error_log('Unable to opendir:'.$path);
+        error_log('Unable to opendir:' . $path);
       }
       rmdir($path);
     }
     else if (is_file($path)) {
       unlink($path);
     } else {
-      error_log('Unknown: '.$path);
+      error_log('Unknown: ' . $path);
     }
     return file_exists($path);
   }
@@ -169,8 +169,8 @@ class FileSystemService {
   }
 
   static function _find($dir,$query) {
-    if ($dir[strlen($dir)-1]!='/') {
-      $dir = $dir.'/';
+    if ($dir[strlen($dir) - 1] != '/') {
+      $dir = $dir . '/';
     }
     $out = [];
     if (is_dir($dir)) {
@@ -183,13 +183,13 @@ class FileSystemService {
               continue;
             }
           }
-          if ($file{0}=='.') {
+          if ($file{0} == '.') {
             continue;
           }
           if (is_file($path)) {
             if (isset($query['extension'])) {
               $ext = FileSystemService::getFileExtension($path);
-              if ($ext!==$query['extension']) {
+              if ($ext !== $query['extension']) {
                 continue;
               }
             }
@@ -233,7 +233,7 @@ class FileSystemService {
       return '';
     }
     else {
-      return substr($filename,$pos+1,strlen($filename)-$pos);
+      return substr($filename,$pos + 1,strlen($filename) - $pos);
     }
   }
 
@@ -248,7 +248,7 @@ class FileSystemService {
   }
 
   static function getFreeTempPath() {
-    $path = FileSystemService::getFullPath('local/cache/temp/'.time());
+    $path = FileSystemService::getFullPath('local/cache/temp/' . time());
     return FileSystemService::findFreeFilePath($path);
   }
 
@@ -278,10 +278,10 @@ class FileSystemService {
     }
 
     $output = $path;
-    $head = substr($file,0,strlen($file)-strlen($ext)-1);
+    $head = substr($file,0,strlen($file) - strlen($ext) - 1);
     $count = 1;
     while (file_exists($path)) {
-      $path = $dir.'/'.$head.$count.'.'.$ext;
+      $path = $dir . '/' . $head . $count . '.' . $ext;
       $count++;
     }
     return $path;
@@ -297,7 +297,7 @@ class FileSystemService {
       $path = substr($path,0,$pos);
     }
     if (Strings::isNotBlank($extension)) {
-      $path = $path.'.'.$extension;
+      $path = $path . '.' . $extension;
     }
     return $path;
   }
@@ -332,7 +332,7 @@ class FileSystemService {
 
   static function parseBytes($val) {
     $val = trim($val);
-    $last = strtolower($val{strlen($val)-1});
+    $last = strtolower($val{strlen($val) - 1});
     switch($last) {
       // The 'G' modifier is available since PHP 5.1.0
       case 'g':

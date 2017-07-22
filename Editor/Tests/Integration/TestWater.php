@@ -13,7 +13,7 @@ class TestWater extends UnitTestCase {
 
     function testIt() {
     $meter = new Watermeter();
-    $meter->setNumber('test'.time());
+    $meter->setNumber('test' . time());
     $meter->save();
 
     $usage = new Waterusage();

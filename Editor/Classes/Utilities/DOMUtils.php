@@ -37,7 +37,7 @@ class DOMUtils {
 
   static function getFirstDescendant($node,$name) {
     $nodes = $node->getElementsByTagName($name);
-    if ($nodes->length>0) {
+    if ($nodes->length > 0) {
       return $nodes->item(0);
     }
     return null;
@@ -54,7 +54,7 @@ class DOMUtils {
     }
   }
 
-  static function parseHTMLFragment($str,$encoding="ISO-8859-15") {
+  static function parseHTMLFragment($str,$encoding = "ISO-8859-15") {
     $str = '<?xml encoding="' . $encoding . '"><fragment>' . $str . '</fragment>';
     $doc = new DOMDocument( "1.0", $encoding);
     $doc->recover = TRUE;
@@ -73,7 +73,7 @@ class DOMUtils {
 
   static function parseAnything($str) {
     global $basePath;
-    require_once($basePath.'Editor/Libraries/htmlawed/htmLawed.php');
+    require_once($basePath . 'Editor/Libraries/htmlawed/htmLawed.php');
     $str = htmLawed($str);
     $doc = new DOMDocument();
     $doc->recover = TRUE;
@@ -86,7 +86,7 @@ class DOMUtils {
     return $doc;
   }
 
-  static function parse($str,$encoding="ISO-8859-15") {
+  static function parse($str,$encoding = "ISO-8859-15") {
     $doc = new DOMDocument("1.0",$encoding);
     $success = @$doc->loadXML($str);
     if ($success) {
@@ -96,12 +96,12 @@ class DOMUtils {
     }
   }
 
-  static function getChildElements($node,$name=null) {
+  static function getChildElements($node,$name = null) {
     $result = [];
-    for ($i=0; $i < $node->childNodes->length; $i++) {
+    for ($i = 0; $i < $node->childNodes->length; $i++) {
       $child = $node->childNodes->item($i);
       if ($child->nodeType == XML_ELEMENT_NODE) {
-        if ($name!=null && $child->nodeName!=$name) {
+        if ($name != null && $child->nodeName != $name) {
           continue;
         }
         $result[] = $child;
@@ -110,11 +110,11 @@ class DOMUtils {
     return $result;
   }
 
-  static function getFirstChildElement($node,$name=null) {
-    for ($i=0; $i < $node->childNodes->length; $i++) {
+  static function getFirstChildElement($node,$name = null) {
+    for ($i = 0; $i < $node->childNodes->length; $i++) {
       $child = $node->childNodes->item($i);
       if ($child->nodeType == XML_ELEMENT_NODE) {
-        if ($name!=null && $child->nodeName!=$name) {
+        if ($name != null && $child->nodeName != $name) {
           continue;
         }
         return $child;
@@ -136,7 +136,7 @@ class DOMUtils {
 
   static function getPathText(&$node,$path) {
     $xpath = new DOMXPath($node->ownerDocument);
-    if ($child =& $xpath->query($path,$node)->item(0)) {
+    if ($child = & $xpath->query($path,$node)->item(0)) {
       return $child->textContent;
     } else {
       return '';
@@ -147,9 +147,9 @@ class DOMUtils {
     return preg_replace_callback('/ xmlns="[\\w:\\/.]*"/',function ($matches) {return ''; },$str);
   }
 
-  static function getInnerXML($node,$encoding="ISO-8859-15") {
+  static function getInnerXML($node,$encoding = "ISO-8859-15") {
     $doc = DOMUtils::parse('<xml></xml>',$encoding);
-    for ($i=0; $i < $node->childNodes->length; $i++) {
+    for ($i = 0; $i < $node->childNodes->length; $i++) {
       $clone = $doc->importNode($node->childNodes->item($i),true);
       $doc->documentElement->appendChild($clone);
     }
@@ -167,23 +167,23 @@ class DOMUtils {
   }
 
   static function isValid($data) {
-    $code=0;
+    $code = 0;
     $parser = xml_parser_create();
     xml_parser_set_option($parser,XML_OPTION_CASE_FOLDING,0);
     xml_parser_set_option($parser,XML_OPTION_SKIP_WHITE,1);
     xml_parse_into_struct($parser,$data,$values,$tags);
     $code = xml_get_error_code($parser);
     xml_parser_free($parser);
-    if ($code==false) {
+    if ($code == false) {
       return true;
     }
     else {
-      Log::debug('Invalid - code: '.$code.' ('.@DOMUtils::$codes[$code].') / '.xml_error_string($code));
+      Log::debug('Invalid - code: ' . $code . ' (' . @DOMUtils::$codes[$code] . ') / ' . xml_error_string($code));
       return false;
     }
   }
 
   static function isValidFragment($data) {
-    return DOMUtils::isValid('<x>'.$data.'</x>');
+    return DOMUtils::isValid('<x>' . $data . '</x>');
   }
 }

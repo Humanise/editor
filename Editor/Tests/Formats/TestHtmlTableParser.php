@@ -37,8 +37,8 @@ class TestHtmlTableParser extends UnitTestCase {
 
   function testParseFile() {
     global $basePath;
-    $path = $basePath.'Editor/Tests/Resources/Kampprogram_haandbold.xls';
-    $this->assertTrue(file_exists($path),'File does not exist: '.$path);
+    $path = $basePath . 'Editor/Tests/Resources/Kampprogram_haandbold.xls';
+    $this->assertTrue(file_exists($path),'File does not exist: ' . $path);
     $html = file_get_contents($path);
         $html = Strings::toUnicode($html);
     $this->assertTrue(Strings::isNotBlank($html));
@@ -63,7 +63,7 @@ class TestHtmlTableParser extends UnitTestCase {
 
   function testParseUsingHeader() {
     global $basePath;
-    $path = $basePath.'Editor/Tests/Resources/Kampprogram_haandbold.xls';
+    $path = $basePath . 'Editor/Tests/Resources/Kampprogram_haandbold.xls';
     $html = file_get_contents($path);
         $html = Strings::toUnicode($html);
 

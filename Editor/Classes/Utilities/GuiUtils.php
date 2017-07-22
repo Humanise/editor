@@ -33,9 +33,9 @@ class GuiUtils {
       'CO' => ['Corsican'],
       'HR' => ['Croatian'],
       'CS' => ['Czech'],
-      'DA' => ['Danish', 'da'=>'Dansk'],
+      'DA' => ['Danish', 'da' => 'Dansk'],
       'NL' => ['Dutch'],
-      'EN' => ['English', 'da'=>'Engelsk'],
+      'EN' => ['English', 'da' => 'Engelsk'],
       'EO' => ['Esperanto'],
       'ET' => ['Estonian'],
       'FO' => ['Faeroese'],
@@ -46,7 +46,7 @@ class GuiUtils {
       'GD' => ['Gaelic/Scots Gaelic'],
       'GL' => ['Galician'],
       'KA' => ['Georgian'],
-      'DE' => ['German', 'da'=>'Tysk'],
+      'DE' => ['German', 'da' => 'Tysk'],
       'EL' => ['Greek'],
       'KL' => ['Greenlandic'],
       'GN' => ['Guarani'],
@@ -169,7 +169,7 @@ class GuiUtils {
     foreach ($items as $key => $texts) {
       $lang = InternalSession::getLanguage();
       $title = isset($texts[$lang]) ? $texts[$lang] : $texts['en'];
-      $output.='<item text="'.Strings::escapeEncodedXML($title).'" value="'.$key.'"/>';
+      $output .= '<item text="' . Strings::escapeEncodedXML($title) . '" value="' . $key . '"/>';
     }
 
     return $output;
@@ -202,14 +202,14 @@ class GuiUtils {
    * @return string Human readable bytes
    */
   static function bytesToString($input) {
-    if ($input<1024) {
-      return $input.' b';
+    if ($input < 1024) {
+      return $input . ' b';
     }
-    else if ($input<(1024*1024)) {
-      return round(($input/1024),1).' Kb';
+    else if ($input < (1024 * 1024)) {
+      return round(($input / 1024),1) . ' Kb';
     }
-    else if ($input<(1024*1024*1024)) {
-      return round(($input/1024/1024),1).' Mb';
+    else if ($input < (1024 * 1024 * 1024)) {
+      return round(($input / 1024 / 1024),1) . ' Mb';
     }
     else {
       return $input;
@@ -222,14 +222,14 @@ class GuiUtils {
    * @return string Human readable bytes
    */
   static function bytesToLongString($input) {
-    if ($input<1024) {
-      return $input.' bytes';
+    if ($input < 1024) {
+      return $input . ' bytes';
     }
-    else if ($input<(1024*1024)) {
-      return round(($input/1024),1).' kilobytes';
+    else if ($input < (1024 * 1024)) {
+      return round(($input / 1024),1) . ' kilobytes';
     }
-    else if ($input<(1024*1024*1024)) {
-      return round(($input/1024/1024),1).' Megabytes';
+    else if ($input < (1024 * 1024 * 1024)) {
+      return round(($input / 1024 / 1024),1) . ' Megabytes';
     }
     else {
       return $input;

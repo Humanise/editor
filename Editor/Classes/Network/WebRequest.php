@@ -15,7 +15,7 @@ class WebRequest {
   private $headers = [];
   private $unicode;
 
-  function WebRequest($url=null) {
+  function WebRequest($url = null) {
     $this->url = $url;
   }
 
@@ -32,7 +32,7 @@ class WebRequest {
   }
 
   function addHeader($name,$value) {
-    $this->headers[] = ['name'=>$name, 'value'=>$value];
+    $this->headers[] = ['name' => $name, 'value' => $value];
   }
 
   function setParameters($parameters) {

@@ -5,11 +5,11 @@
  */
 require_once '../../Include/Private.php';
 
-$gui='
+$gui = '
 <gui xmlns="uri:hui" padding="10">
   <controller url="controller.js"/>
   <script>
-    controller.id = '.Request::getId().';
+    controller.id = ' . Request::getId() . ';
   </script>
   <box width="360" top="30" padding="10" title="Indstillinger til weblog">
     <formula name="formula">
@@ -20,12 +20,12 @@ $gui='
         <field label="Skabelon til ny side:">
           <dropdown key="blueprint">
             <option text="Ingen skabelon" value="0"/>
-            '.UI::buildOptions('pageblueprint').'
+            ' . UI::buildOptions('pageblueprint') . '
           </dropdown>
         </field>
         <field label="Grupper">
           <checkboxes key="groups">
-            '.UI::buildOptions('webloggroup').'
+            ' . UI::buildOptions('webloggroup') . '
           </checkboxes>
         </field>
       </fields>

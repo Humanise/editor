@@ -18,22 +18,22 @@ class ItemsWriter {
   function startItem($options) {
     echo '<option';
     if (isset($options['value'])) {
-      echo ' value="'.Strings::escapeEncodedXML($options['value']).'"';
+      echo ' value="' . Strings::escapeEncodedXML($options['value']) . '"';
     }
     if (isset($options['title'])) {
-      echo ' title="'.Strings::escapeEncodedXML(GuiUtils::getTranslated($options['title'])).'"';
+      echo ' title="' . Strings::escapeEncodedXML(GuiUtils::getTranslated($options['title'])) . '"';
     }
     if (isset($options['text'])) {
-      echo ' text="'.Strings::escapeEncodedXML(GuiUtils::getTranslated($options['text'])).'"';
+      echo ' text="' . Strings::escapeEncodedXML(GuiUtils::getTranslated($options['text'])) . '"';
     }
     if (isset($options['icon'])) {
-      echo ' icon="'.$options['icon'].'"';
+      echo ' icon="' . $options['icon'] . '"';
     }
     if (isset($options['kind'])) {
-      echo ' kind="'.$options['kind'].'"';
+      echo ' kind="' . $options['kind'] . '"';
     }
     if (isset($options['badge'])) {
-      echo ' badge="'.$options['badge'].'"';
+      echo ' badge="' . $options['badge'] . '"';
     }
     echo '>';
     return $this;
@@ -53,8 +53,8 @@ class ItemsWriter {
     return $this;
   }
 
-  function title($title=null) {
-    echo '<title title="'.Strings::escapeEncodedXML(GuiUtils::getTranslated($title)).'"/>';
+  function title($title = null) {
+    echo '<title title="' . Strings::escapeEncodedXML(GuiUtils::getTranslated($title)) . '"/>';
     return $this;
   }
 

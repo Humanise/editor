@@ -17,11 +17,11 @@ class DatabaseUtil {
   static function isUpToDate() {
     global $basePath;
     $output = false;
-    $hash = md5_file($basePath.'/Editor/Info/Database.php');
+    $hash = md5_file($basePath . '/Editor/Info/Database.php');
     $sql = "select `value` from `setting` where `domain`='system' and `subdomain`='database' and `key`='database-hash'";
-    if ($row=Database::selectFirst($sql)) {
-      if ($row['value']==$hash) {
-        $output=true;
+    if ($row = Database::selectFirst($sql)) {
+      if ($row['value'] == $hash) {
+        $output = true;
       }
     }
     return $output;
@@ -37,13 +37,13 @@ class DatabaseUtil {
     foreach ($tables as $table) {
       $columns = DatabaseUtil::getTableColumns($table);
       $errors = DatabaseUtil::checkTable($table,$columns);
-      if (count($errors)>0) {
-        $correct=false;
+      if (count($errors) > 0) {
+        $correct = false;
       }
     }
-    $missingTables=DatabaseUtil::findMissingTables($tables);
-    if (count($missingTables)>0) {
-      $correct=false;
+    $missingTables = DatabaseUtil::findMissingTables($tables);
+    if (count($missingTables) > 0) {
+      $correct = false;
     }
     return $correct;
   }
@@ -51,13 +51,13 @@ class DatabaseUtil {
 
   static function setAsUpToDate() {
     global $basePath;
-    $hash = md5_file($basePath.'/Editor/Info/Database.php');
+    $hash = md5_file($basePath . '/Editor/Info/Database.php');
     $sql = "select `value` from `setting` where `domain`='system' and `subdomain`='database' and `key`='database-hash'";
-    if ($row=Database::selectFirst($sql)) {
-      $sql="update `setting` set `value`=".Database::text($hash)." where `domain`='system' and `subdomain`='database' and `key`='database-hash'";
+    if ($row = Database::selectFirst($sql)) {
+      $sql = "update `setting` set `value`=" . Database::text($hash) . " where `domain`='system' and `subdomain`='database' and `key`='database-hash'";
       Database::update($sql);
     } else {
-      $sql="insert into `setting` (`domain`,`subdomain`,`key`,`value`) values ('system','database','database-hash',".Database::text($hash).")";
+      $sql = "insert into `setting` (`domain`,`subdomain`,`key`,`value`) values ('system','database','database-hash'," . Database::text($hash) . ")";
       Database::insert($sql);
     }
   }
@@ -71,7 +71,7 @@ class DatabaseUtil {
   static function getTables() {
     $config = ConfigurationService::getDatabase();
     $out = [];
-    $sql = "show tables from ".$config['database'];
+    $sql = "show tables from " . $config['database'];
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
       $out[] = $row[0];
@@ -87,7 +87,7 @@ class DatabaseUtil {
    */
   static function getTableColumns($table) {
     $config = ConfigurationService::getDatabase();
-    $sql = "SHOW FULL COLUMNS FROM ".$table." FROM ".$config['database'];
+    $sql = "SHOW FULL COLUMNS FROM " . $table . " FROM " . $config['database'];
     $out = [];
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
@@ -123,40 +123,40 @@ class DatabaseUtil {
       // Search for unknown columns
       foreach ($columns as $col) {
         if(!DatabaseUtil::findColumnInColumns($col[0],$expectedColumns)) {
-          $commands[] = "alter table `".$table."` DROP `".$col[0]."`";
+          $commands[] = "alter table `" . $table . "` DROP `" . $col[0] . "`";
         }
       }
 
       foreach ($expectedColumns as $col) {
         if ($fields = DatabaseUtil::findColumnInColumns($col[0],$columns)) {
-          if ($fields['Type']!=$col[1] || ($fields['Null']=='YES' && $col[2]!='YES') || $fields['Default']!=$col[4]) {
-            $sql="ALTER TABLE `".$table."` CHANGE `".$col[0]."` `".$col[0]."` ".$col[1]." ".($col[2]=='YES' ? "NULL" : "NOT NULL")." DEFAULT ".($col[4]=='' ? "NULL" : "'".$col['4']."'");
+          if ($fields['Type'] != $col[1] || ($fields['Null'] == 'YES' && $col[2] != 'YES') || $fields['Default'] != $col[4]) {
+            $sql = "ALTER TABLE `" . $table . "` CHANGE `" . $col[0] . "` `" . $col[0] . "` " . $col[1] . " " . ($col[2] == 'YES' ? "NULL" : "NOT NULL") . " DEFAULT " . ($col[4] == '' ? "NULL" : "'" . $col['4'] . "'");
             $commands[] = $sql;
           }
         }
         else {
-          $sql="alter table `".$table."` ADD `".$col[0]."` ".$col[1];
-          if ($col[2]=='YES') {
-            $sql.=" NULL";
+          $sql = "alter table `" . $table . "` ADD `" . $col[0] . "` " . $col[1];
+          if ($col[2] == 'YES') {
+            $sql .= " NULL";
           }
           else {
-            $sql.=" NOT NULL";
+            $sql .= " NOT NULL";
           }
-          if ($col[4]!='') {
-            $sql.=" DEFAULT '".$col[4]."'";
+          if ($col[4] != '') {
+            $sql .= " DEFAULT '" . $col[4] . "'";
           }
-          if ($col[5]!='') {
-            $sql.=" ".$col[5];
+          if ($col[5] != '') {
+            $sql .= " " . $col[5];
           }
-          if ($col[3]!='') {
-            $sql.=" PRIMARY KEY";
+          if ($col[3] != '') {
+            $sql .= " PRIMARY KEY";
           }
           $commands[] = $sql;
         }
       }
     }
     else {
-      $commands[] = "DROP TABLE `".$table."`";
+      $commands[] = "DROP TABLE `" . $table . "`";
     }
     return $commands;
   }
@@ -170,37 +170,37 @@ class DatabaseUtil {
    */
   static function checkTable($table,$columns) {
     global $databaseTables, $basePath;
-    require_once($basePath.'/Editor/Info/Database.php');
+    require_once($basePath . '/Editor/Info/Database.php');
     $errors = [];
     if (array_key_exists($table,$databaseTables)) {
       $expectedColumns = $databaseTables[$table];
       foreach ($expectedColumns as $col) {
         if ($fields = DatabaseUtil::findColumnInColumns($col[0],$columns)) {
           //print_r($fields);
-          if ($fields['Type']!=$col[1]) {
-            $errors[] = "column ".$col[0].", TYPE is '".$fields['Type']."' should be '".$col[1]."'";
+          if ($fields['Type'] != $col[1]) {
+            $errors[] = "column " . $col[0] . ", TYPE is '" . $fields['Type'] . "' should be '" . $col[1] . "'";
           }
-          if ($fields['Null']=='YES' && $col[2]!='YES') {
-            $errors[] = "column ".$col[0].", NULL is '".$fields['Null']."' should be '".$col[2]."'";
+          if ($fields['Null'] == 'YES' && $col[2] != 'YES') {
+            $errors[] = "column " . $col[0] . ", NULL is '" . $fields['Null'] . "' should be '" . $col[2] . "'";
           }
-          if ($fields['Key']!=$col[3]) {
-            $errors[] = "column ".$col[0].", KEY is '".$fields['Key']."' should be '".$col[3]."'";
+          if ($fields['Key'] != $col[3]) {
+            $errors[] = "column " . $col[0] . ", KEY is '" . $fields['Key'] . "' should be '" . $col[3] . "'";
           }
-          if ($fields['Default']!=$col[4]) {
-            $errors[] = "column ".$col[0].", DEFAULT is '".$fields['Default']."' should be '".$col[4]."'";
+          if ($fields['Default'] != $col[4]) {
+            $errors[] = "column " . $col[0] . ", DEFAULT is '" . $fields['Default'] . "' should be '" . $col[4] . "'";
           }
-          if ($fields['Extra']!=$col[5]) {
-            $errors[] = "column ".$col[0].", EXTRA is '".$fields['Extra']."' should be '".$col[5]."'";
+          if ($fields['Extra'] != $col[5]) {
+            $errors[] = "column " . $col[0] . ", EXTRA is '" . $fields['Extra'] . "' should be '" . $col[5] . "'";
           }
         }
         else {
-          $errors[] = "column ".$col[0]." missing in db : ".DatabaseUtil::buildColumnProps($col);
+          $errors[] = "column " . $col[0] . " missing in db : " . DatabaseUtil::buildColumnProps($col);
         }
       }
       // Search for unknown columns
       foreach ($columns as $col) {
         if(!DatabaseUtil::findColumnInColumns($col[0],$expectedColumns)) {
-          $errors[] = "column ".$col[0]." in db but not in config : ".DatabaseUtil::buildColumnConfig($col);
+          $errors[] = "column " . $col[0] . " in db but not in config : " . DatabaseUtil::buildColumnConfig($col);
         }
       }
     }
@@ -217,7 +217,7 @@ class DatabaseUtil {
    */
   static function findMissingTables($tables) {
     global $databaseTables, $basePath;
-    require_once($basePath.'/Editor/Info/Database.php');
+    require_once($basePath . '/Editor/Info/Database.php');
     $out = [];
     $keys = array_keys($databaseTables);
     foreach ($keys as $table) {
@@ -237,7 +237,7 @@ class DatabaseUtil {
   static function findColumnInColumns($columnName,$columns) {
     $found = false;
     foreach ($columns as $column) {
-      if ($column[0]==$columnName) {
+      if ($column[0] == $columnName) {
         $found = $column;
       }
     }
@@ -250,13 +250,13 @@ class DatabaseUtil {
    * @return string The PHP definition
    */
   static function buildColumnConfig($cols) {
-    return 'array('.
-    '"'.$cols[0].'","'.$cols['Type'].'","'.$cols['Null'].'","'.$cols['Key'].'","'.$cols['Default'].'","'.$cols['Extra'].'"'.
+    return 'array(' .
+    '"' . $cols[0] . '","' . $cols['Type'] . '","' . $cols['Null'] . '","' . $cols['Key'] . '","' . $cols['Default'] . '","' . $cols['Extra'] . '"' .
     ')';
   }
 
   static function buildColumnProps($cols) {
-    return "type=".$cols[0].",null=".$cols[1].",key=".$cols[2].",default=".$cols[3].",extra=".$cols[4];
+    return "type=" . $cols[0] . ",null=" . $cols[1] . ",key=" . $cols[2] . ",default=" . $cols[3] . ",extra=" . $cols[4];
   }
 
   static function update() {
@@ -272,8 +272,8 @@ class DatabaseUtil {
       $log[] = "> " . $command;
       mysqli_query($con,$command);
       $error = mysqli_error($con);
-      if (strlen($error)>0) {
-        $log[] = "!!!Error: ".$error;
+      if (strlen($error) > 0) {
+        $log[] = "!!!Error: " . $error;
       }
 
     }
@@ -293,37 +293,37 @@ class DatabaseUtil {
     $commands = [];
     $missingTables = DatabaseUtil::findMissingTables($tables);
     foreach ($missingTables as $table) {
-      $action = "CREATE TABLE `".$table."` (";
+      $action = "CREATE TABLE `" . $table . "` (";
       $columns = DatabaseUtil::getExpectedColumns($table);
       $keys = '';
-      for ($i=0; $i<count($columns); $i++) {
+      for ($i = 0; $i < count($columns); $i++) {
         $column = $columns[$i];
-        if ($i>0) {
-          $action.= ",";
+        if ($i > 0) {
+          $action .= ",";
         }
-        $action.= "`".$column[0]."` ".$column[1];
-        if ($column[2]=='') {
-          $action.= " NOT NULL";
+        $action .= "`" . $column[0] . "` " . $column[1];
+        if ($column[2] == '') {
+          $action .= " NOT NULL";
         }
-        if ($column[3]=='PRI') {
-          $keys.= ",PRIMARY KEY (`".$column[0]."`)";
+        if ($column[3] == 'PRI') {
+          $keys .= ",PRIMARY KEY (`" . $column[0] . "`)";
         }
-        if ($column[4]!='') {
-          $action.= " DEFAULT '".$column[4]."'";
+        if ($column[4] != '') {
+          $action .= " DEFAULT '" . $column[4] . "'";
         }
-        if ($column[5]!='') {
-          $action.= " ".$column[5];
+        if ($column[5] != '') {
+          $action .= " " . $column[5];
         }
       }
-      $action.= $keys;
-      $action.= ")";
+      $action .= $keys;
+      $action .= ")";
       $commands[] = $action;
     }
 
     foreach ($tables as $table) {
       $columns = DatabaseUtil::getTableColumns($table);
       $errors = DatabaseUtil::checkTable($table,$columns);
-      if (count($errors)>0) {
+      if (count($errors) > 0) {
         $sql = DatabaseUtil::updateTable($table,$columns);
         $commands = array_merge($commands,$sql);
       }
@@ -334,7 +334,7 @@ class DatabaseUtil {
   static function convertAllTablesToUnicode(&$log) {
     $tables = DatabaseUtil::getTables();
     foreach ($tables as $table) {
-      $sql = 'ALTER TABLE `'.$table.'` CONVERT TO CHARACTER SET utf8 COLLATE utf8_danish_ci';
+      $sql = 'ALTER TABLE `' . $table . '` CONVERT TO CHARACTER SET utf8 COLLATE utf8_danish_ci';
       $log[] = "> " . $sql;
       Database::update($sql);
 

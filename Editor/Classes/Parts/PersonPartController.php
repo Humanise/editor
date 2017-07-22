@@ -68,63 +68,63 @@ class PersonPartController extends PartController
 
   function editor($part,$context) {
     return
-    '<input type="hidden" name="align" value="'.$part->getAlign().'"/>'.
-    '<input type="hidden" name="show_firstname" value="'.$this->_intToBool($part->getShowFirstName()).'"/>'.
-    '<input type="hidden" name="show_middlename" value="'.$this->_intToBool($part->getShowMiddleName()).'"/>'.
-    '<input type="hidden" name="show_surname" value="'.$this->_intToBool($part->getShowLastName()).'"/>'.
-    '<input type="hidden" name="show_initials" value="'.$this->_intToBool($part->getShowInitials()).'"/>'.
-    '<input type="hidden" name="show_streetname" value="'.$this->_intToBool($part->getShowStreetname()).'"/>'.
-    '<input type="hidden" name="show_zipcode" value="'.$this->_intToBool($part->getShowZipCode()).'"/>'.
-    '<input type="hidden" name="show_city" value="'.$this->_intToBool($part->getShowCity()).'"/>'.
-    '<input type="hidden" name="show_country" value="'.$this->_intToBool($part->getShowCountry()).'"/>'.
-    '<input type="hidden" name="show_nickname" value="'.$this->_intToBool($part->getShowNickname()).'"/>'.
-    '<input type="hidden" name="show_jobtitle" value="'.$this->_intToBool($part->getShowJobTitle()).'"/>'.
-    '<input type="hidden" name="show_sex" value="'.$this->_intToBool($part->getShowSex()).'"/>'.
-    '<input type="hidden" name="show_emailjob" value="'.$this->_intToBool($part->getShowEmailJob()).'"/>'.
-    '<input type="hidden" name="show_emailprivate" value="'.$this->_intToBool($part->getShowEmailPrivate()).'"/>'.
-    '<input type="hidden" name="show_phonejob" value="'.$this->_intToBool($part->getShowPhoneJob()).'"/>'.
-    '<input type="hidden" name="show_phoneprivate" value="'.$this->_intToBool($part->getShowPhonePrivate()).'"/>'.
-    '<input type="hidden" name="show_webaddress" value="'.$this->_intToBool($part->getShowWebAddress()).'"/>'.
-    '<input type="hidden" name="show_image" value="'.$this->_intToBool($part->getShowImage()).'"/>'.
-    '<input type="hidden" name="personId" value="'.$part->getPersonId().'"/>'.
-    '<div align="'.$part->getAlign().'">'.
-    '<div id="part_person_container">'.$this->render($part,$context).'</div>'.
-    '</div>'.
-    '<script src="'.ConfigurationService::getBaseUrl().'Editor/Parts/person/script.js" type="text/javascript" charset="utf-8"></script>';
+    '<input type="hidden" name="align" value="' . $part->getAlign() . '"/>' .
+    '<input type="hidden" name="show_firstname" value="' . $this->_intToBool($part->getShowFirstName()) . '"/>' .
+    '<input type="hidden" name="show_middlename" value="' . $this->_intToBool($part->getShowMiddleName()) . '"/>' .
+    '<input type="hidden" name="show_surname" value="' . $this->_intToBool($part->getShowLastName()) . '"/>' .
+    '<input type="hidden" name="show_initials" value="' . $this->_intToBool($part->getShowInitials()) . '"/>' .
+    '<input type="hidden" name="show_streetname" value="' . $this->_intToBool($part->getShowStreetname()) . '"/>' .
+    '<input type="hidden" name="show_zipcode" value="' . $this->_intToBool($part->getShowZipCode()) . '"/>' .
+    '<input type="hidden" name="show_city" value="' . $this->_intToBool($part->getShowCity()) . '"/>' .
+    '<input type="hidden" name="show_country" value="' . $this->_intToBool($part->getShowCountry()) . '"/>' .
+    '<input type="hidden" name="show_nickname" value="' . $this->_intToBool($part->getShowNickname()) . '"/>' .
+    '<input type="hidden" name="show_jobtitle" value="' . $this->_intToBool($part->getShowJobTitle()) . '"/>' .
+    '<input type="hidden" name="show_sex" value="' . $this->_intToBool($part->getShowSex()) . '"/>' .
+    '<input type="hidden" name="show_emailjob" value="' . $this->_intToBool($part->getShowEmailJob()) . '"/>' .
+    '<input type="hidden" name="show_emailprivate" value="' . $this->_intToBool($part->getShowEmailPrivate()) . '"/>' .
+    '<input type="hidden" name="show_phonejob" value="' . $this->_intToBool($part->getShowPhoneJob()) . '"/>' .
+    '<input type="hidden" name="show_phoneprivate" value="' . $this->_intToBool($part->getShowPhonePrivate()) . '"/>' .
+    '<input type="hidden" name="show_webaddress" value="' . $this->_intToBool($part->getShowWebAddress()) . '"/>' .
+    '<input type="hidden" name="show_image" value="' . $this->_intToBool($part->getShowImage()) . '"/>' .
+    '<input type="hidden" name="personId" value="' . $part->getPersonId() . '"/>' .
+    '<div align="' . $part->getAlign() . '">' .
+    '<div id="part_person_container">' . $this->render($part,$context) . '</div>' .
+    '</div>' .
+    '<script src="' . ConfigurationService::getBaseUrl() . 'Editor/Parts/person/script.js" type="text/javascript" charset="utf-8"></script>';
   }
 
   function _intToBool($val) {
-    return $val==1 ? "true" : "false";
+    return $val == 1 ? "true" : "false";
   }
 
   function buildSub($part,$context) {
-    $data='<person xmlns="'.$this->getNamespace().'">';
+    $data = '<person xmlns="' . $this->getNamespace() . '">';
     if ($personData = ObjectService::getObjectData($part->getPersonId())) {
-      $data.=
-      '<display firstname="'.($part->getShowFirstName() ? 'true' : 'false').'"'.
-      ' middlename="'.($part->getShowMiddleName() ? 'true' : 'false').'"'.
-      ' surname="'.($part->getShowLastName() ? 'true' : 'false').'"'.
-      ' initials="'.($part->getShowInitials() ? 'true' : 'false').'"'.
-      ' nickname="'.($part->getShowNickname() ? 'true' : 'false').'"'.
-      ' jobtitle="'.($part->getShowJobTitle() ? 'true' : 'false').'"'.
-      ' sex="'.($part->getShowSex() ? 'true' : 'false').'"'.
-      ' email_job="'.($part->getShowEmailJob() ? 'true' : 'false').'"'.
-      ' email_private="'.($part->getShowEmailPrivate() ? 'true' : 'false').'"'.
-      ' phone_job="'.($part->getShowPhoneJob() ? 'true' : 'false').'"'.
-      ' phone_private="'.($part->getShowPhonePrivate() ? 'true' : 'false').'"'.
-      ' streetname="'.($part->getShowStreetname() ? 'true' : 'false').'"'.
-      ' zipcode="'.($part->getShowZipcode() ? 'true' : 'false').'"'.
-      ' city="'.($part->getShowCity() ? 'true' : 'false').'"'.
-      ' country="'.($part->getShowCountry() ? 'true' : 'false').'"'.
-      ' webaddress="'.($part->getShowWebAddress() ? 'true' : 'false').'"'.
-      ' image="'.($part->getShowImage() ? 'true' : 'false').'"'.
+      $data .=
+      '<display firstname="' . ($part->getShowFirstName() ? 'true' : 'false') . '"' .
+      ' middlename="' . ($part->getShowMiddleName() ? 'true' : 'false') . '"' .
+      ' surname="' . ($part->getShowLastName() ? 'true' : 'false') . '"' .
+      ' initials="' . ($part->getShowInitials() ? 'true' : 'false') . '"' .
+      ' nickname="' . ($part->getShowNickname() ? 'true' : 'false') . '"' .
+      ' jobtitle="' . ($part->getShowJobTitle() ? 'true' : 'false') . '"' .
+      ' sex="' . ($part->getShowSex() ? 'true' : 'false') . '"' .
+      ' email_job="' . ($part->getShowEmailJob() ? 'true' : 'false') . '"' .
+      ' email_private="' . ($part->getShowEmailPrivate() ? 'true' : 'false') . '"' .
+      ' phone_job="' . ($part->getShowPhoneJob() ? 'true' : 'false') . '"' .
+      ' phone_private="' . ($part->getShowPhonePrivate() ? 'true' : 'false') . '"' .
+      ' streetname="' . ($part->getShowStreetname() ? 'true' : 'false') . '"' .
+      ' zipcode="' . ($part->getShowZipcode() ? 'true' : 'false') . '"' .
+      ' city="' . ($part->getShowCity() ? 'true' : 'false') . '"' .
+      ' country="' . ($part->getShowCountry() ? 'true' : 'false') . '"' .
+      ' webaddress="' . ($part->getShowWebAddress() ? 'true' : 'false') . '"' .
+      ' image="' . ($part->getShowImage() ? 'true' : 'false') . '"' .
       '/>';
-      if ($part->getAlign()!='') {
-        $data.= '<style align="'.$part->getAlign().'"/>';
+      if ($part->getAlign() != '') {
+        $data .= '<style align="' . $part->getAlign() . '"/>';
       }
-      $data.= $personData;
+      $data .= $personData;
     }
-    $data.='</person>';
+    $data .= '</person>';
     return $data;
   }
 
@@ -135,23 +135,23 @@ class PersonPartController extends PartController
       }
     }
     if ($display = DOMUtils::getFirstDescendant($node,'display')) {
-      $part->setShowFirstName($display->getAttribute('firstname')=='true');
-      $part->setShowMiddleName($display->getAttribute('middlename')=='true');
-      $part->setShowLastName($display->getAttribute('surname')=='true');
-      $part->setShowInitials($display->getAttribute('initials')=='true');
-      $part->setShowStreetname($display->getAttribute('streetname')=='true');
-      $part->setShowZipcode($display->getAttribute('zipcode')=='true');
-      $part->setShowCity($display->getAttribute('city')=='true');
-      $part->setShowCountry($display->getAttribute('country')=='true');
-      $part->setShowNickname($display->getAttribute('nickname')=='true');
-      $part->setShowJobTitle($display->getAttribute('jobtitle')=='true');
-      $part->setShowSex($display->getAttribute('sex')=='true');
-      $part->setShowEmailJob($display->getAttribute('email_job')=='true');
-      $part->setShowEmailPrivate($display->getAttribute('email_private')=='true');
-      $part->setShowPhoneJob($display->getAttribute('phone_job')=='true');
-      $part->setShowPhonePrivate($display->getAttribute('phone_private')=='true');
-      $part->setShowWebAddress($display->getAttribute('webaddress')=='true');
-      $part->setShowImage($display->getAttribute('image')=='true');
+      $part->setShowFirstName($display->getAttribute('firstname') == 'true');
+      $part->setShowMiddleName($display->getAttribute('middlename') == 'true');
+      $part->setShowLastName($display->getAttribute('surname') == 'true');
+      $part->setShowInitials($display->getAttribute('initials') == 'true');
+      $part->setShowStreetname($display->getAttribute('streetname') == 'true');
+      $part->setShowZipcode($display->getAttribute('zipcode') == 'true');
+      $part->setShowCity($display->getAttribute('city') == 'true');
+      $part->setShowCountry($display->getAttribute('country') == 'true');
+      $part->setShowNickname($display->getAttribute('nickname') == 'true');
+      $part->setShowJobTitle($display->getAttribute('jobtitle') == 'true');
+      $part->setShowSex($display->getAttribute('sex') == 'true');
+      $part->setShowEmailJob($display->getAttribute('email_job') == 'true');
+      $part->setShowEmailPrivate($display->getAttribute('email_private') == 'true');
+      $part->setShowPhoneJob($display->getAttribute('phone_job') == 'true');
+      $part->setShowPhonePrivate($display->getAttribute('phone_private') == 'true');
+      $part->setShowWebAddress($display->getAttribute('webaddress') == 'true');
+      $part->setShowImage($display->getAttribute('image') == 'true');
     }
     if ($style = DOMUtils::getFirstDescendant($node,'style')) {
       $part->setAlign($style->getAttribute('align'));
