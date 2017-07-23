@@ -170,10 +170,10 @@ module.exports = function(grunt) {
             return 'Config/scripts/deploy.sh ' + clients[client].production.folder;
           }
           return '';
-        },
-        format {
-          command : 'php php-cs-fixer-v2.phar fix --config Editor/Info/CodeStyle.php'
         }
+      },
+      format : {
+        command : 'php php-cs-fixer-v2.phar fix --config Editor/Info/CodeStyle.php'
       }
     }
   };
@@ -217,6 +217,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-jsdoc');
 
   grunt.registerTask('default', 'Standard tasks', ['sass','compass','watch']);
+
+  grunt.registerTask('format', 'Format code', ['shell:format']);
 
   grunt.registerTask('stage', 'Stage a client', function(client) {
     grunt.task.run('shell:stage:' + client);

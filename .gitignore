@@ -5,6 +5,8 @@ CVS
 .project
 .settings
 .cvsignore
+.php_cs.cache
+php-cs-fixer-v2.phar
 Config/scripts
 /files
 /public/*
