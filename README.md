@@ -1,16 +1,24 @@
 # Humanise Editor #
 
 
-Humanise Editor is a simple CMS system written in PHP using MySQL. 
+Humanise Editor is a simple CMS written in PHP using MySQL.
 
 * [Info and installation guide](http://www.humanise.dk/en/opensource/onlinepublisher/)
 * [Product description in danish](http://www.humanise.dk/produkter/onlinepublisher/)
 
-Write me at jonas@humanise.dk for more info.
+Note: It has only been developed and run on Linux and macOS – it will probably not work on Windows (sorry).
 
-http://www.humanise.dk/
+Humanise Editor is developed by [Jonas Brinkmann Munk](http://www.jonasmunk.com/) from [Humanise](http://www.humanise.dk/)
+
+Write me at jonas@humanise.dk for more information.
 
 ## Setup
+
+### Get the code
+
+Check out this repository and serve it via Apache HTTPd
+
+	git clone git@github.com:Humanise/editor.git
 
 ### HUI
 The system depends on Humanise User Interface which should be placed in the root folder and be called "hui". Just clone it in the root folder...
