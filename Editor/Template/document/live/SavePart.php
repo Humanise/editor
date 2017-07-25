@@ -32,7 +32,7 @@ if ($ctrl = PartService::getController($type)) {
   PageService::markChanged($pageId);
 
   header("Content-Type: text/html; charset=UTF-8");
-  $context = PartService::buildPartContext($pageId);
+  $context = DocumentTemplateController::buildPartContext($pageId);
   echo $ctrl->render($part,$context);
 } else {
   Log::debug("Unable to find controller for $type");

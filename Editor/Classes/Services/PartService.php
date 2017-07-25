@@ -176,30 +176,6 @@ class PartService {
         return Database::selectIntArray($sql,['partId' => $partId]);
     }
 
-    /** Builds the context for a page */
-    static function buildPartContext($pageId) {
-        $context = new PartContext();
-
-        $sql = "select link.*,page.path from link left join page on page.id=link.target_id and link.target_type='page' where page_id=" . $pageId . " and source_type='text'";
-
-        $result = Database::select($sql);
-        while ($row = Database::next($result)) {
-            $context -> addBuildLink(
-                Strings::escapeSimpleXML($row['source_text']),
-                $row['target_type'],
-                $row['target_id'],
-                $row['target_value'],
-                $row['target'],
-                $row['alternative'],
-                $row['path']
-            );
-        }
-        Database::free($result);
-
-        return $context;
-    }
-
-
     /** Get a list of all available parts */
     static function getAvailableParts() {
         global $basePath;
