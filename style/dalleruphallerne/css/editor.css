@@ -178,11 +178,14 @@ a {
   line-height: 1;
   justify-content: center;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  padding: 0 10px; }
 
 @media screen and (min-width: 500px) {
   .header {
-    height: 32vw; } }
+    height: 32vw; }
+    .header_title {
+      padding: 0 20px; } }
 @media screen and (min-width: 700px) {
   .header {
     background-image: url("../gfx/top.jpg");
@@ -198,7 +201,9 @@ a {
     .header_title {
       padding: 30px;
       font-size: 6vw;
-      max-width: 55%; } }
+      max-width: 55%;
+      text-shadow: 0px 3px 20px rgba(0, 0, 0, 0.5);
+      line-height: 1.1; } }
 @media screen and (min-width: 1020px) {
   .header_title {
     text-align: left;
@@ -525,7 +530,7 @@ a {
 
 @media screen and (min-width: 700px) {
   .offer {
-    min-height: 170px;
+    min-height: 120px;
     position: relative;
     width: 250px;
     margin: 0 0 0 20px;
