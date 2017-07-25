@@ -20,9 +20,13 @@ class WidgetPartController extends PartController
     return $part;
   }
 
-    function renderUsingDesign() {
-        return true;
-    }
+  function isLiveEnabled() {
+    return true;
+  }
+
+  function renderUsingDesign() {
+    return true;
+  }
 
   function display($part,$context) {
     return $this->render($part,$context);
