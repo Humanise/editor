@@ -10,7 +10,7 @@
 
     &_title {
       margin: 0 auto 10px;
-      font-size: em(32,16);
+      font-size: em(42,16);
       max-width: 260px;
       line-height: 1;
       margin-top: -.1em;
@@ -77,15 +77,19 @@
 @include if((target:inline, width: 700px)) {
 
   .offer {
-    min-height: 140px;
+    min-height: 170px;
     position: relative;
     width: 250px;
     margin: 0 0 0 20px;
     font-size: 13px;
+    box-sizing: border-box;
 
     &_box {
       position: absolute;
       bottom: 0;
+      padding: 30px 20px;
+      width: 250px;
+      box-sizing: border-box;
     }
 
     &_mail > a {
@@ -110,6 +114,9 @@
   .offer {
     font-size: 16px;
     width: 300px;
+    &_box {
+      width: 300px;
+    }
 
     &_mail > a {
       font-size: 18px;

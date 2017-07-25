@@ -40,7 +40,7 @@
   .header {
     height: 160 / 500 * 100vw;
     &_title {
-      font-size: 8vw;
+      //font-size: 8vw;
     }
   }
 }
@@ -61,10 +61,9 @@
     }
 
     &_title {
-      text-align: left;
       padding: 30px;
       font-size: 6vw;
-      max-width: 50%;
+      max-width: 55%;
     }
   }
 }
@@ -73,11 +72,13 @@
   .header {
 
     &_title {
+      text-align: left;
       position: absolute;
       top: 0;
       left: 50%;
       margin-left: -510px;
       font-size: 60px;
+      max-width: 530px;
     }
 
     &_logo {

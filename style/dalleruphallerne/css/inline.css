@@ -97,9 +97,7 @@ a {
 
 @media screen and (min-width: 500px) {
   .header {
-    height: 32vw; }
-    .header_title {
-      font-size: 8vw; } }
+    height: 32vw; } }
 @media screen and (min-width: 700px) {
   .header {
     background-image: url("../gfx/top.jpg");
@@ -113,17 +111,18 @@ a {
       width: 250px;
       height: 40px; }
     .header_title {
-      text-align: left;
       padding: 30px;
       font-size: 6vw;
-      max-width: 50%; } }
+      max-width: 55%; } }
 @media screen and (min-width: 1020px) {
   .header_title {
+    text-align: left;
     position: absolute;
     top: 0;
     left: 50%;
     margin-left: -510px;
-    font-size: 60px; }
+    font-size: 60px;
+    max-width: 530px; }
   .header_logo {
     right: 50%;
     margin-right: -480px;
@@ -220,7 +219,7 @@ a {
     text-align: center; }
   .offer_title {
     margin: 0 auto 10px;
-    font-size: 2em;
+    font-size: 2.625em;
     max-width: 260px;
     line-height: 1;
     margin-top: -.1em; }
@@ -270,19 +269,25 @@ a {
 
 @media screen and (min-width: 700px) {
   .offer {
-    min-height: 140px;
+    min-height: 170px;
     position: relative;
     width: 250px;
     margin: 0 0 0 20px;
-    font-size: 13px; }
+    font-size: 13px;
+    box-sizing: border-box; }
     .offer_box {
       position: absolute;
-      bottom: 0; }
+      bottom: 0;
+      padding: 30px 20px;
+      width: 250px;
+      box-sizing: border-box; }
     .offer_mail > a {
       font-size: 16px; } }
 @media screen and (min-width: 900px) {
   .offer {
     font-size: 16px;
     width: 300px; }
+    .offer_box {
+      width: 300px; }
     .offer_mail > a {
       font-size: 18px; } }

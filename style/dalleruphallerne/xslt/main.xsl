@@ -66,7 +66,7 @@
 <xsl:template name="header">
   <header class="header">
     <p class="header_logo">Dalleruphallerne</p>
-    <h1 class="header_title">Opbevaring af campingvogn</h1>
+    <h1 class="header_title">Opbevaring af campingvogne og lagerhaller</h1>
   </header>
 </xsl:template>
 
