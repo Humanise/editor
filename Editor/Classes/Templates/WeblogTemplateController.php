@@ -61,7 +61,7 @@ class WeblogTemplateController extends TemplateController
         $xml .= ' page-id="' . $row['page_id'] . '"';
       }
       $xml .= '>';
-      $sql = "select object.title,object.id from webloggroup_weblogentry,object where webloggroup_weblogentry.webloggroup_id=object.id and weblogentry_id=" . $row['id'] . " order by object.title";
+      $sql = "select object.title,object.id from webloggroup_weblogentry,object where webloggroup_weblogentry.webloggroup_id=object.id and weblogentry_id=" . Database::int($row['id']) . " order by object.title";
       $subResult = Database::select($sql);
       while ($subRow = Database::next($subResult)) {
         $xml .= '<group id="' . $subRow['id'] . '" title="' . Strings::escapeXML($subRow['title']) . '"/>';

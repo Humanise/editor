@@ -71,14 +71,14 @@ class CalendarTemplateController extends TemplateController
 
   function getEvents($id,$query,$refresh) {
     $events = [];
-    $sql = "select calendarsource.object_id as id from calendarviewer_object,calendarsource where calendarsource.object_id = calendarviewer_object.object_id and calendarviewer_object.page_id = " . $id;
+    $sql = "select calendarsource.object_id as id from calendarviewer_object,calendarsource where calendarsource.object_id = calendarviewer_object.object_id and calendarviewer_object.page_id = " . Database::int($id);
     $ids = Database::getIds($sql);
     foreach ($ids as $sourceId) {
       $source = Calendarsource::load($sourceId);
       $source->synchronize($refresh);
       $events = array_merge($events,$source->getEvents($query));
     }
-    $sql = "select calendar.object_id as id,object.title from calendarviewer_object,calendar,object where object.id = calendar.object_id and calendar.object_id = calendarviewer_object.object_id and calendarviewer_object.page_id = " . $id;
+    $sql = "select calendar.object_id as id,object.title from calendarviewer_object,calendar,object where object.id = calendar.object_id and calendar.object_id = calendarviewer_object.object_id and calendarviewer_object.page_id = " . Database::int($id);
 
         $result = Database::select($sql);
         while ($row = Database::next($result)) {

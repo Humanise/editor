@@ -22,7 +22,7 @@ function buildSql() {
 function getTotalCount($type = null) {
   $parms = buildSql();
   if ($type !== null) {
-    $sql = "SELECT count(statistics.id) as total FROM statistics where type='" . $type . "'" . (strlen($parms) > 0 ? " and " . $parms : "");
+    $sql = "SELECT count(statistics.id) as total FROM statistics where type=" . Database::text($type) . (strlen($parms) > 0 ? " and " . $parms : "");
   }
   else {
     $sql = "SELECT count(statistics.id) as total FROM statistics " . (strlen($parms) > 0 ? " where " . $parms : "");

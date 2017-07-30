@@ -252,7 +252,7 @@ class Calendarsource extends Object {
   function getEvents($query = []) {
     $events = [];
     $sql = "select id,summary,description,url,recurring,uniqueid,location,unix_timestamp(startdate) as startdate,unix_timestamp(enddate) as enddate,`duration`" .
-    " from calendarsource_event where calendarsource_id=" . $this->id . " and recurring=0";
+    " from calendarsource_event where calendarsource_id=" . Database::int($this->id) . " and recurring=0";
     if (isset($query['startDate']) && isset($query['endDate'])) {
       $sql .= " and not (startdate>" . Database::datetime($query['endDate']) . " or endDate<" . Database::datetime($query['startDate']) . ")";
     }
@@ -268,7 +268,7 @@ class Calendarsource extends Object {
     // Get recurring events
     $sql = "select id,summary,description,url,recurring,uniqueid,location,unix_timestamp(startdate) as startdate,unix_timestamp(enddate) as enddate,`duration`" .
     ",frequency,unix_timestamp(until) as until,`count`,`interval`,byday" .
-    " from calendarsource_event where calendarsource_id=" . $this->id . " and recurring=1 order by startdate desc";
+    " from calendarsource_event where calendarsource_id=" . Database::int($this->id) . " and recurring=1 order by startdate desc";
 
     $result = Database::select($sql);
     while ($row = Database::next($result)) {

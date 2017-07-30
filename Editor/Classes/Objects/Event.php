@@ -81,7 +81,7 @@ class Event extends Object {
     function search($query = []) {
         $out = [];
     if (isset($query['calendarId'])) {
-          $sql = "select object.id from object,event,calendar_event where object.id=event.object_id and object.id=calendar_event.event_id and calendar_event.calendar_id=" . $query['calendarId'];
+          $sql = "select object.id from object,event,calendar_event where object.id=event.object_id and object.id=calendar_event.event_id and calendar_event.calendar_id=" . Database::int($query['calendarId']);
     } else {
           $sql = "select id from object,event where object.id=event.object_id";
     }
@@ -108,7 +108,7 @@ class Event extends Object {
         $out = [];
     $sql = "select object.id,object.title,object.note,event.location,unix_timestamp(event.startdate) as startdate,unix_timestamp(event.enddate) as enddate ";
     if (isset($query['calendarId'])) {
-          $sql .= "from object,event,calendar_event where object.id=event.object_id and object.id=calendar_event.event_id and calendar_event.calendar_id=" . $query['calendarId'];
+          $sql .= "from object,event,calendar_event where object.id=event.object_id and object.id=calendar_event.event_id and calendar_event.calendar_id=" . Database::int($query['calendarId']);
     } else {
           $sql .= " from object,event where object.id=event.object_id";
     }

@@ -60,16 +60,25 @@ class Milestone extends Object {
     if (!is_array($arr)) $arr = [];
     if (!isset($arr['sort'])) $arr['sort'] = 'title';
     if (!isset($arr['project'])) $arr['project'] = 0;
-    if (!isset($arr['projects'])) $arr['projects'] = [];
+    if (!isset($arr['projects']) || !is_array($arr['projects'])) {
+      $arr['projects'] = [];
+    }
   }
 
   function search($options = null) {
     Milestone::_fixOptions($options);
     $sql = "select object.id from milestone,object where object.id=milestone.object_id";
     if ($options['project'] > 0) {
-      $sql .= " and containing_object_id=" . $options['project'];
+      $sql .= " and containing_object_id=" . Database::int($options['project']);
     } elseif (count($options['projects']) > 0) {
-      $sql .= " and containing_object_id in (" . implode(",",$options['projects']) . ")";
+      $sql .= " and containing_object_id in (";
+      for ($i=0; $i < count($options['projects']); $i++) {
+        if ($i > 0) {
+          $sql .= ',';
+        }
+        $sql .= Database::int($options['projects'][$i]);
+      }
+      $sql .= ")";
     }
     if (isset($options['completed'])) {
       $sql .= " and milestone.completed=" . Database::boolean($options['completed']);
@@ -103,7 +112,7 @@ class Milestone extends Object {
 
   function getTasks() {
     $output = [];
-    $sql = "select object_id from task,object where task.object_id = object.id and task.milestone_id=" . $this->id . " order by object.title";
+    $sql = "select object_id from task,object where task.object_id = object.id and task.milestone_id=" . Database::int($this->id) . " order by object.title";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
         $output[] = Task::load($row['object_id']);
@@ -114,7 +123,7 @@ class Milestone extends Object {
 
   function getProblems() {
     $output = [];
-    $sql = "select object_id from problem,object where problem.object_id = object.id and problem.milestone_id=" . $this->id . " order by object.title";
+    $sql = "select object_id from problem,object where problem.object_id = object.id and problem.milestone_id=" . Database::int($this->id) . " order by object.title";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
         $output[] = Problem::load($row['object_id']);
@@ -125,7 +134,7 @@ class Milestone extends Object {
 
   function getCompletedInfo() {
     $output = ['completed' => 0, 'active' => 0];
-    $sql = "select count(object_id)-sum(problem.completed) as active,sum(problem.completed) as completed from problem where problem.milestone_id=" . $this->id . " union select count(object_id)-sum(task.completed) as active,sum(task.completed) as completed from task where task.milestone_id=" . $this->id;
+    $sql = "select count(object_id)-sum(problem.completed) as active,sum(problem.completed) as completed from problem where problem.milestone_id=" . Database::int($this->id) . " union select count(object_id)-sum(task.completed) as active,sum(task.completed) as completed from task where task.milestone_id=" . Database::int($this->id);
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
         $output['completed'] += $row['completed'];

@@ -76,7 +76,7 @@ class Productoffer extends Object {
     }
     $sql = "select object.id from productoffer,object where object.id=productoffer.object_id";
     if (isset($options['productId'])) {
-      $sql .= " and productoffer.product_id=" . $options['productId'];
+      $sql .= " and productoffer.product_id=" . Database::int($options['productId']);
     }
     $sql .= " order by object.title";
     $result = Database::select($sql);

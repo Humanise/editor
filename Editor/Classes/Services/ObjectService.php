@@ -251,7 +251,7 @@ class ObjectService {
 
     $links = '';
 
-    $sql = "select object_link.*,page.path from object_link left join page on page.id=object_link.target_value and object_link.target_type='page' where object_id=" . $object->id . " order by position";
+    $sql = "select object_link.*,page.path from object_link left join page on page.id=object_link.target_value and object_link.target_type='page' where object_id=" . Database::int($object->id) . " order by position";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
       $links .= '<link title="' . Strings::escapeEncodedXML($row['title']) . '"';

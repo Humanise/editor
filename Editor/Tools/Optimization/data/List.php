@@ -55,7 +55,7 @@ function listWordCheck() {
   $writer->endHeaders();
 
   foreach ($list as $word) {
-    $sql = "select count(id) as `count` from page where lower(`index`) like '%" . strtolower($word->getTitle()) . "%'";
+    $sql = "select count(id) as `count` from page where lower(`index`) like " . Database::search(strtolower($word->getTitle()));
     $row = Database::selectFirst($sql);
 
     $writer->startRow(['id' => $word->getId()]);

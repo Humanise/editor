@@ -17,7 +17,7 @@ $writer->startList()->
     header(['width' => 1])->
   endHeaders();
 
-$sql = "select id,title from page where lower(`index`) like '%" . strtolower($phrase->getTitle()) . "%'";
+$sql = "select id,title from page where lower(`index`) like " . Database::search(strtolower($phrase->getTitle()));
 
 $result = Database::select($sql);
 while ($row = Database::next($result)) {

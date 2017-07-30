@@ -23,7 +23,7 @@ class SettingService {
     "`key`=" . Database::text($key) . " and " .
     "`user_id`=" . Database::int($user);
     if ($row = Database::selectFirst($sql)) {
-      $sql = "update `setting` set `value`=" . Database::text($value) . " where `id`=" . $row['id'];
+      $sql = "update `setting` set `value`=" . Database::text($value) . " where `id`=" . Database::int($row['id']);
       return Database::update($sql);
     } else {
       $sql = "insert into `setting` (`domain`,`subdomain`,`key`,`value`,`user_id`) values (" .

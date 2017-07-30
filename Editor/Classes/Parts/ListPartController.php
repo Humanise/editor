@@ -164,7 +164,7 @@ class ListPartController extends PartController
   }
 
   function buildValues($type,$part) {
-    return Database::selectIntArray("select object.id from part_list_object,object where part_list_object.object_id=object.id and object.type='" . $type . "' and part_id=" . $part->getId());
+    return Database::selectIntArray("select object.id from part_list_object,object where part_list_object.object_id=object.id and object.type=" . Database::text($type) . " and part_id=" . Database::int($part->getId()));
   }
 
   function buildSub($part,$context) {

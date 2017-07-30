@@ -15,7 +15,7 @@ class ObjectLinkService {
         "left join page on page.id=object_link.target_value " .
         "left join object on object.id=object_link.target_value and object.type='file'";
     if ($query['objectId']) {
-      $sql .= " where object_id=" . $query['objectId'];
+      $sql .= " where object_id=" . Database::int($query['objectId']);
     }
     $sql .= " order by object_link.position";
     $list = [];

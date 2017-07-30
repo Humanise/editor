@@ -75,7 +75,7 @@ class Product extends Object {
     '<allow-offer>' . ($this->allowOffer ? 'true' : 'false') . '</allow-offer>' .
     '<number>' . Strings::escapeEncodedXML($this->number) . '</number>' .
     '<attributes>';
-    $sql = "select * from productattribute where product_id=" . $this->id . " order by `index`";
+    $sql = "select * from productattribute where product_id=" . Database::int($this->id) . " order by `index`";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
       $data .= '<attribute name="' . Strings::escapeEncodedXML($row['name']) . '">' .
@@ -85,7 +85,7 @@ class Product extends Object {
     Database::free($result);
     $data .= '</attributes>' .
     '<prices>';
-    $sql = "select * from productprice where product_id=" . $this->id . " order by `index`";
+    $sql = "select * from productprice where product_id=" . Database::int($this->id) . " order by `index`";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
       $data .= '<price' .
@@ -118,7 +118,7 @@ class Product extends Object {
 
   function getAttributes() {
     $atts = [];
-    $sql = "select * from productattribute where product_id=" . $this->id . " order by `index`";
+    $sql = "select * from productattribute where product_id=" . Database::int($this->id) . " order by `index`";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
       $atts[] = ['name' => $row['name'], 'value' => $row['value']];
@@ -129,7 +129,7 @@ class Product extends Object {
 
   function getPrices() {
     $atts = [];
-    $sql = "select * from productprice where product_id=" . $this->id . " order by `index`";
+    $sql = "select * from productprice where product_id=" . Database::int($this->id) . " order by `index`";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
       $atts[] = ['amount' => $row['amount'], 'type' => $row['type'], 'price' => floatval($row['price']), 'currency' => $row['currency']];

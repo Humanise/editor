@@ -57,7 +57,7 @@ class Weblogentry extends Object {
 
   function loadGroups() {
     $this->groups = [];
-    $sql = "select object.title,object.id from webloggroup_weblogentry,object where webloggroup_weblogentry.webloggroup_id=object.id and weblogentry_id=" . $this->id . " order by object.title";
+    $sql = "select object.title,object.id from webloggroup_weblogentry,object where webloggroup_weblogentry.webloggroup_id=object.id and weblogentry_id=" . Database::int($this->id) . " order by object.title";
     $subResult = Database::select($sql);
     while ($subRow = Database::next($subResult)) {
       $this->groups[] = $subRow['id'];

@@ -346,21 +346,21 @@ class Person extends Object {
       $data .= '<webaddress>' . Strings::escapeEncodedXML($this->webaddress) . '</webaddress>';
     }
     if ($this->imageId > 0) {
-      $sql = "select * from object where id=" . $this->imageId;
+      $sql = "select * from object where id=" . Database::int($this->imageId);
       if ($img = Database::selectFirst($sql)) {
         $data .= '<image>' . $img['data'] . '</image>';
       }
     }
 
 
-    $sql = "select address from emailaddress where containing_object_id=" . $this->id;
+    $sql = "select address from emailaddress where containing_object_id=" . Database::int($this->id);
     $result = Database::select($sql);
       while ($row = Database::next($result)) {
       $data .= '<email>' . Strings::escapeEncodedXML($row['address']) . '</email>';
       }
     Database::free($result);
 
-    $sql = "select number,context from phonenumber where containing_object_id=" . $this->id;
+    $sql = "select number,context from phonenumber where containing_object_id=" . Database::int($this->id);
     $result = Database::select($sql);
       while ($row = Database::next($result)) {
       $data .= '<phone context="' . Strings::escapeEncodedXML($row['context']) . '">' . Strings::escapeEncodedXML($row['number']) . '</phone>';

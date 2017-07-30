@@ -81,7 +81,7 @@ class Project extends Object {
   }
 
   function _getSubProjectIdsSpider($parent,&$ids) {
-    $sql = "select object_id from project where parent_project_id=" . $parent;
+    $sql = "select object_id from project where parent_project_id=" . Database::int($parent);
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
         $ids[] = $row['object_id'];
@@ -166,11 +166,11 @@ class Project extends Object {
   function getMaxFutureDeadlineOfChildren() {
       $maxTask = 0;
       $maxProblem = 0;
-      $sql = "select UNIX_TIMESTAMP(max(deadline)) as deadline from task where deadline>now() and containing_object_id=" . $this->id;
+      $sql = "select UNIX_TIMESTAMP(max(deadline)) as deadline from task where deadline>now() and containing_object_id=" . Database::int($this->id);
       if ($row = Database::selectFirst($sql)) {
           $maxTask = $row['deadline'];
       }
-      $sql = "select UNIX_TIMESTAMP(max(deadline)) as deadline from problem where deadline>now() and containing_object_id=" . $this->id;
+      $sql = "select UNIX_TIMESTAMP(max(deadline)) as deadline from problem where deadline>now() and containing_object_id=" . Database::int($this->id);
       if ($row = Database::selectFirst($sql)) {
           $maxProblem = $row['deadline'];
       }
@@ -181,7 +181,7 @@ class Project extends Object {
 
   function optionSpider($prefix,$parent,$ignore) {
         $gui = '';
-        $sql = "SELECT object.id,object.title FROM project,object WHERE object.id=project.object_id and project.parent_project_id=" . $parent . " order by title";
+        $sql = "SELECT object.id,object.title FROM project,object WHERE object.id=project.object_id and project.parent_project_id=" . Database::int($parent) . " order by title";
         $result = Database::select($sql);
         while ($row = Database::next($result)) {
             if ($row['id'] != $ignore) {

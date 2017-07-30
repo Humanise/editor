@@ -37,7 +37,7 @@ class Webloggroup extends Object {
   static function search($query = []) {
     $out = [];
     if (isset($out['page'])) {
-      $sql = "select webloggroup_id as id from weblog_webloggroup where page_id=" . $out['page'];
+      $sql = "select webloggroup_id as id from weblog_webloggroup where page_id=" . Database::int($out['page']);
     } else {
       $sql = "select id from object,webloggroup where object.id=webloggroup.object_id order by object.title";
     }

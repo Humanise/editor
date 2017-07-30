@@ -99,7 +99,7 @@ class Image extends Object {
 
   function getGroupIds() {
     $ids = [];
-    $sql = "select imagegroup_id from imagegroup_image where image_id=" . $this->id;
+    $sql = "select imagegroup_id from imagegroup_image where image_id=" . Database::int($this->id);
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
       $ids[] = $row['imagegroup_id'];
@@ -189,7 +189,7 @@ class Image extends Object {
   }
 
   function fireRelationChangeEventOnGroups() {
-    $sql = "select imagegroup_id from imagegroup_image where image_id=" . $this->id;
+    $sql = "select imagegroup_id from imagegroup_image where image_id=" . Database::int($this->id);
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
       EventService::fireEvent('relation_change','object','imagegroup',$row['imagegroup_id']);

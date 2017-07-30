@@ -172,7 +172,7 @@ class PublishingService {
 
   static function buildFrameLinks($id,$position) {
     $out = '';
-    $sql = "select * from frame_link where position='" . $position . "' and frame_id=" . Database::int($id) . " order by `index`";
+    $sql = "select * from frame_link where position=" . Database::text($position) . " and frame_id=" . Database::int($id) . " order by `index`";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
       $out .= '<link title="' . Strings::escapeEncodedXML($row['title']) . '" alternative="' . Strings::escapeEncodedXML($row['alternative']) . '"';

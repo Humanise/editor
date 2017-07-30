@@ -177,7 +177,7 @@ class RenderingService {
   }
 
   static function applyFrameDynamism($id,&$data) {
-    $sql = "select id,maxitems,sortdir,sortby,timetype,timecount,UNIX_TIMESTAMP(startdate) as startdate,UNIX_TIMESTAMP(enddate) as enddate from frame_newsblock where frame_id=" . $id;
+    $sql = "select id,maxitems,sortdir,sortby,timetype,timecount,UNIX_TIMESTAMP(startdate) as startdate,UNIX_TIMESTAMP(enddate) as enddate from frame_newsblock where frame_id=" . Database::int($id);
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
       $blockId = $row['id'];
@@ -227,7 +227,7 @@ class RenderingService {
         $timeSql = " and ((news.startdate is null and news.enddate is null) or (news.startdate>=" . Database::datetime($start) . " and news.startdate<=" . Database::datetime($end) . ") or (news.enddate>=" . Database::datetime($start) . " and news.enddate<=" . Database::datetime($end) . ") or (news.enddate>=" . Database::datetime($start) . " and news.startdate is null) or (news.startdate<=" . Database::datetime($end) . " and news.enddate is null))";
       }
       $newsData = '';
-      $sql = "select distinct object.data from object, news, newsgroup_news, frame_newsblock_newsgroup, frame_newsblock where object.id = news.object_id and news.object_id=newsgroup_news.news_id and newsgroup_news.newsgroup_id=frame_newsblock_newsgroup.newsgroup_id and frame_newsblock_newsgroup.frame_newsblock_id=" . $blockId . $timeSql . " order by " . $sortBy . " " . $sortDir;
+      $sql = "select distinct object.data from object, news, newsgroup_news, frame_newsblock_newsgroup, frame_newsblock where object.id = news.object_id and news.object_id=newsgroup_news.news_id and newsgroup_news.newsgroup_id=frame_newsblock_newsgroup.newsgroup_id and frame_newsblock_newsgroup.frame_newsblock_id=" . Database::int($blockId) . $timeSql . " order by " . $sortBy . " " . $sortDir;
       $resultNews = Database::select($sql);
       while ($rowNews = Database::next($resultNews)) {
         $newsData .= $rowNews['data'];
@@ -399,7 +399,7 @@ class RenderingService {
 
   // Returns true if the user has access to the page
   static function userHasAccessToPage($user,$page) {
-    $sql = "select * from securityzone_page,securityzone_user where securityzone_page.securityzone_id=securityzone_user.securityzone_id and page_id=" . $page . " and user_id=" . $user;
+    $sql = "select * from securityzone_page,securityzone_user where securityzone_page.securityzone_id=securityzone_user.securityzone_id and page_id=" . Database::int($page) . " and user_id=" . Database::int($user);
     if ($row = Database::selectFirst($sql)) {
       return true;
     }
