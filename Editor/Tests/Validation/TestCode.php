@@ -37,5 +37,27 @@ class TestCode extends UnitTestCase {
       $this->assertFalse(preg_match('/[ ]+$/uism', $txt), 'Has whitespace: ' . $file);
     }
   }
+
+  function testDatabaseAccess() {
+    $files = $this->getPHPFiles();
+    foreach ($files as $file) {
+      if (strpos($file, 'Editor/Tests') !== false) {
+        continue;
+      }
+      $txt = file_get_contents($file);
+      if (strpos($file, 'Editor/Classes') !== false) {
+        if (strpos($file, 'Editor/Classes/Core/Database') === false) {
+          foreach (['int','text','search','datetime','date','boolean','float'] as $method) {
+            $this->assertTrue(strpos($txt, 'Database::' . $method) === false, 'SQL ' . $method . ': ' . $file);
+          }
+        }
+      } else {
+        $this->assertTrue(strpos($txt, 'Database::select') === false, 'Has database access: ' . $file);
+        $this->assertTrue(strpos($txt, 'Database::update') === false, 'Has database access: ' . $file);
+        $this->assertTrue(strpos($txt, 'Database::insert') === false, 'Has database access: ' . $file);
+        $this->assertTrue(strpos($txt, 'Database::delete') === false, 'Has database access: ' . $file);
+      }
+    }
+  }
 }
 ?>
