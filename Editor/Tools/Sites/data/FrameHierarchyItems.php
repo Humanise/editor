@@ -25,13 +25,13 @@ if ($frameId > 0) {
 $writer->endItems();
 
 function encodeLevel($parent,$hierarchyId,&$writer) {
-    $sql = "select hierarchy_item.*,page.disabled,page.path from hierarchy_item" .
-      " left join page on page.id = hierarchy_item.target_id and (hierarchy_item.target_type='page' or hierarchy_item.target_type='pageref')" .
-      " where parent=" . Database::int($parent) .
-      " and hierarchy_id=" . Database::int($hierarchyId) .
-      " order by `index`";
-    $result = Database::select($sql);
-    while ($row = Database::next($result)) {
+  $sql = "select hierarchy_item.*,page.disabled,page.path from hierarchy_item" .
+    " left join page on page.id = hierarchy_item.target_id and (hierarchy_item.target_type='page' or hierarchy_item.target_type='pageref')" .
+    " where parent=" . Database::int($parent) .
+    " and hierarchy_id=" . Database::int($hierarchyId) .
+    " order by `index`";
+  $result = Database::select($sql);
+  while ($row = Database::next($result)) {
     $writer->startItem([
       'icon' => 'common/page',
       'value' => $row['id'],

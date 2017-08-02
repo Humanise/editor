@@ -124,13 +124,13 @@ class HierarchyItem extends Entity implements Loadable {
       ",target_type=" . Database::text($this->targetType) .
       ",target_value=" . Database::text($target_value) .
       ",target_id=" . Database::int($target_id) .
-          ",hierarchy_id=" . Database::int($this->hierarchyId) .
-          ",parent=" . Database::int($this->parent) .
+      ",hierarchy_id=" . Database::int($this->hierarchyId) .
+      ",parent=" . Database::int($this->parent) .
       ",`index`=" . Database::int($this->index) .
       " where id=" . $this->id;
       Database::update($sql);
       Hierarchy::markHierarchyOfItemChanged($this->id);
-        EventService::fireEvent('update','hierarchy',null,$this->hierarchyId);
+      EventService::fireEvent('update','hierarchy',null,$this->hierarchyId);
     }
   }
 }
