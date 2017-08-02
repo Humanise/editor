@@ -17,14 +17,14 @@ if (!$user || !$page) {
   Response::badRequest();
   exit;
 }
-  $issue = new Issue();
-  $issue->setTitle(Strings::shortenString($text,30));
-  $issue->setNote($text);
-  $issue->setKind($kind);
-  $issue->save();
-  $issue->publish();
+$issue = new Issue();
+$issue->setTitle(Strings::shortenString($text,30));
+$issue->setNote($text);
+$issue->setKind($kind);
+$issue->save();
+$issue->publish();
 
-  RelationsService::relateObjectToPage($issue,$page,'subject');
-  RelationsService::relateObjectToObject($isuse,$user,'reporter');
+RelationsService::relateObjectToPage($issue,$page,'subject');
+RelationsService::relateObjectToObject($isuse,$user,'reporter');
 
 ?>

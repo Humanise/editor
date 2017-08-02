@@ -22,9 +22,9 @@ class SchemaService {
     }
     foreach ($fields as $field => $info) {
       $column = SchemaService::getColumn($field,$info);
-            if (in_array($column,$exclude)) {
-                continue;
-            }
+      if (in_array($column,$exclude)) {
+        continue;
+      }
       if (strlen($sql) > 0) {
         $sql .= ',';
       }
@@ -113,32 +113,32 @@ class SchemaService {
     return $sql;
   }
 
-    static function getDatabaseSchema() {
-        $schema = ['tables' => []];
+  static function getDatabaseSchema() {
+    $schema = ['tables' => []];
 
-        $tables = DatabaseUtil::getTables();
+    $tables = DatabaseUtil::getTables();
 
-        foreach ($tables as $table) {
-            $tableInfo = [];
-            $tableInfo['name'] = $table;
-            $columns = DatabaseUtil::getTableColumns($table);
-            $columnsInfo = [];
-            foreach ($columns as $column) {
-                $columnsInfo[$column['Field']] = [
-                    'type' => $column['Type'],
-                    'collation' => $column['Collation'],
-                    'null' => $column['Null'],
-                    'default' => $column['Default'],
-                    'key' => $column['Key'],
-                    'extra' => $column['Extra'],
-                ];
-            }
+    foreach ($tables as $table) {
+      $tableInfo = [];
+      $tableInfo['name'] = $table;
+      $columns = DatabaseUtil::getTableColumns($table);
+      $columnsInfo = [];
+      foreach ($columns as $column) {
+        $columnsInfo[$column['Field']] = [
+          'type' => $column['Type'],
+          'collation' => $column['Collation'],
+          'null' => $column['Null'],
+          'default' => $column['Default'],
+          'key' => $column['Key'],
+          'extra' => $column['Extra'],
+        ];
+      }
 
-            $tableInfo['columns'] = $columnsInfo;
-            $schema['tables'][] = $tableInfo;
+      $tableInfo['columns'] = $columnsInfo;
+      $schema['tables'][] = $tableInfo;
 
-        }
-
-        return $schema;
     }
+
+    return $schema;
+  }
 }
