@@ -137,7 +137,7 @@ op.Editor = {
       else if (parm.type=='color') {
         var field = hui.ui.ColorInput.create({key:parm.key,value:parm.value});
         this.designGroup.add(field,parm.label);
-            }
+      }
       else if (parm.type=='selection') {
         parm.options.unshift({});
         var field = hui.ui.DropDown.create({key:parm.key,label:parm.label,value:parm.value,items:parm.options});
@@ -145,11 +145,11 @@ op.Editor = {
       }
       else if (parm.type=='image') {
         var field = hui.ui.DropDown.create({
-                    key : parm.key,
-                    label : parm.label,
-                    value : parm.value,
-                    url : '../../Model/Items.php?type=image&includeEmpty=true'
-                });
+          key : parm.key,
+          label : parm.label,
+          value : parm.value,
+          url : '../../Model/Items.php?type=image&includeEmpty=true'
+        });
         this.designGroup.add(field);
       }
     };
@@ -162,17 +162,17 @@ hui.ui.listen(op.Editor);
 
 hui.ui.listen({
    $ready : function() {
-       var editable = document.querySelectorAll('*[data-editable]');
-       var self = this;
-       hui.each(editable,function(node) {
-           //hui.cls.add(node,'editor_editable');
-           hui.listen(node,'click',function(e) {
-               e = hui.event(e);
-               if (e.altKey) {
-                   self._edit(node);
-               }
-           })
+     var editable = document.querySelectorAll('*[data-editable]');
+     var self = this;
+     hui.each(editable,function(node) {
+       //hui.cls.add(node,'editor_editable');
+       hui.listen(node,'click',function(e) {
+         e = hui.event(e);
+         if (e.altKey) {
+           self._edit(node);
+         }
        })
+     })
    },
    _edit : function(node) {
      // TODO only one per parameter
