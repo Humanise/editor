@@ -130,7 +130,7 @@ op.DocumentEditor = {
     hui.ui.tellContainers('editRow', {id:id});
   },
   $stopRowEditing$parent : function() {
-    hui.ui.Editor.get().stopColumnEditing();
+    hui.ui.Editor.get().stopRowEditing();
   },
   $rowWasUpdated$parent : function() {
     hui.ui.Editor.get().stopRowEditing();
