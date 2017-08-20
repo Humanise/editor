@@ -13,6 +13,7 @@ $edit = Request::getBoolean('edit');
 $gui = '
 <gui xmlns="uri:hui" title="OnlinePublisher editor">
   <controller url="controller.js"/>
+  <controller url="../../Parts/widget/live_ui.js"/>
   <rows>
   <row height="content">
     <tabs small="true" below="true">
@@ -99,6 +100,33 @@ $gui = '
       </buttons>
     </formula>
   </boundpanel>
+
+  <window name="pageProperties" width="300" padding="10" title="Info" icon="common/info">
+    <formula name="pageFormula">
+      <fields labels="above">
+        <field label="{Title; da:Titel}:">
+          <text-input key="title"/>
+        </field>
+        <field label="{Description; da:Beskrivelse}:">
+          <text-input key="description" breaks="true"/>
+        </field>
+        <field label="{Keywords; da:Nøgelord}:">
+          <text-input key="keywords"/>
+        </field>
+        <field label="{Path; da:Sti}:">
+          <text-input key="path"/>
+        </field>
+        <field label="{Language; da:Sprog}:">
+          <dropdown key="language" url="../Model/LanguageItems.php"/>
+        </field>
+      </fields>
+      <buttons>
+        <button text="{More...; da:Mere...}" name="morePageInfo"/>
+        <button text="{Cancel; da:Annuller}" name="cancelPageProperties"/>
+        <button text="{Update; da:Opdater}" highlighted="true" submit="true"/>
+      </buttons>
+    </formula>
+  </window>
 
 </gui>';
 

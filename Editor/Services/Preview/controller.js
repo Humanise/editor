@@ -11,6 +11,7 @@ var controller = {
     this._refreshBase();
     this.$click$cancelNote();
     reviewPanel.hide();
+    this.$click$cancelPageProperties();
   },
   _refreshBase : function() {
     hui.ui.tellContainers('refreshBase');
@@ -42,7 +43,42 @@ var controller = {
     }
   },
   $click$properties : function() {
-    this.getFrame().op.Editor.editProperties(hui.ui.language);
+    pageProperties.show();
+    pageProperties.setBusy(true);
+    hui.ui.request({
+      url : 'viewer/data/LoadPageProperties.php',
+      parameters : {id:this.pageId},
+      message : {start:'Loading info...',delay:300},
+      $object : function(obj) {
+        pageFormula.setValues(obj);
+        pageProperties.setBusy(false);
+      }.bind(this)
+    })
+  },
+  $click$cancelPageProperties : function() {
+    pageFormula.reset();
+    pageProperties.hide();
+  },
+  $submit$pageFormula : function() {
+    var values = pageFormula.getValues();
+    values.id = this.pageId;
+    pageProperties.setBusy(true);
+    hui.ui.request({
+      url : 'viewer/data/SavePageProperties.php',
+      parameters : values,
+      message : {start:{en:'Saving info...',da:'Gemmer info...'},delay:300},
+      $success : function() {
+        hui.ui.showMessage({text:{en:'The information is saved', da: 'Informationen er gemt'},icon:'common/success',duration:2000});
+        pageFormula.reset()
+        pageProperties.hide();
+      }.bind(this),
+      $finally : function() {
+        pageProperties.setBusy(false);
+      }
+    });
+  },
+  $click$morePageInfo : function() {
+    window.location='../../Tools/Sites/?pageInfo='+this.pageId;
   },
   $click$view : function() {
     window.parent.location='ViewPublished.php';
@@ -60,16 +96,20 @@ var controller = {
   getFrame : function() {
     return hui.ui.get('simulator').getFrameWindow();
   },
+  reload : function() {
+    this.getFrame().location.reload();
+  },
   $click$viewHistory : function() {
     this.getFrame().location = '../PageHistory/';
   },
 
+/*
   ///////////// Design /////////////
 
   $click$design : function() {
     this.getFrame().op.Editor.editDesign();
   },
-
+*/
   ///////////// Notes //////////////
 
   $click$addNote : function() {
@@ -152,6 +192,11 @@ var controller = {
 hui.ui.listen(controller);
 
 hui.ui.listen({
+  $pageLoaded : function() {
+    var win = hui.ui.get('partWindow');
+    win && win.hide()
+  },
+
   $showPartInfo : function() {
     var win = hui.ui.get('partWindow');
     win && win.show()
@@ -371,4 +416,84 @@ hui.ui.listen({
       }
     });
   },
+})
+
+hui.ui.listen({
+  $pageLoaded : function() {
+    if (this.designWindow) {
+      hui.ui.remove(this.designWindow);
+      this.designWindow = undefined;
+    }
+  },
+  $click$design : function() {
+    if (!this.designWindow) {
+      hui.ui.request({
+        url : 'viewer/data/LoadDesignInfo.php',
+        parameters : {id:controller.pageId},
+        message : {start:'Henter design info...',delay:300},
+        $object : function(parameters) {
+          if (parameters.length>0) {
+            this._buildDesignForm(parameters);
+            this.designWindow.show();
+          } else {
+            hui.ui.showMessage({text:'Dette design har ingen indstillinger',duration:3000})
+          }
+        }.bind(this)
+      })
+    } else {
+      this.designWindow.show();
+    }
+  },
+
+  _buildDesignForm : function(parameters) {
+    var win = this.designWindow = hui.ui.Window.create({width:300,title:'Design',icon:'common/info',padding:10});
+    var form = this.designFormula = hui.ui.Formula.create();
+    form.listen({
+      $submit : function() {
+        var values = form.getValues();
+        hui.ui.request({
+          url : 'viewer/data/SaveDesignParameters.php',
+          parameters : {id:controller.pageId,parameters:hui.string.toJSON(values)},
+          $success : function() {
+            win.hide();
+            controller.reload();
+          }
+        })
+      }
+    })
+    this.designGroup = this.designFormula.createGroup();
+
+    var group = this.designFormula.createGroup();
+    var buttons = group.createButtons();
+    var btn = hui.ui.Button.create({text:'Opdater',submit:true});
+    buttons.add(btn);
+
+    win.add(form);
+
+    for (var i=0; i < parameters.length; i++) {
+      var parm = parameters[i];
+      if (parm.type=='text') {
+        var field = hui.ui.TextField.create({key:parm.key,label:parm.label,value:parm.value});
+        this.designGroup.add(field);
+      }
+      else if (parm.type=='color') {
+        var field = hui.ui.ColorInput.create({key:parm.key,value:parm.value});
+        this.designGroup.add(field,parm.label);
+      }
+      else if (parm.type=='selection') {
+        parm.options.unshift({});
+        var field = hui.ui.DropDown.create({key:parm.key,label:parm.label,value:parm.value,items:parm.options});
+        this.designGroup.add(field);
+      }
+      else if (parm.type=='image') {
+        var field = hui.ui.DropDown.create({
+          key : parm.key,
+          label : parm.label,
+          value : parm.value,
+          url : '../Model/Items.php?type=image&includeEmpty=true'
+        });
+        this.designGroup.add(field);
+      }
+    };
+  }
 })

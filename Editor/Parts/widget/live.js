@@ -13,7 +13,14 @@ op.Editor.Widget.prototype = {
   type : 'widget',
 
   activate : function(callback) {
-    this._load(callback);
+    op.DocumentEditor.loadPart({
+      part : this,
+      $success : function(part) {
+        this.part = part;
+        this._edit();
+      }.bind(this),
+      callback : callback
+    })
   },
   save : function(options) {
     op.DocumentEditor.savePart({
@@ -30,46 +37,21 @@ op.Editor.Widget.prototype = {
     this.part = null;
   },
   deactivate : function(callback) {
-    this.win.hide();
+    hui.ui.tellContainers('widgetDeactivate');
     callback();
   },
   getValue : function() {
     return this.value;
   },
-  _load : function(callback) {
-    op.DocumentEditor.loadPart({
-      part : this,
-      $success : function(part) {
-        this.part = part;
-        this._edit();
-      }.bind(this),
-      callback : callback
-    })
-  },
-  _buildUI : function() {
-    if (!this.win) {
-      this.win = hui.ui.Window.create({width:500,title:'Widget',close:false, variant:'light', parent: window.parent.document.body});
-      this.code = hui.ui.CodeInput.create();
-      this.code.listen({
-        $valueChanged : this._valueChanged.bind(this)
-      })
-      this.win.add(this.code);
-      this.msg = hui.build('div',{style:'font-size: 11px; color: red; text-align: left; padding: 2px 0 0 3px; display: none;'});
-      this.win.add(this.msg);
-    }
-  },
   _valueChanged : function(value) {
-    var valid = hui.xml.parse('<div>Ikke valid</div>')!=null;
     this.part.data = value;
-    this.msg.style.display = valid ? 'none' : '';
-    if (valid) {
-      this._draw();
-    }
+    this._draw();
   },
   _edit : function() {
-    this._buildUI();
-    this.code.setValue(this.part.data);
-    this.win.show();
+    hui.ui.tellContainers('widgetShowUI',{
+      xml : this.part.data,
+      $valueChanged : this._valueChanged.bind(this)
+    });
     this._draw();
   },
   _draw : function() {
