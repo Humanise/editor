@@ -42,7 +42,20 @@ class TestHierarchy extends UnitTestCase {
 
     $itemId = $loaded->createItemForPage(1,'My item',0);
     $this->assertTrue($itemId !== false);
+
     $this->assertFalse($hierarchy->canDelete());
+
+    $this->assertFalse(Hierarchy::moveItem($itemId, -1));
+
+    $path = Hierarchy::getItemPath($itemId);
+    $this->assertTrue(is_array($path));
+    $this->assertEqual(count($path), 1);
+
+    $path = Hierarchy::getAncestorPath($itemId);
+    $this->assertTrue(is_array($path));
+    $this->assertEqual(count($path), 1);
+
+    $this->assertTrue($loaded->publish());
 
     $response = Hierarchy::deleteItem($itemId);
     $this->assertEqual($response,$loaded->getId());
