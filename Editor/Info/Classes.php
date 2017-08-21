@@ -5,7 +5,7 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 $HUMANISE_EDITOR_CLASSES = [
-  'all' => 
+  'all' =>
    [
     'Console' => 'Utilities/Console.php',
     'DatabaseUtil' => 'Utilities/DatabaseUtil.php',
@@ -270,13 +270,13 @@ $HUMANISE_EDITOR_CLASSES = [
     'SystemInfo' => 'Core/SystemInfo.php',
     'TemporaryFolder' => 'Core/TemporaryFolder.php',
   ],
-  'interfaces' => 
+  'interfaces' =>
    [
-    'Inspector' => 
+    'Inspector' =>
      [
       0 => 'DocumentTemplateInspector',
     ],
-    'Loadable' => 
+    'Loadable' =>
      [
       0 => 'Address',
       1 => 'Cachedurl',
@@ -333,22 +333,22 @@ $HUMANISE_EDITOR_CLASSES = [
       52 => 'Object',
       53 => 'Parameter',
     ],
-    'ModelEventListener' => 
+    'ModelEventListener' =>
      [
       0 => 'ModelAuditor',
     ],
   ],
-  'parents' => 
+  'parents' =>
    [
-    'UnitTestCase' => 
+    'UnitTestCase' =>
      [
       0 => 'AbstractObjectTest',
     ],
-    'SimpleTestCase' => 
+    'SimpleTestCase' =>
      [
       0 => 'AbstractObjectTest',
     ],
-    'TemplateController' => 
+    'TemplateController' =>
      [
       0 => 'AuthenticationTemplateController',
       1 => 'CalendarTemplateController',
@@ -359,7 +359,7 @@ $HUMANISE_EDITOR_CLASSES = [
       6 => 'SitemapTemplateController',
       7 => 'WeblogTemplateController',
     ],
-    'Part' => 
+    'Part' =>
      [
       0 => 'AuthenticationPart',
       1 => 'CustomPart',
@@ -384,7 +384,7 @@ $HUMANISE_EDITOR_CLASSES = [
       20 => 'TextPart',
       21 => 'WidgetPart',
     ],
-    'Entity' => 
+    'Entity' =>
      [
       0 => 'AuthenticationPart',
       1 => 'CustomPart',
@@ -469,7 +469,7 @@ $HUMANISE_EDITOR_CLASSES = [
       80 => 'SpecialPage',
       81 => 'Template',
     ],
-    'PartController' => 
+    'PartController' =>
      [
       0 => 'AuthenticationPartController',
       1 => 'CustomPartController',
@@ -494,7 +494,7 @@ $HUMANISE_EDITOR_CLASSES = [
       20 => 'TextPartController',
       21 => 'WidgetPartController',
     ],
-    'Object' => 
+    'Object' =>
      [
       0 => 'Address',
       1 => 'Cachedurl',
@@ -545,7 +545,7 @@ $HUMANISE_EDITOR_CLASSES = [
       46 => 'Webloggroup',
       47 => 'Workflow',
     ],
-    'WorkflowStage' => 
+    'WorkflowStage' =>
      [
       0 => 'CleanMarkupStage',
       1 => 'DataStage',
@@ -559,11 +559,11 @@ $HUMANISE_EDITOR_CLASSES = [
       9 => 'StreamStage',
       10 => 'StripTagsStage',
     ],
-    'SimpleReporter' => 
+    'SimpleReporter' =>
      [
       0 => 'ConsoleReporter',
     ],
-    'SimpleScorer' => 
+    'SimpleScorer' =>
      [
       0 => 'ConsoleReporter',
     ],
