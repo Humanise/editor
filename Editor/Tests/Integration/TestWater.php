@@ -26,9 +26,6 @@ class TestWater extends UnitTestCase {
     $usage2->setDate(Dates::addYears(time(),-1));
     $usage2->save();
 
-    $summary = WaterusageService::getSummary($meter->getNumber());
-    $this->assertEqual($summary->getNumber(),$meter->getNumber());
-
     $usage->remove();
     $usage2->remove();
     $meter->remove();
