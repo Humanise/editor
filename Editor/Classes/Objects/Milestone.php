@@ -72,7 +72,7 @@ class Milestone extends Object {
       $sql .= " and containing_object_id=" . Database::int($options['project']);
     } elseif (count($options['projects']) > 0) {
       $sql .= " and containing_object_id in (";
-      for ($i=0; $i < count($options['projects']); $i++) {
+      for ($i = 0; $i < count($options['projects']); $i++) {
         if ($i > 0) {
           $sql .= ',';
         }

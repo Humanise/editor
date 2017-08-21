@@ -47,7 +47,7 @@ class TestCode extends UnitTestCase {
       $txt = file_get_contents($file);
       if (strpos($file, 'Editor/Classes') !== false) {
         if (strpos($file, 'Editor/Classes/Core/Database') === false) {
-          foreach (['int','text','search','datetime','date','boolean','float'] as $method) {
+          foreach (['int', 'text', 'search', 'datetime', 'date', 'boolean', 'float'] as $method) {
             $this->assertTrue(strpos($txt, 'Database::' . $method) === false, 'SQL ' . $method . ': ' . $file);
           }
         }
