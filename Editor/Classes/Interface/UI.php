@@ -237,9 +237,9 @@ class UI {
       if ($type == 'page') {
         $sql = "select page.id,page.title from page,template where page.template_id=template.id order by page.title";
       } else {
-        $sql = "select id,title from object where type=" . Database::text($type) . " order by title";
+        $sql = "select id,title from object where type=@text(type) order by title";
       }
-      $result = Database::select($sql);
+      $result = Database::select($sql, ['type' => $type]);
       while ($row = Database::next($result)) {
         $title = $row['title'];
         $title = str_replace("'","",$title);

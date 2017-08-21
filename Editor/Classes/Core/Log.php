@@ -69,10 +69,17 @@ class Log {
     Log::_logAnything('user',$key,$message);
   }
 
-  static function _logAnything($category,$event,$message,$entity = 0) {
-        // TODO Make this more robust / safe
-    $sql = "insert into `log` (`time`,`category`,`event`,`entity`,`message`,`user_id`,`ip`,`session`) values (now()," . Database::text($category) . "," . Database::text($event) . "," . $entity . "," . Database::text($message) . "," . InternalSession::getUserId() . "," . Database::text(getenv("REMOTE_ADDR")) . "," . Database::text(session_id()) . ")";
-    if (!Database::insert($sql)) {
+  static function _logAnything($category, $event, $message, $entity = 0) {
+    $sql = "insert into `log` (`time`,`category`,`event`,`entity`,`message`,`user_id`,`ip`,`session`) values (now(), @text(category), @text(event), @int(entity), @text(message), @int(user), @text(ip), @text(session))";
+    if (!Database::insert($sql, [
+      'category' => $category,
+      'event' => $event,
+      'entity' => $entity,
+      'message' => $message,
+      'user' => InternalSession::getUserId(),
+      'ip' => getenv("REMOTE_ADDR"),
+      'session' => session_id()
+    ])) {
       error_log("could not write to log: " . $sql);
     }
   }
