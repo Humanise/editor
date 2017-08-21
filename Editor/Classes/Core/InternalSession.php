@@ -15,33 +15,33 @@ class InternalSession {
     session_start();
   }
 
-    static function logIn($username,$password) {
-      if ($user = AuthenticationService::getInternalUser($username,$password)) {
-          InternalSession::startSession();
-        $_SESSION['core.user.id'] = $user->getId();
-        $_SESSION['core.user.username'] = $user->getUsername();
-        $_SESSION['core.user.administrator'] = $user->getAdministrator();
+  static function logIn($username,$password) {
+    if ($user = AuthenticationService::getInternalUser($username,$password)) {
+      InternalSession::startSession();
+      $_SESSION['core.user.id'] = $user->getId();
+      $_SESSION['core.user.username'] = $user->getUsername();
+      $_SESSION['core.user.administrator'] = $user->getAdministrator();
       InternalSession::setLanguage($user->getLanguage());
-        InternalSession::registerActivity();
-        Log::logUser('login','');
-        return true;
-      } else {
-          return false;
-      }
+      InternalSession::registerActivity();
+      Log::logUser('login','');
+      return true;
+    } else {
+        return false;
     }
+  }
 
-    static function logOut() {
+  static function logOut() {
     session_start();
     Log::logUser('logout','');
     $_SESSION['core.user.id'] = 0;
     $_SESSION['core.user.username'] = null;
     $_SESSION['core.user.administrator'] = 0;
-    }
+  }
 
-    // Static
-    static function registerActivity() {
-        $_SESSION['core.user.lastaccesstime'] = time();
-    }
+  // Static
+  static function registerActivity() {
+    $_SESSION['core.user.lastaccesstime'] = time();
+  }
 
   static function getLanguage() {
     //return 'en';
@@ -134,17 +134,17 @@ class InternalSession {
     }
   }
 
-    static function isLoggedIn() {
-        return (isset($_SESSION['core.user.id']) && $_SESSION['core.user.id'] > 0);
-    }
+  static function isLoggedIn() {
+    return (isset($_SESSION['core.user.id']) && $_SESSION['core.user.id'] > 0);
+  }
 
-    static function isTimedOut() {
-        return (time() - ($_SESSION['core.user.lastaccesstime']) > 86400);
-    }
+  static function isTimedOut() {
+    return (time() - ($_SESSION['core.user.lastaccesstime']) > 86400);
+  }
 
-    static function isAdministrator() {
-        return $_SESSION['core.user.administrator'];
-    }
+  static function isAdministrator() {
+    return $_SESSION['core.user.administrator'];
+  }
 
 
   static function getToolSessionVar($tool,$key,$default = NULL) {
