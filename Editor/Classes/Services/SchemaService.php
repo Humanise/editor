@@ -10,7 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 class SchemaService {
 
-  static function buildSqlSetters($obj,$schema,$exclude = []) {
+  static function buildSqlSetters($obj, $schema, $exclude = []) {
     $sql = '';
     $fields = $schema;
     if (isset($schema['properties'])) {
@@ -21,7 +21,7 @@ class SchemaService {
       Log::debug($schema);
     }
     foreach ($fields as $field => $info) {
-      $column = SchemaService::getColumn($field,$info);
+      $column = SchemaService::getColumn($field, $info);
       if (in_array($column,$exclude)) {
         continue;
       }
@@ -34,12 +34,12 @@ class SchemaService {
         Log::warn($getter . ' does not exist');
       }
       $value = $obj->$getter();
-      $sql .= SchemaService::_formatValue($info['type'],$value);
+      $sql .= SchemaService::_formatValue($info['type'], $value);
     }
     return $sql;
   }
 
-  static function _formatValue($type,$value) {
+  static function _formatValue($type, $value) {
     if ($type == 'int') {
       return Database::int($value);
     } else if ($type == 'float') {
@@ -52,7 +52,7 @@ class SchemaService {
     return Database::text($value);
   }
 
-  static function getRowValue($type,$value) {
+  static function getRowValue($type, $value) {
     if ($type == 'int') {
       return intval($value);
     } else if ($type == 'float') {
@@ -65,23 +65,23 @@ class SchemaService {
     return $value;
   }
 
-  static function getColumn($property,$info) {
+  static function getColumn($property, $info) {
     if (isset($info['column'])) {
       return $info['column'];
     }
     return $property;
   }
 
-  static function buildSqlColumns($schema,$exclude = []) {
+  static function buildSqlColumns($schema, $exclude = []) {
     $sql = '';
     foreach ($schema['properties'] as $field => $info) {
       $column = $field;
       if (isset($info['column'])) {
         $column = $info['column'];
       }
-            if (in_array($column,$exclude)) {
-                continue;
-            }
+      if (in_array($column, $exclude)) {
+        continue;
+      }
       if (strlen($sql) > 0) {
         $sql .= ',';
       }
@@ -90,25 +90,25 @@ class SchemaService {
     return $sql;
   }
 
-  static function buildSqlValues($obj,$schema,$exclude = []) {
+  static function buildSqlValues($obj, $schema, $exclude = []) {
     $sql = '';
     foreach ($schema['properties'] as $field => $info) {
       $column = $field;
       if (isset($info['column'])) {
         $column = $info['column'];
       }
-            if (in_array($column,$exclude)) {
-                continue;
-            }
+      if (in_array($column, $exclude)) {
+        continue;
+      }
       if (strlen($sql) > 0) {
         $sql .= ',';
       }
       $getter = "get" . ucfirst($field);
-      if (!method_exists($obj,$getter)) {
+      if (!method_exists($obj, $getter)) {
         Log::warn($getter . ' does not exist');
       }
       $value = $obj->$getter();
-      $sql .= SchemaService::_formatValue($info['type'],$value);
+      $sql .= SchemaService::_formatValue($info['type'], $value);
     }
     return $sql;
   }
