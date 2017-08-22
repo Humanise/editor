@@ -126,7 +126,7 @@ class Database {
   static function isEmpty($sql,$parameters = null) {
     $output = true;
     $result = Database::select($sql,$parameters);
-    if ($row = Database::next($result)) {
+    if (Database::next($result)) {
       $output = false;
     }
     Database::free($result);

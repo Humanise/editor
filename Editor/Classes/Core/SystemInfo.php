@@ -13,12 +13,10 @@ class SystemInfo {
   private static $feedbackName = "Jonas Munk";
 
   static function getDate() {
-    $timestamp = mktime(0,0,0,SystemInfo::$month,SystemInfo::$date,SystemInfo::$year);
-    return $timestamp;
+    return mktime(0,0,0,SystemInfo::$month,SystemInfo::$date,SystemInfo::$year);
   }
 
   static function getFormattedDate() {
-    $timestamp = mktime(0,0,0,SystemInfo::$month,SystemInfo::$date,SystemInfo::$year);
     return Dates::formatDate(SystemInfo::getDate());
   }
 
