@@ -233,9 +233,6 @@ class ObjectService {
       $sql .= " where object_id=" . Database::int($object->id);
       Database::update($sql);
     }
-    else if (method_exists($object,'sub_update')) {
-      $object->sub_update();
-    }
     EventService::fireEvent('update','object',$object->type,$object->id);
     return true;
   }
