@@ -57,6 +57,14 @@ class TestHierarchy extends UnitTestCase {
 
     $this->assertTrue($loaded->publish());
 
+    $loadedItem = HierarchyItem::load($itemId);
+    $this->assertNotNull($loadedItem);
+    $this->assertEqual($loadedItem->getHierarchyId(), $hierarchy->getId());
+
+    // Modify the item
+    $loadedItem->setTitle('My hierachy item');
+    $this->assertTrue($loadedItem->save());
+
     $response = Hierarchy::deleteItem($itemId);
     $this->assertEqual($response,$loaded->getId());
 
@@ -66,5 +74,6 @@ class TestHierarchy extends UnitTestCase {
     $loaded = Hierarchy::load($hierarchy->getId());
     $this->assertNull($loaded);
   }
+
 }
 ?>
