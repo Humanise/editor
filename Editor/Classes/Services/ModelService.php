@@ -127,9 +127,9 @@ class ModelService {
       }
       // TODO Support inheritance
       $info = Entity::$schema[$hierarchy[$i]];
-      // TODO Support inheritance
+      // TODO return if successfull
       $sql = 'delete from `' . $info['table'] . '` where id=@int(id)';
-      $id = Database::delete($sql,['id' => $object->getId()]);
+      Database::delete($sql,['id' => $object->getId()]);
     }
   }
 }

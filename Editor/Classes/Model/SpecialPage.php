@@ -10,9 +10,10 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['SpecialPage'] = [
   'table' => 'specialpage',
   'properties' => [
+    'id' => ['type' => 'int'],
     'language' => ['type' => 'string'],
     'type' => ['type' => 'string'],
-    'pageId' => ['type' => 'int', 'relation' => ['class' => 'Page', 'property' => 'id']]
+    'pageId' => ['type' => 'int', 'column' => 'page_id', 'relation' => ['class' => 'Page', 'property' => 'id']]
   ]
 ];
 class SpecialPage extends Entity {
@@ -48,7 +49,6 @@ class SpecialPage extends Entity {
     return $this->type;
   }
 
-
   static function search() {
     $list = [];
 
@@ -68,42 +68,16 @@ class SpecialPage extends Entity {
 
 
   static function load($id) {
-    $sql = "select * from specialpage where id=" . Database::int($id);
-    if ($row = Database::selectFirst($sql)) {
-      $item = new SpecialPage();
-      $item->setId($row['id']);
-      $item->setPageId(intval($row['page_id']));
-      $item->setType($row['type']);
-      $item->setLanguage($row['language']);
-      return $item;
-    }
-    return null;
+    return ModelService::load('SpecialPage', $id);
   }
 
   function remove() {
-    $sql = "delete from specialpage where id = " . Database::int($this->id);
-    $result = Database::delete($sql);
+    ModelService::remove($this);
     EventService::fireEvent('delete','specialpage',null,$this->id);
-    return $result;
   }
 
   function save() {
-    if ($this->id > 0) {
-      $sql = "update specialpage set" .
-      " `type`=" . Database::text($this->type) .
-      ",language=" . Database::text($this->language) .
-      ",page_id=" . Database::int($this->pageId) .
-      " where id=" . Database::int($this->id);
-      Database::update($sql);
-      EventService::fireEvent('update','specialpage',null,$this->id);
-    } else {
-      $sql = "insert into specialpage (`type`,language,page_id) values (" .
-      Database::text($this->type) . "," .
-      Database::text($this->language) . "," .
-      Database::int($this->pageId) .
-      ")";
-      $this->id = Database::insert($sql);
-      EventService::fireEvent('create','specialpage',null,$this->id);
-    }
+    ModelService::save($this);
+    EventService::fireEvent($this->id > 0 ? 'update' : 'create','specialpage',null,$this->id);
   }
 }
