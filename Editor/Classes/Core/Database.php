@@ -333,7 +333,7 @@ class Database {
       if ($num > 0) {
         $sql .= ',';
       }
-      $sql .= "`" . $column . "`=" . $value;
+      $sql .= "`" . $column . "`=" . Database::buildUpdateSqlValue($value);
       $num++;
     }
     $sql .= " where ";
@@ -342,9 +342,26 @@ class Database {
       if ($num > 0) {
         $sql .= ' and ';
       }
-      $sql .= "`" . $column . "`=" . $value;
+      $sql .= "`" . $column . "`=" . Database::buildUpdateSqlValue($value);
     }
     return $sql;
+  }
+
+  static function buildUpdateSqlValue($value) {
+    if (is_array($value)) {
+      if (array_key_exists('text', $value)) {
+        return Database::text($value['text']);
+      }
+      else if (array_key_exists('int', $value)) {
+        return Database::int($value['int']);
+      }
+      else if (array_key_exists('boolean', $value)) {
+        return Database::boolean($value['boolean']);
+      }
+      Log::warn('Invalid value: ' . $value);
+      return "ERROR";
+    }
+    return $value;
   }
 
   static function buildInsertSql($arr) {
@@ -363,7 +380,7 @@ class Database {
       if ($num > 0) {
         $sql .= ',';
       }
-      $sql .= $value;
+      $sql .= Database::buildUpdateSqlValue($value);
       $num++;
     }
     $sql .= ")";
