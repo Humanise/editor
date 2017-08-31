@@ -17,6 +17,7 @@
   <xsl:include href="../../basic/xslt/util.xsl"/>
 
   <xsl:template match="p:page">
+    <xsl:variable name="theme" select="//p:design/p:parameter[@key='theme']" />
     <xsl:call-template name="util:doctype"/>
     <html>
       <xsl:call-template name="util:html-attributes"/>
@@ -33,19 +34,15 @@
         <xsl:call-template name="util:js"/>
         <link href='https://fonts.googleapis.com/css?family=Neuton:400,300,500,600' rel='stylesheet' type='text/css'/>
         <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,100,700' rel='stylesheet' type='text/css'/>
-        <xsl:if test="//p:design/p:parameter[@key='theme']='cv'">
-          <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,600,300,200' rel='stylesheet' type='text/css'/>
-          <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200' rel='stylesheet' type='text/css'/>
-        </xsl:if>
-        <xsl:if test="//p:design/p:parameter[@key='theme']='vitae'">
-          <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500|Open+Sans:300italic,400italic,600italic,400,600,300,200" rel="stylesheet"/>
+        <xsl:if test="$theme='vitae'">
+          <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500|Open+Sans:300italic,400italic,600italic,400,600,500,700,300,200,800" rel="stylesheet"/>
         </xsl:if>
         <xsl:call-template name="util:css"/>
       </head>
       <body>
-        <xsl:if test="//p:design/p:parameter[@key='theme']">
+        <xsl:if test="$theme">
           <xsl:attribute name="class">
-            <xsl:text>theme_</xsl:text><xsl:value-of select="//p:design/p:parameter[@key='theme']"/>
+            <xsl:value-of select="$theme"/>
           </xsl:attribute>
         </xsl:if>
         <xsl:choose>
@@ -53,35 +50,49 @@
             <xsl:apply-templates select="p:content"/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:if test="//p:design/p:parameter[@key='theme']='vitae'">
-              <div class="vitae_hero">
-              <div class="vitae_hero_body"><xsl:comment/>
-              </div>
-              </div>
-              <div class="vitae_hero_text">Jonas Munk</div>
-            </xsl:if>
-            <div class="layout">
-              <div class="header">
-                <a class="header_logo">
-                  <xsl:attribute name="href">
-                    <xsl:choose>
-                      <xsl:when test="//p:context/p:home/@path"><xsl:value-of select="//p:context/p:home/@path"/></xsl:when>
-                      <xsl:when test="//p:context/p:home/@page">?id=<xsl:value-of select="//p:context/p:home/@page"/></xsl:when>
-                    </xsl:choose>
-                  </xsl:attribute>
-                  <xsl:text>Jonas Munk</xsl:text>
-                </a>
-              <xsl:call-template name="navigation-first-level"/>
-              </div>
-              <div class="layout_content">
-                <xsl:call-template name="navigation-second-level"/>
-                <xsl:apply-templates select="p:content"/>
-                <xsl:comment/>
-              </div>
-              <div class="layout_footer">
-                <a href="http://www.humanise.dk/" class="layout_designed">Designet og udviklet af Humanise</a>
-              </div>
-            </div>
+            <xsl:choose>
+              <xsl:when test="$theme='vitae'">
+                <div class="vitae_hero">
+                  <div class="vitae_hero_body"><xsl:comment/></div>
+                </div>
+                <div class="vitae_hero_text">Jonas Munk</div>
+                <div class="vitae_hero_sub">Curriculum Vitae</div>
+                <div class="vitae_layout">
+                  <div class="vitae_content">
+                    <xsl:call-template name="vitae-menu"/>
+                    <xsl:apply-templates select="p:content"/>
+                    <xsl:comment/>
+                  </div>
+                  <div class="vitae_footer">
+                    <a href="http://www.humanise.dk/" class="vitae_designed">Designet og udviklet af Humanise</a>
+                  </div>
+                </div>
+              </xsl:when>
+              <xsl:otherwise>
+                <div class="layout">
+                  <div class="header">
+                    <a class="header_logo">
+                      <xsl:attribute name="href">
+                        <xsl:choose>
+                          <xsl:when test="//p:context/p:home/@path"><xsl:value-of select="//p:context/p:home/@path"/></xsl:when>
+                          <xsl:when test="//p:context/p:home/@page">?id=<xsl:value-of select="//p:context/p:home/@page"/></xsl:when>
+                        </xsl:choose>
+                      </xsl:attribute>
+                      <xsl:text>Jonas Munk</xsl:text>
+                    </a>
+                  <xsl:call-template name="navigation-first-level"/>
+                  </div>
+                  <div class="layout_content">
+                    <xsl:call-template name="navigation-second-level"/>
+                    <xsl:apply-templates select="p:content"/>
+                    <xsl:comment/>
+                  </div>
+                  <div class="layout_footer">
+                    <a href="http://www.humanise.dk/" class="layout_designed">Designet og udviklet af Humanise</a>
+                  </div>
+                </div>
+              </xsl:otherwise>
+            </xsl:choose>
           </xsl:otherwise>
         </xsl:choose>
         <xsl:call-template name="util:googleanalytics"/>
@@ -98,6 +109,30 @@
               <a>
                 <xsl:attribute name="class">
                   <xsl:text>header_menu_link</xsl:text>
+                  <xsl:choose>
+                    <xsl:when test="//p:page/@id=@page"><xsl:text> is-selected</xsl:text></xsl:when>
+                    <xsl:when test="descendant-or-self::*/@page=//p:page/@id"><xsl:text> is-active</xsl:text></xsl:when>
+                  </xsl:choose>
+                </xsl:attribute>
+                <xsl:call-template name="util:link"/>
+                <xsl:value-of select="@title"/>
+              </a>
+            </li>
+          </xsl:if>
+        </xsl:for-each>
+      </ul>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template name="vitae-menu">
+    <xsl:if test="//f:frame/h:hierarchy/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item[not(@hidden='true')]">
+      <ul class="vitae_menu">
+        <xsl:for-each select="//f:frame/h:hierarchy/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item">
+          <xsl:if test="not(@hidden='true')">
+            <li class="vitae_menu_item">
+              <a>
+                <xsl:attribute name="class">
+                  <xsl:text>vitae_menu_link</xsl:text>
                   <xsl:choose>
                     <xsl:when test="//p:page/@id=@page"><xsl:text> is-selected</xsl:text></xsl:when>
                     <xsl:when test="descendant-or-self::*/@page=//p:page/@id"><xsl:text> is-active</xsl:text></xsl:when>

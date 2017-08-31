@@ -28,7 +28,7 @@
   .bio_content {
     margin-left: 90px; }
   .bio_title {
-    font-weight: 400; }
+    font-weight: 600; }
   .bio_text {
     font-size: 14px;
     margin: 0; }
@@ -51,6 +51,11 @@
     margin-left: 120px; }
   .bio_event:before {
     left: 45px; } }
+@keyframes hue {
+  0% {
+    filter: hue-rotate(0deg); }
+  100% {
+    filter: hue-rotate(360deg); } }
 .vitae_hero {
   background: #666;
   animation-name: hue;
@@ -85,125 +90,158 @@
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 1vw; }
+  .vitae_hero_sub {
+    position: fixed;
+    left: 10px;
+    top: 24vw;
+    right: 10px;
+    text-align: center;
+    color: #fff;
+    font-family: 'Raleway';
+    font-size: 3vw;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1vw; }
+.vitae_layout {
+  margin-top: 35%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: #fff;
+  max-width: none;
+  text-align: left; }
+.vitae_content {
+  padding: 0 10px;
+  margin: 0 auto;
+  max-width: 960px;
+  overflow: visible; }
+.vitae_footer {
+  padding: 100px 0 60px;
+  height: auto;
+  text-align: center; }
+.vitae_designed {
+  background: url("../gfx/humanise.svg") 50% 0 no-repeat;
+  background-size: 100px;
+  padding-top: 110px;
+  display: inline-block;
+  text-decoration: none;
+  color: #000;
+  font-weight: 400;
+  opacity: .2; }
 
-@keyframes hue {
-  0% {
-    filter: hue-rotate(0deg); }
-  100% {
-    filter: hue-rotate(360deg); } }
-.theme_vitae {
-  background: #777; }
-  .theme_vitae .layout {
-    margin-top: 35%;
-    position: absolute;
-    left: 0;
-    right: 0;
-    background: #fff;
-    max-width: none;
-    overflow: hidden; }
-  .theme_vitae .layout_content {
-    padding: 0;
-    margin: 0 auto;
-    max-width: 960px;
-    overflow: visible; }
-  .theme_vitae .header {
-    display: none; }
-  .theme_vitae .layout_footer {
-    padding: 60px 0;
-    height: auto; }
-  .theme_vitae .layout_designed {
-    height: 181px;
-    width: 162px;
-    background: url("../gfx/handmade.png");
-    font-size: 0;
-    padding: 0; }
-  .theme_vitae .submenu {
-    font-family: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
-    margin: 0 -30px 20px -15px;
-    padding: 10px 0 15px 15px;
-    text-align: left; }
-    .theme_vitae .submenu_item {
-      display: inline-block; }
-    .theme_vitae .submenu_link {
-      text-decoration: none;
-      color: #666;
-      font-weight: 300;
-      display: inline-block;
-      border-radius: 4px;
-      font-size: 13px;
-      padding: 0 5px;
-      height: 22px;
-      line-height: 22px;
-      border: 1px solid #fff; }
-      .theme_vitae .submenu_link:hover {
-        color: #000;
-        background: #f6f6f6; }
-      .theme_vitae .submenu_link.is-selected {
-        font-weight: 400;
-        color: #000;
-        border: 1px solid #ddd; }
-  .theme_vitae .document,
-  .theme_vitae .part_header,
-  .theme_vitae .part_text,
-  .theme_vitae .part_listing,
-  .theme_vitae .part_poster {
-    font-family: 'Open Sans','Helvetica Neue','Helvetica',Arial,sans-serif; }
-  .theme_vitae .part_header-1, .theme_vitae .part_header-2 {
-    font-weight: 200;
-    color: #333;
-    letter-spacing: 0px;
-    line-height: 1em; }
-  .theme_vitae .part_header-1 {
-    font-size: 34px; }
-  .theme_vitae .part_header-2 {
-    font-size: 24px;
-    font-weight: 600; }
-  .theme_vitae .part_poster_title {
-    font-weight: 200;
-    font-size: 18pt; }
-  .theme_vitae .part_poster_text {
-    font-weight: 200;
-    font-size: 12pt; }
-  .theme_vitae .part_section_header-2 {
-    padding-top: 20px;
-    padding-bottom: 10px; }
-  .theme_vitae .part_text,
-  .theme_vitae .part_listing {
-    font-weight: 300;
-    font-size: 12pt;
-    line-height: 1.4em;
-    color: #333; }
-  .theme_vitae .part_listing_first {
-    font-size: 12pt;
+.vitae_menu {
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  margin: 0 -10px 20px;
+  padding: 10px 0 15px 5px;
+  text-align: left;
+  position: -webkit-sticky;
+  position: sticky;
+  top: -1px;
+  background: rgba(255, 255, 255, 0.8);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 9;
+  -webkit-mask-image: linear-gradient(black 85%, transparent);
+  font-size: 0; }
+  .vitae_menu_item {
+    display: inline-block; }
+  .vitae_menu_link {
+    text-decoration: none;
+    color: #444;
+    font-weight: 400;
+    display: inline-block;
+    border-radius: 4px;
+    font-size: 13px;
+    padding: 0 7px;
+    height: 22px;
+    line-height: 22px;
+    border: 1px solid transparent;
+    max-width: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+    .vitae_menu_link:hover {
+      color: #000;
+      background: rgba(0, 0, 0, 0.05);
+      background-clip: padding-box; }
+    .vitae_menu_link.is-selected {
+      font-weight: 600;
+      color: #000;
+      border: 1px solid #ddd;
+      background: #fff; }
+.vitae,
+.vitae .document,
+.vitae .part_header,
+.vitae .part_text,
+.vitae .part_listing,
+.vitae .part_poster {
+  font-family: 'Open Sans','Helvetica Neue','Helvetica',Arial,sans-serif; }
+.vitae .part_header-1, .vitae .part_header-2 {
+  color: #333;
+  letter-spacing: 0px;
+  line-height: 1em; }
+.vitae .part_header-1 {
+  font-size: 32px;
+  font-weight: 800; }
+.vitae .part_header-2 {
+  font-size: 24px;
+  font-weight: 700; }
+.vitae .common_link {
+  font-weight: 500; }
+.vitae .part_poster_title {
+  font-weight: 200;
+  font-size: 18pt; }
+.vitae .part_poster_text {
+  font-weight: 200;
+  font-size: 12pt; }
+.vitae .part_section_header-2 {
+  padding-top: 20px;
+  padding-bottom: 10px; }
+.vitae .part_text,
+.vitae .part_listing {
+  font-weight: 300;
+  font-size: 12pt;
+  line-height: 1.4em;
+  color: #333; }
+  .vitae .part_text strong,
+  .vitae .part_listing strong {
     font-weight: 400; }
-  .theme_vitae .part_horizontalrule {
-    margin: 10px 0px; }
-  .theme_vitae strong {
-    font-weight: 400; }
+.vitae .part_header strong {
+  font-weight: 400; }
+.vitae .part_listing_first {
+  font-size: 12pt;
+  font-weight: 600; }
+.vitae .part_horizontalrule {
+  margin: 10px 0px; }
 
+@media screen and (min-width: 375px) {
+  .vitae_content {
+    padding: 5px 15px; }
+  .vitae_menu_link {
+    max-width: none; } }
 @media screen and (min-width: 400px) {
-  .theme_vitae .submenu {
+  .vitae_menu {
     margin-top: 0;
     padding-top: 10px; }
-    .theme_vitae .submenu_link {
+    .vitae_menu_link {
       padding: 0 6px;
       text-transform: uppercase; } }
 @media screen and (min-width: 600px) {
-  .theme_vitae .submenu {
-    margin: 0 -20px 20px -15px;
-    padding: 20px 0 15px 15px; }
-    .theme_vitae .submenu_link {
+  .vitae_menu {
+    margin: 5px -20px 20px -15px;
+    padding: 15px 0 15px 5px; }
+    .vitae_menu_link {
       border-radius: 4px;
       font-size: 13px;
       padding: 0 10px;
       letter-spacing: 1px;
       height: 26px;
-      line-height: 26px; }
-  .theme_vitae .part_header-1 {
+      line-height: 26px;
+      max-width: none; }
+  .vitae .part_header-1 {
     font-size: 42pt; }
-  .theme_vitae .part_header-2 {
-    font-size: 28pt;
-    font-weight: 200; } }
+  .vitae .part_header-2 {
+    font-size: 28pt; }
+  .vitae .part_section_header-2 {
+    padding-bottom: 20px; } }
 @media screen and (min-width: 1000px) {
   .vitae_hero_body {
     padding-bottom: 400px; }
@@ -211,6 +249,9 @@
     font-size: 100px;
     top: 120px;
     letter-spacing: 10px; }
-
-  .theme_vitae .layout {
+  .vitae_hero_sub {
+    font-size: 30px;
+    top: 240px;
+    letter-spacing: 10px; }
+  .vitae_layout {
     margin-top: 350px; } }

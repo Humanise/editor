@@ -4,47 +4,6 @@ $target : async;
 
 @include if {
 
-
-  .vitae_hero {
-
-    background: #666;
-    animation-name: hue;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-
-    &_body {
-      transform-origin: 50% 0;
-      position: fixed;
-      background-color: #96aeb7;
-      background-image: url('../gfx/hero_2.jpg');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: 50%;
-      padding-bottom: 40%;
-      /*transition: filter .3s;*/
-      top: -20px;
-      left: -20px;
-      right: -20px;
-      top: 0;
-      left: 0;
-      right: 0;
-    }
-    &_text {
-      position: fixed;
-      left: 10px;
-      top: 12vw;
-      right: 10px;
-      text-align: center;
-      color: #fff;
-      font-family: 'Raleway';
-      font-size: 10vw;
-      font-weight: 300;
-      text-transform: uppercase;
-      letter-spacing: 1vw;
-    }
-  }
-
   @keyframes hue {
     0% {
       filter: hue-rotate(0deg);
@@ -54,50 +13,111 @@ $target : async;
     }
   }
 
-  .theme_vitae {
-    background: #777;
+  .vitae  {
+    &_hero {
 
-    .layout {
+      background: #666;
+      animation-name: hue;
+      animation-duration: 10s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+
+      &_body {
+        transform-origin: 50% 0;
+        position: fixed;
+        background-color: #96aeb7;
+        background-image: url('../gfx/hero_2.jpg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        padding-bottom: 40%;
+        /*transition: filter .3s;*/
+        top: -20px;
+        left: -20px;
+        right: -20px;
+        top: 0;
+        left: 0;
+        right: 0;
+      }
+      &_text {
+        position: fixed;
+        left: 10px;
+        top: 12vw;
+        right: 10px;
+        text-align: center;
+        color: #fff;
+        font-family: 'Raleway';
+        font-size: 10vw;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 1vw;
+      }
+      &_sub {
+        position: fixed;
+        left: 10px;
+        top: 24vw;
+        right: 10px;
+        text-align: center;
+        color: #fff;
+        font-family: 'Raleway';
+        font-size: 3vw;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 1vw;
+      }
+    }
+
+    &_layout {
       margin-top: 35%;
       position: absolute;
       left: 0;
       right: 0;
       background: #fff;
       max-width: none;
-      overflow: hidden;
+      text-align: left;
     }
 
-    .layout_content {
-      padding: 0;
+    &_content {
+      padding: 0 10px;
       margin: 0 auto;
       max-width: 960px;
       overflow: visible;
     }
 
-    .header {
-      display: none;
-    }
-
-    .layout_footer
-    {
-      padding: 60px 0;
+    &_footer {
+      padding: 100px 0 60px;
       height: auto;
+      text-align: center;
     }
 
-    .layout_designed
-    {
-      height: 181px;
-      width: 162px;
-      background: url('../gfx/handmade.png');
-      font-size: 0;
-      padding: 0;
+    &_designed {
+      background: url('../gfx/humanise.svg') 50% 0 no-repeat;
+      background-size: 100px;
+      padding-top: 110px;
+      display: inline-block;
+      text-decoration: none;
+      color: #000;
+      font-weight: 400;
+      opacity: .2;
     }
+  }
 
-    .submenu {
+  .vitae {
+    //background: #777;
+
+    &_menu {
       font-family: $cv-font;
-      margin: 0 -30px 20px -15px;
-      padding: 10px 0 15px 15px;
+      margin: 0 -10px 20px;
+      padding: 10px 0 15px 5px;
       text-align: left;
+      position: -webkit-sticky;
+      position: sticky;
+      top: -1px;
+      background: rgba(255,255,255,.8);
+      -webkit-backdrop-filter: blur(5px);
+      z-index: 9;
+      -webkit-mask-image: linear-gradient(rgba(0, 0, 0, 1) 85%, transparent);
+      font-size: 0;
 
       &_item {
         display: inline-block;
@@ -105,29 +125,35 @@ $target : async;
 
       &_link {
         text-decoration: none;
-        color: #666;
-        font-weight: 300;
+        color: #444;
+        font-weight: 400;
         display: inline-block;
         border-radius: 4px;
         font-size: 13px;
-        padding: 0 5px;
+        padding: 0 7px;
         height: 22px;
         line-height: 22px;
-        border: 1px solid #fff;
+        border: 1px solid transparent;
+        //background: rgba(255,255,255,.5);
+        max-width: 50px;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         &:hover {
           color: #000;
-          background: #f6f6f6;
+          background: rgba(0,0,0,.05);
+          background-clip: padding-box;
         }
 
         &.is-selected {
-          font-weight: 400;
+          font-weight: 600;
           color: #000;
           border: 1px solid #ddd;
+          background: #fff;
         }
       }
     }
-
+    &,
     .document,
     .part_header,
     .part_text,
@@ -139,23 +165,26 @@ $target : async;
     .part {
       &_header {
         &-1, &-2 {
-          font-weight: 200;
           color: #333;
           letter-spacing: 0px;
           line-height: 1em;
         }
 
         &-1 {
-          font-size: 34px;
+          font-size: 32px;
+          font-weight: 800;
         }
 
         &-2 {
           font-size: 24px;
-          font-weight: 600;
+          font-weight: 700;
         }
       }
     }
 
+    .common_link {
+      font-weight: 500;
+    }
 
     .part_poster_title
     {
@@ -182,34 +211,54 @@ $target : async;
       font-size: 12pt;
       line-height: 1.4em;
       color: #333;
+
+      strong {
+        font-weight: 400;
+      }
+    }
+
+    .part_header {
+      strong {
+        font-weight: 400;
+      }
     }
 
     .part_listing_first
     {
       font-size: 12pt;
-      font-weight: 400;
+      font-weight: 600;
     }
     .part {
       &_horizontalrule {
         margin: 10px 0px;
       }
     }
+  }
+}
 
-    strong
-    {
-      font-weight: 400;
+@include if ((width: 375px)) {
+
+  .vitae {
+    &_content {
+      padding: 5px 15px;
     }
 
+    &_menu {
+      &_link {
+        max-width: none;
+      }
+    }
   }
 }
 
 @include if (( width: 400px )) {
 
-  .theme_vitae {
+  .vitae {
 
-    .submenu {
+    &_menu {
       margin-top: 0;
       padding-top: 10px;
+
       &_link {
         padding: 0 6px;
         text-transform: uppercase;
@@ -220,12 +269,13 @@ $target : async;
 
 }
 
-@include if ((width: 600px)) {
-  .theme_vitae {
 
-    .submenu {
-      margin: 0 -20px 20px -15px;
-      padding: 20px 0 15px 15px;
+@include if ((width: 600px)) {
+  .vitae {
+
+    &_menu {
+      margin: 5px -20px 20px -15px;
+      padding: 15px 0 15px 5px;
 
       &_link {
         border-radius: 4px;
@@ -234,6 +284,7 @@ $target : async;
         letter-spacing: 1px;
         height: 26px;
         line-height: 26px;
+        max-width: none;
       }
     }
 
@@ -246,29 +297,36 @@ $target : async;
 
         &-2 {
           font-size: 28pt;
-          font-weight: 200;
         }
       }
+    }
+    .part_section_header-2 {
+      padding-bottom: 20px;
     }
   }
 }
 
 @include if (( width: 1000px )) {
 
-  .vitae_hero {
+  .vitae {
+    &_hero {
 
-    &_body {
-      padding-bottom: 400px;
+      &_body {
+        padding-bottom: 400px;
+      }
+      &_text {
+        font-size: 100px;
+        top: 120px;
+        letter-spacing: 10px;
+      }
+      &_sub {
+        font-size: 30px;
+        top: 240px;
+        letter-spacing: 10px;
+      }
     }
-    &_text {
-      font-size: 100px;
-      top: 120px;
-      letter-spacing: 10px;
-    }
-  }
 
-  .theme_vitae {
-    .layout {
+    &_layout {
       margin-top: 350px;
     }
   }
