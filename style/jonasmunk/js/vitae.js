@@ -9,6 +9,7 @@ hui.onReady(function() {
     hero.style.opacity = 1 - scrl/320;
   }
   var hero = hui.find('.vitae_hero_body');
+  if (!hero) {return};
   hui.listen(window,'scroll',function() {
     hui.onDraw(check)
   })
