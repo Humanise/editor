@@ -54,7 +54,7 @@ op.ignite = function() {
       var spacing = 10;
       var result = css.match(/border-spacing: ([0-9]+)/m);
       if (result) {
-      	spacing = result[1];
+        spacing = result[1];
       }
       var table = hui.build('table',{
         'class' : rows[i].className,
