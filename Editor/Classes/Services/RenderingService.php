@@ -487,7 +487,7 @@ class RenderingService {
       header('Content-Length: ' . strlen($output));
       header("Last-Modified: " . gmdate("D, d M Y H:i:s",$page['published']) . " GMT");
       header("Cache-Control: public");
-      header("Expires: " . gmdate("D, d M Y H:i:s",time() + 604800) . " GMT");
+      header("Expires: " . gmdate("D, d M Y H:i:s",time() + (60 * 60 * 1)) . " GMT"); // 1 hour
       header('Pragma: cache');
       header("Content-Type: text/html; charset=UTF-8");
       header('X-UA-Compatible: IE=edge');
