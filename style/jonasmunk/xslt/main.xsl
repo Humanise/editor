@@ -175,7 +175,7 @@
   <xsl:template match="widget:bio">
     <div class="bio">
       <xsl:for-each select="widget:event">
-        <div class="bio_event">
+        <div class="bio_event" data-build-in="pop">
           <span class="bio_time">
             <xsl:value-of select="@from"/>
             <span class="bio_time_divider"> &#8594; </span>

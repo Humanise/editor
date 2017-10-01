@@ -1,0 +1,40 @@
+.document {
+  perspective: 5000px;
+}
+
+.effects_hidden {
+  visibility: hidden;
+}
+
+.effects_fade {
+  opacity: 0;
+}
+
+.effects_fade_visible {
+  transition: opacity .5s;
+  opacity: 1;
+}
+
+.effects_pop {
+  opacity: 0;
+  transform: scale(.5);
+}
+
+.effects_pop_visible {
+  transition: opacity .5s, transform .7s;
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+.effects_flip {
+  transform-style : preserve-3d;
+  /*transition-property : -webkit-transform;*/
+  backface-visibility : hidden;
+  transform: rotateY(180deg);
+}
+
+.effects_flip_visible {
+  transform: rotateY(360deg);
+  transition: transform 1s;
+}

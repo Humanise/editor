@@ -260,6 +260,9 @@
           <xsl:value-of select="concat(' ', $id)"/>
         </xsl:if>
       </xsl:attribute>
+      <xsl:if test="style:style/style:if/style:build-in">
+        <xsl:attribute name="data-build-in"><xsl:value-of select="style:style/style:if/style:build-in/@effect"/></xsl:attribute>
+      </xsl:if>
       <xsl:apply-templates select="*[not(self::style:style)]"/>
       <xsl:comment/>
     </div>

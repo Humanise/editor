@@ -10,6 +10,7 @@
 	],
   "css" : [
     "style/basic/css/shared.css",
+    "style/basic/css/effects.css",
     "@parts",
     "style/jonasmunk/css/overwrite.css",
     "style/jonasmunk/css/main.css",
@@ -17,6 +18,7 @@
     "style/jonasmunk/css/front.css"
   ],
   "js" : [
-    "style/jonasmunk/js/vitae.js"
+    "style/jonasmunk/js/vitae.js",
+    "style/basic/js/effects.js"
   ]
 }
