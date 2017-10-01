@@ -23,7 +23,7 @@ op.part.ImageGallery.prototype = {
     var a = e.findByTag('a');
     if (a) {
       e.stop();
-      this.showImage(a.getAttribute('data-id'));
+      this.showImage(a.getAttribute('data-id'), parseInt(a.getAttribute('data-index'),10), a);
     }
   },
   registerImage : function(node,image) {
@@ -39,14 +39,30 @@ op.part.ImageGallery.prototype = {
       return false;
     }
   },
-  showImage : function(id) {
-    if (!this.imageViewer) {
-      this.imageViewer = hui.ui.ImageViewer.create({maxWidth:2000,maxHeight:2000,perimeter:40,sizeSnap:10});
-      this.imageViewer.listen(op.imageViewerDelegate);
+  showImage : function(id, index, node) {
+    var previews = hui.findAll('a', this.element).map(function(node) {
+      var img = hui.find('img', node);
+      if (img) {
+        return img.getAttribute('src');
+      }
+      var found = node.style.backgroundImage.match(/url\(["']?([^"'\)]+)/);
+      if (found) {
+        return found[1]
+      }
+    })
+    if (!this._presentation) {
+      this._presentation = hui.ui.Presentation.create({
+        listen : {
+          $getImage : function(e) {
+            return op.imageViewerDelegate.$resolveImageUrl(e.item,e.width,e.height);
+          },
+          $getPreview : function(e) {
+            return previews[e.index];
+          }
+        }
+      });
     }
-    this.imageViewer.clearImages();
-    this.imageViewer.addImages(this.images);
-    this.imageViewer.showById(id);
+    this._presentation.show({items:this.images, index: index, source: node});
   }
 }
 
@@ -115,7 +131,6 @@ op.part.ImageGallery.Masonry.prototype = {
       $$afterResize : this._rebuild.bind(this)
     })
     hui.listen(window,'scroll',this._reveal.bind(this));
-    //hui.listen(this.element,'click',this._click.bind(this));
   },
   _rebuild : function() {
     var fullWidth = this.element.clientWidth;
@@ -189,6 +204,7 @@ op.part.ImageGallery.Masonry.prototype = {
               height : rowHeight + 'px'
             },
             'data-id' : item.id,
+            'data-index' : item.index,
             'data' : item.index,
             parent : this.element
           });
@@ -225,18 +241,6 @@ op.part.ImageGallery.Masonry.prototype = {
       item.revealed = true;
     }
   },
-  _click : function(e) {
-    e = hui.event(e);
-    var item = e.findByClass('part_imagegallery_masonry_item');
-    if (item) {
-      var index = parseInt(item.getAttribute('data'),10);
-      if (hui.window.getViewWidth()<400) {
-        document.location = this.items[index].href;
-      } else {
-        this._toggle(index);
-      }
-    }
-  },
   _toggle : function(index) {
     var dur = 1000;
     if (this._toggled!==undefined) {
@@ -267,7 +271,6 @@ op.part.ImageGallery.Masonry.prototype = {
       item.disclosed.style.display='block';
     }
     var height = Math.round(this.latestWidth*.6);
-    this._updateDiclosed(item,height);
     hui.animate({
       node : item.disclosed,
       css : {height: (height-1) + 'px'},
@@ -286,18 +289,6 @@ op.part.ImageGallery.Masonry.prototype = {
         });
       }
     })
-  },
-  _updateDiclosed : function(item,height) {
-    item.disclosed.innerHTML = '<div class="oo_masonry_disclosed_image" style="background-image: url(' +
-    this._getUrl(item,{width:this.latestWidth,height:600}) +
-    ')"></div>' +
-    '<div class="oo_masonry_disclosed_info">' +
-      '<h1 class="oo_masonry_disclosed_title">' + hui.string.escape(item.title) + '</h1>' +
-      '<p class="oo_masonry_disclosed_actions">'+
-        //'<a href="javascript://">Full screen</a>'+
-        '<a href="' + item.href + '">Info...</a>'+
-      '</p>'+
-    '</div>';
   }
 }
 

@@ -103,7 +103,9 @@ class DesignService {
       $files[] = 'hui/js/hui_require.js';
       $files[] = 'hui/js/hui_preloader.js';
       $files[] = 'hui/js/ui.js';
+      $files[] = 'hui/js/Component.js';
       $files[] = 'hui/js/ImageViewer.js';
+      $files[] = 'hui/js/Presentation.js';
       $files[] = 'hui/js/Box.js';
       $files[] = 'hui/js/SearchField.js';
       $files[] = 'hui/js/Overlay.js';
@@ -350,7 +352,7 @@ class DesignService {
     if ($preview) {
       $files[] = 'hui/bin/minimized.css';
     } else {
-      $components = ['icon', 'curtain', 'imageviewer', 'overlay', 'box', 'button', 'formula', 'message', 'textinput'];
+      $components = ['icon', 'curtain', 'imageviewer', 'overlay', 'box', 'button', 'formula', 'message', 'textinput', 'presentation'];
       foreach ($components as $name) {
         $files[] = 'hui/css/' . $name . '.css';
       }
