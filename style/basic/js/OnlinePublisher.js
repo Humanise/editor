@@ -205,7 +205,10 @@ op.imageViewerDelegate = {
   $resolveImageUrl : function(img,width,height) {
     var w = img.width ? Math.min(width,img.width) : width;
     var h = img.height ? Math.min(height,img.height) : height;
-    return op.page.path+'services/images/?id='+img.id+'&width='+w+'&height='+h+'&format=jpg&quality=100';
+    var precision = 50;
+    w = Math.ceil(w / precision) * precision;
+    h = Math.ceil(h / precision) * precision;
+    return op.page.path+'services/images/?id='+img.id+'&width='+w+'&height='+h+'&format=jpg&quality=90';
   }
 }
 
