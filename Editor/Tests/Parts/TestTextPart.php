@@ -44,7 +44,7 @@ class TestTextPart extends UnitTestCase {
     $obj->setColor('#eee');
     $obj->setFontFamily('Verdana');
     $ctrl = new TextPartController();
-    $xml = $ctrl->build($obj,new PartContext());
+    $xml = $ctrl->build($obj, new PartContext());
     $expected = '<part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="20">' .
       '<sub><text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">' .
       '<style color="#eee" font-family="Verdana"/>' .
@@ -62,11 +62,11 @@ class TestTextPart extends UnitTestCase {
     $obj->setText("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
     $ctrl = new TextPartController();
     $context = new PartContext();
-    $context->addBuildLink('o','url',null,'http://www.onlineobjects.com/',null,null,null,null,20);
-    $context->addBuildLink('dolor','url',null,'http://www.onlineobjects.com/',null,'My title',null,null,20);
-    $context->addBuildLink('dolor','url',null,'http://www.apple.com/',null,null,null,null,null);
-    $context->addBuildLink('dol','url',null,'#',null,'OnlineObjects',null,null,null);
-    $context->addBuildLink('l','url',null,'http://www.onlineobjects.com/',null,null,null,null,null);
+    $context->addBuildLink('o', 'url', null, 'http://www.onlineobjects.com/', null, null, null, null, 20);
+    $context->addBuildLink('dolor', 'url', null, 'http://www.onlineobjects.com/', null, 'My title', null, null, 20);
+    $context->addBuildLink('dolor', 'url', null, 'http://www.apple.com/', null, null, null, null, null);
+    $context->addBuildLink('dol', 'url', null, '#', null, 'OnlineObjects', null, null, null);
+    $context->addBuildLink('l', 'url', null, 'http://www.onlineobjects.com/', null, null, null, null, null);
     $xml = $ctrl->build($obj,$context);
     $expected = '<part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="20">' .
       '<sub><text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">' .
@@ -86,9 +86,9 @@ class TestTextPart extends UnitTestCase {
     $obj->setText("Lorem ipsum dolor sit amet, consectetur adipisicing elit.");
     $ctrl = new TextPartController();
     $context = new PartContext();
-    $context->addBuildLink('l','url',null,'http://www.onlineobjects.com/',null,'OnlineObjects',null,10,null);
-    $context->addBuildLink('dol','url',null,'#',null,null,null,null,null);
-    $xml = $ctrl->build($obj,$context);
+    $context->addBuildLink('l', 'url', null, 'http://www.onlineobjects.com/', null, 'OnlineObjects', null, 10, null);
+    $context->addBuildLink('dol', 'url', null, '#', null, null, null, null, null);
+    $xml = $ctrl->build($obj, $context);
     $expected = '<part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="20">' .
       '<sub><text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">' .
       '<style/>' .
