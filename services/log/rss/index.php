@@ -9,6 +9,7 @@ $requestSecret = Request::getString('secret');
 $secret = SettingService::getSharedSecret();
 
 if (Strings::isBlank($secret) || Strings::isBlank($requestSecret) || $requestSecret !== $secret) {
+  Response::forbidden();
   exit;
 }
 

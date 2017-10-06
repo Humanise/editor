@@ -86,4 +86,46 @@ class NewsService {
 
     return ['page' => $page, 'news' => $news];
   }
+
+  static function buildFeed($groupId) {
+    $feed = new Feed();
+    $feed->setTitle('Nyheder');
+    $feed->setDescription('Nyheder');
+    $feed->setPubDate(time());
+    $feed->setLastBuildDate(time());
+    $feed->setLink(ConfigurationService::getBaseUrl());
+
+
+    $sql = "select object.id,object.title,object.note,UNIX_TIMESTAMP(news.startdate) as startdate,object_link.target_type,object_link.target_value from news,newsgroup_news,object left join object_link on object.id = object_link.object_id where object.id=news.object_id and newsgroup_news.news_id = news.object_id and newsgroup_news.newsgroup_id=@int(group) order by startdate desc,id,object_link.position";
+    $result = Database::select($sql, ['group' => $groupId]);
+    $ids[] = [];
+    while ($row = Database::next($result)) {
+      if (!in_array($row['id'],$ids)) {
+        $item = new FeedItem();
+        $item->setTitle($row['title']);
+        $item->setDescription($row['note']);
+        if ($row['startdate']) {
+          $item->setPubDate($row['startdate']);
+        }
+        $link = null;
+        if ($row['target_type'] == 'page') {
+          $link = ConfigurationService::getBaseUrl() . '?id=' . $row['target_value'];
+        } else if ($row['target_type'] == 'file') {
+          $link = ConfigurationService::getBaseUrl() . '?file=' . $row['target_value'];
+        } else if ($row['target_type'] == 'url' || $row['target_type'] == 'email') {
+          $link = $row['target_value'];
+        }
+        if ($link) {
+          $item->setGuid($link);
+          $item->setLink($link);
+        } else {
+          $item->setGuid(ConfigurationService::getBaseUrl() . $row['id']);
+        }
+        $feed->addItem($item);
+        $ids[] = $row['id'];
+      }
+    }
+    Database::free($result);
+    return $feed;
+  }
 }
