@@ -194,6 +194,9 @@ class ClassService {
 
     $text = var_export($cache,true);
 
+    // Remove traling whiespace
+    $text = preg_replace('/ \\n/uism', "\n", $text);
+
     $text = "<?php\n" .
     "if (!isset(\$GLOBALS['basePath'])) {\n" .
     "   header('HTTP/1.1 403 Forbidden');\n" .
