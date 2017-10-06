@@ -60,7 +60,6 @@ class PartLink extends Entity {
     return $this->sourceText;
   }
 
-
   function setTargetType($targetType) {
     $this->targetType = $targetType;
   }
@@ -78,10 +77,10 @@ class PartLink extends Entity {
   }
 
   function save() {
-    PartService::saveLink($this);
+    return ModelService::save($this);
   }
 
   function remove() {
-    PartService::removeLink($this);
+    return ModelService::remove($this);
   }
 }

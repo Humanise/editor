@@ -53,7 +53,7 @@ class Part extends Entity
   }
 
   function save() {
-    PartService::save($this);
+    return PartService::save($this);
   }
 
   function isDynamic() {

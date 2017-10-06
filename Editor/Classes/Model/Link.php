@@ -11,13 +11,15 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Link'] = [
   'table' => 'link',
   'properties' => [
-    'text' => ['type' => 'string'],
+    'id' => ['type' => 'int'],
+    'text' => ['type' => 'string', 'column' => 'source_text'],
+    'sourceType' => ['type' => 'string', 'column' => 'source_type'],
     'alternative' => ['type' => 'string'],
-    'targetType' => ['type' => 'string'],
-    'targetValue' => ['type' => 'string'],
-    'partId' => ['type' => 'int', 'relation' => ['class' => 'Part', 'property' => 'id']],
-    'pageId' => ['type' => 'int', 'relation' => ['class' => 'Page', 'property' => 'id']],
-    'targetId' => ['type' => 'int', 'relations' => [
+    'targetType' => ['type' => 'string', 'column' => 'target_type'],
+    'targetValue' => ['type' => 'string', 'column' => 'target_value'],
+    'partId' => ['type' => 'int', 'column' => 'part_id', 'relation' => ['class' => 'Part', 'property' => 'id']],
+    'pageId' => ['type' => 'int', 'column' => 'page_id', 'relation' => ['class' => 'Page', 'property' => 'id']],
+    'targetId' => ['type' => 'int', 'column' => 'target_id', 'relations' => [
         ['class' => 'Page', 'property' => 'id'],
         ['class' => 'File', 'property' => 'id']
       ]
@@ -26,6 +28,7 @@ Entity::$schema['Link'] = [
 ];
 class Link extends Entity implements Loadable {
 
+  var $sourceType;
   var $text;
   var $alternative;
   var $targetType;
@@ -54,11 +57,40 @@ class Link extends Entity implements Loadable {
     return $this->partId;
   }
 
+  function getSourceType() {
+    return $this->sourceType;
+  }
+
+  function setSourceType($type) {
+    $this->sourceType = $type;
+  }
+
   function getTargetType() {
     return $this->targetType;
   }
 
+  function setTargetType($type) {
+    $this->targetType = $type;
+  }
+
+  function getTargetValue() {
+    return $this->targetValue;
+  }
+
+  function setTargetValue($value) {
+    $this->targetValue = $value;
+  }
+
+  function getTargetId() {
+    return $this->targetId;
+  }
+
+  function setTargetId($id) {
+    $this->targetId = $id;
+  }
+
   function setText($text) {
+    $this->sourceType = 'text';
     $this->text = $text;
   }
 
@@ -119,15 +151,15 @@ class Link extends Entity implements Loadable {
   }
 
   static function load($id) {
-    return LinkService::load($id);
+    return ModelService::load('Link', $id);
   }
 
   function remove() {
-    return LinkService::remove($this);
+    return ModelService::remove($this);
   }
 
   function save() {
-    LinkService::save($this);
+    ModelService::save($this);
   }
 
 }

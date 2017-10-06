@@ -86,6 +86,7 @@ class ModelService {
   }
 
   static function save($object) {
+    $success = true;
     $class = get_class($object);
     $hierarchy = ClassService::_getHierarchy($class);
     if (!$object->getId()) {
@@ -113,12 +114,14 @@ class ModelService {
         $sql .= 'set ' . SchemaService::buildSqlSetters($object,$info,['id']);
         $sql .= ' where id=@int(id)';
 
-        $id = Database::insert($sql,['id' => $object->getId()]);
+        $success = $success && Database::update($sql,['id' => $object->getId()]);
       }
     }
+    return $success;
   }
 
   static function remove($object) {
+    $success = true;
     $class = get_class($object);
     $hierarchy = ClassService::_getHierarchy($class);
     for ($i = 0; $i < count($hierarchy); $i++) {
@@ -129,7 +132,8 @@ class ModelService {
       $info = Entity::$schema[$hierarchy[$i]];
       // TODO return if successfull
       $sql = 'delete from `' . $info['table'] . '` where id=@int(id)';
-      Database::delete($sql,['id' => $object->getId()]);
+      $success = $success && Database::delete($sql,['id' => $object->getId()]) > 0;
     }
+    return $success;
   }
 }

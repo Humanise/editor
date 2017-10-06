@@ -14,18 +14,20 @@ class LinkService {
     'url' => ['da' => 'Internet adresse', 'en' => 'Internet address'],
     'page' => ['da' => 'Side', 'en' => 'Page'],
     'file' => ['da' => 'Fil', 'en' => 'File'],
+    'image' => ['da' => 'Billede', 'en' => 'Image'],
     'email' => ['da' => 'E-mail-adresse', 'en' => 'E-mail address']
   ];
 
   static function getLinkInfo($linkId) {
-    $sql = "select link.*,page.title as page_title,object.title as object_title from link left join page on link.target_id=page.id left join object on link.target_id=object.id where link.id=" . Database::int($linkId);
-    if ($row = Database::selectFirst($sql)) {
+    $sql = "select link.*,page.title as page_title,object.title as object_title from link left join page on link.target_id=page.id left join object on link.target_id=object.id where link.id=@int(linkId)";
+    if ($row = Database::selectFirst($sql,['linkId' => $linkId])) {
       return LinkService::_rowToInfo($row);
     }
     return null;
   }
 
-    // TODO : Make general search
+  // TODO : Make general search
+  // TODO : PartService::getLinks
   static function getPartLinks($partId) {
     $list = [];
     $sql = "select part_link.id from part_link where part_id=@int(partId)";
@@ -41,8 +43,8 @@ class LinkService {
     // TODO : Make general search
   static function getPageLinks($pageId) {
     $list = [];
-    $sql = "select link.*,page.title as page_title,object.title as object_title from link left join page on link.target_id=page.id left join object on link.target_id=object.id where page_id=" . Database::int($pageId) . " order by link.source_text";
-    $result = Database::select($sql);
+    $sql = "select link.*,page.title as page_title,object.title as object_title from link left join page on link.target_id=page.id left join object on link.target_id=object.id where page_id=@int(id) order by link.source_text";
+    $result = Database::select($sql, ['id' => $pageId]);
     while ($row = Database::next($result)) {
       $link = LinkService::_rowToInfo($row);
       $list[] = $link;
@@ -80,60 +82,7 @@ class LinkService {
     return GuiUtils::getTranslated(LinkService::$types[$type]);
   }
 
-  static function load($id) {
-    $sql = "select * from link where id=" . Database::int($id);
-        if ($row = Database::selectFirst($sql)) {
-      $link = new Link();
-      $link->setId(intval($id));
-      $link->setText($row['source_text']);
-      $link->setAlternative($row['alternative']);
-      $link->targetType = $row['target_type'];
-      $link->targetValue = $row['target_value'];
-      $link->targetId = intVal($row['target_id']);
-      $link->partId = intVal($row['part_id']);
-      $link->pageId = intVal($row['page_id']);
-      return $link;
-    }
-    return null;
-  }
-
-  static function remove($link) {
-    $sql = "delete from link where id=" . Database::int($link->getId());
-    return Database::delete($sql);
-  }
-
-  static function save($link) {
-    if (Strings::isBlank($link->getText())) {
-      return;
-    }
-    if ($link->id) {
-      $sql = "update link set " .
-      "part_id=" . Database::int($link->partId) .
-      ",page_id=" . Database::int($link->pageId) .
-      ",source_text=" . Database::text($link->text) .
-      ",target_type=" . Database::text($link->targetType) .
-      ",target_value=" . Database::text($link->targetValue) .
-      ",target_id=" . Database::int($link->targetId) .
-      ",target=" . Database::text($link->target) .
-      ",alternative=" . Database::text($link->alternative) .
-      " where id=" . Database::int($link->id);
-      Database::update($sql);
-    } else {
-      $sql = "insert into link (page_id,part_id,source_type,source_text,target_type,target_value,target_id,alternative
-        ) values (" .
-        Database::int($link->pageId) .
-        "," . Database::int($link->partId) .
-        ",'text'," .
-        Database::text($link->text) . "," .
-        Database::text($link->targetType) . "," .
-        Database::text($link->targetValue) . "," .
-        Database::int($link->targetId) . "," .
-        Database::text($link->alternative) .
-      ")";
-      $link->id = Database::insert($sql);
-    }
-  }
-
+  // TODO (jm) This is should maybe be in UI
   static function getSourceIcon($view) {
     $icons = [
       'hierarchy' => 'monochrome/hierarchy',
@@ -141,11 +90,13 @@ class LinkService {
       'url' => 'monochrome/globe',
       'email' => 'monochrome/email',
       'page' => 'common/page',
-      'news' => 'common/news'
+      'news' => 'common/news',
+      'image' => 'common/image'
     ];
     return $icons[$view->getSourceType()];
   }
 
+  // TODO (jm) This is should maybe be in UI
   static function getTargetIcon($view) {
     $icons = [
       'hierarchy' => 'monochrome/hierarchy',
@@ -153,7 +104,8 @@ class LinkService {
       'url' => 'monochrome/globe',
       'email' => 'monochrome/email',
       'page' => 'common/page',
-      'news' => 'common/news'
+      'news' => 'common/news',
+      'image' => 'common/image'
     ];
     return $icons[$view->getTargetType()];
   }
@@ -164,7 +116,7 @@ class LinkService {
     if (!$pageId) {
       $unions[] = "select
         object_link.id as id,
-                'object' as link_type,
+        'object' as link_type,
 
         object.type as source_type,
         object_link.object_id as source_id,
@@ -190,7 +142,7 @@ class LinkService {
     $unions[] = "select
 
       link.id as id,
-            'link' as link_type,
+      'link' as link_type,
 
       'page' as source_type,
       page.id as source_id,
@@ -212,11 +164,11 @@ class LinkService {
        from link
        left join page as target_page on link.target_id=target_page.id and link.target_type='page'
        left join object as file on link.target_id=file.id and link.target_type='file'
-       , page where link.page_id = page.id" . ($pageId ? " and page.id=" . Database::int($pageId) : "");
+       , page where link.page_id = page.id" . ($pageId ? " and page.id=@int(pageId)" : "");
 
     $unions[] = "select
       part_link.id as id,
-            'part' as link_type,
+      'part' as link_type,
 
       'page' as source_type,
       page.id as source_id,
@@ -235,16 +187,16 @@ class LinkService {
       file.id as target_file_id,
       file.title as target_file_title
 
-       from part_link
+      from part_link
 
       left join page as target_page on part_link.target_value=target_page.id and part_link.target_type='page'
       left join object as file on part_link.target_value=file.id and part_link.target_type='file'
       ,part,page,document_section where part_link.part_id = part.id and part.id=document_section.part_id and page.id=document_section.page_id
-      and target_type!='sameimage'" . ($pageId ? " and page.id=" . Database::int($pageId) : "");
+      and target_type!='sameimage'" . ($pageId ? " and page.id=@int(pageId)" : "");
     if (!$pageId) {
     $unions[] = "select
       hierarchy_item.id as id,
-            'hierarchy' as link_type,
+      'hierarchy' as link_type,
 
       'hierarchy' as source_type,
       hierarchy.id as source_id,
@@ -270,7 +222,7 @@ class LinkService {
     }
     $sql = join(' union ',$unions);
     $list = [];
-    $result = Database::select($sql);
+    $result = Database::select($sql,['pageId' => $pageId]);
     while ($row = Database::next($result)) {
       if (!$query->getTargetType() || $query->getTargetType() == $row['target_type']) {
         if (!$query->getSourceType() || $query->getSourceType() == $row['source_type']) {

@@ -29,7 +29,7 @@ class TestPartService extends UnitTestCase {
     $link->setSourceText('Fringilla');
     $link->save();
 
-    $loadedLinks = PartService::getLinks($part);
+    $loadedLinks = LinkService::getPartLinks($part->getId());
 
     $this->assertEqual(count($loadedLinks),1);
 
@@ -47,7 +47,7 @@ class TestPartService extends UnitTestCase {
     $link->setTargetValue('Z');
     $link->save();
 
-    $loadedLinks = PartService::getLinks($part);
+    $loadedLinks = LinkService::getPartLinks($part->getId());
 
     $this->assertEqual(count($loadedLinks),1);
 
@@ -62,7 +62,7 @@ class TestPartService extends UnitTestCase {
 
     PartService::removeLinks($part);
 
-    $this->assertEqual(count(PartService::getLinks($part)),0);
+    $this->assertEqual(count(LinkService::getPartLinks($part->getId())),0);
     $part->remove();
   }
 }

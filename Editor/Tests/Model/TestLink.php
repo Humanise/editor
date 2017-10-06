@@ -31,6 +31,7 @@ class TestLink extends UnitTestCase {
 
     $loaded = Link::load($link->getId());
     $this->assertNotNull($loaded);
+    $this->assertEqual($loaded->getId(),$link->getId());
     $this->assertEqual($loaded->getText(),'dummy');
     $this->assertEqual($loaded->getAlternative(),'This is the alternative');
     $this->assertEqual($loaded->getTargetType(),'page');
@@ -38,6 +39,11 @@ class TestLink extends UnitTestCase {
     $this->assertEqual($loaded->getFile(),null);
     $this->assertEqual($loaded->getEmail(),null);
     $this->assertEqual($loaded->getUrl(),null);
+
+    $info = LinkService::getLinkInfo($loaded->getId());
+    $this->assertNotNull($info);
+    $this->assertEqual($info->getSourceText(),'dummy');
+    $this->assertEqual($info->getSourceType(),'text');
 
 
     // Check that the links
@@ -67,5 +73,70 @@ class TestLink extends UnitTestCase {
     $this->assertFalse($link->remove());
   }
 
+  function testRemoving() {
+    $link = new Link();
+    $link->setText('dummy');
+    $link->setAlternative('This is the alternative');
+    $link->setTypeAndValue('url', 'http://somewhere.com/');
+    $link->save();
+
+    $loaded = Link::load($link->getId());
+    $this->assertNotNull($loaded);
+
+    $this->assertTrue($link->remove());
+
+    $loaded = Link::load($link->getId());
+    $this->assertNull($loaded);
+  }
+
+  function testPartWithLink() {
+
+    $part = new TextPart();
+    $part->save();
+
+    $link = new Link();
+    $link->setText('dummy');
+    $link->setAlternative('This is the alternative');
+    $link->setPartId($part->getId());
+    $link->setTypeAndValue('url', 'http://somewhere.com/');
+    $link->save();
+
+    $loaded = Link::load($link->getId());
+    $this->assertNotNull($loaded);
+
+    $part->remove();
+
+    $loaded = Link::load($link->getId());
+    $this->assertNull($loaded);
+  }
+
+  function testPartLink() {
+
+    $part = new TextPart();
+    $part->save();
+
+    $link = new PartLink();
+    $link->setPartId($part->getId());
+    $link->setSourceType('text');
+    $link->setSourceText('Lorem ipsum');
+    $link->setTargetType('url');
+    $link->setTargetValue('http://www.google.com/');
+    $this->assertTrue($link->save());
+
+    $loaded = PartLink::load($link->getId());
+    $this->assertNotNull($loaded);
+    $this->assertEqual($loaded->getPartId(),$part->getId());
+    $this->assertEqual($loaded->getSourceText(), 'Lorem ipsum');
+
+    $loaded->setSourceText('New text');
+    $this->assertTrue($loaded->save());
+
+    $loaded = PartLink::load($link->getId());
+
+    $part->remove();
+
+    $loaded = PartLink::load($link->getId());
+    $this->assertNull($loaded);
+  }
 }
 ?>
