@@ -51,16 +51,16 @@ class Design extends Object {
     //////////////////// Special ////////////////////
 
   function canRemove() {
-    $sql = "select count(id) as num from page where design_id=" . Database::int($this->id);
-    if ($row = Database::selectFirst($sql)) {
+    $sql = "select count(id) as num from page where design_id=@int(id)";
+    if ($row = Database::selectFirst($sql, ['id' => $this->id])) {
       return $row['num'] == 0;
     }
     return true;
   }
 
   function removeMore() {
-    $sql = 'delete from design_parameter where design_id=' . Database::int($this->id);
-    Database::delete($sql);
+    $sql = 'delete from design_parameter where design_id=@int(id)';
+    Database::delete($sql, ['id' => $this->id]);
   }
 }
 ?>

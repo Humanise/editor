@@ -402,6 +402,8 @@ class Database {
             $value = Database::text($value);
           } else if ($type == 'boolean') {
             $value = Database::boolean($value);
+          } else if ($type == 'datetime') {
+            $value = Database::datetime($value);
           } else {
             continue;
           }
