@@ -9,12 +9,12 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 Entity::$schema['Event'] = [
-    'table' => 'event',
-    'properties' => [
-      'location' => ['type' => 'string'],
-      'startdate' => ['type' => 'datetime'],
-      'enddate' => ['type' => 'datetime']
-    ]
+  'table' => 'event',
+  'properties' => [
+    'location' => ['type' => 'string'],
+    'startdate' => ['type' => 'datetime'],
+    'enddate' => ['type' => 'datetime']
+  ]
 ];
 
 class Event extends Object {
@@ -78,48 +78,45 @@ class Event extends Object {
   /**
    * @static
    */
-    function search($query = []) {
-        $out = [];
+  function search($query = []) {
+    $out = [];
     if (isset($query['calendarId'])) {
-          $sql = "select object.id from object,event,calendar_event where object.id=event.object_id and object.id=calendar_event.event_id and calendar_event.calendar_id=" . Database::int($query['calendarId']);
+      $sql = "select object.id from object,event,calendar_event where object.id=event.object_id and object.id=calendar_event.event_id and calendar_event.calendar_id=" . Database::int($query['calendarId']);
     } else {
-          $sql = "select id from object,event where object.id=event.object_id";
+      $sql = "select id from object,event where object.id=event.object_id";
     }
     if (isset($query['startDate']) && isset($query['endDate'])) {
       $sql .= " and not (startdate>" . Database::datetime($query['endDate']) . " or endDate<" . Database::datetime($query['startDate']) . ")";
     }
     $sql .= " order by event.startdate";
-        $result = Database::select($sql);
+    $result = Database::select($sql);
     $ids = [];
-        while ($row = Database::next($result)) {
-            $ids[] = $row['id'];
-        }
-        Database::free($result);
+    while ($row = Database::next($result)) {
+      $ids[] = $row['id'];
+    }
+    Database::free($result);
     foreach ($ids as $id) {
       $out[] = Event::load($id);
     }
-        return $out;
-    }
+    return $out;
+  }
 
-  /**
-   *
-   */
-    function getSimpleEvents($query = []) {
-        $out = [];
+  function getSimpleEvents($query = []) {
+    $out = [];
     $sql = "select object.id,object.title,object.note,event.location,unix_timestamp(event.startdate) as startdate,unix_timestamp(event.enddate) as enddate ";
     if (isset($query['calendarId'])) {
-          $sql .= "from object,event,calendar_event where object.id=event.object_id and object.id=calendar_event.event_id and calendar_event.calendar_id=" . Database::int($query['calendarId']);
+      $sql .= "from object,event,calendar_event where object.id=event.object_id and object.id=calendar_event.event_id and calendar_event.calendar_id=" . Database::int($query['calendarId']);
     } else {
-          $sql .= " from object,event where object.id=event.object_id";
+      $sql .= " from object,event where object.id=event.object_id";
     }
     if (isset($query['startDate']) && isset($query['endDate'])) {
-      $sql .= " and not (startdate>" . Database::datetime($query['endDate']) . " or endDate<" . Database::datetime($query['startDate']) . ")";
+      $sql .= " and not (startdate > " . Database::datetime($query['endDate']) . " or endDate < " . Database::datetime($query['startDate']) . ")";
     }
     $sql .= " order by object.title";
-        $result = Database::select($sql);
+    $result = Database::select($sql);
     $ids = [];
-        while ($row = Database::next($result)) {
-            $out[] = [
+    while ($row = Database::next($result)) {
+      $out[] = [
         'id' => $row['id'],
         'summary' => $row['title'] . "\n" . $row['note'],
         'location' => $row['location'],
@@ -129,10 +126,10 @@ class Event extends Object {
         'endDate' => $row['enddate'],
         'calendarTitle' => (isset($query['calendarTitle']) ? $query['calendarTitle'] : '')
       ];
-        }
-        Database::free($result);
-        return $out;
     }
+    Database::free($result);
+    return $out;
+  }
 
 
   ////////////////////////////// Persistence ////////////////////////
