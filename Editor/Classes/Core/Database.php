@@ -358,6 +358,9 @@ class Database {
       else if (array_key_exists('boolean', $value)) {
         return Database::boolean($value['boolean']);
       }
+      else if (array_key_exists('datetime', $value)) {
+        return Database::datetime($value['datetime']);
+      }
       Log::warn('Invalid value: ' . $value);
       return "ERROR";
     }

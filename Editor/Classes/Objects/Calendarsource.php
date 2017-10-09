@@ -41,37 +41,36 @@ class Calendarsource extends Object {
     return $this->url;
   }
 
-    function setSynchronized($synchronized) {
-        $this->synchronized = $synchronized;
-    }
+  function setSynchronized($synchronized) {
+    $this->synchronized = $synchronized;
+  }
 
-    function getSynchronized() {
-        return $this->synchronized;
-    }
-
+  function getSynchronized() {
+    return $this->synchronized;
+  }
 
   function setSyncInterval($syncInterval) {
-      $this->syncInterval = $syncInterval;
+    $this->syncInterval = $syncInterval;
   }
 
   function getSyncInterval() {
-      return $this->syncInterval;
+    return $this->syncInterval;
   }
 
   function setFilter($filter) {
-      $this->filter = $filter;
+    $this->filter = $filter;
   }
 
   function getFilter() {
-      return $this->filter;
+    return $this->filter;
   }
 
   function setDisplayTitle($displayTitle) {
-      $this->displayTitle = $displayTitle;
+    $this->displayTitle = $displayTitle;
   }
 
   function getDisplayTitle() {
-      return $this->displayTitle;
+    return $this->displayTitle;
   }
 
   function getIcon() {
@@ -79,8 +78,8 @@ class Calendarsource extends Object {
   }
 
   function removeMore() {
-    $sql = "delete from calendarsource_event where calendarsource_id=" . Database::int($this->id);
-    Database::delete($sql);
+    $sql = "delete from calendarsource_event where calendarsource_id=@int(id)";
+    Database::delete($sql, ['id' => $this->id]);
   }
 
   function isInSync() {
@@ -94,8 +93,8 @@ class Calendarsource extends Object {
     }
     Log::debug('Syncing: ' . $this->url);
     $this->synchronized = time();
-    $sql = "update calendarsource set synchronized=" . Database::datetime(time()) . " where object_id=" . Database::int($this->id);
-    Database::update($sql);
+    $sql = "update calendarsource set synchronized=@datetime(time) where object_id=@int(id)";
+    Database::update($sql,['time' => time(), 'id' => $this->id]);
     if (strpos($this->url,'dbu.dk') !== false) {
       $this->synchronizeDBU();
     } else if (strpos($this->url,'kampe.dhf.dk') !== false) {
@@ -137,8 +136,8 @@ class Calendarsource extends Object {
       $guestMode = strpos($this->getTitle(),'udekampe') !== false;
       $filter = $this->getParsedFilter();
       $events = $cal->getEvents();
-      $sql = "delete from calendarsource_event where calendarsource_id=" . $this->id;
-      Database::delete($sql);
+      $sql = "delete from calendarsource_event where calendarsource_id=@int(id)";
+      Database::delete($sql, ['id' => $this->id]);
       //return;
       foreach($events as $event) {
         if (($homeMode && strpos($event->getHomeTeam(),'Hals') === false) || ($guestMode && strpos($event->getGuestTeam(),'Hals') === false)) {
@@ -160,16 +159,17 @@ class Calendarsource extends Object {
         if ($event->getScore()) {
           $summary .= ' (' . $event->getScore() . ')';
         }
-        $sql = "insert into calendarsource_event (" .
-        "calendarsource_id,summary,location,startdate,enddate" .
-        ") values (" .
-        $this->id . "," .
-        Database::text($summary) . "," .
-        Database::text($event->getLocation()) . "," .
-        Database::datetime($event->getStartDate()) . "," .
-        Database::datetime($event->getEndDate()) .
-        ")";
-        Database::insert($sql);
+        $query = [
+          'table' => 'calendarsource_event',
+          'values' => [
+            'calendarsource_id' => ['int' => $this->id],
+            'summary' => ['text' => $summary],
+            'location' => ['text' => $event->getLocation()],
+            'startdate' => ['datetime' => $event->getStartDate()],
+            'enddate' => ['datetime' => $event->getEndDate()]
+          ]
+        ];
+        Database::insert($query);
       }
     }
   }
@@ -179,8 +179,8 @@ class Calendarsource extends Object {
     $cal = $parser->parseURL($this->url);
     if ($cal) {
       $events = $cal->getEvents();
-      $sql = "delete from calendarsource_event where calendarsource_id=" . $this->id;
-      Database::delete($sql);
+      $sql = "delete from calendarsource_event where calendarsource_id = @int(id)";
+      Database::delete($sql, ['id' => $this->id]);
       foreach($events as $event) {
 
         $recurring = false;
@@ -220,31 +220,33 @@ class Calendarsource extends Object {
           }
         }
 
-        $sql = "insert into calendarsource_event (" .
-        "calendarsource_id,summary,description,location,startdate,enddate,duration,uniqueid,recurring,frequency,until,`interval`,`count`,weekstart,bymonth,bymonthday,byday,byyearday,byweeknumber,url" .
-        ") values (" .
-        $this->id . "," .
-        Database::text($event->getSummary()) . "," .
-        Database::text($event->getDescription()) . "," .
-        Database::text($event->getLocation()) . "," .
-        Database::datetime($event->getStartDate()) . "," .
-        Database::datetime($event->getEndDate()) . "," .
-        Database::int($event->getDuration()) . "," .
-        Database::text($event->getUniqueId()) . "," .
-        Database::boolean($recurring) . "," .
-        Database::text($frequency) . "," .
-        Database::datetime($until) . "," .
-        Database::int($interval) . "," .
-        Database::int($count) . "," .
-        Database::text($weekstart) . "," .
-        Database::text($bymonth) . "," .
-        Database::text($bymonthday) . "," .
-        Database::text($byday) . "," .
-        Database::text($byyearday) . "," .
-        Database::text($byweeknumber) . "," .
-        Database::text($event->getUrl()) .
-        ")";
-        Database::insert($sql);
+
+        $query = [
+          'table' => 'calendarsource_event',
+          'values' => [
+            'calendarsource_id' => ['int' => $this->id],
+            'summary' => ['text' => $event->getSummary()],
+            'description' => ['text' => $event->getDescription()],
+            'location' => ['text' => $event->getLocation()],
+            'startdate' => ['datetime' => $event->getStartDate()],
+            'enddate' => ['datetime' => $event->getEndDate()],
+            'duration' => ['int' => $event->getDuration()],
+            'uniqueid' => ['text' => $event->getUniqueId()],
+            'recurring' => ['boolean' => $recurring],
+            'frequency' => ['text' => $frequency],
+            'until' => ['datetime' => $until],
+            'interval' => ['int' => $interval],
+            'count' => ['int' => $count],
+            'weekstart' => ['text' => $weekstart],
+            'bymonth' => ['text' => $bymonth],
+            'bymonthday' => ['text' => $bymonthday],
+            'byday' => ['text' => $byday],
+            'byyearday' => ['text' => $byyearday],
+            'byweeknumber' => ['text' => $byweeknumber],
+            'url' => ['text' => $event->getUrl()]
+          ]
+        ];
+        Database::insert($query);
       }
     }
   }
@@ -357,10 +359,10 @@ class Calendarsource extends Object {
     $b = $b['startDate'];
     if (!$a) $a = 0;
     if (!$b) $b = 0;
-      if ($a == $b) {
-          return 0;
-      }
-      return ($a < $b) ? -1 : 1;
+    if ($a == $b) {
+      return 0;
+    }
+    return ($a < $b) ? -1 : 1;
   }
 
   function _buildEvent($row) {

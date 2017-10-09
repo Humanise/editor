@@ -12,9 +12,7 @@ if (!isset($GLOBALS['basePath'])) {
 class TestVCal extends UnitTestCase {
 
   function testIt() {
-    global $basePath;
-    $path = $basePath . '/Editor/Tests/Resources/ical.ics';
-    $this->assertTrue(file_exists($path));
+    $path = TestService::getResourceUrl('ical.ics');
     $parser = new VCalParser();
     $cal = $parser->parseUrl($path);
     $this->assertTrue($cal !== false);
@@ -37,5 +35,8 @@ class TestVCal extends UnitTestCase {
 
     $next = $events[1];
     $this->assertEqual($next->getUrl(),"http://www.jonasmunk.dk");
+
+    $third = $events[2];
+    $this->assertEqual($third->getDescription(),"This is the note\næøå\nHep hey");
   }
 }

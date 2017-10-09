@@ -27,19 +27,17 @@ class VCalParser {
       $cal = new VCalendar();
       $num = 1;
       $latestLine = '';
-        while (!feof($handle)) {
-            $line = fgets($handle, 4096);
-        if ($line[0] == ' ') {
-          $latestLine .= trim($line);
-        } else {
-          $this->parseLine($latestLine,$cal);
-          //echo 'PARSE!: '.$latestLine.'<br>';
-          $latestLine = trim($line);
-        }
-            //echo $num.': '.$line.'<br>';
-        $num++;
-        }
-        fclose($handle);
+      while (!feof($handle)) {
+          $line = fgets($handle, 4096);
+      if ($line[0] == ' ') {
+        $latestLine .= trim($line);
+      } else {
+        $this->parseLine($latestLine,$cal);
+        $latestLine = trim($line);
+      }
+      $num++;
+      }
+      fclose($handle);
       return $cal;
     } else {
       return false;
@@ -100,7 +98,6 @@ class VCalParser {
   }
 
   function decodeString($string) {
-    $string = utf8_decode($string);
     $search = ['\,', '\"', "\\n"];
     $replace = [',', '"', "\n"];
     return str_replace($search,$replace,$string);
