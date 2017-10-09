@@ -93,9 +93,6 @@ class ObjectService {
           $object->removeMore();
         }
       }
-      else if (method_exists($object,'sub_remove')) {
-        $object->sub_remove();
-      }
       EventService::fireEvent('delete','object',$object->getType(),$object->getId());
       return true;
     }
