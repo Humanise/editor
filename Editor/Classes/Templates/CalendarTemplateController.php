@@ -26,12 +26,12 @@ class CalendarTemplateController extends TemplateController
     Database::delete($sql);
   }
 
-    function build($id) {
+  function build($id) {
     $data = '<calendar xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/calendar/1.0/">';
     $data .= '<!--dynamic-->';
     $data .= '</calendar>';
-        return ['data' => $data, 'dynamic' => true, 'index' => ''];
-    }
+    return ['data' => $data, 'dynamic' => true, 'index' => ''];
+  }
 
   function dynamic($id,&$state) {
     $refresh = Request::getBoolean('refresh');
@@ -80,12 +80,12 @@ class CalendarTemplateController extends TemplateController
     }
     $sql = "select calendar.object_id as id,object.title from calendarviewer_object,calendar,object where object.id = calendar.object_id and calendar.object_id = calendarviewer_object.object_id and calendarviewer_object.page_id = " . Database::int($id);
 
-        $result = Database::select($sql);
-        while ($row = Database::next($result)) {
+    $result = Database::select($sql);
+    while ($row = Database::next($result)) {
       $eventQuery = ['calendarId' => $row['id'], 'startDate' => $query['startDate'], 'endDate' => $query['endDate'], 'calendarTitle' => $row['title']];
       $events = array_merge($events,Event::getSimpleEvents($eventQuery));
     }
-        Database::free($result);
+    Database::free($result);
     usort($events,'Calendarsource::_startDateComparator');
     return $events;
   }
