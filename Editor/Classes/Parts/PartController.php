@@ -53,7 +53,7 @@ class PartController
     }
     $xml .=
     '</sub>' .
-    DocumentTemplateController::_getStyle($part->getStyle()) .
+    DocumentTemplateController::getStyle($part->getStyle()) .
     '</part>';
     return $xml;
   }

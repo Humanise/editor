@@ -28,23 +28,23 @@ hui.ui.listen(op.Editor);
 //////////////////////// Parameters ////////////////////
 
 hui.ui.listen({
-   $ready : function() {
-     var editable = document.querySelectorAll('*[data-editable]');
-     var self = this;
-     hui.each(editable,function(node) {
-       //hui.cls.add(node,'editor_editable');
-       hui.listen(node,'click',function(e) {
-         e = hui.event(e);
-         if (e.altKey) {
-           self._edit(node);
-         }
-       })
-     })
-   },
-   _edit : function(node) {
-     // TODO only one per parameter
-     new op.Editor.ParameterController(node);
-   }
+  $ready : function() {
+    var editable = document.querySelectorAll('*[data-editable]');
+    var self = this;
+    hui.each(editable,function(node) {
+      //hui.cls.add(node,'editor_editable');
+      hui.listen(node,'click',function(e) {
+        e = hui.event(e);
+        if (e.altKey) {
+          self._edit(node);
+        }
+      })
+    })
+  },
+  _edit : function(node) {
+    // TODO only one per parameter
+    new op.Editor.ParameterController(node);
+  }
 });
 
 op.Editor.ParameterController = function(node) {

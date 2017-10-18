@@ -4,6 +4,26 @@ op.DocumentEditor = {
   section : null,
   partData : null,
 
+  $ready : function() {
+
+    var editor = hui.ui.Editor.get();
+    editor.setOptions({
+      rowClass : 'document_row',
+      columnClass : 'document_column',
+      partClass : 'part_section'
+    });
+
+
+    hui.each(op.Editor,function(key, obj) {
+      if (obj.prototype && obj.prototype.activate) {
+        var type = obj.prototype.type;
+        editor.addPartController(type, type, obj);
+      }
+    });
+    editor.ignite();
+    editor.activate();
+  },
+
   $partWasMoved$huiEditor : function(info) {
     var data = hui.string.fromJSON(info.dragged.getAttribute('data'));
     var p = {
@@ -124,13 +144,29 @@ op.DocumentEditor = {
   // Rows
 
   _editedRow : null,
+  _originalRowStyle : '',
 
   $editRow$huiEditor : function(info) {
     var id = info.node.getAttribute('data-id');
-    hui.ui.tellContainers('editRow', {id:id});
+    var style = hui.find('style[data-for-row="' + id + '"]');
+    this._editedRow = {
+      id : id,
+      styleNode : style,
+      node : info.node,
+      originalCss : style ? style.textContent : ''
+    }
+    hui.ui.tellContainers('editRow', {id:id, $rowChanged : function(event) {
+      this._changeRowCSS(event.css);
+    }.bind(this)});
   },
-  $stopRowEditing$parent : function() {
+  _changeRowCSS : function(css) {
+    if (this._editedRow.styleNode) {
+      this._editedRow.styleNode.textContent = css;
+    }
+  },
+  $cancelRowEditing$parent : function() {
     hui.ui.Editor.get().stopRowEditing();
+    this._changeRowCSS(this._editedRow.originalCss);
   },
   $rowWasUpdated$parent : function() {
     hui.ui.Editor.get().stopRowEditing();

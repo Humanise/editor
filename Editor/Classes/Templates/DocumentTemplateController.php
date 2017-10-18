@@ -129,7 +129,7 @@ class DocumentTemplateController extends TemplateController
         }
       }
       $output .= '>';
-      $output .= DocumentTemplateController::_getStyle($row['style']);
+      $output .= DocumentTemplateController::getStyle($row['style']);
       $sql = "select `id`, `top`, `bottom`, `left`, `right`, `width`, `class`, `style` from document_column where row_id=@int(id) order by `index`";
       $result_col = Database::select($sql, ['id' => $row['id']]);
       while ($col = Database::next($result_col)) {
@@ -140,7 +140,7 @@ class DocumentTemplateController extends TemplateController
           }
         }
         $output .= '>';
-        $output .= DocumentTemplateController::_getStyle($col['style']);
+        $output .= DocumentTemplateController::getStyle($col['style']);
         $sql = "select document_section.*,part.type as part_type from document_section left join part on part.id = document_section.part_id where document_section.column_id=@int(id) order by document_section.`index`";
         $result_sec = Database::select($sql, ['id' => $col['id']]);
         while ($sec = Database::next($result_sec)) {
@@ -152,7 +152,7 @@ class DocumentTemplateController extends TemplateController
             }
           }
           $output .= '>';
-          $output .= DocumentTemplateController::_getStyle($sec['style']);
+          $output .= DocumentTemplateController::getStyle($sec['style']);
           $partArr = $this->partPublish($sec['type'],$sec['id'],$id,$sec['part_id'],$sec['part_type'],$context);
           $output .= $partArr['output'];
           $index .= ' ' . $partArr['index'] . "\n";
@@ -172,11 +172,23 @@ class DocumentTemplateController extends TemplateController
     return ['xml' => $output, 'index' => $index, 'dynamic' => $dynamic];
   }
 
-  static function _getStyle($xml) {
+  static function getStyle($xml) {
     if (Strings::isNotBlank($xml)) {
       if (DOMUtils::isValidFragment($xml)) {
         return '<style xmlns="http://uri.in2isoft.com/onlinepublisher/style/1.0/">' . $xml . '</style>';
       }
+    }
+    return '';
+  }
+
+  static function renderRowStyle($id, $styleXml) {
+    $xml = '<content xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/document/1.0/">' .
+      '<row id="' . $id . '">' . DocumentTemplateController::getStyle($styleXml) . '</row>' .
+      '</content>';
+
+    $result = RenderingService::renderFragment($xml);
+    if (preg_match('/<style[^>]{0,}>(.*)<\/style>/uism', $result, $mathces)) {
+      return $mathces[1];
     }
     return '';
   }

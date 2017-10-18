@@ -82,7 +82,7 @@
 
   <xsl:template match="doc:row[count(doc:column)>1]">
 
-    <xsl:variable name="id" select="concat('document_row-',position())" />
+    <xsl:variable name="id" select="concat('document_row-',@id)" />
     <div class="document_row {$id} {@class}" data-id="{@id}">
       <div class="document_table_container">
         <xsl:if test="@spacing!=''">
@@ -163,9 +163,9 @@
   <!-- Flex layout -->
 
   <xsl:template name="doc:row-style">
-    <xsl:variable name="id" select="concat('document_row-',position())" />
+    <xsl:variable name="id" select="concat('document_row-',@id)" />
     <xsl:if test="style:style/style:if">
-    <style>
+    <style data-for-row="{@id}">
       <xsl:for-each select="style:style/style:if">
         <xsl:call-template name="util:media-before"/>
         <xsl:for-each select="style:feature[@name='reverse']">
@@ -205,18 +205,17 @@
   </xsl:template>
 
   <xsl:template match="doc:row[@layout='flexible']">
-    <xsl:variable name="id" select="concat('document_row-',position())" />
+    <xsl:variable name="id" select="concat('document_row-',@id)" />
     <div class="document_row document_row-flexible {$id} {@class}" data-id="{@id}">
       <xsl:apply-templates select="*[not(self::style:style)]"/>
       <xsl:comment/>
     </div>
     <xsl:call-template name="doc:row-style"/>
-
   </xsl:template>
 
   <xsl:template match="doc:row[@layout='flexible']/doc:column">
     <xsl:variable name="id" select="concat('document_column-',generate-id())" />
-    <div class="document_column document_column-flexible {$id} document_row-{count(../preceding-sibling::*)+1}_column" data-id="{@id}">
+    <div class="document_column document_column-flexible {$id} document_row-{../@id}_column" data-id="{@id}">
       <xsl:apply-templates select="*[not(self::style:style)]"/>
       <xsl:comment/>
     </div>

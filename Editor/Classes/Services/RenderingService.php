@@ -176,6 +176,19 @@ class RenderingService {
     return XslService::transform($xmlData,$xsl);
   }
 
+  static function renderFragment($xml) {
+    $xml = '<?xml version="1.0" encoding="UTF-8"?>' . $xml;
+    $xsl = '<?xml version="1.0" encoding="UTF-8"?>' .
+      '<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">' .
+      '<xsl:variable name="urlrewrite"/>' .
+      '<xsl:variable name="timestamp"/>' .
+      '<xsl:output method="html" indent="no" encoding="UTF-8"/>' .
+      '<xsl:include href="' . FileSystemService::getFullPath('style/basic/xslt/util.xsl') . '"/>' .
+      '<xsl:include href="' . FileSystemService::getFullPath('style/basic/xslt/document.xsl') . '"/>' .
+      '</xsl:stylesheet>';
+    return XslService::transform($xml,$xsl);
+  }
+
   static function applyFrameDynamism($id,&$data) {
     $sql = "select id,maxitems,sortdir,sortby,timetype,timecount,UNIX_TIMESTAMP(startdate) as startdate,UNIX_TIMESTAMP(enddate) as enddate from frame_newsblock where frame_id=" . Database::int($id);
     $result = Database::select($sql);

@@ -20,6 +20,10 @@
             </field>
           </fields>
         </formula>
+        <style-editor name="rowStyleEditor">
+          <component key="row" description="{Row; da: Række}"/>
+          <component key="column" description="{Column; da: Kolonne}"/>
+        </style-editor>
       </page>
       <page key="info">
         <space height="200"/>
@@ -48,6 +52,9 @@
             </field>
           </fields>
         </formula>
+        <style-editor name="columnStyleEditor">
+          <component key="column" description="{Column; da: Kolonne}"/>
+        </style-editor>
       </page>
       <page key="info">
         <space height="200"/>

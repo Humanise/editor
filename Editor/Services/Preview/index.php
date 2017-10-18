@@ -13,6 +13,7 @@ $edit = Request::getBoolean('edit');
 $gui = '
 <gui xmlns="uri:hui" title="OnlinePublisher editor">
   <controller url="controller.js"/>
+  <controller url="../../Template/document/live/live_ui.js"/>
   <controller url="../../Parts/widget/live_ui.js"/>
   <rows>
   <row height="content">
@@ -39,6 +40,10 @@ $gui = '
           <icon icon="common/note" text="{New note; da:Ny note}" name="addNote" overlay="new_monochrome"/>
           <divider/>
           <icon icon="common/settings" text="Design" name="design"/>
+          <icon icon="common/settings" text="iPhone SE" name="iPhoneSmall"/>
+          <icon icon="common/settings" text="iPhone 8" name="iPhoneMedium"/>
+          <icon icon="common/settings" text="iPhone 8+" name="iPhoneLarge"/>
+          <icon icon="common/settings" text="iPad" name="iPad"/>
         </toolbar>
       </tab>
     </tabs>
