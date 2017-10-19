@@ -262,7 +262,6 @@ class DesignService {
   private static function loadInlineCSS($design) {
     $files = DesignService::getCSS($design, 'inline');
 
-    Log::debug($files);
     $css = '';
     foreach ($files as $file) {
       $folder = FileSystemService::folderOfPath($file);
@@ -303,7 +302,6 @@ class DesignService {
   }
 
   public static function getCustomInlineJS($file, $development = 'false') {
-    Log::debug($file);
     if ($development == 'true') {
       return DesignService::_read($file);
     }
