@@ -10,6 +10,7 @@
     "style/atira/css/overwrite.css"
   ],
   "js" : [
-    "style/atira/js/AtiraWebsite.js"
+    "style/atira/js/AtiraWebsite.js",
+    "style/basic/js/utils/SearchField.js"
   ]
 }

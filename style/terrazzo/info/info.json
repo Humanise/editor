@@ -9,6 +9,7 @@
     "style/terrazzo/css/stylesheet.css"
   ],
   "js" : [
-    "style/terrazzo/js/Poster.css"
+    "style/terrazzo/js/Poster.js",
+    "style/basic/js/utils/SearchField.js"
   ]
 }

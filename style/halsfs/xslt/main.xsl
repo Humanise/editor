@@ -323,7 +323,7 @@
 </div>
 </form>
 <script type="text/javascript"><xsl:comment>
-new op.SearchField({element:'searchfield',placeholder:'Søg her!'});
+hui.onReady(['op.SearchField'],function() {new op.SearchField({element:'searchfield',placeholder:'Søg her!'})});
 </xsl:comment>
 </script>
 </xsl:if>

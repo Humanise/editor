@@ -17,7 +17,7 @@ op.part.Image.prototype = {
       this._presentation = hui.ui.Presentation.create({
         listen : {
           $getImage : function(e) {
-            return op.imageViewerDelegate.$resolveImageUrl(e.item,e.width,e.height);
+            return op.getImageUrl(e.item,e.width,e.height);
           },
           $getPreview : function(e) {
             return preview;
@@ -30,3 +30,5 @@ op.part.Image.prototype = {
 }
 
 window.define && define('op.part.Image');
+
+hui.onReady(function() {hui.define('op.part.Image',op.part.Image)})

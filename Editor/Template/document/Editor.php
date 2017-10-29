@@ -41,8 +41,8 @@ echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.or
     <!--[if lt IE 9]><script type="text/javascript" src="' . ConfigurationService::getCachedUrl('../../../', 'hui/bin/compatibility.min.js') . '" charset="UTF-8"></script><![endif]-->
     <script type="text/javascript" src="' . ConfigurationService::getCachedUrl('../../../', 'Editor/Template/document/js/combined.php') . '" charset="UTF-8"></script>
     <script type="text/javascript">
-      op.context = "../../../";
       hui.ui.context = "../../../";
+      _editor.context = "../../../";
       hui.ui.language = "' . $language . '";
       controller.context = "' . ConfigurationService::getBaseUrl() . '";
       controller.pageId = ' . $pageId . ';

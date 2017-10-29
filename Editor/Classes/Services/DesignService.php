@@ -96,18 +96,13 @@ class DesignService {
       $files[] = 'hui/bin/minimized.js';
       $files[] = 'hui/js/Editor.js';
     } else {
-
       $files[] = 'hui/js/hui.js';
       $files[] = 'hui/js/hui_animation.js';
       $files[] = 'hui/js/hui_color.js';
       $files[] = 'hui/js/hui_require.js';
-      $files[] = 'hui/js/hui_preloader.js';
       $files[] = 'hui/js/ui.js';
       $files[] = 'hui/js/Component.js';
-      $files[] = 'hui/js/ImageViewer.js';
       $files[] = 'hui/js/Presentation.js';
-      $files[] = 'hui/js/Box.js';
-      $files[] = 'hui/js/SearchField.js';
       $files[] = 'hui/js/Overlay.js';
       $files[] = 'hui/js/Button.js';
     }

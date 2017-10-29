@@ -33,7 +33,7 @@ op.DocumentEditor = {
       sectionIndex : info.partIndex
     }
     hui.ui.request({
-      url : op.context+'Editor/Template/document/live/MoveSection.php',
+      url : hui.ui.getContext() + 'Editor/Template/document/live/MoveSection.php',
       parameters : p,
       message : {start:{en:'Moving...',da:'Flytter...'},delay:300},
       $success : function() {
@@ -47,7 +47,7 @@ op.DocumentEditor = {
     this.part = part;
     this.originalStyle = this.part.element.getAttribute('style');
     hui.ui.request({
-      url : op.context + 'Editor/Template/document/live/LoadPart.php',
+      url : hui.ui.getContext() + 'Editor/Template/document/live/LoadPart.php',
       parameters : { type : part.type, id : part.id },
       $object : function(data) {
         hui.ui.tellContainers('openPart', {
@@ -91,8 +91,8 @@ op.DocumentEditor = {
   loadPart : function(options) {
     this.section = {};
     hui.ui.request({
-      url : op.context+'Editor/Template/document/live/LoadPart.php',
-      parameters : {type:options.part.type,id:options.part.id},
+      url : hui.ui.getContext() + 'Editor/Template/document/live/LoadPart.php',
+      parameters : {type: options.part.type, id: options.part.id},
       $object : function(data) {
         options.$success(data.part);
         this.section = data.section;
@@ -123,13 +123,13 @@ op.DocumentEditor = {
     };
     var parameters = hui.override({
       id : options.part.id,
-      pageId : op.page.id,
+      pageId : _editor.getPageId(),
       type : options.part.type,
       style : info.part.style,
       section : hui.string.toJSON(section)
     },options.parameters);
     hui.ui.request({
-      url : op.context+'Editor/Template/document/live/SavePart.php',
+      url : hui.ui.getContext() + 'Editor/Template/document/live/SavePart.php',
       parameters : parameters,
       $text : function(html) {
         options.$success(html);
@@ -194,7 +194,7 @@ op.DocumentEditor = {
     }
     var self = this;
     hui.ui.include({
-      url : op.context + 'Editor/Template/document/live/gui/structure.php',
+      url : hui.ui.getContext() + 'Editor/Template/document/live/gui/structure.php',
       $success : function() {
         self._structureLoaded = true;
         callback();

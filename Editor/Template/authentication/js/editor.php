@@ -33,7 +33,7 @@ var templateController = {
   },
   $submit$templateForm : function() {
     var values = this.form.getValues();
-    values.id = op.page.id;
+    values.id = _editor.getPageId();
     var self = this;
     hui.ui.request({
       url : '../../../Template/authentication/Save.php',

@@ -121,6 +121,19 @@ class TestTextPart extends UnitTestCase {
     $this->assertEqual($xml,$expected);
   }
 
+  function testRender() {
+    $obj = new TextPart();
+    $obj->setId(20);
+    $obj->setText("Lorem ipsum dolor sit amet, consectetur adipisicing elit.");
+    $ctrl = new TextPartController();
+    $context = new PartContext();
+    $html = $ctrl->render($obj, $context);
+    $expected = '<div xmlns="http://www.w3.org/1999/xhtml" class="part_text common_font">' .
+      '<p class="part_text_first">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>' .
+      '</div>';
+    $this->assertEqual($expected, trim($html));
+  }
+
   function testIndex() {
     $obj = new TextPart();
     $obj->setText("Lorem [s]ipsum[s] dolor [e]sit[e] amet,\n consectetur<tag> [slet]adipisicing[slet] elit\n\nNew paragraph\n\n\nThree & new lines");

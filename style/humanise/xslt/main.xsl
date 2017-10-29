@@ -93,7 +93,7 @@
               <div id="poster_left"><xsl:comment/></div>
               <div id="poster_right"><xsl:comment/></div>
             </div>
-            <script type="text/javascript">require(['Poster'],function() {new Poster();});</script>
+            <script type="text/javascript">hui.onReady(['Poster'],function() {new Poster();});</script>
           </xsl:if>
             -->
           <xsl:apply-templates select="p:content"/>

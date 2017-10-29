@@ -11,6 +11,7 @@
   color: #36a;
   font-size: 16px;
   font-weight: 400;
+  cursor: pointer;
 }
 .button:hover {
   background: rgba(0, 0, 0, 0.05);
@@ -32,7 +33,8 @@
   vertical-align: top;
   position: relative;
   line-height: 36px;
-  right: -5px;
+  right: -8px;
+  font-size: 0.9em;
 }
 .button-dense {
   font-size: 12px;

@@ -1,4 +1,4 @@
-require(['hui','hui.parallax'],function(hui) {
+hui.onReady(['hui','hui.parallax'],function(hui) {
 
   var theater = hui.find('.theater'),
     theater_photo = hui.find('.theater_photo',theater),

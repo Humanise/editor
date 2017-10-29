@@ -864,7 +864,7 @@
 </div>
 </form>
 <script type="text/javascript"><xsl:comment>
-  hui.onReady(function() {
+  hui.onReady(['op.SearchField'], function() {
     new op.SearchField({element:'searchfield'});
   })
 </xsl:comment>

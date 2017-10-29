@@ -1,3 +1,4 @@
+hui.onReady(['hui','op'], function(hui, op) {
 op.part.ImageGallery = function(options) {
   this.options = options;
   this.element = hui.get(options.element);
@@ -54,7 +55,7 @@ op.part.ImageGallery.prototype = {
       this._presentation = hui.ui.Presentation.create({
         listen : {
           $getImage : function(e) {
-            return op.imageViewerDelegate.$resolveImageUrl(e.item,e.width,e.height);
+            return op.getImageUrl(e.item,e.width,e.height);
           },
           $getPreview : function(e) {
             return previews[e.index];
@@ -218,7 +219,7 @@ op.part.ImageGallery.Masonry.prototype = {
   },
   _getUrl : function(item,info) {
     var ratio = window.devicePixelRatio > 1 ? 2 : 1;
-    return op.context+'services/images/?id=' + item.id + '&width=' + (info.width * ratio) + '&height=' + (info.height * ratio) + '&method=crop';
+    return hui.ui.getContext() + 'services/images/?id=' + item.id + '&width=' + (info.width * ratio) + '&height=' + (info.height * ratio) + '&method=crop';
   },
   _reveal : function() {
     var min = hui.window.getScrollTop();
@@ -292,4 +293,5 @@ op.part.ImageGallery.Masonry.prototype = {
   }
 }
 
-window.define && define('op.part.ImageGallery');
+  hui.define('op.part.ImageGallery',op.part.ImageGallery)
+})

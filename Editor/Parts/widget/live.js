@@ -58,13 +58,13 @@ op.Editor.Widget.prototype = {
     window.clearTimeout(this._timer);
     var self = this;
     this._timer = window.setTimeout(function() {
-      var url = op.context + 'Editor/Services/Parts/Preview.php';
+      var url = hui.ui.getContext() + 'Editor/Services/Parts/Preview.php';
       hui.ui.request({
         url : url,
         parameters : {
           type : 'widget',
           id : self.part.id,
-          pageId : op.page.id,
+          pageId : _editor.getPageId(),
           data : self.part.data,
           key : self.part.key
         },

@@ -8,5 +8,7 @@
     "style/villahavblik/css/overwrite.css",
     "style/villahavblik/css/stylesheet.css"
   ],
-  "js" : []
+  "js" : [
+    "style/basic/js/utils/Dissolver.js"
+  ]
 }

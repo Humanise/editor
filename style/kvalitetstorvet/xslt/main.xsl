@@ -292,31 +292,4 @@
 </a>
 </xsl:template>
 
-
-
-<!--                  Search                     -->
-
-
-<xsl:template name="search">
-<xsl:if test="f:frame/f:search">
-<form action="{$path}" method="get" class="search" accept-charset="UTF-8">
-<div>
-<input type="hidden" name="id" value="{f:frame/f:search/@page}"/>
-<xsl:for-each select="f:frame/f:search/f:types/f:type">
-<input type="hidden" name="{@unique}" value="on"/>
-</xsl:for-each>
-<input type="text" class="text" name="query" id="searchfield"/>
-<input type="submit" class="submit" value="Søg"/>
-</div>
-</form>
-<script type="text/javascript"><xsl:comment>
-new op.SearchField({element:'searchfield',placeholder:'Søg her!'});
-</xsl:comment>
-</script>
-</xsl:if>
-</xsl:template>
-
-
-
-
 </xsl:stylesheet>

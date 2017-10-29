@@ -9,5 +9,6 @@
     "style/halsfs/css/main.css"
   ],
   "js" : [
+    "style/basic/js/utils/SearchField.js"
   ]
 }

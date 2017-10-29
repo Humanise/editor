@@ -115,26 +115,15 @@ class PartController
       $xsl .= '<xsl:include href="' . $basePath . 'style/basic/xslt/util.xsl"/>' .
         '<xsl:include href="' . $basePath . 'style/basic/xslt/part_' . $this->type . '.xsl"/>';
     }
+    $variables = [
+      'path' => '../../../',
+      'editor' => $editor,
+      'language' => strtolower($context->getLanguage())
+    ];
     $xsl .=
-    '<xsl:variable name="design"></xsl:variable>' .
-    '<xsl:variable name="development">false</xsl:variable>' .
-    '<xsl:variable name="path">../../../</xsl:variable>' .
-    '<xsl:variable name="navigation-path"></xsl:variable>' .
-    '<xsl:variable name="page-path"></xsl:variable>' .
-    '<xsl:variable name="protocol">' . (Request::isSecure() ? 'https' : 'http') . '</xsl:variable>' .
-    '<xsl:variable name="data-path">' . ConfigurationService::getDataUrl() . '</xsl:variable>' .
-    '<xsl:variable name="template"></xsl:variable>' .
-    '<xsl:variable name="userid"></xsl:variable>' .
-    '<xsl:variable name="username"></xsl:variable>' .
-    '<xsl:variable name="usertitle"></xsl:variable>' .
-    '<xsl:variable name="preview"></xsl:variable>' .
-    '<xsl:variable name="mini">false</xsl:variable>' .
-    '<xsl:variable name="editor">' . ($editor ? 'true' : 'false') . '</xsl:variable>' .
-    '<xsl:variable name="urlrewrite">' . (ConfigurationService::isUrlRewrite() ? 'true' : 'false') . '</xsl:variable>' .
-    '<xsl:variable name="timestamp">' . ConfigurationService::getDeploymentTime() . '</xsl:variable>' .
-    '<xsl:variable name="language">' . strtolower($context->getLanguage()) . '</xsl:variable>' .
-    '<xsl:template match="/"><xsl:apply-templates/></xsl:template>' .
-    '</xsl:stylesheet>';
+      RenderingService::renderVariables($variables) .
+      '<xsl:template match="/"><xsl:apply-templates/></xsl:template>' .
+      '</xsl:stylesheet>';
     $html = XslService::transform($xmlData,$xsl);
     return str_replace("<br></br>","<br/>",$html);
   }

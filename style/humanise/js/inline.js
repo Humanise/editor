@@ -1,4 +1,4 @@
-require(['hui'],function(hui) {
+hui.onReady(['hui'],function(hui) {
   var check = function() {
     return (document.documentElement.scrollTop || document.body.scrollTop) > 42;
   }

@@ -1,4 +1,4 @@
-require(['hui'],function() {
+hui.onReady(['hui'],function(hui) {
 
   var SearchField = function(options) {
     this.element = options.element;

@@ -110,6 +110,47 @@ class RenderingService {
       $mainFile = 'main';
       $mainDesign = $design;
     }
+
+    $mainPath = $incPath . 'style/' . $mainDesign . '/xslt/' . $mainFile . '.xsl';
+    $templatePath = $incPath . 'style/' . $contentDesign . '/xslt/' . $template . '.xsl';
+
+
+    $variables = [
+      'design' => $design,
+      'path' => $urlPath,
+      'navigation-path' => $navigationPath,
+      'page-path' => $pagePath,
+      'template' => $template,
+      'preview' => $preview,
+      'editor' => false,
+      'mini' => Request::getBoolean('mini'),
+      'language' => $language
+    ];
+
+    if (Request::exists('dev')) {
+      $variables['development'] = Request::getBoolean('dev') ? 'true' : 'false';
+    }
+
+    $encoding = ConfigurationService::isUnicode() ? 'UTF-8' : 'ISO-8859-1';
+    $xsl = '<?xml version="1.0" encoding="' . $encoding . '"?>' .
+      '<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">' .
+      '<xsl:output method="html" indent="no" encoding="' . $encoding . '"/>' .
+      '<xsl:include href="' . $templatePath . '"/>' .
+      '<xsl:include href="' . $mainPath . '"/>' .
+      RenderingService::renderVariables($variables) .
+      '<xsl:template match="/"><xsl:apply-templates/></xsl:template>' .
+      '</xsl:stylesheet>';
+
+    return XslService::transform($xmlData,$xsl);
+  }
+
+  static function renderVariables($values) {
+
+    $protocol = Request::isSecure() ? 'https' : 'http';
+    $absolutePath = $protocol . '://' . @$_SERVER['HTTP_HOST'];
+    $absolutePagePath = $absolutePath . @$_SERVER['REQUEST_URI'];
+    $absolutePath .= '/';
+
     $userId = 0;
     $userName = '';
     $userTitle = '';
@@ -118,70 +159,47 @@ class RenderingService {
       $userName = $user['username'];
       $userTitle = $user['title'];
     }
-    $development = ConfigurationService::isDebug();
-    if (Request::exists('dev')) {
-      $development = Request::getBoolean('dev');
-    }
-    $mainPath = $incPath . 'style/' . $mainDesign . '/xslt/' . $mainFile . '.xsl';
-    $templatePath = $incPath . 'style/' . $contentDesign . '/xslt/' . $template . '.xsl';
-    $encoding = ConfigurationService::isUnicode() ? 'UTF-8' : 'ISO-8859-1';
-    $dataUrl = ConfigurationService::getDataUrl();
-    $secure = Request::isSecure();
-    $protocol = $secure ? 'https' : 'http';
-
-    $absolutePath = $protocol . '://' . @$_SERVER['HTTP_HOST'];
-    $absolutePagePath = $absolutePath . @$_SERVER['REQUEST_URI'];
-    $absolutePath .= '/';
-
-    $statistics = ConfigurationService::isGatherStatistics();
-
     $variables = [
-      'design' => $design,
-      'path' => $urlPath,
-      'navigation-path' => $navigationPath,
-      'page-path' => $pagePath,
+      'design' => 'basic',
+      'path' => '',
+      'navigation-path' => '',
+      'page-path' => '',
       'absolute-path' => $absolutePath,
-      'data-path' => $dataUrl,
+      'data-path' => ConfigurationService::getDataUrl(),
       'absolute-page-path' => $absolutePagePath,
-      'template' => $template,
+      'template' => 'document',
       'userid' => $userId,
       'username' => $userName,
       'protocol' => $protocol,
       'usertitle' => $userTitle,
-      'internal-logged-in' => InternalSession::isLoggedIn() ? 'true' : 'false',
-      'preview' => $preview ? 'true' : 'false',
-      'editor' => false,
-      'mini' => Request::getBoolean('mini') ? 'true' : 'false',
-      'development' => $development ? 'true' : 'false',
-      'urlrewrite' => ConfigurationService::isUrlRewrite() ? 'true' : 'false',
+      'preview' => 'false',
+      'editor' => 'false',
+      'mini' => 'false',
+      'internal-logged-in' => InternalSession::isLoggedIn(),
+      'development' => ConfigurationService::isDebug(),
+      'urlrewrite' => ConfigurationService::isUrlRewrite(),
       'timestamp' => ConfigurationService::getDeploymentTime(),
-      'language' => $language,
-      'statistics' => ($statistics ? 'true' : 'false')
+      'language' => 'en',
+      'statistics' => ConfigurationService::isGatherStatistics()
     ];
-
-    $xsl = '<?xml version="1.0" encoding="' . $encoding . '"?>' .
-      '<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">' .
-      '<xsl:output method="html" indent="no" encoding="' . $encoding . '"/>' .
-      '<xsl:include href="' . $templatePath . '"/>' .
-      '<xsl:include href="' . $mainPath . '"/>';
+    $xsl = '';
     foreach ($variables as $name => $value) {
+      $val = isset($values[$name]) ? $values[$name] : $value;
+      if (is_bool($val)) {
+        $val = $val ? 'true' : 'false';
+      }
       $xsl .= '<xsl:variable name="' . Strings::escapeEncodedXML($name) . '">' .
-        Strings::escapeEncodedXML($value) .
-        '</xsl:variable>';
+        Strings::escapeEncodedXML($val) .
+      '</xsl:variable>';
     }
-    $xsl .=
-      '<xsl:template match="/"><xsl:apply-templates/></xsl:template>' .
-      '</xsl:stylesheet>';
-
-    return XslService::transform($xmlData,$xsl);
+    return $xsl;
   }
 
   static function renderFragment($xml) {
     $xml = '<?xml version="1.0" encoding="UTF-8"?>' . $xml;
     $xsl = '<?xml version="1.0" encoding="UTF-8"?>' .
       '<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">' .
-      '<xsl:variable name="urlrewrite"/>' .
-      '<xsl:variable name="timestamp"/>' .
+      RenderingService::renderVariables(['preview' => true]) .
       '<xsl:output method="html" indent="no" encoding="UTF-8"/>' .
       '<xsl:include href="' . FileSystemService::getFullPath('style/basic/xslt/util.xsl') . '"/>' .
       '<xsl:include href="' . FileSystemService::getFullPath('style/basic/xslt/document.xsl') . '"/>' .

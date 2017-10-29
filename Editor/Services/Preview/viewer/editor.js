@@ -1,7 +1,7 @@
 op.Editor = {
   language : 'en',
   $ready : function() {
-    hui.ui.tellContainers('pageLoaded',op.page.id);
+    hui.ui.tellContainers('pageLoaded',_editor.getPageId());
     if (hui.location.hasHash('edit')) {
       if (templateController!==undefined) {
         templateController.edit();
@@ -19,7 +19,7 @@ op.Editor = {
     this.signalChange();
   },
   signalChange : function() {
-    hui.ui.tellContainers('pageChanged',op.page.id);
+    hui.ui.tellContainers('pageChanged',_editor.getPageId());
   }
 }
 

@@ -87,9 +87,9 @@
     </div>
   </div>
   <script type="text/javascript">
-    require(['op.part.Movie'],function() {
+    _editor.loadPart({name:'Movie',$ready:function() {
       new op.part.Movie({element : '<xsl:value-of select="generate-id()"/>'})
-    });
+    }});
   </script>
 </xsl:template>
 

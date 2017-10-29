@@ -1,34 +1,22 @@
-/* require & define https://curiosity-driven.org/minimal-loader#final*/
-!function(){function n(n,e){e in r?n(e,r[e]):i[e]?i[e].push(n):i[e]=[n]}function e(n,e){r[n]=e;var t=i[n];t&&(t.forEach(function(t){t(n,e)}),i[n]=0)}function t(e,t){var i=e.length;if(i){var r=[],f=0;e.forEach(n.bind(0,function(n,o){r[e.indexOf(n)]=o,++f>=i&&t.apply(0,r)}))}else t()}var i={},r={};require=t,define=function(n,i,r){r?t(i,function(){e(n,r.apply(0,arguments))}):e(n,i)}}();
+hui = window.hui || {_:[],onReady:function() {this._.push(arguments)}};
 
 (function(window,document) {
   window._editor = {
-    ready : function(delegate) {
-      if (document.readyState == 'complete') {
-        delegate();
-      }
-      else if (window.addEventListener) {
-        window.addEventListener('DOMContentLoaded',delegate,false);
-      }
-      else if(document.addEventListener) {
-        document.addEventListener('load', delegate, false);
-      }
-      else if(typeof window.attachEvent != 'undefined') {
-        window.attachEvent('onload', delegate);
-      }
-    },
     viewReady : function(func) {
       var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
       if (raf) {
         return raf(func);
       }
-      this.ready(func);
+      hui.onReady(func);
     },
     loadPart : function(info) {
-      require(['hui','hui.ui','op'],function() {
-        _editor.loadScript(_editor.context+'style/basic/js/parts/' + info.name + '.js');
+      hui.onReady(['hui','hui.ui','op'],function() {
+        _editor.loadScript(hui.ui.getContext()+'style/basic/js/parts/' + info.name + '.js');
       });
-      require(['op.part.'+info.name],info.$ready);
+      hui.onReady(['op.part.'+info.name],info.$ready);
+    },
+    getPageId : function() {
+      return parseInt(document.querySelector('*[data-page-id]').getAttribute('data-page-id'),10)
     },
     loadCSS : function(href) {
       this.viewReady(function() {
@@ -58,35 +46,26 @@
         if (h) {
           h.appendChild(node);
         } else {
-          this.ready(function() {
+          hui.onReady(function() {
             _editor.inject(node);
           })
         }
-    },
-
-    /**
-     * Finds ‹noscript class="js-async"› and turns its contents into real tags
-     */
-    processNoscript : function() {
-      this.ready(function() {
-        var noscripts = document.getElementsByTagName('noscript');
-        for (var i = 0; i < noscripts.length; i++) {
-          var noscript = noscripts[i];
-          if (noscript.className=='js-async' && noscript.firstChild) {
-            var x = document.createElement('div');
-            x.innerHTML = noscript.firstChild.nodeValue;
-            var c = x.childNodes;
-            while (c.length) {
-              var removed = x.removeChild(c[0]);
-              noscript.parentNode.insertBefore(removed,noscript);
-            }
-          }
-        }
-      });
     }
   }
 
-  _editor.processNoscript();
+  hui.onReady(function() {
+    var noscripts = document.getElementsByTagName('noscript');
+    for (var i = 0; i < noscripts.length; i++) {
+      var noscript = noscripts[i];
+      if (noscript.className=='js-async' && noscript.firstChild) {
+        var x = document.createElement('div');
+        x.innerHTML = noscript.firstChild.nodeValue;
+        var c = x.childNodes;
+        while (c.length) {
+          var removed = x.removeChild(c[0]);
+          noscript.parentNode.insertBefore(removed,noscript);
+        }
+      }
+    }
+  });
 })(window,document);
-
-hui = window.hui || {_:[],onReady:function() {this._.push(arguments)}}

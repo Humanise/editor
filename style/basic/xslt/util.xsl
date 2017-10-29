@@ -321,6 +321,7 @@ ga('create', '<xsl:value-of select="$code"/>', {siteSpeedSampleRate : 20});ga('s
 <!-- Scripts -->
 
 <xsl:template name="util:js">
+  <noscript data-hui-context="{$path}" data-page-id="{@id}"><xsl:text> </xsl:text></noscript>
   <xsl:comment><![CDATA[[if lt IE 9]>
   <script src="]]><xsl:value-of select="$path"/><xsl:value-of select="$timestamp-url"/>hui/bin/compatibility.min.js<xsl:value-of select="$timestamp-query"/><![CDATA[" data-movable="false"></script>
   <![endif]]]></xsl:comment>
@@ -328,8 +329,7 @@ ga('create', '<xsl:value-of select="$code"/>', {siteSpeedSampleRate : 20});ga('s
     <xsl:text disable-output-escaping="yes">//&lt;![CDATA[
 </xsl:text>
 <xsl:value-of select="php:function('DesignService::getInlineJS',$design,$development)" disable-output-escaping="yes"/>
-  _editor.context = '<xsl:value-of select="$path"/>';
-  require(['hui.ui'],function() {hui.ui.context='<xsl:value-of select="$path"/>';hui.ui.language='<xsl:value-of select="$language"/>';});require(['op'],function() {op.context='<xsl:value-of select="$path"/>';op.page.id=<xsl:value-of select="@id"/>;op.page.template='<xsl:value-of select="$template"/>';op.page.path='<xsl:value-of select="$path"/>';op.page.pagePath='<xsl:value-of select="$page-path"/>';op.user={username:'<xsl:value-of select="$username"/>',id:<xsl:value-of select="$userid"/>,internal:<xsl:value-of select="$internal-logged-in"/>};op.preview=<xsl:value-of select="$preview"/>;op.ignite();})
+  hui.onReady(['hui.ui'],function() {hui.ui.language='<xsl:value-of select="$language"/>';});hui.onReady(['op'],function() {<xsl:if test="$preview!='true'">op.ignite(<xsl:value-of select="$internal-logged-in"/>);</xsl:if>})
     <xsl:text disable-output-escaping="yes">
 //]]&gt;</xsl:text>
   </script>

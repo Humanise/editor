@@ -128,38 +128,47 @@
     <p class="photography_actions">
       <xsl:choose>
         <xsl:when test="//p:page/p:meta/p:language='en'">
-          <a class="photography_action button" href="javascript://" onclick="hui.ui.get('photoGallery').show();">Slide show</a>
+          <span class="photography_action button js-photography-show">Slide show</span>
           <a class="photography_action button button-right" href="{$path}en/photos/">More photos</a>
         </xsl:when>
         <xsl:otherwise>
-          <a class="photography_action button" href="javascript://" onclick="hui.ui.get('photoGallery').show();">Lysbilleder</a>
+          <span class="photography_action button js-photography-show">Lysbilleder</span>
           <a class="photography_action button button-right" href="{$path}fotografier/">Flere fotos</a>
         </xsl:otherwise>
       </xsl:choose>
     </p>
   </div>
   <script type="text/javascript">
-      require(['hui.ui.ImageViewer','op'],function() {
-          var images = [];
-          <xsl:for-each select="//imagegallery:imagegallery//o:object">
-              images.push({
-                  id : <xsl:value-of select="@id"/>,
-                  width : <xsl:value-of select="o:sub/i:image/i:width"/>,
-                  height : <xsl:value-of select="o:sub/i:image/i:height"/>,
-                  text : '<xsl:value-of select="o:note"/>'
-              })
-          </xsl:for-each>
-
-          hui.ui.ImageViewer.create({
-            name : 'photoGallery',
-            maxWidth : 2000,
-            maxHeight : 2000,
-            perimeter : 40,
-            sizeSnap : 10,
-            images : images,
-            listener : op.imageViewerDelegate
-          });
-      });
+    hui.onReady(['hui.ui.Presentation','op'],function() {
+      var images = [];
+      <xsl:for-each select="//imagegallery:imagegallery//o:object">
+          images.push({
+              id : <xsl:value-of select="@id"/>,
+              width : <xsl:value-of select="o:sub/i:image/i:width"/>,
+              height : <xsl:value-of select="o:sub/i:image/i:height"/>
+          })
+      </xsl:for-each>
+      var presentation = hui.ui.Presentation.create({ listen : {
+        $getImage : function(e) {
+          return op.getImageUrl(e.item,e.width,e.height);
+        }
+      }});
+      var nodes = hui.findAll('.js-photo');
+      hui.each(nodes, function(node, index) {
+        hui.on(node,'tap',function() {
+          var id = parseInt(node.getAttribute('data-id'), 10);
+          hui.each(images,function(img, imgIndex) {
+            if (img.id === id) {
+              index = imgIndex;
+            }
+          })
+          presentation.show({items:images, index: index, source: node});
+        })
+      })
+      hui.on(hui.find('.js-photography-show'),'tap',function() {
+        presentation.show({items:images, index: 0});
+      })
+    });
   </script>
 </xsl:template>
 
