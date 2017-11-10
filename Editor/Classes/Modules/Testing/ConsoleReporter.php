@@ -10,6 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class ConsoleReporter extends SimpleReporter {
 
+  private $failedTests = [];
+
   /**
    *    Does nothing yet. The first output will
    *    be sent on the first test start.
@@ -46,7 +48,9 @@ class ConsoleReporter extends SimpleReporter {
             ", Passes: " . $this->getPassCount() .
             ", Failures: " . $this->getFailCount() .
             ", Exceptions: " . $this->getExceptionCount() . "\n";
-
+    if (count($this->failedTests) > 0) {
+      print "Failed tests: " . implode(',', $this->failedTests) . "\n";
+    }
   }
 
   function paintCaseStart($test_name) {
@@ -69,6 +73,10 @@ class ConsoleReporter extends SimpleReporter {
     parent::paintFail($message);
     print $this->getFailCount() . ") $message\n";
     $breadcrumb = $this->getTestList();
+    $testName = $breadcrumb[2];
+    if (!in_array($testName, $this->failedTests)) {
+      $this->failedTests[] = $testName;
+    }
     array_shift($breadcrumb);
     print "\tin " . implode("\n\tin ", array_reverse($breadcrumb));
     print "\n";

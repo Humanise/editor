@@ -47,8 +47,8 @@ class TestCalendarsource extends AbstractObjectTest {
     $this->assertEqual(count($events), 3);
 
     $first = $events[0];
-    $this->assertEqual("This is the note\n", $first['summary']);
-    $this->assertEqual("", $first['description']);
+    $this->assertEqual("This is the note\næøå\nHep hey", $first['description']);
+    $this->assertEqual("Ny begivenhed", $first['summary']);
 
     $obj->remove();
 
