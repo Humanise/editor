@@ -24,12 +24,12 @@ class Producttype extends Object {
   }
 
   function getIcon() {
-        return "common/folder";
+    return "common/folder";
   }
 
   function canRemove() {
-    $sql = "select object_id from product where producttype_id=" . Database::int($this->id);
-    return Database::isEmpty($sql);
+    $sql = "select object_id from product where producttype_id=@int(id)";
+    return Database::isEmpty($sql, ['id' => $this->id]);
   }
 
 }

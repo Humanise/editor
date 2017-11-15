@@ -75,27 +75,23 @@ class Product extends Object {
     '<allow-offer>' . ($this->allowOffer ? 'true' : 'false') . '</allow-offer>' .
     '<number>' . Strings::escapeEncodedXML($this->number) . '</number>' .
     '<attributes>';
-    $sql = "select * from productattribute where product_id=" . Database::int($this->id) . " order by `index`";
-    $result = Database::select($sql);
-    while ($row = Database::next($result)) {
-      $data .= '<attribute name="' . Strings::escapeEncodedXML($row['name']) . '">' .
-      Strings::escapeXMLBreak($row['value'],'<break/>') .
+    $attributes = $this->getAttributes();
+    foreach ($attributes as $attribute) {
+      $data .= '<attribute name="' . Strings::escapeEncodedXML($attribute['name']) . '">' .
+      Strings::escapeXMLBreak($attribute['value'],'<break/>') .
       '</attribute>';
     }
-    Database::free($result);
     $data .= '</attributes>' .
     '<prices>';
-    $sql = "select * from productprice where product_id=" . Database::int($this->id) . " order by `index`";
-    $result = Database::select($sql);
-    while ($row = Database::next($result)) {
+    $prices = $this->getPrices();
+    foreach ($prices as $price) {
       $data .= '<price' .
-        ' amount="' . Strings::escapeEncodedXML($row['amount']) . '"' .
-        ' type="' . Strings::escapeEncodedXML($row['type']) . '"' .
-        ' price="' . Strings::escapeEncodedXML($row['price']) . '"' .
-        ' currency="' . Strings::escapeEncodedXML($row['currency']) . '"' .
+        ' amount="' . Strings::escapeEncodedXML($price['amount']) . '"' .
+        ' type="' . Strings::escapeEncodedXML($price['type']) . '"' .
+        ' price="' . Strings::escapeEncodedXML($price['price']) . '"' .
+        ' currency="' . Strings::escapeEncodedXML($price['currency']) . '"' .
         '/>';
     }
-    Database::free($result);
     $data .= '</prices>';
     $data .= ObjectService::getObjectData($this->imageId);
     $data .= '</product>';
@@ -103,14 +99,14 @@ class Product extends Object {
   }
 
   function removeMore() {
-    $sql = "delete from productgroup_product where product_id=" . Database::int($this->id);
-    Database::delete($sql);
-    $sql = "delete from productattribute where product_id=" . Database::int($this->id);
-    Database::delete($sql);
-    $sql = "delete from productprice where product_id=" . Database::int($this->id);
-    Database::delete($sql);
-    $sql = "delete from productoffer where product_id=" . Database::int($this->id);
-    Database::delete($sql);
+    $sql = "delete from productgroup_product where product_id=@int(id)";
+    Database::delete($sql, ['id' => $this->id]);
+    $sql = "delete from productattribute where product_id=@int(id)";
+    Database::delete($sql, ['id' => $this->id]);
+    $sql = "delete from productprice where product_id=@int(id)";
+    Database::delete($sql, ['id' => $this->id]);
+    $sql = "delete from productoffer where product_id=@int(id)";
+    Database::delete($sql, ['id' => $this->id]);
   }
 
 
@@ -118,8 +114,8 @@ class Product extends Object {
 
   function getAttributes() {
     $atts = [];
-    $sql = "select * from productattribute where product_id=" . Database::int($this->id) . " order by `index`";
-    $result = Database::select($sql);
+    $sql = "select * from productattribute where product_id=@int(id) order by `index`";
+    $result = Database::select($sql, ['id' => $this->id]);
     while ($row = Database::next($result)) {
       $atts[] = ['name' => $row['name'], 'value' => $row['value']];
     }
@@ -129,8 +125,8 @@ class Product extends Object {
 
   function getPrices() {
     $atts = [];
-    $sql = "select * from productprice where product_id=" . Database::int($this->id) . " order by `index`";
-    $result = Database::select($sql);
+    $sql = "select * from productprice where product_id=@int(id) order by `index`";
+    $result = Database::select($sql, ['id' => $this->id]);
     while ($row = Database::next($result)) {
       $atts[] = ['amount' => $row['amount'], 'type' => $row['type'], 'price' => floatval($row['price']), 'currency' => $row['currency']];
     }
@@ -140,62 +136,65 @@ class Product extends Object {
 
   function updateGroupIds($ids) {
     $ids = ObjectService::getValidIds($ids);
-    $sql = "delete from productgroup_product where product_id=" . $this->id;
-    Database::delete($sql);
+    $sql = "delete from productgroup_product where product_id=@int(id)";
+    Database::delete($sql, ['id' => $this->id]);
     foreach ($ids as $id) {
-      $sql = "insert into productgroup_product (productgroup_id,product_id) values (" . $id . "," . $this->id . ")";
-      Database::insert($sql);
+      $sql = "insert into productgroup_product (productgroup_id,product_id) values (@int(groupId),@int(productId))";
+      Database::insert($sql, ['groupId' => $id, 'productId' => $this->id]);
     }
   }
 
   function getGroupIds() {
-    $sql = "select productgroup_id as id from productgroup_product where product_id=" . $this->id;
-    return Database::getIds($sql);
+    $sql = "select productgroup_id as id from productgroup_product where product_id=@int(id)";
+    return Database::getIds($sql, ['id' => $this->id]);
   }
 
   function updateAttributes($attributes) {
-    $sql = "delete from productattribute where product_id=" . $this->id;
-    Database::delete($sql);
+    $sql = "delete from productattribute where product_id=@int(id)";
+    Database::delete($sql, ['id' => $this->id]);
     for ($i = 0; $i < count($attributes); $i++) {
       $att = $attributes[$i];
-      $sql = "insert into productattribute (product_id,`name`,`value`,`index`) values (" . $this->id . "," . Database::text($att['name']) . "," . Database::text($att['value']) . "," . $i . ")";
-      Database::insert($sql);
+      $sql = "insert into productattribute (product_id,`name`,`value`,`index`) values (@int(id), @text(name), @text(value), @int(index))";
+      Database::insert($sql, ['id' => $this->id, 'name' => $att['name'], 'value' => $att['value'], 'index' => $i]);
     }
   }
 
   function updatePrices($prices) {
-    $sql = "delete from productprice where product_id=" . $this->id;
-    Database::delete($sql);
+    $sql = "delete from productprice where product_id = @int(id)";
+    Database::delete($sql, ['id' => $this->id]);
     for ($i = 0; $i < count($prices); $i++) {
       $att = $prices[$i];
-      $sql = "insert into productprice (product_id,`amount`,`type`,price,currency,`index`) values (" .
-      $this->id . "," .
-      Database::float($att['amount']) . "," .
-      Database::text($att['type']) . "," .
-      Database::float($att['price']) . "," .
-      Database::text($att['currency']) . "," .
-      $i .
-      ")";
-      Database::insert($sql);
+      $sql = "insert into productprice (product_id,`amount`,`type`,price,currency,`index`) values (@int(id),@float(amount),@text(type),@float(price),@text(currency),@int(index))";
+      Database::insert($sql, [
+        'id' => $this->id,
+        'amount' => $att['amount'],
+        'type' => $att['type'],
+        'price' => $att['price'],
+        'currency' => $att['currency'],
+        'index' => $i
+      ]);
     }
   }
 
-    static function find($query = []) {
-      $parts = [];
+  static function find($query = []) {
+    $parts = [];
     $parts['columns'] = 'object.id';
     $parts['tables'] = 'product,object';
     $parts['limits'] = 'object.id=product.object_id';
     $parts['ordering'] = 'object.title';
+    $parameters = [];
     if (isset($query['productgroup'])) {
       $parts['tables'] .= ',productgroup_product';
     }
     if (isset($query['producttype'])) {
-      $parts['limits'] .= " and product.producttype_id=" . $query['producttype'];
+      $parts['limits'] .= " and product.producttype_id = @int(producttype)";
+      $parameters['producttype'] = $query['producttype'];
     }
     if (isset($query['productgroup'])) {
-      $parts['limits'] .= " and productgroup_product.product_id = object.id and productgroup_product.productgroup_id=" . $query['productgroup'];
+      $parts['limits'] .= " and productgroup_product.product_id = object.id and productgroup_product.productgroup_id = @int(productgroup)";
+      $parameters['productgroup'] = $query['productgroup'];
     }
-    $list = ObjectService::_find($parts,$query);
+    $list = ObjectService::_find($parts, $query, $parameters);
     $list['result'] = [];
     foreach ($list['rows'] as $row) {
       $list['result'][] = Product::load($row['id']);

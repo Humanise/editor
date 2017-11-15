@@ -17,22 +17,19 @@ if (Strings::isBlank($secret) || Strings::isBlank($requestSecret) || $requestSec
 $feed = new Feed();
 $feed->setTitle('OnlinePublisher log');
 $feed->setDescription('OnlinePublisher log');
-$feed->setPubDate(gmmktime());
-$feed->setLastBuildDate(gmmktime());
+$feed->setPubDate(time());
+$feed->setLastBuildDate(time());
 $feed->setLink(ConfigurationService::getBaseUrl());
 
-$sql = "select log.*,UNIX_TIMESTAMP(log.time) as timestamp,object.title as user from log left join object on object.id=log.user_id order by log.time desc limit 50";
-$result = Database::select($sql);
-while ($row = Database::next($result)) {
+$entries = LogService::getEntries();
+foreach ($entries->getList() as $row) {
   $item = new FeedItem();
-  $item->setTitle($row['event'] . ': ' . $row['user']);
-  $item->setDescription('USER: ' . $row['user'] . ' - ' . $row['message']);
-  $item->setPubDate($row['timestamp']);
-  $item->setGuid(ConfigurationService::getBaseUrl() . $row['id']);
+  $item->setTitle($row['event'] . ': ' . $row['username']);
+  $item->setDescription('USER: ' . $row['username'] . ' - ' . $row['message']);
+  $item->setPubDate($row['time']);
+  $item->setGuid(ConfigurationService::getBaseUrl() . $row['time']);
   $feed->addItem($item);
 }
-Database::free($result);
-
 
 $serializer = new FeedSerializer();
 $serializer->sendHeaders();

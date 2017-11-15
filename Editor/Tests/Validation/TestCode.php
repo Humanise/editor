@@ -38,6 +38,24 @@ class TestCode extends UnitTestCase {
     }
   }
 
+  function testSQL() {
+    $files = $this->getPHPFiles();
+    $statements = [];
+    foreach ($files as $file) {
+      $txt = file_get_contents($file);
+      if (preg_match_all('/["\']((select|insert|update|delete) [^;]+)/uism', $txt, $found)) {
+        foreach ($found[1] as $sql) {
+          $statements[] = ['file' => $file, 'sql' => $sql];
+          echo $sql . "\n";
+        }
+      }
+    }
+    foreach ($statements as $statement) {
+      $this->assertTrue(strpos($statement['sql'], "$") === false, 'Has var in sql: ' . $statement['file'] . " : " . $statement['sql']);
+    }
+  }
+
+
   function testDatabaseAccess() {
     $files = $this->getPHPFiles();
     foreach ($files as $file) {

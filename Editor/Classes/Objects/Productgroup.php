@@ -24,8 +24,8 @@ class Productgroup extends Object {
   }
 
   function removeMore() {
-    $sql = "delete from productgroup_product where productgroup_id=" . Database::int($this->id);
-    Database::delete($sql);
+    $sql = "delete from productgroup_product where productgroup_id=@int(id)";
+    Database::delete($sql‚ ['id' => $this->id]);
   }
 
   /////////////////////////// GUI /////////////////////////

@@ -69,32 +69,8 @@ class Productoffer extends Object {
       return $this->expiry;
   }
 
-
-  function search($options = null) {
-    if (!is_array($options)) {
-      $options = [];
-    }
-    $sql = "select object.id from productoffer,object where object.id=productoffer.object_id";
-    if (isset($options['productId'])) {
-      $sql .= " and productoffer.product_id=" . Database::int($options['productId']);
-    }
-    $sql .= " order by object.title";
-    $result = Database::select($sql);
-    $ids = [];
-    while ($row = Database::next($result)) {
-      $ids[] = $row['id'];
-    }
-    Database::free($result);
-
-    $list = [];
-    foreach ($ids as $id) {
-      $list[] = Productoffer::load($id);
-    }
-    return $list;
-  }
-
-    function find($query = []) {
-      $parts = [];
+  function find($query = []) {
+    $parts = [];
     $parts['columns'] = 'object.id';
     $parts['tables'] = 'productoffer,object,object as product,object as person';
     $parts['limits'] = 'productoffer.object_id=object.id and productoffer.product_id=product.id and productoffer.person_id=person.id';

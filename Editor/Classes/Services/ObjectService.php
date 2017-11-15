@@ -527,7 +527,7 @@ class ObjectService {
     return $list;
   }
 
-  static function _find($parts,$query) {
+  static function _find($parts, $query, $parameters = []) {
     $list = ['result' => [], 'rows' => [], 'windowPage' => 0, 'windowSize' => 0, 'total' => 0];
 
     $sql = "select " . $parts['columns'] . " from " . $parts['tables'];
@@ -570,7 +570,7 @@ class ObjectService {
     }
     $num = 1;
     $size = 0;
-    $result = Database::select($sql);
+    $result = Database::select($sql, $parameters);
     $list['total'] = Database::size($result);
     while ($row = Database::next($result)) {
       if ($num >= $start && $num < $end) {

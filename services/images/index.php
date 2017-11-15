@@ -49,8 +49,8 @@ foreach ($parameters as $parameter) {
 }
 // Bypass transformation if not required
 if ($recipe['width'] == null && $recipe['height'] == null && $recipe['scale'] == null && count($recipe['filters']) == 0 && !$recipe['format']) {
-  $sql = 'select `filename`,`type`,`width`,`height` from image where object_id=' . Database::int($id);
-  if ($row = Database::selectFirst($sql)) {
+  $sql = 'select `filename`,`type`,`width`,`height` from image where object_id = @int(id)';
+  if ($row = Database::selectFirst($sql, ['id' => $id])) {
     $path = ConfigurationService::getImagePath($row['filename']);
     if (file_exists($path)) {
       ImageTransformationService::sendFile($path,$row['type']);
@@ -67,8 +67,8 @@ $cache = ImageTransformationService::buildCachePath($id,$recipe);
 if (file_exists($cache)) {
   ImageTransformationService::sendFile($cache,$recipe['format']);
 } else {
-  $sql = 'select `filename`,`type`,`width`,`height` from image where object_id=' . Database::int($id);
-  if ($row = Database::selectFirst($sql)) {
+  $sql = 'select `filename`,`type`,`width`,`height` from image where object_id = @int(id)';
+  if ($row = Database::selectFirst($sql, ['id' => $id])) {
     $recipe['path'] = ConfigurationService::getImagePath($row['filename']);
     if (Request::getBoolean('nocache')) {
       ImageTransformationService::transform($recipe);

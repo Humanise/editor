@@ -407,6 +407,8 @@ class Database {
             $value = Database::boolean($value);
           } else if ($type == 'datetime') {
             $value = Database::datetime($value);
+          } else if ($type == 'float') {
+            $value = Database::float($value);
           } else {
             continue;
           }
