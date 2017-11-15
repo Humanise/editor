@@ -56,7 +56,7 @@
     </xsl:choose>
 
     <footer class="layout_footer">
-      <p><a href="http://www.humanise.dk/" title="Humanise" id="handmade" class="layout_footer_link"><span class="layout_footer_text">Designet og udviklet af Humanise</span></a></p>
+      <p><a href="http://www.humanise.dk/" title="Humanise" class="layout_footer_link"><span class="layout_footer_text">Designet og udviklet af Humanise</span></a></p>
     </footer>
     <xsl:call-template name="util:googleanalytics"/>
   </body>

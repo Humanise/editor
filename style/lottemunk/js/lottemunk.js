@@ -41,13 +41,4 @@ hui.onReady(['hui'],function(hui) {
     }
   });
 
-  hui.listen('handmade','click',function(e) {
-    hui.stop(e);
-    var hum = hui.get('humanise');
-    hum.style.display='block'
-    window.setTimeout(function() {
-      hui.cls.add(hum,'visible');
-    })
-  })
-
 });
