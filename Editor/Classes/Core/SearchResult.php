@@ -12,39 +12,39 @@ class SearchResult {
 
   private $list = [];
   private $total = 0;
-    private $windowPage = 0;
-    private $windowSize = 20;
+  private $windowPage = 0;
+  private $windowSize = 20;
 
   function setList($list) {
-      $this->list = $list;
+    $this->list = $list;
   }
 
   function getList() {
-      return $this->list;
+    return $this->list;
   }
 
   function setTotal($total) {
-      $this->total = $total;
+    $this->total = $total;
   }
 
   function getTotal() {
-      return $this->total;
+    return $this->total;
   }
 
   function setWindowPage($windowPage) {
-      $this->windowPage = $windowPage;
+    $this->windowPage = $windowPage;
   }
 
   function getWindowPage() {
-      return $this->windowPage;
+    return $this->windowPage;
   }
 
   function setWindowSize($windowSize) {
-      $this->windowSize = $windowSize;
+    $this->windowSize = $windowSize;
   }
 
   function getWindowSize() {
-      return $this->windowSize;
+    return $this->windowSize;
   }
 
 }
