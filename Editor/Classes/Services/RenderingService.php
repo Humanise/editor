@@ -522,6 +522,10 @@ class RenderingService {
       header('Pragma: cache');
       header("Content-Type: text/html; charset=UTF-8");
       header('X-UA-Compatible: IE=edge');
+      if ($page['design'] == 'humanise') {
+        header('Link: <http://fonts.googleapis.com/css?family=Lato:300,400,700,900>; rel=preload; as=style');
+        header('Link: </version' . ConfigurationService::getDeploymentTime() . '/api/style/humanise.css>; rel=preload; as=style');
+      }
       echo $output;
       if (!$page['secure'] && !$page['dynamic'] && !$page['framedynamic']) {
         CacheService::createPageCache($page['id'],$path,$html);

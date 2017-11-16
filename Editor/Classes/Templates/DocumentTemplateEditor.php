@@ -628,13 +628,13 @@ class DocumentTemplateEditor
       left join document_section on document_column.id = column_id
       left join part on document_section.part_id = part.id
 
-      where document_row.page_id=" . Database::int($id) . "
+      where document_row.page_id = @int(id)
 
       order by document_row.index,document_row.id, document_column.index, document_column.id, document_section.index, document_section.id";
     //Log::debug($sql);
     $structure = [];
 
-    $result = Database::select($sql);
+    $result = Database::select($sql, ['id' => $id]);
     while ($line = Database::next($result)) {
       $row = null;
       $column = null;

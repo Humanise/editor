@@ -62,9 +62,6 @@ if (Request::getBoolean('logout')) {
   ExternalSession::logOut();
 }
 
-//header('Link: <http://fonts.googleapis.com/css?family=Lato:300,400,700,900>; rel=preload; as=style');
-//header('Link: </version6/api/style/humanise.css?development=true>; rel=preload; as=style');
-
 if (!CacheService::sendCachedPage($id, $path)) {
 
   require_once 'Editor/Classes/Services/ClassService.php';

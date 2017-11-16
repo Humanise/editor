@@ -23,8 +23,8 @@ class Calendar extends Object {
   }
 
   function removeMore() {
-    $sql = "delete from calendar_event where calendar_id=" . $this->id;
-    Database::delete($sql);
+    $sql = "delete from calendar_event where calendar_id=@int(id)";
+    Database::delete($sql, ['id' => $this->id]);
   }
 
   function getIcon() {

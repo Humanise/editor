@@ -31,8 +31,8 @@ class Event extends Object {
   }
 
   function removeMore() {
-    $sql = "delete from calendar_event where event_id=" . $this->id;
-    Database::delete($sql);
+    $sql = "delete from calendar_event where event_id = @int(id)";
+    Database::delete($sql, ['id' => $this->id]);
   }
 
   function setLocation($location) {
@@ -62,34 +62,31 @@ class Event extends Object {
   ////////////////////////////// Utils ///////////////////////////
 
   function getCalendarIds() {
-    $sql = "select calendar_id as id from calendar_event where event_id=" . $this->id;
-    return Database::getIds($sql);
+    $sql = "select calendar_id as id from calendar_event where event_id=@int(id)";
+    return Database::getIds($sql,['id' => $this->id]);
   }
 
   function updateCalendarIds($ids) {
-    $sql = "delete from calendar_event where event_id=" . $this->id;
-    Database::delete($sql);
+    $sql = "delete from calendar_event where event_id=@int(id)";
+    Database::delete($sql, ['id' => $this->id]);
     foreach ($ids as $id) {
-      $sql = "insert into calendar_event (event_id, calendar_id) values (" . $this->id . "," . $id . ")";
-      Database::insert($sql);
+      $sql = "insert into calendar_event (event_id, calendar_id) values (@int(eventId), @int(calendarId))";
+      Database::insert($sql,['eventId' => $this->id, 'calendarId' => $id]);
     }
   }
 
-  /**
-   * @static
-   */
-  function search($query = []) {
+  static function search($query = []) {
     $out = [];
     if (isset($query['calendarId'])) {
-      $sql = "select object.id from object,event,calendar_event where object.id=event.object_id and object.id=calendar_event.event_id and calendar_event.calendar_id=" . Database::int($query['calendarId']);
+      $sql = "select object.id from object,event,calendar_event where object.id=event.object_id and object.id=calendar_event.event_id and calendar_event.calendar_id=@int(calendarId)";
     } else {
       $sql = "select id from object,event where object.id=event.object_id";
     }
     if (isset($query['startDate']) && isset($query['endDate'])) {
-      $sql .= " and not (startdate>" . Database::datetime($query['endDate']) . " or endDate<" . Database::datetime($query['startDate']) . ")";
+      $sql .= " and not (startdate > @datetime(endDate) or endDate < @datetime(startDate))";
     }
     $sql .= " order by event.startdate";
-    $result = Database::select($sql);
+    $result = Database::select($sql, $query);
     $ids = [];
     while ($row = Database::next($result)) {
       $ids[] = $row['id'];
@@ -101,20 +98,19 @@ class Event extends Object {
     return $out;
   }
 
-  function getSimpleEvents($query = []) {
+  static function getSimpleEvents($query = []) {
     $out = [];
     $sql = "select object.id,object.title,object.note,event.location,unix_timestamp(event.startdate) as startdate,unix_timestamp(event.enddate) as enddate ";
     if (isset($query['calendarId'])) {
-      $sql .= "from object,event,calendar_event where object.id=event.object_id and object.id=calendar_event.event_id and calendar_event.calendar_id=" . Database::int($query['calendarId']);
+      $sql .= "from object,event,calendar_event where object.id=event.object_id and object.id=calendar_event.event_id and calendar_event.calendar_id = @int(calendarId)";
     } else {
       $sql .= " from object,event where object.id=event.object_id";
     }
     if (isset($query['startDate']) && isset($query['endDate'])) {
-      $sql .= " and not (startdate > " . Database::datetime($query['endDate']) . " or endDate < " . Database::datetime($query['startDate']) . ")";
+      $sql .= " and not (startdate > @datetime(endDate) or endDate < @datetime(startDate))";
     }
     $sql .= " order by object.title";
-    $result = Database::select($sql);
-    $ids = [];
+    $result = Database::select($sql, $query);
     while ($row = Database::next($result)) {
       $out[] = [
         'id' => $row['id'],
