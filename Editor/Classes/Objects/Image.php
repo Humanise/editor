@@ -79,16 +79,16 @@ class Image extends Object {
     return $this->mimetype;
   }
 
-    function clearCache() {
-        global $basePath;
-        $dir = $basePath . 'local/cache/images/';
-        $files = FileSystemService::listFiles($dir);
-        foreach ($files as $file) {
-            if (preg_match('/' . $this->id . '[a-z_]/i',$file)) {
-                @unlink($dir . $file);
-            }
-        }
+  function clearCache() {
+    global $basePath;
+    $dir = $basePath . 'local/cache/images/';
+    $files = FileSystemService::listFiles($dir);
+    foreach ($files as $file) {
+      if (preg_match('/' . $this->id . '[a-z_]/i',$file)) {
+        @unlink($dir . $file);
+      }
     }
+  }
 
   function addGroupId($id) {
     $sql = "delete from imagegroup_image where image_id=" . Database::int($this->id) . " and imagegroup_id=" . Database::int($id);
@@ -120,25 +120,6 @@ class Image extends Object {
     foreach ($groups as $id) {
       EventService::fireEvent('relation_change','object','imagegroup',$id);
     }
-  }
-
-  function search($options = null) {
-    $sql = "select object.id from image,object where object.id=image.object_id order by object.title";
-    $result = Database::select($sql);
-    $ids = [];
-    while ($row = Database::next($result)) {
-      $ids[] = $row['id'];
-    }
-    Database::free($result);
-
-    $list = [];
-    foreach ($ids as $id) {
-      $image = Image::load($id);
-      if ($image) {
-        $list[] = $image;
-      }
-    }
-    return $list;
   }
 
   function addCustomSearch($query,&$parts) {
@@ -180,7 +161,7 @@ class Image extends Object {
 
   function removeMore() {
     @unlink ($basePath . 'images/' . $this->filename);
-      $this->clearCache();
+    $this->clearCache();
 
     $this->fireRelationChangeEventOnGroups();
 

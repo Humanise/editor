@@ -10,12 +10,12 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 Entity::$schema['File'] = [
-    'table' => 'file',
-    'properties' => [
-      'filename' => ['type' => 'string'],
-      'size' => ['type' => 'int'],
-      'mimetype' => ['type' => 'string', 'column' => 'type']
-    ]
+  'table' => 'file',
+  'properties' => [
+    'filename' => ['type' => 'string'],
+    'size' => ['type' => 'int'],
+    'mimetype' => ['type' => 'string', 'column' => 'type']
+  ]
 ];
 
 class File extends Object {
@@ -28,7 +28,7 @@ class File extends Object {
   }
 
   function getIcon() {
-        return "file/generic";
+    return "file/generic";
   }
 
   static function load($id) {
@@ -75,32 +75,32 @@ class File extends Object {
     if (file_exists($path)) {
       !@unlink ($path);
     }
-    $sql = "delete from filegroup_file where file_id=" . Database::int($this->id);
-    Database::delete($sql);
+    $sql = "delete from filegroup_file where file_id = @int(id)";
+    Database::delete($sql, ['id' => $this->id]);
   }
 
   /***************** Groups ****************/
 
   function getGroupIds() {
-    $sql = "select filegroup_id as id from filegroup_file where file_id=" . Database::int($this->id);
-    return Database::getIds($sql);
+    $sql = "select filegroup_id as id from filegroup_file where file_id = @int(id)";
+    return Database::getIds($sql, ['id' => $this->id]);
   }
 
   function updateGroupIds($ids) {
     $ids = ObjectService::getValidIds($ids);
-    $sql = "delete from filegroup_file where file_id=" . Database::int($this->id);
-    Database::delete($sql);
+    $sql = "delete from filegroup_file where file_id=@int(id)";
+    Database::delete($sql, ['id' => $this->id]);
     foreach ($ids as $id) {
-      $sql = "insert into filegroup_file (filegroup_id,file_id) values (" . Database::int($id) . "," . Database::int($this->id) . ")";
-      Database::insert($sql);
+      $sql = "insert into filegroup_file (filegroup_id,file_id) values (@int(groupId), @int(fileId))";
+      Database::insert($sql, ['groupId' => $id, 'fileId' => $this->id]);
     }
   }
 
   function addGroupId($id) {
-    $sql = "delete from filegroup_file where file_id=" . Database::int($this->id) . " and filegroup_id=" . Database::int($id);
-    Database::delete($sql);
-    $sql = "insert into filegroup_file (filegroup_id,file_id) values (" . Database::int($id) . "," . Database::int($this->id) . ")";
-    Database::insert($sql);
+    $sql = "delete from filegroup_file where file_id=@int(fileId) and filegroup_id=@int(groupId)";
+    Database::delete($sql, ['groupId' => $id, 'fileId' => $this->id]);
+    $sql = "insert into filegroup_file (filegroup_id,file_id) values (@int(groupId),@int(fileId))";
+    Database::insert($sql, ['groupId' => $id, 'fileId' => $this->id]);
   }
 
   /********************** Search *****************/
@@ -111,49 +111,15 @@ class File extends Object {
     if (isset($custom['group'])) {
       $parts['tables'][] = 'filegroup_file';
       $parts['limits'][] = 'filegroup_file.file_id=object.id';
-      $parts['limits'][] = 'filegroup_file.filegroup_id=' . $custom['group'];
+      $parts['limits'][] = 'filegroup_file.filegroup_id=' . Database::int($custom['group']);
     }
-  }
-
-    static function find($query = []) {
-      $parts = [];
-    $parts['columns'] = 'object.id';
-    $parts['tables'] = 'file,object';
-    $parts['limits'] = [];
-    $parts['ordering'] = 'object.title';
-    $parts['direction'] = $query['direction'];
-
-    $parts['limits'][] = "object.id=file.object_id";
-    if (isset($query['filegroup'])) {
-      $parts['tables'] .= ",filegroup_file";
-      $parts['limits'][] = "filegroup_file.file_id = object.id";
-      $parts['limits'][] = "filegroup_file.filegroup_id=" . $query['filegroup'];
-    }
-    if (isset($query['type'])) {
-      $parts['limits'][] = '`file`.`type` = ' . Database::text($query['type']);
-    }
-    if (isset($query['mimetypes']) && is_array($query['mimetypes'])) {
+    if (isset($custom['mimetype']) && is_array($custom['mimetype'])) {
       $ors = [];
-      foreach ($query['mimetypes'] as $type) {
+      foreach ($custom['mimetype'] as $type) {
         $ors[] = '`file`.`type` = ' . Database::text($type);
       }
       $parts['limits'][] = '(' . implode(' or ',$ors) . ')';
     }
-    if (isset($query['query'])) {
-      $parts['limits'][] = '`object`.`index` like ' . Database::search($query['query']);
-    }
-    if (isset($query['createdMin'])) {
-      $parts['limits'][] = '`object`.`created` > ' . Database::datetime($query['createdMin']);
-    }
-    if (isset($query['sort']) && $query['sort'] == 'title') {
-      $parts['ordering'] = "object.title";
-    }
-    $list = ObjectService::_find($parts,$query);
-    $list['result'] = [];
-    foreach ($list['rows'] as $row) {
-      $list['result'][] = File::load($row['id']);
-    }
-    return $list;
   }
 
   static function getTypeCounts() {

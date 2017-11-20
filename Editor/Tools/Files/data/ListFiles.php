@@ -22,33 +22,30 @@ if (!$direction) {
 
 InternalSession::setToolSessionVar('files','group',$group);
 
-$query = ['windowSize' => $windowSize, 'windowPage' => $windowPage, 'sort' => $sort, 'direction' => $direction];
-
-//if ($type!='') $query['type'] = $type;
-if ($queryString != '') $query['query'] = $queryString;
+$q = Query::after('File')->orderBy($sort)->withDirection($direction)->withWindowPage($windowPage)->withText($queryString);
 
 if ($group > 0) {
-  $query['filegroup'] = $group;
+  $q->withCustom('group', $group);
 }
 if ($type) {
-  $query['mimetypes'] = FileService::kindToMimeTypes($type);
+  $q->withCustom('mimetype', FileService::kindToMimeTypes($type));
 }
 if ($main == 'latest') {
-  $query['createdMin'] = Dates::addDays(time(),-1);
+  $q->withCreatedMin(Dates::addDays(time(),-1));
 }
 
-$list = File::find($query);
-$objects = $list['result'];
+$result = $q->search();
+$objects = $result->getList();
 
 $writer = new ListWriter();
 
 $writer->startList();
 $writer->sort($sort,$direction);
-$writer->window([ 'total' => $list['total'], 'size' => $windowSize, 'page' => $windowPage ]);
+$writer->window([ 'total' => $result->getTotal(), 'size' => $windowSize, 'page' => $windowPage ]);
 $writer->startHeaders();
-$writer->header(['title' => ['Title', 'da' => 'Titel'], 'width' => 40]);
+$writer->header(['title' => ['Title', 'da' => 'Titel'], 'width' => 40, 'sortable' => true, 'key' => 'title']);
 $writer->header(['title' => 'Type']);
-$writer->header(['title' => ['Size', 'da' => 'Størrelse']]);
+$writer->header(['title' => ['Size', 'da' => 'Størrelse'], 'sortable' => true, 'key' => 'file.size']);
 $writer->header(['title' => ['Modified', 'da' => 'Ændret']]);
 $writer->endHeaders();
 

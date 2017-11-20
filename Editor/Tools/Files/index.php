@@ -14,6 +14,8 @@ $gui = '
   <source name="typesSource" url="data/TypeItems.php"/>
   <source name="filesSource" url="data/ListFiles.php">
     <parameter key="windowPage" value="@list.window.page"/>
+    <parameter key="sort" value="@list.sort.key"/>
+    <parameter key="direction" value="@list.sort.direction"/>
     <parameter key="query" value="@search.value"/>
     <parameter key="group" value="@groupSelection.value"/>
     <parameter key="type" value="@typeSelection.value"/>

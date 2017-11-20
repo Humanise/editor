@@ -103,6 +103,7 @@ class Query {
     $this->windowPage = $page;
     return $this;
   }
+
   function withText($text) {
     $this->text = $text;
     return $this;
