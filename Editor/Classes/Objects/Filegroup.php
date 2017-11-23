@@ -25,8 +25,8 @@ class Filegroup extends Object {
   }
 
   function removeMore() {
-    $sql = "delete from filegroup_file where filegroup_id=" . Database::int($this->id);
-    Database::delete($sql);
+    $sql = "delete from filegroup_file where filegroup_id = @int(id)";
+    Database::delete($sql, ['id' => $this->id]);
   }
 
   function getIcon() {

@@ -9,12 +9,12 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 Entity::$schema['News'] = [
-    'table' => 'news',
-    'properties' => [
-      'imageId' => ['type' => 'int', 'column' => 'image_id'],
-      'startdate' => ['type' => 'datetime'],
-      'enddate' => ['type' => 'datetime']
-    ]
+  'table' => 'news',
+  'properties' => [
+    'imageId' => ['type' => 'int', 'column' => 'image_id'],
+    'startdate' => ['type' => 'datetime'],
+    'enddate' => ['type' => 'datetime']
+  ]
 ];
 
 class News extends Object {
@@ -57,26 +57,26 @@ class News extends Object {
   ////////////////////////////////// Groups //////////////////////////////
 
   function getGroupIds() {
-    $sql = "select newsgroup_id as id from newsgroup_news where news_id=" . $this->id;
-    return Database::getIds($sql);
+    $sql = "select newsgroup_id as id from newsgroup_news where news_id=@int(id)";
+    return Database::getIds($sql, ['id' => $this->id]);
   }
 
   function updateGroupIds($ids) {
-    $sql = "delete from newsgroup_news where news_id=" . $this->id;
-    Database::delete($sql);
+    $sql = "delete from newsgroup_news where news_id = @int(id)";
+    Database::delete($sql, ['id' => $this->id]);
     if (is_array($ids)) {
       foreach ($ids as $id) {
-        $sql = "insert into newsgroup_news (news_id, newsgroup_id) values (" . $this->id . "," . $id . ")";
-        Database::insert($sql);
+        $sql = "insert into newsgroup_news (news_id, newsgroup_id) values (@int(newsId), @int(groupId))";
+        Database::insert($sql, ['newsId' => $this->id, 'groupId' => $id]);
       }
     }
   }
 
   function addGroupId($id) {
-    $sql = "delete from newsgroup_news where news_id=" . Database::int($this->id) . " and newsgroup_id=" . Database::int($id);
-    Database::delete($sql);
-    $sql = "insert into newsgroup_news (newsgroup_id,news_id) values (" . Database::int($id) . "," . Database::int($this->id) . ")";
-    Database::insert($sql);
+    $sql = "delete from newsgroup_news where news_id=@int(newsId) and newsgroup_id=@int(groupId)";
+    Database::delete($sql, ['newsId' => $this->id, 'groupId' => $id]);
+    $sql = "insert into newsgroup_news (newsgroup_id,news_id) values (@int(groupId), @int(newsId))";
+    Database::insert($sql, ['newsId' => $this->id, 'groupId' => $id]);
   }
 
   ///////////////////////////////// Search //////////////////////////
@@ -86,7 +86,7 @@ class News extends Object {
     if ($custom['group'] > 0) {
       $parts['tables'][] = 'newsgroup_news';
       $parts['limits'][] = 'newsgroup_news.news_id=object.id';
-      $parts['limits'][] = 'newsgroup_news.newsgroup_id=' . $custom['group'];
+      $parts['limits'][] = 'newsgroup_news.newsgroup_id=' . Database::int($custom['group']);
     }
     if (isset($custom['startdate']) && isset($custom['enddate'])) {
       $start = $custom['startdate'];
@@ -126,14 +126,14 @@ class News extends Object {
   }
 
   function removeMore() {
-    $sql = "delete from newsgroup_news where news_id=" . $this->id;
-    Database::delete($sql);
+    $sql = "delete from newsgroup_news where news_id = @int(id)";
+    Database::delete($sql, ['id' => $this->id]);
   }
 
   /////////////////////////// GUI /////////////////////////
 
   function getIcon() {
-        return "common/news";
+    return "common/news";
   }
 }
 ?>

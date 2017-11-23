@@ -16,14 +16,43 @@ class TestImage extends AbstractObjectTest {
   }
 
   function testProperties() {
-    $obj = new Image();
-    $obj->setTitle('My photo');
-    $obj->save();
+    $image = new Image();
+    $image->setTitle('My photo');
+    $image->save();
 
-    $obj2 = Image::load($obj->getId());
-    $this->assertEqual($obj2->getTitle(),'My photo');
+    $otherImage = new Image();
+    $otherImage->setTitle('My other photo');
+    $otherImage->save();
 
-    $obj2->remove();
+    $loaded = Image::load($image->getId());
+    $this->assertEqual($loaded->getTitle(),'My photo');
+
+
+    $group1 = new Imagegroup();
+    $group1->save();
+
+    $group2 = new Imagegroup();
+    $group2->save();
+
+    $group3 = new Imagegroup();
+    $group3->save();
+
+
+    $image->changeGroups([$group1->getId(), $group2->getId()]);
+    $image->addGroupId($group3->getId());
+    $image->addGroupId($group3->getId());
+    $groupIds = $image->getGroupIds();
+
+    $this->assertEqual(3, count($groupIds));
+
+    $group2->remove();
+
+    $this->assertEqual(2, count($image->getGroupIds()));
+
+    $image->remove();
+    $otherImage->remove();
+    $group1->remove();
+    $group3->remove();
   }
 }
 ?>

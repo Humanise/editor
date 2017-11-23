@@ -128,7 +128,7 @@ class WeblogTemplateController extends TemplateController
       $page->setFrameId($blueprint->getFrameId());
       $page->create();
       if ($page->getTemplateUnique() == 'html') {
-        $sql = "update html set html=" . Database::text($text) . ",title=" . Database::text($title) . ",valid=0 where page_id=" . $page->getId();
+        $sql = "update html set html=" . Database::text($text) . ",title=" . Database::text($title) . ",valid=0 where page_id=" . Database::int($page->getId());
         Database::update($sql);
       }
       $page->publish();
@@ -164,7 +164,7 @@ class WeblogTemplateController extends TemplateController
 
       if ($page = Page::load($entry->getPageId())) {
         if ($page->getTemplateUnique() == 'html') {
-          $sql = "update html set html=" . Database::text($text) . ",title=" . Database::text($title) . ",valid=0 where page_id=" . $page->getId();
+          $sql = "update html set html=" . Database::text($text) . ",title=" . Database::text($title) . ",valid=0 where page_id=" . Database::int($page->getId());
           Database::update($sql);
           $page->publish();
         }

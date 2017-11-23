@@ -91,16 +91,16 @@ class Image extends Object {
   }
 
   function addGroupId($id) {
-    $sql = "delete from imagegroup_image where image_id=" . Database::int($this->id) . " and imagegroup_id=" . Database::int($id);
-    Database::delete($sql);
-    $sql = "insert into imagegroup_image (imagegroup_id,image_id) values (" . Database::int($id) . "," . Database::int($this->id) . ")";
-    Database::insert($sql);
+    $sql = "delete from imagegroup_image where image_id=@int(id) and imagegroup_id = @int(groupId)";
+    Database::delete($sql, ['id' => $this->id, 'groupId' => $id]);
+    $sql = "insert into imagegroup_image (imagegroup_id,image_id) values (@int(groupId), @int(id))";
+    Database::insert($sql, ['id' => $this->id, 'groupId' => $id]);
   }
 
   function getGroupIds() {
     $ids = [];
-    $sql = "select imagegroup_id from imagegroup_image where image_id=" . Database::int($this->id);
-    $result = Database::select($sql);
+    $sql = "select imagegroup_id from imagegroup_image where image_id = @int(id)";
+    $result = Database::select($sql, ['id' => $this->id]);
     while ($row = Database::next($result)) {
       $ids[] = $row['imagegroup_id'];
     }
@@ -109,16 +109,16 @@ class Image extends Object {
   }
 
   function changeGroups($groups) {
-    $sql = "delete from imagegroup_image where image_id=" . Database::int($this->id);
-    Database::delete($sql);
+    $sql = "delete from imagegroup_image where image_id=@int(id)";
+    Database::delete($sql, ['id' => $this->id]);
     foreach ($groups as $id) {
       if ($id > 0) {
-        $sql = "insert into imagegroup_image (image_id,imagegroup_id) values (" . Database::int($this->id) . "," . Database::int($id) . ")";
-        Database::insert($sql);
+        $sql = "insert into imagegroup_image (image_id,imagegroup_id) values (@int(id), @int(groupId))";
+        Database::insert($sql, ['id' => $this->id, 'groupId' => $id]);
       }
     }
     foreach ($groups as $id) {
-      EventService::fireEvent('relation_change','object','imagegroup',$id);
+      EventService::fireEvent('relation_change', 'object', 'imagegroup', $id);
     }
   }
 
@@ -127,7 +127,7 @@ class Image extends Object {
     if (isset($custom['group'])) {
       $parts['tables'][] = 'imagegroup_image';
       $parts['limits'][] = 'imagegroup_image.image_id=object.id';
-      $parts['limits'][] = 'imagegroup_image.imagegroup_id=' . $custom['group'];
+      $parts['limits'][] = 'imagegroup_image.imagegroup_id=' . Database::int($custom['group']);
     }
     if (isset($custom['nogroup']) && $custom['nogroup'] === true) {
       $parts['joins'][] = 'left join imagegroup_image on imagegroup_image.image_id=image.object_id';
@@ -165,13 +165,13 @@ class Image extends Object {
 
     $this->fireRelationChangeEventOnGroups();
 
-    $sql = "delete from imagegroup_image where image_id=" . $this->id;
-    Database::delete($sql);
+    $sql = "delete from imagegroup_image where image_id = @int(id)";
+    Database::delete($sql, ['id' => $this->id]);
   }
 
   function fireRelationChangeEventOnGroups() {
-    $sql = "select imagegroup_id from imagegroup_image where image_id=" . Database::int($this->id);
-    $result = Database::select($sql);
+    $sql = "select imagegroup_id from imagegroup_image where image_id = @int(id)";
+    $result = Database::select($sql, ['id' => $this->id]);
     while ($row = Database::next($result)) {
       EventService::fireEvent('relation_change','object','imagegroup',$row['imagegroup_id']);
     }

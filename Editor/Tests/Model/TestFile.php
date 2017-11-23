@@ -25,9 +25,9 @@ class TestFile extends AbstractObjectTest {
     $file->setMimetype($randomMime);
     $file->save();
 
-    $otherFiler = new File();
-    $otherFiler->setTitle('My other file');
-    $otherFiler->save();
+    $otherFile = new File();
+    $otherFile->setTitle('My other file');
+    $otherFile->save();
 
     $loaded = File::load($file->getId());
     $this->assertEqual($loaded->getTitle(),'My file');
@@ -64,7 +64,7 @@ class TestFile extends AbstractObjectTest {
     $found = Query::after('File')->withCustom('mimetype', [$randomMime])->get();
     $this->assertEqual(1, count($found));
 
-    $otherFiler->remove();
+    $otherFile->remove();
     $loaded->remove();
     $group1->remove();
     $group2->remove();
