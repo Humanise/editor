@@ -37,7 +37,7 @@ class AuthenticationTemplate {
 
   static function load($id) {
     $sql = "select title,page_id from authentication where page_id=" . Database::int($id);
-    if ($row = Database::getRow($sql)) {
+    if ($row = Database::selectFirst($sql)) {
       $obj = new AuthenticationTemplate();
       $obj->setId(intval($row['page_id']));
       $obj->setTitle($row['title']);

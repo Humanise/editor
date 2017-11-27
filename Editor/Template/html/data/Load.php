@@ -8,7 +8,7 @@ require_once '../../../Include/Private.php';
 $id = Request::getId();
 
 $sql = "select * from html where page_id=" . Database::int($id);
-if ($row = Database::getRow($sql)) {
+if ($row = Database::selectFirst($sql)) {
   Response::sendObject($row);
 } else {
   Response::notFound();

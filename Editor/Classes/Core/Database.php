@@ -93,7 +93,7 @@ class Database {
   }
 
   static function selectFirst($sql,$parameters = null) {
-    $output = false;
+    $output = null;
     if ($parameters !== null) {
       $sql = Database::compile($sql,$parameters);
     }
@@ -245,10 +245,6 @@ class Database {
     return $ids;
   }
 
-  static function getRow($sql) {
-    return Database::selectFirst($sql);
-  }
-
   /**
    * Formats a string of text for use in an SQL-sentence
    * @param string $text The text to format
@@ -390,13 +386,21 @@ class Database {
     return $sql;
   }
 
-  static function compile($sql,$vars) {
+  static function compile($sql, $vars) {
+    if (!is_array($vars)) {
+      $vars = ['id' => $vars];
+    }
     $replacements = [];
-    if (preg_match_all("/@[a-z]+\\([a-zA-Z]+\\)/u", $sql,$matches) > 0) {
+    if (preg_match_all("/@[a-z]+\\([a-zA-Z]+\\)|@id/u", $sql,$matches) > 0) {
       foreach ($matches[0] as $expression) {
-        $pos = strpos($expression,'(');
-        $type = substr($expression,1,$pos - 1);
-        $name = substr($expression,$pos + 1,-1);
+        if ($expression == '@id') {
+          $type = 'int';
+          $name = 'id';
+        } else {
+          $pos = strpos($expression,'(');
+          $type = substr($expression,1,$pos - 1);
+          $name = substr($expression,$pos + 1,-1);
+        }
         if (array_key_exists($name,$vars)) {
           $value = $vars[$name];
           if ($type == 'int') {

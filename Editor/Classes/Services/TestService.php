@@ -99,12 +99,20 @@ class TestService {
     $test->run($reporter);
   }
 
-  static function createTestPage() {
-    $template = TemplateService::getTemplateByUnique('document');
-    if (!$template) {
-      TemplateService::install('document');
-      $template = TemplateService::getTemplateByUnique('document');
+  static function createTestPage($options = []) {
+    $templateKey = 'document';
+    if (isset($options['template'])) {
+      $templateKey = $options['template'];
     }
+    $template = TemplateService::getTemplateByUnique($templateKey);
+    if (!$template) {
+      TemplateService::install($templateKey);
+      $template = TemplateService::getTemplateByUnique($templateKey);
+    }
+    if (!$template) {
+      return null;
+    }
+    Log::debug($template);
 
     $hierarchy = new Hierarchy();
     $hierarchy->save();

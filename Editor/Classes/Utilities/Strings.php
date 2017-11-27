@@ -353,14 +353,14 @@ class Strings {
     $extracted = [];
     $pos = 0;
     while ($pos !== false) {
-      $from = mb_strpos($str,$start,$pos,$encoding);
+      $from = mb_strpos($str,$start,$pos, $encoding);
       if ($from === false) {
         $pos = false;
         continue;
       }
       $to = mb_strpos($str,$stop,$from + strlen($start),$encoding);
       if ($to !== false) {
-        $to += mb_strlen($stop,'UTF-8');
+        $to += mb_strlen($stop, $encoding);
         $extracted[] = mb_substr($str,$from,$to - $from,$encoding);
         $pos = $to;
       } else {

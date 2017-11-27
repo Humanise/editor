@@ -63,7 +63,7 @@ class WeblogTemplate {
 
   static function load($id) {
     $sql = "select * from weblog where page_id=" . Database::int($id);
-    if ($row = Database::getRow($sql)) {
+    if ($row = Database::selectFirst($sql)) {
       $obj = new WeblogTemplate();
       $obj->setId(intval($row['page_id']));
       $obj->setTitle($row['title']);

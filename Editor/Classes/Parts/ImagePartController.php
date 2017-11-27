@@ -210,6 +210,9 @@ class ImagePartController extends PartController
   function calculateComputedDimensions($part,$image) {
     $width = $image['width'];
     $height = $image['height'];
+    if ($width < 1 || $height < 1) {
+      return ['width' => 0, 'height' => 0];
+    }
     if ($part->getScaleMethod() == 'percent') {
       $width = round($part->getScalePercent() * $image['width'] / 100);
       $height = round($part->getScalePercent() * $image['height'] / 100);

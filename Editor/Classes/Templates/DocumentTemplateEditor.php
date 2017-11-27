@@ -11,35 +11,35 @@ if (!isset($GLOBALS['basePath'])) {
 class DocumentTemplateEditor
 {
   static function deleteRow($rowId) {
-    $sql = "select * from document_row where id=" . Database::int($rowId);
-    $row = Database::selectFirst($sql);
+    $sql = "select * from document_row where id = @id";
+    $row = Database::selectFirst($sql, $rowId);
     if (!$row) {
       Log::debug('Row not found');
-      return;
+      return false;
     }
     $index = $row['index'];
     $pageId = $row['page_id'];
 
-    $sql = "select count(id) as num from document_row where page_id=" . Database::int($pageId);
-    $row = Database::selectFirst($sql);
+    $sql = "select count(id) as num from document_row where page_id = @int(id)";
+    $row = Database::selectFirst($sql, ['id' => $pageId]);
     if ($row['num'] < 2) {
       // Cannot delete the last row
-      return;
+      return false;
     }
 
     $latestRow = 0;
 
-    $sql = "select * from document_row where page_id=" . Database::int($pageId) . " and `index`>" . Database::int($index);
-    $result = Database::select($sql);
+    $sql = "select * from document_row where page_id = @int(pageId) and `index` > @int(index)";
+    $result = Database::select($sql, ['pageId' => $pageId, 'index' => $index]);
     while ($row = Database::next($result)) {
-      $sql = "update document_row set `index`=" . Database::int($row['index'] - 1) . " where id=" . Database::int($row['id']);
-      Database::update($sql);
+      $sql = "update document_row set `index` = @int(index) where id = @int(id)";
+      Database::update($sql, ['id' => $row['id'], 'index' => ($row['index'] - 1)]);
       $latestRow = $row['id'];
     }
     Database::free($result);
 
-    $sql = "select document_section.*,part.type as part_type from document_section left join part on part.id=document_section.part_id left join document_column on document_section.column_id=document_column.id where document_column.row_id=" . Database::int($rowId);
-    $result = Database::select($sql);
+    $sql = "select document_section.*,part.type as part_type from document_section left join part on part.id=document_section.part_id left join document_column on document_section.column_id=document_column.id where document_column.row_id = @int(id)";
+    $result = Database::select($sql, ['id' => $rowId]);
     while ($row = Database::next($result)) {
       $type = $row['type'];
       $sectionId = $row['id'];
@@ -50,39 +50,40 @@ class DocumentTemplateEditor
           $part->remove();
         }
       }
-      $sql = "delete from document_section where id=" . Database::int($sectionId);
-      Database::delete($sql);
+      $sql = "delete from document_section where id = @int(id)";
+      Database::delete($sql, ['id' => $sectionId]);
     }
     Database::free($result);
 
-    $sql = "delete from document_column where row_id=" . Database::int($rowId);
-    Database::delete($sql);
+    $sql = "delete from document_column where row_id = @int(id)";
+    Database::delete($sql, ['id' => $rowId]);
 
-    $sql = "delete from document_row where id=" . Database::int($rowId);
-    Database::delete($sql);
+    $sql = "delete from document_row where id = @int(id)";
+    Database::delete($sql, ['id' => $rowId]);
 
     DocumentTemplateEditor::fixStructure($pageId);
     PageService::markChanged($pageId);
+    return true;
   }
 
-  static function addPartAtEnd($pageId,$part) {
+  static function addPartAtEnd($pageId, $part) {
     if (!$part->isPersistent()) {
       Log::debug('The part is not persistent!');
       return;
     }
-    $sql = "select id from document_row where page_id=" . Database::int($pageId) . " order by `index` desc";
-    if ($row = Database::selectFirst($sql)) {
+    $sql = "select id from document_row where page_id = @id order by `index` desc";
+    if ($row = Database::selectFirst($sql, $pageId)) {
       $rowId = $row['id'];
-      $sql = "select id from document_column where row_id=" . Database::int($rowId) . " order by `index` desc";
-      if ($row = Database::selectFirst($sql)) {
+      $sql = "select id from document_column where row_id = @id order by `index` desc";
+      if ($row = Database::selectFirst($sql, $rowId)) {
         $columnId = $row['id'];
-        $sql = "select max(`index`) as `index` from document_section where column_id=" . Database::int($columnId);
+        $sql = "select max(`index`) as `index` from document_section where column_id = @id";
         $index = 1;
-        if ($row = Database::selectFirst($sql)) {
+        if ($row = Database::selectFirst($sql, $columnId)) {
           $index = $row['index'] + 1;
         }
-        $sql = "insert into document_section (`page_id`,`column_id`,`index`,`type`,`part_id`) values (" . Database::int($pageId) . "," . Database::int($columnId) . "," . Database::int($index) . ",'part'," . Database::int($part->getId()) . ")";
-        $sectionId = Database::insert($sql);
+        $sql = "insert into document_section (`page_id`,`column_id`,`index`,`type`,`part_id`) values (@int(pageId), @int(columnId), @int(index),'part', @int(partId))";
+        $sectionId = Database::insert($sql, ['pageId' => $pageId, 'columnId' => $columnId, 'index' => $index, 'partId' => $part->getId()]);
 
         DocumentTemplateEditor::fixStructure($pageId);
         PageService::markChanged($pageId);
@@ -456,8 +457,8 @@ class DocumentTemplateEditor
   }
 
   static function loadColumn($id) {
-    $sql = "select * from document_column where id=" . Database::int($id);
-    if ($row = Database::selectFirst($sql)) {
+    $sql = "select * from document_column where id = @id";
+    if ($row = Database::selectFirst($sql, $id)) {
       return [
         'id' => intval($row['id']),
         'width' => $row['width'],

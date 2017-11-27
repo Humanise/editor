@@ -97,7 +97,7 @@ class SearchTemplate {
 
   static function load($id) {
     $sql = "select * from search where page_id=" . Database::int($id);
-    if ($row = Database::getRow($sql)) {
+    if ($row = Database::selectFirst($sql)) {
       $obj = new SearchTemplate();
       $obj->setId(intval($row['page_id']));
       $obj->setTitle($row['title']);

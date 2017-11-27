@@ -22,12 +22,12 @@ class TestDocumentTemplate extends UnitTestCase {
       '<row id="' . $structure[1]['id'] . '"><column id="' . $structure[1]['columns'][1]['id'] . '"></column></row>' .
       '</content>',$data['data']);
 
-    DocumentTemplateEditor::addRow($page->getId(),1);
+    $rowId = DocumentTemplateEditor::addRow($page->getId(),1);
 
     $data = $ctrl->build($page->getId());
     $structure = DocumentTemplateEditor::getStructure($page->getId());
     $this->assertEqual('<content xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/document/1.0/">' .
-      '<row id="' . $structure[1]['id'] . '"><column id="' . $structure[1]['columns'][1]['id'] . '"></column></row>' .
+      '<row id="' . $rowId . '"><column id="' . $structure[1]['columns'][1]['id'] . '"></column></row>' .
       '<row id="' . $structure[2]['id'] . '"><column id="' . $structure[2]['columns'][1]['id'] . '"></column></row>' .
       '</content>',$data['data']);
 
@@ -49,6 +49,23 @@ class TestDocumentTemplate extends UnitTestCase {
       '</content>';
 
     $this->assertEqual($expected,$data['data']);
+
+    $this->assertNotNull(DocumentTemplateEditor::loadRow($rowId));
+    $this->assertTrue(DocumentTemplateEditor::deleteRow($rowId));
+
+    $this->assertNull(DocumentTemplateEditor::loadRow($rowId));
+    $this->assertFalse(DocumentTemplateEditor::deleteRow($rowId));
+
+    $structure = DocumentTemplateEditor::getStructure($page->getId());
+
+    $firstColumn = $structure[1]['columns'][1];
+
+    $loadedColumn = DocumentTemplateEditor::loadColumn($firstColumn['id']);
+    $this->assertNotNull($loadedColumn);
+
+    $sectionId = DocumentTemplateEditor::addSection($firstColumn['id'], $firstColumn['index'] + 1, 'text');
+    $this->assertTrue($sectionId !== null);
+    $this->assertTrue($sectionId > 0);
 
     TestService::removeTestPage($page);
   }
