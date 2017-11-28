@@ -67,6 +67,22 @@ class TestDocumentTemplate extends UnitTestCase {
     $this->assertTrue($sectionId !== null);
     $this->assertTrue($sectionId > 0);
 
+    // Test importing data into another page...
+    $other = TestService::createTestPage();
+    $doc = DOMUtils::parse(Strings::toUnicode($data['data']));
+    $ctrl = new DocumentTemplateController();
+    $ctrl->import($other->getId(), $doc);
+    $otherStructure = DocumentTemplateEditor::getStructure($other->getId());
+    $this->assertEqual(2, count($otherStructure));
+    $partInfo = $otherStructure[2]['columns'][1]['sections'][1];
+    $this->assertEqual('header', $partInfo['partType']);
+
+    // Check that the header was imported
+    $part = PartService::load($partInfo['partType'], $partInfo['partId']);
+    $this->assertNotNull($part);
+    $this->assertEqual('Velkommen', $part->getText());
+
     TestService::removeTestPage($page);
+    TestService::removeTestPage($other);
   }
 }

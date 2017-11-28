@@ -30,14 +30,14 @@ class AuthenticationTemplate {
   }
 
   function save() {
-    $sql = "update authentication set title=" . Database::text($this->title) . " where page_id=" . Database::int($this->id);
-    Database::update($sql);
+    $sql = "update authentication set title = @text(title) where page_id = @int(pageId)";
+    Database::update($sql, ['pageId' => $page->id, 'title' => $this->title]);
     PageService::markChanged($this->id);
   }
 
   static function load($id) {
-    $sql = "select title,page_id from authentication where page_id=" . Database::int($id);
-    if ($row = Database::selectFirst($sql)) {
+    $sql = "select title,page_id from authentication where page_id = @id";
+    if ($row = Database::selectFirst($sql, $id)) {
       $obj = new AuthenticationTemplate();
       $obj->setId(intval($row['page_id']));
       $obj->setTitle($row['title']);

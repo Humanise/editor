@@ -32,10 +32,10 @@ $writer->endItems();
 function encodeLevel($parent,$hierarchyId,&$writer) {
   $sql = "select hierarchy_item.*,page.disabled,page.path,page.id as pageid from hierarchy_item" .
     " left join page on page.id = hierarchy_item.target_id and (hierarchy_item.target_type='page' or hierarchy_item.target_type='pageref')" .
-    " where parent=" . Database::int($parent) .
-    " and hierarchy_id=" . Database::int($hierarchyId) .
+    " where parent = @int(parent)" .
+    " and hierarchy_id = @int(hierarchy)" .
     " order by `index`";
-  $result = Database::select($sql);
+  $result = Database::select($sql, ['parent' => $parent, 'hierarchy' => $hierarchyId]);
   while ($row = Database::next($result)) {
     $icon = Hierarchy::getItemIcon($row['target_type']);
     if ($row['target_type'] == 'page' && !$row['pageid']) {

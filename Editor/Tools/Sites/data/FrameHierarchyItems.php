@@ -27,10 +27,10 @@ $writer->endItems();
 function encodeLevel($parent,$hierarchyId,&$writer) {
   $sql = "select hierarchy_item.*,page.disabled,page.path from hierarchy_item" .
     " left join page on page.id = hierarchy_item.target_id and (hierarchy_item.target_type='page' or hierarchy_item.target_type='pageref')" .
-    " where parent=" . Database::int($parent) .
-    " and hierarchy_id=" . Database::int($hierarchyId) .
+    " where parent = @int(parent)" .
+    " and hierarchy_id = @int(hierarchy)" .
     " order by `index`";
-  $result = Database::select($sql);
+  $result = Database::select($sql, ['parent' => $parent, 'hierarchy' => $hierarchyId]);
   while ($row = Database::next($result)) {
     $writer->startItem([
       'icon' => 'common/page',

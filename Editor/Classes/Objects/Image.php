@@ -9,14 +9,14 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 Entity::$schema['Image'] = [
-    'table' => 'image',
-    'properties' => [
-      'filename' => ['type' => 'string'],
-      'size' => ['type' => 'int'],
-      'width' => ['type' => 'int'],
-      'height' => ['type' => 'int'],
-      'mimetype' => ['type' => 'string', 'column' => 'type']
-    ]
+  'table' => 'image',
+  'properties' => [
+    'filename' => ['type' => 'string'],
+    'size' => ['type' => 'int'],
+    'width' => ['type' => 'int'],
+    'height' => ['type' => 'int'],
+    'mimetype' => ['type' => 'string', 'column' => 'type']
+  ]
 ];
 
 class Image extends Object {

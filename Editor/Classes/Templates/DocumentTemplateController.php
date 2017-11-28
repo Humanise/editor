@@ -15,20 +15,20 @@ class DocumentTemplateController extends TemplateController
   }
 
   function create($page) {
-    $sql = "insert into document (page_id) values (" . Database::int($page->getId()) . ")";
-    Database::insert($sql);
+    $sql = "insert into document (page_id) values (@id)";
+    Database::insert($sql, $page->getId());
 
-    $sql = "insert into document_row (page_id,`index`) values (" . Database::int($page->getId()) . ",1)";
-    $rowId = Database::insert($sql);
+    $sql = "insert into document_row (page_id,`index`) values (@id,1)";
+    $rowId = Database::insert($sql, $page->getId());
 
-    $sql = "insert into document_column (page_id,`index`,row_id) values (" . Database::int($page->getId()) . ",1," . Database::int($rowId) . ")";
-    $columnId = Database::insert($sql);
+    $sql = "insert into document_column (page_id,`index`,row_id) values (@int(pageId), 1, @int(rowId))";
+    $columnId = Database::insert($sql, ['pageId' => $page->getId(), 'rowId' => $rowId]);
   }
 
   function delete($page) {
     $this->removeAll($page->getId());
-    $sql = "delete from document where page_id=" . Database::int($page->getId());
-    Database::delete($sql);
+    $sql = "delete from document where page_id = @id";
+    Database::delete($sql, $page->getId());
   }
 
   function import($id,$doc) {
@@ -40,10 +40,16 @@ class DocumentTemplateController extends TemplateController
     foreach ($rows as $row) {
       $rowPosition++;
 
-      $top = $column->getAttribute('top');
-      $bottom = $column->getAttribute('bottom');
-      $cls = $column->getAttribute('class');
-      $sql = "insert into document_row (`index`,top,bottom,class,page_id) values (" . Database::int($rowPosition) . "," . Database::text($top) . "," . Database::text($bottom) . "," . Database::text($class) . "," . Database::int($id) . ")";
+      $sql = [
+        'table' => 'document_row',
+        'values' => [
+          'index' => ['int' => $rowPosition],
+          'top' => ['text' => $row->getAttribute('top')],
+          'bottom' => ['text' => $row->getAttribute('bottom')],
+          'class' => ['text' => $row->getAttribute('class')],
+          'page_id' => ['int' => $id]
+        ]
+      ];
       $rowId = Database::insert($sql);
 
       $columns = DOMUtils::getChildElements($row,'column');
@@ -51,13 +57,21 @@ class DocumentTemplateController extends TemplateController
       // Lopp through all columns
       foreach ($columns as $column) {
         $columnPosition++;
-        $width = $column->getAttribute('width');
-        $left = $column->getAttribute('left');
-        $right = $column->getAttribute('right');
-        $top = $column->getAttribute('top');
-        $bottom = $column->getAttribute('bottom');
-        $cls = $column->getAttribute('class');
-        $sql = "insert into document_column (row_id,width,left,right,top,bottom,class,`index`,page_id) values (" . Database::int($rowId) . "," . Database::text($width) . "," . Database::text($left) . "," . Database::text($right) . "," . Database::text($top) . "," . Database::text($bottom) . "," . Database::text($class) . "," . Database::int($columnPosition) . "," . Database::int($id) . ")";
+
+        $sql = [
+          'table' => 'document_column',
+          'values' => [
+            'row_id' => ['int' => $rowId],
+            'width' => ['text' => $column->getAttribute('width')],
+            'left' => ['text' => $column->getAttribute('left')],
+            'right' => ['text' => $column->getAttribute('right')],
+            'top' => ['text' => $column->getAttribute('top')],
+            'bottom' => ['text' => $column->getAttribute('bottom')],
+            'class' => ['text' => $column->getAttribute('class')],
+            'index' => ['int' => $columnPosition],
+            'page_id' => ['int' => $id]
+          ]
+        ];
         $columnId = Database::insert($sql);
 
         $sectionPosition = 0;
@@ -73,14 +87,23 @@ class DocumentTemplateController extends TemplateController
               $obj = $controller->importFromNode($part);
               $obj->save();
 
-              $width = $column->getAttribute('width');
-              $float = $column->getAttribute('float');
-              $left = $column->getAttribute('left');
-              $right = $column->getAttribute('right');
-              $top = $column->getAttribute('top');
-              $bottom = $column->getAttribute('bottom');
-              $cls = $column->getAttribute('class');
-              $sql = "insert into document_section (column_id,type,part_id,`index`,page_id,width,float,class,top,bottom,left,right) values (" . Database::int($columnId) . ",'part'," . Database::int($obj->getId()) . "," . Database::int($sectionPosition) . "," . Database::int($id) . "," . Database::text('width') . "," . Database::text('float') . "," . Database::text('class') . "," . Database::text('top') . "," . Database::text('bottom') . "," . Database::text('left') . "," . Database::text('right') . ")";
+              $sql = [
+                'table' => 'document_section',
+                'values' => [
+                  'page_id' => ['int' => $id],
+                  'column_id' => ['int' => $columnId],
+                  'type' => ['text' => 'part'],
+                  'part_id' => ['int' => $obj->getId()],
+                  'index' => ['int' => $sectionPosition],
+                  'width' => ['text' => $column->getAttribute('width')],
+                  'float' => ['text' => $column->getAttribute('float')],
+                  'class' => ['text' => $column->getAttribute('class')],
+                  'top' => ['text' => $column->getAttribute('top')],
+                  'bottom' => ['text' => $column->getAttribute('bottom')],
+                  'left' => ['text' => $column->getAttribute('left')],
+                  'right' => ['text' => $column->getAttribute('right')]
+                ]
+              ];
               Database::insert($sql);
             }
           }
@@ -90,23 +113,23 @@ class DocumentTemplateController extends TemplateController
     }
 
   function removeAll($id) {
-    $sql = "delete from document_row where page_id=" . Database::int($id);
-    Database::delete($sql);
+    $sql = "delete from document_row where page_id = @id";
+    Database::delete($sql, $id);
 
-    $sql = "delete from document_column where page_id=" . Database::int($id);
-    Database::delete($sql);
+    $sql = "delete from document_column where page_id = @id";
+    Database::delete($sql, $id);
 
-    $sql = "select part.id,part.type from document_section,part where part.id=document_section.part_id and document_section.page_id=" . Database::int($id);
-    $result = Database::select($sql);
+    $sql = "select part.id,part.type from document_section,part where part.id=document_section.part_id and document_section.page_id = @id";
+    $result = Database::select($sql, $id);
     while ($row = Database::next($result)) {
-      if ($part = PartService::load($row['type'],$row['id'])) {
+      if ($part = PartService::load($row['type'], $row['id'])) {
         $part->remove();
       }
     }
     Database::free($result);
 
-    $sql = "delete from document_section where page_id=" . Database::int($id);
-    Database::delete($sql);
+    $sql = "delete from document_section where page_id = @id";
+    Database::delete($sql, $id);
   }
 
   function build($id) {
@@ -197,15 +220,13 @@ class DocumentTemplateController extends TemplateController
     $context = new PartContext();
 
     $sql = "SELECT design.unique as design, lower(page.language) as language from page,design where design.object_id = page.design_id and page.id = @int(id)";
-    if ($result = Database::selectFirst($sql,['id' => $pageId])) {
+    if ($result = Database::selectFirst($sql, ['id' => $pageId])) {
       $context->setLanguage($result['language']);
       $context->setDesign($result['design']);
     }
 
-
-    //////////////////// Find links ///////////////////
     $sql = "SELECT link.*,page.path from link left join page on page.id=link.target_id and link.target_type='page' where page_id=@int(id) and source_type='text'";
-    $result = Database::select($sql,['id' => $pageId]);
+    $result = Database::select($sql, ['id' => $pageId]);
     while ($row = Database::next($result)) {
       $context -> addBuildLink(
         Strings::escapeSimpleXML($row['source_text']),
@@ -221,12 +242,10 @@ class DocumentTemplateController extends TemplateController
     }
     Database::free($result);
 
-    /////////////////// Return ///////////////////////
     return $context;
   }
 
   function partPublish($type,$id,$pageId,$partId,$partType,$context) {
-    global $basePath;
     $output = '';
     $index = '';
     $dynamic = false;
@@ -247,8 +266,8 @@ class DocumentTemplateController extends TemplateController
 
   function dynamic($id,&$state) {
     $context = new PartContext();
-    $sql = "select page_id,part_id,part.type,part.dynamic from document_section,part where page_id=" . Database::int($id) . " and document_section.part_id=part.id and part.dynamic=1";
-    $result = Database::select($sql);
+    $sql = "select page_id,part_id,part.type,part.dynamic from document_section,part where page_id = @id and document_section.part_id=part.id and part.dynamic=1";
+    $result = Database::select($sql, $id);
     while ($row = Database::next($result)) {
       $ctrl = PartService::getController($row['type']);
       if ($ctrl) {

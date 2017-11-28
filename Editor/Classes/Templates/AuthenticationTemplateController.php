@@ -15,13 +15,13 @@ class AuthenticationTemplateController extends TemplateController
   }
 
   function create($page) {
-    $sql = "insert into authentication (page_id,title) values (" . Database::int($page->getId()) . "," . Database::text($page->getTitle()) . ")";
-    Database::insert($sql);
+    $sql = "insert into authentication (page_id,title) values (@int(pageId), @text(title))";
+    Database::insert($sql, ['pageId' => $page->getId(), 'title' => $page->getTitle()]);
   }
 
   function delete($page) {
-    $sql = "delete from authentication where page_id=" . Database::int($page->getId());
-    Database::delete($sql);
+    $sql = "delete from authentication where page_id = @id";
+    Database::delete($sql, $page->getId());
   }
 
   function isClientSide() {
@@ -30,8 +30,8 @@ class AuthenticationTemplateController extends TemplateController
 
   function build($id) {
     $data = '<authentication xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/authentication/1.0/">';
-    $sql = "select * from authentication where page_id=" . Database::int($id);
-    if ($row = Database::selectFirst($sql)) {
+    $sql = "select title from authentication where page_id = @id";
+    if ($row = Database::selectFirst($sql, $id)) {
       $data .= '<title>' . Strings::escapeXML($row['title']) . '</title>';
       $index = $row['title'];
     }

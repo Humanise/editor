@@ -15,20 +15,20 @@ class SearchTemplateController extends TemplateController
   }
 
   function create($page) {
-    $sql = "insert into search (page_id,title) values (" . $page->getId() . "," . Database::text($page->getTitle()) . ")";
-    Database::insert($sql);
+    $sql = "insert into search (page_id,title) values (@int(pageId), @text(title))";
+    Database::insert($sql, ['pageId' => $page->getId(), 'title' => $page->getTitle()]);
   }
 
   function delete($page) {
-    $sql = "delete from search where page_id=" . Database::int($page->getId());
-    Database::delete($sql);
+    $sql = "delete from search where page_id = @id";
+    Database::delete($sql, $page->getId());
   }
 
     function build($id) {
     $data = '<search xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/search/1.0/">';
 
-    $sql = "select * from search where page_id=" . Database::int($id);
-    $row = Database::selectFirst($sql);
+    $sql = "select * from search where page_id = @id";
+    $row = Database::selectFirst($sql, $id);
     $data .= '<title>' . Strings::escapeEncodedXML($row['title']) . '</title>';
     $data .= '<text>' . Strings::escapeSimpleXMLwithLineBreak($row['text'],'<break/>') . '</text>';
     $data .= '<buttontitle>' . Strings::escapeEncodedXML($row['buttontitle']) . '</buttontitle>';

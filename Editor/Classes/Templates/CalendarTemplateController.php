@@ -15,15 +15,15 @@ class CalendarTemplateController extends TemplateController
   }
 
   function create($page) {
-    $sql = "insert into calendarviewer (page_id,title) values (" . Database::int($page->getId()) . "," . Database::text($page->getTitle()) . ")";
-    Database::insert($sql);
+    $sql = "insert into calendarviewer (page_id,title) values (@int(pageId), @text(title))";
+    Database::insert($sql, ['pageId' => $page->getId(), 'title' => $page->getTitle()]);
   }
 
   function delete($page) {
-    $sql = "delete from calendarviewer where page_id=" . Database::int($page->getId());
-    Database::delete($sql);
-    $sql = "delete from calendarviewer_object where page_id=" . Database::int($page->getId());
-    Database::delete($sql);
+    $sql = "delete from calendarviewer where page_id = @id";
+    Database::delete($sql, $page->getId());
+    $sql = "delete from calendarviewer_object where page_id = @id";
+    Database::delete($sql, $page->getId());
   }
 
   function build($id) {
@@ -39,8 +39,8 @@ class CalendarTemplateController extends TemplateController
     if (!$date) {
       $date = Dates::stripTime(time());
     }
-    $sql = "select * from calendarviewer where page_id = " . Database::int($id);
-    $setup = Database::selectFirst($sql);
+    $sql = "select * from calendarviewer where page_id = @id";
+    $setup = Database::selectFirst($sql, $id);
 
     $view = Request::getString('view');
     if (!$view) $view = $setup['standard_view'];
@@ -71,16 +71,16 @@ class CalendarTemplateController extends TemplateController
 
   function getEvents($id,$query,$refresh) {
     $events = [];
-    $sql = "select calendarsource.object_id as id from calendarviewer_object,calendarsource where calendarsource.object_id = calendarviewer_object.object_id and calendarviewer_object.page_id = " . Database::int($id);
-    $ids = Database::getIds($sql);
+    $sql = "select calendarsource.object_id as id from calendarviewer_object,calendarsource where calendarsource.object_id = calendarviewer_object.object_id and calendarviewer_object.page_id = @id";
+    $ids = Database::getIds($sql, $id);
     foreach ($ids as $sourceId) {
       $source = Calendarsource::load($sourceId);
       $source->synchronize($refresh);
       $events = array_merge($events,$source->getEvents($query));
     }
-    $sql = "select calendar.object_id as id,object.title from calendarviewer_object,calendar,object where object.id = calendar.object_id and calendar.object_id = calendarviewer_object.object_id and calendarviewer_object.page_id = " . Database::int($id);
+    $sql = "select calendar.object_id as id,object.title from calendarviewer_object,calendar,object where object.id = calendar.object_id and calendar.object_id = calendarviewer_object.object_id and calendarviewer_object.page_id = @id";
 
-    $result = Database::select($sql);
+    $result = Database::select($sql, $id);
     while ($row = Database::next($result)) {
       $eventQuery = ['calendarId' => $row['id'], 'startDate' => $query['startDate'], 'endDate' => $query['endDate'], 'calendarTitle' => $row['title']];
       $events = array_merge($events,Event::getSimpleEvents($eventQuery));

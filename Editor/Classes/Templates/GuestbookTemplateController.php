@@ -15,15 +15,15 @@ class GuestbookTemplateController extends TemplateController
   }
 
   function create($page) {
-    $sql = "insert into guestbook (page_id,title) values (" . Database::int($page->getId()) . "," . Database::text($page->getTitle()) . ")";
-    Database::insert($sql);
+    $sql = "insert into guestbook (page_id,title) values (@int(pageId), @text(title))";
+    Database::insert($sql, ['pageId' => $page->getId(), 'title' => $page->getTitle()]);
   }
 
   function delete($page) {
-    $sql = "delete from guestbook where page_id=" . Database::int($page->getId());
-    Database::delete($sql);
-    $sql = "delete from guestbook_item where page_id=" . Database::int($page->getId());
-    Database::delete($sql);
+    $sql = "delete from guestbook where page_id = @id";
+    Database::delete($sql, $page->getId());
+    $sql = "delete from guestbook_item where page_id = @id";
+    Database::delete($sql, $page->getId());
   }
 
     function build($id) {
@@ -38,8 +38,8 @@ class GuestbookTemplateController extends TemplateController
     $data .= '<text key="newitem-label-name">Navn</text>';
     $data .= '<text key="newitem-label-text">Besked</text>';
     $data .= '</lang>';
-    $sql = "select title,text from guestbook where page_id=" . Database::int($id);
-    $row = Database::selectFirst($sql);
+    $sql = "select title,text from guestbook where page_id = @id";
+    $row = Database::selectFirst($sql, $id);
     $data .= '<title>' . Strings::escapeXML($row['title']) . '</title>';
     $data .= '<text>' . Strings::escapeSimpleXMLwithLineBreak($row['text'],'<break/>') . '</text>';
     $data .= '<!--dynamic-->';
@@ -56,12 +56,11 @@ class GuestbookTemplateController extends TemplateController
       if (Request::isPost() && Request::getBoolean('userinteraction')) {
         $name = Request::getString('name');
         $text = Request::getString('text');
-        $sql = "insert into guestbook_item (page_id,time,name,text) values (" . Database::int($id) . ",now()," . Database::text($name) . "," . Database::text($text) . ")";
-        Database::insert($sql);
+        $sql = "insert into guestbook_item (page_id,time,name,text) values (@int(pageId), now(), @text(name), @text(text))";
+        Database::insert($sql, ['id' => $id, 'name' => $name, 'text' => $text]);
       }
-      $sql = "select *,UNIX_TIMESTAMP(time) as unix from guestbook_item where page_id=" . Database::int($id) . " order by time desc";
-      $result = Database::select($sql);
-      $num = mysql_num_rows($result);
+      $sql = "select *,UNIX_TIMESTAMP(time) as unix from guestbook_item where page_id = @id order by time desc";
+      $result = Database::select($sql, $id);
       $xml = '<list>';
       while ($row = Database::next($result)) {
         $xml .= '<item id="' . $row['id'] . '">';

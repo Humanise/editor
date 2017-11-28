@@ -187,67 +187,66 @@ class PageService {
     Database::update($sql);
   }
 
-    static function addPageToSecurityZone($pageId,$zoneId) {
-        if (!Securityzone::load($zoneId)) {
-            Log::warn('Zone not found: ' . $zoneId);
-            return;
-        }
-        if (!PageService::exists($pageId)) {
-            Log::warn('Page not found: ' . $pageId);
-            return;
-        }
-        $parameters = ['pageId' => $pageId, 'zoneId' => $zoneId];
-        $sql = "DELETE from securityzone_page where page_id=@int(pageId) and securityzone_id=@int(zoneId)";
-        Database::delete($sql,$parameters);
-        $sql = "INSERT into securityzone_page (page_id,securityzone_id) values (@int(pageId),@int(zoneId))";
-        Database::insert($sql,$parameters);
-        PageService::updateSecureStateOfAllPages();
+  static function addPageToSecurityZone($pageId,$zoneId) {
+    if (!Securityzone::load($zoneId)) {
+      Log::warn('Zone not found: ' . $zoneId);
+      return;
     }
+    if (!PageService::exists($pageId)) {
+      Log::warn('Page not found: ' . $pageId);
+      return;
+    }
+    $parameters = ['pageId' => $pageId, 'zoneId' => $zoneId];
+    $sql = "DELETE from securityzone_page where page_id=@int(pageId) and securityzone_id=@int(zoneId)";
+    Database::delete($sql,$parameters);
+    $sql = "INSERT into securityzone_page (page_id,securityzone_id) values (@int(pageId),@int(zoneId))";
+    Database::insert($sql,$parameters);
+    PageService::updateSecureStateOfAllPages();
+  }
 
-    static function removePageFromSecurityZone($pageId,$zoneId) {
-        if (!Securityzone::load($zoneId)) {
-            Log::warn('Zone not found: ' . $zoneId);
-            return;
-        }
-        if (!PageService::exists($pageId)) {
-            Log::warn('Page not found: ' . $pageId);
-            return;
-        }
-        $parameters = ['pageId' => $pageId, 'zoneId' => $zoneId];
-        $sql = "DELETE from securityzone_page where page_id=@int(pageId) and securityzone_id=@int(zoneId)";
-        Database::delete($sql,$parameters);
-        PageService::updateSecureStateOfAllPages();
+  static function removePageFromSecurityZone($pageId,$zoneId) {
+    if (!Securityzone::load($zoneId)) {
+      Log::warn('Zone not found: ' . $zoneId);
+      return;
     }
+    if (!PageService::exists($pageId)) {
+      Log::warn('Page not found: ' . $pageId);
+      return;
+    }
+    $parameters = ['pageId' => $pageId, 'zoneId' => $zoneId];
+    $sql = "DELETE from securityzone_page where page_id=@int(pageId) and securityzone_id=@int(zoneId)";
+    Database::delete($sql,$parameters);
+    PageService::updateSecureStateOfAllPages();
+  }
 
-    static function addUserToSecurityZone($userId,$zoneId) {
-        if (!User::load($userId)) {
-            Log::warn('User not found: ' . $userId);
-            return;
-        }
-        if (!Securityzone::load($zoneId)) {
-            Log::warn('Zone not found: ' . $zoneId);
-            return;
-        }
-        $parameters = ['userId' => $userId, 'zoneId' => $zoneId];
-        $sql = "DELETE from securityzone_user where user_id=@int(userId) and securityzone_id=@int(zoneId)";
-        Database::delete($sql,$parameters);
-        $sql = "INSERT into securityzone_user (user_id,securityzone_id) values (@int(userId),@int(zoneId))";
-        Database::insert($sql,$parameters);
+  static function addUserToSecurityZone($userId,$zoneId) {
+    if (!User::load($userId)) {
+      Log::warn('User not found: ' . $userId);
+      return;
     }
+    if (!Securityzone::load($zoneId)) {
+      Log::warn('Zone not found: ' . $zoneId);
+      return;
+    }
+    $parameters = ['userId' => $userId, 'zoneId' => $zoneId];
+    $sql = "DELETE from securityzone_user where user_id=@int(userId) and securityzone_id=@int(zoneId)";
+    Database::delete($sql,$parameters);
+    $sql = "INSERT into securityzone_user (user_id,securityzone_id) values (@int(userId),@int(zoneId))";
+    Database::insert($sql,$parameters);
+  }
 
-    static function removeUserFromSecurityZone($userId,$zoneId) {
-        if (!User::load($userId)) {
-            Log::warn('User not found: ' . $userId);
-            return;
-        }
-        if (!Securityzone::load($zoneId)) {
-            Log::warn('Zone not found: ' . $zoneId);
-            return;
-        }
-        $parameters = ['userId' => $userId, 'zoneId' => $zoneId];
-        $sql = "DELETE from securityzone_user where user_id=@int(userId) and securityzone_id=@int(zoneId)";
-        Database::delete($sql,$parameters);
+  static function removeUserFromSecurityZone($userId,$zoneId) {
+    if (!User::load($userId)) {
+      Log::warn('User not found: ' . $userId);
+      return;
     }
+    if (!Securityzone::load($zoneId)) {
+      Log::warn('Zone not found: ' . $zoneId);
+      return;
+    }
+    $sql = "DELETE from securityzone_user where user_id=@int(userId) and securityzone_id=@int(zoneId)";
+    Database::delete($sql, ['userId' => $userId, 'zoneId' => $zoneId]);
+  }
 
   static function search($query) {
 
@@ -388,28 +387,28 @@ class PageService {
     $id = $page->getId();
 
     // Delete the page
-    $sql = "delete from page where id=" . Database::int($id);
-    Database::delete($sql);
+    $sql = "delete from page where id = @id";
+    Database::delete($sql, $id);
 
     // Delete links
-    $sql = "delete from link where page_id=" . Database::int($id);
-    Database::delete($sql);
+    $sql = "delete from link where page_id = @id";
+    Database::delete($sql, $id);
 
     // Delete translations
-    $sql = "delete from page_translation where page_id=" . Database::int($id) . " or translation_id=" . Database::int($id);
-    Database::delete($sql);
+    $sql = "delete from page_translation where page_id = @id or translation_id = @id";
+    Database::delete($sql, $id);
 
     // Delete security zone relations
-    $sql = "delete from securityzone_page where page_id=" . Database::int($id);
-    Database::delete($sql);
+    $sql = "delete from securityzone_page where page_id = @id";
+    Database::delete($sql, $id);
 
     EventService::fireEvent('delete','page',$page->getTemplateUnique(),$id);
   }
 
-    static function load($id) {
+  static function load($id) {
     $sql = "select page.*,UNIX_TIMESTAMP(page.changed) as changed_unix,UNIX_TIMESTAMP(page.published) as published_unix,template.unique" .
-    " from page,template where template.id=page.template_id and page.id=" . Database::int($id);
-    if ($row = Database::selectFirst($sql)) {
+    " from page,template where template.id=page.template_id and page.id = @id";
+    if ($row = Database::selectFirst($sql, $id)) {
       $output = new Page();
       $output->setId($row['id']);
       $output->setName($row['name']);
@@ -495,8 +494,8 @@ class PageService {
     if (!$page) {
       Log::debug('Page not found: ' . $pageId);
     } else if ($controller = TemplateService::getController($page->getTemplateUnique())) {
-      $sql = "select data from page_history where id=" . Database::int($historyId);
-      if ($row = Database::selectFirst($sql)) {
+      $sql = "select data from page_history where id = @id";
+      if ($row = Database::selectFirst($sql, $historyId)) {
         if ($doc = DOMUtils::parse(Strings::toUnicode($row['data']))) {
           $controller->import($page->getId(),$doc);
           PageService::markChanged($page->getId());
@@ -524,36 +523,36 @@ class PageService {
    */
   static function createPageContextually($pageId,$title,$placement) {
     if (!in_array($placement,['below', 'before', 'after'])) {
-          Log::debug('Unsupported placement');
-          return false;
+      Log::debug('Unsupported placement');
+      return false;
     }
-      $context_page = Page::load($pageId);
-      if (!$context_page) {
-          Log::debug('No page');
+    $context_page = Page::load($pageId);
+    if (!$context_page) {
+      Log::debug('No page');
+      return false;
+    }
+    $context_item = HierarchyItem::loadByPageId($context_page->getId());
+    $template = TemplateService::getTemplateByUnique('document');
+    if ($context_item && $template) {
+      $page = new Page();
+      $page->setTitle($title);
+      $page->setTemplateId($template->getId());
+      $page->setDesignId($context_page->getDesignId());
+      $page->setFrameId($context_page->getFrameId());
+      $page->setLanguage($context_page->getLanguage());
+      if ($page->create()) {
+        $hierarchy = Hierarchy::load($context_item->getHierarchyId());
+        if (!$hierarchy) {
+          Log::debug('No hierarchy');
           return false;
-      }
-      $context_item = HierarchyItem::loadByPageId($context_page->getId());
-      $template = TemplateService::getTemplateByUnique('document');
-      if ($context_item && $template) {
-          $page = new Page();
-          $page->setTitle($title);
-          $page->setTemplateId($template->getId());
-          $page->setDesignId($context_page->getDesignId());
-          $page->setFrameId($context_page->getFrameId());
-          $page->setLanguage($context_page->getLanguage());
-          if ($page->create()) {
-              $hierarchy = Hierarchy::load($context_item->getHierarchyId());
-              if (!$hierarchy) {
-                  Log::debug('No hierarchy');
-                  return false;
-              }
+        }
 
         $recipe = [
-              'title' => $title,
-              'targetType' => 'page',
-                  'hidden' => false,
-              'targetValue' => $page->getId()
-            ];
+          'title' => $title,
+          'targetType' => 'page',
+          'hidden' => false,
+          'targetValue' => $page->getId()
+        ];
         if ($placement == 'before') {
           $recipe['parent'] = $context_item->getParent();
           $recipe['index'] = $context_item->getIndex();
@@ -563,10 +562,10 @@ class PageService {
         } else { // below
           $recipe['parent'] = $context_item->getId();
         }
-            $success = $hierarchy->createItem($recipe); // TODO What if this fails
-              return $page;
-          }
+        $success = $hierarchy->createItem($recipe); // TODO What if this fails
+        return $page;
       }
-      return false;
+    }
+    return false;
   }
 }
