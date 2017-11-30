@@ -66,6 +66,14 @@ class Parameter extends Entity implements Loadable {
     return ModelService::load('Parameter',$id);
   }
 
+  static function loadByName($name) {
+    $sql = "select id from parameter where name = @text(name)";
+    if ($row = Database::selectFirst($sql, ['name' => $name])) {
+      return Parameter::load(intval($row['id']));
+    }
+    return null
+  }
+
   function save() {
     return ModelService::save($this);
   }

@@ -19,28 +19,17 @@ if ($frameId > 0) {
     'title' => $hierarchy->getName(),
     'kind' => 'hierarchy'
   ]);
-  encodeLevel(0,$hierarchy->getId(),$writer);
+  $tree = HierarchyService::getTree($hierarchy->getId());
+  encodeTreeLevel($tree,$writer);
   $writer->endItem();
 }
 $writer->endItems();
 
-function encodeLevel($parent,$hierarchyId,&$writer) {
-  $sql = "select hierarchy_item.*,page.disabled,page.path from hierarchy_item" .
-    " left join page on page.id = hierarchy_item.target_id and (hierarchy_item.target_type='page' or hierarchy_item.target_type='pageref')" .
-    " where parent = @int(parent)" .
-    " and hierarchy_id = @int(hierarchy)" .
-    " order by `index`";
-  $result = Database::select($sql, ['parent' => $parent, 'hierarchy' => $hierarchyId]);
-  while ($row = Database::next($result)) {
-    $writer->startItem([
-      'icon' => 'common/page',
-      'value' => $row['id'],
-      'title' => $row['title'],
-      'kind' => 'hierarchyItem'
-    ]);
-    encodeLevel($row['id'],$hierarchyId,$writer);
+function encodeTreeLevel($items,&$writer) {
+  foreach ($items as $item) {
+    $writer->startItem(['icon' => $item['icon'], 'kind' => 'hierarchyItem', 'value' => $item['id'], 'title' => $item['title']]);
+    encodeTreeLevel($item['children'],$writer);
     $writer->endItem();
   }
-  Database::free($result);
 }
 ?>

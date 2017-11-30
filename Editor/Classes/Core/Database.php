@@ -94,10 +94,7 @@ class Database {
 
   static function selectFirst($sql,$parameters = null) {
     $output = null;
-    if ($parameters !== null) {
-      $sql = Database::compile($sql,$parameters);
-    }
-    $result = Database::select($sql);
+    $result = Database::select($sql, $parameters);
     if ($row = Database::next($result)) {
       $output = $row;
     }
@@ -105,15 +102,21 @@ class Database {
     return $output;
   }
 
-  static function selectAll($sql,$key = null) {
+  static function selectAll($sql,$parameters = null) {
     $output = [];
-    $result = Database::select($sql);
+    $result = Database::select($sql, $parameters);
     while ($row = Database::next($result)) {
-      if ($key != null) {
-        $output[$row['key']] = $row;
-      } else {
-        $output[] = $row;
-      }
+      $output[] = $row;
+    }
+    Database::free($result);
+    return $output;
+  }
+
+  static function selectAllKeys($sql, $key,$parameters = null) {
+    $output = [];
+    $result = Database::select($sql, $parameters);
+    while ($row = Database::next($result)) {
+      $output[$row['key']] = $row;
     }
     Database::free($result);
     return $output;

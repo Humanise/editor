@@ -18,15 +18,13 @@ if (Request::getBoolean('includeEmpty')) {
     ]);
 }
 if ($type == 'page') {
-  $sql = "select page.id,page.title from page order by page.title";
-  $result = Database::select($sql);
-  while ($row = Database::next($result)) {
+  $pages = PageQuery::rows()->orderBy('title')->asList();
+  foreach ($pages as $row) {
     $writer->item([
       'title' => $row['title'],
       'value' => $row['id']
     ]);
   }
-  Database::free($result);
 } else if ($type == 'template') {
   $templates = TemplateService::getTemplatesSorted();
   foreach ($templates as $template) {

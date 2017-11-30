@@ -6,9 +6,28 @@ if (!isset($GLOBALS['basePath'])) {
 
 class PageService {
 
-  static function createPageHistory($id,$data) {
-    $sql = "insert into page_history (page_id,user_id,data,time) values (" . $id . "," . InternalSession::getUserId() . "," . Database::text($data) . ",now())";
-    Database::insert($sql);
+  static function createPageHistory($id, $data) {
+    $sql = "insert into page_history (page_id,user_id,data,time) values (@int(pageId), @int(userId), @text(data) ,now())";
+    Database::insert($sql, ['pageId' => $id, 'data' => $data, 'userId' => InternalSession::getUserId()]);
+  }
+
+  static function listHistory($pageId) {
+    $sql = "select page_history.id,UNIX_TIMESTAMP(page_history.time) as time,page_history.message,object.title" .
+    " from page_history left join object on object.id=page_history.user_id where page_id = @id order by page_history.time desc";
+    return Database::selectAll($sql, $pageId);
+  }
+
+  static function updateHistoryMessage($id, $text) {
+    $sql = "update page_history set message = @text(text) where id = @id";
+    Database::update($sql, ['text' => $text, 'id' => $id]);
+  }
+
+  static function getHistoryMessage($id) {
+    $sql = "select message from page_history where id = @id";
+    if ($row = Database::selectFirst($sql, $id)) {
+      return $row['message'];
+    }
+    return null;
   }
 
   static function exists($id) {
@@ -295,7 +314,7 @@ class PageService {
     }
     $ordering = $query->getOrdering();
     for ($i = 0; $i < count($ordering); $i++) {
-      $select->addOrdering($ordering,$query->getDirection() == 'descending');
+      $select->addOrdering($ordering[$i],$query->getDirection() == 'descending');
     }
 
     $windowPage = $query->getWindowPage();
@@ -396,6 +415,10 @@ class PageService {
 
     // Delete translations
     $sql = "delete from page_translation where page_id = @id or translation_id = @id";
+    Database::delete($sql, $id);
+
+    // Delete history
+    $sql = "delete from page_history where page_id = @id";
     Database::delete($sql, $id);
 
     // Delete security zone relations

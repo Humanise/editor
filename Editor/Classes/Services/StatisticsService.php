@@ -97,7 +97,7 @@ class StatisticsService {
     $sql = 'SELECT count(distinct statistics.session) as sessions, count(distinct statistics.ip) as ips, count(statistics.id) as hits,date_format(statistics.time, "' . $patterns[$resolution]['sql'] . '") as `key`,date_format(statistics.time, "%e") as label FROM statistics';
     $sql .= StatisticsService::_buildWhere($query);
     $sql .= '  group by `key` order by `key`';
-    $rows = Database::selectAll($sql,'key');
+    $rows = Database::selectAllKeys($sql,'key');
 
     if ($query->getStartTime()) {
       $start = $query->getStartTime();

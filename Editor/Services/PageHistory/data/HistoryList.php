@@ -17,11 +17,9 @@ $writer->startList()->
     header(['width' => 1])->
   endHeaders();
 
-$sql = "select page_history.id,UNIX_TIMESTAMP(page_history.time) as time,page_history.message,object.title" .
-" from page_history left join object on object.id=page_history.user_id where page_id=" . Database::int($pageId) . " order by page_history.time desc";
+$history = PageService::listHistory($pageId);
 
-$result = Database::select($sql);
-while ($row = Database::next($result)) {
+foreach ($history as $row) {
   $writer->startRow(['id' => $row['id']])->
     startCell(['icon' => 'common/user'])->text($row['title'])->endCell()->
     startCell(['wrap' => false])->text(Dates::formatLongDateTime($row['time']))->endCell()->
@@ -29,7 +27,5 @@ while ($row = Database::next($result)) {
     startCell()->button(['text' => ['View', 'da' => 'Vis']])->endCell()->
     endRow();
 }
-Database::free($result);
-
 $writer->endList();
 ?>

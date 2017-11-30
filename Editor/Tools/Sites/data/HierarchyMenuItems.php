@@ -6,9 +6,12 @@
 require_once '../../../Include/Private.php';
 
 $frameId = Request::getInt('frame');
+$hierarchies = [];
 if ($frameId > 0) {
   $frame = Frame::load($frameId);
-  $hierarchies = [Hierarchy::load($frame->getHierarchyId())];
+  if ($hierarchy = Hierarchy::load($frame->getHierarchyId())) {
+    $hierarchies[] = $hierarchy;
+  }
 } else {
   $hierarchies = Hierarchy::search();
 }
@@ -22,29 +25,18 @@ foreach ($hierarchies as $hierarchy) {
   if ($hierarchy->getChanged() > $hierarchy->getPublished()) {
     $title .= ' !';
   }
+  $tree = HierarchyService::getTree($hierarchy->getId());
   $writer->startItem(['icon' => 'common/hierarchy', 'kind' => 'hierarchy', 'value' => $hierarchy->getId(), 'title' => $title]);
-  encodeLevel(0,$hierarchy->getId(),$writer);
+  encodeTreeLevel($tree,$writer);
   $writer->endItem();
 }
 $writer->endItems();
 
-
-function encodeLevel($parent,$hierarchyId,&$writer) {
-  $sql = "select hierarchy_item.*,page.disabled,page.path,page.id as pageid from hierarchy_item" .
-    " left join page on page.id = hierarchy_item.target_id and (hierarchy_item.target_type='page' or hierarchy_item.target_type='pageref')" .
-    " where parent = @int(parent)" .
-    " and hierarchy_id = @int(hierarchy)" .
-    " order by `index`";
-  $result = Database::select($sql, ['parent' => $parent, 'hierarchy' => $hierarchyId]);
-  while ($row = Database::next($result)) {
-    $icon = Hierarchy::getItemIcon($row['target_type']);
-    if ($row['target_type'] == 'page' && !$row['pageid']) {
-      $icon = "common/warning";
-    }
-    $writer->startItem(['icon' => $icon, 'kind' => 'hierarchyItem', 'value' => $row['id'], 'title' => $row['title']]);
-    encodeLevel($row['id'],$hierarchyId,$writer);
+function encodeTreeLevel($items,&$writer) {
+  foreach ($items as $item) {
+    $writer->startItem(['icon' => $item['icon'], 'kind' => 'hierarchyItem', 'value' => $item['id'], 'title' => $item['title']]);
+    encodeTreeLevel($item['children'],$writer);
     $writer->endItem();
   }
-  Database::free($result);
 }
 ?>

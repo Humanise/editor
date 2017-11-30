@@ -27,10 +27,8 @@ $parameter = [
   ]
 ];
 
-$sql = "select id from parameter where name=@text(name)";
-if ($row = Database::selectFirst($sql,['name' => $name])) {
-  $parameter = Parameter::load(intval($row['id']));
-} else {
+$parameter = Parameter::loadByName($name);
+if (!$parameter) {
   $parameter = new Parameter();
   $parameter->setName($name);
 }

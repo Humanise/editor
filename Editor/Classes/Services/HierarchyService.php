@@ -204,7 +204,7 @@ class HierarchyService {
     return $id;
   }
 
-    static function deleteItem($id) {
+  static function deleteItem($id) {
 
     // Load info about item
     $sql = "select * from hierarchy_item where id=" . Database::int($id);
@@ -295,4 +295,36 @@ class HierarchyService {
     return $output;
   }
 
+  static function getTree($hierarchyId) {
+    return HierarchyService::getTreeLevel(0,$hierarchyId);
+  }
+
+  private static function getTreeLevel($parent,$hierarchyId) {
+    $sql = "select hierarchy_item.*,page.disabled,page.path,page.id as pageid from hierarchy_item" .
+      " left join page on page.id = hierarchy_item.target_id and (hierarchy_item.target_type='page' or hierarchy_item.target_type='pageref')" .
+      " where parent = @int(parent)" .
+      " and hierarchy_id = @int(hierarchy)" .
+      " order by `index`";
+    $result = Database::select($sql, ['parent' => $parent, 'hierarchy' => $hierarchyId]);
+    $out = [];
+    while ($row = Database::next($result)) {
+      $icon = Hierarchy::getItemIcon($row['target_type']);
+      if ($row['target_type'] == 'page' && !$row['pageid']) {
+        $icon = "common/warning";
+      }
+      $item = [
+        'title' => $row['title'],
+        'icon' => $icon,
+        'id' => intval($row['id']),
+        'target' => [
+          'type' => $row['target_type'],
+          'id' => intval($row['target_id'])
+        ],
+        'children' => HierarchyService::getTreeLevel($row['id'],$hierarchyId)
+      ];
+      $out[] = $item;
+    }
+    Database::free($result);
+    return $out;
+  }
 }

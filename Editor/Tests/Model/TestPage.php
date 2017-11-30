@@ -67,10 +67,11 @@ class TestPage extends UnitTestCase {
     $this->assertEqual($page->getPath(),$loaded->getPath());
     $this->assertEqual($page->getLanguage(),$loaded->getLanguage());
 
-
+    // Check changed
     $this->assertFalse(PageService::isChanged($page->getId()));
     $page->setTitle('Test page');
     $page->save();
+    $this->assertTrue(PageService::exists($page->getId()));
     sleep(1);
     PageService::markChanged($page->getId());
     $this->assertTrue(PageService::isChanged($page->getId()));
@@ -78,6 +79,13 @@ class TestPage extends UnitTestCase {
     $page->publish();
     $this->assertFalse(PageService::isChanged($page->getId()));
 
+    // History
+    $history = PageService::listHistory($page->getId());
+    $this->assertEqual(1, count($history));
+    PageService::updateHistoryMessage($history[0]['id'], 'This is a message');
+    $this->assertEqual('This is a message', PageService::getHistoryMessage($history[0]['id']));
+    PageService::createPageHistory($page->getId(), $page->getData());
+    $this->assertEqual(2, count(PageService::listHistory($page->getId())));
 
     // Check that the design and frame cannot be removed
     $this->assertFalse($design->canRemove());
@@ -99,6 +107,8 @@ class TestPage extends UnitTestCase {
     // Test that it is gone
     $loaded = Page::load($page->getId());
     $this->assertNull($loaded);
+    // Check that the history is gone
+    $this->assertEqual(0, count(PageService::listHistory($page->getId())));
 
 
     Log::debug('Design id: ' . $design->getId());

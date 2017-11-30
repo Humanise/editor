@@ -25,8 +25,8 @@ class PublishingService {
       ",published=now()" .
       " where id=" . Database::int($id);
     Database::update($sql);
-    $sql = "insert into page_history (page_id,user_id,data,time) values (" . Database::int($id) . "," . InternalSession::getUserId() . "," . Database::text($result['data']) . ",now())";
-    Database::insert($sql);
+
+    PageService::createPageHistory($id, $result['data']);
 
     EventService::fireEvent('publish','page',null,$id);
   }
