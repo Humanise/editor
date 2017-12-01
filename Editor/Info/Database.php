@@ -223,18 +223,6 @@ $databaseTables = [
       ["frame_newsblock_id", "int(11)", "", "", "0", ""],
       ["newsgroup_id", "int(11)", "", "", "0", ""]
     ],
-  'guestbook' => [
-      ["page_id", "int(11)", "", "", "0", ""],
-      ["title", "varchar(255)", "", "", "", ""],
-      ["text", "mediumtext", "", "", "", ""]
-    ],
-  'guestbook_item' => [
-      ["id", "int(11)", "", "PRI", "", "auto_increment"],
-      ["page_id", "int(11)", "", "", "0", ""],
-      ["time", "datetime", "YES", "", "", ""],
-      ["text", "text", "YES", "", "", ""],
-      ["name", "varchar(255)", "YES", "", "", ""]
-    ],
   'hierarchy' => [
       ["id", "int(11)", "", "PRI", "", "auto_increment"],
       ["name", "varchar(255)", "YES", "", "", ""],

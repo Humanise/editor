@@ -71,7 +71,7 @@ class Parameter extends Entity implements Loadable {
     if ($row = Database::selectFirst($sql, ['name' => $name])) {
       return Parameter::load(intval($row['id']));
     }
-    return null
+    return null;
   }
 
   function save() {
