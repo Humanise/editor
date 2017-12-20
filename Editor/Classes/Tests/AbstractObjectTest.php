@@ -35,14 +35,21 @@ class AbstractObjectTest extends UnitTestCase {
 
     $class = ucfirst($this->type);
     $obj = new $class();
-    if (method_exists($this,'makeValid')) {
+    if (method_exists($this, 'makeValid')) {
       $this->makeValid($obj);
     }
     $this->assertFalse($obj->isPersistent());
     $obj->save();
     $this->assertTrue($obj->isPersistent());
     $id = $obj->getId();
+
+    $obj->setNote('This is the note');
+    $obj->save();
+    $loaded = $obj->load($id);
+    $this->assertEqual('This is the note', $loaded->getNote());
+
     $this->assertNotNull($obj->load($id));
+    $this->assertNotNull(ObjectService::loadAny($id));
     $obj->remove();
     $loaded = $obj->load($id);
     $this->assertNull($loaded);

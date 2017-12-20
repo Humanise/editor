@@ -351,6 +351,9 @@ class Database {
       if (array_key_exists('text', $value)) {
         return Database::text($value['text']);
       }
+      elseif (array_key_exists('string', $value)) {
+        return Database::text($value['string']);
+      }
       else if (array_key_exists('int', $value)) {
         return Database::int($value['int']);
       }

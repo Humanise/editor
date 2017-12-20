@@ -39,6 +39,32 @@ class SchemaService {
     return $sql;
   }
 
+  static function buildSqlValueStructure($obj, $schema, $exclude = []) {
+    $values = [];
+    $fields = $schema;
+    if (isset($schema['properties'])) {
+      $fields = $schema['properties'];
+    }
+    if (!is_array($fields)) {
+      Log::debug('No fields found...');
+      Log::debug($schema);
+      return $values;
+    }
+    foreach ($fields as $field => $info) {
+      $column = SchemaService::getColumn($field, $info);
+      if (in_array($column,$exclude)) {
+        continue;
+      }
+      $getter = "get" . ucfirst($field);
+      if (!method_exists($obj,$getter)) {
+        Log::warn($getter . ' does not exist');
+      }
+      $value = $obj->$getter();
+      $values[$column] = [$info['type'] => $value];
+    }
+    return $values;
+  }
+
   static function _formatValue($type, $value) {
     if ($type == 'int') {
       return Database::int($value);

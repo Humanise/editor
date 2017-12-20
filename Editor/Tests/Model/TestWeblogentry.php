@@ -15,8 +15,5 @@ class TestWeblogentry extends AbstractObjectTest {
     parent::AbstractObjectTest('weblogentry');
   }
 
-  function testProperties() {
-    
-  }
 }
 ?>

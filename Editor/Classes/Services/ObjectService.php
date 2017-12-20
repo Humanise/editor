@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 class ObjectService {
 
   static function getLatestId($type) {
-    $sql = "select max(id) as id from object where type=" . Database::text($type);
-    if ($row = Database::selectFirst($sql)) {
+    $sql = "select max(id) as id from object where type = @text(type)";
+    if ($row = Database::selectFirst($sql, ['type' => $type])) {
       return intval($row['id']);
     }
     return null;
@@ -38,16 +38,16 @@ class ObjectService {
     return null;
   }
 
-    static function getObjectData($id) {
-      $data = null;
-      if ($id) {
-        $sql = "select data from object where id =" . Database::int($id);
-        if ($row = Database::selectFirst($sql)) {
-          $data = $row['data'];
-        }
+  static function getObjectData($id) {
+    $data = null;
+    if ($id) {
+      $sql = "select data from object where id = @id";
+      if ($row = Database::selectFirst($sql, $id)) {
+        $data = $row['data'];
       }
-      return $data;
     }
+    return $data;
+  }
 
   static function importType($type) {
     global $basePath;
@@ -72,17 +72,17 @@ class ObjectService {
   }
 
   static function removeRelations($objectId) {
-    $sql = "delete from `relation` where (from_type='object' and from_object_id=@int(objectId)) or (to_type='object' and to_object_id=@int(objectId))";
+    $sql = "delete from `relation` where (from_type = 'object' and from_object_id = @int(objectId)) or (to_type = 'object' and to_object_id = @int(objectId))";
     Database::delete($sql, ['objectId' => $objectId]);
   }
 
   static function remove($object) {
     if ($object->isPersistent() && $object->canRemove()) {
-      $sql = "delete from `object` where id=" . Database::int($object->getId());
-      $row = Database::delete($sql);
+      $sql = "delete from `object` where id = @id";
+      $row = Database::delete($sql, $object->getId());
 
-      $sql = "delete from `object_link` where object_id=" . Database::int($object->getId());
-      Database::delete($sql);
+      $sql = "delete from `object_link` where object_id = @id";
+      Database::delete($sql, $object->getId());
       ObjectService::removeRelations($object->getId());
 
       $schema = ObjectService::_getSchema($object->getType());
@@ -100,8 +100,8 @@ class ObjectService {
   }
 
   static function isChanged($id) {
-    $sql = "select updated-published as delta from object where id=" . Database::int($id);
-    $row = Database::selectFirst($sql);
+    $sql = "select updated-published as delta from object where id = @id";
+    $row = Database::selectFirst($sql, $id);
     if ($row['delta'] > 0) {
       return true;
     }
@@ -114,20 +114,20 @@ class ObjectService {
     }
     $index = $object->getIndex();
     $xml = $object->getCurrentXml();
-    $sql = "update `object` set data=" . Database::text($xml) . ",`index`=" . Database::text($index) . ",published=now() where id=" . Database::int($object->getId());
-    Database::update($sql);
+    $sql = "update `object` set data = @text(data),`index` = @text(index), published=now() where id = @id";
+    Database::update($sql, ['data' => $xml, 'index' => $index, 'id' => $object->getId()]);
     EventService::fireEvent('publish','object',$object->getType(),$object->getId());
   }
 
   static function loadAny($id) {
-    $sql = "select type from object where id =" . Database::int($id);
-    if ($row = Database::selectFirst($sql)) {
+    $sql = "select type from object where id = @id";
+    if ($row = Database::selectFirst($sql, $id)) {
       $unique = ucfirst($row['type']);
-    if (!$unique) {
-      Log::debug('Unable to load object by id: ' . $id);
-      return null;
-    }
-    ObjectService::importType($unique);
+      if (!$unique) {
+        Log::debug('Unable to load object by id: ' . $id);
+        return null;
+      }
+      ObjectService::importType($unique);
       $class = new $unique;
       $object = $class->load($id);
       return $object;
@@ -157,14 +157,18 @@ class ObjectService {
       Log::debug($object);
       return false;
     }
-    $sql = "insert into `object` (title,type,note,created,updated,searchable,owner_id) values (" .
-    Database::text($object->title) . "," .
-    Database::text($object->type) . "," .
-    Database::text($object->note) . "," .
-    "now(),now()," .
-    Database::boolean($object->searchable) . "," .
-    Database::int($object->ownerId) .
-    ")";
+    $sql = [
+      'table' => 'object',
+      'values' => [
+        'title' => ['text' => $object->title],
+        'type' => ['text' => $object->type],
+        'note' => ['text' => $object->note],
+        'searchable' => ['boolean' => $object->searchable],
+        'owner_id' => ['int' => $object->ownerId],
+        'updated' => ['datetime' => time()],
+        'created' => ['datetime' => time()]
+      ]
+    ];
     $object->id = Database::insert($sql);
     $schema = ObjectService::_getSchema($object->getType());
     if (is_array($schema)) {
@@ -211,23 +215,28 @@ class ObjectService {
       Log::debug($object);
       return false;
     }
-    $sql = "update `object` set " .
-      "title=" . Database::text($object->getTitle()) .
-      ",note=" . Database::text($object->getNote()) .
-      ",updated=now()" .
-      ",searchable=" . Database::boolean($object->searchable) .
-      ",owner_id=" . Database::int($object->ownerId) .
-      " where id=" . Database::int($object->id);
+    $sql = [
+      'table' => 'object',
+      'values' => [
+        'title' => ['text' => $object->getTitle()],
+        'note' => ['text' => $object->getNote()],
+        'searchable' => ['boolean' => $object->searchable],
+        'owner_id' => ['int' => $object->ownerId],
+        'updated' => ['datetime' => time()]
+      ],
+      'where' => [
+        'id' => ['int' => $object->id]
+      ]
+    ];
     Database::update($sql);
 
     $schema = ObjectService::_getSchema($object->getType());
     if (is_array($schema)) {
-      $sql = "update `" . $object->type . "` set object_id=" . Database::int($object->id);
-      $setters = SchemaService::buildSqlSetters($object,$schema);
-      if ($setters) {
-        $sql .= "," . $setters;
-      }
-      $sql .= " where object_id=" . Database::int($object->id);
+      $sql = [
+        'table' => $object->getType(),
+        'values' => SchemaService::buildSqlValueStructure($object,$schema),
+        'where' => ['object_id' => ['int' => $object->id]]
+      ];
       Database::update($sql);
     }
     EventService::fireEvent('update','object',$object->type,$object->id);
