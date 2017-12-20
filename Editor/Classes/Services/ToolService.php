@@ -12,7 +12,7 @@ class ToolService {
 
   static function getInstalled() {
     $arr = [];
-    $sql = "select id,`unique` from `tool`";
+    $sql = "select `unique` from `tool`";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
       $arr[] = $row['unique'];
@@ -22,8 +22,7 @@ class ToolService {
   }
 
   static function getAvailable() {
-    global $basePath;
-    $arr = FileSystemService::listDirs($basePath . "Editor/Tools/");
+    $arr = FileSystemService::listDirs(FileSystemService::getFullPath("Editor/Tools/"));
     for ($i = 0; $i < count($arr); $i++) {
       if (substr($arr[$i],0,3) == 'CVS') {
         unset($arr[$i]);
@@ -62,21 +61,20 @@ class ToolService {
   }
 
   static function getInfo($key) {
-    global $basePath;
-    $path = $basePath . "Editor/Tools/" . $key . "/info.json";
+    $path = FileSystemService::getFullPath("Editor/Tools/" . $key . "/info.json");
     return Strings::toUnicode(JsonService::readFile($path));
   }
 
   static function install($key) {
-    $sql = "select id from `tool` where `unique`=" . Database::text($key);
-    if (Database::isEmpty($sql)) {
-      $sql = "insert into tool (`unique`) values (" . Database::text($key) . ")";
-      Database::insert($sql);
+    $sql = "select id from `tool` where `unique` = @text(key)";
+    if (Database::isEmpty($sql, ['key' => $key])) {
+      $sql = "insert into tool (`unique`) values (@text(key))";
+      Database::insert($sql, ['key' => $key]);
     }
   }
 
   static function uninstall($key) {
-    $sql = "delete from `tool` where `unique`=" . Database::text($key);
-    Database::delete($sql);
+    $sql = "delete from `tool` where `unique` = @text(key)";
+    Database::delete($sql, ['key' => $key]);
   }
 }
