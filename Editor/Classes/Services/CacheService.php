@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 class CacheService {
 
   static function clearPageCache($id) {
-    $sql = "delete from page_cache where page_id=" . Database::int($id);
-    Database::delete($sql);
+    $sql = "delete from page_cache where page_id = @id";
+    Database::delete($sql, $id);
   }
 
   static function getNumberOfCachedPages() {
@@ -34,13 +34,13 @@ class CacheService {
       return false;
     }
     $sql = "select page_cache.html,UNIX_TIMESTAMP(page.published) as published from page_cache,page,frame where page.secure=0 and page.dynamic=0 and page.id=page_cache.page_id and page.frame_id=frame.id and frame.dynamic=0";
-    $sql .= " and page_cache.version=" . Database::int(ConfigurationService::getDeploymentTime());
+    $sql .= " and page_cache.version = @int(version)";
     if ($id > 0) {
-      $sql .= " and page.id=" . Database::int($id);
+      $sql .= " and page.id = @int(id)";
     } else {
-      $sql .= " and page_cache.path = " . Database::text($_SERVER['REQUEST_URI']);
+      $sql .= " and page_cache.path = @text(path)";
     }
-    if ($row = Database::selectFirst($sql)) {
+    if ($row = Database::selectFirst($sql, ['id' => $id, 'version' => ConfigurationService::getDeploymentTime(), 'path' => $_SERVER['REQUEST_URI']])) {
       header("Last-Modified: " . gmdate("D, d M Y H:i:s",$row['published']) . " GMT");
       header("Cache-Control: public");
       header("Expires: " . gmdate("D, d M Y H:i:s",time() + 604800) . " GMT");
@@ -63,13 +63,13 @@ class CacheService {
     if (strlen($html) > 49900) {
       return; // Be sure not to cache incomplete html
     }
-    $sql = "delete from page_cache where page_id=" . Database::int($id);
+    $sql = "delete from page_cache where page_id = @int(id)";
     if (strlen($path) > 0) {
-      $sql .= " and page_cache.path=" . Database::text($path);
+      $sql .= " and page_cache.path = @text(path)";
     }
-    Database::delete($sql);
-    $sql = "insert into page_cache (page_id,path,html,stamp,version) values (" . Database::int($id) . "," . Database::text($_SERVER['REQUEST_URI']) . "," . $html . ",now()," . Database::int(ConfigurationService::getDeploymentTime()) . ")";
-    Database::insert($sql);
+    Database::delete($sql, ['id' => $id, 'paht' => $path]);
+    $sql = "insert into page_cache (page_id,path,html,stamp,version) values (@int(id), @text(path), @text(html), now(), @int(version))";
+    Database::insert($sql, ['id' => $id, 'path' => $_SERVER['REQUEST_URI'], 'html' => $html, 'version' => ConfigurationService::getDeploymentTime()]);
   }
 
   ////// Images //////

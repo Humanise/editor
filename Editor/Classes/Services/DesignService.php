@@ -387,8 +387,8 @@ class DesignService {
     $design = Design::load($id);
     $info = DesignService::getInfo($design->getUnique());
     if (isset($info->parameters)) {
-      $sql = "select * from design_parameter where design_id=" . Database::int($id);
-      $rows = Database::selectAll($sql);
+      $sql = "select * from design_parameter where design_id = @id";
+      $rows = Database::selectAll($sql, $id);
       foreach ($info->parameters as $parameter) {
         $arr = get_object_vars($parameter);
         foreach ($rows as $row) {
@@ -417,13 +417,13 @@ class DesignService {
   static function saveParameters($id,$parameters) {
     $design = Design::load($id);
     $info = DesignService::getInfo($design->getUnique());
-    $sql = "delete from design_parameter where design_id=" . Database::int($id);
-    Database::delete($sql);
+    $sql = "delete from design_parameter where design_id = @id";
+    Database::delete($sql, $id);
     $xml = '';
     foreach ($parameters as $key => $value) {
       $type = DesignService::_getType($key,$info);
-      $sql = "insert into design_parameter (design_id,`key`,`value`) values (" . Database::int($id) . "," . Database::text($key) . "," . Database::text($value) . ")";
-      Database::insert($sql);
+      $sql = "insert into design_parameter (design_id,`key`,`value`) values (@int(id), @text(key), @text(value))";
+      Database::insert($sql, ['id' => $id, 'key' => $key, 'value' => $value]);
       if (Strings::isNotBlank($value)) {
         $xml .= '<parameter key="' . $key . '">';
         if ($type == 'image') {
