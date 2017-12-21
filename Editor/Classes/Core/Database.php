@@ -266,6 +266,19 @@ class Database {
     return intval($value);
   }
 
+  static function ints($value) {
+    $out = "";
+    if (is_array($value)) {
+      for ($i=0; $i < count($value); $i++) {
+        if (is_numeric($value[$i])) {
+          if ($out !== "") $out .= ',';
+          $out .= intval($value[$i]);
+        }
+      }
+    }
+    return $out;
+  }
+
   /**
    * Formats an float for use in an SQL-sentence
    * @param float $value The number to format
@@ -411,6 +424,8 @@ class Database {
           $value = $vars[$name];
           if ($type == 'int') {
             $value = Database::int($value);
+          } else if ($type == 'ints') {
+            $value = Database::ints($value);
           } else if ($type == 'text') {
             $value = Database::text($value);
           } else if ($type == 'boolean') {

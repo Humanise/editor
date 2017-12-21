@@ -27,7 +27,7 @@ $gui = '
 <gui xmlns="uri:hui" padding="10" title="' . SystemInfo::getTitle() . '" state="login">
   <controller name="controller" source="Recover.js"/>
   <box width="300" top="100" variant="rounded">
-    <space all="10" top="5" bottom="5">
+    <space all="15">
     ' . ($error ? '
       <text>
         <h>' . GuiUtils::getTranslated($error['title']) . '</h>
@@ -46,11 +46,11 @@ $gui = '
           <field label="{Password (again); da:Kodeord (gentag)}:">
             <text-input name="password2" secret="true"/>
           </field>
-          <buttons>
-            <button name="cancel" title="{Cancel; da:Annuller}" url="Authentication.php"/>
-            <button name="change" title="{Change password; da:Skift kode}" highlighted="true" submit="true"/>
-          </buttons>
         </fields>
+        <buttons top="10">
+          <button name="cancel" title="{Cancel; da:Annuller}" url="Authentication.php"/>
+          <button name="change" title="{Change password; da:Skift kode}" highlighted="true" submit="true"/>
+        </buttons>
       </formula>
       <fragment state="success">
         <text>

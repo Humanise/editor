@@ -9,12 +9,12 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 Entity::$schema['Milestone'] = [
-    'table' => 'milestone',
-    'properties' => [
-      'deadline' => ['type' => 'datetime'],
-      'completed' => ['type' => 'boolean'],
-      'containingObjectId' => ['type' => 'int', 'column' => 'containing_object_id']
-    ]
+  'table' => 'milestone',
+  'properties' => [
+    'deadline' => ['type' => 'datetime'],
+    'completed' => ['type' => 'boolean'],
+    'containingObjectId' => ['type' => 'int', 'column' => 'containing_object_id']
+  ]
 ];
 
 class Milestone extends Object {
@@ -69,26 +69,19 @@ class Milestone extends Object {
     Milestone::_fixOptions($options);
     $sql = "select object.id from milestone,object where object.id=milestone.object_id";
     if ($options['project'] > 0) {
-      $sql .= " and containing_object_id=" . Database::int($options['project']);
+      $sql .= " and containing_object_id = @int(project)";
     } elseif (count($options['projects']) > 0) {
-      $sql .= " and containing_object_id in (";
-      for ($i = 0; $i < count($options['projects']); $i++) {
-        if ($i > 0) {
-          $sql .= ',';
-        }
-        $sql .= Database::int($options['projects'][$i]);
-      }
-      $sql .= ")";
+      $sql .= " and containing_object_id in (@ints(projects))";
     }
     if (isset($options['completed'])) {
-      $sql .= " and milestone.completed=" . Database::boolean($options['completed']);
+      $sql .= " and milestone.completed = @boolean(completed)";
     }
     if ($options['sort'] == 'deadline') {
       $sql .= ' order by deadline';
     } else {
       $sql .= ' order by object.title';
     }
-    $result = Database::select($sql);
+    $result = Database::select($sql, $options);
     $ids = [];
     while ($row = Database::next($result)) {
       $ids[] = $row['id'];
@@ -103,8 +96,8 @@ class Milestone extends Object {
   }
 
   function removeMore() {
-    $sql = "update task set milestone_id=0 where milestone_id=" . Database::int($this->id);
-    Database::update($sql);
+    $sql = "update task set milestone_id=0 where milestone_id = @id";
+    Database::update($sql, $this->id);
   }
 
   ////////////////////// Convenience //////////////////////
@@ -112,8 +105,8 @@ class Milestone extends Object {
 
   function getTasks() {
     $output = [];
-    $sql = "select object_id from task,object where task.object_id = object.id and task.milestone_id=" . Database::int($this->id) . " order by object.title";
-    $result = Database::select($sql);
+    $sql = "select object_id from task,object where task.object_id = object.id and task.milestone_id = @id order by object.title";
+    $result = Database::select($sql, $this->id);
     while ($row = Database::next($result)) {
         $output[] = Task::load($row['object_id']);
     }
@@ -123,8 +116,8 @@ class Milestone extends Object {
 
   function getProblems() {
     $output = [];
-    $sql = "select object_id from problem,object where problem.object_id = object.id and problem.milestone_id=" . Database::int($this->id) . " order by object.title";
-    $result = Database::select($sql);
+    $sql = "select object_id from problem,object where problem.object_id = object.id and problem.milestone_id = @id order by object.title";
+    $result = Database::select($sql, $this->id);
     while ($row = Database::next($result)) {
         $output[] = Problem::load($row['object_id']);
     }
@@ -134,8 +127,8 @@ class Milestone extends Object {
 
   function getCompletedInfo() {
     $output = ['completed' => 0, 'active' => 0];
-    $sql = "select count(object_id)-sum(problem.completed) as active,sum(problem.completed) as completed from problem where problem.milestone_id=" . Database::int($this->id) . " union select count(object_id)-sum(task.completed) as active,sum(task.completed) as completed from task where task.milestone_id=" . Database::int($this->id);
-    $result = Database::select($sql);
+    $sql = "select count(object_id)-sum(problem.completed) as active,sum(problem.completed) as completed from problem where problem.milestone_id = @id union select count(object_id)-sum(task.completed) as active,sum(task.completed) as completed from task where task.milestone_id = @id";
+    $result = Database::select($sql, $this->id);
     while ($row = Database::next($result)) {
         $output['completed'] += $row['completed'];
         $output['active'] += $row['active'];

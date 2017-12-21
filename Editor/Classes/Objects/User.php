@@ -11,14 +11,14 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['User'] = [
   'table' => 'user',
   'properties' => [
-      'username' => ['type' => 'string'],
-      'password' => ['type' => 'string'],
-      'email' => ['type' => 'string'],
-      'language' => ['type' => 'string'],
-      'internal' => ['type' => 'boolean'],
-      'external' => ['type' => 'boolean'],
-      'administrator' => ['type' => 'boolean'],
-      'secure' => ['type' => 'boolean']
+    'username' => ['type' => 'string'],
+    'password' => ['type' => 'string'],
+    'email' => ['type' => 'string'],
+    'language' => ['type' => 'string'],
+    'internal' => ['type' => 'boolean'],
+    'external' => ['type' => 'boolean'],
+    'administrator' => ['type' => 'boolean'],
+    'secure' => ['type' => 'boolean']
   ]
 ];
 
@@ -110,10 +110,10 @@ class User extends Object {
   }
 
   function removeMore() {
-    $sql = "delete from securityzone_user where user_id=" . Database::int($this->id);
-    Database::delete($sql);
-    $sql = "delete from user_permission where user_id=" . Database::int($this->id);
-    Database::delete($sql);
+    $sql = "delete from securityzone_user where user_id = @id";
+    Database::delete($sql, $this->id);
+    $sql = "delete from user_permission where user_id = @id";
+    Database::delete($sql, $this->id);
   }
 
   function sub_publish() {

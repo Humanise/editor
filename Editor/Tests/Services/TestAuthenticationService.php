@@ -18,6 +18,8 @@ class TestAuthenticationService extends UnitTestCase {
 
     $this->assertFalse(AuthenticationService::isValidUsername(' '));
     $this->assertFalse(AuthenticationService::isValidUsername('a'));
+
+    // NOTICE: Is also tested in TestUser
   }
 }
 ?>

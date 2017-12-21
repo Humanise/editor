@@ -49,9 +49,9 @@ class TestDatabase extends UnitTestCase {
   }
 
   function testCompiling() {
-    $sql = "SELECT * from table where id=@int(id) or id>@int(id) and index=@text(query) and date>@datetime(date)";
-    $parameters = ['id' => 5355, 'query' => 'lorem', 'date' => 123456];
-    $expected = "SELECT * from table where id=5355 or id>5355 and index='lorem' and date>'1970-01-02 11:17:36'";
+    $sql = "SELECT * from table where id=@int(id) or id>@int(id) and index=@text(query) and yes=@boolean(question) and date>@datetime(date)";
+    $parameters = ['id' => 5355, 'query' => 'lorem', 'date' => 123456, 'question' => true];
+    $expected = "SELECT * from table where id=5355 or id>5355 and index='lorem' and yes=1 and date>'1970-01-02 11:17:36'";
 
     $compiled = Database::compile($sql,$parameters);
     $this->assertEqual($expected,$compiled);
@@ -61,6 +61,15 @@ class TestDatabase extends UnitTestCase {
     $sql = "SELECT * from table where id = @id";
     $parameters = ['id' => 5355];
     $expected = "SELECT * from table where id = 5355";
+
+    $compiled = Database::compile($sql,$parameters);
+    $this->assertEqual($expected,$compiled);
+  }
+
+  function testIdArrayCompiling() {
+    $sql = "SELECT * from table where id in (@ints(ids))";
+    $parameters = ['ids' => [1,-1,"0", NULL, "", "a", "45"]];
+    $expected = "SELECT * from table where id in (1,-1,0,45)";
 
     $compiled = Database::compile($sql,$parameters);
     $this->assertEqual($expected,$compiled);
