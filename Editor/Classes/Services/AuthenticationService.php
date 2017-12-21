@@ -67,15 +67,15 @@ class AuthenticationService {
   }
 
   static function getUser($username,$password,$internal = null) {
-      $sql = "select object_id as id from user where " .
-      " username=" . Database::text($username) . " and ((secure=0 and password=" . Database::text($password) . ") or (secure=1 and password=" . Database::text(AuthenticationService::encryptPassword($password)) . "))";
+    $sql = "select object_id as id from user where
+      username = @text(username) and ((secure=0 and password = @text(rawPassword))
+      or (secure=1 and password = @text(encryptedPassword)))";
     if ($internal === true) {
       $sql .= " and internal=1";
     } else if ($internal === false) {
       $sql .= " and external=1";
     }
-    //Log::debug($sql);
-    if ($row = Database::selectFirst($sql)) {
+    if ($row = Database::selectFirst($sql, ['username' => $username, 'rawPassword' => $password, 'encryptedPassword' => AuthenticationService::encryptPassword($password)])) {
       return User::load($row['id']);
     }
     return null;
@@ -90,8 +90,8 @@ class AuthenticationService {
     if (Strings::isBlank($emailOrUsername)) {
       return null;
     }
-    $sql = "select object_id from user where username=" . Database::text($emailOrUsername) . " or email=" . Database::text($emailOrUsername);
-    if ($row = Database::selectFirst($sql)) {
+    $sql = "select object_id from user where username = @text(emailOrUsername) or email = @text(emailOrUsername)";
+    if ($row = Database::selectFirst($sql, ['emailOrUsername' => $emailOrUsername])) {
       $id = intval($row['object_id']);
       $user = User::load($id);
       if (!$user) {
@@ -109,11 +109,8 @@ class AuthenticationService {
       $body = "Klik på følgende link for at ændre dit kodeord til brugeren \"" . $user->getUsername() . "\": \n\n" .
       ConfigurationService::getBaseUrl() . "Editor/Recover.php?key=" . $unique;
       if (MailService::send(Strings::fromUnicode($user->getEmail()),Strings::fromUnicode($user->getTitle()),"Humanise Editor - ændring af kodeord",$body)) {
-        $sql = "insert into email_validation_session (`unique`,`user_id`,`email`,`timelimit`)" .
-        " values (" .
-        Database::text($unique) . "," . $user->getId() . "," . Database::text($user->getEmail()) . "," . Database::datetime($limit) .
-        ")";
-        Database::insert($sql);
+        $sql = "insert into email_validation_session (`unique`,`user_id`,`email`,`timelimit`) values (@text(unique), @int(userId), @text(email), @datetime(limit))";
+        Database::insert($sql, ['unique' => $unique, 'userId' => $user->getId(), 'email' => $user->getEmail(), 'limit' => $limit]);
       return true;
     }
     return false;
@@ -124,8 +121,8 @@ class AuthenticationService {
   }
 
   static function isValidEmailValidationSession($key) {
-    $sql = "select id from email_validation_session where `unique`=" . Database::text($key) . " and timelimit>now()";
-    return !Database::isEmpty($sql);
+    $sql = "select id from email_validation_session where `unique` = @text(key) and timelimit > now()";
+    return !Database::isEmpty($sql, ['key' => $key]);
   }
 
   static function updatePasswordForEmailValidationSession($key,$password) {
@@ -133,15 +130,15 @@ class AuthenticationService {
       Log::debug('key or password is blank');
       return false;
     }
-    $sql = "select user_id from email_validation_session where `unique`=" . Database::text($key) . " and timelimit>now()";
-    if ($row = Database::selectFirst($sql)) {
+    $sql = "select user_id from email_validation_session where `unique` = @text(key) and timelimit > now()";
+    if ($row = Database::selectFirst($sql, ['key' => $key])) {
       if ($user = User::load($row['user_id'])) {
         AuthenticationService::setPassword($user,$password);
         $user->save();
         $user->publish();
         // remove the session
-        $sql = "delete from email_validation_session where `unique`=" . Database::text($key);
-        Database::delete($sql);
+        $sql = "delete from email_validation_session where `unique` = @text(key)";
+        Database::delete($sql, ['key' => $key]);
         return true;
       }
     }
