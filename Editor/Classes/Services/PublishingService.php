@@ -130,7 +130,6 @@ class PublishingService {
             return;
         }
     $data = '';
-    $dynamic = 0;
     if ($row['searchenabled']) {
       $data .= '<search page="' . $row['searchpage_id'] . '">' .
       '<button title="' . Strings::escapeEncodedXML($row['searchbuttontitle']) . '"/>' .
@@ -161,11 +160,9 @@ class PublishingService {
     '</links>';
     $news = PublishingService::buildFrameNews($id);
     $data .= $news;
-    if (strlen($news) > 0) {
-      $dynamic = 1;
-    }
-    $sql = "update frame set data=" . Database::text($data) . ",published=now(),dynamic=" . $dynamic . " where id=" . Database::int($id);
-    Database::update($sql);
+    $dynamic = strlen($news) > 0;
+    $sql = "update frame set data = @text(data), published = now(), dynamic = @boolean(dynamic) where id = @id";
+    Database::update($sql, ['dynamic' => $dynamic, 'data' => $data, 'id' => $id]);
 
     EventService::fireEvent('publish','frame',null,$id);
   }
