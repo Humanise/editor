@@ -15,29 +15,57 @@ class HtmlTemplateController extends TemplateController
   }
 
   function create($page) {
-    $sql = "insert into html (page_id,html,valid) values (" . $page->getId() . "," . Database::text('<h1>' . Strings::escapeXML($page->getTitle()) . '</h1>') . ",1)";
-    Database::insert($sql);
+    $html = '<h1>' . Strings::escapeXML($page->getTitle()) . '</h1>';
+    $sql = "insert into html (page_id,html,valid) values (@int(pageId), @text(html), 1)";
+    Database::insert($sql, ['pageId' => $page->getId(), 'html' => $html]);
   }
 
   function delete($page) {
-    $sql = "delete from html where page_id=" . Database::int($page->getId());
-    Database::delete($sql);
+    $sql = "delete from html where page_id = @id";
+    Database::delete($sql, $page->getId());
   }
 
-    function build($id) {
-    $sql = "select html,valid,title from html where page_id=" . Database::int($id);
-    $row = Database::selectFirst($sql);
+  function build($id) {
     $data = '<html xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/html/1.0/">';
-    if (strlen($row['title']) > 0) {
-      $data .= '<title>' . Strings::escapeXML($row['title']) . '</title>';
-    }
-    if ($row['valid']) {
-      $data .= '<content valid="true">' . $row['html'] . '</content>';
-    } else {
-      $data .= '<content valid="false"><![CDATA[' . $row['html'] . ']]></content>';
+    $sql = "select html,valid,title from html where page_id = @id";
+    if ($row = Database::selectFirst($sql, $id)) {
+      if (strlen($row['title']) > 0) {
+        $data .= '<title>' . Strings::escapeXML($row['title']) . '</title>';
+      }
+      if ($row['valid']) {
+        $data .= '<content valid="true">' . $row['html'] . '</content>';
+      } else {
+        $data .= '<content valid="false"><![CDATA[' . $row['html'] . ']]></content>';
+      }
     }
     $data .= '</html>';
-        return ['data' => $data, 'dynamic' => false, 'index' => ''];
+    return ['data' => $data, 'dynamic' => false, 'index' => ''];
+  }
+
+  static function convertToDocument($id) {
+    $template = TemplateService::getTemplateByUnique('document');
+    if (!$template) {
+      return;
     }
+    $sql = "select html,title from html where page_id = @id";
+    if ($row = Database::selectFirst($sql, $id)) {
+
+      $page = Page::load($id);
+      $ctrl = new DocumentTemplateController();
+      $ctrl->create($page);
+
+      $sql = "delete from html where page_id = @id";
+      Database::delete($sql, $page->getId());
+
+      $page->setTemplate($template);
+      $page->save();
+
+      $part = new HtmlPart();
+      $part->setHtml($row['html']);
+      $part->save();
+      DocumentTemplateEditor::addPartAtEnd($page->getId(), $part);
+      PageService::markChanged($id);
+    }
+  }
 
 }

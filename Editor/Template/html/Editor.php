@@ -18,11 +18,12 @@ $gui = '
           <text-input key="title"/>
         </field>
         <field label="HTML:">
-          <text-input key="html" breaks="true"/>
+          <code-input key="html"/>
         </field>
       </fields>
       <buttons>
-        <button text="Opdater" name="save" highlighted="true" disabled="true" submit="true"/>
+        <button text="{Convert to document; da:Konverter til dokument}" name="convert"/>
+        <button text="{Update; da:Opdater}" name="save" highlighted="true" disabled="true" submit="true"/>
       </buttons>
     </formula>
   </box>

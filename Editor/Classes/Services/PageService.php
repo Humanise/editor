@@ -491,6 +491,7 @@ class PageService {
       ",disabled=" . Database::boolean($page->getDisabled()) .
       ",design_id=" . Database::int($page->getDesignId()) .
       ",frame_id=" . Database::int($page->getFrameId()) .
+      ",template_id=" . Database::int($page->getTemplateId()) .
       " where id=" . Database::int($page->getId());
       $success = Database::update($sql);
 

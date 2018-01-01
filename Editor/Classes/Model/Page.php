@@ -168,6 +168,11 @@ class Page extends Entity {
 
 /////////////////////////// Special ///////////////////////////
 
+  function setTemplate($template) {
+    $this->templateId = $template->getId();
+    $this->templateUnique = $template->getUnique();
+  }
+
   /**
    * WARNING: Only for persistent pages
    */
