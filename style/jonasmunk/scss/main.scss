@@ -27,17 +27,38 @@ $target: async;
 
     &_footer {
       text-align: center;
-      padding: 20px;
+      padding: 60px 20px;
+      perspective: 20px;
     }
 
     &_designed {
-      background: url('../gfx/humanise.svg') 50% 0 no-repeat;
-      background-size: 100px;
-      padding-top: 110px;
       display: inline-block;
+      cursor: -webkit-grab;
       text-decoration: none;
       color: #000;
       font-weight: 400;
+      &_text {
+        display: block;
+      }
+      &:before {
+        content: '';
+        display: inline-block;
+        background: url('../gfx/humanise.svg') 50% 0 no-repeat;
+        background-size: 100px;
+        width: 100px;
+        height: 100px;
+        transition: transform 1s;
+        transform-style: preserve-3d;
+        transform-origin: 50% 100%;
+      };
+      &:hover:before {
+        transition: color 1s,transform 3s;
+        transform: rotate3d(2,0,14,10deg) scale(.8);
+      }
+      &:active:before {
+        transition-duration: .1s;
+        transform: scale(1.2);
+      }
     }
   }
 }

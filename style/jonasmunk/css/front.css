@@ -109,7 +109,7 @@ li.front_onlineme em {
   font-size: 0;
   height: 65px;
   left: 125px;
-  color: transparent;
+  color: rgba(0, 0, 0, 0);
   text-indent: 200px;
   position: absolute;
   overflow: hidden;

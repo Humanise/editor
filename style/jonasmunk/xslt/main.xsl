@@ -32,11 +32,7 @@
         <xsl:call-template name="util:viewport"/>
         <xsl:call-template name="util:metatags"/>
         <xsl:call-template name="util:js"/>
-        <link href='https://fonts.googleapis.com/css?family=Neuton:400,300,500,600' rel='stylesheet' type='text/css'/>
-        <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,100,700' rel='stylesheet' type='text/css'/>
-        <xsl:if test="$theme='vitae'">
-          <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500|Open+Sans:300italic,400italic,600italic,400,600,500,700,300,200,800" rel="stylesheet"/>
-        </xsl:if>
+        <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500|Open+Sans:300italic,400italic,600italic,400,600,500,700,300,200,800" rel="stylesheet"/>
         <xsl:call-template name="util:css"/>
       </head>
       <body>
@@ -45,11 +41,6 @@
             <xsl:value-of select="$theme"/>
           </xsl:attribute>
         </xsl:if>
-        <xsl:choose>
-          <xsl:when test="//html:html">
-            <xsl:apply-templates select="p:content"/>
-          </xsl:when>
-          <xsl:otherwise>
             <xsl:choose>
               <xsl:when test="$theme='vitae'">
                 <div class="vitae_hero">
@@ -88,13 +79,11 @@
                     <xsl:comment/>
                   </div>
                   <div class="layout_footer">
-                    <a href="http://www.humanise.dk/" class="layout_designed">Designet og udviklet af Humanise</a>
+                    <a href="http://www.humanise.dk/" class="layout_designed"><span class="layout_designed_text">Designet og udviklet af Humanise</span></a>
                   </div>
                 </div>
               </xsl:otherwise>
             </xsl:choose>
-          </xsl:otherwise>
-        </xsl:choose>
         <xsl:call-template name="util:googleanalytics"/>
       </body>
     </html>
