@@ -1,6 +1,15 @@
 @include if {
   .header {
     padding-top: 5px;
+    /*
+    &:after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: .55px;
+      background: #000;
+      margin: 10px auto;
+    };*/
   }
 
   .header_logo {
@@ -87,9 +96,33 @@
     text-align: right;
 
     &_link {
+      font-size: 16px;
+      letter-spacing: .08em;
+      padding: 5px 10px;
+      position: relative;
       color: #999;
-      &:hover {
-        text-decoration: none;
+      &:after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        width: 0%;
+        margin-left: 0%;
+        left: 50%;
+        height: 1px;
+        background: #999;
+        transition: all .3s;
+      };
+      &.is-selected:after,
+      &:hover:after {
+        width: 50%;
+        margin-left: -25%;
+      }
+      &.is-selected,
+      &.is-active {
+        letter-spacing: .04em;
+        &:after {
+          background: #000;
+        }
       }
     }
   }
@@ -98,35 +131,7 @@
 @include if (( width: 840px )){
   .header {
     &_menu {
-      &_link {
-        font-size: 16px;
-        letter-spacing: .08em;
-        padding: 5px 10px;
-        position: relative;
-        &:after {
-          content: '';
-          position: absolute;
-          top: 100%;
-          width: 0%;
-          margin-left: 0%;
-          left: 50%;
-          height: 1px;
-          background: #999;
-          transition: all .3s;
-        };
-        &.is-selected:after,
-        &:hover:after {
-          width: 50%;
-          margin-left: -25%;
-        }
-        &.is-selected,
-        &.is-active {
-          letter-spacing: .04em;
-          &:after {
-            background: #000;
-          }
-        }
-      }
+      
     }
   }
 }

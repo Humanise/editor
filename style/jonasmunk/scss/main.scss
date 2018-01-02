@@ -3,6 +3,7 @@ $target: async;
 
 @import 'parts/header';
 @import 'parts/submenu';
+@import 'parts/intro';
 
 @include if {
   body

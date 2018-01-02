@@ -1,5 +1,14 @@
 .header {
-  padding-top: 5px; }
+  padding-top: 5px;
+  /*
+  &:after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: .55px;
+    background: #000;
+    margin: 10px auto;
+  };*/ }
 
 .header_logo {
   display: block;
@@ -60,32 +69,28 @@
     padding: 25px 0 0 0;
     text-align: right; }
     .header_menu_link {
+      font-size: 16px;
+      letter-spacing: .08em;
+      padding: 5px 10px;
+      position: relative;
       color: #999; }
-      .header_menu_link:hover {
-        text-decoration: none; } }
-@media screen and (min-width: 840px) {
-  .header_menu_link {
-    font-size: 16px;
-    letter-spacing: .08em;
-    padding: 5px 10px;
-    position: relative; }
-    .header_menu_link:after {
-      content: '';
-      position: absolute;
-      top: 100%;
-      width: 0%;
-      margin-left: 0%;
-      left: 50%;
-      height: 1px;
-      background: #999;
-      transition: all .3s; }
-    .header_menu_link.is-selected:after, .header_menu_link:hover:after {
-      width: 50%;
-      margin-left: -25%; }
-    .header_menu_link.is-selected, .header_menu_link.is-active {
-      letter-spacing: .04em; }
-      .header_menu_link.is-selected:after, .header_menu_link.is-active:after {
-        background: #000; } }
+      .header_menu_link:after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        width: 0%;
+        margin-left: 0%;
+        left: 50%;
+        height: 1px;
+        background: #999;
+        transition: all .3s; }
+      .header_menu_link.is-selected:after, .header_menu_link:hover:after {
+        width: 50%;
+        margin-left: -25%; }
+      .header_menu_link.is-selected, .header_menu_link.is-active {
+        letter-spacing: .04em; }
+        .header_menu_link.is-selected:after, .header_menu_link.is-active:after {
+          background: #000; } }
 .submenu {
   list-style: none;
   margin: -15px -20px 20px -5px;
@@ -126,6 +131,33 @@
     text-align: left; }
     .submenu_link {
       padding: 0 10px; } }
+.intro_photo {
+  max-width: 240px;
+  margin: 0 auto; }
+.intro_body {
+  text-align: center;
+  font-weight: 400; }
+.intro_title {
+  line-height: 1;
+  margin: 20px 0 0;
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 2px; }
+.intro_job {
+  margin: 5px 0;
+  color: #666; }
+.intro_links {
+  list-style: none;
+  padding: 0; }
+
+@media screen and (min-width: 600px) {
+  .intro {
+    display: flex;
+    margin: 30px 60px; }
+    .intro_photo {
+      max-width: none;
+      flex-basis: 40%; } }
 body {
   margin: 0;
   padding: 0;
