@@ -41,6 +41,11 @@ class Response {
     header("Pragma: hack");
   }
 
+  static function noCache() {
+    header('Cache-Control: no-cache, no-store, must-revalidate');
+    header("Expires: " . gmdate("D, d M Y H:i:s", 0) . " GMT");
+  }
+
   static function redirect($url) {
     session_write_close();
     header('Location: ' . $url);
