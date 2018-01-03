@@ -14,8 +14,7 @@
     "@parts",
     "style/jonasmunk/css/overwrite.css",
     "style/jonasmunk/css/main.css",
-    "style/jonasmunk/css/vitae.css",
-    "style/jonasmunk/css/front.css"
+    "style/jonasmunk/css/vitae.css"
   ],
   "js" : [
     "style/jonasmunk/js/vitae.js",

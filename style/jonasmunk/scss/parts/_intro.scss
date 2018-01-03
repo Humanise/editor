@@ -13,32 +13,77 @@
       margin: 20px 0 0;
       font-size: 20px;
       text-transform: uppercase;
-      font-weight: 500;
-      letter-spacing: 2px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      font-family: 'Cormorant';
     }
     &_job {
       margin: 5px 0;
-      color: #666;
+      color: #555;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 2px;
+      font-weight: 300;
     }
     &_links {
       list-style: none;
       padding: 0;
     }
+    &_link {
+      margin: 5px 0;
+    }
   }
 }
 
-@include if(( width: 600px )) {
+@include if(( width: 360px )) {
+  .intro {
+    &_title {
+      font-size: 22px;
+      letter-spacing: 2px;
+    }
+  }
+}
+
+@include if(( width: 700px )) {
+
   .intro {
     display: flex;
-    margin: 30px 60px;
+    margin: 30px 30px;
+
     &_photo {
       max-width: none;
-      flex-basis: 40%;
+      flex-basis: 35%;
     }
+
+    &_title {
+      font-size: 28px;
+      font-weight: 300;
+    }
+
     &_body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
+
+    &_address {
+      margin-top: 20px;
+    }
+
     &_link {
-      
+      display: inline-block;
+      > a {
+        padding: 5px;
+      }
+    }
+  }
+}
+
+@include if(( width: 1000px )) {
+  .intro {
+    &_title {
+      font-size: 40px;
+      letter-spacing: 2px;
     }
   }
 }
