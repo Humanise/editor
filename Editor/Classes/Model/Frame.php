@@ -20,7 +20,7 @@ Entity::$schema['Frame'] = [
     'searchEnabled' => ['type' => 'boolean', 'column' => 'searchenabled'],
     'userStatusEnabled' => ['type' => 'boolean', 'column' => 'userstatusenabled'],
     'searchPageId' => ['type' => 'int', 'column' => 'searchpage_id', 'relation' => ['class' => 'Page', 'property' => 'id']],
-      'loginPageId' => ['type' => 'int', 'column' => 'userstatuspage_id', 'relation' => ['class' => 'Page', 'property' => 'id']],
+    'loginPageId' => ['type' => 'int', 'column' => 'userstatuspage_id', 'relation' => ['class' => 'Page', 'property' => 'id']],
     'hierarchyId' => ['type' => 'int', 'column' => 'hierarchy_id', 'relation' => ['class' => 'Hierarchy', 'property' => 'id']]
   ]
 ];
