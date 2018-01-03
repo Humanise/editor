@@ -181,9 +181,8 @@ var linkController = {
       $object : function(obj) {
         this.panelLinkInfo = obj;
         linkInfo.setContent(obj.rendering);
-        linkPanel.position(info.node);
         visitLink.setEnabled(obj.type=='page' || obj.type=='url');
-        linkPanel.show();
+        linkPanel.show({target: info.node});
       }.bind(this)
     })
   },

@@ -189,6 +189,7 @@ class DesignService {
     }
     $out = DesignService::compileCSSfiles($files, $dev);
     if ($dev) {
+      Response::noCache();
       echo $out;
     } else {
       $tempFile = $cachedFile . '.tmp.css';
@@ -218,7 +219,7 @@ class DesignService {
     $out = '';
     foreach ($files as $file) {
       if ($developmentMode) {
-        $out .= '@import url(../../' . $file . ');' . PHP_EOL;
+        $out .= '@import url(../../' . $file . '?' . time() . ');' . PHP_EOL;
       } else {
         $folder = FileSystemService::folderOfPath($file);
         $css = DesignService::_read($file);

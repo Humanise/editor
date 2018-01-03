@@ -1,0 +1,44 @@
+@include if {
+  .intro {
+    &_photo {
+      max-width: 240px;
+      margin: 0 auto;
+    }
+    &_body {
+      text-align: center;
+      font-weight: 400;
+    }
+    &_title {
+      line-height: 1;
+      margin: 20px 0 0;
+      font-size: 20px;
+      text-transform: uppercase;
+      font-weight: 500;
+      letter-spacing: 2px;
+    }
+    &_job {
+      margin: 5px 0;
+      color: #666;
+    }
+    &_links {
+      list-style: none;
+      padding: 0;
+    }
+  }
+}
+
+@include if(( width: 600px )) {
+  .intro {
+    display: flex;
+    margin: 30px 60px;
+    &_photo {
+      max-width: none;
+      flex-basis: 40%;
+    }
+    &_body {
+    }
+    &_link {
+      
+    }
+  }
+}
