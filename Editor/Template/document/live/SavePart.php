@@ -9,20 +9,20 @@ $id = Request::getInt('id');
 $pageId = Request::getInt('pageId');
 $type = Request::getString('type');
 
-$section = Request::getObject('section');
+$sectionData = Request::getObject('section');
 
+if ($section = DocumentSection::load($sectionData->id)) {
 
-$sql = "update document_section set" .
-" `left`=" . Database::text($section->left) .
-",`right`=" . Database::text($section->right) .
-",`top`=" . Database::text($section->top) .
-",`bottom`=" . Database::text($section->bottom) .
-",`float`=" . Database::text($section->float) .
-",`width`=" . Database::text($section->width) .
-",`class`=" . Database::text($section->class) .
-",`style`=" . Database::text($section->style) .
-" where id=" . Database::int($section->id);
-Database::update($sql);
+  $section->setTop($sectionData->top);
+  $section->setBottom($sectionData->bottom);
+  $section->setLeft($sectionData->left);
+  $section->setRight($sectionData->right);
+  $section->setFloat($sectionData->float);
+  $section->setWidth($sectionData->width);
+  $section->setClass($sectionData->class);
+  $section->setStyle($sectionData->style);
+  $section->save();
+}
 
 if ($ctrl = PartService::getController($type)) {
   $part = $ctrl->getFromRequest($id);

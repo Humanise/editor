@@ -6,30 +6,17 @@
 require_once '../../../Include/Private.php';
 $type = Request::getString('part_type');
 $id = Request::getInt('id');
-$section = Request::getInt('section');
-$top = Request::getString('top');
-$left = Request::getString('left');
-$bottom = Request::getString('bottom');
-$right = Request::getString('right');
-$float = Request::getString('float');
-$width = Request::getString('width');
-$class = Request::getString('section_class');
+$sectionId = Request::getInt('section');
 
-$sql = "select page_id from document_section where id=@int(id)";
-if ($sectionRow = Database::selectFirst($sql,['id' => $section])) {
-  $pageId = intval($sectionRow['page_id']);
-
-  // update the section
-  $sql = "update document_section set" .
-  " `left`=" . Database::text($left) .
-  ",`right`=" . Database::text($right) .
-  ",`top`=" . Database::text($top) .
-  ",`bottom`=" . Database::text($bottom) .
-  ",`float`=" . Database::text($float) .
-  ",`width`=" . Database::text($width) .
-  ",`class`=" . Database::text($class) .
-  " where id=" . Database::int($section);
-  Database::update($sql);
+if ($section = DocumentSection::load($sectionId)) {
+  $section->setTop(Request::getString('top'));
+  $section->setBottom(Request::getString('bottom'));
+  $section->setLeft(Request::getString('left'));
+  $section->setRight(Request::getString('right'));
+  $section->setFloat(Request::getString('float'));
+  $section->setWidth(Request::getString('width'));
+  $section->setClass(Request::getString('section_class'));
+  $section->save();
 
   $controller = PartService::getController($type);
   if ($controller && method_exists($controller,'getFromRequest')) {
@@ -39,11 +26,8 @@ if ($sectionRow = Database::selectFirst($sql,['id' => $section])) {
   }
 
   // Mark the page as changed
-  PageService::markChanged($pageId);
-
+  PageService::markChanged($section->getPageId());
 }
-
-
 
 Response::redirect('../Editor.php?section=0');
 ?>

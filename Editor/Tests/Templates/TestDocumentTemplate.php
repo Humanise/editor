@@ -67,6 +67,17 @@ class TestDocumentTemplate extends UnitTestCase {
     $this->assertTrue($sectionId !== null);
     $this->assertTrue($sectionId > 0);
 
+    $sectionObject = DocumentSection::load($sectionId);
+    $this->assertNotNull($sectionObject);
+    $this->assertEqual($sectionObject->getPageId(), $page->getId());
+    $this->assertEqual($sectionObject->getType(), 'part');
+
+    $sectionObject->setClass('my-class');
+    $sectionObject->save();
+
+    $part = TextPart::load($sectionObject->getPartId());
+    $this->assertNotNull($part);
+
     // Test importing data into another page...
     $other = TestService::createTestPage();
     $doc = DOMUtils::parse(Strings::toUnicode($data['data']));
