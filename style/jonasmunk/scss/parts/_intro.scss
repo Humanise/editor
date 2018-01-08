@@ -38,8 +38,8 @@
 @include if(( width: 360px )) {
   .intro {
     &_title {
-      font-size: 22px;
-      letter-spacing: 2px;
+      font-size: 24px;
+      letter-spacing: 1.5px;
     }
   }
 }
