@@ -7,8 +7,7 @@ require_once '../../../Include/Private.php';
 
 $id = Request::getInt('id');
 
-$column = DocumentTemplateEditor::loadColumn($id);
-if ($column) {
+if ($column = DocumentColumn::load($id)) {
   Response::sendObject($column);
 } else {
   Response::notFound();

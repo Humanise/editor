@@ -5,8 +5,7 @@
  */
 require_once '../../../Include/Private.php';
 
-DocumentTemplateEditor::updateColumn([
-  'id' => Request::getInt('id'),
+DocumentTemplateEditor::updateColumn(Request::getInt('id'), [
   'width' => Request::getString('width'),
   'left' => Request::getString('left'),
   'right' => Request::getString('right'),

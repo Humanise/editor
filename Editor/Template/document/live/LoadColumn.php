@@ -7,13 +7,11 @@ require_once '../../../Include/Private.php';
 
 $id = Request::getInt('id');
 
-$sql = "select `id`,`style`,`class` from `document_column` where `id`=@int(id)";
-$row = Database::selectFirst($sql, ['id' => $id]);
-if ($row) {
+if ($column = DocumentColumn::load($id)) {
   Response::sendObject([
-    'id' => intval($row['id']),
-    'class' => $row['class'],
-    'style' => $row['style']
+    'id' => $column->getId(),
+    'class' => $column->getClass(),
+    'style' => $column->getStyle()
   ]);
 } else {
   Response::notFound();

@@ -18,4 +18,9 @@ class Entity {
     return $this->id;
   }
 
+  function set($property, $value) {
+    if (property_exists(get_class($this), $property)) {
+      $this->$property = $value;
+    }
+  }
 }

@@ -5,8 +5,7 @@
  */
 require_once '../../../Include/Private.php';
 
-DocumentTemplateEditor::updateRow([
-  'id' => Request::getInt('id'),
+DocumentTemplateEditor::updateRow(Request::getInt('id'), [
   'top' => Request::getString('top'),
   'bottom' => Request::getString('bottom'),
   'spacing' => Request::getString('spacing'),
