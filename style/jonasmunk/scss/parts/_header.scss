@@ -1,6 +1,6 @@
 @include if {
   .header {
-    padding-top: 5px;
+    padding-top: 10px;
     /*
     &:after {
       content: '';
@@ -22,8 +22,8 @@
       content: '';
       background: url(../gfx/jonas.svg) 50% no-repeat;
       background-size: contain;
-      width: 110px;
-      height: 50px;
+      width: 130px;
+      height: 60px;
       display: inline-block;
       vertical-align: top;
       margin-top: 8px;
@@ -32,8 +32,8 @@
       content: '';
       background: url(../gfx/munk.svg) 50% no-repeat;
       background-size: contain;
-      width: 106px;
-      height: 41px;
+      width: 120px;
+      height: 50px;
       display: inline-block;
       vertical-align: top;
     }
@@ -82,9 +82,13 @@
     top: 14px;
 
     &:before {
+      width: 110px;
+      height: 50px;
     }
 
     &:after {
+      width: 106px;
+      height: 41px;
     }
   }
 

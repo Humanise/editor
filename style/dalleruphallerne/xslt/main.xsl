@@ -29,6 +29,7 @@
       </xsl:if>
       <xsl:value-of select="f:frame/@title"/>
     </title>
+    <meta name="format-detection" content="telephone=no"/>
     <xsl:call-template name="util:viewport"/>
     <xsl:call-template name="util:metatags"/>
     <xsl:call-template name="util:js"/>

@@ -104,13 +104,13 @@ $target : async;
     &_menu {
       font-family: $cv-font;
       margin: 0 -10px 20px;
-      padding: 10px 0 15px 5px;
+      padding: 5px 0 15px 5px;
       text-align: left;
       position: -webkit-sticky;
       position: sticky;
       top: -1px;
       background: rgba(255,255,255,.8);
-      -webkit-backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(3px);
       z-index: 9;
       -webkit-mask-image: linear-gradient(rgba(0, 0, 0, 1) 85%, transparent);
       font-size: 0;
@@ -236,6 +236,8 @@ $target : async;
     }
 
     &_menu {
+      padding-top: 10px;
+      margin-top: -5px;
       &_link {
         max-width: none;
       }
@@ -249,7 +251,7 @@ $target : async;
 
     &_menu {
       margin-top: 0;
-      padding-top: 10px;
+      padding-top: 5px;
 
       &_link {
         padding: 0 6px;

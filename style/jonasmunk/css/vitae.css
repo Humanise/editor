@@ -131,13 +131,13 @@
 .vitae_menu {
   font-family: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
   margin: 0 -10px 20px;
-  padding: 10px 0 15px 5px;
+  padding: 5px 0 15px 5px;
   text-align: left;
   position: -webkit-sticky;
   position: sticky;
   top: -1px;
   background: rgba(255, 255, 255, 0.8);
-  -webkit-backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(3px);
   z-index: 9;
   -webkit-mask-image: linear-gradient(black 85%, transparent);
   font-size: 0; }
@@ -212,12 +212,15 @@
 @media screen and (min-width: 375px) {
   .vitae_content {
     padding: 5px 15px; }
-  .vitae_menu_link {
-    max-width: none; } }
+  .vitae_menu {
+    padding-top: 10px;
+    margin-top: -5px; }
+    .vitae_menu_link {
+      max-width: none; } }
 @media screen and (min-width: 400px) {
   .vitae_menu {
     margin-top: 0;
-    padding-top: 10px; }
+    padding-top: 5px; }
     .vitae_menu_link {
       padding: 0 6px;
       text-transform: uppercase; } }

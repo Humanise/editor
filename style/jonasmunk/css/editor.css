@@ -147,8 +147,8 @@
 
 @media screen and (min-width: 360px) {
   .intro_title {
-    font-size: 22px;
-    letter-spacing: 2px; } }
+    font-size: 24px;
+    letter-spacing: 1.5px; } }
 @media screen and (min-width: 700px) {
   .intro {
     display: flex;
