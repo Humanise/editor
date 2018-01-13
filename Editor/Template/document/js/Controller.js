@@ -339,46 +339,10 @@ var controller = {
       }
     })
   },
-  editSectionAsync : function(id) {
-    var section;
-    if (this.activeSection) {
-      section = hui.get('section'+this.activeSection);
-      if (section) {
-        hui.cls.remove(section,'editor_section_selected');
-        if (this._oldMarkup) {
-          //alert(this._oldMarkup)
-          section.innerHTML = this._oldMarkup;
-        }
-      }
-    }
-    section = hui.get('section'+id);
-    this._oldMarkup = section.innerHTML;
-    hui.cls.add(document.body,'editor_edit_section_mode');
-    this.activeSection = id;
-    this.partControls.hide();
-    hui.ui.request({
-      url : 'data/SectionEditor.php',
-      parameters : {id : id},
-      $object : function(obj) {
-        hui.cls.add(section,'editor_section_selected');
-        section.innerHTML = obj.html;
-        hui.dom.runScripts(section);
-        parent.frames[0].location='PartToolbar.php?sectionId='+id+'&partId='+obj.partId+'&partType='+obj.partType;
-        hui.require('../../Parts/'+obj.partType+'/script.js',function() {
-          hui.log('Part controller loaded');
-        })
-        this._showPartEditControls();
-      }.bind(this),
-      $exception : function(e) {
-        throw e
-      }
-    })
-  },
   _markSectionSelected : function(id) {
 
   },
   editSection : function(id) {
-    //this.editSectionAsync(id); return;
     document.location = 'Editor.php?section='+id;
   },
   deleteSection : function(id) {
