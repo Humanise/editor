@@ -31,7 +31,7 @@ class PageService {
   }
 
   static function exists($id) {
-    return !Database::isEmpty("SELECT id from page where id=" . Database::int($id));
+    return !Database::isEmpty("SELECT id from page where id = @id", $id);
   }
 
   static function getLatestPageId() {
@@ -44,16 +44,16 @@ class PageService {
   }
 
   static function getLanguage($id) {
-    $sql = "SELECT language from page where id=" . Database::int($id);
-    if ($row = Database::selectFirst($sql)) {
+    $sql = "SELECT language from page where id = @id";
+    if ($row = Database::selectFirst($sql, $id)) {
       return strtolower($row['language']);
     }
     return null;
   }
 
   static function getPath($id) {
-    $sql = "SELECT path from page where id=@int(id)";
-    if ($row = Database::selectFirst($sql,['id' => $id])) {
+    $sql = "SELECT path from page where id = @int(id)";
+    if ($row = Database::selectFirst($sql, $id)) {
       return trim($row['path']);
     }
     return null;
@@ -66,14 +66,14 @@ class PageService {
   }
 
   static function getChangedPageCount() {
-    $sql = "SELECT count(id) as count from page where page.changed>page.published";
+    $sql = "SELECT count(id) as count from page where page.changed > page.published";
     $row = Database::selectFirst($sql);
     return intval($row['count']);
   }
 
   static function getLatestPageCount() {
-    $sql = "SELECT count(id) as count from page where page.changed>" . Database::datetime(Dates::addDays(time(),-1));
-    $row = Database::selectFirst($sql);
+    $sql = "SELECT count(id) as count from page where page.changed > @datetime(time)";
+    $row = Database::selectFirst($sql, ['time' => Dates::addDays(time(),-1)]);
     return intval($row['count']);
   }
 
@@ -143,42 +143,49 @@ class PageService {
   }
 
   static function getPageTranslationList($id) {
-    $sql = "SELECT page_translation.id,page.title,page.language from page,page_translation where page.id=page_translation.translation_id and page_translation.page_id=" . Database::int($id);
-    return Database::selectAll($sql);
+    $sql = "SELECT page_translation.id, page.title, page.language from page, page_translation where page.id = page_translation.translation_id and page_translation.page_id = @id order by page.title";
+    return Database::selectAll($sql, $id);
   }
 
   static function addPageTranslation($page,$translation) {
-    $sql = "INSERT into page_translation (page_id,translation_id) values (" . Database::int($page) . "," . Database::int($translation) . ")";
-    Database::insert($sql);
-    PageService::markChanged($page);
-  }
-
-  static function removePageTranslation($id) {
-    $sql = "SELECT * from page_translation where id=" . Database::int($id);
-    if ($row = Database::selectFirst($sql)) {
-      $sql = "delete from page_translation where id=" . Database::int($id);
-      Database::delete($sql);
-      PageService::markChanged($row['page_id']);
+    $params = ['page' => $page, 'translation' => $translation];
+    $sql = "select id from page_translation where page_id = @int(page) and translation_id = @int(translation)";
+    if (Database::isEmpty($sql, $params)) {
+      $sql = "INSERT into page_translation (page_id,translation_id) values (@int(page), @int(translation))";
+      Database::insert($sql, $params);
+      PageService::markChanged($page);
     }
   }
 
-  static function markChanged($id) {
-      $sql = "UPDATE page set changed=now() where id=" . Database::int($id);
-    Database::update($sql);
-  }
-
-  static function isChanged($id) {
-    $sql = "SELECT changed-published as delta from page where id=" . Database::int($id);
-    $row = Database::selectFirst($sql);
-    if ($row['delta'] > 0) {
+  static function removePageTranslation($id) {
+    $sql = "SELECT page_id from page_translation where id = @id";
+    if ($row = Database::selectFirst($sql, $id)) {
+      $sql = "delete from page_translation where id = @id";
+      Database::delete($sql, $id);
+      PageService::markChanged($row['page_id']);
       return true;
     }
     return false;
   }
 
+  static function markChanged($id) {
+    $sql = "UPDATE page set changed=now() where id = @id";
+    Database::update($sql, $id);
+  }
+
+  static function isChanged($id) {
+    $sql = "SELECT changed-published as delta from page where id = @id";
+    if ($row = Database::selectFirst($sql, $id)) {
+      if ($row['delta'] > 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   static function getIndex($pageId) {
-    $sql = "SELECT `index` from page where id=" . Database::int($pageId);
-    $row = Database::selectFirst($sql);
+    $sql = "SELECT `index` from page where id = @id";
+    $row = Database::selectFirst($sql, $pageId);
     if ($row) {
       return $row['index'];
     }
@@ -187,11 +194,11 @@ class PageService {
 
   static function getLinkText($pageId) {
     $text = '';
-    $sql = "SELECT text,document_section.page_id from part_text,document_section where document_section.part_id=part_text.part_id and page_id=" . Database::int($pageId) . "
-      union select text,document_section.page_id from part_header,document_section where document_section.part_id=part_header.part_id and page_id=" . Database::int($pageId) . "
-      union select text,document_section.page_id from part_listing,document_section where document_section.part_id=part_listing.part_id and page_id=" . Database::int($pageId) . "
-      union select html as text,document_section.page_id from part_table,document_section where document_section.part_id=part_table.part_id and page_id=" . Database::int($pageId);
-    $result = Database::select($sql);
+    $sql = "SELECT text from part_text,document_section where document_section.part_id = part_text.part_id and page_id = @id
+      union select text from part_header,document_section where document_section.part_id = part_header.part_id and page_id = @id
+      union select text from part_listing,document_section where document_section.part_id = part_listing.part_id and page_id = @id
+      union select html as text from part_table,document_section where document_section.part_id = part_table.part_id and page_id = @id";
+    $result = Database::select($sql, $pageId);
     while ($row = Database::next($result)) {
       $text .= ' ' . $row['text'];
     }
@@ -200,9 +207,9 @@ class PageService {
   }
 
   static function updateSecureStateOfAllPages() {
-    $sql = "UPDATE page set secure=1";
+    $sql = "UPDATE page set secure = 1";
     Database::update($sql);
-    $sql = "UPDATE page left join securityzone_page on page.id=securityzone_page.page_id set page.secure=0 where securityzone_page.securityzone_id is null";
+    $sql = "UPDATE page left join securityzone_page on page.id = securityzone_page.page_id set page.secure = 0 where securityzone_page.securityzone_id is null";
     Database::update($sql);
   }
 
@@ -216,9 +223,9 @@ class PageService {
       return;
     }
     $parameters = ['pageId' => $pageId, 'zoneId' => $zoneId];
-    $sql = "DELETE from securityzone_page where page_id=@int(pageId) and securityzone_id=@int(zoneId)";
+    $sql = "DELETE from securityzone_page where page_id = @int(pageId) and securityzone_id = @int(zoneId)";
     Database::delete($sql,$parameters);
-    $sql = "INSERT into securityzone_page (page_id,securityzone_id) values (@int(pageId),@int(zoneId))";
+    $sql = "INSERT into securityzone_page (page_id, securityzone_id) values (@int(pageId), @int(zoneId))";
     Database::insert($sql,$parameters);
     PageService::updateSecureStateOfAllPages();
   }
@@ -233,7 +240,7 @@ class PageService {
       return;
     }
     $parameters = ['pageId' => $pageId, 'zoneId' => $zoneId];
-    $sql = "DELETE from securityzone_page where page_id=@int(pageId) and securityzone_id=@int(zoneId)";
+    $sql = "DELETE from securityzone_page where page_id = @int(pageId) and securityzone_id = @int(zoneId)";
     Database::delete($sql,$parameters);
     PageService::updateSecureStateOfAllPages();
   }
@@ -248,9 +255,9 @@ class PageService {
       return;
     }
     $parameters = ['userId' => $userId, 'zoneId' => $zoneId];
-    $sql = "DELETE from securityzone_user where user_id=@int(userId) and securityzone_id=@int(zoneId)";
+    $sql = "DELETE from securityzone_user where user_id = @int(userId) and securityzone_id = @int(zoneId)";
     Database::delete($sql,$parameters);
-    $sql = "INSERT into securityzone_user (user_id,securityzone_id) values (@int(userId),@int(zoneId))";
+    $sql = "INSERT into securityzone_user (user_id, securityzone_id) values (@int(userId), @int(zoneId))";
     Database::insert($sql,$parameters);
   }
 
@@ -263,7 +270,7 @@ class PageService {
       Log::warn('Zone not found: ' . $zoneId);
       return;
     }
-    $sql = "DELETE from securityzone_user where user_id=@int(userId) and securityzone_id=@int(zoneId)";
+    $sql = "DELETE from securityzone_user where user_id = @int(userId) and securityzone_id = @int(zoneId)";
     Database::delete($sql, ['userId' => $userId, 'zoneId' => $zoneId]);
   }
 

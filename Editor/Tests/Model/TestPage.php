@@ -53,7 +53,13 @@ class TestPage extends UnitTestCase {
     $page->setDescription('My page description, find this: djsakJSDLjdasljslsdjljdslJ');
     $page->setPath('test/path.html');
     $page->setLanguage('en');
+
+    $countBefore = PageService::getLatestPageCount();
     $page->create();
+    $countAfter = PageService::getLatestPageCount();
+    $this->assertEqual($countBefore + 1, $countAfter);
+
+    $this->assertTrue(PageService::exists($page->getId()));
 
     $loaded = Page::load($page->getId());
     $this->assertNotNull($loaded);
@@ -93,6 +99,19 @@ class TestPage extends UnitTestCase {
     $this->assertFalse($frame->canRemove());
     $this->assertFalse($frame->remove());
 
+    $part = new TextPart();
+    $part->setText('this should be indexed');
+    $part->save();
+    DocumentTemplateEditor::addPartAtEnd($page->getId(), $part);
+
+    $page->publish();
+
+    // Index
+    $index = PageService::getIndex($page->getId());
+    $this->assertTrue(strpos($index, 'this should be indexed') !== false);
+
+    $linkText = PageService::getLinkText($page->getId());
+    $this->assertTrue(strpos($linkText, 'this should be indexed') !== false);
 
     $result = PageQuery::rows()->withText('djsakJSDLjdasljslsdjljdslJ')->search();
     $this->assertEqual($result->getTotal(),'1');
@@ -190,6 +209,35 @@ class TestPage extends UnitTestCase {
     $this->assertEqual($response->getStatusCode(),404);
 
     TestService::removeTestPage($page);
+  }
+
+  function TestTranslations() {
+    $english = TestService::createTestPage();
+    $english->setLanguage('en');
+    $english->save();
+
+    $danish = TestService::createTestPage();
+    $danish->setLanguage('da');
+    $danish->save();
+
+    $german = TestService::createTestPage();
+    $german->setLanguage('de');
+    $german->save();
+
+    PageService::addPageTranslation($english->getId(), $danish->getId());
+    PageService::addPageTranslation($english->getId(), $german->getId());
+    PageService::addPageTranslation($english->getId(), $german->getId());
+    $englishTranslations = PageService::getPageTranslationList($english->getId());
+    $this->assertEqual(2, count($englishTranslations));
+
+    $this->assertTrue(PageService::removePageTranslation($englishTranslations[0]['id']));
+
+    $englishTranslations = PageService::getPageTranslationList($english->getId());
+    $this->assertEqual(1, count($englishTranslations));
+
+    TestService::removeTestPage($english);
+    TestService::removeTestPage($danish);
+    TestService::removeTestPage($german);
   }
 }
 ?>
