@@ -11,7 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestDocumentTemplate extends UnitTestCase {
 
-  function testIt() {
+  function testVarious() {
     $page = TestService::createTestPage();
 
     $ctrl = new DocumentTemplateController();
@@ -357,6 +357,15 @@ class TestDocumentTemplate extends UnitTestCase {
       'columnIndex' => 2, // zero based
       'sectionIndex' => 0 // zero based
     ]));
+
+    $structure = DocumentTemplateEditor::getStructure($page->getId());
+    $this->assertEqual(3, count($structure[2]['columns'][1]['sections']));
+
+    DocumentTemplateEditor::deleteSection($sectionId);
+    $this->assertNull(DocumentSection::load($sectionId));
+
+    $structure = DocumentTemplateEditor::getStructure($page->getId());
+    $this->assertEqual(2, count($structure[2]['columns'][1]['sections']));
 
     TestService::removeTestPage($page);
   }

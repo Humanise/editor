@@ -170,11 +170,11 @@ class DocumentTemplateEditor
       return false;
     }
 
-    $sql = "select * from document_column where row_id=" . Database::int($rowId) . " and `index`>" . Database::int($index);
-    $result = Database::select($sql);
+    $sql = "select * from document_column where row_id = @int(rowId) and `index` > @int(index)";
+    $result = Database::select($sql, ['rowId' => $rowId, 'index' => $index]);
     while ($row = Database::next($result)) {
-      $sql = "update document_column set `index`=" . Database::int($row['index'] - 1) . " where id=" . Database::int($row['id']);
-      Database::update($sql);
+      $sql = "update document_column set `index` = @int(index) where id = @id";
+      Database::update($sql, ['index' => $row['index'] - 1, 'id' => $row['id']]);
     }
     Database::free($result);
 
@@ -223,11 +223,11 @@ class DocumentTemplateEditor
     $partType = $row['part_type'];
     $partId = $row['part_id'];
 
-    $sql = "select * from document_section where column_id=" . Database::int($columnId) . " and `index`>" . Database::int($index);
-    $result = Database::select($sql);
+    $sql = "select * from document_section where column_id = @id and `index` > @int(index)";
+    $result = Database::select($sql, ['id' => $columnId, 'index' => $index]);
     while ($row = Database::next($result)) {
-      $sql = "update document_section set `index`=" . Database::int($row['index'] - 1) . " where id=" . Database::int($row['id']);
-      Database::update($sql);
+      $sql = "update document_section set `index` = @int(index) where id = @id";
+      Database::update($sql, ['id' => $row['id'], 'index' => $row['index'] - 1]);
     }
     Database::free($result);
 
@@ -258,19 +258,21 @@ class DocumentTemplateEditor
     }
     Database::free($result);
 
-    $sql = "insert into document_row (page_id,`index`) values (" . Database::int($pageId) . "," . Database::int($index) . ")";
-    $rowId = Database::insert($sql);
+    $row = new DocumentRow();
+    $row->setPageId($pageId);
+    $row->setIndex($index);
+    $row->save();
 
     $column = new DocumentColumn();
     $column->setPageId($pageId);
-    $column->setRowId($rowId);
+    $column->setRowId($row->getId());
     $column->setIndex(1);
     $column->save();
 
     DocumentTemplateEditor::fixStructure($pageId);
     PageService::markChanged($pageId);
 
-    return $rowId;
+    return $row->getId();
   }
 
   static function addColumn($rowId, $index) {
@@ -426,12 +428,12 @@ class DocumentTemplateEditor
     $newIndex = $index + $direction;
 
     $sql = "select * from document_row where `index` = @int(index) and page_id = @int(pageId)";
-    $row_next = Database::selectFirst($sql, ['index' => $newIndex, 'pageId' => $row->getPageId()]);
-    if ($row_next) {
-      $next_id = $row_next['id'];
+    $otherRow = Database::selectFirst($sql, ['index' => $newIndex, 'pageId' => $row->getPageId()]);
+    if ($otherRow) {
       $row->setIndex($newIndex);
       $row->save();
-      Database::update("update document_row set `index`=" . Database::int($index) . " where id=" . Database::int($next_id));
+      $sql = "update document_row set `index` = @int(index) where id = @id";
+      Database::update($sql, ['index' => $index, 'id' => $otherRow['id']]);
 
       PageService::markChanged($row->getPageId());
       return true;
@@ -455,17 +457,12 @@ class DocumentTemplateEditor
     $rowId = $row['row_id'];
 
     $sql = "select * from document_column where `index` = @int(newIndex) and row_id = @id";
-    $row_next = Database::selectFirst($sql, ['newIndex' => $newIndex, 'id' => $rowId]);
-    if ($row_next) {
-      $next_id = $row_next['id'];
-      Database::update(
-        "update document_column set `index` = @int(index) where id = @id",
-        ['index' => $newIndex, 'id' => $columnId]
-      );
-      Database::update(
-        "update document_column set `index` = @int(index) where id = @id",
-        ['index' => $index, 'id' => $row_next['id']]
-      );
+    $otherColumn = Database::selectFirst($sql, ['newIndex' => $newIndex, 'id' => $rowId]);
+    if ($otherColumn) {
+      $sql = "update document_column set `index` = @int(index) where id = @id";
+      Database::update($sql, ['index' => $newIndex, 'id' => $columnId]);
+      $sql = "update document_column set `index` = @int(index) where id = @id";
+      Database::update($sql, ['index' => $index, 'id' => $otherColumn['id']]);
       PageService::markChanged($row['page_id']);
       return true;
     }
