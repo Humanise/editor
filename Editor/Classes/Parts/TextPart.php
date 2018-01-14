@@ -10,6 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['TextPart'] = [
   'table' => 'part_text',
+  'identity' => 'part_id',
   'properties' => [
     'text' => ['type' => 'string'],
     'textAlign' => [ 'type' => 'string', 'column' => 'textalign' ],

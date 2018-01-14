@@ -134,8 +134,8 @@ class PageService {
   }
 
   static function getBlueprintsByTemplate($template) {
-    $sql = "SELECT object_id as id from pageblueprint,template where pageblueprint.template_id = template.`id` and template.`unique`=" . Database::text($template);
-    $ids = Database::getIds($sql);
+    $sql = "SELECT object_id as id from pageblueprint,template where pageblueprint.template_id = template.`id` and template.`unique` = @text(template)";
+    $ids = Database::getIds($sql, ['template' => $template]);
     if (count($ids) > 0) {
       return Query::after('pageblueprint')->withIds($ids)->orderBy('title')->get();
     }
@@ -353,12 +353,12 @@ class PageService {
     if (!$page->getTemplateId()) {
       return false;
     }
-    $sql = "SELECT id from template where id=" . Database::int($page->getTemplateId());
-    if (Database::isEmpty($sql)) {
+    $sql = "SELECT id from template where id = @id";
+    if (Database::isEmpty($sql, $page->getTemplateId())) {
       return false;
     }
-    $sql = "SELECT id from frame where id=" . Database::int($page->getFrameId());
-    if (Database::isEmpty($sql)) {
+    $sql = "SELECT id from frame where id = @id";
+    if (Database::isEmpty($sql, $page->getFrameId())) {
       return false;
     }
     $design = Design::load($page->getDesignId());
@@ -372,23 +372,12 @@ class PageService {
     if (!PageService::validate($page)) {
       return false;
     }
+    $time = time();
+    $page->setCreated($time);
+    $page->setChanged($time);
+    $page->setPublished($time);
+    ModelService::save($page);
 
-    $sql = "INSERT into page (title,description,keywords,path,template_id,created,changed,published,frame_id,design_id,language,next_page,previous_page) values (" .
-    Database::text($page->getTitle()) .
-    "," . Database::text($page->getDescription()) .
-    "," . Database::text($page->getKeywords()) .
-    "," . Database::text($page->getPath()) .
-    "," . Database::int($page->getTemplateId()) .
-    ",now()" .
-    ",now()" .
-    ",now()" .
-    "," . Database::int($page->getFrameId()) .
-    "," . Database::int($page->getDesignId()) .
-    "," . Database::text($page->getLanguage()) .
-    "," . Database::int($page->getNextPage()) .
-    "," . Database::int($page->getPreviousPage()) .
-    ")";
-    $page->id = Database::insert($sql);
     PageService::_createTemplate($page);
     return true;
   }
@@ -436,31 +425,7 @@ class PageService {
   }
 
   static function load($id) {
-    $sql = "select page.*,UNIX_TIMESTAMP(page.changed) as changed_unix,UNIX_TIMESTAMP(page.published) as published_unix,template.unique" .
-    " from page,template where template.id=page.template_id and page.id = @id";
-    if ($row = Database::selectFirst($sql, $id)) {
-      $output = new Page();
-      $output->setId($row['id']);
-      $output->setName($row['name']);
-      $output->setPath($row['path']);
-      $output->setTemplateId($row['template_id']);
-      $output->templateUnique = $row['unique'];
-      $output->setDesignId(intval($row['design_id']));
-      $output->setFrameId(intval($row['frame_id']));
-      $output->setTitle($row['title']);
-      $output->setDescription($row['description']);
-      $output->setKeywords($row['keywords']);
-      $output->setLanguage($row['language']);
-      $output->setData($row['data']);
-      $output->setSearchable($row['searchable'] == 1);
-      $output->setDisabled($row['disabled'] == 1);
-      $output->setNextPage($row['next_page']);
-      $output->setPreviousPage($row['previous_page']);
-      $output->changed = intval($row['changed_unix']);
-      $output->published = intval($row['published_unix']);
-      return $output;
-    }
-    return null;
+    return ModelService::load('Page', $id);
   }
 
   static function save($page) {
@@ -488,19 +453,7 @@ class PageService {
         }
       }
 
-      $sql = "update page set" .
-      " title=" . Database::text($page->getTitle()) .
-      ",description=" . Database::text($page->getDescription()) .
-      ",path=" . Database::text($page->getPath()) .
-      ",keywords=" . Database::text($page->getKeywords()) .
-      ",language=" . Database::text($page->getLanguage()) .
-      ",searchable=" . Database::boolean($page->getSearchable()) .
-      ",disabled=" . Database::boolean($page->getDisabled()) .
-      ",design_id=" . Database::int($page->getDesignId()) .
-      ",frame_id=" . Database::int($page->getFrameId()) .
-      ",template_id=" . Database::int($page->getTemplateId()) .
-      " where id=" . Database::int($page->getId());
-      $success = Database::update($sql);
+      $success = ModelService::save($page);
 
       if ($success) {
         PageService::markChanged($page->getId());
@@ -520,7 +473,7 @@ class PageService {
   }
 
 
-  static function reconstruct($pageId,$historyId) {
+  static function reconstruct($pageId, $historyId) {
     $page = PageService::load($pageId);
     if (!$page) {
       Log::debug('Page not found: ' . $pageId);
@@ -552,7 +505,7 @@ class PageService {
    * @param $title The title of the page
    * @param $placement If the new page should be placed 'below', 'before' or 'after'
    */
-  static function createPageContextually($pageId,$title,$placement) {
+  static function createPageContextually($pageId, $title, $placement) {
     if (!in_array($placement,['below', 'before', 'after'])) {
       Log::debug('Unsupported placement');
       return false;

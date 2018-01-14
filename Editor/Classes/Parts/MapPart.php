@@ -10,6 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['MapPart'] = [
   'table' => 'part_map',
+  'identity' => 'part_id',
   'properties' => [
     'provider' => [ 'type' => 'string' ],
     'latitude' => [ 'type' => 'float' ],

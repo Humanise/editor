@@ -10,6 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['RichtextPart'] = [
   'table' => 'part_richtext',
+  'identity' => 'part_id',
   'properties' => [
     'html' => [ 'type' => 'string' ]
   ]

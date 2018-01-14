@@ -10,6 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['AuthenticationPart'] = [
   'table' => 'part_authentication',
+  'identity' => 'part_id',
   'properties' => []
 ];
 

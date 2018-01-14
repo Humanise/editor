@@ -10,6 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['MailinglistPart'] = [
   'table' => 'part_mailinglist',
+  'identity' => 'part_id',
   'properties' => [
   ],
   'relations' => [

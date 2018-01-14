@@ -45,4 +45,8 @@ class Template extends Entity {
     Database::free($result);
     return $list;
   }
+
+  static function load($id) {
+    return TemplateService::getTemplateById($id);
+  }
 }

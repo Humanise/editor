@@ -10,6 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['HeaderPart'] = [
   'table' => 'part_header',
+  'identity' => 'part_id',
   'properties' => [
     'text' => ['type' => 'string'],
     'level' => ['type' => 'int' , 'column' => 'level'],

@@ -11,6 +11,78 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestPage extends UnitTestCase {
 
+  function testProperties() {
+
+    $page = TestService::createTestPage();
+
+    $title = "Eat my shorts!";
+    $description = "This is somthing no one will ever see";
+    $keywords = "key words";
+    $frameId = $page->getFrameId();
+    $designId = $page->getDesignId();
+    $language = "de";
+    $searchable = true;
+    $dynamic = true;
+    $secure = true;
+    $disabled = true;
+    $created = time();
+    $changed = time();
+    $published = time();
+    $data = "This is the data";
+    $index = "indexed is this";
+    $name = "name of the page this is";
+    $path = "/path/to/somewhere";
+    $nextPage = 30;
+    $previousPage = 56;
+
+    $page->setTitle($title);
+    $page->setDescription($description);
+    $page->setKeywords($keywords);
+    $page->setFrameId($frameId);
+    $page->setDesignId($designId);
+    $page->setLanguage($language);
+    $page->setSearchable($searchable);
+    $page->setDynamic($dynamic);
+    $page->setSecure($secure);
+    $page->setDisabled($disabled);
+    $page->setCreated($created);
+    $page->setChanged($changed);
+    $page->setPublished($published);
+    $page->setData($data);
+    $page->setIndex($index);
+    $page->setName($name);
+    $page->setPath($path);
+    $page->setNextPage($nextPage);
+    $page->setPreviousPage($previousPage);
+    $page->save();
+
+    $loaded = Page::load($page->getId());
+
+    $this->assertEqual($title, $loaded->getTitle());
+    $this->assertEqual($description, $loaded->getDescription());
+    $this->assertEqual($keywords, $loaded->getKeywords());
+    $this->assertEqual($frameId, $loaded->getFrameId());
+    $this->assertEqual($designId, $loaded->getDesignId());
+    $this->assertEqual($language, $loaded->getLanguage());
+    $this->assertEqual($searchable, $loaded->getSearchable());
+    $this->assertEqual($dynamic, $loaded->getDynamic());
+    $this->assertEqual($secure, $loaded->getSecure());
+    $this->assertEqual($disabled, $loaded->getDisabled());
+    $this->assertEqual($created, $loaded->getCreated());
+    $this->assertEqual($changed, $loaded->getChanged());
+    $this->assertEqual($published, $loaded->getPublished());
+    $this->assertEqual($data, $loaded->getData());
+    $this->assertEqual($index, $loaded->getIndex());
+    $this->assertEqual($name, $loaded->getName());
+    $this->assertEqual($path, $loaded->getPath());
+    $this->assertEqual($nextPage, $loaded->getNextPage());
+    $this->assertEqual($previousPage, $loaded->getPreviousPage());
+
+    $this->assertEqual('document', $loaded->getTemplateUnique());
+
+    TestService::removeTestPage($page);
+  }
+
   function testCreate() {
     $template = TemplateService::getTemplateByUnique('document');
     if (!$template) {

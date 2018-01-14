@@ -7,16 +7,25 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Page'] = [
   'table' => 'page',
   'properties' => [
+    'id' => ['type' => 'int'],
     'title' => ['type' => 'string'],
     'description' => ['type' => 'string'],
     'keywords' => ['type' => 'string'],
     'templateId' => ['type' => 'int', 'column' => 'template_id', 'relation' => ['class' => 'Template', 'property' => 'id']],
-//    'templateUnique' => array('type'=>'string'),
     'frameId' => ['type' => 'int', 'column' => 'frame_id', 'relation' => ['class' => 'Frame', 'property' => 'id']],
     'designId' => ['type' => 'int', 'column' => 'design_id', 'relation' => ['class' => 'Design', 'property' => 'id']],
+    'nextPage' => ['type' => 'int', 'column' => 'next_page', 'relation' => ['class' => 'Page', 'property' => 'id']],
+    'previousPage' => ['type' => 'int', 'column' => 'previous_page', 'relation' => ['class' => 'Page', 'property' => 'id']],
     'language' => ['type' => 'string'],
+    'data' => ['type' => 'string'],
+    'index' => ['type' => 'string'],
+    'path' => ['type' => 'string'],
+    'name' => ['type' => 'string'],
     'searchable' => ['type' => 'boolean'],
+    'dynamic' => ['type' => 'boolean'],
+    'secure' => ['type' => 'boolean'],
     'disabled' => ['type' => 'boolean'],
+    'created' => ['type' => 'datetime'],
     'changed' => ['type' => 'datetime'],
     'published' => ['type' => 'datetime']
   ]
@@ -27,15 +36,18 @@ class Page extends Entity {
   var $description;
   var $keywords;
   var $templateId;
-  var $templateUnique;
   var $frameId;
   var $designId;
   var $language;
   var $searchable;
+  var $dynamic;
+  var $secure;
   var $disabled;
+  var $created;
   var $changed;
   var $published;
   var $data;
+  var $index;
   var $name;
   var $path;
   var $nextPage;
@@ -59,7 +71,6 @@ class Page extends Entity {
   function getPath() {
     return $this->path;
   }
-
 
   function setTitle($title) {
     $this->title = $title;
@@ -91,6 +102,14 @@ class Page extends Entity {
 
   function getData() {
     return $this->data;
+  }
+
+  function setIndex($index) {
+    $this->index = $index;
+  }
+
+  function getIndex() {
+    return $this->index;
   }
 
   function setTemplateId($templateId) {
@@ -133,6 +152,22 @@ class Page extends Entity {
     return $this->searchable;
   }
 
+  function setSecure($secure) {
+    $this->secure = $secure;
+  }
+
+  function getSecure() {
+    return $this->secure;
+  }
+
+  function setDynamic($dynamic) {
+    $this->dynamic = $dynamic;
+  }
+
+  function getDynamic() {
+    return $this->dynamic;
+  }
+
   function setDisabled($disabled) {
     $this->disabled = $disabled;
   }
@@ -141,8 +176,24 @@ class Page extends Entity {
     return $this->disabled;
   }
 
+  function setCreated($created) {
+    $this->created = $created;
+  }
+
+  function getCreated() {
+    return $this->created;
+  }
+
+  function setChanged($changed) {
+    $this->changed = $changed;
+  }
+
   function getChanged() {
     return $this->changed;
+  }
+
+  function setPublished($published) {
+    $this->published = $published;
   }
 
   function getPublished() {
@@ -168,16 +219,14 @@ class Page extends Entity {
 
 /////////////////////////// Special ///////////////////////////
 
-  function setTemplate($template) {
-    $this->templateId = $template->getId();
-    $this->templateUnique = $template->getUnique();
-  }
-
   /**
    * WARNING: Only for persistent pages
    */
   function getTemplateUnique() {
-    return $this->templateUnique;
+    if ($template = Template::load($this->templateId)) {
+      return $template->getUnique();
+    }
+    return null;
   }
 
   function getIcon() {

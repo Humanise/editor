@@ -10,6 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['ListPart'] = [
   'table' => 'part_list',
+  'identity' => 'part_id',
   'properties' => [
     'align' => [ 'type' => 'string' ],
     'width' => [ 'type' => 'string' ],

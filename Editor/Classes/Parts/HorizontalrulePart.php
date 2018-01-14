@@ -10,6 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['HorizontalrulePart'] = [
   'table' => 'part_horizontalrule',
+  'identity' => 'part_id',
   'properties' => []
 ];
 

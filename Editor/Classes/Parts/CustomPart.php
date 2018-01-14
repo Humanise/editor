@@ -10,6 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['CustomPart'] = [
   'table' => 'part_custom',
+  'identity' => 'part_id',
   'properties' => [
     'workflowId' => [ 'type' => 'int', 'column' => 'workflow_id', 'relation' => ['class' => 'Workflow', 'property' => 'id'] ],
     'viewId' => [ 'type' => 'int', 'column' => 'view_id', 'relation' => ['class' => 'View', 'property' => 'id'] ]

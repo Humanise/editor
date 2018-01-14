@@ -57,7 +57,7 @@ class HtmlTemplateController extends TemplateController
       $sql = "delete from html where page_id = @id";
       Database::delete($sql, $page->getId());
 
-      $page->setTemplate($template);
+      $page->setTemplateId($template->getId());
       $page->save();
 
       $part = new HtmlPart();

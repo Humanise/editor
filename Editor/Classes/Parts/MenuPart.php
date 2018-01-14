@@ -10,6 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['MenuPart'] = [
   'table' => 'part_menu',
+  'identity' => 'part_id',
   'properties' => [
     'hierarchyId' => [ 'type' => 'int', 'column' => 'hierarchy_id', 'relation' => ['class' => 'Hierarchy', 'property' => 'id'] ],
     'header' => [ 'type' => 'string' ],

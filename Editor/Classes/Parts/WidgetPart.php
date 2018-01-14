@@ -10,6 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['WidgetPart'] = [
   'table' => 'part_widget',
+  'identity' => 'part_id',
   'properties' => [
     'key' => [ 'type' => 'string' ],
     'data' => [ 'type' => 'string' ]

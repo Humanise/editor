@@ -10,6 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['ImagePart'] = [
   'table' => 'part_image',
+  'identity' => 'part_id',
   'properties' => [
     'imageId' => ['type' => 'int', 'column' => 'image_id', 'relation' => ['class' => 'Image', 'property' => 'id']],
     'text' => [ 'type' => 'string' ],

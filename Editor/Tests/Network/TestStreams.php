@@ -21,7 +21,6 @@ class TestStreams extends UnitTestCase {
     $flow->add(new ParseFeedStage());
     $result = $flow->run();
     $this->assertNotNull($result);
-    Log::debug($result->getTitle());
   }
 
   function testWorkflowIntoStream() {
@@ -39,7 +38,6 @@ class TestStreams extends UnitTestCase {
     $flow->add(new PopulateStreamStage(['id' => $stream->getId(), 'itemPath' => 'items']));
     $result = $flow->run();
     $this->assertNotNull($result);
-    Log::debug($result->getTitle());
 
     $stream->remove();
   }

@@ -10,6 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['FilePart'] = [
   'table' => 'part_file',
+  'identity' => 'part_id',
   'properties' => [
     'fileId' => [ 'type' => 'int', 'column' => 'file_id', 'relation' => ['class' => 'File', 'property' => 'id'] ],
     'text' => [ 'type' => 'string' ]

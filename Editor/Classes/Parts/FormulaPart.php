@@ -10,6 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['FormulaPart'] = [
   'table' => 'part_formula',
+  'identity' => 'part_id',
   'properties' => [
     'receiverName' => ['type' => 'string', 'column' => 'receivername'],
     'receiverEmail' => ['type' => 'string', 'column' => 'receiveremail'],

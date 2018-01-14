@@ -18,13 +18,12 @@ class PublishingService {
       return;
     }
 
-    $sql = "update page set" .
-      " data=" . Database::text($result['data']) .
-      ",`index`=" . Database::text($result['index']) .
-      ",dynamic=" . Database::boolean($result['dynamic']) .
-      ",published=now()" .
-      " where id=" . Database::int($id);
-    Database::update($sql);
+    $page = Page::load($id);
+    $page->setData($result['data']);
+    $page->setIndex($result['index']);
+    $page->setDynamic($result['dynamic']);
+    $page->setPublished(time());
+    $page->save();
 
     PageService::createPageHistory($id, $result['data']);
 
@@ -38,13 +37,14 @@ class PublishingService {
       return;
     }
 
-    $sql = "update page set `index`=" . Database::text($result['index']) . " where id=" . Database::int($id);
-    Database::update($sql);
+    $page = Page::load($id);
+    $page->setIndex($result['index']);
+    $page->save();
   }
 
   static function buildPage($id) {
-    $sql = "select template.unique from page,template where page.template_id=template.id and page.id=" . Database::int($id);
-    if ($row = Database::selectFirst($sql)) {
+    $sql = "select template.unique from page, template where page.template_id = template.id and page.id = @id";
+    if ($row = Database::selectFirst($sql, $id)) {
       if ($controller = TemplateService::getController($row['unique'])) {
         if (method_exists($controller,'build')) {
           $result = $controller->build($id);
@@ -124,11 +124,11 @@ class PublishingService {
   }
 
   static function publishFrame($id) {
-    $sql = "select * from frame where id=@int(id)";
-    $row = Database::selectFirst($sql,['id' => $id]);
-        if (!$row) {
-            return;
-        }
+    $sql = "select * from frame where id = @id";
+    $row = Database::selectFirst($sql, $id);
+    if (!$row) {
+      return;
+    }
     $data = '';
     if ($row['searchenabled']) {
       $data .= '<search page="' . $row['searchpage_id'] . '">' .
@@ -167,10 +167,10 @@ class PublishingService {
     EventService::fireEvent('publish','frame',null,$id);
   }
 
-  static function buildFrameLinks($id,$position) {
+  static function buildFrameLinks($id, $position) {
     $out = '';
-    $sql = "select * from frame_link where position=" . Database::text($position) . " and frame_id=" . Database::int($id) . " order by `index`";
-    $result = Database::select($sql);
+    $sql = "select * from frame_link where position = @int(position) and frame_id = @id order by `index`";
+    $result = Database::select($sql, ['position' => $position, 'id' => $id ]);
     while ($row = Database::next($result)) {
       $out .= '<link title="' . Strings::escapeEncodedXML($row['title']) . '" alternative="' . Strings::escapeEncodedXML($row['alternative']) . '"';
       if ($row['target_type'] == 'page') {
@@ -193,8 +193,8 @@ class PublishingService {
 
   static function buildFrameNews($id) {
     $out = '';
-    $sql = "select * from frame_newsblock where frame_id=" . Database::int($id) . " order by `index`";
-    $result = Database::select($sql);
+    $sql = "select * from frame_newsblock where frame_id = @id order by `index`";
+    $result = Database::select($sql, $id);
     while ($row = Database::next($result)) {
       $out .= '<newsblock title="' . Strings::escapeEncodedXML($row['title']) . '">' .
       '<!--newsblock#' . $row['id'] . '-->' .

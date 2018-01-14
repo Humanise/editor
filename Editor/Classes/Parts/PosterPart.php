@@ -10,6 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['PosterPart'] = [
   'table' => 'part_poster',
+  'identity' => 'part_id',
   'properties' => [
     'recipe' => [ 'type' => 'string' ]
   ]

@@ -10,7 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 Entity::$schema['MoviePart'] = [
   'table' => 'part_movie',
-    'properties' => [
+  'identity' => 'part_id',
+  'properties' => [
     'fileId' => [ 'type' => 'int', 'column' => 'file_id'],
     'imageId' => [ 'type' => 'int', 'column' => 'image_id' ],
     'text' => [ 'type' => 'string' ],
