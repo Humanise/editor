@@ -17,13 +17,16 @@ class PublishingService {
     if (!$result) {
       return;
     }
-
-    $page = Page::load($id);
-    $page->setData($result['data']);
-    $page->setIndex($result['index']);
-    $page->setDynamic($result['dynamic']);
-    $page->setPublished(time());
-    $page->save();
+    $query = [
+      'table' => 'page',
+      'values' => [
+        'data' => ['text' => $result['data']],
+        'index' => ['text' => $result['index']],
+        'dynamic' => ['boolean' => $result['dynamic']]
+      ],
+      'where' => [ 'id' => ['int' => $id] ]
+    ];
+    Database::update($sql);
 
     PageService::createPageHistory($id, $result['data']);
 
