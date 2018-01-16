@@ -114,25 +114,25 @@ class ClassService {
     return $files;
   }
 
-    static function getByInterface($interface) {
+  static function getByInterface($interface) {
     global $HUMANISE_EDITOR_CLASSES;
-        if (is_array($HUMANISE_EDITOR_CLASSES['interfaces'][$interface])) {
-            return $HUMANISE_EDITOR_CLASSES['interfaces'][$interface];
-        }
-        return [];
+    if (is_array($HUMANISE_EDITOR_CLASSES['interfaces'][$interface])) {
+      return $HUMANISE_EDITOR_CLASSES['interfaces'][$interface];
     }
+    return [];
+  }
 
-    static function getBySuper($name) {
+  static function getBySuper($name) {
     global $HUMANISE_EDITOR_CLASSES;
-        if (is_array($HUMANISE_EDITOR_CLASSES['parents'][$name])) {
-            return $HUMANISE_EDITOR_CLASSES['parents'][$name];
-        }
-        return [];
+    if (is_array($HUMANISE_EDITOR_CLASSES['parents'][$name])) {
+      return $HUMANISE_EDITOR_CLASSES['parents'][$name];
     }
+    return [];
+  }
 
-    static function load($name) {
+  static function load($name) {
     return class_exists($name, true);
-    }
+  }
 
   static function getClasses() {
     global $basePath;
