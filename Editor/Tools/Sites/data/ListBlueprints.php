@@ -25,7 +25,7 @@ $writer->endHeaders();
 
 foreach ($result->getList() as $object) {
   $frame = Frame::load($object->getFrameId());
-  $template = TemplateService::getTemplateById($object->getTemplateId());
+  $template = Template::load($object->getTemplateId());
   $design = Design::load($object->getDesignId());
   $writer->startRow([ 'kind' => 'blueprint', 'id' => $object->getId(), 'icon' => $object->getIcon(), 'title' => $object->getTitle() ]);
   $writer->startCell()->text($object->getTitle())->endCell();

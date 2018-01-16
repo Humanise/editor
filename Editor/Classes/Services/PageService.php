@@ -383,7 +383,7 @@ class PageService {
   }
 
   static function _createTemplate($page) {
-    $template = TemplateService::getTemplateById($page->getTemplateId());
+    $template = Template::load($page->getTemplateId());
     $page->templateUnique = $template->getUnique();
     if ($controller = TemplateService::getController($page->getTemplateUnique())) {
       if (method_exists($controller,'create')) {

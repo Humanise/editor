@@ -11,19 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 class TemplateService {
 
   static function getTemplateByUnique($unique) {
-    $sql = "select id,`unique` from `template` where `unique`=" . Database::text($unique);
-    if ($row = Database::selectFirst($sql)) {
-      $template = new Template();
-      $template->setId(intval($row['id']));
-      $template->setUnique($row['unique']);
-      return $template;
-    }
-    return null;
-  }
-
-  static function getTemplateById($id) {
-    $sql = "select id,`unique` from `template` where id=" . Database::int($id);
-    if ($row = Database::selectFirst($sql)) {
+    $sql = "select id,`unique` from `template` where `unique` = @text(unique)";
+    if ($row = Database::selectFirst($sql, ['unique' => $unique])) {
       $template = new Template();
       $template->setId(intval($row['id']));
       $template->setUnique($row['unique']);
@@ -38,33 +27,20 @@ class TemplateService {
   }
 
   static function getAvailableTemplates() {
-    global $basePath;
-    $arr = FileSystemService::listDirs($basePath . "Editor/Template/");
-    for ($i = 0; $i < count($arr); $i++) {
-      if (substr($arr[$i],0,3) == 'CVS') {
-        unset($arr[$i]);
-      }
-    }
-    return $arr;
+    return FileSystemService::listDirs(FileSystemService::getFullPath("Editor/Template/"));
   }
 
   static function install($key) {
-    $sql = "select id from `template` where `unique`=" . Database::text($key);
-    if (Database::isEmpty($sql)) {
-      $sql = "insert into template (`unique`) values (" . Database::text($key) . ")";
-      Database::insert($sql);
-    } else {
-      Log::debug('Unable to install template (' . $key . ') since it already exists');
+    if (!Template::loadByUnique($key)) {
+      $template = new Template();
+      $template->setUnique($key);
+      $template->save();
     }
   }
 
   static function uninstall($key) {
-    $sql = "select `template`.`id` from `template`,`page` where page.template_id=template.id and `template`.`unique`=" . Database::text($key);
-    if (Database::isEmpty($sql)) {
-      $sql = "delete from `template` where `unique`=" . Database::text($key);
-      Database::delete($sql);
-    } else {
-      Log::debug('Unable to delete template (' . $key . ') since it is in use');
+    if ($template = Template::loadByUnique($key)) {
+      $template->remove();
     }
   }
 

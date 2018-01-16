@@ -8,6 +8,13 @@ if (!isset($GLOBALS['basePath'])) {
   exit;
 }
 
+Entity::$schema['Template'] = [
+  'table' => 'template',
+  'properties' => [
+    'id' => ['type' => 'int'],
+    'unique' => ['type' => 'string']
+  ]
+];
 class Template extends Entity {
 
   var $unique;
@@ -28,25 +35,19 @@ class Template extends Entity {
     return $info['name'];
   }
 
-
-  /**
-   * @static
-   */
-  function search() {
-    $list = [];
-    $sql = "select id,`unique` from template";
-    $result = Database::select($sql);
-    while ($row = Database::next($result)) {
-      $template = new Template();
-      $template->setId($row['id']);
-      $template->setUnique($row['unique']);
-      $list[] = $template;
-    }
-    Database::free($result);
-    return $list;
+  static function load($id) {
+    return ModelService::load('Template', $id);
   }
 
-  static function load($id) {
-    return TemplateService::getTemplateById($id);
+  static function loadByUnique($unique) {
+    return TemplateService::getTemplateByUnique($unique);
+  }
+
+  function remove() {
+    ModelService::remove($this);
+  }
+
+  function save() {
+    ModelService::save($this);
   }
 }
