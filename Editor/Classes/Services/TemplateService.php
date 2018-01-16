@@ -33,13 +33,7 @@ class TemplateService {
   }
 
   static function getController($type) {
-    global $basePath;
     $class = ucfirst($type) . 'TemplateController';
-    $path = $basePath . 'Editor/Classes/Templates/' . $class . '.php';
-    if (!file_exists($path)) {
-      return null;
-    }
-    require_once $path;
     return new $class;
   }
 
