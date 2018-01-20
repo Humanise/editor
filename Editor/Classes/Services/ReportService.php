@@ -18,13 +18,26 @@ class ReportService {
     return SettingService::getSetting('system','reports','email');
   }
 
+  static function setInterval($value) {
+    SettingService::setSetting('system','reports','interval',$value);
+  }
+
+  static function getInterval() {
+    return intval(SettingService::getSetting('system','reports','interval'));
+  }
+
   static function heartBeat() {
     $latest = intval(SettingService::getSetting('system','reports','latest'));
+    $interval = ReportService::getInterval();
+    if ($interval < 1) {
+      Log::debug('Will not send report since the interval is too low: ' . $interval);
+      return;
+    }
     Log::debug('Latest: ' . $latest);
     $seconds = time() - intval($latest);
-    $oneDay = 60 * 60 * 24;
-    if ($seconds > $oneDay) {
-      Log::debug('Latest run was more than one day ago');
+    $interval = 60 * 60 * $interval;
+    if ($seconds > $interval) {
+      Log::debug('Latest run was earlier than the interval');
       SettingService::setSetting('system','reports','latest',time());
       ReportService::sendReport();
     } else {

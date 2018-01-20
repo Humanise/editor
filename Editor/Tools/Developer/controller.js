@@ -32,6 +32,8 @@ hui.ui.listen({
       hui.ui.changeState('diagram');
     } else if (item.value=='classes') {
       hui.ui.changeState('list');
+    } else if (item.value=='status') {
+      hui.ui.changeState('status');
     } else if (item.value=='queries') {
       hui.ui.changeState('queries');
     } else if (item.value=='ui') {

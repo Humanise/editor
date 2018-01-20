@@ -9,17 +9,18 @@ $data = Request::getObject('data');
 
 Log::debug($data);
 
-if ($data->ui) {
+if (isset($data->ui)) {
   SettingService::setSetting('part','richtext','experimetal',$data->ui->experimentalRichText);
   SettingService::setSharedSecret($data->ui->sharedSecret);
 }
-if ($data->onlineobjects) {
+if (isset($data->onlineobjects)) {
   SettingService::setOnlineObjectsUrl($data->onlineobjects->url);
 }
-if ($data->reports) {
+if (isset($data->reports)) {
   ReportService::setEmail($data->reports->email);
+  ReportService::setInterval($data->reports->interval);
 }
-if ($data->email) {
+if (isset($data->email)) {
   MailService::setEnabled($data->email->enabled);
   MailService::setServer($data->email->server);
   MailService::setPort($data->email->port);
@@ -30,7 +31,7 @@ if ($data->email) {
   MailService::setFeedbackEmail($data->email->feedbackEmail);
   MailService::setFeedbackName($data->email->feedbackName);
 }
-if ($data->analytics) {
+if (isset($data->analytics)) {
   GoogleAnalytics::setUsername($data->analytics->username);
   GoogleAnalytics::setPassword($data->analytics->password);
   GoogleAnalytics::setProfile($data->analytics->profile);

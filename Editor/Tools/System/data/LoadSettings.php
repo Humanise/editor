@@ -31,7 +31,8 @@ $settings = [
     'webProfile' => GoogleAnalytics::getWebProfile()
   ],
   'reports' => [
-    'email' => ReportService::getEmail()
+    'email' => ReportService::getEmail(),
+    'interval' => ReportService::getInterval()
   ]
 ];
 

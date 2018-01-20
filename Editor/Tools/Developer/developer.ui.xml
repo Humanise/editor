@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gui xmlns="uri:hui" padding="10" title="Developer" state="settings">
   <controller url="controller.js"/>
+
   <source name="testsSource" url="data/TestSelection.php"/>
   <source name="graphSource" url="data/GraphData.php"/>
   <source name="diagramSource" url="data/DiagramData.php">
     <parameter key="parent" value="@diagramSubset.value"/>
   </source>
   <source name="classesSource" url="data/ListClasses.php"/>
+  <source name="statusSource" url="data/ListStatus.php"/>
+
   <structure>
     <top>
       <toolbar>
@@ -18,6 +21,7 @@
         <overflow>
           <selection value="settings" name="selector" top="5">
             <option icon="common/info" text="PHP info" value="phpInfo"/>
+            <option icon="common/time" text="Status" value="status"/>
             <option icon="common/time" text="Session" value="session"/>
             <option icon="common/time" text="Report" value="report"/>
             <option icon="common/tools" text="Settings" value="settings"/>
@@ -36,6 +40,9 @@
       <center>
         <overflow state="list">
           <list name="list" source="classesSource"/>
+        </overflow>
+        <overflow state="status">
+          <list name="statusList" source="statusSource"/>
         </overflow>
         <overflow state="settings">
           <fragment height="full" background="wood">
