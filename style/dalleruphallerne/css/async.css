@@ -80,14 +80,14 @@
     content: '';
     display: block;
     background: url("../gfx/curly_top.svg");
-    padding-bottom: 6.3953488372%;
+    padding-bottom: 6.39535%;
     background-size: cover;
     margin-bottom: 10px; }
   .contact:after {
     content: '';
     display: block;
     background: url("../gfx/curly_bottom.svg");
-    padding-bottom: 4.954954955%;
+    padding-bottom: 4.95495%;
     background-size: cover;
     margin-top: 10px; }
 
@@ -118,14 +118,14 @@
     content: '';
     display: block;
     background: url("../gfx/ornament_a_top.svg") 50% 0 no-repeat;
-    padding-bottom: 12.4062898815%;
+    padding-bottom: 12.40629%;
     background-size: 150%;
     margin-bottom: 10px; }
   .quote:after {
     content: '';
     display: block;
     background: url("../gfx/ornament_a_bottom.svg") 50% 0 no-repeat;
-    padding-bottom: 12.4062898815%;
+    padding-bottom: 12.40629%;
     background-size: cover;
     margin-top: 10px; }
 
@@ -168,11 +168,11 @@
     margin: 0 auto;
     text-align: center; }
     .quote:before {
-      padding-bottom: 8.3041932543%;
+      padding-bottom: 8.30419%;
       background-size: cover;
       margin-bottom: 20px; }
     .quote:after {
-      padding-bottom: 8.3041932543%;
+      padding-bottom: 8.30419%;
       background-size: cover;
       margin-top: 20px; }
 
@@ -261,7 +261,7 @@
     top: 0;
     margin: 0;
     font-size: 18px;
-    line-height: 1.1111111111;
+    line-height: 1.11111;
     color: #999; }
     .prices_price-text {
       color: #000; }

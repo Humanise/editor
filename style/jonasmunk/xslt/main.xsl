@@ -205,6 +205,7 @@
         </svg>
       </div>
       <div class="intro_body">
+        <div>
         <h1 class="intro_title">Jonas Brinkmann Munk</h1>
         <p class="intro_job">Sofware developer</p>
         <p class="intro_address"><a class="common_link" href="https://maps.apple.com/?address=Hf.%20Sundbyvester%2049,%202300%20København%20S,%20Danmark&amp;ll=55.646027,12.587631&amp;q=Hf.%20Sundbyvester%2049"><span class="common_link_text">Rubingangen 49, Hf. Sundbyvester<br/>2300 Copenhagen S, Denmark</span></a></p>
@@ -224,6 +225,7 @@
             <a href="http://www.facebook.dk/jonas.munk" class="common_link"><span class="common_link_text">Facebook</span></a>
           </li>
         </ul>
+        </div>
       </div>
     </div>
   </xsl:template>
