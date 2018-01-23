@@ -333,9 +333,6 @@ class RenderingService {
         }
       }
 
-      $pageNS = 'http://uri.in2isoft.com/onlinepublisher/publishing/page/1.0/';
-      $frameNS = 'http://uri.in2isoft.com/onlinepublisher/publishing/frame/1.0/';
-
       $data = $row['data'];
       $template = $row['template'];
       $redirect = false;
@@ -366,28 +363,22 @@ class RenderingService {
       if ($row['framedynamic']) {
         $framedata = RenderingService::applyFrameDynamism($row['frameid'],$framedata);
       }
-      $encoding = ConfigurationService::isUnicode() ? 'UTF-8' : 'ISO-8859-1';
-      $xml = '<?xml version="1.0" encoding="' . $encoding . '"?>' .
-        '<page xmlns="' . $pageNS . '" id="' . $row['id'] . '" title="' . Strings::escapeEncodedXML($row['title']) . '">' .
-        '<meta>' .
-        ($row['description'] ? '<description>' . Strings::escapeEncodedXML(preg_replace('/\s+/', ' ', $row['description'])) . '</description>' : '') .
-        '<keywords>' . Strings::escapeEncodedXML($row['keywords']) . '</keywords>' .
-        RenderingService::buildDateTag('published',$row['published']) .
-        '<language>' . Strings::escapeEncodedXML(strtolower($row['language'])) . '</language>' .
-        ($row['analytics_key'] ? '<analytics key="' . Strings::escapeEncodedXML($row['analytics_key']) . '"/>' : '') .
-        '</meta>' .
-        RenderingService::buildPageContext($row['id'],$row['next_page'],$row['previous_page']) .
-        '<design>' .
-        $row['parameters'] .
-        '</design>' .
-        '<frame xmlns="' . $frameNS . '" title="' . Strings::escapeEncodedXML($row['frametitle']) . '">' .
-        $row['hierarchy'] .
-        $framedata .
-        '</frame>' .
-        '<content>' .
-        $data .
-        '</content>' .
-        '</page>';
+      $xml = RenderingService::buildXML([
+        'id' => $id,
+        'title' => $row['title'],
+        'description' => $row['description'],
+        'keywords' => $row['keywords'],
+        'published' => $row['published'],
+        'analytics_key' => $row['analytics_key'],
+        'language' => $row['language'],
+        'next_page' => $row['next_page'],
+        'previous_page' => $row['previous_page'],
+        'parameters' => $row['parameters'],
+        'hierarchy' => $row['hierarchy'],
+        'frametitle' => $row['frametitle'],
+        'frame' => $framedata,
+        'content' => $data
+      ]);
       return [
         'id' => $row['id'],
         'xml' => $xml,
@@ -535,7 +526,9 @@ class RenderingService {
 
   static function previewPage($options) {
     $pageId = $options['pageId'];
-    $historyId = @$options['historyId'];
+    $historyId = isset($options['historyId']) ? intval($options['historyId']) : -1;
+    $relativePath = $options['relativePath'];
+    $relativeUrl = isset($options['relativeUrl']) ? $options['relativeUrl'] : $relativePath;
 
     $sql = "select page.id,UNIX_TIMESTAMP(page.published) as published, page.description,page.language,page.keywords," .
     "page.title,page.dynamic,page.next_page,page.previous_page," .
@@ -544,22 +537,22 @@ class RenderingService {
     "design.`unique` as design, hierarchy.id as hierarchy" .
     " from page,template,frame,design,hierarchy" .
     " where page.frame_id=frame.id and page.template_id=template.id and page.design_id=design.object_id" .
-    " and frame.hierarchy_id=hierarchy.id and page.id=" . Database::int($pageId);
-    if ($row = Database::selectFirst($sql)) {
+    " and frame.hierarchy_id=hierarchy.id and page.id = @id";
+    if ($row = Database::selectFirst($sql, $pageId)) {
       $template = $row['unique'];
       $id = $row['id'];
       if ($historyId > 0) {
-        $sql = "select data from page_history where id=" . Database::int($historyId);
-        if ($hist = Database::selectFirst($sql)) {
+        $sql = "select data from page_history where id = @id";
+        if ($hist = Database::selectFirst($sql, $historyId)) {
           $data = $hist['data'];
         } else {
-          $data = PageService::getPagePreview($id,$template);
+          $data = PageService::getPagePreview($id, $template);
         }
       } else {
-        $data = PageService::getPagePreview($id,$template);
+        $data = PageService::getPagePreview($id, $template);
       }
 
-      $stuff = RenderingService::applyContentDynamism($id,$template,$data);
+      $stuff = RenderingService::applyContentDynamism($id, $template, $data);
       $data = $stuff['data'];
 
       $framedata = $row['framedata'];
@@ -573,28 +566,22 @@ class RenderingService {
       else if (isset($_SESSION['debug.design'])) {
         $design = $_SESSION['debug.design'];
       }
-      $xml = '<?xml version="1.0" encoding="UTF-8"?>' .
-      '<page xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/page/1.0/" id="' . $id . '" title="' . Strings::escapeEncodedXML($row['title']) . '">' .
-      '<meta>' .
-      '<description>' . Strings::escapeEncodedXML($row['description']) . '</description>' .
-      '<keywords>' . Strings::escapeEncodedXML($row['keywords']) . '</keywords>' .
-      RenderingService::buildDateTag('published',$row['published']) .
-      '<language>' . Strings::escapeEncodedXML(strtolower($row['language'])) . '</language>' .
-      '</meta>' .
-        '<design>' .
-        $row['parameters'] .
-        '</design>' .
-      RenderingService::buildPageContext($id,$row['next_page'],$row['previous_page']) .
-      '<frame xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/frame/1.0/" title="' . Strings::escapeEncodedXML($row['frametitle']) . '">' .
-      Hierarchy::build($row['hierarchy']) .
-      $framedata .
-      '</frame>' .
-      '<content>' .
-      $data .
-      '</content>' .
-      '</page>';
-      $relativeUrl = isset($options['relativeUrl']) ? $options['relativeUrl'] : $options['relativePath'];
-      $html = RenderingService::applyStylesheet($xml,$design,$template,$options['relativePath'],$relativeUrl,'','?id=' . $id . '&amp;',true,strtolower($row['language']));
+      $xml = RenderingService::buildXML([
+        'id' => $id,
+        'title' => $row['title'],
+        'description' => $row['description'],
+        'keywords' => $row['keywords'],
+        'published' => $row['published'],
+        'language' => $row['language'],
+        'next_page' => $row['next_page'],
+        'previous_page' => $row['previous_page'],
+        'parameters' => $row['parameters'],
+        'hierarchy' => Hierarchy::build($row['hierarchy']),
+        'frametitle' => $row['frametitle'],
+        'frame' => $framedata,
+        'content' => $data
+      ]);
+      $html = RenderingService::applyStylesheet($xml,$design,$template,$relativePath,$relativeUrl,'','?id=' . $id . '&amp;',true,strtolower($row['language']));
       if (ConfigurationService::isOptimizeHTML()) {
         $html = MarkupUtils::moveScriptsToBottom($html);
         $html = MarkupUtils::moveStyleToHead($html);
@@ -604,6 +591,31 @@ class RenderingService {
     Log::debug('Unable to find page: ' . $pageId);
     Log::debug($sql);
     return null;
+  }
+
+  static function buildXML($data) {
+    $encoding = ConfigurationService::isUnicode() ? 'UTF-8' : 'ISO-8859-1';
+    return '<?xml version="1.0" encoding="' . $encoding . '"?>' .
+      '<page xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/page/1.0/" id="' . $data['id'] . '" title="' . Strings::escapeEncodedXML($data['title']) . '">' .
+      '<meta>' .
+      '<description>' . Strings::escapeEncodedXML(preg_replace('/\s+/', ' ', $data['description'])) . '</description>' .
+      '<keywords>' . Strings::escapeEncodedXML($data['keywords']) . '</keywords>' .
+      RenderingService::buildDateTag('published',$data['published']) .
+      '<language>' . Strings::escapeEncodedXML(strtolower($data['language'])) . '</language>' .
+      (isset($row['analytics_key']) && !empty($row['analytics_key']) ? '<analytics key="' . Strings::escapeEncodedXML($row['analytics_key']) . '"/>' : '') .
+      '</meta>' .
+        '<design>' .
+        $data['parameters'] .
+        '</design>' .
+      RenderingService::buildPageContext($data['id'],$data['next_page'],$data['previous_page']) .
+      '<frame xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/frame/1.0/" title="' . Strings::escapeEncodedXML($data['frametitle']) . '">' .
+      $data['hierarchy'] .
+      $data['frame'] .
+      '</frame>' .
+      '<content>' .
+      $data['content'] .
+      '</content>' .
+      '</page>';
   }
 
   static function applyTwigTemplate($vars = []) {
