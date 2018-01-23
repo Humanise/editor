@@ -22,11 +22,12 @@ class PublishingService {
       'values' => [
         'data' => ['text' => $result['data']],
         'index' => ['text' => $result['index']],
+        'published' => ['datetime' => time()],
         'dynamic' => ['boolean' => $result['dynamic']]
       ],
       'where' => [ 'id' => ['int' => $id] ]
     ];
-    Database::update($sql);
+    Database::update($query);
 
     PageService::createPageHistory($id, $result['data']);
 
