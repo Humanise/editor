@@ -364,7 +364,7 @@ class RenderingService {
         $framedata = RenderingService::applyFrameDynamism($row['frameid'],$framedata);
       }
       $xml = RenderingService::buildXML([
-        'id' => $id,
+        'id' => $row['id'],
         'title' => $row['title'],
         'description' => $row['description'],
         'keywords' => $row['keywords'],
