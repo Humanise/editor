@@ -156,26 +156,47 @@ p.common, ul.common {
   margin: 0 auto; }
 
 .layout_head {
-  background: #f6f6f9; }
-  .layout_head.is-hero {
-    background: #00a8e6; }
-    .layout_head.is-hero .layout_menu_link {
-      color: #fff;
-      outline-color: #fff; }
-      .layout_head.is-hero .layout_menu_link-first > svg {
+  background: #f6f6f9;
+    /*
+    &.is-hero {
+      background: #00a8e6;
+
+      .layout_menu_link {
+        color: #fff;
+        outline-color: #fff;
+
+        &-first {
+          > svg {
+            fill: #fff;
+            color: #fff;
+          }
+          .scroll & {
+            > svg {
+              fill: #444;
+              color: #999;
+            }
+          }
+        }
+      }
+
+      .layout_search_icon > path {
         fill: #fff;
-        color: #fff; }
-      .scroll .layout_head.is-hero .layout_menu_link-first > svg {
-        fill: #444;
-        color: #999; }
-    .layout_head.is-hero .layout_search_icon > path {
-      fill: #fff; }
-    .layout_head.is-hero .layout_head_logo > svg {
-      fill: #fff; }
-      .scroll .layout_head.is-hero .layout_head_logo > svg {
-        fill: rgba(0, 0, 0, 0.3); }
-    .scroll .layout_head.is-hero .layout_head_logo:hover > svg {
-      fill: #666; }
+      }
+      .layout_head_logo {
+        > svg {
+          fill: #fff;
+          .scroll & {
+            fill: rgba(0,0,0,.3);
+          }
+        }
+        .scroll &:hover {
+          > svg {
+            fill: #666;
+          }
+        }
+      }
+    }
+*/ }
   .layout_head_logo {
     position: absolute;
     left: 10px;
