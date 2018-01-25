@@ -299,31 +299,29 @@ class RenderingService {
     }
   }
 
-  static function buildPage($id,$path = null,$parameters = []) {
-    //Log::debug('buildPage: id:('.$id.') path:('.$path.')');
+  static function buildPage($id, $path = null, $parameters = []) {
     $sql = "select page.id,page.path,page.secure,UNIX_TIMESTAMP(page.published) as published," .
-    " page.title,page.description,page.language,page.keywords,page.data,page.dynamic,page.next_page,page.previous_page," .
-    " template.unique as template,frame.id as frameid,frame.title as frametitle," .
-    " frame.data as framedata,frame.dynamic as framedynamic,design.`unique` as design," .
-    " design.parameters," .
-    " hierarchy.data as hierarchy, " .
-    " setting.value as analytics_key" .
-    " from page,template,frame,design,hierarchy" .
-    " left join setting on setting.subdomain='googleanalytics' and setting.`key`='webprofile'" .
-    " where page.frame_id=frame.id and page.template_id=template.id" .
-    " and page.disabled=0" .
-    " and page.design_id=design.object_id and frame.hierarchy_id=hierarchy.id";
+      " page.title,page.description,page.language,page.keywords,page.data,page.dynamic,page.next_page,page.previous_page," .
+      " template.unique as template,frame.id as frameid,frame.title as frametitle," .
+      " frame.data as framedata,frame.dynamic as framedynamic,design.`unique` as design," .
+      " design.parameters," .
+      " hierarchy.data as hierarchy, " .
+      " setting.value as analytics_key" .
+      " from page,template,frame,design,hierarchy" .
+      " left join setting on setting.subdomain='googleanalytics' and setting.`key`='webprofile'" .
+      " where page.frame_id=frame.id and page.template_id=template.id" .
+      " and page.disabled=0" .
+      " and page.design_id=design.object_id and frame.hierarchy_id=hierarchy.id";
     if ($id > 0) {
-      $sql .= " and page.id=" . Database::int($id);
+      $sql .= " and page.id = @id";
     } else {
-      //Log::debug('Paths: ('.$path.') ('.$path.'/) (/'.$path.')');
-      $sql .= " and (page.path=" . Database::text($path);
+      $sql .= " and (page.path = @text(path)";
       if (Strings::isNotBlank($path)) {
-        $sql .= " or page.path=" . Database::text($path . '/') . " or page.path=" . Database::text('/' . $path);
+        $sql .= " or page.path = @text(pathA) or page.path = @text(pathB)";
       }
       $sql .= ") order by page.path desc";
     }
-    if ($row = Database::selectFirst($sql)) {
+    if ($row = Database::selectFirst($sql, ['id' => $id, 'path' => $path, 'pathA' => $path . '/', 'pathB' => '/' . $path])) {
       if (Request::getBoolean('ajax')) {
         if ($controller = TemplateService::getController($row['template'])) {
           if (method_exists($controller,'ajax')) {
