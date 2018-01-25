@@ -54,7 +54,7 @@
       font-weight: 300; } }
 @media screen and (min-width: 900px) {
   .focus {
-    margin: 40px 0;
+    margin: 60px 0;
     padding: 0; }
     .focus_hand {
       height: 240px; }

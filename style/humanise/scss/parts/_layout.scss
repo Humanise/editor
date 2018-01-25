@@ -14,18 +14,17 @@
   .layout_head {
     background: #f6f6f9;
 
-    /*
     &.is-hero {
-      background: #00a8e6;
+      background: #fbfaef;
 
       .layout_menu_link {
-        color: #fff;
-        outline-color: #fff;
+        color: #655d3f;
+        outline-color: #655d3f;
 
         &-first {
           > svg {
-            fill: #fff;
-            color: #fff;
+            fill: #655d3f;
+            color: #655d3f;
           }
           .scroll & {
             > svg {
@@ -37,11 +36,11 @@
       }
 
       .layout_search_icon > path {
-        fill: #fff;
+        fill: #655d3f;
       }
       .layout_head_logo {
         > svg {
-          fill: #fff;
+          fill: #655d3f;
           .scroll & {
             fill: rgba(0,0,0,.3);
           }
@@ -53,7 +52,7 @@
         }
       }
     }
-*/
+
     &_logo {
       position: absolute;
       left: 10px;
