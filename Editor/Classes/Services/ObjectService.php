@@ -85,7 +85,7 @@ class ObjectService {
       Database::delete($sql, $object->getId());
       ObjectService::removeRelations($object->getId());
 
-      $schema = ObjectService::_getSchema($object->getType());
+      $schema = ObjectService::_getSchemaProperties($object->getType());
       if (is_array($schema)) {
         $sql = "delete from `" . $object->getType() . "` where object_id=" . Database::int($object->getId());
         Database::delete($sql);
@@ -142,6 +142,12 @@ class ObjectService {
 
   static function _getSchema($type) {
     if (array_key_exists(ucfirst($type),Entity::$schema)) {
+      return Entity::$schema[ucfirst($type)];
+    }
+  }
+
+  static function _getSchemaProperties($type) {
+    if (array_key_exists(ucfirst($type),Entity::$schema)) {
       return Entity::$schema[ucfirst($type)]['properties'];
     }
   }
@@ -170,7 +176,7 @@ class ObjectService {
       ]
     ];
     $object->id = Database::insert($sql);
-    $schema = ObjectService::_getSchema($object->getType());
+    $schema = ObjectService::_getSchemaProperties($object->getType());
     if (is_array($schema)) {
       $sql = "insert into `" . $object->type . "` (object_id";
       foreach ($schema as $property => $info) {
@@ -230,7 +236,7 @@ class ObjectService {
     ];
     Database::update($sql);
 
-    $schema = ObjectService::_getSchema($object->getType());
+    $schema = ObjectService::_getSchemaProperties($object->getType());
     if (is_array($schema)) {
       $sql = [
         'table' => $object->getType(),
@@ -391,16 +397,18 @@ class ObjectService {
       return null;
     }
     $schema = ObjectService::_getSchema($type);
-    if (!is_array($schema)) {
+    $properties = $schema['properties'];
+    if (!is_array($properties)) {
       Log::debug('Unable to find schema for: ' . $type);
     }
+    $table = $schema['table'];
     $parts = [
       // It is important to name type "object_type" since the image class also has a column named type
       'columns' => 'object.id,object.title,object.note,object.type as object_type,object.owner_id,UNIX_TIMESTAMP(object.created) as created,UNIX_TIMESTAMP(object.updated) as updated,UNIX_TIMESTAMP(object.published) as published,object.searchable',
-      'tables' => 'object,`' . $type . '`',
+      'tables' => 'object,`' . $table . '`',
       'ordering' => ['object.title'],
       'limits' => [
-        '`' . $type . '`.object_id=object.id'
+        '`' . $table . '`.object_id=object.id'
       ],
       'joins' => []
     ];
@@ -418,31 +426,31 @@ class ObjectService {
     }
     if (isset($query['fields']) && is_array($query['fields'])) {
       foreach ($query['fields'] as $field => $value) {
-        if (isset($schema[$field])) {
+        if (isset($properties[$field])) {
           $column = $field;
-          if (isset($schema[$field]['column'])) {
-            $column = $schema[$field]['column'];
+          if (isset($properties[$field]['column'])) {
+            $column = $properties[$field]['column'];
           }
-          if ($schema[$field]['type'] == 'datetime') {
+          if ($properties[$field]['type'] == 'datetime') {
             if (is_array($value)) {
-              $parts['limits'][] = '`' . $type . '`.`' . $column . '`>=' . Database::datetime($value['from']);
-              $parts['limits'][] = '`' . $type . '`.`' . $column . '`<=' . Database::datetime($value['to']);
+              $parts['limits'][] = '`' . $table . '`.`' . $column . '`>=' . Database::datetime($value['from']);
+              $parts['limits'][] = '`' . $table . '`.`' . $column . '`<=' . Database::datetime($value['to']);
             } else {
-              $parts['limits'][] = '`' . $type . '`.`' . $column . '`=' . Database::datetime($value);
+              $parts['limits'][] = '`' . $table . '`.`' . $column . '`=' . Database::datetime($value);
             }
           } else {
             if (is_array($value)) {
               if (@$value['comparison'] == 'not') {
-                $parts['limits'][] = '`' . $type . '`.`' . $column . '`!=' . Database::text($value['value']);
+                $parts['limits'][] = '`' . $table . '`.`' . $column . '`!=' . Database::text($value['value']);
               } else {
-                $parts['limits'][] = '`' . $type . '`.`' . $column . '`=' . Database::text($value['value']);
+                $parts['limits'][] = '`' . $table . '`.`' . $column . '`=' . Database::text($value['value']);
               }
             } else {
-              $parts['limits'][] = '`' . $type . '`.`' . $column . '`=' . Database::text($value);
+              $parts['limits'][] = '`' . $table . '`.`' . $column . '`=' . Database::text($value);
             }
           }
         } else {
-          $parts['limits'][] = '`' . $type . '`.`' . $field . '`=' . Database::text($value);
+          $parts['limits'][] = '`' . $table . '`.`' . $field . '`=' . Database::text($value);
         }
       }
     }
@@ -460,15 +468,15 @@ class ObjectService {
     if (isset($query['createdMin'])) {
       $parts['limits'][] = '`object`.`created` > ' . Database::datetime($query['createdMin']);
     }
-    foreach ($schema as $property => $info) {
+    foreach ($properties as $property => $info) {
       $column = $property;
       if (isset($info['column'])) {
         $column = $info['column'];
       }
       if (@$info['type'] == 'datetime') {
-        $parts['columns'] .= ",UNIX_TIMESTAMP(`$type`.`$column`) as `$column`";
+        $parts['columns'] .= ",UNIX_TIMESTAMP(`$table`.`$column`) as `$column`";
       } else {
-        $parts['columns'] .= ",`$type`.`$column`";
+        $parts['columns'] .= ",`$table`.`$column`";
       }
     }
     $list = ObjectService::_find($parts,$query);
@@ -486,7 +494,7 @@ class ObjectService {
       $obj->note = $row['note'];
       $obj->ownerId = intval($row['owner_id']);
       $obj->searchable = ($row['searchable'] == 1);
-      foreach ($schema as $property => $info) {
+      foreach ($properties as $property => $info) {
         $column = SchemaService::getColumn($property,$info);
         $obj->$property = SchemaService::getRowValue(@$info['type'],@$row[$column]);
       }
