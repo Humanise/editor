@@ -2,7 +2,7 @@
 op.WeblogTemplate = {
   groups : [],
   ignite : function() {
-    hui.ui.require(['TextField','DateTimeField','Checkboxes'],function() {
+    hui.ui.require(['TextInput','DateTimeInput','Checkboxes'],function() {
       new hui.ui.Button({element:'weblog_new'}).listen({
         $click : this.showNewEntry.bind(this)
       })
@@ -14,9 +14,9 @@ op.WeblogTemplate = {
       var box = this.newBox = hui.ui.Box.create({modal:true,width:600,absolute:true,padding:10,title:'Nyt indlæg',closable:true});
       var form = this.newForm = hui.ui.Formula.create();
       var group = form.buildGroup({above:true},[
-        {type:'TextField',options:{label:'Titel',key:'title'}},
-        {type:'DateTimeField',options:{label:'Dato',name:'newEntryDate',key:'date',allowNull:false}},
-        {type:'TextField',options:{label:'Text',key:'text',lines:8}},
+        {type:'TextInput',options:{label:'Titel',key:'title'}},
+        {type:'DateTimeInput',options:{label:'Dato',name:'newEntryDate',key:'date',allowNull:false}},
+        {type:'TextInput',options:{label:'Text',key:'text',lines:8}},
         {type:'Checkboxes',options:{label:'Grupper',items:this.groups,key:'groups'}}
       ]);
       var buttons = group.createButtons();
@@ -92,9 +92,9 @@ op.WeblogTemplate = {
       var box = this.editBox = hui.ui.Box.create({modal:true,width:600,absolute:true,padding:10,title:'Rediger indlæg',closable:true});
       var form = this.editForm = hui.ui.Formula.create();
       var group = form.buildGroup({above:true},[
-        {type:'TextField',options:{label:'Titel',key:'title'}},
-        {type:'DateTimeField',options:{label:'Dato',name:'editEntryDate',key:'date',allowNull:false}},
-        {type:'TextField',options:{label:'Text',key:'text',lines:8}},
+        {type:'TextInput',options:{label:'Titel',key:'title'}},
+        {type:'DateTimeInput',options:{label:'Dato',name:'editEntryDate',key:'date',allowNull:false}},
+        {type:'TextInput',options:{label:'Text',key:'text',lines:8}},
         {type:'Checkboxes',options:{label:'Grupper',items:this.groups,key:'groups',name:'editEntryGroups'}}
       ]);
       var buttons = group.createButtons();

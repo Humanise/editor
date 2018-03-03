@@ -404,7 +404,7 @@ hui.ui.listen({
     for (var i=0; i < parameters.length; i++) {
       var parm = parameters[i];
       if (parm.type=='text') {
-        var field = hui.ui.TextField.create({key:parm.key,label:parm.label,value:parm.value});
+        var field = hui.ui.TextInput.create({key:parm.key,label:parm.label,value:parm.value});
         this.designGroup.add(field);
       }
       else if (parm.type=='color') {

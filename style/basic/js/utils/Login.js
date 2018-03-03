@@ -6,7 +6,7 @@ hui.onReady(function() {
         return;
       }
       this.loadingLogin = true;
-      hui.ui.require(['Formula','Button','TextField','Box'],
+      hui.ui.require(['Formula','Button','TextInput','Box'],
         function() {
           hui.ui.hideMessage();
           var box = this.loginBox = hui.ui.Box.create({width:300,title:{en:'Access control',da:'Adgangskontrol'},modal:true,absolute:true,closable:true,curtainCloses:true,padding:10});
@@ -23,8 +23,8 @@ hui.onReady(function() {
             }
           });
           var g = form.buildGroup(null,[
-            {type:'TextField',options:{label:{en:'Username',da:'Brugernavn'},key:'username'}},
-            {type:'TextField',options:{label:{en:'Password',da:'Kodeord'},key:'password',secret:true}}
+            {type:'TextInput',options:{label:{en:'Username',da:'Brugernavn'},key:'username'}},
+            {type:'TextInput',options:{label:{en:'Password',da:'Kodeord'},key:'password',secret:true}}
           ]);
           var b = g.createButtons();
 
