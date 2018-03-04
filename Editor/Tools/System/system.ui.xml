@@ -45,7 +45,6 @@
         <overflow>
           <selection value="object" name="selector" top="5">
             <option icon="common/object" text="{All objects; da:Alle objekter}" value="object"/>
-            <option icon="common/user" text="{Users; da:Brugere}" value="user"/>
             <option icon="file/generic" text="Log" value="log"/>
             <option icon="common/folder" text="{Weblog groups; da:Weblog grupper}" value="webloggroup"/>
             <option icon="common/internet" text="{Paths; da:Stier}" value="path"/>
@@ -225,52 +224,6 @@
     </middle>
     <bottom/>
   </structure>
-
-  <window name="userEditor" width="300" title="{User; da:Bruger}" padding="5">
-    <formula name="userFormula">
-      <overflow height="200">
-      <fields>
-        <field label="{Title; da:Titel}:">
-          <text-input key="title"/>
-        </field>
-        <field label="{Username; da:Brugernavn}:">
-          <text-input key="username"/>
-        </field>
-        <field label="{Password; da:Kodeord}:">
-          <text-input key="password" secret="true"/>
-        </field>
-        <field label="{Language; da:Sprog}:">
-          <dropdown key="language">
-            <option text="{Danish; da: Dansk}" value="da"/>
-            <option text="{English; da: Engelsk}" value="en"/>
-          </dropdown>
-        </field>
-        <field label="{E-post; da:E-mail}:">
-          <text-input key="email"/>
-        </field>
-        <field label="{Note; da:Notat}:">
-          <text-input key="note" breaks="true"/>
-        </field>
-        <field label="{Internal access; da:Intern adgang}:">
-          <checkbox key="internal"/>
-        </field>
-        <field label="{External access; da:Ekstern adgang}:">
-          <checkbox key="external"/>
-        </field>
-        <field label="Administrator:">
-          <checkbox key="administrator"/>
-        </field>
-      </fields>
-      </overflow>
-      <buttons>
-        <button name="cancelUser" text="{Cancel; da:Annuller}"/>
-        <button name="deleteUser" text="{Delete; da:Slet}">
-          <confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete user; da:Ja, slet brugeren}" cancel="{No; da:Nej}"/>
-        </button>
-        <button name="saveUser" text="{Save; da:Gem}" highlighted="true"/>
-      </buttons>
-    </formula>
-  </window>
 
   <window name="pathEditor" width="300" title="{Path; da:Sti}" padding="5">
     <formula name="pathFormula">
