@@ -14,7 +14,7 @@ var templateController = {
       var form = this.form = hui.ui.Formula.create({name:'templateForm'});
       this.win.add(form);
       var group = form.buildGroup({labels:'above'},[
-        {type:'TextField',options:{key:'title',label:'Titel:'}}
+        {type:'TextInput',options:{key:'title',label:'Titel:'}}
       ]);
       var buttons = group.createButtons();
       buttons.add(hui.ui.Button.create({text:'Opdater',highlighted:true,submit:true}));

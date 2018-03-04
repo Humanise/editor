@@ -9,8 +9,8 @@ if (!isset($GLOBALS['basePath'])) {
 }
 
 Entity::$schema['Newsgroup'] = [
-    'table' => 'newsgroup',
-    'properties' => []
+  'table' => 'newsgroup',
+  'properties' => []
 ];
 
 class Newsgroup extends Object {
@@ -24,15 +24,15 @@ class Newsgroup extends Object {
   }
 
   function removeMore() {
-    $sql = "delete from newsgroup_news where newsgroup_id=" . Database::int($this->id);
-    Database::delete($sql);
-    $sql = "delete from part_news_newsgroup where newsgroup_id=" . Database::int($this->id);
-    Database::delete($sql);
+    $sql = "delete from newsgroup_news where newsgroup_id = @id";
+    Database::delete($sql, $this->id);
+    $sql = "delete from part_news_newsgroup where newsgroup_id = @id";
+    Database::delete($sql, $this->id);
   }
 
   function canDelete() {
-    $sql = "select id from frame_newsblock_newsgroup where newsgroup_id=" . Database::int($this->id);
-    if (Database::selectFirst($sql)) {
+    $sql = "select id from frame_newsblock_newsgroup where newsgroup_id = @id";
+    if (Database::selectFirst($sql, $this->id)) {
       return FALSE;
     } else {
       return TRUE;
@@ -40,7 +40,7 @@ class Newsgroup extends Object {
   }
 
   function getIcon() {
-        return "common/folder";
+    return "common/folder";
   }
 }
 ?>
