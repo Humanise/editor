@@ -149,10 +149,11 @@
 </xsl:template>
 
 
+<!-- mobilepay://send?phone=004579909 -->
 <xsl:template match="widget:mobile-pay">
   <div class="mobilepay">
     <div class="mobilepay_qr"><xsl:comment/></div>
-    <p class="mobilepay_number">Nr: <a href="mobilepay://send?phone=004579909">79 909</a></p>
+    <p class="mobilepay_number">Nr: <a href="https://mobilepay.dk/da-dk/pages/betal.aspx?phone=004579909">79 909</a></p>
     <a class="mobilepay_button" href="https://mobilepay.dk/da-dk/pages/betal.aspx?phone=004579909">Betal med MobilePay</a>
   </div>
 </xsl:template>
