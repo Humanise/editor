@@ -205,8 +205,8 @@ class Database {
     return $ids;
   }
 
-  static function selectMap($sql,$parameters = null) {
-    $result = Database::select($sql,$parameters);
+  static function selectMap($sql, $parameters = null) {
+    $result = Database::select($sql, $parameters);
     $map = [];
     while($row = Database::next($result)) {
       $map[$row[0]] = $row[1];
@@ -215,8 +215,8 @@ class Database {
     return $map;
   }
 
-  static function selectIntArray($sql,$parameters = null) {
-    $result = Database::select($sql,$parameters);
+  static function selectIntArray($sql, $parameters = null) {
+    $result = Database::select($sql, $parameters);
     $ids = [];
     while($row = Database::next($result)) {
       $ids[] = intval($row[0]);
@@ -225,9 +225,9 @@ class Database {
     return $ids;
   }
 
-  static function getIds($sql,$parameters = null) {
+  static function getIds($sql, $parameters = null) {
     if ($parameters !== null) {
-      $sql = Database::compile($sql,$parameters);
+      $sql = Database::compile($sql, $parameters);
     }
     $result = Database::select($sql);
     $ids = [];
