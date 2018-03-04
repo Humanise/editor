@@ -283,3 +283,72 @@
     font-size: 16px; }
   .prices_price {
     font-size: 20px; } }
+.mobilepay {
+  margin: 20px 0;
+  background: #f3f3f3;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center; }
+  .mobilepay:before {
+    content: '';
+    background: url("../gfx/mobile_pay_logo.svg") 50% no-repeat;
+    width: 200px;
+    height: 50px;
+    display: inline-block;
+    background-size: contain; }
+  .mobilepay_number {
+    color: #666;
+    margin: 5px 0 15px; }
+    .mobilepay_number > a {
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 2em;
+      color: #5A78FF; }
+  .mobilepay_button {
+    display: inline-block;
+    background: #5A78FF;
+    border-radius: 5px;
+    color: #fff;
+    height: 42px;
+    line-height: 42px;
+    font-weight: bold;
+    padding: 0 20px;
+    text-decoration: none;
+    margin: 0 5px; }
+
+@media screen and (min-width: 700px) {
+  .mobilepay {
+    text-align: left;
+    position: relative;
+    min-height: 175px;
+    display: flex;
+    flex-direction: column; }
+    .mobilepay_qr {
+      width: 175px;
+      height: 175px;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      background: #fff url("../gfx/mobile_pay_qr.png"); }
+    .mobilepay_number {
+      flex-grow: 1;
+      margin: 10px 0 15px 30px; }
+    .mobilepay_button {
+      align-self: flex-start; } }
+@media screen and (min-width: 900px) {
+  .mobilepay:before {
+    height: 60px;
+    width: 240px; }
+  .mobilepay_number {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 24px;
+    margin: -24px 0 0;
+    line-height: 1; }
+  .mobilepay_button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px; } }
