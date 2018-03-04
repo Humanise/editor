@@ -173,7 +173,7 @@ body.exhibit {
   background-size: cover;
   background-position: 50%;
   -webkit-user-select: none;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-family: 'Raleway';
   overflow: hidden; }
   body.exhibit-concrete {
@@ -270,8 +270,8 @@ body.exhibit {
   -webkit-user-select: none;
   scroll-snap-type: mandatory;
   -webkit-scroll-snap-type: mandatory;
-  scroll-snap-points-x: repeat(33.33333%);
-  -webkit-scroll-snap-points-x: repeat(33.33333%); }
+  scroll-snap-points-x: repeat(33.333333%);
+  -webkit-scroll-snap-points-x: repeat(33.333333%); }
   .exhibit_paintings_page {
     width: 100%;
     position: relative;
@@ -321,7 +321,7 @@ body.exhibit {
   font-size: 0;
   text-align: center; }
   .contact_profile {
-    width: 33.33333%;
+    width: 33.3333333333%;
     display: inline-block;
     text-decoration: none; }
     .contact_profile-facebook {
@@ -403,7 +403,7 @@ body.exhibit {
     filter: hue-rotate(360deg); } }
 @media screen and (min-width: 600px) {
   .contact_profile {
-    width: 33.33333%;
+    width: 33.3333333333%;
     display: inline-block; }
     .contact_profile_icon {
       display: inline-block;
@@ -422,7 +422,7 @@ body.exhibit {
   .contact_item {
     display: inline-block;
     float: none;
-    width: 33.33333%;
+    width: 33.3333333333%;
     box-sizing: border-box;
     text-align: center;
     font-size: 16px;

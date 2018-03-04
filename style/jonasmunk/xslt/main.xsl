@@ -32,7 +32,7 @@
         <xsl:call-template name="util:viewport"/>
         <xsl:call-template name="util:metatags"/>
         <xsl:call-template name="util:js"/>
-        <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500%7COpen+Sans:300italic,400italic,600italic,400,600,500,700,300,200,800%7CCormorant:300,400" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600%7COpen+Sans:300italic,400italic,600italic,400,600,500,700,300,200,800%7CCormorant:300,400" rel="stylesheet"/>
         <xsl:call-template name="util:css"/>
       </head>
       <body>

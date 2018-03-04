@@ -1,14 +1,5 @@
 .header {
-  padding-top: 10px;
-  /*
-  &:after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: .55px;
-    background: #000;
-    margin: 10px auto;
-  };*/ }
+  padding-top: 10px; }
 
 .header_logo {
   display: block;
@@ -38,7 +29,8 @@
   margin: 0;
   padding: 5px 0 7px;
   display: block;
-  text-align: center; }
+  text-align: center;
+  font-family: 'Raleway'; }
   .header_menu_item {
     display: inline-block; }
   .header_menu_link {
@@ -48,10 +40,11 @@
     padding: 5px 5px;
     color: #333;
     text-decoration: none;
-    font-weight: 500;
-    text-transform: uppercase; }
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.05em; }
     .header_menu_link.is-selected, .header_menu_link.is-active {
-      font-weight: 700;
+      font-weight: 600;
       color: #000; }
 
 @media screen and (min-width: 760px) {
@@ -74,7 +67,7 @@
     text-align: right; }
     .header_menu_link {
       font-size: 16px;
-      letter-spacing: .08em;
+      letter-spacing: .1em;
       padding: 5px 10px;
       position: relative;
       color: #999; }
@@ -91,10 +84,8 @@
       .header_menu_link.is-selected:after, .header_menu_link:hover:after {
         width: 50%;
         margin-left: -25%; }
-      .header_menu_link.is-selected, .header_menu_link.is-active {
-        letter-spacing: .04em; }
-        .header_menu_link.is-selected:after, .header_menu_link.is-active:after {
-          background: #000; } }
+      .header_menu_link.is-selected:after, .header_menu_link.is-active:after {
+        background: #000; } }
 .submenu {
   list-style: none;
   margin: -15px -20px 20px -5px;
@@ -155,7 +146,8 @@
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: 2px;
-  font-weight: 300; }
+  font-weight: 300;
+  font-family: 'Raleway'; }
 .intro_links {
   list-style: none;
   padding: 0; }
@@ -179,6 +171,8 @@
     .intro_title {
       font-size: 28px;
       font-weight: 300; }
+    .intro_job {
+      font-size: 12px; }
     .intro_body {
       flex-basis: 65%;
       display: flex;
@@ -193,7 +187,9 @@
 @media screen and (min-width: 900px) {
   .intro_title {
     font-size: 36px;
-    letter-spacing: 2px; } }
+    letter-spacing: 2px; }
+  .intro_job {
+    font-size: 13px; } }
 @media screen and (min-width: 1000px) {
   .intro_title {
     font-size: 40px;

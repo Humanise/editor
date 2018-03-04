@@ -1,15 +1,6 @@
 @include if {
   .header {
     padding-top: 10px;
-    /*
-    &:after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: .55px;
-      background: #000;
-      margin: 10px auto;
-    };*/
   }
 
   .header_logo {
@@ -46,6 +37,7 @@
     padding: 5px 0 7px;
     display: block;
     text-align: center;
+    font-family: 'Raleway';
 
     &_item {
       display: inline-block;
@@ -58,12 +50,13 @@
       padding: 5px 5px;
       color: #333;
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 400;
       text-transform: uppercase;
+      letter-spacing: 0.05em;
 
       &.is-selected,
       &.is-active {
-        font-weight: 700;
+        font-weight: 600;
         color: #000;
       }
 
@@ -98,7 +91,7 @@
 
     &_link {
       font-size: 16px;
-      letter-spacing: .08em;
+      letter-spacing: .1em;
       padding: 5px 10px;
       position: relative;
       color: #999;
@@ -120,19 +113,11 @@
       }
       &.is-selected,
       &.is-active {
-        letter-spacing: .04em;
+        //letter-spacing: .04em;
         &:after {
           background: #000;
         }
       }
-    }
-  }
-}
-
-@include if (( width: 840px )){
-  .header {
-    &_menu {
-      
     }
   }
 }

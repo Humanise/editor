@@ -24,6 +24,7 @@
       font-size: 12px;
       letter-spacing: 2px;
       font-weight: 300;
+      font-family: 'Raleway';
     }
     &_links {
       list-style: none;
@@ -63,6 +64,10 @@
       font-weight: 300;
     }
 
+    &_job {
+      font-size: 12px;
+    }
+
     &_body {
       flex-basis: 65%;
       display: flex;
@@ -88,6 +93,10 @@
     &_title {
       font-size: 36px;
       letter-spacing: 2px;
+    }
+
+    &_job {
+      font-size: 13px;
     }
   }
 }
