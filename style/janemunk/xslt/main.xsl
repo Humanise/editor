@@ -24,7 +24,13 @@
   <html>
     <xsl:call-template name="util:html-attributes"/>
     <head>
-      <title><xsl:value-of select="@title"/> - <xsl:value-of select="f:frame/@title"/></title>
+      <title>
+      <xsl:if test="not(//p:page/@id=//p:context/p:home/@page)">
+        <xsl:value-of select="@title"/>
+        <xsl:text> - </xsl:text>
+      </xsl:if>
+      <xsl:value-of select="f:frame/@title"/>
+      </title>
       <xsl:choose>
         <xsl:when test="//widget:exhibition or //document:section[@class='artgallery']//imagegallery:imagegallery">
           <meta name="viewport" content="user-scalable=no, initial-scale = 1, maximum-scale = 1, minimum-scale = 1"/>
