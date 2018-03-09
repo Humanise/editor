@@ -69,7 +69,7 @@ op.part.ImageGallery.prototype = {
 
 op.part.ImageGallery.changing = {
   init : function(element) {
-    var nodes = hui.get.byClass(element,'part_imagegallery_item');
+    var nodes = hui.findAll('.part_imagegallery_item', element);
     if (nodes.length==0) {
       return;
     }
@@ -120,7 +120,7 @@ op.part.ImageGallery.Masonry = function(options) {
 
 op.part.ImageGallery.Masonry.prototype = {
   _attach : function() {
-    var links = hui.get.byTag(this.element,'a');
+    var links = hui.findAll('a', this.element);
     for (var i = 0; i < links.length; i++) {
       var data = hui.string.fromJSON(links[i].getAttribute('data'));
       data.href = links[i].href;

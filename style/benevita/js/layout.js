@@ -1,5 +1,5 @@
 hui.onReady(function() {
-  var blocks = hui.get.byTag(document.body,'blockquote');
+  var blocks = hui.findAll('blockquote');
   if (!blocks.length) {
     return;
   }

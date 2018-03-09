@@ -85,7 +85,7 @@ class TablePartController extends PartController
       <item text="{Move up; da:Flyt op}" value="moveUp"/>
       <item text="{Move down; da:Flyt ned}" value="moveDown"/>
       <divider/>
-      <item text="{Delete column; da:Slet kolonne}" value="deleteRow"/>
+      <item text="{Delete column; da:Slet kolonne}" value="deleteColumn"/>
       <item text="{Move left; da:Flyt til venstre}" value="moveLeft"/>
       <item text="{Move right; da:Flyt til højre}" value="moveRight"/>
     </menu>

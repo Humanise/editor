@@ -26,7 +26,7 @@ hui.onReady(['hui'],function(hui) {
       if (!hash) {
         return;
       }
-      var links = hui.get.byTag(document.body,'a');
+      var links = hui.findAll('a');
       for (var i = 0; i < links.length; i++) {
         if (hash == links[i].getAttribute('name')) {
           e.stop();

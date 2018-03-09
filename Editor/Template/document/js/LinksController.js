@@ -163,7 +163,7 @@ var linkController = {
   linkWasClicked : function(info) {
     this._clearLinkFocus();
     this.clickedLinkInfo = info;
-    var section = hui.get.firstAncestorByClass(info.node,'editor_section');
+    var section = hui.closest('.editor_section', info.node);
     if (section) {
       this.selectedTextInfo = hui.string.fromJSON(section.getAttribute('data'));
     } else {
