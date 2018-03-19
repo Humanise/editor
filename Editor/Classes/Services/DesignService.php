@@ -104,7 +104,6 @@ class DesignService {
       $files[] = 'hui/js/Component.js';
       $files[] = 'hui/js/Presentation.js';
       $files[] = 'hui/js/Overlay.js';
-      $files[] = 'hui/js/Button.js';
     }
     $files[] = 'style/basic/js/OnlinePublisher.js';
     $files = array_merge($files, DesignService::getJavaScriptFiles($design, 'async'));
@@ -370,7 +369,7 @@ class DesignService {
     }
     ShellService::execute($cmd);
     if (!file_exists($out)) {
-      Log::debug('Compression failed: ' . $cmd);
+      Log::warn('Compression failed: ' . $cmd);
     }
   }
 
