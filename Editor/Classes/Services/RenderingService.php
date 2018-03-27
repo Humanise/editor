@@ -600,7 +600,7 @@ class RenderingService {
       '<keywords>' . Strings::escapeEncodedXML($data['keywords']) . '</keywords>' .
       RenderingService::buildDateTag('published',$data['published']) .
       '<language>' . Strings::escapeEncodedXML(strtolower($data['language'])) . '</language>' .
-      (isset($row['analytics_key']) && !empty($row['analytics_key']) ? '<analytics key="' . Strings::escapeEncodedXML($row['analytics_key']) . '"/>' : '') .
+      (isset($data['analytics_key']) && !empty($data['analytics_key']) ? '<analytics key="' . Strings::escapeEncodedXML($data['analytics_key']) . '"/>' : '') .
       '</meta>' .
         '<design>' .
         $data['parameters'] .
