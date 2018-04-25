@@ -18,45 +18,45 @@ class TestStrings extends UnitTestCase {
     $this->assertEqual($result,'hep  hey');
   }
 
-    function testStripInvalidXml() {
-        $this->assertEqual('-1',Strings::stripInvalidXml('-1'));
-        $this->assertEqual('-1',Strings::stripInvalidXml(-1));
-        $this->assertEqual('0',Strings::stripInvalidXml(0));
-        $this->assertEqual(' ',Strings::stripInvalidXml("\0"));
+  function testStripInvalidXml() {
+    $this->assertEqual('-1',Strings::stripInvalidXml('-1'));
+    $this->assertEqual('-1',Strings::stripInvalidXml(-1));
+    $this->assertEqual('0',Strings::stripInvalidXml(0));
+    $this->assertEqual(' ',Strings::stripInvalidXml("\0"));
   }
 
-    function testToString() {
-        $this->assertEqual("0",Strings::toString(0));
+  function testToString() {
+    $this->assertEqual("0",Strings::toString(0));
   }
 
-    function testSplitIntegers() {
-        $this->assertIdentical([0],Strings::splitIntegers("0"));
-        $this->assertIdentical([],Strings::splitIntegers(""));
-        $this->assertIdentical([],Strings::splitIntegers(null));
-        $this->assertIdentical([0],Strings::splitIntegers(0));
-        $this->assertIdentical([0, -23, 56],Strings::splitIntegers("0,-23,56"));
-        $this->assertIdentical([0, -23, 56],Strings::splitIntegers("0 ,  -23 , 56   ,x"));
-        $this->assertIdentical([-23, 56],Strings::splitIntegers("0xx ,  -23 , 56   ,x"));
+  function testSplitIntegers() {
+    $this->assertIdentical([0],Strings::splitIntegers("0"));
+    $this->assertIdentical([],Strings::splitIntegers(""));
+    $this->assertIdentical([],Strings::splitIntegers(null));
+    $this->assertIdentical([0],Strings::splitIntegers(0));
+    $this->assertIdentical([0, -23, 56],Strings::splitIntegers("0,-23,56"));
+    $this->assertIdentical([0, -23, 56],Strings::splitIntegers("0 ,  -23 , 56   ,x"));
+    $this->assertIdentical([-23, 56],Strings::splitIntegers("0xx ,  -23 , 56   ,x"));
   }
 
-    function testEscaping() {
-        $this->assertEqual("0",Strings::escapeXML(0));
-        $this->assertEqual("0",Strings::escapeXML("0"));
-        $this->assertEqual("&#60;&#62;&#38;",Strings::escapeXML('<>&'));
-        $this->assertEqual("&quot;",Strings::escapeXML('"'));
-        $this->assertEqual("&#38;",Strings::escapeXML('&'));
-        $this->assertEqual("-",Strings::escapeXML('-'));
-        $this->assertEqual("+",Strings::escapeXML('+'));
-        $this->assertEqual("&#226;&#243;&#8220;",Strings::escapeXML('–'));
+  function testEscaping() {
+    $this->assertEqual("0",Strings::escapeXML(0));
+    $this->assertEqual("0",Strings::escapeXML("0"));
+    $this->assertEqual("&#60;&#62;&#38;",Strings::escapeXML('<>&'));
+    $this->assertEqual("&quot;",Strings::escapeXML('"'));
+    $this->assertEqual("&#38;",Strings::escapeXML('&'));
+    $this->assertEqual("-",Strings::escapeXML('-'));
+    $this->assertEqual("+",Strings::escapeXML('+'));
+    $this->assertEqual("&#226;&#243;&#8220;",Strings::escapeXML('–'));
 
     $this->assertEqual("-",Strings::fromUnicode('–'),"Long dash is replaced with short dash");
     $this->assertEqual("\"",Strings::fromUnicode('”'),"Curcly quotes are replaced with normal quotes");
     $this->assertEqual("\"",Strings::fromUnicode('“'),"Curcly quotes are replaced with normal quotes");
     // TODO: is this correct?
     $this->assertEqual("&#230;",Strings::escapeXML(Strings::fromUnicode('æ')));
-    }
+  }
 
-    function testUnicode() {
+  function testUnicode() {
     // The encoding of this file should be UTF-8
 
     $this->assertEqual("æ",Strings::fromUnicode('Ã¦'));
@@ -74,9 +74,9 @@ class TestStrings extends UnitTestCase {
     $this->assertEqual("Ã¦",$group->getTitle());
   }
 
-    function testBlank() {
-        $this->assertTrue(Strings::isBlank(null));
-        $this->assertFalse(Strings::isNotBlank(null));
+  function testBlank() {
+    $this->assertTrue(Strings::isBlank(null));
+    $this->assertFalse(Strings::isNotBlank(null));
 
     $this->assertTrue(Strings::isBlank(""));
     $this->assertFalse(Strings::isNotBlank(""));
@@ -94,12 +94,12 @@ class TestStrings extends UnitTestCase {
     $this->assertTrue(Strings::isNotBlank("abc"));
     }
 
-    function testSummarize() {
+  function testSummarize() {
     $this->assertEqual("onc<highlight>e</highlight> upon a tim<highlight>e</highlight>",Strings::summarizeAndHighlight(["e"],"once upon a time"));
   }
 
-    function testNumericEntities() {
-        $str = Strings::fromUnicode("Æbleø");
+  function testNumericEntities() {
+    $str = Strings::fromUnicode("Æbleø");
     $this->assertEqual("&#198;ble&#248;",Strings::htmlNumericEntities($str));
   }
 
