@@ -346,7 +346,7 @@ body.editor,
   font-weight: 400; }
 
 p.common, ul.common {
-  font-size: 12pt;
+  font-size: 16px;
   line-height: 160%;
   text-align: justify; }
 
@@ -375,11 +375,11 @@ p.common, ul.common {
 
 .part_text,
 .part_richtext {
-  font-size: 12pt;
+  font-size: 16px;
   word-spacing: 1px;
   line-height: 1.4;
-  color: #000;
-  font-weight: 300;
+  color: #333;
+  font-weight: 400;
   word-spacing: 1px; }
 
 /************ Headers ***********/
@@ -413,8 +413,7 @@ p.common, ul.common {
 
 /************** Poster ************/
 .part_poster_text {
-  font-size: 14px;
-  font-weight: 300; }
+  font-size: 14px; }
 
 .part_poster_link {
   font-size: 14px; }
