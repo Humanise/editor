@@ -52,9 +52,6 @@ $gui = '
     <media-simulator name="simulator" url="viewer/' . ($edit ? '#edit' : '') . '"/>
   </row>
   </rows>
-  <!--
-  <dock name="dock" position="top" frame-name="Preview" devices="true">
-  </dock>-->
 
   <boundpanel target="addNote" name="notePanel" width="200">
     <formula name="noteFormula">
