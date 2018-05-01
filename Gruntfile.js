@@ -214,7 +214,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-jsdoc');
 
   grunt.registerTask('default', 'Standard tasks', ['sass','compass','watch']);
 
