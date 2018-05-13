@@ -57,6 +57,12 @@
       </xsl:call-template>
     </xsl:if>
 
+    <xsl:if test="//widget:knowledge-intro">
+      <xsl:call-template name="util:inline-css">
+        <xsl:with-param name="file" select="'style/humanise/css/knowledgeintro.css'"/>
+      </xsl:call-template>
+    </xsl:if>
+
     <xsl:call-template name="util:load-font">
       <xsl:with-param name="href" select="'//fonts.googleapis.com/css?family=Lato:300,400,700,900'"/>
       <xsl:with-param name="family" select="'Lato'"/>
@@ -548,7 +554,7 @@
   </div>
 </xsl:template>
 
-<xsl:template match="widget:knowledge">
+<xsl:template match="widget:knowledge-intro">
   <div class="knowledgeintro js-knowledgeintro">
     <div class="knowledgeintro_phone"><xsl:comment/></div>
     <h2 class="knowledgeintro_heading">Store your <strong>knowledge</strong></h2>

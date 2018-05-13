@@ -573,3 +573,7 @@ p.common, ul.common {
     .focus_text {
       font-size: 32px;
       font-weight: 300; } }
+.knowledgeintro {
+  background: #fafafa; }
+  .knowledgeintro_title {
+    font-size: 2em; }

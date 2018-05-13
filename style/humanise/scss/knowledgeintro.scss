@@ -1,0 +1,11 @@
+$target: async;
+
+@import 'tools';
+
+.knowledgeintro {
+  background: #fafafa;
+
+  &_title {
+    font-size: 2em;
+  }
+}
