@@ -548,9 +548,11 @@
   </div>
 </xsl:template>
 
-<xsl:template match="widget:happy-xmas">
-  <div class="happy-xmas">
-    <h1 style="color: red;"><xsl:value-of select="widget:title"/></h1>
+<xsl:template match="widget:knowledge">
+  <div class="knowledgeintro js-knowledgeintro">
+    <div class="knowledgeintro_phone"><xsl:comment/></div>
+    <h2 class="knowledgeintro_heading">Store your <strong>knowledge</strong></h2>
+    <p class="knowledgeintro_text">Keep track of usefull information found on the net</p>
   </div>
 </xsl:template>
 
