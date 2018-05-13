@@ -555,11 +555,28 @@
 </xsl:template>
 
 <xsl:template match="widget:knowledge-intro">
-  <div class="knowledgeintro js-knowledgeintro">
-    <div class="knowledgeintro_phone"><xsl:comment/></div>
-    <h2 class="knowledgeintro_heading">Store your <strong>knowledge</strong></h2>
-    <p class="knowledgeintro_text">Keep track of usefull information found on the net</p>
+  <div class="knowledgeintro js-knowledgeintro is-1">
+    <div class="knowledgeintro_body">
+    <div class="knowledgeintro_phone">
+      <div class="knowledgeintro_phone_screens">
+        <div class="knowledgeintro_phone_screen js-knowledgeintro-screen"><xsl:comment/></div>
+        <div class="knowledgeintro_phone_screen js-knowledgeintro-screen"><xsl:comment/></div>
+        <div class="knowledgeintro_phone_screen js-knowledgeintro-screen"><xsl:comment/></div>
+      </div>
+    </div>
+    <h2 class="knowledgeintro_heading"><xsl:apply-templates select="widget:title"/></h2>
+    <p class="knowledgeintro_text"><xsl:apply-templates select="widget:text"/></p>
+    <div class="knowledgeintro_gfx">
+      <div class="knowledgeintro_answer"><xsl:comment/></div>
+      <div class="knowledgeintro_question"><xsl:comment/></div>
+      <xsl:comment/>
+    </div>
+    </div>
   </div>
+</xsl:template>
+
+<xsl:template match="widget:knowledge-intro//widget:strong">
+  <strong><xsl:apply-templates/></strong>
 </xsl:template>
 
 <xsl:template match="widget:call-to-action">

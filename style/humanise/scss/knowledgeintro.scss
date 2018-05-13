@@ -2,10 +2,187 @@ $target: async;
 
 @import 'tools';
 
-.knowledgeintro {
-  background: #fafafa;
 
-  &_title {
+.knowledgeintro {
+  background: #f5f7f8;
+  margin: 60px 0;
+  text-align: center;
+
+  &_heading {
     font-size: 2em;
+    line-height: 1;
+    font-weight: 500;
+    margin: 0;
+
+    > strong {
+      font-weight: 800;
+    }
+  }
+
+  &_text {
+    margin: 10px 0;
+    font-size: 16px;
+  }
+
+  &_phone {
+    background-image: url('../gfx/knowledge/phone.svg');
+    max-width: 280px;
+    margin: 0 auto 0;
+    position: relative;
+    top: -30px;
+
+    &:before {
+      content: '';
+      padding-bottom: 582.957 / 275.976 * 100%;
+      display: block;
+    }
+
+    &_screens {
+      position: absolute;
+      top: 13.9%;
+      left: 6.7%;
+      right: 7.1%;
+      bottom: 13.6%;
+    }
+
+    &_screen {
+      background: no-repeat;
+      background-size: contain;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      transition: opacity .3s;
+      &:nth-child(1) {
+        background-image: url('../gfx/knowledge/screen_1.png');
+      }
+      &:nth-child(2) {
+        background-image: url('../gfx/knowledge/screen_2.png');
+      }
+      &:nth-child(3) {
+        background-image: url('../gfx/knowledge/screen_3.png');
+      }
+    }
+  }
+  @for $i from 1 through 3 {
+    &.is-#{$i} &_phone_screen:nth-child(#{$i}) {
+      opacity: 1;
+    }
+  }
+
+  &_gfx {
+    background: url('../gfx/knowledge/person_doc.svg') no-repeat;
+    background-size: contain;
+    position: relative;
+    margin: 30px 0 0px;
+    bottom: -20px;
+
+    &:before {
+      content: '';
+      display: block;
+      padding-bottom: 356.9287109 / 930.4454346 * 100%;
+    };
+  }
+
+  &_answer {
+    background: url('../gfx/knowledge/bubble.svg') no-repeat;
+    position: absolute;
+    width: 14%;
+    height: 36%;
+    left: 56%;
+    top: 19%;
+    animation-name: knowledge-answer;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    transform-origin: 100% 90%;
+  }
+
+  &_question {
+    background: url('../gfx/knowledge/question.svg') no-repeat;
+    position: absolute;
+    width: 29%;
+    height: 73%;
+    left: 26%;
+    top: -37%;
+    animation-delay: .5s;
+    animation-name: knowledge-question;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    transform-origin: 0% 90%;
+  }
+}
+
+@keyframes knowledge-answer {
+  from {
+    transform: scale3d(0.9, 0.9, 0.9) rotate(-5deg);
+  }
+
+  50% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  to {
+    transform: scale3d(0.9, 0.9, 0.9) rotate(-5deg);
+  }
+}
+
+@keyframes knowledge-question {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(0.9, 0.9, 0.9) rotate(5deg);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+
+@include if(( width: 700px )) {
+
+  .knowledgeintro {
+    margin: 100px 0;
+    text-align: left;
+
+    &_heading {
+      padding: 40px 0 0;
+      font-size: 48px;
+    }
+
+    &_text {
+      font-size: 24px;
+      font-weight: 300;
+      margin: 20px 0 0;
+    }
+
+    &_body {
+      position: relative;
+      height: 480px;
+      max-width: 980px;
+      margin: 0 auto;
+      box-sizing: border-box;
+      padding-left: 400px;
+      padding-right: 40px;
+    }
+
+    &_phone {
+      position: absolute;
+      width: 290px;
+      max-width: none;
+      top: -15%;
+      left: 5%;
+    }
+
+    &_gfx {
+      position: absolute;
+      bottom: -30px;
+      right: 0;
+      left: 370px;
+    }
   }
 }

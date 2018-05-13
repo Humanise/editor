@@ -574,6 +574,132 @@ p.common, ul.common {
       font-size: 32px;
       font-weight: 300; } }
 .knowledgeintro {
-  background: #fafafa; }
-  .knowledgeintro_title {
-    font-size: 2em; }
+  background: #f5f7f8;
+  margin: 60px 0;
+  text-align: center; }
+  .knowledgeintro_heading {
+    font-size: 2em;
+    line-height: 1;
+    font-weight: 500;
+    margin: 0; }
+    .knowledgeintro_heading > strong {
+      font-weight: 800; }
+  .knowledgeintro_text {
+    margin: 10px 0;
+    font-size: 16px; }
+  .knowledgeintro_phone {
+    background-image: url("../gfx/knowledge/phone.svg");
+    max-width: 280px;
+    margin: 0 auto 0;
+    position: relative;
+    top: -30px; }
+    .knowledgeintro_phone:before {
+      content: '';
+      padding-bottom: 211.2346725802%;
+      display: block; }
+    .knowledgeintro_phone_screens {
+      position: absolute;
+      top: 13.9%;
+      left: 6.7%;
+      right: 7.1%;
+      bottom: 13.6%; }
+    .knowledgeintro_phone_screen {
+      background: no-repeat;
+      background-size: contain;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      transition: opacity .3s; }
+      .knowledgeintro_phone_screen:nth-child(1) {
+        background-image: url("../gfx/knowledge/screen_1.png"); }
+      .knowledgeintro_phone_screen:nth-child(2) {
+        background-image: url("../gfx/knowledge/screen_2.png"); }
+      .knowledgeintro_phone_screen:nth-child(3) {
+        background-image: url("../gfx/knowledge/screen_3.png"); }
+  .knowledgeintro.is-1 .knowledgeintro_phone_screen:nth-child(1) {
+    opacity: 1; }
+  .knowledgeintro.is-2 .knowledgeintro_phone_screen:nth-child(2) {
+    opacity: 1; }
+  .knowledgeintro.is-3 .knowledgeintro_phone_screen:nth-child(3) {
+    opacity: 1; }
+  .knowledgeintro_gfx {
+    background: url("../gfx/knowledge/person_doc.svg") no-repeat;
+    background-size: contain;
+    position: relative;
+    margin: 30px 0 0px;
+    bottom: -20px; }
+    .knowledgeintro_gfx:before {
+      content: '';
+      display: block;
+      padding-bottom: 38.3610577931%; }
+  .knowledgeintro_answer {
+    background: url("../gfx/knowledge/bubble.svg") no-repeat;
+    position: absolute;
+    width: 14%;
+    height: 36%;
+    left: 56%;
+    top: 19%;
+    animation-name: knowledge-answer;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    transform-origin: 100% 90%; }
+  .knowledgeintro_question {
+    background: url("../gfx/knowledge/question.svg") no-repeat;
+    position: absolute;
+    width: 29%;
+    height: 73%;
+    left: 26%;
+    top: -37%;
+    animation-delay: .5s;
+    animation-name: knowledge-question;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    transform-origin: 0% 90%; }
+
+@keyframes knowledge-answer {
+  from {
+    transform: scale3d(0.9, 0.9, 0.9) rotate(-5deg); }
+  50% {
+    transform: scale3d(1, 1, 1); }
+  to {
+    transform: scale3d(0.9, 0.9, 0.9) rotate(-5deg); } }
+@keyframes knowledge-question {
+  from {
+    transform: scale3d(1, 1, 1); }
+  50% {
+    transform: scale3d(0.9, 0.9, 0.9) rotate(5deg); }
+  to {
+    transform: scale3d(1, 1, 1); } }
+@media screen and (min-width: 700px) {
+  .knowledgeintro {
+    margin: 100px 0;
+    text-align: left; }
+    .knowledgeintro_heading {
+      padding: 40px 0 0;
+      font-size: 48px; }
+    .knowledgeintro_text {
+      font-size: 24px;
+      font-weight: 300;
+      margin: 20px 0 0; }
+    .knowledgeintro_body {
+      position: relative;
+      height: 480px;
+      max-width: 980px;
+      margin: 0 auto;
+      box-sizing: border-box;
+      padding-left: 400px;
+      padding-right: 40px; }
+    .knowledgeintro_phone {
+      position: absolute;
+      width: 290px;
+      max-width: none;
+      top: -15%;
+      left: 5%; }
+    .knowledgeintro_gfx {
+      position: absolute;
+      bottom: -30px;
+      right: 0;
+      left: 370px; } }
