@@ -524,8 +524,24 @@
   <div class="hero">
     <div class="hero_title"><span class="hero_title_prefix">Humanise</span> <span class="hero_title_suffix">Editor</span></div>
     <div class="hero_info">
-      <div class="hero_text">Simpel redigering af websites</div>
-      <a class="hero_button" href="/produkter/onlinepublisher/">Lær mere</a>
+      <div class="hero_text">
+        <xsl:choose>
+          <xsl:when test="widget:text">
+            <xsl:apply-templates select="widget:text"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:text>Simpel redigering af websites</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+      </div>
+      <xsl:choose>
+        <xsl:when test="widget:button">
+          <a class="hero_button" href="widget:button[href]"><xsl:value-of select="widget:button"/></a>
+        </xsl:when>
+        <xsl:otherwise>
+          <a class="hero_button" href="/produkter/onlinepublisher/">Lær mere</a>
+        </xsl:otherwise>
+      </xsl:choose>
     </div>
     <div class="hero_rays"><xsl:comment/></div>
     <div class="hero_pencil"><xsl:comment/></div>
