@@ -1,4 +1,4 @@
-hui.onReady(function() {
+hui.on(function() {
 
   var Thing = function(node) {
     this.node = node;

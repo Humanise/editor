@@ -1,4 +1,4 @@
-hui.onReady(function() {
+hui.on(function() {
   op.part.Formula = function(options) {
     this.element = hui.get(options.element);
     this.id = options.id;

@@ -1,4 +1,4 @@
-hui.onReady(function() {
+hui.on(function() {
   op.showLogin = function() {
     if (!this.loginBox) {
       if (this.loadingLogin) {

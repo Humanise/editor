@@ -1,4 +1,4 @@
-hui = window.hui || {_:[],onReady:function() {this._.push(arguments)}};
+hui = window.hui || {_:[],on:function() {this._.push(arguments)}};
 
 (function(window,document) {
   window._editor = {
@@ -7,13 +7,13 @@ hui = window.hui || {_:[],onReady:function() {this._.push(arguments)}};
       if (raf) {
         return raf(func);
       }
-      hui.onReady(func);
+      hui.on(func);
     },
     loadPart : function(info) {
-      hui.onReady(['hui','hui.ui','op'],function() {
+      hui.on(['hui','hui.ui','op'],function() {
         _editor.loadScript(hui.ui.getContext()+'style/basic/js/parts/' + info.name + '.js');
       });
-      hui.onReady(['op.part.'+info.name],info.$ready);
+      hui.on(['op.part.'+info.name],info.$ready);
     },
     getPageId : function() {
       return parseInt(document.querySelector('*[data-page-id]').getAttribute('data-page-id'),10)
@@ -46,14 +46,14 @@ hui = window.hui || {_:[],onReady:function() {this._.push(arguments)}};
         if (h) {
           h.appendChild(node);
         } else {
-          hui.onReady(function() {
+          hui.on(function() {
             _editor.inject(node);
           })
         }
     }
   }
 
-  hui.onReady(function() {
+  hui.on(function() {
     var noscripts = document.getElementsByTagName('noscript');
     for (var i = 0; i < noscripts.length; i++) {
       var noscript = noscripts[i];

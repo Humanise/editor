@@ -1,8 +1,8 @@
-hui.onReady(function() {
+hui.on(function() {
   op.part.Map = function(options) {
     this.options = hui.override({maptype:'roadmap',zoom:8},options);
     this.container = hui.get(options.element);
-    hui.ui.onReady(this.initialize.bind(this));
+    this.initialize.bind(this);
   }
 
   op.part.Map.defered = [];

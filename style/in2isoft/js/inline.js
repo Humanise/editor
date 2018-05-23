@@ -1,4 +1,4 @@
-hui.onReady(function() {
+hui.on(function() {
   if (hui.browser.windows) {
     hui.cls.add(document.body,'windows');
   }
@@ -10,7 +10,7 @@ hui.onReady(function() {
   }
   var search = hui.get('search');
   if (search) {
-    hui.onReady(['hui.ui.SearchField'],function() {
+    hui.on(['hui.ui.SearchField'],function() {
       new hui.ui.SearchField({element:search,expandedWidth:200});
     })
   }

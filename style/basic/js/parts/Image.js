@@ -31,4 +31,4 @@ op.part.Image.prototype = {
 
 window.define && define('op.part.Image');
 
-hui.onReady(function() {hui.define('op.part.Image',op.part.Image)})
+hui.on(function() {hui.define('op.part.Image',op.part.Image)})
