@@ -569,6 +569,7 @@
     <div class="knowledgeintro_gfx">
       <div class="knowledgeintro_answer"><xsl:comment/></div>
       <div class="knowledgeintro_question"><xsl:comment/></div>
+      <div class="knowledgeintro_selection"><xsl:comment/></div>
       <xsl:comment/>
     </div>
     </div>
