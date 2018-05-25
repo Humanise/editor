@@ -1,4 +1,4 @@
-hui.onReady(['op'], function(op) {
+hui.on(['op'], function(op) {
   op.SearchField = function(o) {
     o = this.options = hui.override({placeholderClass:'placeholder',placeholder:''},o);
     this.field = hui.get(o.element);

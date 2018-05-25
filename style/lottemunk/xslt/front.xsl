@@ -139,7 +139,7 @@
     </p>
   </div>
   <script type="text/javascript">
-    hui.onReady(['hui.ui.Presentation','op'],function() {
+    hui.on(['hui.ui.Presentation','op'],function() {
       var images = [];
       <xsl:for-each select="//imagegallery:imagegallery//o:object">
           images.push({

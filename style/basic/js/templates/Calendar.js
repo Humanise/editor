@@ -1,4 +1,4 @@
-hui.onReady(['op'], function() {
+hui.on(['op'], function() {
   op.CalendarTemplate = function() {
     this.days = [];
     this.arrows = [];

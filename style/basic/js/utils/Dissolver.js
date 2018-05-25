@@ -1,4 +1,4 @@
-hui.onReady(['op'], function(op) {
+hui.on(['op'], function(op) {
   op.Dissolver = function(options) {
     options = this.options = hui.override({wait:4000,transition:2000,delay:0},options);
     this.pos = Math.floor(Math.random()*(options.elements.length-.00001));

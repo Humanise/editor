@@ -136,6 +136,6 @@ op.WeblogTemplate = {
   }
 }
 
-hui.ui.onReady(function() {
+hui.on(function() {
   op.WeblogTemplate.ignite();
 });

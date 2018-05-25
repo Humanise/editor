@@ -1,4 +1,4 @@
-hui.onReady(function() {
+hui.on(function() {
   var blocks = hui.findAll('blockquote');
   if (!blocks.length) {
     return;

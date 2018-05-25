@@ -60,7 +60,7 @@
 	</div>
 	<xsl:call-template name="util:googleanalytics"/>
 	<script>
-		hui.onReady(function() {
+		hui.on(function() {
 			var fade = hui.get.firstByClass(document.body,'layout_top_fade');
 			var top = fade.parentNode;
 			hui.style.set(fade,{opacity:0,visibility:'visible'});

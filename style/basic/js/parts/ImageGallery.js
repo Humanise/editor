@@ -1,4 +1,4 @@
-hui.onReady(['hui','op'], function(hui, op) {
+hui.on(['hui','op'], function(hui, op) {
 op.part.ImageGallery = function(options) {
   this.options = options;
   this.element = hui.get(options.element);

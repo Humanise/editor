@@ -105,7 +105,7 @@
     </div>
   </div>
   <script>
-    hui.onReady(function() {
+    hui.on(function() {
       if (navigator.userAgent.match(/iphone|ipad|android/gi)) {
         hui.cls.add(hui.find('.js-offer'),'is-message-capable')
       }

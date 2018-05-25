@@ -23,7 +23,7 @@ op.ignite = function(loggedIn) {
       hui.listen(document,'keyup',temp);
     }
   })
-  hui.onReady(function() {
+  hui.on(function() {
     hui.request({
       url : hui.ui.getContext() + 'services/statistics/',
       parameters : {page : _editor.getPageId(), referrer : document.referrer, uri : document.location.href}
@@ -63,4 +63,4 @@ op.feedback = function(a) {
   })
 }
 
-hui.onReady(function() {hui.define('op', op)})
+hui.on(function() {hui.define('op', op)})

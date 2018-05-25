@@ -1,4 +1,4 @@
-hui.onReady(['hui'],function(hui) {
+hui.on(['hui'],function(hui) {
   var root = hui.find('.js-knowledgeintro');
   hui.log(root)
 

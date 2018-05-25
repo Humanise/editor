@@ -1,4 +1,4 @@
-hui.onReady(function() {
+hui.on(function() {
   Poster = function() {
     this.poster = hui.get('poster');
     this.left = hui.get('poster_left');

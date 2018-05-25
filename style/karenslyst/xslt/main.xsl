@@ -65,7 +65,7 @@
               <div class="layout_top_body"><div><xsl:comment/></div></div>
             </header>
             <script type="text/javascript">
-              hui.onReady(function() {
+              hui.on(function() {
                 var img = new Image();
                 img.onload = function() {
                   var x = hui.get.byClass(document.body,'layout_top_body')[0];

@@ -1,4 +1,4 @@
-hui.onReady(function() {
+hui.on(function() {
   Poster.getInstance().preload();
 });
 

@@ -404,7 +404,7 @@
 			<div>
 				<span class="hui_searchfield" id="search"><em class="hui_searchfield_placeholder">Søg her...</em><a href="javascript:void(0);" class="hui_searchfield_reset" tabindex="-1"><xsl:comment/></a><span><span><input type="text" class="text" name="query"/></span></span></span>
 				<script type="text/javascript">
-          hui.onReady(['hui.ui'],function() {
+          hui.on(['hui.ui'],function() {
             new hui.ui.SearchField({element:'search',expandedWidth:200});
           })
 				</script>

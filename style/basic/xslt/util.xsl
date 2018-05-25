@@ -329,7 +329,7 @@ ga('create', '<xsl:value-of select="$code"/>', {siteSpeedSampleRate : 20});ga('s
     <xsl:text disable-output-escaping="yes">//&lt;![CDATA[
 </xsl:text>
 <xsl:value-of select="php:function('DesignService::getInlineJS',$design,$development)" disable-output-escaping="yes"/>
-  hui.onReady(['hui.ui'],function() {hui.ui.language='<xsl:value-of select="$language"/>';});hui.onReady(['op'],function() {<xsl:if test="$preview!='true'">op.ignite(<xsl:value-of select="$internal-logged-in"/>);</xsl:if>})
+  hui.on(['hui.ui'],function() {hui.ui.language='<xsl:value-of select="$language"/>';});hui.on(['op'],function() {<xsl:if test="$preview!='true'">op.ignite(<xsl:value-of select="$internal-logged-in"/>);</xsl:if>})
     <xsl:text disable-output-escaping="yes">
 //]]&gt;</xsl:text>
   </script>

@@ -1,4 +1,4 @@
-hui.onReady(['hui'], function(hui) {
+hui.on(['hui'], function(hui) {
 
   var exhibit = {
     space : 'concrete',
@@ -289,7 +289,7 @@ hui.onReady(['hui'], function(hui) {
     latestWide = wide;
   }
   hui.listen(window,'resize',check);
-  hui.onReady(function() {
+  hui.on(function() {
     check();
     hui.cls.add(hui.find('body'),'is-layout')
     exhibit.init();
