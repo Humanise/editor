@@ -23,6 +23,7 @@ class TestImageService extends UnitTestCase {
       Log::debug($result);
     }
     $image = $result['image'];
+    $this->assertNotNull($image);
     $this->assertEqual($image->getSize(),86);
     $this->assertEqual($image->getHeight(),16);
     $this->assertEqual($image->getWidth(),16);

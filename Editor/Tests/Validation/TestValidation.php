@@ -87,7 +87,11 @@ class TestValidation extends UnitTestCase {
           $this->assertTrue(strpos($html, '/api/style/' . $name . '.css') !== false,'The design "' . $name . '" does not include css from API');
         }
       }
-      $this->assertTrue(XmlService::validateSnippet($html),'The design "' . $name . '" is not valid xml');
+      $validXml = XmlService::validateSnippet($html);
+      $this->assertTrue($validXml,'The design "' . $name . '" is not valid xml');
+      if (!$validXml) {
+        Log::debug($html);
+      }
     }
 
     $page->delete();
