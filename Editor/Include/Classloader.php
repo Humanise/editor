@@ -4,7 +4,7 @@ if (!isset($GLOBALS['basePath'])) {
   exit;
 }
 require_once $basePath . 'Editor/Info/Classes.php';
-function __autoload($class_name) {
+spl_autoload_register(function ($class_name) {
   global $basePath,$HUMANISE_EDITOR_CLASSES;
 
   if (is_array($HUMANISE_EDITOR_CLASSES) && is_array($HUMANISE_EDITOR_CLASSES['all'])) {
@@ -37,5 +37,5 @@ function __autoload($class_name) {
       break;
     }
   }
-}
+});
 ?>
