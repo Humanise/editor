@@ -56,7 +56,7 @@ class TestPHPFiles extends UnitTestCase {
     $error = curl_errno($ch);
     if ($error) {
       $this->assertTrue($error === 0,'The result of url: ' . $url . ' had the error: ' . $error);
-      continue;
+      return;
     }
     $info = curl_getinfo($ch);
     $httpCode = $info['http_code'];
