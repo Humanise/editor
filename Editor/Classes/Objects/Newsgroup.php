@@ -16,7 +16,7 @@ Entity::$schema['Newsgroup'] = [
 class Newsgroup extends Object {
 
   function Newsgroup() {
-    parent::Object('newsgroup');
+    parent::__construct('newsgroup');
   }
 
   static function load($id) {

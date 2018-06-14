@@ -17,7 +17,7 @@ Entity::$schema['Filegroup'] = [
 class Filegroup extends Object {
 
   function Filegroup() {
-    parent::Object('filegroup');
+    parent::__construct('filegroup');
   }
 
   static function load($id) {

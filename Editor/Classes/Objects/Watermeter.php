@@ -19,7 +19,7 @@ class Watermeter extends Object {
   var $number;
 
   function Watermeter() {
-    parent::Object('watermeter');
+    parent::__construct('watermeter');
   }
 
   static function load($id) {

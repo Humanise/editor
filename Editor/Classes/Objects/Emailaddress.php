@@ -21,7 +21,7 @@ class Emailaddress extends Object {
   var $containingObjectId = 0;
 
   function Emailaddress() {
-    parent::Object('emailaddress');
+    parent::__construct('emailaddress');
   }
 
   static function load($id) {

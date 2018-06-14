@@ -16,7 +16,7 @@ Entity::$schema['Webloggroup'] = [
 class Webloggroup extends Object {
 
   function Webloggroup() {
-    parent::Object('webloggroup');
+    parent::__construct('webloggroup');
   }
 
   static function load($id) {

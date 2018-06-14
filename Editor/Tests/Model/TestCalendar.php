@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestCalendar extends AbstractObjectTest {
 
-  function TestCalendar() {
-    parent::AbstractObjectTest('calendar');
+  function __construct() {
+    parent::__construct('calendar');
   }
 
   function testProperties() {

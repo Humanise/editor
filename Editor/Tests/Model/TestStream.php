@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestStream extends AbstractObjectTest {
 
-  function TestStream() {
-    parent::AbstractObjectTest('stream');
+  function __construct() {
+    parent::__construct('stream');
   }
 
   function testProperties() {

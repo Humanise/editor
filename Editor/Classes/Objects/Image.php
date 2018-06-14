@@ -28,7 +28,7 @@ class Image extends Object {
   var $mimetype;
 
   function Image() {
-    parent::Object('image');
+    parent::__construct('image');
   }
 
   static function load($id) {

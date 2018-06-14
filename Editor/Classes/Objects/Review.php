@@ -22,7 +22,7 @@ class Review extends Object {
   var $date;
 
   function Review() {
-    parent::Object('review');
+    parent::__construct('review');
   }
 
   static function load($id) {

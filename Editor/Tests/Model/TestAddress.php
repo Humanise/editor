@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestAddress extends AbstractObjectTest {
 
-  function TestAddress() {
-    parent::AbstractObjectTest('address');
+  function __construct() {
+    parent::__construct('address');
   }
 
   function testToString() {

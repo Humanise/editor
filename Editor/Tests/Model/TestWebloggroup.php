@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestWebloggroup extends AbstractObjectTest {
 
-  function TestWebloggroup() {
-    parent::AbstractObjectTest('webloggroup');
+  function __construct() {
+    parent::__construct('webloggroup');
   }
 
   function testToString() {

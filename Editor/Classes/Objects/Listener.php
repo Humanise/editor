@@ -23,7 +23,7 @@ class Listener extends Object {
   var $interval;
 
   function Listener() {
-    parent::Object('listener');
+    parent::__construct('listener');
   }
 
   static function load($id) {

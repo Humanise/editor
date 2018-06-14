@@ -21,7 +21,7 @@ class Path extends Object {
   var $pageId = 0;
 
   function Path() {
-    parent::Object('path');
+    parent::__construct('path');
   }
 
   static function load($id) {

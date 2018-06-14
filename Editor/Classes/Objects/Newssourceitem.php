@@ -27,7 +27,7 @@ class Newssourceitem extends Object {
   var $newssourceId;
 
   function Newssourceitem() {
-    parent::Object('newssourceitem');
+    parent::__construct('newssourceitem');
   }
 
   static function load($id) {

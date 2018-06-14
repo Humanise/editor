@@ -20,7 +20,7 @@ class Project extends Object {
   var $parentProjectId = 0;
 
   function Project() {
-    parent::Object('project');
+    parent::__construct('project');
   }
 
   static function load($id) {

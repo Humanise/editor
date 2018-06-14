@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestEvent extends AbstractObjectTest {
 
-  function TestEvent() {
-    parent::AbstractObjectTest('event');
+  function __construct() {
+    parent::__construct('event');
   }
 
   function makeValid($event) {

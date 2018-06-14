@@ -16,7 +16,7 @@ Entity::$schema['Producttype'] = [
 class Producttype extends Object {
 
   function Producttype() {
-    parent::Object('producttype');
+    parent::__construct('producttype');
   }
 
   static function load($id) {

@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestMailinglist extends AbstractObjectTest {
 
-  function TestMailinglist() {
-    parent::AbstractObjectTest('mailinglist');
+  function __construct() {
+    parent::__construct('mailinglist');
   }
 }
 ?>

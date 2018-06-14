@@ -15,7 +15,7 @@ Entity::$schema['Calendar'] = [
 class Calendar extends Object {
 
   function Calendar() {
-    parent::Object('calendar');
+    parent::__construct('calendar');
   }
 
   static function load($id) {

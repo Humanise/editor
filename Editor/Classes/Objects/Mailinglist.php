@@ -16,7 +16,7 @@ Entity::$schema['Mailinglist'] = [
 class Mailinglist extends Object {
 
   function Mailinglist() {
-    parent::Object('mailinglist');
+    parent::__construct('mailinglist');
   }
 
   function getIcon() {

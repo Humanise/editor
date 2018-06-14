@@ -23,7 +23,7 @@ class Feedback extends Object {
   var $message;
 
   function Feedback() {
-    parent::Object('feedback');
+    parent::__construct('feedback');
   }
 
   static function load($id) {

@@ -23,7 +23,7 @@ class Phonenumber extends Object {
   var $containingObjectId = 0;
 
   function Phonenumber() {
-    parent::Object('phonenumber');
+    parent::__construct('phonenumber');
   }
 
   static function load($id) {

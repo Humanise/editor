@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestTask extends AbstractObjectTest {
 
-  function TestTask() {
-    parent::AbstractObjectTest('task');
+  function __construct() {
+    parent::__construct('task');
   }
 
 }

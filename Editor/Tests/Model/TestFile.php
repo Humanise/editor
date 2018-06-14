@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestFile extends AbstractObjectTest {
 
-  function TestFile() {
-    parent::AbstractObjectTest('file');
+  function __construct() {
+    parent::__construct('file');
   }
 
   function testProperties() {

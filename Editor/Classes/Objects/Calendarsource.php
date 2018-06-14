@@ -26,7 +26,7 @@ class Calendarsource extends Object {
   var $displayTitle;
 
   function Calendarsource() {
-    parent::Object('calendarsource');
+    parent::__construct('calendarsource');
   }
 
   static function load($id) {
