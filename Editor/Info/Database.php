@@ -99,7 +99,7 @@ $databaseTables = [
       ["row_id", "int(11)", "", "", "0", ""],
       ["index", "int(11)", "", "", "0", ""],
       ["page_id", "int(11)", "", "", "0", ""],
-      ["width", "varchar(50)", "", "", "", ""],
+      ["width", "varchar(50)", "YES", "", "", ""],
       ["top", "varchar(10)", "YES", "", "", ""],
       ["bottom", "varchar(10)", "YES", "", "", ""],
       ["left", "varchar(10)", "YES", "", "", ""],
@@ -139,7 +139,7 @@ $databaseTables = [
       ["unique", "varchar(255)", "", "", "", ""],
       ["user_id", "int(11)", "", "", "0", ""],
       ["email", "varchar(255)", "", "", "", ""],
-      ["timelimit", "datetime", "", "", "0000-00-00 00:00:00", ""]
+      ["timelimit", "datetime", "", "", "1970-01-01 00:00:00", ""]
     ],
   'emailaddress' => [
       ["object_id", "int(11)", "", "", "0", ""],
@@ -148,8 +148,8 @@ $databaseTables = [
     ],
   'event' => [
       ["object_id", "int(11)", "YES", "", "", ""],
-      ["startdate", "datetime", "", "", "0000-00-00 00:00:00", ""],
-      ["enddate", "datetime", "", "", "0000-00-00 00:00:00", ""],
+      ["startdate", "datetime", "", "", "1970-01-01 00:00:00", ""],
+      ["enddate", "datetime", "", "", "1970-01-01 00:00:00", ""],
       ["location", "varchar(255)", "YES", "", "", ""]
     ],
   'feedback' => [
@@ -337,8 +337,8 @@ $databaseTables = [
       ],
   'news' => [
       ["object_id", "int(11)", "", "", "0", ""],
-      ["startdate", "datetime", "YES", "", "0000-00-00 00:00:00", ""],
-      ["enddate", "datetime", "YES", "", "0000-00-00 00:00:00", ""],
+      ["startdate", "datetime", "YES", "", "1970-01-01 00:00:00", ""],
+      ["enddate", "datetime", "YES", "", "1970-01-01 00:00:00", ""],
       ["image_id", "int(11)", "YES", "", "", ""]
     ],
   'newsgroup' => [
@@ -358,7 +358,7 @@ $databaseTables = [
       ["object_id", "int(11)", "", "", "0", ""],
       ["newssource_id", "int(11)", "", "", "0", ""],
       ["text", "text", "YES", "", "", ""],
-      ["date", "datetime", "YES", "", "0000-00-00 00:00:00", ""],
+      ["date", "datetime", "YES", "", "1970-01-01 00:00:00", ""],
       ["url", "varchar(255)", "YES", "", "", ""],
       ["guid", "varchar(255)", "YES", "", "", ""]
     ],
@@ -368,9 +368,9 @@ $databaseTables = [
       ["type", "varchar(50)", "", "", "", ""],
       ["note", "text", "YES", "", "", ""],
       ["data", "text", "YES", "", "", ""],
-      ["created", "datetime", "", "", "0000-00-00 00:00:00", ""],
-      ["updated", "datetime", "", "", "0000-00-00 00:00:00", ""],
-      ["published", "datetime", "", "", "0000-00-00 00:00:00", ""],
+      ["created", "datetime", "", "", "1970-01-01 00:00:00", ""],
+      ["updated", "datetime", "", "", "1970-01-01 00:00:00", ""],
+      ["published", "datetime", "", "", "1970-01-01 00:00:00", ""],
       ["searchable", "tinyint(4)", "", "", "1", ""],
       ["index", "text", "YES", "", "", ""],
       ["owner_id", "int(11)", "", "", "0", ""]
@@ -393,9 +393,9 @@ $databaseTables = [
       ["keywords", "varchar(255)", "", "", "", ""],
       ["template_id", "int(11)", "", "", "0", ""],
       ["data", "longtext", "YES", "", "", ""],
-      ["created", "datetime", "", "", "0000-00-00 00:00:00", ""],
-      ["changed", "datetime", "", "", "0000-00-00 00:00:00", ""],
-      ["published", "datetime", "", "", "0000-00-00 00:00:00", ""],
+      ["created", "datetime", "", "", "1970-01-01 00:00:00", ""],
+      ["changed", "datetime", "", "", "1970-01-01 00:00:00", ""],
+      ["published", "datetime", "", "", "1970-01-01 00:00:00", ""],
       ["design_id", "int(11)", "", "", "0", ""],
       ["frame_id", "int(11)", "", "", "0", ""],
       ["index", "text", "YES", "", "", ""],
@@ -445,8 +445,8 @@ $databaseTables = [
   'part' => [
       ["id", "int(11)", "", "PRI", "", "auto_increment"],
       ["type", "varchar(50)", "", "", "", ""],
-      ["created", "datetime", "", "", "0000-00-00 00:00:00", ""],
-      ["updated", "datetime", "", "", "0000-00-00 00:00:00", ""],
+      ["created", "datetime", "", "", "1970-01-01 00:00:00", ""],
+      ["updated", "datetime", "", "", "1970-01-01 00:00:00", ""],
       ["style", "text", "YES", "", "", ""],
       ["dynamic", "tinyint(4)", "", "", "0", ""]
     ],
@@ -696,7 +696,7 @@ $databaseTables = [
       ["surname", "varchar(50)", "YES", "", "", ""],
       ["initials", "varchar(10)", "YES", "", "", ""],
       ["nickname", "varchar(20)", "YES", "", "", ""],
-      ["jobtitle", "varchar(30)", "YES", "", "0000-00-00 00:00:00", ""],
+      ["jobtitle", "varchar(30)", "YES", "", "", ""],
       ["sex", "varchar(10)", "YES", "", "", ""],
       ["email_job", "varchar(50)", "YES", "", "", ""],
       ["email_private", "varchar(50)", "YES", "", "", ""],
