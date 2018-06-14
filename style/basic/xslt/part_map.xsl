@@ -104,7 +104,7 @@
     <xsl:if test="map:text">
       <span class="part_map_text"><xsl:value-of select="map:text"/></span>
     </xsl:if>
-    <script type="text/javascript">
+    <script>
       _editor.loadPart({name:'Map',$ready:function() {
         var options = {
           element : 'map_<xsl:value-of select="../../@id"/>',

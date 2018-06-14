@@ -90,7 +90,7 @@
 					Benevita, Dalby Allé 33, Dall Villaby, 9230 Svenstrup, (+45) 22 41 44 47, <a href="mailto:kontakt@benevita.dk">kontakt@benevita.dk</a>
 				</div>
 			</div>
-			<script src="{$path}style/{$design}/js/layout.js" type="text/javascript"><xsl:text> </xsl:text></script>
+			<script src="{$path}style/{$design}/js/layout.js"><xsl:text> </xsl:text></script>
 		</body>
 	</html>
 </xsl:template>

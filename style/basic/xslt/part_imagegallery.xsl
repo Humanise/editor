@@ -36,7 +36,7 @@
         </div>
       </xsl:otherwise>
     </xsl:choose>
-    <script type="text/javascript">
+    <script>
       <xsl:text>_editor.loadPart({</xsl:text>
         <xsl:text>name : 'ImageGallery',</xsl:text>
         <xsl:text>$ready : function() {</xsl:text>

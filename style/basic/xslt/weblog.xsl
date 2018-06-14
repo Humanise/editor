@@ -17,11 +17,11 @@
 			<xsl:comment/>
 		</div>
 		<xsl:if test="$username!=''">
-			<script type="text/javascript" charset="utf-8" src="{$path}hui/lib/date.js"><xsl:comment/></script>
-			<script type="text/javascript" charset="utf-8" src="{$path}hui/js/Button.js"><xsl:comment/></script>
-			<script type="text/javascript" charset="utf-8" src="{$path}hui/js/Formula.js"><xsl:comment/></script>
-			<script type="text/javascript" charset="utf-8" src="{$path}hui/js/Overlay.js"><xsl:comment/></script>
-			<script type="text/javascript" charset="utf-8" src="{$path}style/basic/js/templates/Weblog.js"><xsl:comment/></script>
+			<script charset="utf-8" src="{$path}hui/lib/date.js"><xsl:comment/></script>
+			<script charset="utf-8" src="{$path}hui/js/Button.js"><xsl:comment/></script>
+			<script charset="utf-8" src="{$path}hui/js/Formula.js"><xsl:comment/></script>
+			<script charset="utf-8" src="{$path}hui/js/Overlay.js"><xsl:comment/></script>
+			<script charset="utf-8" src="{$path}style/basic/js/templates/Weblog.js"><xsl:comment/></script>
 			<script	type="text/javascript">
 			<xsl:for-each select="wl:group">
 				op.WeblogTemplate.groups.push({value:'<xsl:value-of select="@id"/>',title:'<xsl:value-of select="@title"/>'});

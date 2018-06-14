@@ -138,7 +138,7 @@
       </xsl:choose>
     </p>
   </div>
-  <script type="text/javascript">
+  <script>
     hui.on(['hui.ui.Presentation','op'],function() {
       var images = [];
       <xsl:for-each select="//imagegallery:imagegallery//o:object">

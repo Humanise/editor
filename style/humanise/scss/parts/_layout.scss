@@ -13,45 +13,45 @@
 
   .layout_head {
     background: #f6f6f9;
-    /*
-    &.is-hero {
-      background: #fbfaef;
 
-      .layout_menu_link {
-        color: #655d3f;
-        outline-color: #655d3f;
-
-        &-first {
-          > svg {
-            fill: #655d3f;
-            color: #655d3f;
-          }
-          .scroll & {
-            > svg {
-              fill: #444;
-              color: #999;
-            }
-          }
-        }
-      }
-
-      .layout_search_icon > path {
-        fill: #655d3f;
-      }
-      .layout_head_logo {
-        > svg {
-          fill: #655d3f;
-          .scroll & {
-            fill: rgba(0,0,0,.3);
-          }
-        }
-        .scroll &:hover {
-          > svg {
-            fill: #666;
-          }
-        }
-      }
-    }*/
+//    &.is-hero {
+//      background: #fbfaef;
+//
+//      .layout_menu_link {
+//        color: #655d3f;
+//        outline-color: #655d3f;
+//
+//        &-first {
+//          > svg {
+//            fill: #655d3f;
+//            color: #655d3f;
+//          }
+//          .scroll & {
+//            > svg {
+//              fill: #444;
+//              color: #999;
+//            }
+//          }
+//        }
+//      }
+//
+//      .layout_search_icon > path {
+//        fill: #655d3f;
+//      }
+//      .layout_head_logo {
+//        > svg {
+//          fill: #655d3f;
+//          .scroll & {
+//            fill: rgba(0,0,0,.3);
+//          }
+//        }
+//        .scroll &:hover {
+//          > svg {
+//            fill: #666;
+//          }
+//        }
+//      }
+//    }
 
     &_logo {
       position: absolute;

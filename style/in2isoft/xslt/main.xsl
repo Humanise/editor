@@ -81,7 +81,7 @@
               <div id="poster_right"><div id="poster_right_inner"><xsl:comment/></div></div>
               </div>
             </div>
-            <script type="text/javascript">hui.on(['Poster'],function(Poster) {new Poster();});</script>
+            <script>hui.on(['Poster'],function(Poster) {new Poster();});</script>
           </xsl:if>
           <xsl:apply-templates select="p:content"/>
           <xsl:choose>

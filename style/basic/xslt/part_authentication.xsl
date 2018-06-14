@@ -31,7 +31,7 @@
         </form>
     </div>
     
-	<script type="text/javascript">_editor.loadPart({
+	<script>_editor.loadPart({
         name : 'Authentication',$ready : function() {
             new op.part.Authentication({element : 'part_authentication_<xsl:value-of select="generate-id()"/>'});
         }

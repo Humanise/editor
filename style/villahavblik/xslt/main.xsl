@@ -69,7 +69,7 @@
 		<p>Tlf: 51 18 25 27</p>
 		<p><a href="mailto:bustermunk@gmail.com">bustermunk@gmail.com</a></p>
 	</div>
-	<script type="text/javascript">
+	<script>
     hui.on(['op.Dissolver',], function() {
       var one = hui.get('chrome_photos2');
       var two = hui.get('chrome_photos1');

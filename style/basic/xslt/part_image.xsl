@@ -85,7 +85,7 @@
 
 <xsl:template name="img:script">
   <xsl:if test="img:link/@image and $editor!='true'">
-    <script type="text/javascript">
+    <script>
     _editor.loadPart({name:'Image',$ready:function() {
       new op.part.Image({
         element:'part_image_<xsl:value-of select="generate-id()"/>',

@@ -24,7 +24,7 @@
 	<xsl:call-template name="util:css"/>
 	<xsl:call-template name="util:js"/>
 	<xsl:if test="@id=1">
-		<script type="text/javascript" src="{$path}style/terrazzo/js/Poster.js"><xsl:text> </xsl:text></script>
+		<script src="{$path}style/terrazzo/js/Poster.js"><xsl:text> </xsl:text></script>
 	</xsl:if>
 </head>
 <body>
@@ -311,7 +311,7 @@
 <input type="submit" class="button" value="Søg"/>
 </div>
 </form>
-<script type="text/javascript"><xsl:comment>
+<script><xsl:comment>
   hui.on(['op.SearchField'],function() {
     new op.SearchField({element:'searchfield',placeholder:'Søg her!'});
   })

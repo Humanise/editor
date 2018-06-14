@@ -64,7 +64,7 @@
               <h1 class="title">Karenslyst <span class="title_more"> ~ et landsted til leje</span></h1>
               <div class="layout_top_body"><div><xsl:comment/></div></div>
             </header>
-            <script type="text/javascript">
+            <script>
               hui.on(function() {
                 var img = new Image();
                 img.onload = function() {
@@ -155,7 +155,7 @@
         </form>
     </div>
 
-  <script type="text/javascript">_editor.loadPart({
+  <script>_editor.loadPart({
         name : 'Authentication',$ready : function() {
             new op.part.Authentication({element : 'part_authentication_<xsl:value-of select="generate-id()"/>'});
         }

@@ -45,7 +45,7 @@ p.common, ul.common {
     text-decoration: none;
     background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 99%, rgba(0, 0, 0, 0.5) 99%);
     background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 98%, rgba(0, 0, 0, 0.5) 98%);
-    background-image: linear-gradient(top, rgba(0, 0, 0, 0) 98%, rgba(0, 0, 0, 0.5) 98%);
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 98%, rgba(0, 0, 0, 0.5) 98%);
     background-repeat: repeat-x; } }
 .common_header {
   margin: 0px;
@@ -156,46 +156,7 @@ p.common, ul.common {
   margin: 0 auto; }
 
 .layout_head {
-  background: #f6f6f9;
-    /*
-    &.is-hero {
-      background: #fbfaef;
-
-      .layout_menu_link {
-        color: #655d3f;
-        outline-color: #655d3f;
-
-        &-first {
-          > svg {
-            fill: #655d3f;
-            color: #655d3f;
-          }
-          .scroll & {
-            > svg {
-              fill: #444;
-              color: #999;
-            }
-          }
-        }
-      }
-
-      .layout_search_icon > path {
-        fill: #655d3f;
-      }
-      .layout_head_logo {
-        > svg {
-          fill: #655d3f;
-          .scroll & {
-            fill: rgba(0,0,0,.3);
-          }
-        }
-        .scroll &:hover {
-          > svg {
-            fill: #666;
-          }
-        }
-      }
-    }*/ }
+  background: #f6f6f9; }
   .layout_head_logo {
     position: absolute;
     left: 10px;
