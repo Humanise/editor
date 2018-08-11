@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestNewssource extends AbstractObjectTest {
 
-  function TestNewssource() {
-    parent::AbstractObjectTest('newssource');
+  function __construct() {
+    parent::__construct('newssource');
   }
 
   function testProperties() {

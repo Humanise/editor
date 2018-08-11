@@ -28,7 +28,7 @@ class Problem extends Object {
   var $priority;
 
   function Problem() {
-    parent::Object('problem');
+    parent::__construct('problem');
   }
 
   static function load($id) {

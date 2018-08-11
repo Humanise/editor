@@ -23,7 +23,7 @@ class Milestone extends Object {
   var $completed;
 
   function Milestone() {
-    parent::Object('milestone');
+    parent::__construct('milestone');
   }
 
   static function load($id) {

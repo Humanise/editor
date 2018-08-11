@@ -22,7 +22,7 @@ class Personrole extends Object {
   var $personId;
 
   function Personrole() {
-    parent::Object('personrole');
+    parent::__construct('personrole');
   }
 
   static function load($id) {

@@ -69,8 +69,8 @@
 		<p>Tlf: 51 18 25 27</p>
 		<p><a href="mailto:bustermunk@gmail.com">bustermunk@gmail.com</a></p>
 	</div>
-	<script type="text/javascript">
-    hui.onReady(['op.Dissolver',], function() {
+	<script>
+    hui.on(['op.Dissolver',], function() {
       var one = hui.get('chrome_photos2');
       var two = hui.get('chrome_photos1');
       new op.Dissolver({elements:one.getElementsByTagName('div'),wait:5000,transition:3000,delay:4500});

@@ -1,4 +1,4 @@
-hui.onReady(['op'],function(op) {
+hui.on(['op'],function(op) {
   op.part.Movie = function(options) {
     this.options = options;
     this.element = hui.get(options.element);

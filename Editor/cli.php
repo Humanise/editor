@@ -17,7 +17,8 @@ echo "base : " . $basePath . "\n";
 $args = Console::getArguments();
 
 if (method_exists('Commander',$args[1])) {
-  Commander::$args[1]($args);
+  $method = $args[1];
+  Commander::$method($args);
 } else {
   $methods = get_class_methods('Commander');
   echo "Tell me what to do: " . join(', ',$methods);

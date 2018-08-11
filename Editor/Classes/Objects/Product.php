@@ -25,7 +25,7 @@ class Product extends Object {
   var $allowOffer;
 
   function Product() {
-    parent::Object('product');
+    parent::__construct('product');
     $this->productTypeId = 0;
     $this->imageId = 0;
   }

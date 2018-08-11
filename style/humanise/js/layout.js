@@ -1,4 +1,4 @@
-hui.onReady(['hui'],function(hui) {
+hui.on(['hui'],function(hui) {
 
   var SearchField = function(options) {
     this.element = options.element;

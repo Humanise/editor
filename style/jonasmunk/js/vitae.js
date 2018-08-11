@@ -1,4 +1,4 @@
-hui.onReady(function() {
+hui.on(function() {
   function check() {
     var scrl = document.body.scrollTop || document.documentElement.scrollTop
     hero.style.filter = 'blur(' + Math.min(20,scrl/20) + 'px) brightness(' + (1 + scrl/400 * 1) + ')'

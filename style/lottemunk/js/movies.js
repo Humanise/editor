@@ -1,4 +1,4 @@
-hui.onReady(['hui'],function(hui) {
+hui.on(['hui'],function(hui) {
 
   var MoviePoster = function(options) {
     this.element = options.element;

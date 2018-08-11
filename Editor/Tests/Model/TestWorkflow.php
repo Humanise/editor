@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestWorkflow extends AbstractObjectTest {
 
-  function TestWorkflow() {
-    parent::AbstractObjectTest('workflow');
+  function __construct() {
+    parent::__construct('workflow');
   }
 
   function testProperties() {

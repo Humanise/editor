@@ -36,7 +36,7 @@ class Waterusage extends Object {
   var $source;
 
   function Waterusage() {
-    parent::Object('waterusage');
+    parent::__construct('waterusage');
   }
 
   static function load($id) {

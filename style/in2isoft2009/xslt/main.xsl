@@ -65,7 +65,7 @@
 							<div class="left" id="poster_left"><div id="poster_inner_left"><xsl:comment/></div></div>
 							<div class="right" id="poster_right"><div id="poster_inner_right"><xsl:comment/></div></div>
 						</div>
-						<script type="text/javascript" src="{$path}style/{$design}/js/Poster.js"><xsl:comment/></script>
+						<script src="{$path}style/{$design}/js/Poster.js"><xsl:comment/></script>
 						</xsl:if>
 						<xsl:apply-templates select="p:content"/>
 						<xsl:choose>
@@ -403,8 +403,8 @@
 		<form action="{$path}" method="get" class="search" accept-charset="UTF-8">
 			<div>
 				<span class="hui_searchfield" id="search"><em class="hui_searchfield_placeholder">Søg her...</em><a href="javascript:void(0);" class="hui_searchfield_reset" tabindex="-1"><xsl:comment/></a><span><span><input type="text" class="text" name="query"/></span></span></span>
-				<script type="text/javascript">
-          hui.onReady(['hui.ui'],function() {
+				<script>
+          hui.on(['hui.ui'],function() {
             new hui.ui.SearchField({element:'search',expandedWidth:200});
           })
 				</script>

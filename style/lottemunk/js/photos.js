@@ -1,4 +1,4 @@
-hui.onReady(['hui'],function(hui) {
+hui.on(['hui'],function(hui) {
 
   var easeInout = function(num) {
     return (num*2-1) * (num*2-1) * -1 + 1;

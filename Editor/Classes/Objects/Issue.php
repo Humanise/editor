@@ -28,7 +28,7 @@ class Issue extends Object {
   var $statusId;
 
   function Issue() {
-    parent::Object('issue');
+    parent::__construct('issue');
   }
 
   static function load($id) {

@@ -28,7 +28,7 @@
     </form>
     <xsl:apply-templates select="s:results"/>
   </div>
-  <script type="text/javascript" src="{$path}style/basic/js/templates/Search.js"><xsl:comment/></script>
+  <script src="{$path}style/basic/js/templates/Search.js"><xsl:comment/></script>
 </xsl:template>
 
 <xsl:template match="s:break">

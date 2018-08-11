@@ -23,7 +23,7 @@ class News extends Object {
   var $imageId;
 
   function News() {
-    parent::Object('news');
+    parent::__construct('news');
   }
 
   static function load($id) {

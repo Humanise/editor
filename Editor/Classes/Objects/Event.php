@@ -23,7 +23,7 @@ class Event extends Object {
   var $location;
 
   function Event() {
-    parent::Object('event');
+    parent::__construct('event');
   }
 
   static function load($id) {

@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestFeedback extends AbstractObjectTest {
 
-  function TestFeedback() {
-    parent::AbstractObjectTest('feedback');
+  function __construct() {
+    parent::__construct('feedback');
   }
 
   function testProperties() {

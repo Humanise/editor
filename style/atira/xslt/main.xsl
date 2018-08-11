@@ -478,8 +478,8 @@
       <xsl:comment/>
     </div>
   </div>
-  <script charset="utf-8" type="text/javascript">
-    hui.onReady(function() {
+  <script charset="utf-8">
+    hui.on(function() {
       var ticker = new Atira.Website.Ticker();
       <xsl:for-each select="//pn:news">
         <xsl:if test="position()=1">
@@ -612,8 +612,8 @@
     <xsl:call-template name="front-ticker"/>
     <xsl:call-template name="front-posters"/>
   </div>
-  <script type="text/javascript">
-    hui.onReady(function() {
+  <script>
+    hui.on(function() {
       new Atira.Website.Poster({random:true});
     })
   </script>
@@ -625,8 +625,8 @@
     <xsl:call-template name="front-ticker"/>
     <xsl:call-template name="front-posters"/>
   </div>
-  <script type="text/javascript">
-    hui.onReady(function() {
+  <script>
+    hui.on(function() {
       new Atira.Website.Poster();
     })
   </script>
@@ -863,8 +863,8 @@
 </div>
 </div>
 </form>
-<script type="text/javascript"><xsl:comment>
-  hui.onReady(['op.SearchField'], function() {
+<script><xsl:comment>
+  hui.on(['op.SearchField'], function() {
     new op.SearchField({element:'searchfield'});
   })
 </xsl:comment>

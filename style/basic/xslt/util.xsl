@@ -325,11 +325,11 @@ ga('create', '<xsl:value-of select="$code"/>', {siteSpeedSampleRate : 20});ga('s
   <xsl:comment><![CDATA[[if lt IE 9]>
   <script src="]]><xsl:value-of select="$path"/><xsl:value-of select="$timestamp-url"/>hui/bin/compatibility.min.js<xsl:value-of select="$timestamp-query"/><![CDATA[" data-movable="false"></script>
   <![endif]]]></xsl:comment>
-  <script type="text/javascript">
+  <script>
     <xsl:text disable-output-escaping="yes">//&lt;![CDATA[
 </xsl:text>
 <xsl:value-of select="php:function('DesignService::getInlineJS',$design,$development)" disable-output-escaping="yes"/>
-  hui.onReady(['hui.ui'],function() {hui.ui.language='<xsl:value-of select="$language"/>';});hui.onReady(['op'],function() {<xsl:if test="$preview!='true'">op.ignite(<xsl:value-of select="$internal-logged-in"/>);</xsl:if>})
+  hui.on(['hui.ui'],function() {hui.ui.language='<xsl:value-of select="$language"/>';});hui.on(['op'],function() {<xsl:if test="$preview!='true'">op.ignite(<xsl:value-of select="$internal-logged-in"/>);</xsl:if>})
     <xsl:text disable-output-escaping="yes">
 //]]&gt;</xsl:text>
   </script>
@@ -376,7 +376,7 @@ ga('create', '<xsl:value-of select="$code"/>', {siteSpeedSampleRate : 20});ga('s
 
 <xsl:template name="util:inline-css">
   <xsl:param name="file"/>
-  <style type="text/css">
+  <style>
     <xsl:value-of select="php:function('DesignService::getCustomInlineCSS',$design,$file,$development)" disable-output-escaping="yes"/>
   </style>
 </xsl:template>
@@ -392,7 +392,7 @@ ga('create', '<xsl:value-of select="$code"/>', {siteSpeedSampleRate : 20});ga('s
   <xsl:param name="ie-6" select="'false'"/>
 
   <xsl:if test="$inline='true'">
-    <style type="text/css">
+    <style>
       <xsl:value-of select="php:function('DesignService::getInlineCSS',$design,$development)" disable-output-escaping="yes"/>
       <xsl:text>/**/</xsl:text>
     </style>
@@ -486,7 +486,7 @@ ga('create', '<xsl:value-of select="$code"/>', {siteSpeedSampleRate : 20});ga('s
     <xsl:param name="family"/>
     <xsl:param name="weights" select="'400'"/>
     <xsl:param name="class" select="'font'"/>
-    <script type="text/javascript">
+    <script>
       <xsl:text disable-output-escaping="yes">//&lt;![CDATA[
       </xsl:text>
       <xsl:value-of select="php:function('DesignService::getCustomInlineJS','style/basic/js/boot_fonts.js',$development)" disable-output-escaping="yes"/>

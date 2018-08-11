@@ -16,7 +16,7 @@ Entity::$schema['Imagegroup'] = [
 class Imagegroup extends Object {
 
   function Imagegroup() {
-    parent::Object('imagegroup');
+    parent::__construct('imagegroup');
   }
 
   static function load($id) {

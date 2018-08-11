@@ -18,7 +18,7 @@
         <xsl:comment/>
         <xsl:call-template name="p:content"/>
       </form>
-      <script type="text/javascript">
+      <script>
         _editor.loadPart({name:'Formula',$ready:function() {
           var inputs = [];
           <xsl:for-each select="descendant::p:input">

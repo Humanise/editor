@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestWeblogentry extends AbstractObjectTest {
 
-  function TestWeblogentry() {
-    parent::AbstractObjectTest('weblogentry');
+  function __construct() {
+    parent::__construct('weblogentry');
   }
 
 }

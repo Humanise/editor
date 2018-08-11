@@ -21,7 +21,7 @@ class Securityzone extends Object {
     static $TYPE = 'securityzone';
 
   function Securityzone() {
-    parent::Object(Securityzone::$TYPE);
+    parent::__construct(Securityzone::$TYPE);
   }
 
   static function load($id) {

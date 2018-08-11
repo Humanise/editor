@@ -17,7 +17,7 @@ Entity::$schema['Stream'] = [
 class Stream extends Object {
 
   function Stream() {
-    parent::Object('stream');
+    parent::__construct('stream');
   }
 
   function getIcon() {

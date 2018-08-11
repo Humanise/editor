@@ -21,7 +21,7 @@ class Design extends Object {
   var $parameters;
 
   function Design() {
-    parent::Object('design');
+    parent::__construct('design');
   }
 
   static function load($id) {

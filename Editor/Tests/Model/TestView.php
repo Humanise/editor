@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestView extends AbstractObjectTest {
 
-  function TestView() {
-    parent::AbstractObjectTest('view');
+  function __construct() {
+    parent::__construct('view');
   }
 
   function testProperties() {

@@ -34,7 +34,7 @@ class Object extends Entity implements Loadable {
   var $ownerId;
   static $schema = [];
 
-  function Object($type) {
+  function __construct($type) {
     $this->type = $type;
     $this->searchable = true;
     $this->ownerId = InternalSession::getUserId();

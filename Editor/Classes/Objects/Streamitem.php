@@ -36,7 +36,7 @@ class Streamitem extends Object {
   public static $IDENTITY = 'identity';
 
   function Streamitem() {
-    parent::Object('streamitem');
+    parent::__construct('streamitem');
   }
 
   static function load($id) {

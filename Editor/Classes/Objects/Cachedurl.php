@@ -23,7 +23,7 @@ class Cachedurl extends Object {
   var $mimeType;
 
   function Cachedurl() {
-    parent::Object('cachedurl');
+    parent::__construct('cachedurl');
   }
 
   static function load($id) {

@@ -301,8 +301,8 @@
 <input type="submit" class="submit" value="Søg"/>
 </div>
 </form>
-<script type="text/javascript"><xsl:comment>
-hui.onReady(['op.SearchField'], function() {new op.SearchField({element:'searchfield',placeholder:'Søg her!'})});
+<script><xsl:comment>
+hui.on(['op.SearchField'], function() {new op.SearchField({element:'searchfield',placeholder:'Søg her!'})});
 </xsl:comment>
 </script>
 </xsl:if>

@@ -34,7 +34,7 @@ class User extends Object {
   var $secure = false;
 
   function User() {
-    parent::Object('user');
+    parent::__construct('user');
   }
 
   static function load($id) {

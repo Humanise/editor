@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestImagegroup extends AbstractObjectTest {
 
-  function TestImagegroup() {
-    parent::AbstractObjectTest('imagegroup');
+  function __construct() {
+    parent::__construct('imagegroup');
   }
 
   function testProperties() {

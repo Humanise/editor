@@ -19,7 +19,7 @@
     <xsl:apply-templates/>
     <xsl:comment/>
   </div>
-  <script type="text/javascript">
+  <script>
     _editor.loadPart({name:'Poster',$ready:function() {
       new op.part.Poster({
         element : 'part_poster_<xsl:value-of select="../../@id"/>',

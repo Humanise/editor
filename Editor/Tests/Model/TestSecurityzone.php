@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestSecurityzone extends AbstractObjectTest {
 
-  function TestSecurityzone() {
-    parent::AbstractObjectTest('securityzone');
+  function __construct() {
+    parent::__construct('securityzone');
   }
 
   function testProperties() {

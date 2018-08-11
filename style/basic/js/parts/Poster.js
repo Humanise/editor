@@ -1,4 +1,4 @@
-hui.onReady(['op'], function(op) {
+hui.on(['op'], function(op) {
   op.part.Poster = function(options) {
     this.options = hui.override({duration:1500,interval:5000,delay:0},options);
     this.name = options.name;

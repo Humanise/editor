@@ -1,4 +1,4 @@
-hui.onReady(function() {
+hui.on(function() {
 	var recipe1 = [
 		{duration:500},
 		{element:'image-1',property:'scrollLeft',value:'348',duration:10000,ease:hui.ease.slowFastSlow},

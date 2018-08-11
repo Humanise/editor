@@ -24,7 +24,7 @@ class File extends Object {
   var $mimetype;
 
   function File() {
-    parent::Object('file');
+    parent::__construct('file');
   }
 
   function getIcon() {

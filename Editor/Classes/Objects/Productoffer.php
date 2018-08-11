@@ -11,7 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 Entity::$schema['Productoffer'] = [
   'table' => 'productoffer',
   'properties' => [
-      'offer' => ['type' => 'string'],
+      'offer' => ['type' => 'float'],
       'productId' => ['type' => 'int', 'column' => 'product_id'],
       'personId' => ['type' => 'int', 'column' => 'person_id'],
       'expiry' => ['type' => 'datetime']
@@ -24,8 +24,8 @@ class Productoffer extends Object {
   var $personId = 0;
   var $expiry;
 
-  function Productoffer() {
-    parent::Object('productoffer');
+  function __construct() {
+    parent::__construct('productoffer');
   }
 
   static function load($id) {

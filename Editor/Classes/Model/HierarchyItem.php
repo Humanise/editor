@@ -35,7 +35,7 @@ class HierarchyItem extends Entity implements Loadable {
   var $parent;
   var $index;
 
-  function HierarchyItem() {
+  function __construct() {
   }
 
   function setTitle($title) {

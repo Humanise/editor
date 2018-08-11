@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestWaterusage extends AbstractObjectTest {
 
-  function TestWaterusage() {
-    parent::AbstractObjectTest('waterusage');
+  function __construct() {
+    parent::__construct('waterusage');
   }
 
   function testProperties() {

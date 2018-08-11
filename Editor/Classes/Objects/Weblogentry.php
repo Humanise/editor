@@ -24,7 +24,7 @@ class Weblogentry extends Object {
   var $groups;
 
   function Weblogentry() {
-    parent::Object('weblogentry');
+    parent::__construct('weblogentry');
   }
 
   static function load($id) {

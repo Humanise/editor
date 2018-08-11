@@ -16,7 +16,7 @@ Entity::$schema['Issuestatus'] = [
 class Issuestatus extends Object {
 
   function Issuestatus() {
-    parent::Object('issuestatus');
+    parent::__construct('issuestatus');
   }
 
   static function load($id) {

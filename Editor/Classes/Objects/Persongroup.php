@@ -16,7 +16,7 @@ Entity::$schema['Persongroup'] = [
 class Persongroup extends Object {
 
   function Persongroup() {
-    parent::Object('persongroup');
+    parent::__construct('persongroup');
   }
 
   function getIcon() {

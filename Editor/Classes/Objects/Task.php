@@ -28,7 +28,7 @@ class Task extends Object {
   var $priority;
 
   function Task() {
-    parent::Object('task');
+    parent::__construct('task');
   }
 
   static function load($id) {

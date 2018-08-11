@@ -20,7 +20,7 @@ class View extends Object {
   var $path;
 
   function View() {
-    parent::Object('view');
+    parent::__construct('view');
   }
 
   static function load($id) {

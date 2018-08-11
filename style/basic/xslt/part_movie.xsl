@@ -86,7 +86,7 @@
       </xsl:if>
     </div>
   </div>
-  <script type="text/javascript">
+  <script>
     _editor.loadPart({name:'Movie',$ready:function() {
       new op.part.Movie({element : '<xsl:value-of select="generate-id()"/>'})
     }});

@@ -370,6 +370,9 @@ class Database {
       else if (array_key_exists('int', $value)) {
         return Database::int($value['int']);
       }
+      else if (array_key_exists('float', $value)) {
+        return Database::float($value['float']);
+      }
       else if (array_key_exists('boolean', $value)) {
         return Database::boolean($value['boolean']);
       }

@@ -19,7 +19,7 @@ class Workflow extends Object {
   var $recipe;
 
   function Workflow() {
-    parent::Object('workflow');
+    parent::__construct('workflow');
   }
 
   static function load($id) {

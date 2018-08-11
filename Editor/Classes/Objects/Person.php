@@ -47,7 +47,7 @@ class Person extends Object {
   var $imageId;
 
   function Person() {
-    parent::Object('person');
+    parent::__construct('person');
   }
 
   static function load($id) {

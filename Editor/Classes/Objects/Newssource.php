@@ -23,7 +23,7 @@ class Newssource extends Object {
   var $syncInterval;
 
   function Newssource() {
-    parent::Object('newssource');
+    parent::__construct('newssource');
   }
 
   static function load($id) {

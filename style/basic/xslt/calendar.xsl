@@ -10,7 +10,7 @@
 
 <xsl:template match="c:calendar">
 	<div class="calendar">
-		<script type="text/javascript" src="{$path}style/basic/js/templates/Calendar.js"><xsl:text> </xsl:text></script>
+		<script src="{$path}style/basic/js/templates/Calendar.js"><xsl:text> </xsl:text></script>
 		<a name="calendar"><xsl:comment/></a>
 		<xsl:apply-templates/>
 	</div>

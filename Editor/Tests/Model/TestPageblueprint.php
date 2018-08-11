@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestPageblueprint extends AbstractObjectTest {
 
-  function TestPageblueprint() {
-    parent::AbstractObjectTest('pageblueprint');
+  function __construct() {
+    parent::__construct('pageblueprint');
   }
 }
 ?>

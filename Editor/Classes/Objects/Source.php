@@ -23,7 +23,7 @@ class Source extends Object {
   var $interval;
 
   function Source() {
-    parent::Object('source');
+    parent::__construct('source');
   }
 
   static function load($id) {

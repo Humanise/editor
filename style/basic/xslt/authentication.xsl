@@ -46,7 +46,7 @@
 		<br/><input type="submit" value="Log ind!" class="button"/>
 		</div>
 	</form>
-	<script type="text/javascript">
+	<script>
 	<xsl:comment>
 		document.getElementById('username').focus();
 	</xsl:comment>

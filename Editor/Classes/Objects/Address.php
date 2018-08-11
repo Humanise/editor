@@ -23,8 +23,8 @@ class Address extends Object {
   var $city;
   var $country;
 
-  function Address() {
-    parent::Object('address');
+  function __construct() {
+    parent::__construct('address');
   }
 
   function _updateTitle() {
