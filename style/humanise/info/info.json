@@ -14,7 +14,8 @@
   "js" : [
     {"file" : "style/humanise/js/inline.js", "inline" : true},
     "style/humanise/js/layout.js",
-    "style/humanise/js/knowledgeintro.js"
+    "style/humanise/js/knowledgeintro.js",
+    "style/humanise/js/hero.js"
   ],
 
   "widgets" : {

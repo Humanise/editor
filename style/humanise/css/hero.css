@@ -42,7 +42,12 @@
   width: 35%;
   height: 90%;
   top: 5%;
-  left: 60%; }
+  left: 60%;
+  transform: scale(0) rotate(-90deg);
+  transition: transform 3s;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+  .hero_pencil.is-loaded {
+    transform: scale(1) rotate(30deg); }
 
 .hero_title {
   position: absolute;

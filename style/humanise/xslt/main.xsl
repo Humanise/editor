@@ -550,7 +550,7 @@
       </xsl:choose>
     </div>
     <div class="hero_rays"><xsl:comment/></div>
-    <div class="hero_pencil"><xsl:comment/></div>
+    <div class="hero_pencil" data="{path}style/humanise/gfx/pencil.svg"><xsl:comment/></div>
   </div>
 </xsl:template>
 
@@ -566,6 +566,9 @@
     </div>
     <h2 class="knowledgeintro_heading"><xsl:apply-templates select="widget:title"/></h2>
     <p class="knowledgeintro_text"><xsl:apply-templates select="widget:text"/></p>
+    <xsl:if test="widget:button">
+      <div><a href="{widget:button/@url}" class="knowledgeintro_button"><xsl:value-of select="widget:button"/></a></div>
+    </xsl:if>
     <div class="knowledgeintro_gfx">
       <div class="knowledgeintro_answer"><xsl:comment/></div>
       <div class="knowledgeintro_question"><xsl:comment/></div>
