@@ -17,8 +17,7 @@ if (!($id > 0)) {
 }
 if ($id > 0) {
   InternalSession::setPageId($id);
-  $sql = "select `template`.`unique` as template,`design`.`unique` as design from page,template,design where page.template_id = template.id and page.design_id=design.object_id and page.id=" . Database::int($id);
-  if ($row = Database::selectFirst($sql)) {
+  if ($row = PageService::getSimplePageInfo($id)) {
     InternalSession::setPageDesign($row['design']);
     if ($ctrl = TemplateService::getController($row['template'])) {
       if ($ctrl->isClientSide()) {

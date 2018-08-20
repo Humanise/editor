@@ -51,6 +51,11 @@ class PageService {
     return null;
   }
 
+  static function getSimplePageInfo($id) {
+    $sql = "select `template`.`unique` as template,`design`.`unique` as design from page,template,design where page.template_id = template.id and page.design_id=design.object_id and page.id = @id";
+    return Database::selectFirst($sql, $id);
+  }
+
   static function getPath($id) {
     $sql = "SELECT path from page where id = @int(id)";
     if ($row = Database::selectFirst($sql, $id)) {
