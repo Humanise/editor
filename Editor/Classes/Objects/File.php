@@ -18,12 +18,12 @@ Entity::$schema['File'] = [
   ]
 ];
 
-class File extends Object {
+class File extends ModelObject {
   var $filename;
   var $size;
   var $mimetype;
 
-  function File() {
+  function __construct() {
     parent::__construct('file');
   }
 
@@ -32,7 +32,7 @@ class File extends Object {
   }
 
   static function load($id) {
-    return Object::get($id,'file');
+    return ModelObject::get($id,'file');
   }
 
   function setFilename($filename) {

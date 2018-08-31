@@ -30,7 +30,7 @@ class PartController
     'getListStyle' => 'list-style'
   ];
 
-  function PartController($type) {
+  function __construct($type) {
     $this->type = $type;
   }
 

@@ -15,15 +15,15 @@ Entity::$schema['Remotepublisher'] = [
   ]
 ];
 
-class Remotepublisher extends Object {
+class Remotepublisher extends ModelObject {
   var $url;
 
-  function Remotepublisher() {
+  function __construct() {
     parent::__construct('remotepublisher');
   }
 
   static function load($id) {
-    return Object::get($id,'remotepublisher');
+    return ModelObject::get($id,'remotepublisher');
   }
 
   function setUrl($url) {

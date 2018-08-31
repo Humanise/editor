@@ -14,9 +14,6 @@ class VCalParser {
   var $state = 'base';
   var $latestEvent;
 
-  function VCalParser() {
-  }
-
   function getLog() {
     return $this->log();
   }

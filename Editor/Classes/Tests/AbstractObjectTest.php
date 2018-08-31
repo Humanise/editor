@@ -15,7 +15,7 @@ class AbstractObjectTest extends UnitTestCase {
 
   private $type;
 
-  function AbstractObjectTest($type) {
+  function __construct($type) {
     //parent::UnitTestCase();
     $this->type = $type;
   }

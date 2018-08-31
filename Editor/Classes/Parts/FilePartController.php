@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class FilePartController extends PartController
 {
-  function FilePartController() {
-    parent::PartController('file');
+  function __construct() {
+    parent::__construct('file');
   }
 
   static function createPart() {

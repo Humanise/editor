@@ -15,17 +15,17 @@ Entity::$schema['Design'] = [
     ]
 ];
 
-class Design extends Object {
+class Design extends ModelObject {
 
   var $unique;
   var $parameters;
 
-  function Design() {
+  function __construct() {
     parent::__construct('design');
   }
 
   static function load($id) {
-    return Object::get($id,'design');
+    return ModelObject::get($id,'design');
   }
 
   function setUnique($unique) {

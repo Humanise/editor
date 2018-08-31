@@ -48,8 +48,8 @@ class NewsPart extends Part
   var $variant;
   var $newsGroupIds;
 
-  function NewsPart() {
-    parent::Part('news');
+  function __construct() {
+    parent::__construct('news');
   }
 
   static function load($id) {

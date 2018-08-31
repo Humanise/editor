@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class ImagePartController extends PartController
 {
-  function ImagePartController() {
-    parent::PartController('image');
+  function __construct() {
+    parent::__construct('image');
   }
 
   static function setLatestUploadId($id) {

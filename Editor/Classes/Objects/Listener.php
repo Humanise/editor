@@ -17,17 +17,17 @@ Entity::$schema['Listener'] = [
   ]
 ];
 
-class Listener extends Object {
+class Listener extends ModelObject {
   var $event;
   var $latestExecution;
   var $interval;
 
-  function Listener() {
+  function __construct() {
     parent::__construct('listener');
   }
 
   static function load($id) {
-    return Object::get($id,'listener');
+    return ModelObject::get($id,'listener');
   }
 
   function setEvent($event) {

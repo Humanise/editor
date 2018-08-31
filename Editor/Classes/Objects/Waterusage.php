@@ -19,7 +19,7 @@ Entity::$schema['Waterusage'] = [
   ]
 ];
 
-class Waterusage extends Object {
+class Waterusage extends ModelObject {
 
   static $ADMIN = 0;
   static $IMPORT = 1;
@@ -35,12 +35,12 @@ class Waterusage extends Object {
   var $status;
   var $source;
 
-  function Waterusage() {
+  function __construct() {
     parent::__construct('waterusage');
   }
 
   static function load($id) {
-    return Object::get($id,'waterusage');
+    return ModelObject::get($id,'waterusage');
   }
 
   function getIcon() {

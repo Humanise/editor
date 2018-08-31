@@ -14,9 +14,9 @@ Entity::$schema['Stream'] = [
   ]
 ];
 
-class Stream extends Object {
+class Stream extends ModelObject {
 
-  function Stream() {
+  function __construct() {
     parent::__construct('stream');
   }
 
@@ -25,7 +25,7 @@ class Stream extends Object {
   }
 
   static function load($id) {
-    return Object::get($id,'stream');
+    return ModelObject::get($id,'stream');
   }
 
   function removeMore() {

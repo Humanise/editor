@@ -22,9 +22,6 @@ class SpecialPage extends Entity {
   var $language;
   var $type;
 
-  function SpecialPage() {
-  }
-
   function setPageId($pageId) {
     $this->pageId = $pageId;
   }

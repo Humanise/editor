@@ -20,8 +20,8 @@ class HtmlPart extends Part
 {
   var $html;
 
-  function HtmlPart() {
-    parent::Part('html');
+  function __construct() {
+    parent::__construct('html');
   }
 
   static function load($id) {

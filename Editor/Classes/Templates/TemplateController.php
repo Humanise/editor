@@ -12,7 +12,7 @@ class TemplateController {
 
   var $type;
 
-  function TemplateController($type) {
+  function __construct($type) {
     $this->type = $type;
   }
 

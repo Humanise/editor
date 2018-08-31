@@ -12,7 +12,7 @@ if ($kind == 'page') {
   PublishingService::publishPage($id);
 }
 else if ($kind == 'object') {
-  $object = Object::load($id);
+  $object = ModelObject::load($id);
   if ($object) {
     $object->publish();
   }

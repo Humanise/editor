@@ -17,17 +17,17 @@ Entity::$schema['Cachedurl'] = [
     ]
 ];
 
-class Cachedurl extends Object {
+class Cachedurl extends ModelObject {
   var $url;
   var $synchronized;
   var $mimeType;
 
-  function Cachedurl() {
+  function __construct() {
     parent::__construct('cachedurl');
   }
 
   static function load($id) {
-    return Object::get($id,'cachedurl');
+    return ModelObject::get($id,'cachedurl');
   }
 
   function setUrl($url) {

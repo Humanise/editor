@@ -17,17 +17,17 @@ Entity::$schema['Pageblueprint'] = [
     ]
 ];
 
-class Pageblueprint extends Object {
+class Pageblueprint extends ModelObject {
   var $designId;
   var $frameId;
   var $templateId;
 
-  function Pageblueprint() {
+  function __construct() {
     parent::__construct('pageblueprint');
   }
 
   static function load($id) {
-    return Object::get($id,'pageblueprint');
+    return ModelObject::get($id,'pageblueprint');
   }
 
   function setDesignId($designId) {

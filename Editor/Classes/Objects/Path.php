@@ -16,16 +16,16 @@ Entity::$schema['Path'] = [
   ]
 ];
 
-class Path extends Object {
+class Path extends ModelObject {
   var $path;
   var $pageId = 0;
 
-  function Path() {
+  function __construct() {
     parent::__construct('path');
   }
 
   static function load($id) {
-    return Object::get($id,'path');
+    return ModelObject::get($id,'path');
   }
 
   function setPath($path) {

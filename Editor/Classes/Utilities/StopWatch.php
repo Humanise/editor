@@ -9,7 +9,7 @@ class StopWatch {
   private $latest = null;
   private $end = null;
 
-  function StopWatch() {
+  function __construct() {
     $this->start = microtime(true);
     $this->latest = microtime(true);
   }

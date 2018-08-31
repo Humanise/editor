@@ -42,9 +42,6 @@ class DocumentSection extends Entity implements Loadable {
   var $class;
   var $style;
 
-  function DocumentSection() {
-  }
-
   function setPageId($pageId) {
       $this->pageId = $pageId;
   }

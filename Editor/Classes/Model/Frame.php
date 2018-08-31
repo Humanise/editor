@@ -37,9 +37,6 @@ class Frame extends Entity implements Loadable {
   var $userStatusEnabled;
   var $loginPageId;
 
-  function Frame() {
-  }
-
   function isPersistent() {
     return $this->id > 0;
   }

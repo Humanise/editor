@@ -17,17 +17,17 @@ Entity::$schema['Milestone'] = [
   ]
 ];
 
-class Milestone extends Object {
+class Milestone extends ModelObject {
   var $deadline;
   var $containingObjectId;
   var $completed;
 
-  function Milestone() {
+  function __construct() {
     parent::__construct('milestone');
   }
 
   static function load($id) {
-    return Object::get($id,'milestone');
+    return ModelObject::get($id,'milestone');
   }
 
   function setDeadline($deadline) {

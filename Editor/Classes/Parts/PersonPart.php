@@ -58,8 +58,8 @@ class PersonPart extends Part
   var $showWebAddress;
   var $showImage;
 
-  function PersonPart() {
-    parent::Part('person');
+  function __construct() {
+    parent::__construct('person');
   }
 
   static function load($id) {

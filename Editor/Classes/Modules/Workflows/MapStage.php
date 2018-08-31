@@ -13,7 +13,7 @@ class MapStage extends WorkflowStage {
   private $path;
   private $properties = [];
 
-  function MapStage(array $options = []) {
+  function __construct(array $options = []) {
     $this->path = isset($options['path']) ? $options['path'] : null;
   }
 

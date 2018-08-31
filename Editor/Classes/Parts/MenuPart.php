@@ -26,8 +26,8 @@ class MenuPart extends Part
   var $header;
   var $depth;
 
-  function MenuPart() {
-    parent::Part('menu');
+  function __construct() {
+    parent::__construct('menu');
   }
 
   static function load($id) {

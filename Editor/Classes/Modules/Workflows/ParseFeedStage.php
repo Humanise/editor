@@ -10,7 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 class ParseFeedStage extends WorkflowStage {
 
-  function ParseFeedStage(array $options = null) {
+  function __construct(array $options = null) {
   }
 
   function run($state) {

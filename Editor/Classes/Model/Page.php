@@ -53,9 +53,6 @@ class Page extends Entity {
   var $nextPage;
   var $previousPage;
 
-  function Page() {
-  }
-
   function setName($name) {
     $this->name = $name;
   }

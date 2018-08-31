@@ -13,7 +13,7 @@ class ZipFileItem {
   var $info = null;
   var $delegate = null;
 
-  function ZipFileItem(&$info,&$delegate) {
+  function __construct(&$info,&$delegate) {
     $this->info = $info;
     $this->delegate = $delegate;
   }

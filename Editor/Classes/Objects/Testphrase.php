@@ -13,14 +13,14 @@ Entity::$schema['Testphrase'] = [
   'properties' => []
 ];
 
-class Testphrase extends Object {
+class Testphrase extends ModelObject {
 
-  function Testphrase() {
+  function __construct() {
     parent::__construct('testphrase');
   }
 
   static function load($id) {
-    return Object::get($id,'testphrase');
+    return ModelObject::get($id,'testphrase');
   }
 
   /////////////////////////// GUI /////////////////////////

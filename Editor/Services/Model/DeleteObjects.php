@@ -13,7 +13,7 @@ if (!is_array($ids)) {
 }
 
 foreach ($ids as $id) {
-  if ($object = Object::load($id)) {
+  if ($object = ModelObject::load($id)) {
     $object->remove();
   } else {
     Log::debug('Unable to load object with id=' . $id);

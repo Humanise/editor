@@ -10,10 +10,6 @@ if (!isset($GLOBALS['basePath'])) {
 
 class FeedSerializer {
 
-  function FeedSerializer() {
-
-  }
-
   function send($feed) {
     $this->sendHeaders();
     echo $this->serialize($feed);

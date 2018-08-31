@@ -17,17 +17,17 @@ Entity::$schema['News'] = [
   ]
 ];
 
-class News extends Object {
+class News extends ModelObject {
   var $startdate;
   var $enddate;
   var $imageId;
 
-  function News() {
+  function __construct() {
     parent::__construct('news');
   }
 
   static function load($id) {
-    return Object::get($id,'news');
+    return ModelObject::get($id,'news');
   }
 
   function setStartdate($stamp) {

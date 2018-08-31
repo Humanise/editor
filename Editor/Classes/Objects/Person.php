@@ -27,7 +27,7 @@ Entity::$schema['Person'] = [
     ]
 ];
 
-class Person extends Object {
+class Person extends ModelObject {
   var $firstname;
   var $middlename;
   var $surname;
@@ -46,12 +46,12 @@ class Person extends Object {
   var $webaddress;
   var $imageId;
 
-  function Person() {
+  function __construct() {
     parent::__construct('person');
   }
 
   static function load($id) {
-    return Object::get($id,'person');
+    return ModelObject::get($id,'person');
   }
 
   function setFullName($name) {

@@ -13,15 +13,6 @@ class ConsoleReporter extends SimpleReporter {
   private $failedTests = [];
 
   /**
-   *    Does nothing yet. The first output will
-   *    be sent on the first test start.
-   *    @access public
-   */
-  function TextReporter() {
-    $this->SimpleReporter();
-  }
-
-  /**
    *    Paints the title only.
    *    @param string $test_name        Name class of test.
    *    @access public

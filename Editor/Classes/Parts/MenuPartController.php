@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class MenuPartController extends PartController
 {
-  function MenuPartController() {
-    parent::PartController('menu');
+  function __construct() {
+    parent::__construct('menu');
   }
 
   function isLiveEnabled() {

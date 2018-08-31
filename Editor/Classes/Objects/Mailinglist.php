@@ -13,9 +13,9 @@ Entity::$schema['Mailinglist'] = [
     'properties' => []
 ];
 
-class Mailinglist extends Object {
+class Mailinglist extends ModelObject {
 
-  function Mailinglist() {
+  function __construct() {
     parent::__construct('mailinglist');
   }
 
@@ -24,7 +24,7 @@ class Mailinglist extends Object {
   }
 
   static function load($id) {
-    return Object::get($id,'mailinglist');
+    return ModelObject::get($id,'mailinglist');
   }
 
   function removeMore() {

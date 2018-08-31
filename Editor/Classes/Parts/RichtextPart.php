@@ -20,8 +20,8 @@ class RichtextPart extends Part
 {
   var $html;
 
-  function RichtextPart() {
-    parent::Part('richtext');
+  function __construct() {
+    parent::__construct('richtext');
   }
 
   static function load($id) {

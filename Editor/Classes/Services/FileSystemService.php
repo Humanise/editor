@@ -333,6 +333,7 @@ class FileSystemService {
   static function parseBytes($val) {
     $val = trim($val);
     $last = strtolower($val{strlen($val) - 1});
+    $val = intval($val);
     switch($last) {
       // The 'G' modifier is available since PHP 5.1.0
       case 'g':

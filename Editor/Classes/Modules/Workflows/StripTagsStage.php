@@ -10,7 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 class StripTagsStage extends WorkflowStage {
 
-  function StripTagsStage(array $options = []) {
+  function __construct(array $options = []) {
   }
 
   function run($state) {

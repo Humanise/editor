@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class PersonPartController extends PartController
 {
-  function PersonPartController() {
-    parent::PartController('person');
+  function __construct() {
+    parent::__construct('person');
   }
 
   function createPart() {

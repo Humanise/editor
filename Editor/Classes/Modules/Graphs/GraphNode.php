@@ -13,7 +13,7 @@ class GraphNode {
   var $icon;
   var $label;
 
-  function __construct($id,$label,$icon) {
+  function __construct($id = 0,$label = '', $icon = '') {
     $this->id = $id;
     $this->label = $label;
     $this->icon = $icon;

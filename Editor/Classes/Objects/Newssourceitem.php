@@ -19,19 +19,19 @@ Entity::$schema['Newssourceitem'] = [
     ]
 ];
 
-class Newssourceitem extends Object {
+class Newssourceitem extends ModelObject {
   var $text;
   var $url;
   var $date;
   var $guid;
   var $newssourceId;
 
-  function Newssourceitem() {
+  function __construct() {
     parent::__construct('newssourceitem');
   }
 
   static function load($id) {
-    return Object::get($id,'newssourceitem');
+    return ModelObject::get($id,'newssourceitem');
   }
 
   function setText($text) {

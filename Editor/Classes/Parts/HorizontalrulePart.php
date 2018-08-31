@@ -16,8 +16,8 @@ Entity::$schema['HorizontalrulePart'] = [
 
 class HorizontalrulePart extends Part
 {
-  function HorizontalrulePart() {
-    parent::Part('horizontalrule');
+  function __construct() {
+    parent::__construct('horizontalrule');
   }
 
   static function load($id) {

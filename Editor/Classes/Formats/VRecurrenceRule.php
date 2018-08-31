@@ -21,10 +21,6 @@ class VRecurrenceRule {
   var $byYearDay;
   var $byWeekNumber;
 
-  function VRecurrenceRule() {
-
-  }
-
   function setFrequency($frequency) {
       $this->frequency = $frequency;
   }

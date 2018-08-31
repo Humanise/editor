@@ -13,14 +13,14 @@ Entity::$schema['Imagegroup'] = [
     'properties' => []
 ];
 
-class Imagegroup extends Object {
+class Imagegroup extends ModelObject {
 
-  function Imagegroup() {
+  function __construct() {
     parent::__construct('imagegroup');
   }
 
   static function load($id) {
-    return Object::get($id,'imagegroup');
+    return ModelObject::get($id,'imagegroup');
   }
 
   function getIcon() {

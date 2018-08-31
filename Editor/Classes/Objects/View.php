@@ -15,16 +15,16 @@ Entity::$schema['View'] = [
   ]
 ];
 
-class View extends Object {
+class View extends ModelObject {
 
   var $path;
 
-  function View() {
+  function __construct() {
     parent::__construct('view');
   }
 
   static function load($id) {
-    return Object::get($id,'view');
+    return ModelObject::get($id,'view');
   }
 
   function setPath($path) {

@@ -19,7 +19,7 @@ Entity::$schema['Task'] = [
   ]
 ];
 
-class Task extends Object {
+class Task extends ModelObject {
 
   var $deadline;
   var $completed = false;
@@ -27,12 +27,12 @@ class Task extends Object {
   var $milestoneId = 0;
   var $priority;
 
-  function Task() {
+  function __construct() {
     parent::__construct('task');
   }
 
   static function load($id) {
-    return Object::get($id,'task');
+    return ModelObject::get($id,'task');
   }
 
   function setDeadline($deadline) {

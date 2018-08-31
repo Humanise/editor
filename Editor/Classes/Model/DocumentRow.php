@@ -33,9 +33,6 @@ class DocumentRow extends Entity implements Loadable {
   var $class;
   var $style;
 
-  function DocumentRow() {
-  }
-
   function setPageId($pageId) {
     $this->pageId = $pageId;
   }

@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class HtmlPartController extends PartController
 {
-  function HtmlPartController() {
-    parent::PartController('html');
+  function __construct() {
+    parent::__construct('html');
   }
 
   function isLiveEnabled() {

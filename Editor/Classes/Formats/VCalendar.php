@@ -15,9 +15,6 @@ class VCalendar {
   var $title;
   var $timeZone;
 
-  function VCalendar() {
-  }
-
   function addEvent($event) {
     $this->events[] = $event;
   }

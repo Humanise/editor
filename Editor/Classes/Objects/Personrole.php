@@ -17,16 +17,16 @@ Entity::$schema['Personrole'] = [
   ]
 ];
 
-class Personrole extends Object {
+class Personrole extends ModelObject {
 
   var $personId;
 
-  function Personrole() {
+  function __construct() {
     parent::__construct('personrole');
   }
 
   static function load($id) {
-    return Object::get($id,'personrole');
+    return ModelObject::get($id,'personrole');
   }
 
   function setPersonId($personId) {

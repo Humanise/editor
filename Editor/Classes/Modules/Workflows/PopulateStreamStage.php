@@ -16,7 +16,7 @@ class PopulateStreamStage extends WorkflowStage {
   private $identityProperty;
   private $clear;
 
-  function PopulateStreamStage(array $options = []) {
+  function __construct(array $options = []) {
     $this->streamId = isset($options['id']) ? $options['id'] : null;
     $this->itemPath = isset($options['itemPath']) ? $options['itemPath'] : null;
     $this->timeProperty = isset($options['timeProperty']) ? $options['timeProperty'] : null;

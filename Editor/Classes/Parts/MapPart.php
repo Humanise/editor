@@ -38,8 +38,8 @@ class MapPart extends Part
   var $height;
   var $frame;
 
-  function MapPart() {
-    parent::Part('map');
+  function __construct() {
+    parent::__construct('map');
   }
 
   static function load($id) {

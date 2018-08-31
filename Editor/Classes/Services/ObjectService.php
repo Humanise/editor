@@ -238,12 +238,15 @@ class ObjectService {
 
     $schema = ObjectService::_getSchemaProperties($object->getType());
     if (is_array($schema)) {
-      $sql = [
-        'table' => $object->getType(),
-        'values' => SchemaService::buildSqlValueStructure($object,$schema),
-        'where' => ['object_id' => ['int' => $object->id]]
-      ];
-      Database::update($sql);
+      $values = SchemaService::buildSqlValueStructure($object,$schema);
+      if ($values) {
+        $sql = [
+          'table' => $object->getType(),
+          'values' => $values,
+          'where' => ['object_id' => ['int' => $object->id]]
+        ];
+        Database::update($sql);
+      }
     }
     EventService::fireEvent('update','object',$object->type,$object->id);
     return true;

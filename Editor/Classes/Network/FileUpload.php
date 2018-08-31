@@ -13,10 +13,6 @@ class FileUpload {
   var $ERROR_NO_ERROR = 0;
   var $ERROR_COULD_NOT_MOVE_FILE_FROM_TEMP = 1;
 
-  function FileUpload() {
-
-  }
-
   function getFilePath() {
     return $this->path;
   }

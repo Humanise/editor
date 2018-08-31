@@ -12,7 +12,7 @@ class FeedParser {
 
   var $log = [];
 
-  function FeedParser() {
+  function __construct() {
   }
 
   function getLog() {

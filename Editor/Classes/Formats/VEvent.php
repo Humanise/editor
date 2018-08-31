@@ -21,9 +21,6 @@ class VEvent {
   var $recurrenceRules = [];
   var $url;
 
-  function VEvent() {
-  }
-
   function addRecurrenceRule($rule) {
     $this->recurrenceRules[] = $rule;
   }

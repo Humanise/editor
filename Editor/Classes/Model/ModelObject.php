@@ -8,7 +8,7 @@ if (!isset($GLOBALS['basePath'])) {
   exit;
 }
 
-Entity::$schema['Object'] = [
+Entity::$schema['ModelObject'] = [
   'table' => 'object',
   'properties' => [
     'id' => ['type' => 'int'],
@@ -22,7 +22,7 @@ Entity::$schema['Object'] = [
     'ownerId' => ['type' => 'int', 'column' => 'owner_id', 'relation' => ['class' => 'User', 'property' => 'id']]
     ]
 ];
-class Object extends Entity implements Loadable {
+class ModelObject extends Entity implements Loadable {
 
   var $title;
   var $created;

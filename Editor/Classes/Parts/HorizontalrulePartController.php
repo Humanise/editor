@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class HorizontalrulePartController extends PartController
 {
-  function HorizontalrulePartController() {
-    parent::PartController('horizontalrule');
+  function __construct() {
+    parent::__construct('horizontalrule');
   }
 
   static function createPart() {

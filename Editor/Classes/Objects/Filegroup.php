@@ -14,14 +14,14 @@ Entity::$schema['Filegroup'] = [
     'properties' => []
 ];
 
-class Filegroup extends Object {
+class Filegroup extends ModelObject {
 
-  function Filegroup() {
+  function __construct() {
     parent::__construct('filegroup');
   }
 
   static function load($id) {
-    return Object::get($id,'filegroup');
+    return ModelObject::get($id,'filegroup');
   }
 
   function removeMore() {

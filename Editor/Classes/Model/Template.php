@@ -19,9 +19,6 @@ class Template extends Entity {
 
   var $unique;
 
-  function Template() {
-  }
-
   function setUnique($unique) {
     $this->unique = $unique;
   }

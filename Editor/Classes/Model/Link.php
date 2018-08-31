@@ -37,10 +37,6 @@ class Link extends Entity implements Loadable {
   var $pageId;
   var $partId;
 
-  function Link() {
-
-  }
-
   function setPageId($pageId) {
     $this->pageId = $pageId;
   }

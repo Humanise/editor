@@ -17,17 +17,17 @@ Entity::$schema['Source'] = [
     ]
 ];
 
-class Source extends Object {
+class Source extends ModelObject {
   var $url;
   var $synchronized;
   var $interval;
 
-  function Source() {
+  function __construct() {
     parent::__construct('source');
   }
 
   static function load($id) {
-    return Object::get($id,'source');
+    return ModelObject::get($id,'source');
   }
 
   function setUrl($url) {

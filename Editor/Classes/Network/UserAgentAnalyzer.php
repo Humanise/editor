@@ -16,7 +16,7 @@ class UserAgentAnalyzer {
   var $phone;
   var $tablet;
 
-  function UserAgentAnalyzer($userAgent = null) {
+  function __construct($userAgent = null) {
     if (!is_null($userAgent)) {
       $this->userAgent = $userAgent;
       $this->_analyze();

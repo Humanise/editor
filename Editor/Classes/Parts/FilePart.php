@@ -22,8 +22,8 @@ class FilePart extends Part
   var $fileId;
   var $text;
 
-  function FilePart() {
-    parent::Part('file');
+  function __construct() {
+    parent::__construct('file');
   }
 
   static function load($id) {

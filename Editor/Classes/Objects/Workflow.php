@@ -15,15 +15,15 @@ Entity::$schema['Workflow'] = [
   ]
 ];
 
-class Workflow extends Object {
+class Workflow extends ModelObject {
   var $recipe;
 
-  function Workflow() {
+  function __construct() {
     parent::__construct('workflow');
   }
 
   static function load($id) {
-    return Object::get($id,'workflow');
+    return ModelObject::get($id,'workflow');
   }
 
   function setRecipe($recipe) {

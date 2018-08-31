@@ -12,10 +12,6 @@ class TextDecorator {
   var $emailOpenTag = '<a href="mailto:{subject}">';
   var $emailCloseTag = '</a>';
 
-  function TextDecorator() {
-
-  }
-
   function setEmailTags($open,$close) {
     $this->emailOpenTag = $open;
     $this->emailCloseTag = $close;

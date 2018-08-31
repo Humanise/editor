@@ -37,9 +37,6 @@ class DocumentColumn extends Entity implements Loadable {
   var $class;
   var $style;
 
-  function DocumentColumn() {
-  }
-
   function setPageId($pageId) {
       $this->pageId = $pageId;
   }

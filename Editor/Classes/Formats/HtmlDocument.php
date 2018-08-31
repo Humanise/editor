@@ -7,7 +7,7 @@ class HtmlDocument {
 
   var $html;
 
-  function HtmlDocument($html = '') {
+  function __construct($html = '') {
     $this->html = $html;
   }
 

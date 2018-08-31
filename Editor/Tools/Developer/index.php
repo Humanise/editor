@@ -80,7 +80,7 @@ $gui = '
           <segmented value="Entity" name="diagramSubset" variant="inset">
             <item value="all" text="All"/>
             <item value="Entity" text="Entity"/>
-            <item value="Object" text="Objects"/>
+            <item value="ModelObject" text="Objects"/>
             <item value="Part" text="Parts"/>
             <item value="TemplateController" text="Template controllers"/>
           </segmented>

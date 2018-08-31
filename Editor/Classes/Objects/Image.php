@@ -19,7 +19,7 @@ Entity::$schema['Image'] = [
   ]
 ];
 
-class Image extends Object {
+class Image extends ModelObject {
 
   var $filename;
   var $size;
@@ -27,12 +27,12 @@ class Image extends Object {
   var $height;
   var $mimetype;
 
-  function Image() {
+  function __construct() {
     parent::__construct('image');
   }
 
   static function load($id) {
-    return Object::get($id,'image');
+    return ModelObject::get($id,'image');
   }
 
   function getIcon() {

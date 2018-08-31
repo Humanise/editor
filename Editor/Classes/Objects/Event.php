@@ -17,17 +17,17 @@ Entity::$schema['Event'] = [
   ]
 ];
 
-class Event extends Object {
+class Event extends ModelObject {
   var $startdate;
   var $enddate;
   var $location;
 
-  function Event() {
+  function __construct() {
     parent::__construct('event');
   }
 
   static function load($id) {
-    return Object::get($id,'event');
+    return ModelObject::get($id,'event');
   }
 
   function removeMore() {

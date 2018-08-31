@@ -13,9 +13,9 @@ Entity::$schema['Persongroup'] = [
   'properties' => []
 ];
 
-class Persongroup extends Object {
+class Persongroup extends ModelObject {
 
-  function Persongroup() {
+  function __construct() {
     parent::__construct('persongroup');
   }
 
@@ -24,7 +24,7 @@ class Persongroup extends Object {
   }
 
   static function load($id) {
-    return Object::get($id,'persongroup');
+    return ModelObject::get($id,'persongroup');
   }
 
   function removeMore() {

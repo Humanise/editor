@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class ListingPartController extends PartController
 {
-  function ListingPartController() {
-    parent::PartController('listing');
+  function __construct() {
+    parent::__construct('listing');
   }
 
   function isLiveEnabled() {

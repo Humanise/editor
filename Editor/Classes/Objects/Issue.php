@@ -16,7 +16,7 @@ Entity::$schema['Issue'] = [
   ]
 ];
 
-class Issue extends Object {
+class Issue extends ModelObject {
 
   static $unknown = 'unknown';
   static $improvement = 'improvement';
@@ -27,12 +27,12 @@ class Issue extends Object {
   var $kind;
   var $statusId;
 
-  function Issue() {
+  function __construct() {
     parent::__construct('issue');
   }
 
   static function load($id) {
-    return Object::get($id,'issue');
+    return ModelObject::get($id,'issue');
   }
 
   function setKind($kind) {

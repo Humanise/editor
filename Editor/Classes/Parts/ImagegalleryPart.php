@@ -32,8 +32,8 @@ class ImagegalleryPart extends Part
   var $frame;
   var $showTitle;
 
-  function ImagegalleryPart() {
-    parent::Part('imagegallery');
+  function __construct() {
+    parent::__construct('imagegallery');
   }
 
   static function load($id) {

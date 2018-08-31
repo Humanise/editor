@@ -18,19 +18,19 @@ Entity::$schema['Calendarsource'] = [
       'displayTitle' => ['type' => 'string', 'column' => 'display_title']
     ]
 ];
-class Calendarsource extends Object {
+class Calendarsource extends ModelObject {
   var $url;
   var $synchronized;
   var $syncInterval;
   var $filter;
   var $displayTitle;
 
-  function Calendarsource() {
+  function __construct() {
     parent::__construct('calendarsource');
   }
 
   static function load($id) {
-    return Object::get($id,'calendarsource');
+    return ModelObject::get($id,'calendarsource');
   }
 
   function setUrl($url) {

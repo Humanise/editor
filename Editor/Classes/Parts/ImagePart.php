@@ -38,8 +38,8 @@ class ImagePart extends Part
   var $scaleHeight;
   var $frame;
 
-  function ImagePart() {
-    parent::Part('image');
+  function __construct() {
+    parent::__construct('image');
   }
 
   static function load($id) {

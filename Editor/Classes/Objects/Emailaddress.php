@@ -16,16 +16,16 @@ Entity::$schema['Emailaddress'] = [
     ]
 ];
 
-class Emailaddress extends Object {
+class Emailaddress extends ModelObject {
   var $address;
   var $containingObjectId = 0;
 
-  function Emailaddress() {
+  function __construct() {
     parent::__construct('emailaddress');
   }
 
   static function load($id) {
-    return Object::get($id,'emailaddress');
+    return ModelObject::get($id,'emailaddress');
   }
 
   function setAddress($address) {

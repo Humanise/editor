@@ -15,16 +15,16 @@ Entity::$schema['Project'] = [
   ]
 ];
 
-class Project extends Object {
+class Project extends ModelObject {
 
   var $parentProjectId = 0;
 
-  function Project() {
+  function __construct() {
     parent::__construct('project');
   }
 
   static function load($id) {
-    return Object::get($id,'project');
+    return ModelObject::get($id,'project');
   }
 
   function setParentProjectId($projectId) {

@@ -8,7 +8,7 @@ class Graphviz {
 
   var $data;
 
-  function Graphviz() {
+  function __construct() {
     $this->data = [];
   }
 

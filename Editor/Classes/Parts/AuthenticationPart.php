@@ -16,8 +16,8 @@ Entity::$schema['AuthenticationPart'] = [
 
 class AuthenticationPart extends Part
 {
-  function AuthenticationPart() {
-    parent::Part('authentication');
+  function __construct() {
+    parent::__construct('authentication');
   }
 
   static function load($id) {

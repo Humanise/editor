@@ -54,8 +54,8 @@ class TextPart extends Part
   var $imageWidth;
   var $imageHeight;
 
-  function TextPart() {
-    parent::Part('text');
+  function __construct() {
+    parent::__construct('text');
   }
 
   static function load($id) {

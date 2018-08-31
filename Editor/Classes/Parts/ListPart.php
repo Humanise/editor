@@ -49,8 +49,8 @@ class ListPart extends Part
   var $timezone;
   var $maxTextLength;
 
-  function ListPart() {
-    parent::Part('list');
+  function __construct() {
+    parent::__construct('list');
   }
 
   static function load($id) {

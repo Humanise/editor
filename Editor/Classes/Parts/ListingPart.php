@@ -47,8 +47,8 @@ class ListingPart extends Part
   var $fontStyle;
   var $fontVariant;
 
-  function ListingPart() {
-    parent::Part('listing');
+  function __construct() {
+    parent::__construct('listing');
   }
 
   static function load($id) {

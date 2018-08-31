@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class AuthenticationTemplateController extends TemplateController
 {
-  function AuthenticationTemplateController() {
-    parent::TemplateController('authentication');
+  function __construct() {
+    parent::__construct('authentication');
   }
 
   function create($page) {

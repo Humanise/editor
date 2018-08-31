@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class MailinglistPartController extends PartController
 {
-  function MailinglistPartController() {
-    parent::PartController('mailinglist');
+  function __construct() {
+    parent::__construct('mailinglist');
   }
 
   function getFromRequest($id) {

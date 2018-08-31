@@ -13,14 +13,14 @@ Entity::$schema['Webloggroup'] = [
   'properties' => []
 ];
 
-class Webloggroup extends Object {
+class Webloggroup extends ModelObject {
 
-  function Webloggroup() {
+  function __construct() {
     parent::__construct('webloggroup');
   }
 
   static function load($id) {
-    return Object::get($id,'webloggroup');
+    return ModelObject::get($id,'webloggroup');
   }
 
   function getIcon() {

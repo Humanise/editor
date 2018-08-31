@@ -12,7 +12,7 @@ class StreamStage extends WorkflowStage {
 
   private $id = 0;
 
-  function StreamStage(array $options = []) {
+  function __construct(array $options = []) {
     if (isset($options['id'])) {
       $this->id = max(0,intval($options['id']));
     }

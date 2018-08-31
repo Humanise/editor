@@ -15,10 +15,6 @@ class Hierarchy extends Entity implements Loadable {
   var $changed;
   var $published;
 
-  function Hierarchy() {
-
-  }
-
   function setName($name) {
     $this->name = $name;
   }

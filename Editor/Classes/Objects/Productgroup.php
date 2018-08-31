@@ -13,14 +13,14 @@ Entity::$schema['Productgroup'] = [
   'properties' => []
 ];
 
-class Productgroup extends Object {
+class Productgroup extends ModelObject {
 
-  function Productgroup() {
+  function __construct() {
     parent::__construct('productgroup');
   }
 
   static function load($id) {
-    return Object::get($id,'productgroup');
+    return ModelObject::get($id,'productgroup');
   }
 
   function removeMore() {

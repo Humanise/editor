@@ -17,17 +17,17 @@ Entity::$schema['Feedback'] = [
     ]
 ];
 
-class Feedback extends Object {
+class Feedback extends ModelObject {
   var $name;
   var $email;
   var $message;
 
-  function Feedback() {
+  function __construct() {
     parent::__construct('feedback');
   }
 
   static function load($id) {
-    return Object::get($id,'feedback');
+    return ModelObject::get($id,'feedback');
   }
 
   function setName($name) {

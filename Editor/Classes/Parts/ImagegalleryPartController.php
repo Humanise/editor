@@ -11,8 +11,8 @@ if (!isset($GLOBALS['basePath'])) {
 class ImagegalleryPartController extends PartController
 {
 
-  function ImagegalleryPartController() {
-    parent::PartController('imagegallery');
+  function __construct() {
+    parent::__construct('imagegallery');
   }
 
   function getFromRequest($id) {

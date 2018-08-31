@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class SitemapTemplateController extends TemplateController
 {
-  function SitemapTemplateController() {
-    parent::TemplateController('sitemap');
+  function __construct() {
+    parent::__construct('sitemap');
   }
 
   function create($page) {

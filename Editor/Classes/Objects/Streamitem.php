@@ -22,7 +22,7 @@ Entity::$schema['Streamitem'] = [
   ]
 ];
 
-class Streamitem extends Object {
+class Streamitem extends ModelObject {
 
   var $streamId;
   var $dataId;
@@ -35,12 +35,12 @@ class Streamitem extends Object {
   public static $HASH = 'hash';
   public static $IDENTITY = 'identity';
 
-  function Streamitem() {
+  function __construct() {
     parent::__construct('streamitem');
   }
 
   static function load($id) {
-    return Object::get($id,'streamitem');
+    return ModelObject::get($id,'streamitem');
   }
 
   function setStreamId($streamId) {

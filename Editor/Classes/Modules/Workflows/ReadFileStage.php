@@ -10,7 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 class ReadFileStage extends WorkflowStage {
 
-  function ReadFileStage(array $options = null) {
+  function __construct(array $options = null) {
   }
 
   function run($state) {

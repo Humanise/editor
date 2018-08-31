@@ -16,10 +16,6 @@ class FeedItem {
   var $guid;
   var $enclosures = [];
 
-  function FeedItem() {
-
-  }
-
   function addEnclosure($url,$type,$length) {
     $this->enclosures[] = ['url' => $url, 'type' => $type, 'length' => $length];
   }

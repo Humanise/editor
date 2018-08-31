@@ -15,15 +15,15 @@ Entity::$schema['Watermeter'] = [
   ]
 ];
 
-class Watermeter extends Object {
+class Watermeter extends ModelObject {
   var $number;
 
-  function Watermeter() {
+  function __construct() {
     parent::__construct('watermeter');
   }
 
   static function load($id) {
-    return Object::get($id,'watermeter');
+    return ModelObject::get($id,'watermeter');
   }
 
   function getIcon() {

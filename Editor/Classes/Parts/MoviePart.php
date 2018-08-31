@@ -31,8 +31,8 @@ class MoviePart extends Part
   var $width;
   var $height;
 
-  function MoviePart() {
-    parent::Part('movie');
+  function __construct() {
+    parent::__construct('movie');
   }
 
   static function load($id) {

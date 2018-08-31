@@ -13,14 +13,14 @@ Entity::$schema['Producttype'] = [
   'properties' => []
 ];
 
-class Producttype extends Object {
+class Producttype extends ModelObject {
 
-  function Producttype() {
+  function __construct() {
     parent::__construct('producttype');
   }
 
   static function load($id) {
-    return Object::get($id,'producttype');
+    return ModelObject::get($id,'producttype');
   }
 
   function getIcon() {

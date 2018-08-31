@@ -22,8 +22,8 @@ class CustomPart extends Part
   var $workflowId;
   var $viewId;
 
-  function CustomPart() {
-    parent::Part('custom');
+  function __construct() {
+    parent::__construct('custom');
   }
 
   static function load($id) {

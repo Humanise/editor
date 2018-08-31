@@ -13,14 +13,14 @@ Entity::$schema['Newsgroup'] = [
   'properties' => []
 ];
 
-class Newsgroup extends Object {
+class Newsgroup extends ModelObject {
 
-  function Newsgroup() {
+  function __construct() {
     parent::__construct('newsgroup');
   }
 
   static function load($id) {
-    return Object::get($id,'newsgroup');
+    return ModelObject::get($id,'newsgroup');
   }
 
   function removeMore() {

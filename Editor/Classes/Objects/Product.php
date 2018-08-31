@@ -18,20 +18,20 @@ Entity::$schema['Product'] = [
     ]
 ];
 
-class Product extends Object {
+class Product extends ModelObject {
   var $number;
   var $productTypeId;
   var $imageId;
   var $allowOffer;
 
-  function Product() {
+  function __construct() {
     parent::__construct('product');
     $this->productTypeId = 0;
     $this->imageId = 0;
   }
 
   static function load($id) {
-    return Object::get($id,'product');
+    return ModelObject::get($id,'product');
   }
 
   function setNumber($number) {

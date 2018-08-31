@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class SearchTemplateController extends TemplateController
 {
-  function SearchTemplateController() {
-    parent::TemplateController('search');
+  function __construct() {
+    parent::__construct('search');
   }
 
   function create($page) {

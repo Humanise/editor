@@ -47,8 +47,8 @@ class HeaderPart extends Part
   var $fontStyle;
   var $fontVariant;
 
-  function HeaderPart() {
-    parent::Part('header');
+  function __construct() {
+    parent::__construct('header');
   }
 
   static function load($id) {

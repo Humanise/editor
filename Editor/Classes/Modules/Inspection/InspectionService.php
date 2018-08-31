@@ -189,7 +189,7 @@ class InspectionService {
     $sql = "select id,title,type from object";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
-      $loaded = Object::load($row['id']);
+      $loaded = ModelObject::load($row['id']);
       if (!$loaded) {
         $entity = ['type' => $row['type'], 'title' => $row['title'], 'id' => $row['id'], 'icon' => 'common/object'];
         $inspection = new Inspection();

@@ -15,17 +15,17 @@ Entity::$schema['Securityzone'] = [
   ]
 ];
 
-class Securityzone extends Object {
+class Securityzone extends ModelObject {
   var $authenticationPageId;
 
     static $TYPE = 'securityzone';
 
-  function Securityzone() {
+  function __construct() {
     parent::__construct(Securityzone::$TYPE);
   }
 
   static function load($id) {
-    return Object::get($id,'securityzone');
+    return ModelObject::get($id,'securityzone');
   }
 
   function setAuthenticationPageId($id) {

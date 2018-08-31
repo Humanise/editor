@@ -31,8 +31,7 @@ class ClassService {
         $hierarchy = ClassService::_getHierarchy($name);
         $info->setHierarchy($hierarchy);
         if ($reflection->isInstantiable()) {
-          $instance = @new $name;
-          $vars = get_object_vars($instance);
+          $vars = get_class_vars($name);
           foreach ($vars as $key => $value) {
           $property = new ClassPropertyInfo();
           $property->setName($key);
@@ -150,8 +149,7 @@ class ClassService {
         $parent = get_parent_class($name);
         $class = new ReflectionClass($name);
         if (!$class->isAbstract()) {
-          $instance = @new $name;
-          $props = get_object_vars($instance);
+          $props = get_class_vars($name);
         }
       }
       $classes[] = [

@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class CalendarTemplateController extends TemplateController
 {
-  function CalendarTemplateController() {
-    parent::TemplateController('calendar');
+  function __construct() {
+    parent::__construct('calendar');
   }
 
   function create($page) {

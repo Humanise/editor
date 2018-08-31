@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class RichtextPartController extends PartController
 {
-  function RichtextPartController() {
-    parent::PartController('richtext');
+  function __construct() {
+    parent::__construct('richtext');
   }
 
   function createPart() {

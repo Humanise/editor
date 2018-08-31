@@ -8,7 +8,7 @@ class TemporaryFolder {
 
   var $dir;
 
-  function TemporaryFolder() {
+  function __construct() {
   }
 
   function make() {

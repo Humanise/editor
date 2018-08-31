@@ -18,7 +18,7 @@ Entity::$schema['Productoffer'] = [
     ]
 ];
 
-class Productoffer extends Object {
+class Productoffer extends ModelObject {
   var $offer;
   var $productId = 0;
   var $personId = 0;
@@ -29,7 +29,7 @@ class Productoffer extends Object {
   }
 
   static function load($id) {
-    return Object::get($id,'productoffer');
+    return ModelObject::get($id,'productoffer');
   }
 
   function updateTitle() {

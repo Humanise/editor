@@ -22,8 +22,8 @@ class MailinglistPart extends Part
 {
   var $mailinglistIds;
 
-  function MailinglistPart() {
-    parent::Part('mailinglist');
+  function __construct() {
+    parent::__construct('mailinglist');
   }
 
   static function load($id) {

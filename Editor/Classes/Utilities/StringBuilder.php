@@ -13,7 +13,7 @@ class StringBuilder {
   var $str = '';
   var $separator = null;
 
-  function StringBuilder($str = '') {
+  function __construct($str = '') {
     $this->str = $str;
   }
 

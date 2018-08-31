@@ -22,7 +22,7 @@ Entity::$schema['User'] = [
   ]
 ];
 
-class User extends Object {
+class User extends ModelObject {
 
   var $username;
   var $password;
@@ -33,12 +33,12 @@ class User extends Object {
   var $administrator = false;
   var $secure = false;
 
-  function User() {
+  function __construct() {
     parent::__construct('user');
   }
 
   static function load($id) {
-    return Object::get($id,'user');
+    return ModelObject::get($id,'user');
   }
 
   function getIcon() {

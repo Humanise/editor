@@ -16,9 +16,6 @@ class WebResponse {
   private $body;
   private $httpVersion;
 
-  function WebResponse() {
-  }
-
   static function newFromData($data) {
     $response = new WebResponse();
     if (strlen($data) > 0) {

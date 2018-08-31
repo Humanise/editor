@@ -113,7 +113,7 @@ class PublishingService {
     $ids = Database::getIds($sql);
     $notFound = [];
     foreach ($ids as $id) {
-      if ($object = Object::load($id)) {
+      if ($object = ModelObject::load($id)) {
         $result[] = $object;
       } else {
         $notFound[] = $id;

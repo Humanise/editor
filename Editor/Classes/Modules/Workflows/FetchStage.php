@@ -12,7 +12,7 @@ class FetchStage extends WorkflowStage {
 
   private $maxAge = 0;
 
-  function FetchStage(array $options = []) {
+  function __construct(array $options = []) {
     if (isset($options['maxAge'])) {
       $this->maxAge = max(0,intval($options['maxAge']));
     }

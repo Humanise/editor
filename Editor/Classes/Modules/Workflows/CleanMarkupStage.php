@@ -10,7 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 class CleanMarkupStage extends WorkflowStage {
 
-  function CleanMarkupStage(array $options = []) {
+  function __construct(array $options = []) {
   }
 
   function run($state) {

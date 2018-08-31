@@ -17,18 +17,18 @@ Entity::$schema['Weblogentry'] = [
   ]
 ];
 
-class Weblogentry extends Object {
+class Weblogentry extends ModelObject {
   var $text;
   var $date;
   var $pageId;
   var $groups;
 
-  function Weblogentry() {
+  function __construct() {
     parent::__construct('weblogentry');
   }
 
   static function load($id) {
-    return Object::get($id,'weblogentry');
+    return ModelObject::get($id,'weblogentry');
   }
 
   function setText($text) {

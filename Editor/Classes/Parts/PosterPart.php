@@ -20,8 +20,8 @@ class PosterPart extends Part
 {
   var $recipe;
 
-  function PosterPart() {
-    parent::Part('poster');
+  function __construct() {
+    parent::__construct('poster');
   }
 
   static function load($id) {

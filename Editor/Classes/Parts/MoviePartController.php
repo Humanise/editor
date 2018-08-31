@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class MoviePartController extends PartController
 {
-  function MoviePartController() {
-    parent::PartController('movie');
+  function __construct() {
+    parent::__construct('movie');
   }
 
   function createPart() {

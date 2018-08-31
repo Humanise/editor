@@ -12,7 +12,7 @@ class ExtractUrlsStage extends WorkflowStage {
 
   private $extensions;
 
-  function ExtractUrlsStage(array $options = []) {
+  function __construct(array $options = []) {
     $this->extensions = isset($options['extensions']) ? split(',', $options['extensions']) : null;
   }
 

@@ -16,17 +16,17 @@ Entity::$schema['Review'] = [
   ]
 ];
 
-class Review extends Object {
+class Review extends ModelObject {
 
   var $accepted;
   var $date;
 
-  function Review() {
+  function __construct() {
     parent::__construct('review');
   }
 
   static function load($id) {
-    return Object::get($id,'review');
+    return ModelObject::get($id,'review');
   }
 
   function setAccepted($accepted) {

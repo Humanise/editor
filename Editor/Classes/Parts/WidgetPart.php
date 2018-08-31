@@ -22,8 +22,8 @@ class WidgetPart extends Part
   var $key;
   var $data;
 
-  function WidgetPart() {
-    parent::Part('widget');
+  function __construct() {
+    parent::__construct('widget');
   }
 
   static function load($id) {

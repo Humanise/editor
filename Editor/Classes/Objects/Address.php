@@ -17,7 +17,7 @@ Entity::$schema['Address'] = [
     'country' => ['type' => 'string']
   ]
 ];
-class Address extends Object {
+class Address extends ModelObject {
   var $street;
   var $zipcode;
   var $city;
@@ -32,7 +32,7 @@ class Address extends Object {
   }
 
   static function load($id) {
-    return Object::get($id,'address');
+    return ModelObject::get($id,'address');
   }
 
   function getIcon() {

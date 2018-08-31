@@ -27,10 +27,6 @@ class Feed {
   var $image;
   var $rating;
 
-
-  function Feed() {
-  }
-
   function addItem($item) {
     $this->items[] = $item;
   }

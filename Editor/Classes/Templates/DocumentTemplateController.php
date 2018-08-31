@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class DocumentTemplateController extends TemplateController
 {
-  function DocumentTemplateController() {
-    parent::TemplateController('document');
+  function __construct() {
+    parent::__construct('document');
   }
 
   function create($page) {

@@ -17,17 +17,17 @@ Entity::$schema['Phonenumber'] = [
     ]
 ];
 
-class Phonenumber extends Object {
+class Phonenumber extends ModelObject {
   var $number;
   var $context;
   var $containingObjectId = 0;
 
-  function Phonenumber() {
+  function __construct() {
     parent::__construct('phonenumber');
   }
 
   static function load($id) {
-    return Object::get($id,'phonenumber');
+    return ModelObject::get($id,'phonenumber');
   }
 
   function setNumber($number) {

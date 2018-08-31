@@ -24,8 +24,8 @@ class FormulaPart extends Part
   var $receiverEmail;
   var $recipe;
 
-  function FormulaPart() {
-    parent::Part('formula');
+  function __construct() {
+    parent::__construct('formula');
   }
 
   static function load($id) {

@@ -72,5 +72,12 @@ class TestFileSystemService extends UnitTestCase {
     $this->assertEqual(FileService::extensionToMimeType('doc'),'application/msword');
     $this->assertEqual(FileService::extensionToMimeType('txt'),'text/plain');
   }
+
+  function testParseBytes() {
+    $this->assertEqual(FileSystemService::parseBytes('64'), 64);
+    $this->assertEqual(FileSystemService::parseBytes('1K'), 1024);
+    $this->assertEqual(FileSystemService::parseBytes('1M'), 1048576);
+    $this->assertEqual(FileSystemService::parseBytes('1G'), 1048576*1024);
+  }
 }
 ?>

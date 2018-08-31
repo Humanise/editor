@@ -12,14 +12,14 @@ Entity::$schema['Calendar'] = [
     'table' => 'calendar',
     'properties' => []
 ];
-class Calendar extends Object {
+class Calendar extends ModelObject {
 
-  function Calendar() {
+  function __construct() {
     parent::__construct('calendar');
   }
 
   static function load($id) {
-    return Object::get($id,'calendar');
+    return ModelObject::get($id,'calendar');
   }
 
   function removeMore() {

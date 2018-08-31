@@ -24,32 +24,32 @@ class Part extends Entity
   var $dynamic;
   var $style;
 
-  function Part($type) {
+  function __construct($type) {
     $this->type = $type;
   }
 
   function getType() {
-      return $this->type;
+    return $this->type;
   }
 
   function setType($type) {
-      $this->type = $type;
+    $this->type = $type;
   }
 
   function setDynamic($dynamic) {
-      $this->dynamic = $dynamic;
+    $this->dynamic = $dynamic;
   }
 
   function getDynamic() {
-      return $this->isDynamic();
+    return $this->isDynamic();
   }
 
   function setStyle($style) {
-      $this->style = $style;
+    $this->style = $style;
   }
 
   function getStyle() {
-      return $this->style;
+    return $this->style;
   }
 
   function save() {

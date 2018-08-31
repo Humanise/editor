@@ -9,7 +9,7 @@ class RemoteFile {
   var $data;
   var $info;
 
-  function RemoteFile($url) {
+  function __construct($url) {
     $this->url = $url;
     $data = null;
   }

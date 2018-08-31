@@ -105,7 +105,7 @@
           <segmented value="Entity" name="diagramSubset" variant="inset">
             <option value="all" text="All"/>
             <option value="Entity" text="Entity"/>
-            <option value="Object" text="Objects"/>
+            <option value="ModelObject" text="Objects"/>
             <option value="Part" text="Parts"/>
             <option value="TemplateController" text="Template controllers"/>
           </segmented>

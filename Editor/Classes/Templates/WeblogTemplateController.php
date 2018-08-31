@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class WeblogTemplateController extends TemplateController {
 
-  function WeblogTemplateController() {
-    parent::TemplateController('weblog');
+  function __construct() {
+    parent::__construct('weblog');
   }
 
   function create($page) {

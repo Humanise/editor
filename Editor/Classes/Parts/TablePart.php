@@ -20,8 +20,8 @@ class TablePart extends Part
 {
   var $html;
 
-  function TablePart() {
-    parent::Part('table');
+  function __construct() {
+    parent::__construct('table');
   }
 
   static function load($id) {

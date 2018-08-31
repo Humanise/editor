@@ -15,7 +15,7 @@ class WebRequest {
   private $headers = [];
   private $unicode;
 
-  function WebRequest($url = null) {
+  function __construct($url = null) {
     $this->url = $url;
   }
 

@@ -10,8 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 
 class MapPartController extends PartController
 {
-  function MapPartController() {
-    parent::PartController('map');
+  function __construct() {
+    parent::__construct('map');
   }
 
   function createPart() {

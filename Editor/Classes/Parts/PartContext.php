@@ -19,7 +19,7 @@ class PartContext {
   var $synchronize;
   var $language;
 
-  function PartContext() {
+  function __construct() {
     $this->displayLinks = [];
     //$this->buildLinks = array();
     $this->template = 'document';

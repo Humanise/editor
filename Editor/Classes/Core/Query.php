@@ -24,7 +24,7 @@ class Query {
   private $createdMin;
   private $ids;
 
-  function Query($type) {
+  function __construct($type) {
     $this->type = $type;
   }
 
