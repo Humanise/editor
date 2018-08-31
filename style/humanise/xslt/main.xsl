@@ -527,7 +527,7 @@
 <!--                    Widgets                 -->
 
 <xsl:template match="widget:hero">
-  <div class="hero">
+  <div class="hero js-hero">
     <div class="hero_title"><span class="hero_title_prefix">Humanise</span> <span class="hero_title_suffix">Editor</span></div>
     <div class="hero_info">
       <div class="hero_text">
