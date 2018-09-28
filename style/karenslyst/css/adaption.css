@@ -1,5 +1,4 @@
 @media only screen and (max-width: 768px) {
-  /* line 5, ../sass/adaption.scss */
   .poster {
     height: auto;
     margin: 0 -20px;
@@ -7,34 +6,28 @@
     position: relative;
   }
 
-  /* line 12, ../sass/adaption.scss */
   .poster_block {
     padding: 10px 20px;
   }
 
-  /* line 16, ../sass/adaption.scss */
   .poster_body {
     height: 100%;
   }
 
-  /* line 20, ../sass/adaption.scss */
   .poster_title {
     font-size: 36pt;
   }
 
-  /* line 24, ../sass/adaption.scss */
   .poster_text {
     font-size: 22pt;
   }
 }
 @media only screen and (max-width: 500px) {
-  /* line 32, ../sass/adaption.scss */
   .poster {
     padding-bottom: 80%;
     margin: 0 -10px;
   }
 
-  /* line 37, ../sass/adaption.scss */
   .poster_block {
     padding: 5px 10px;
     width: 90%;
@@ -44,7 +37,6 @@
     top: 5%;
   }
 
-  /* line 46, ../sass/adaption.scss */
   .poster_block {
     width: auto;
     bottom: 0;
@@ -54,31 +46,26 @@
     margin: 0;
   }
 
-  /* line 55, ../sass/adaption.scss */
   .poster_title {
     font-size: 24pt;
   }
 
-  /* line 59, ../sass/adaption.scss */
   .poster_text {
     font-size: 12pt;
     font-family: Georgia;
     line-height: 1.2;
   }
 
-  /* line 65, ../sass/adaption.scss */
   .part_movie_text {
     margin-top: 50px;
   }
 
-  /* line 69, ../sass/adaption.scss */
   .part_movie_text_inner {
     line-height: 30px;
     font-size: 24px;
     height: 34px;
   }
 
-  /* line 75, ../sass/adaption.scss */
   .part_movie_poster:before {
     content: '\25B6';
     font-size: 50px;

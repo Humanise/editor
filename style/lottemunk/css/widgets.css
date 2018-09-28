@@ -507,7 +507,7 @@
   background-image: -moz-linear-gradient(top, #e7ede6, #ebece8);
   background-image: -ms-linear-gradient(top, #e7ede6, #ebece8);
   background-image: -o-linear-gradient(top, #e7ede6, #ebece8);
-  background-image: linear-gradient(top, #e7ede6, #ebece8);
+  background-image: linear-gradient(to bottom, #e7ede6, #ebece8);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e7ede6', endColorstr='#ebece8');
   padding: 20px 0;
 }
