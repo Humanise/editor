@@ -1,29 +1,27 @@
 @include if((target:'inline')) {
 
-	form, p {
-		margin: 0px;
-	}
+  form, p {
+    margin: 0px;
+  }
 
-	img {
-		border: none;
-	}
+  img {
+    border: none;
+  }
 
-	body
-	{
-		padding: 0px;
-		margin: 0px;
-		font-family: $serif-font-fallback;
-	}
+  body {
+    padding: 0px;
+    margin: 0px;
+    font-family: $serif-font-fallback;
+  }
 
-	body.font_lato
-	{
-		font-family: $serif-font;
-	}
+  body.font_lato {
+    font-family: $serif-font;
+  }
 
 
-	a {
-		word-break: break-word;
-	}
+  a {
+    word-break: break-word;
+  }
 
   .common_link {
     color: #eee;

@@ -47,6 +47,7 @@ p.common, ul.common {
     background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 98%, rgba(0, 0, 0, 0.5) 98%);
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 98%, rgba(0, 0, 0, 0.5) 98%);
     background-repeat: repeat-x; } }
+
 .common_header {
   margin: 0px;
   color: #000;
@@ -106,22 +107,22 @@ p.common, ul.common {
   .layout_menu_link {
     letter-spacing: 0;
     padding: 0 5px; } }
+
 @media screen and (min-width: 760px) {
   .layout_menu {
     padding: 5px 10px;
     text-align: left; }
     .layout_menu > li {
       vertical-align: top; }
-
   .layout_menu_link {
     font-size: 22px;
     line-height: 44px;
     padding: 0 10px;
     font-weight: 300; }
-
   .layout_menu_item-first {
     display: inline-block;
     margin-left: 40px; } }
+
 .layout_search {
   margin: 0;
   font-size: 0;
@@ -145,6 +146,7 @@ p.common, ul.common {
 @media screen and (min-width: 760px) {
   .layout_search_icon {
     top: 5px; } }
+
 .layout_base {
   position: relative;
   max-width: 980px;
@@ -183,18 +185,14 @@ p.common, ul.common {
     margin-right: 30%;
     overflow: hidden;
     padding-right: 0; }
-
   .layout_sidebar {
     width: 30%;
     float: right; }
-
   .layout_body {
     overflow: hidden;
     min-height: 500px; }
-
   .layout {
     padding-top: 54px; }
-
   .layout_head {
     top: 0;
     position: fixed;
@@ -206,6 +204,7 @@ p.common, ul.common {
       .layout_head_logo > svg {
         width: 36px;
         height: 36px; } }
+
 .submenu {
   margin: 0 auto;
   padding: 5px 10px 5px;
@@ -234,16 +233,16 @@ p.common, ul.common {
   .submenu {
     padding: 5px 10px;
     text-align: left; }
-
   .submenu_link {
     padding: 0 10px; } }
+
 @media screen and (min-width: 1000px) {
   .submenu {
     padding-left: 0px;
     padding-right: 0; }
-
   .submenu li:first-child {
     margin-left: -10px; } }
+
 .sidemenu {
   margin: 0;
   padding: 5px 10px;
@@ -279,19 +278,17 @@ p.common, ul.common {
     white-space: normal;
     overflow: visible;
     transform: translate3d(0, 0, 0); }
-
   .sidemenu_item {
     display: block; }
-
   .sidemenu_link {
     display: block;
     padding: 7px 5px; }
     .sidemenu_link:hover {
       text-decoration: underline; }
-
   .sidemenu_sub {
     list-style: none;
     padding-left: 15px; } }
+
 .document_row {
   max-width: 980px;
   margin: 0 auto;
@@ -305,25 +302,21 @@ p.common, ul.common {
   .document_table_body,
   .document_table_column {
     display: block !important; }
-
   .document_table_column {
     width: auto !important;
     padding: 0 !important; }
-
   .document_table_container {
     margin: 0 !important; }
-
   .part_image_image {
     max-width: 100%;
     height: auto; } }
+
 @media screen and (min-width: 700px) {
   .document_table {
     display: table;
     width: 100%; }
-
   .document_table_body {
     display: table-row; }
-
   div.document_table_column {
     display: table-cell;
     vertical-align: top; } }

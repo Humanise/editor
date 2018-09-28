@@ -4,8 +4,7 @@ $target: 'async';
 
 @include if {
 
-  .common_link
-  {
+  .common_link {
     color: rgba(0,0,0,.2);
     cursor: pointer;
 

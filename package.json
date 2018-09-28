@@ -1,19 +1,19 @@
 {
   "name": "humanise_editor",
+  "description": "CMS",
   "version": "1.0.0",
+  "license": "UNLICENSED",
+  "repository": "https://github.com/Humanise/onlineobjects",
   "devDependencies": {
     "grunt": "^1.0.3",
-    "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-compass": "^1.1.1",
-    "grunt-contrib-concat": "^0.5.0",
-    "grunt-contrib-copy": "^0.8.0",
     "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-nodeunit": "^2.0.0",
-    "grunt-contrib-sass": "^1.0.0",
-    "grunt-contrib-symlink": "^0.3.0",
     "grunt-contrib-uglify": "^3.3.0",
     "grunt-contrib-watch": "^1.1.0",
+    "grunt-sass": "^3.0.1",
     "grunt-shell": "^0.7.0",
-    "grunt-string-replace": "^1.0.0"
+    "grunt-string-replace": "^1.0.0",
+    "node-sass": "^4.9.3"
   }
 }

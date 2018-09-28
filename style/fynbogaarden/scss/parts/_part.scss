@@ -3,31 +3,31 @@
   .part_richtext {
     font-size: 16px;
   }
-  
+
   .part_header {
     font-weight: normal;
   }
-  
+
   .part_header-1 {
     font-size: 32px;
   }
-  
+
   .part_header-2 {
     font-size: 28px;
   }
-  
+
   .part_table {
     table {
       font-size: 12px;
     }
-    
+
     thead th,
     tfoot th,
     td {
       padding: 5px 10px 5px 0;
     }
   }
-  
+
   .part_horizontalrule {
     border: none;
     background: url('../gfx/divider.svg') 50% 50%;
@@ -51,7 +51,7 @@
 
   .part_table {
     table {
-      font-size: 14px;      
+      font-size: 14px;
     }
   }
 }

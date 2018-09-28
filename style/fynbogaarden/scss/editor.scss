@@ -3,15 +3,13 @@ $target: 'editor';
 
 body.editor {
   .common_font,
-  p.common, 
+  p.common,
   ul.common,
   h1.common,.editor h2.common,.editor h3.common,.editor h4.common,.editor h5.common,.editor h6.common,
   .part_header,
   .part_text,
-  div.part_richtext
-  
-  {
-    font-family: Lora, serif;    
+  div.part_richtext {
+    font-family: Lora, serif;
   }
 }
 

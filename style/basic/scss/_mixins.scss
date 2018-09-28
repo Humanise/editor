@@ -55,22 +55,22 @@
 }
 
 @mixin transition($value) {
-	-webkit-transition: $value;
-	-moz-transition: $value;
-	-ms-transition: $value;
-	transition: $value;
+  -webkit-transition: $value;
+  -moz-transition: $value;
+  -ms-transition: $value;
+  transition: $value;
 }
 
 @mixin transform($value) {
-	-webkit-transform: $value;
-	-moz-transform: $value;
-	-ms-transform: $value;
-	transform: $value;
+  -webkit-transform: $value;
+  -moz-transform: $value;
+  -ms-transform: $value;
+  transform: $value;
 }
 
 @mixin border-box {
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 
 @mixin no-appearance {
@@ -78,21 +78,21 @@
 }
 
 @mixin vertical-gradient($start-colour, $end-colour) {
-    background-color: $start-colour;
-    background-image: -webkit-gradient(linear, left top, left bottom, from($start-colour), to($end-colour));
-    background-image: -webkit-linear-gradient(top, $start-colour, $end-colour);
-    background-image:    -moz-linear-gradient(top, $start-colour, $end-colour);
-    background-image:     -ms-linear-gradient(top, $start-colour, $end-colour);
-    background-image:      -o-linear-gradient(top, $start-colour, $end-colour);
-    background-image:         linear-gradient(to bottom, $start-colour, $end-colour);
-    filter:            progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$start-colour}', endColorstr='#{$end-colour}');
+  background-color: $start-colour;
+  background-image: -webkit-gradient(linear, left top, left bottom, from($start-colour), to($end-colour));
+  background-image: -webkit-linear-gradient(top, $start-colour, $end-colour);
+  background-image:    -moz-linear-gradient(top, $start-colour, $end-colour);
+  background-image:     -ms-linear-gradient(top, $start-colour, $end-colour);
+  background-image:      -o-linear-gradient(top, $start-colour, $end-colour);
+  background-image:         linear-gradient(to bottom, $start-colour, $end-colour);
+  filter:            progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$start-colour}', endColorstr='#{$end-colour}');
 }
 
 @mixin radial-gradient($start-colour, $end-colour) {
-    background-color: $start-colour;
-    background-image: -webkit-gradient(radial, left top, left bottom, from($start-colour), to($end-colour));
-    background-image:    -moz-radial-gradient(center, ellipse cover, $start-colour, $end-colour);
-    background-image: -webkit-radial-gradient(center, ellipse cover, $start-colour, $end-colour);
-    background-image:         radial-gradient(ellipse at center,  $start-colour 0%,$end-colour 100%);
-    filter:            progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$start-colour}', endColorstr='#{$end-colour}',GradientType=1);
+  background-color: $start-colour;
+  background-image: -webkit-gradient(radial, left top, left bottom, from($start-colour), to($end-colour));
+  background-image:    -moz-radial-gradient(center, ellipse cover, $start-colour, $end-colour);
+  background-image: -webkit-radial-gradient(center, ellipse cover, $start-colour, $end-colour);
+  background-image:         radial-gradient(ellipse at center,  $start-colour 0%,$end-colour 100%);
+  filter:            progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$start-colour}', endColorstr='#{$end-colour}',GradientType=1);
 }

@@ -13,8 +13,7 @@
   }
 
   .common_link:hover,
-  .common_link:hover .common_link_text
-  {
+  .common_link:hover .common_link_text {
     color: darken($link-color,10%);
   }
 
@@ -24,13 +23,11 @@
     }
   }
 
-  .common_header-1
-  {
+  .common_header-1 {
     font-weight: 400;
   }
 
-  p.common, ul.common
-  {
+  p.common, ul.common {
     font-size: 16px;
     line-height: 160%;
     text-align: justify;

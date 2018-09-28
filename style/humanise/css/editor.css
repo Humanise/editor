@@ -94,6 +94,7 @@ body.editor,
   .layout_placards_text {
     background-image: url("../gfx/placards_2x.png");
     background-size: 120px 390px; } }
+
 .layout_placards_text_hui {
   background-position: 0 -265px; }
 
@@ -108,30 +109,27 @@ body.editor,
     border: 1px solid #ddd;
     border-width: 1px 0;
     margin: 0 -20px; }
-
   .layout_placards_item {
     float: left;
     width: 33.333333333%;
     font-size: 0;
     overflow: hidden; }
-
   .layout_placards_link {
     border-right: 1px solid #ddd;
     border-bottom: none; }
-
   .layout_placards_link_last {
     border: none; }
-
   .layout_placards_text {
     margin-left: -30px; } }
+
 @media screen and (min-width: 980px) {
   .layout_placards {
     border: 1px solid #ddd;
     border-radius: 5px;
     margin: 0; }
-
   .layout_placards_text {
     margin-left: 0; } }
+
 .hero {
   background-color: #ffe73b;
   background-image: -webkit-gradient(radial, left top, left bottom, from(#ffe73b), to(#fff));
@@ -235,20 +233,22 @@ body.editor,
     background: #af3357; }
 
 /*
-.hero_button, .hero_button:hover {
-  background: #fff;
-  color: #c64f6e;
-}*/
+  .hero_button, .hero_button:hover {
+    background: #fff;
+    color: #c64f6e;
+  }*/
 @-webkit-keyframes effect {
   0% {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
+
 @-moz-keyframes effect {
   0% {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
+
 @media screen and (min-width: 375px) {
   .hero_title {
     font-size: 36px;
@@ -259,6 +259,7 @@ body.editor,
     margin-bottom: 20px; }
   .hero_button {
     font-size: 16px; } }
+
 @media screen and (min-width: 500px) {
   .hero {
     padding-bottom: 50%; }
@@ -287,6 +288,7 @@ body.editor,
       margin-bottom: 20px; }
     .hero_button {
       font-size: 16px; } }
+
 @media screen and (min-width: 640px) {
   .hero_title {
     font-size: 40px;
@@ -299,6 +301,7 @@ body.editor,
     font-weight: 300; }
   .hero_button {
     font-size: 18px; } }
+
 @media screen and (min-width: 768px) {
   .hero_title {
     font-size: 48px;
@@ -312,9 +315,11 @@ body.editor,
     margin-bottom: 30px; }
   .hero_button {
     font-size: 20px; } }
+
 @media screen and (min-width: 800px) {
   .hero {
     padding-bottom: 400px; } }
+
 @media screen and (min-width: 1040px) {
   .hero_title {
     left: 50%;
@@ -330,6 +335,7 @@ body.editor,
   .hero_text {
     font-size: 60px;
     margin-bottom: 40px; } }
+
 /********************* Common *******************/
 .common_link {
   color: #ddd;
@@ -362,6 +368,7 @@ p.common, ul.common {
     background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 98%, rgba(0, 0, 0, 0.5) 98%);
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 98%, rgba(0, 0, 0, 0.5) 98%);
     background-repeat: repeat-x; } }
+
 .common_button {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -460,6 +467,7 @@ p.common, ul.common {
   margin-top: 5px;
   font-size: 12px;
   color: #999; }
+
 .part_news_item_links {
   margin-top: 5px; }
 
@@ -547,11 +555,13 @@ p.common, ul.common {
     filter: hue-rotate(0deg); }
   100% {
     filter: hue-rotate(360deg); } }
+
 @keyframes hue {
   0% {
     filter: hue-rotate(0deg); }
   100% {
     filter: hue-rotate(360deg); } }
+
 @media screen and (min-width: 700px) {
   .focus {
     margin: 40px 0;
@@ -569,6 +579,7 @@ p.common, ul.common {
       width: 70%;
       font-size: 24px;
       font-weight: 300; } }
+
 @media screen and (min-width: 900px) {
   .focus {
     margin: 60px 0;
@@ -578,6 +589,7 @@ p.common, ul.common {
     .focus_text {
       font-size: 32px;
       font-weight: 300; } }
+
 .knowledgeintro {
   background: #f5f7f8;
   margin: 60px 0;
@@ -600,7 +612,7 @@ p.common, ul.common {
     top: -30px; }
     .knowledgeintro_phone:before {
       content: '';
-      padding-bottom: 211.2346725802%;
+      padding-bottom: 211.23467258%;
       display: block; }
     .knowledgeintro_phone_screens {
       position: absolute;
@@ -708,6 +720,7 @@ p.common, ul.common {
     transform: scale3d(1, 1, 1); }
   to {
     transform: scale3d(0.8, 0.8, 0.8) rotate(-5deg); } }
+
 @keyframes knowledge-question {
   from {
     transform: scale3d(1, 1, 1); }
@@ -715,6 +728,7 @@ p.common, ul.common {
     transform: scale3d(0.8, 0.8, 0.8) rotate(5deg); }
   to {
     transform: scale3d(1, 1, 1); } }
+
 @keyframes knowledge-selection {
   0% {
     transform: scale3d(1, 1, 1); }
@@ -723,6 +737,7 @@ p.common, ul.common {
     opacity: 0; }
   100% {
     transform: scale3d(1, 1, 1); } }
+
 @media screen and (min-width: 700px) {
   .knowledgeintro {
     margin: 100px 0;

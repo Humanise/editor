@@ -19,28 +19,25 @@ form {
   .document_table_body,
   .document_table_column {
     display: block !important; }
-
   .document_table_column {
     width: auto !important;
     padding: 0 !important; }
-
   .document_table_container {
     margin: 0 !important; }
-
   .part_image_image {
     max-width: 100%;
     height: auto; } }
+
 @media screen and (min-width: 700px) {
   .document_table {
     display: table;
     width: 100%; }
-
   .document_table_body {
     display: table-row; }
-
   div.document_table_column {
     display: table-cell;
     vertical-align: top; } }
+
 body.is-front {
   background: #666; }
 
@@ -52,6 +49,7 @@ body.is-front {
   top: 0;
   right: 0;
   bottom: 0; }
+
 .layout_title {
   background: url("../gfx/logo_light.svg") 0% no-repeat;
   font-size: 0;
@@ -59,14 +57,17 @@ body.is-front {
   height: 100px;
   margin: 10px auto;
   max-width: 80%; }
+
 .layout_menu {
   list-style: none;
   padding: 0;
   font-family: "Amatic SC", sans-serif;
   margin: -33px 0 0 55px;
   margin: 0; }
+
 .layout_menu_item {
   display: block; }
+
 .layout_menu_link {
   display: block;
   text-transform: uppercase;
@@ -75,6 +76,7 @@ body.is-front {
   color: #fff;
   line-height: 1.5;
   font-size: 42px; }
+
 .layout_content {
   padding: 15px 15px 50px;
   margin: 0 auto;
@@ -101,12 +103,15 @@ body.is-front {
     margin: 0; }
   .layout_menu_item {
     display: block; } }
+
 @media screen and (min-width: 760px) {
   .layout_menu_link {
     font-size: 46px; } }
+
 @media screen and (min-width: 900px) {
   .layout_menu_link {
     font-size: 50px; } }
+
 .layout_header {
   background: #387960 url("../gfx/header.jpg") 50%;
   background-size: cover;
@@ -146,6 +151,7 @@ body.is-front {
 @media screen and (min-width: 500px) {
   .layout_header_menu_link {
     padding: 10px; } }
+
 @media screen and (min-width: 768px) {
   .layout_header {
     height: 136px;
@@ -164,10 +170,12 @@ body.is-front {
         font-size: 20px;
         font-weight: 600;
         letter-spacing: 1px; } }
+
 @media screen and (min-width: 1000px) {
   .layout_header_title {
     left: 50%;
     margin-left: -480px; } }
+
 body.exhibit {
   margin: 0;
   background-size: cover;
@@ -201,6 +209,7 @@ body.exhibit {
     font-weight: 400; }
     .exhibit_spaces_option.is-selected {
       font-weight: 600; }
+
 .exhibit_control {
   border: 1px solid rgba(0, 0, 0, 0.2);
   background-color: rgba(255, 255, 255, 0.2);
@@ -209,6 +218,7 @@ body.exhibit {
   text-transform: uppercase;
   font-weight: 600;
   border-radius: 4px; }
+
 .exhibit_back {
   position: absolute;
   bottom: 5%;
@@ -219,6 +229,7 @@ body.exhibit {
   left: 5%;
   letter-spacing: 1px;
   font-size: 14px; }
+
 .exhibit_wall {
   position: absolute;
   opacity: 0;
@@ -237,6 +248,7 @@ body.exhibit {
     padding-bottom: 30%;
     bottom: auto;
     right: auto; }
+
 .exhibit_viewer {
   display: none;
   position: absolute;
@@ -258,6 +270,7 @@ body.exhibit {
     bottom: 10px !important;
     right: 10px !important;
     left: 10px !important; }
+
 .exhibit_paintings {
   height: 100%;
   width: 100%;
@@ -277,12 +290,13 @@ body.exhibit {
     position: relative;
     height: 100%;
     display: inline-block; }
+
 .exhibit_painting {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: 50%;
   position: absolute;
-      /*
+  /*
       transition: transform .3s;
 
       &:active {
@@ -317,6 +331,7 @@ body.exhibit {
       right: auto; }
     .exhibit_painting-right {
       right: 5%; } }
+
 .contact {
   font-size: 0;
   text-align: center; }
@@ -396,11 +411,13 @@ body.exhibit {
     filter: hue-rotate(0deg); }
   100% {
     filter: hue-rotate(360deg); } }
+
 @keyframes hue {
   0% {
     filter: hue-rotate(0deg); }
   100% {
     filter: hue-rotate(360deg); } }
+
 @media screen and (min-width: 600px) {
   .contact_profile {
     width: 33.3333333333%;
@@ -414,6 +431,7 @@ body.exhibit {
       height: 130px; }
     .contact_profile_label {
       font-size: 32px; } }
+
 @media screen and (min-width: 700px) {
   .contact_items {
     display: block;
@@ -438,18 +456,24 @@ body.exhibit {
     .contact_item_label {
       display: block;
       margin-top: 5px; } }
+
 /*************** Header *************/
 .part_section_header-1 {
   padding-bottom: 15px; }
+
 .part_section_header-2 {
   padding-top: 10px;
   padding-bottom: 5px; }
+
 .part_section_header-3 {
   padding-top: 10px; }
+
 .part_section_header-4 {
   padding-top: 10px; }
+
 .part_section_header-5 {
   padding-top: 10px; }
+
 .part_section_header-6 {
   padding-top: 10px; }
 
@@ -477,7 +501,6 @@ body.exhibit {
 @media screen and (min-width: 700px) {
   .part_horizontalrule {
     margin: 40px 0; }
-
   .part_header-1 {
     font-size: 70pt; }
   .part_header-2 {

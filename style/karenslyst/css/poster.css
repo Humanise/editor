@@ -1,7 +1,6 @@
 @charset "UTF-8";
 .poster {
-  height: 500px;
-}
+  height: 500px; }
 
 .poster_body {
   position: absolute;
@@ -11,8 +10,7 @@
   background-color: #eee;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: 50% 50%;
-}
+  background-position: 50% 50%; }
 
 .poster_title {
   font-family: Georgia, "Book Antiqua", "Palatino", Times, serif;
@@ -20,11 +18,9 @@
   font-weight: normal;
   font-size: 48pt;
   margin: 0 0 10px;
-  color: #fff;
-}
-.font_playfair .poster_title {
-  font-family: "Playfair Display", Georgia, "Book Antiqua", "Palatino", Times, serif;
-}
+  color: #fff; }
+  .font_playfair .poster_title {
+    font-family: "Playfair Display", Georgia, "Book Antiqua", "Palatino", Times, serif; }
 
 .poster_block {
   position: absolute;
@@ -36,22 +32,18 @@
   left: 5%;
   text-align: center;
   padding: 20px;
-  line-height: 1;
-}
+  line-height: 1; }
 
 .poster_text {
   font-family: cursive;
   font-size: 28pt;
-  margin: 0;
-}
+  margin: 0; }
 
 .font_annie .poster_text {
-  font-family: 'Annie Use Your Telescope', cursive;
-}
+  font-family: 'Annie Use Your Telescope', cursive; }
 
 .poster_links {
-  margin: 10px 0 0;
-}
+  margin: 10px 0 0; }
 
 .poster_link {
   font-family: "Playfair Display", Georgia, "Book Antiqua", "Palatino", Times, serif;
@@ -63,126 +55,99 @@
   height: 34px;
   line-height: 32px;
   border-radius: 5px;
-  background: #000;
-}
-.poster_link:hover {
-  background: #333;
-}
-.poster_link:active {
-  color: #5CC4FF;
-  background: #444;
-}
-.poster_link:after {
-  content: ' »';
-}
+  background: #000; }
+  .poster_link:hover {
+    background: #333; }
+  .poster_link:active {
+    color: #5CC4FF;
+    background: #444; }
+  .poster_link:after {
+    content: ' »'; }
 
 /** Havestue **/
 .poster_body_havestue {
-  background-image: url("../gfx/havestue.jpg");
-}
+  background-image: url("../gfx/havestue.jpg"); }
 
 /** Området **/
 .poster_body_omraadet {
-  background-image: url("../gfx/omraadet.jpg");
-}
+  background-image: url("../gfx/omraadet.jpg"); }
 
 .poster_block_omraadet {
   left: auto;
   right: 5%;
   background: #1a120c;
-  background: rgba(26, 18, 12, 0.8);
-}
+  background: rgba(26, 18, 12, 0.8); }
 
 .poster_link_omraadet {
   color: #E07133;
-  background: #21221D;
-}
-.poster_link_omraadet:hover {
-  background: #2e3029;
-}
-.poster_link_omraadet:active {
-  color: #edaf8c;
-  background: #3c3e34;
-}
+  background: #21221D; }
+  .poster_link_omraadet:hover {
+    background: #2e3029; }
+  .poster_link_omraadet:active {
+    color: #edaf8c;
+    background: #3c3e34; }
 
 /** Haven **/
 .poster_body_haven {
   background-image: url("../gfx/haven.jpg");
-  background-position: 20% 50%;
-}
+  background-position: 20% 50%; }
 
 .poster_block_haven {
   left: auto;
   right: 50%;
   bottom: 70px;
-  margin-right: -220px;
-}
+  margin-right: -220px; }
 
 .poster_link_haven {
   color: #C2FF00;
-  background: #162A16;
-}
-.poster_link_haven:hover {
-  background: #1f3b1f;
-}
-.poster_link_haven:active {
-  background: #284b28;
-  color: #F2FFC9;
-}
+  background: #162A16; }
+  .poster_link_haven:hover {
+    background: #1f3b1f; }
+  .poster_link_haven:active {
+    background: #284b28;
+    color: #F2FFC9; }
 
 /** Værelserne **/
 .poster_body_vaerelserne {
-  background-image: url("../gfx/vaerelserne.jpg");
-}
+  background-image: url("../gfx/vaerelserne.jpg"); }
 
 .poster_block_vaerelserne {
   background: #dee5e7;
   background: rgba(222, 229, 231, 0.8);
   left: auto;
   right: 40%;
-  margin-right: -220px;
-}
-.poster_block_vaerelserne .poster_title,
-.poster_block_vaerelserne .poster_text {
-  color: #000;
-}
+  margin-right: -220px; }
+  .poster_block_vaerelserne .poster_title,
+  .poster_block_vaerelserne .poster_text {
+    color: #000; }
 
 .poster_link_vaerelserne {
   background: #C9CECF;
-  color: #7A26A2;
-}
-.poster_link_vaerelserne:hover {
-  background: #d7dadb;
-}
-.poster_link_vaerelserne:active {
-  color: #ae57d7;
-  background: #e4e7e7;
-}
+  color: #7A26A2; }
+  .poster_link_vaerelserne:hover {
+    background: #d7dadb; }
+  .poster_link_vaerelserne:active {
+    color: #ae57d7;
+    background: #e4e7e7; }
 
 /** Skoven **/
 .poster_body_skoven {
-  background-image: url("../gfx/skoven.jpg");
-}
+  background-image: url("../gfx/skoven.jpg"); }
 
 .poster_block_skoven {
   background: #cff1b4;
   background: rgba(207, 241, 180, 0.8);
   left: 20%;
-  margin-right: -220px;
-}
-.poster_block_skoven .poster_title,
-.poster_block_skoven .poster_text {
-  color: #000;
-}
+  margin-right: -220px; }
+  .poster_block_skoven .poster_title,
+  .poster_block_skoven .poster_text {
+    color: #000; }
 
 .poster_link_skoven {
   background: #C8DFAE;
-  color: #4E5200;
-}
-.poster_link_skoven:hover {
-  background: #d4e6c0;
-}
-.poster_link_skoven:active {
-  color: #afb800;
-  background: #e1edd3;
-}
+  color: #4E5200; }
+  .poster_link_skoven:hover {
+    background: #d4e6c0; }
+  .poster_link_skoven:active {
+    color: #afb800;
+    background: #e1edd3; }
