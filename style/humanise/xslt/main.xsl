@@ -550,7 +550,7 @@
       </xsl:choose>
     </div>
     <div class="hero_rays"><xsl:comment/></div>
-    <div class="hero_pencil" data="{path}style/humanise/gfx/pencil.svg"><xsl:comment/></div>
+    <div class="hero_pencil" data="{$path}style/humanise/gfx/pencil.svg"><xsl:comment/></div>
   </div>
 </xsl:template>
 
