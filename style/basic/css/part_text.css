@@ -1,37 +1,30 @@
-.part_section_text
-{
-	padding-bottom: 10px;
+.part_section_text {
+  padding-bottom: 10px;
 }
 
-.part_text
-{
-	line-height: 1.4em;
+.part_text {
+  line-height: 1.4em;
   word-break: break-word;
 }
 
-.part_text p
-{
-	margin: 10px 0px 0px;
+.part_text p {
+  margin: 10px 0px 0px;
 }
 
-p.part_text_first
-{
-	margin: 0;
+p.part_text_first {
+  margin: 0;
 }
 
-.part_text_image
-{
-	overflow: hidden;
+.part_text_image {
+  overflow: hidden;
 }
 
-.part_text_image-right
-{
-	float: right;
-	margin: 0px 0px 10px 10px;
+.part_text_image-right {
+  float: right;
+  margin: 0px 0px 10px 10px;
 }
 
-.part_text_image-left
-{
-	float: left;
-	margin: 0px 10px 10px 0px;
+.part_text_image-left {
+  float: left;
+  margin: 0px 10px 10px 0px;
 }
