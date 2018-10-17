@@ -101,20 +101,22 @@
     background: #af3357; }
 
 /*
-.hero_button, .hero_button:hover {
-  background: #fff;
-  color: #c64f6e;
-}*/
+  .hero_button, .hero_button:hover {
+    background: #fff;
+    color: #c64f6e;
+  }*/
 @-webkit-keyframes effect {
   0% {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
+
 @-moz-keyframes effect {
   0% {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
+
 @media screen and (min-width: 375px) {
   .hero_title {
     font-size: 36px;
@@ -125,6 +127,7 @@
     margin-bottom: 20px; }
   .hero_button {
     font-size: 16px; } }
+
 @media screen and (min-width: 500px) {
   .hero {
     padding-bottom: 50%; }
@@ -153,6 +156,7 @@
       margin-bottom: 20px; }
     .hero_button {
       font-size: 16px; } }
+
 @media screen and (min-width: 640px) {
   .hero_title {
     font-size: 40px;
@@ -165,6 +169,7 @@
     font-weight: 300; }
   .hero_button {
     font-size: 18px; } }
+
 @media screen and (min-width: 768px) {
   .hero_title {
     font-size: 48px;
@@ -178,9 +183,11 @@
     margin-bottom: 30px; }
   .hero_button {
     font-size: 20px; } }
+
 @media screen and (min-width: 800px) {
   .hero {
     padding-bottom: 400px; } }
+
 @media screen and (min-width: 1040px) {
   .hero_title {
     left: 50%;

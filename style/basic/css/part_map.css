@@ -1,13 +1,11 @@
-.part_map
-{
+.part_map {
   font-size: 0;
-	display: block;
+  display: block;
 }
 
-.part_map_static
-{
-	position: relative;
-	display: inline-block;
+.part_map_static {
+  position: relative;
+  display: inline-block;
   font-size: 0;
   width: 100%;
   overflow: hidden;
@@ -21,39 +19,35 @@
   height: auto !important;
 }
 
-.part_map_static_pin
-{
-	background: url('../../basic/gfx/part_map_pin.png');
-	position: absolute;
-	width: 29px;
-	height: 30px;
-	left: 50%;
-	top: 50%;
-	margin: -15px 0 0 -15px;
+.part_map_static_pin {
+  background: url('../../basic/gfx/part_map_pin.png');
+  position: absolute;
+  width: 29px;
+  height: 30px;
+  left: 50%;
+  top: 50%;
+  margin: -15px 0 0 -15px;
   z-index: 1;
 }
 
-.part_map_static_text
-{
-	position: absolute;
-	white-space: pre;
-	font-size: 12px;
-	left: 0;
-	top: 0;
-	background: #fff;
-	padding: 4px 7px;
-	border: 1px solid #eee;
+.part_map_static_text {
+  position: absolute;
+  white-space: pre;
+  font-size: 12px;
+  left: 0;
+  top: 0;
+  background: #fff;
+  padding: 4px 7px;
+  border: 1px solid #eee;
 }
 
 /** Interactive */
 
-.part_map_interactive
-{
-	display: inline-block;
+.part_map_interactive {
+  display: inline-block;
 }
 
-.part_map_bubble
-{
-	font-size: 12px;
-	white-space: pre;
+.part_map_bubble {
+  font-size: 12px;
+  white-space: pre;
 }

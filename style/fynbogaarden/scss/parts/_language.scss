@@ -24,7 +24,7 @@ $language-size: 40px;
     border-radius: 15px;
     padding-right: 10px;
     line-height: 30px;
-    
+
     &:before {
       content: '';
       display: inline-block;
@@ -33,7 +33,7 @@ $language-size: 40px;
       vertical-align: bottom;
       margin-right: 5px;
     }
-    
+
   }
 
   .language_link-english {
@@ -68,12 +68,12 @@ $language-size: 40px;
     border-radius: 0;
     line-height: $language-size;
     padding: 0;
-    
+
     &:before {
       width: $language-size;
       height: $language-size;
     }
-    
+
   }
 }
 

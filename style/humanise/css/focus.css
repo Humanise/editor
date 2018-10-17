@@ -30,11 +30,13 @@
     filter: hue-rotate(0deg); }
   100% {
     filter: hue-rotate(360deg); } }
+
 @keyframes hue {
   0% {
     filter: hue-rotate(0deg); }
   100% {
     filter: hue-rotate(360deg); } }
+
 @media screen and (min-width: 700px) {
   .focus {
     margin: 40px 0;
@@ -52,6 +54,7 @@
       width: 70%;
       font-size: 24px;
       font-weight: 300; } }
+
 @media screen and (min-width: 900px) {
   .focus {
     margin: 60px 0;

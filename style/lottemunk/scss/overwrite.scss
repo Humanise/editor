@@ -4,15 +4,14 @@ $target : 'screen';
 
 @include when {
 
-  a.common
-  {
-  	color: #ddd;
-  	cursor: pointer;
-    
+  a.common {
+    color: #ddd;
+    cursor: pointer;
+
     span {
-    	color: #0073b9;      
+      color: #0073b9;
     }
-    
+
     &:hover, &:hover span {
       color: #005aae;
     }
@@ -22,35 +21,31 @@ $target : 'screen';
   //··········· Header ············
 
   .part_header {
-  	font-family: $text-font;
+    font-family: $text-font;
     word-break: break-word;
-  	margin: 0px;
-  	color: #000;
-  	font-weight: normal;
+    margin: 0px;
+    color: #000;
+    font-weight: normal;
   }
 
   .part_header-1,
   .part_header-2,
-  .part_header-3
-  {
-  	font-family: $header-font;
+  .part_header-3 {
+    font-family: $header-font;
   }
 
-  .part_header-1
-  {
-  	font-size: 32px;
+  .part_header-1 {
+    font-size: 32px;
     line-height: 1;
   }
 
-  .part_header-2
-  {
-  	font-size: 26px;
+  .part_header-2 {
+    font-size: 26px;
     line-height: 1;
   }
 
-  .part_header-3
-  {
-  	font-size: 18px;
+  .part_header-3 {
+    font-size: 18px;
     font-weight: bold;
     line-height: 1;
   }
@@ -60,20 +55,19 @@ $target : 'screen';
 
   .part_text,
   .part_richtext,
-  .part_listing
-  {
-  	font-family: $text-font;
-  	font-size: 16px;
-  	line-height: 1.4em;
-  	color: #333;
-  	font-weight: 400;
+  .part_listing {
+    font-family: $text-font;
+    font-size: 16px;
+    line-height: 1.4em;
+    color: #333;
+    font-weight: 400;
   }
 
   .part_listing {
-  	font-size: 10pt;
-  	color: #ddd;
+    font-size: 10pt;
+    color: #ddd;
   }
-  
+
   .part_listing_text {
     color: #333;
   }
@@ -85,37 +79,36 @@ $target : 'screen';
     overflow: auto;
 
     table {
-    	font-size: 1em;
-    	border-spacing: 0;
-    	border-collapse: collapse;
+      font-size: 1em;
+      border-spacing: 0;
+      border-collapse: collapse;
     }
 
     thead th {
-    	border-bottom: 1px solid #eee;
-    	padding: 3px;
-    	text-align: left;
+      border-bottom: 1px solid #eee;
+      padding: 3px;
+      text-align: left;
     }
 
     tfoot th {
-    	border-bottom: 1px solid #eee;
-    	padding: 3px;
-    	text-align: left;
+      border-bottom: 1px solid #eee;
+      padding: 3px;
+      text-align: left;
     }
 
     td {
-    	border-bottom: 1px solid #eee;
-    	padding: 3px;
+      border-bottom: 1px solid #eee;
+      padding: 3px;
     }
-    
+
   }
 
 
   //··········· HR ············
 
-  .part_horizontalrule
-  {
-  	border: none;
-  	border-bottom: solid 1px #ddd;
+  .part_horizontalrule {
+    border: none;
+    border-bottom: solid 1px #ddd;
     margin: 20px 0;
   }
 
@@ -147,28 +140,24 @@ $target : 'screen';
 
 @include when(600px) {
 
-  .part_header-1
-  {
-  	font-size: 42px;
+  .part_header-1 {
+    font-size: 42px;
     line-height: 1;
   }
 
-  .part_header-2
-  {
-  	font-size: 32px;
+  .part_header-2 {
+    font-size: 32px;
   }
 
-  .part_horizontalrule
-  {
+  .part_horizontalrule {
     margin: 30px 0;
   }
 
   .part_text,
   .part_richtext,
-  .part_listing
-  {
-  	font-size: 18px;
-  	line-height: 1.6em;
+  .part_listing {
+    font-size: 18px;
+    line-height: 1.6em;
   }
 }
 
@@ -177,13 +166,11 @@ $target : 'screen';
     padding: 0 0 30px;
   }
 
-  .part_header-1
-  {
-  	font-size: 52px;
+  .part_header-1 {
+    font-size: 52px;
   }
 
-  .part_horizontalrule
-  {
+  .part_horizontalrule {
     margin: 40px 0;
   }
 }

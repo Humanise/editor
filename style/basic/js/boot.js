@@ -1,6 +1,22 @@
 hui = window.hui || {_:[],on:function() {this._.push(arguments)}};
 
 (function(window,document) {
+
+  window.onerror = function(msg, url, line) {
+    try {
+      var encode = encodeURIComponent;
+      var url = '/services/issues/scripterror/' +
+        '?message=' + encode(msg) +
+        '&file=' + encode(url) +
+        '&line=' + encode(line) +
+        '&url=' + encode(document.location.href);
+      var img = document.createElement('img');
+      img.src = url;
+      img.style = 'width:1px;height:1px;position:absolute;';
+      document.body.appendChild(img);
+    } catch (ignore) {}
+  }
+
   window._editor = {
     viewReady : function(func) {
       var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;

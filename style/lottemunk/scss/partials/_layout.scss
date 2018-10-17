@@ -51,8 +51,7 @@
 
 @include when(600px) {
 
-  .layout_content
-  {
+  .layout_content {
     padding: 40px;
     max-width: 900px;
     margin: 0 auto;
@@ -65,8 +64,7 @@
     right: 50%;
     margin-right: -480px;
   }
-  .layout_content
-  {
+  .layout_content {
     padding: 60px 40px;
   }
 }

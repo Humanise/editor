@@ -1,5 +1,4 @@
 @import '../../basic/scss/mixins';
-@import "compass/css3/transition";
 
 $header-font: 'Lora',Georgia,"Book Antiqua", "Palatino",Times,serif;
 $text-font: 'Merriweather',Georgia,"Book Antiqua", "Palatino",Times,serif;
@@ -16,30 +15,30 @@ $icons : (
 
 @mixin icon-before($icon) {
   &:before {
-  	font-family: 'Lotte-Munk';
-  	content: map_get($icons, $icon);
-  	speak: none;
-  	font-weight: normal;
-  	font-variant: normal;
-  	text-transform: none;
-  	line-height: 1;
-  	-webkit-font-smoothing: antialiased;
-  	-moz-osx-font-smoothing: grayscale;
+    font-family: 'Lotte-Munk';
+    content: map_get($icons, $icon);
+    speak: none;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     @content;
   }
 }
 
 @mixin icon-after($icon) {
   &:after {
-  	font-family: 'Lotte-Munk';
-  	content: map_get($icons, $icon);
-  	speak: none;
-  	font-weight: normal;
-  	font-variant: normal;
-  	text-transform: none;
-  	line-height: 1;
-  	-webkit-font-smoothing: antialiased;
-  	-moz-osx-font-smoothing: grayscale;
+    font-family: 'Lotte-Munk';
+    content: map_get($icons, $icon);
+    speak: none;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     @content;
   }
 }

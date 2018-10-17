@@ -52,12 +52,12 @@ a {
   .document_table, .document_table_body, .document_table_column {
     display: block !important;
     width: auto !important; }
-
   .document_row-flexible.splitted {
     flex-direction: column; }
     .document_row-flexible.splitted .document_column-flexible {
       padding-left: 0;
       padding-right: 0; } }
+
 .document_column-flexible {
   padding-left: 10px;
   padding-right: 10px; }
@@ -101,6 +101,7 @@ a {
     height: 32vw; }
     .header_title {
       padding: 0 20px; } }
+
 @media screen and (min-width: 700px) {
   .header {
     background-image: url("../gfx/top.jpg");
@@ -119,6 +120,7 @@ a {
       max-width: 55%;
       text-shadow: 0px 3px 20px rgba(0, 0, 0, 0.5);
       line-height: 1.1; } }
+
 @media screen and (min-width: 1020px) {
   .header_title {
     text-align: left;
@@ -132,9 +134,11 @@ a {
     right: 50%;
     margin-right: -480px;
     width: 160px; } }
+
 @media screen and (min-width: 1200px) {
   .header {
     height: 384px; } }
+
 .layout_content {
   padding: 40px 0; }
 
@@ -159,9 +163,9 @@ a {
 @media screen and (min-width: 700px) {
   .layout_content {
     padding: 40px 0; }
-
   .document_row {
     padding: 0 30px; } }
+
 .language {
   text-align: right;
   position: absolute;
@@ -207,7 +211,6 @@ a {
     padding-top: 0;
     margin: 0;
     white-space: nowrap; }
-
   .language_link {
     font-size: 24px;
     border-radius: 0;
@@ -216,6 +219,7 @@ a {
     .language_link:before {
       width: 40px;
       height: 40px; } }
+
 .offer {
   margin: 40px -15px; }
   .offer_box {
@@ -288,6 +292,7 @@ a {
       box-sizing: border-box; }
     .offer_mail > a {
       font-size: 16px; } }
+
 @media screen and (min-width: 900px) {
   .offer {
     font-size: 16px;

@@ -60,27 +60,27 @@ a {
 @media screen and (min-width: 700px) {
   .common_header-1 {
     font-size: 42px; }
-
   .common_header-2 {
     font-size: 32px; } }
+
 @media screen and (min-width: 900px) {
   .common_header-1 {
     font-size: 60px; }
-
   .common_header-2 {
     font-size: 42px; } }
+
 @media screen and (max-width: 699px) {
   .document_table_container {
     margin: 0 !important; }
   .document_table, .document_table_body, .document_table_column {
     display: block !important;
     width: auto !important; }
-
   .document_row-flexible.splitted {
     flex-direction: column; }
     .document_row-flexible.splitted .document_column-flexible {
       padding-left: 0;
       padding-right: 0; } }
+
 .document_column-flexible {
   padding-left: 10px;
   padding-right: 10px; }
@@ -100,6 +100,7 @@ a {
 
 .part_table table {
   font-size: 12px; }
+
 .part_table thead th,
 .part_table tfoot th,
 .part_table td {
@@ -130,27 +131,23 @@ a {
   .introduction .part_text {
     text-align: left;
     font-size: 28px; }
-
   .part_header-1 {
     font-size: 42px; }
-
   .part_header-2 {
     font-size: 32px; }
-
   .part_header-3 {
     font-size: 24px; }
-
   .document_column .part_header {
     text-align: left; }
-
   .part_table table {
     font-size: 14px; } }
+
 @media screen and (min-width: 900px) {
   .part_header-1 {
     font-size: 60px; }
-
   .part_header-2 {
     font-size: 42px; } }
+
 .header {
   background: #4a4845 url("../gfx/top_small.jpg") 50% 50%;
   background-size: cover;
@@ -186,6 +183,7 @@ a {
     height: 32vw; }
     .header_title {
       padding: 0 20px; } }
+
 @media screen and (min-width: 700px) {
   .header {
     background-image: url("../gfx/top.jpg");
@@ -204,6 +202,7 @@ a {
       max-width: 55%;
       text-shadow: 0px 3px 20px rgba(0, 0, 0, 0.5);
       line-height: 1.1; } }
+
 @media screen and (min-width: 1020px) {
   .header_title {
     text-align: left;
@@ -217,9 +216,11 @@ a {
     right: 50%;
     margin-right: -480px;
     width: 160px; } }
+
 @media screen and (min-width: 1200px) {
   .header {
     height: 384px; } }
+
 .layout_content {
   padding: 40px 0; }
 
@@ -244,9 +245,9 @@ a {
 @media screen and (min-width: 700px) {
   .layout_content {
     padding: 40px 0; }
-
   .document_row {
     padding: 0 30px; } }
+
 .language {
   text-align: right;
   position: absolute;
@@ -292,7 +293,6 @@ a {
     padding-top: 0;
     margin: 0;
     white-space: nowrap; }
-
   .language_link {
     font-size: 24px;
     border-radius: 0;
@@ -301,6 +301,7 @@ a {
     .language_link:before {
       width: 40px;
       height: 40px; } }
+
 .language_link-english:before {
   background: url("../gfx/uk.png"); }
 
@@ -400,6 +401,7 @@ a {
 @media screen and (min-width: 400px) {
   .quote_text {
     font-size: 18px; } }
+
 @media screen and (min-width: 600px) {
   .quote {
     max-width: 800px;
@@ -413,24 +415,23 @@ a {
       padding-bottom: 8.3041932543%;
       background-size: cover;
       margin-top: 20px; }
-
   .quote_text {
     font-size: 24px;
     max-width: 600px;
     margin: 0 auto;
     padding-left: 110px;
     background-size: 100px; }
-
   .quote_name {
     font-size: 16px; } }
+
 @media screen and (min-width: 769px) {
   .quote_text {
     font-size: 28px;
     padding-left: 130px;
     background-size: 120px; }
-
   .quote_name {
     font-size: 18px; } }
+
 .poster {
   margin: 40px 0;
   height: 65vw;
@@ -468,10 +469,12 @@ a {
     .poster_box {
       padding: 30px 35px;
       max-width: 600px; } }
+
 @media screen and (min-width: 1000px) {
   .poster {
     height: 650px;
     font-size: 3.3em; } }
+
 .offer {
   margin: 40px -15px; }
   .offer_box {
@@ -544,9 +547,11 @@ a {
       box-sizing: border-box; }
     .offer_mail > a {
       font-size: 16px; } }
+
 @media screen and (min-width: 700px) {
   .offer_box {
     position: static; } }
+
 @media screen and (min-width: 900px) {
   .offer {
     font-size: 16px;
@@ -555,6 +560,7 @@ a {
       width: 300px; }
     .offer_mail > a {
       font-size: 18px; } }
+
 .prices {
   margin: 40px 0; }
   .prices_body {
@@ -597,6 +603,7 @@ a {
     margin: 40px 0 0; }
     .prices_body {
       padding: 0 30px; } }
+
 @media screen and (min-width: 900px) {
   .prices_title {
     font-size: 24px; }
@@ -604,6 +611,7 @@ a {
     font-size: 16px; }
   .prices_price {
     font-size: 20px; } }
+
 .mobilepay {
   margin: 20px 0;
   background: #f3f3f3;
@@ -656,6 +664,7 @@ a {
       margin: 10px 0 15px 30px; }
     .mobilepay_button {
       align-self: flex-start; } }
+
 @media screen and (min-width: 900px) {
   .mobilepay:before {
     height: 60px;

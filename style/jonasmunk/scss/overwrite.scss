@@ -16,8 +16,7 @@ $target: async;
     }
   }
 
-  .part_header
-  {
+  .part_header {
     color: #333;
     font-weight: normal;
     font-family: $font;
@@ -48,8 +47,7 @@ $target: async;
     }
   }
 
-  .part_horizontalrule
-  {
+  .part_horizontalrule {
     border: none;
     border-bottom: solid 1px #eee;
     margin: 10px -20px;

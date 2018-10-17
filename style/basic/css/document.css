@@ -2,23 +2,20 @@
   margin: 0 -10px;
 }
 
-.document_table
-{
-	border-collapse: separate;
-	border-spacing: 10px 0;
-	width: 100%;
-	display: table;
+.document_table {
+  border-collapse: separate;
+  border-spacing: 10px 0;
+  width: 100%;
+  display: table;
 }
 
-.document_table_body
-{
-	display: table-row;
+.document_table_body {
+  display: table-row;
 }
 
-.document_table_column
-{
-	display: table-cell;
-	vertical-align: top;
+.document_table_column {
+  display: table-cell;
+  vertical-align: top;
 }
 
 .document_row-flexible {

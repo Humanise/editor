@@ -21,7 +21,7 @@ if (@$_SESSION['core.debug.simulateLatency']) {
 
 // If not logged in
 if (!InternalSession::isLoggedIn()) {
-  if (Request::getHeader('Ajax')) {
+  if (Request::getHeader('Accept') == 'application/json') {
     Response::forbidden();
   }
   else if (isset($_GET['page'])) {
@@ -29,7 +29,6 @@ if (!InternalSession::isLoggedIn()) {
     header("Location: " . ConfigurationService::getBaseUrl() . "Editor/Authentication.php?notloggedin=true&page=" . $_GET['page']);
   }
   else {
-    Log::debug('Sending forbidden');
     Response::forbidden();
     header("Location: " . ConfigurationService::getBaseUrl() . "Editor/Authentication.php?notloggedin=true");
   }

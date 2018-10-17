@@ -51,11 +51,13 @@
     margin-left: 120px; }
   .bio_event:before {
     left: 45px; } }
+
 @keyframes hue {
   0% {
     filter: hue-rotate(0deg); }
   100% {
     filter: hue-rotate(360deg); } }
+
 .vitae_hero {
   background: #666;
   animation-name: hue;
@@ -102,6 +104,7 @@
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 1vw; }
+
 .vitae_layout {
   margin-top: 35%;
   position: absolute;
@@ -110,15 +113,18 @@
   background: #fff;
   max-width: none;
   text-align: left; }
+
 .vitae_content {
   padding: 0 10px;
   margin: 0 auto;
   max-width: 960px;
   overflow: visible; }
+
 .vitae_footer {
   padding: 100px 0 60px;
   height: auto;
   text-align: center; }
+
 .vitae_designed {
   background: url("../gfx/humanise.svg") 50% 0 no-repeat;
   background-size: 100px;
@@ -128,6 +134,7 @@
   color: #000;
   font-weight: 400;
   opacity: .2; }
+
 .vitae_menu {
   font-family: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
   margin: 0 -10px 20px;
@@ -166,6 +173,7 @@
       color: #000;
       border: 1px solid #ddd;
       background: #fff; }
+
 .vitae,
 .vitae .document,
 .vitae .part_header,
@@ -173,24 +181,31 @@
 .vitae .part_listing,
 .vitae .part_poster {
   font-family: 'Open Sans','Helvetica Neue','Helvetica',Arial,sans-serif; }
+
 .vitae .part_header-1, .vitae .part_header-2 {
   color: #333;
   letter-spacing: 0px;
   line-height: 1em; }
+
 .vitae .part_header-1 {
   font-size: 32px;
   font-weight: 800; }
+
 .vitae .part_header-2 {
   font-size: 24px;
   font-weight: 700; }
+
 .vitae .part_header strong {
   font-weight: 400; }
+
 .vitae .part_poster_title {
   font-weight: 200;
   font-size: 18pt; }
+
 .vitae .part_poster_text {
   font-weight: 200;
   font-size: 12pt; }
+
 .vitae .part_text, .vitae .part_listing {
   font-weight: 300;
   font-size: 12pt;
@@ -198,14 +213,18 @@
   color: #333; }
   .vitae .part_text strong, .vitae .part_listing strong {
     font-weight: 400; }
+
 .vitae .part_horizontalrule {
   margin: 10px 0px; }
+
 .vitae .part_listing_first {
   font-size: 12pt;
   font-weight: 600; }
+
 .vitae .part_section_header-2 {
   padding-top: 20px;
   padding-bottom: 10px; }
+
 .vitae .common_link {
   font-weight: 500; }
 
@@ -217,6 +236,7 @@
     margin-top: -5px; }
     .vitae_menu_link {
       max-width: none; } }
+
 @media screen and (min-width: 400px) {
   .vitae_menu {
     margin-top: 0;
@@ -224,6 +244,7 @@
     .vitae_menu_link {
       padding: 0 6px;
       text-transform: uppercase; } }
+
 @media screen and (min-width: 600px) {
   .vitae_content {
     padding: 5px 25px; }
@@ -244,6 +265,7 @@
     font-size: 28pt; }
   .vitae .part_section_header-2 {
     padding-bottom: 20px; } }
+
 @media screen and (min-width: 1000px) {
   .vitae_hero_body {
     padding-bottom: 400px; }

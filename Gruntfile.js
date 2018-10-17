@@ -1,5 +1,7 @@
 module.exports = function(grunt) {
 
+  const sass = require('node-sass');
+
   var clients = {};
 
   (function() {
@@ -14,120 +16,8 @@ module.exports = function(grunt) {
       all: ['Grunfile.js', 'drupal-common/src/*']
     },
     watch: {
-      custom: {
-        files: ['style/custom/scss/**/*.scss'],
-        tasks: ['sass:custom'],
-        options: {
-          spawn: false,
-        }
-      },
-      humanise: {
-        files: ['style/humanise/scss/**/*.scss'],
-        tasks: ['sass:humanise'],
-        options: {
-          spawn: false,
-        }
-      },
-      karenslyst: {
-        files: ['style/karenslyst/sass/**/*.scss'],
-        tasks: ['compass:karenslyst'],
-        options: {
-          spawn: false,
-        }
-      },
-      fynbogaarden: {
-        files: ['style/fynbogaarden/sass/**/*.scss'],
-        tasks: ['compass:fynbogaarden'],
-        options: {
-          spawn: false,
-        }
-      },
-      lottemunk: {
-        files: ['style/lottemunk/scss/**/*.scss'],
-        tasks: ['compass:lottemunk'],
-        options: {
-          spawn: false,
-        }
-      },
-      jonasmunk: {
-        files: ['style/jonasmunk/scss/**/*.scss'],
-        tasks: ['sass:jonasmunk'],
-        options: {
-          spawn: false,
-        }
-      },
-      janemunk: {
-        files: ['style/janemunk/scss/**/*.scss'],
-        tasks: ['sass:janemunk'],
-        options: {
-          spawn: false,
-        }
-      }
-    },
-    compass: {
-      karenslyst: {
-        options: {
-          sassDir: "style/karenslyst/sass",
-          cssDir: "style/karenslyst/css",
-          noLineComments: true,
-        }
-      },
-      fynbogaarden: {
-        options: {
-          sassDir: "style/fynbogaarden/sass",
-          cssDir: "style/fynbogaarden/css",
-          noLineComments: true,
-        }
-      },
-      lottemunk: {
-        options: {
-          sassDir: "style/lottemunk/scss",
-          cssDir: "style/lottemunk/css",
-          noLineComments: true,
-        }
-      }
     },
     sass : {
-      custom: {
-        options : {sourcemap:'none'},
-        files: [{
-          expand: true,
-          cwd: 'style/custom/scss',
-          src: ['*.scss'],
-          dest: 'style/custom/css',
-          ext: '.css'
-        }]
-      },
-      humanise: {
-        options : {sourcemap:'none'},
-        files: [{
-          expand: true,
-          cwd: 'style/humanise/scss',
-          src: ['*.scss'],
-          dest: 'style/humanise/css',
-          ext: '.css'
-        }]
-      },
-      jonasmunk: {
-        options : {sourcemap:'none'},
-        files: [{
-          expand: true,
-          cwd: 'style/jonasmunk/scss',
-          src: ['*.scss'],
-          dest: 'style/jonasmunk/css',
-          ext: '.css'
-        }]
-      },
-      janemunk: {
-        options : {sourcemap:'none'},
-        files: [{
-          expand: true,
-          cwd: 'style/janemunk/scss',
-          src: ['*.scss'],
-          dest: 'style/janemunk/css',
-          ext: '.css'
-        }]
-      }
     },
     shell: {
       transfer : {
@@ -178,7 +68,16 @@ module.exports = function(grunt) {
     }
   };
 
-  var designs = [{name:'dalleruphallerne'}];
+  var designs = [
+    {name: 'dalleruphallerne'},
+    {name: 'karenslyst'},
+    {name: 'fynbogaarden'},
+    {name: 'lottemunk'},
+    {name: 'custom'},
+    {name: 'humanise'},
+    {name: 'jonasmunk'},
+    {name: 'janemunk'}
+  ];
 
   designs.forEach(function(design) {
 
@@ -190,7 +89,11 @@ module.exports = function(grunt) {
       }
     }
     config.sass[design.name] = {
-      options : {sourcemap:'none'},
+      options: {
+        implementation: sass,
+        sourceMap: false,
+        outputStyle: 'nested'
+      },
       files: [{
         expand: true,
         cwd: 'style/' + design.name + '/scss',
@@ -204,18 +107,13 @@ module.exports = function(grunt) {
   grunt.initConfig(config);
 
   // Load plugins.
-  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-symlink');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-compass');
-  grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-sass');
 
-  grunt.registerTask('default', 'Standard tasks', ['sass','compass','watch']);
+  grunt.registerTask('default', 'Standard tasks', ['sass','watch']);
 
   grunt.registerTask('format', 'Format code', ['shell:format']);
 

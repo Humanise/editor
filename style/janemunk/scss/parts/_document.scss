@@ -7,32 +7,32 @@
       display: block !important;
     }
 
-  	.document_table_column {
-  		width: auto !important;
-  		padding: 0 !important;
-  	}
+    .document_table_column {
+      width: auto !important;
+      padding: 0 !important;
+    }
 
     .document_table_container {
       margin: 0 !important;
     }
 
-  	.part_image_image {
-  		max-width: 100%;
-  		height: auto;
-  	}
+    .part_image_image {
+      max-width: 100%;
+      height: auto;
+    }
   }
 
   @media screen and (min-width: 700px) {
-  	.document_table {
-  		display: table;
-  		width: 100%;
-  	}
-  	.document_table_body {
-  		display: table-row;
-  	}
-  	div.document_table_column {
-  		display: table-cell;
-  		vertical-align: top;
-  	}
+    .document_table {
+      display: table;
+      width: 100%;
+    }
+    .document_table_body {
+      display: table-row;
+    }
+    div.document_table_column {
+      display: table-cell;
+      vertical-align: top;
+    }
   }
 }

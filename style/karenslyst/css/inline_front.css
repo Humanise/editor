@@ -2,8 +2,7 @@
   padding-bottom: 50%;
   overflow: hidden;
   position: relative;
-  -webkit-transform: translate3d(0, 0, 0);
-}
+  -webkit-transform: translate3d(0, 0, 0); }
 
 .layout_top_body {
   top: 0;
@@ -13,8 +12,7 @@
   background-size: cover;
   height: 110%;
   width: 110%;
-  -webkit-transform: scale(1.4);
-}
+  -webkit-transform: scale(1.4); }
 
 .layout_top_body-loaded {
   -webkit-transform: scale(1);
@@ -22,8 +20,7 @@
   -webkit-animation-name: effect;
   -webkit-animation-duration: 10s;
   -webkit-animation-iteration-count: 1;
-  -webkit-animation-timing-function: ease-out;
-}
+  -webkit-animation-timing-function: ease-out; }
 
 .title {
   font-family: 'Playfair Display', serif;
@@ -38,46 +35,37 @@
   top: 10px;
   z-index: 2;
   line-height: 1;
-  text-rendering: geometricPrecision;
-}
+  text-rendering: geometricPrecision; }
 
 .title_more {
   font-style: italic;
   font-size: .5em;
-  font-weight: normal;
-}
+  font-weight: normal; }
 
 @-webkit-keyframes effect {
   0% {
-    -webkit-transform: scale(1.4);
-  }
+    -webkit-transform: scale(1.4); }
   100% {
-    -webkit-transform: scale(1);
-  }
-}
+    -webkit-transform: scale(1); } }
+
 @media only screen and (min-width: 1040px) {
   .layout_top {
-    padding-bottom: 560px;
-  }
-}
+    padding-bottom: 560px; } }
+
 @media only screen and (max-width: 1000px) {
   .title {
     margin-left: 0;
-    left: 20px;
-  }
-}
+    left: 20px; } }
+
 @media only screen and (max-width: 768px) {
   .title {
     font-size: 32pt;
     margin-left: 0;
-    left: 20px;
-  }
-}
+    left: 20px; } }
+
 @media only screen and (max-width: 500px) {
   .layout_top {
-    padding-bottom: 70%;
-  }
-
+    padding-bottom: 70%; }
   .title {
     text-align: center;
     width: auto;
@@ -85,6 +73,4 @@
     line-height: 1;
     right: 0;
     left: 0px;
-    top: 0px;
-  }
-}
+    top: 0px; } }

@@ -6,8 +6,7 @@
   }
 
   .part_text,
-  .part_richtext
-  {
+  .part_richtext {
     font-size: 16px;
     word-spacing: 1px;
     line-height: 1.4;
@@ -21,22 +20,19 @@
 
   /************ Headers ***********/
 
-  .part_header-1
-  {
+  .part_header-1 {
     font-size: 38px;
     line-height: 1;
   }
 
-  .part_header-2
-  {
+  .part_header-2 {
     font-size: 19pt;
     line-height: 1.105263158em;
     font-weight: 400;
   }
 
 
-  .part_header-3
-  {
+  .part_header-3 {
     font-size: 14pt;
     line-height: 1.142857143em;
     font-weight: 600;
@@ -44,40 +40,33 @@
 
   .part_header-4,
   .part_header-5,
-  .part_header-6
-  {
+  .part_header-6 {
     font-weight: 600;
   }
 
-  .part_section_header-3
-  {
+  .part_section_header-3 {
     padding-bottom: 5px;
   }
 
-  .windows .part_header
-  {
+  .windows .part_header {
     font-weight: normal;
   }
 
-  .windows .part_header-1
-  {
+  .windows .part_header-1 {
     font-weight: 300;
   }
 
   /************** Poster ************/
 
-  .part_poster_text
-  {
+  .part_poster_text {
     font-size: 14px;
   }
 
-  .part_poster_link
-  {
+  .part_poster_link {
     font-size: 14px;
   }
 
-  .part_poster_title
-  {
+  .part_poster_title {
     font-weight: 400;
   }
 
@@ -85,21 +74,18 @@
   /*************** text *************/
 
   .part_text strong,
-  .part_richtext strong
-  {
+  .part_richtext strong {
     color: #000;
     font-weight: 700;
   }
 
-  .part_richtext p
-  {
+  .part_richtext p {
     margin: 10px 0;
   }
 
   /** Listing **/
 
-  .part_listing
-  {
+  .part_listing {
     font-size: 11pt;
     font-weight: 300;
     word-spacing: 1px;
@@ -110,14 +96,12 @@
     color: #333;
   }
 
-  .part_listing_first
-  {
+  .part_listing_first {
     font-size: 12pt;
     font-weight: normal;
   }
 
-  .part_list h3
-  {
+  .part_list h3 {
     font-weight: normal;
   }
 
@@ -150,16 +134,14 @@
     padding: 10px 0;
   }
 
-  .part_news_item_title
-  {
+  .part_news_item_title {
     font-size: 16px;
     font-weight: 700;
     color: #000;
     line-height: 1;
   }
 
-  .part_news_item_description
-  {
+  .part_news_item_description {
     margin-top: 5px;
     font-size: 14px;
     line-height: 1.2;
