@@ -57,8 +57,10 @@ class TestFileSystemService extends UnitTestCase {
     $this->assertEqual(FileSystemService::join('a/','/b'),'a/b');
     $this->assertEqual(FileSystemService::join('a',''),'a');
     $this->assertEqual(FileSystemService::join('','b'),'b');
+    $this->assertEqual(FileSystemService::join(' ','b'),'b');
     $this->assertEqual(FileSystemService::join('a',null),'a');
     $this->assertEqual(FileSystemService::join(null,'b'),'b');
+    $this->assertEqual(FileSystemService::join(null,'b','c','/d'),'b/c/d');
   }
 
   function testGetExtension() {

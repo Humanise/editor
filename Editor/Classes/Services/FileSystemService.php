@@ -121,7 +121,7 @@ class FileSystemService {
     return $out;
   }
 
-  static function join($base,$end) {
+/*  static function join($base, $end) {
     $out = '';
     if (substr($base,-1) == '/') {
       $base = substr($base,0,-1);
@@ -135,6 +135,19 @@ class FileSystemService {
     }
     $out .= $end;
     return $out;
+  }*/
+  
+  static function join() {
+    $paths = array();
+
+    foreach (func_get_args() as $arg) {
+      if (is_string($arg)) {
+        $arg = trim($arg);
+        if ($arg !== '') { $paths[] = $arg; }
+      }
+    }
+
+    return preg_replace('#/+#','/',join('/', $paths));
   }
 
   static function remove($path) {

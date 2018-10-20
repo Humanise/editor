@@ -312,8 +312,7 @@ class ImageTransformationService {
   }
 
   static function buildCachePath($id,$recipe) {
-    global $basePath;
-    $path = $basePath . 'local/cache/images/' . $id;
+    $path = 'images/' . $id;
     if ($recipe['width']) {
       $path .= '_width-' . $recipe['width'];
     }
@@ -344,6 +343,6 @@ class ImageTransformationService {
     if ($recipe['format']) {
       $path .= '.' . $recipe['format'];
     }
-    return $path;
+    return ConfigurationService::getCachePath($path);
   }
 }
