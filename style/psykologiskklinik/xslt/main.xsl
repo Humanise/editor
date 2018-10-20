@@ -19,134 +19,93 @@
 <xsl:template match="p:page">
 <xsl:call-template name="util:doctype"/>
 <html>
-	<xsl:call-template name="util:html-attributes"/>
+  <xsl:call-template name="util:html-attributes"/>
 <head>
-	<title>
-		<xsl:if test="not(//p:page/@id=//p:context/p:home/@page)">
-			<xsl:value-of select="@title"/>
-			<xsl:text> - </xsl:text>
-		</xsl:if>
-		<xsl:value-of select="f:frame/@title"/>
-	</title>
-	<xsl:call-template name="util:metatags"/>
-	<xsl:call-template name="util:css"/>
-	<xsl:call-template name="util:js"/>
+  <title>
+    <xsl:if test="not(//p:page/@id=//p:context/p:home/@page)">
+      <xsl:value-of select="@title"/>
+      <xsl:text> - </xsl:text>
+    </xsl:if>
+    <xsl:value-of select="f:frame/@title"/>
+  </title>
+  <link href="https://fonts.googleapis.com/css?family=Ovo" rel="stylesheet"/>
+  <xsl:call-template name="util:viewport"/>
+  <xsl:call-template name="util:metatags"/>
+  <xsl:call-template name="util:css"/>
+  <xsl:call-template name="util:js"/>
 </head>
 <body>
-	<div class="layout_bg">
-	<div class="layout">
-		<div class="layout_top">
-			<div class="layout_top_fade"><xsl:comment/></div>
-			<p>Psykologisk Klinik ved Kenni Graversen - Cand. psych. aut. - Specialist i psykoterapi</p>
-			<div class="layout_navigation">
-				<ul class="layout_navigation">
+  <div class="layout">
+    <div class="layout_top">
+      <p>Psykologisk Klinik ved Kenni Graversen - Cand. psych. aut. - Specialist i psykoterapi</p>
+      <div class="layout_navigation">
+        <ul class="layout_navigation">
           <xsl:comment/>
-					<xsl:apply-templates select="f:frame/h:hierarchy/h:item"/>
-				</ul>
-			</div>
-			<xsl:call-template name="util:languages"/>
-		</div>
-		<!--
-		<xsl:if test="//p:page/p:context/p:home[@page=//p:page/@id]">
-			<div class="layout_front"><xsl:comment/></div>
-		</xsl:if>
-		-->
-		<xsl:apply-templates select="p:content"/>
-		<div class="layout_bottom">
-			<div class="layout_bottom_effect"><xsl:comment/></div>
-			<p><a href="http://www.humanise.dk/" title="Humanise"><span>Designet og udviklet af Humanise</span></a></p>
-		</div>
-	</div>
-	</div>
-	<xsl:call-template name="util:googleanalytics"/>
-	<script>
-		hui.on(function() {
-			var fade = hui.get.firstByClass(document.body,'layout_top_fade');
-			var top = fade.parentNode;
-			hui.style.set(fade,{opacity:0,visibility:'visible'});
-			hui.listen(top,'mouseover',function() {
-				hui.animate({node:fade,css:{opacity:1},duration:200,ease:hui.ease.slowFast});
-			})
-			hui.listen(top,'mouseout',function() {
-				hui.animate({node:fade,css:{opacity:0},duration:2000,ease:hui.ease.slowFast});
-			})
-		})
-	</script>
+          <xsl:apply-templates select="f:frame/h:hierarchy/h:item"/>
+        </ul>
+      </div>
+      <xsl:call-template name="util:languages"/>
+    </div>
+    <xsl:apply-templates select="p:content"/>
+    <div class="layout_bottom">
+      <div class="layout_bottom_effect"><xsl:comment/></div>
+      <p><a href="http://www.humanise.dk/" title="Humanise"><span>Designet og udviklet af Humanise</span></a></p>
+    </div>
+  </div>
+  <xsl:call-template name="util:googleanalytics"/>
 </body>
 </html>
 </xsl:template>
 
-<xsl:template match="hr:horizontalrule">
-	<span><xsl:comment/></span>
-	<div><xsl:comment/></div>
-	<hr class="part_horizontalrule"/>
-</xsl:template>
-
 
 <xsl:template match="p:content">
-	<div class="layout_content">
-		<xsl:apply-templates/>
-		<xsl:comment/>
-	</div>
+  <div class="layout_content">
+    <xsl:apply-templates/>
+    <xsl:comment/>
+  </div>
 </xsl:template>
 
 
 
 
 <xsl:template match="h:hierarchy/h:item">
-	<xsl:if test="not(@hidden='true')">
-	<xsl:variable name="style">
-	<xsl:choose>
-	<xsl:when test="//p:page/@id=@page"><xsl:text>selected</xsl:text></xsl:when>
-	<xsl:when test="descendant-or-self::*/@page=//p:page/@id"><xsl:text>highlighted</xsl:text></xsl:when>
-	<xsl:otherwise>normal</xsl:otherwise>
-	</xsl:choose>
-	</xsl:variable>
-	<li class="{$style}">
-	<a>
-	<xsl:call-template name="util:link"/>
-	<span><xsl:value-of select="@title"/></span>
-	</a>
-	</li>
-	</xsl:if>
+  <xsl:if test="not(@hidden='true')">
+  <xsl:variable name="style">
+  <xsl:choose>
+  <xsl:when test="//p:page/@id=@page"><xsl:text>selected</xsl:text></xsl:when>
+  <xsl:when test="descendant-or-self::*/@page=//p:page/@id"><xsl:text>highlighted</xsl:text></xsl:when>
+  <xsl:otherwise>normal</xsl:otherwise>
+  </xsl:choose>
+  </xsl:variable>
+  <li class="{$style}">
+  <a>
+  <xsl:call-template name="util:link"/>
+  <span><xsl:value-of select="@title"/></span>
+  </a>
+  </li>
+  </xsl:if>
 </xsl:template>
 
-<xsl:template match="h:hierarchy/h:item/h:item">
-	<xsl:variable name="style">
-	<xsl:choose>
-	<xsl:when test="//p:page/@id=@page"><xsl:text>selected</xsl:text></xsl:when>
-	<xsl:when test="descendant-or-self::*/@page=//p:page/@id"><xsl:text>highlighted</xsl:text></xsl:when>
-	</xsl:choose>
-	</xsl:variable>
-	<xsl:if test="not(@hidden='true')">
-	<li>
-	<a class="{$style}">
-	<xsl:call-template name="util:link"/>
-	<span><xsl:value-of select="@title"/></span>
-	</a>
-	</li>
-	</xsl:if>
-</xsl:template>
 
 <xsl:template match="h:item">
-	<xsl:variable name="style">
-	<xsl:choose>
-	<xsl:when test="//p:page/@id=@page"><xsl:text>selected</xsl:text></xsl:when>
-	<xsl:when test="descendant-or-self::*/@page=//p:page/@id"><xsl:text>highlighted</xsl:text></xsl:when>
-	<xsl:otherwise>standard</xsl:otherwise>
-	</xsl:choose>
-	</xsl:variable>
-	<xsl:if test="not(@hidden='true')">
-	<li>
-	<a class="{$style}">
-	<xsl:call-template name="util:link"/>
-	<span><xsl:value-of select="@title"/></span>
-	</a>
-	<xsl:if test="descendant-or-self::*/@page=//p:page/@id and h:item">
-	<ul><xsl:apply-templates/></ul>
-	</xsl:if>
-	</li>
-	</xsl:if>
+  <xsl:variable name="style">
+  <xsl:choose>
+  <xsl:when test="//p:page/@id=@page"><xsl:text>selected</xsl:text></xsl:when>
+  <xsl:when test="descendant-or-self::*/@page=//p:page/@id"><xsl:text>highlighted</xsl:text></xsl:when>
+  <xsl:otherwise>standard</xsl:otherwise>
+  </xsl:choose>
+  </xsl:variable>
+  <xsl:if test="not(@hidden='true')">
+  <li>
+  <a class="{$style}">
+  <xsl:call-template name="util:link"/>
+  <span><xsl:value-of select="@title"/></span>
+  </a>
+  <xsl:if test="descendant-or-self::*/@page=//p:page/@id and h:item">
+  <ul><xsl:apply-templates/></ul>
+  </xsl:if>
+  </li>
+  </xsl:if>
 </xsl:template>
 
 
@@ -156,73 +115,41 @@
 <!--            Links              -->
 
 
-<xsl:template match="f:links/f:top">
-	<div class="links_top">
-	<div>
-	<xsl:apply-templates select="//f:frame/f:userstatus"/> ·
-	<a title="Udskriv siden" class="common" href="?id={//p:page/@id}&amp;print=true">Udskriv</a>
-	<xsl:apply-templates/>
-	</div>
-	</div>
-</xsl:template>
-
 <xsl:template match="f:links/f:bottom">
-	<div class="case_links">
-	<xsl:apply-templates/>
-	<xsl:if test="f:link"><span>&#160;&#183;&#160;</span></xsl:if>
-	<a title="XHTML 1.1" class="common" href="http://validator.w3.org/check?uri=referer"><span>XHTML 1.1</span></a>
-	</div>
+  <div class="case_links">
+  <xsl:apply-templates/>
+  <xsl:if test="f:link"><span>&#160;&#183;&#160;</span></xsl:if>
+  <a title="XHTML 1.1" class="common" href="http://validator.w3.org/check?uri=referer"><span>XHTML 1.1</span></a>
+  </div>
 </xsl:template>
 
 <xsl:template match="f:links/f:bottom/f:link">
-	<xsl:if test="position()>1"><span>&#160;&#183;&#160;</span></xsl:if>
-	<a title="{@alternative}" class="common">
-	<xsl:call-template name="util:link"/>
-	<span><xsl:value-of select="@title"/></span>
-	</a>
+  <xsl:if test="position()>1"><span>&#160;&#183;&#160;</span></xsl:if>
+  <a title="{@alternative}" class="common">
+  <xsl:call-template name="util:link"/>
+  <span><xsl:value-of select="@title"/></span>
+  </a>
 </xsl:template>
-
-<xsl:template match="f:links/f:top/f:link">
-	<span>&#160;&#183;&#160;</span>
-	<a title="{@alternative}" class="common">
-	<xsl:call-template name="util:link"/>
-	<span><xsl:value-of select="@title"/></span>
-	</a>
-</xsl:template>
-
 
 
 <!--            Text              -->
 
-
-
-
-
 <xsl:template match="f:text/f:bottom">
-	<span class="text">
-		<xsl:comment/>
-		<xsl:apply-templates/>
-	</span>
+  <span class="text">
+    <xsl:comment/>
+    <xsl:apply-templates/>
+  </span>
 </xsl:template>
 
 <xsl:template match="f:text/f:bottom/f:break">
-	<br/>
+  <br/>
 </xsl:template>
-
 
 <xsl:template match="f:text/f:bottom/f:link">
-	<a title="{@alternative}" class="common">
-		<xsl:call-template name="util:link"/>
-		<span><xsl:apply-templates/></span>
-	</a>
+  <a title="{@alternative}" class="common">
+    <xsl:call-template name="util:link"/>
+    <span><xsl:apply-templates/></span>
+  </a>
 </xsl:template>
-
-
-
-
-
-
-
-
 
 </xsl:stylesheet>
