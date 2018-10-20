@@ -35,4 +35,4 @@ SetOutputFilter DEFLATE
 </FilesMatch>
 </IfModule>
 
-SetEnv session.use_cookies='0';
+SetEnv session.use_cookies 0
