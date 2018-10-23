@@ -30,6 +30,12 @@
       line-height: 26px;
       display: block;
       vertical-align: top; }
+      .header_menu_link.is-selected {
+        font-weight: bold; }
+
+@media screen and (min-width: 340px) {
+  .header_menu_link {
+    font-size: 20px; } }
 
 @media screen and (min-width: 560px) {
   .header_logo {
@@ -79,7 +85,8 @@ body {
 
 .layout_humanise {
   margin: 0;
-  opacity: .2; }
+  opacity: .2;
+  font-family: 'Ovo'; }
   .layout_humanise_link {
     display: block;
     text-decoration: none;

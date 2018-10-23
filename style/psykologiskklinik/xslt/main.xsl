@@ -87,8 +87,8 @@
     </xsl:when>
   </xsl:choose>
   </xsl:variable>
-  <li class="header_menu_item {$style}">
-    <a class="header_menu_link">
+  <li class="header_menu_item">
+    <a class="header_menu_link {$style}">
       <xsl:call-template name="util:link"/>
       <xsl:value-of select="@title"/>
     </a>

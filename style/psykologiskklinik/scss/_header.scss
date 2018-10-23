@@ -38,10 +38,23 @@
       line-height: 26px;
       display: block;
       vertical-align: top;
+      &.is-selected {
+        font-weight: bold;
+      }
     }
   }
 }
 
+@include if((width: 340px)) {
+
+  .header {
+    &_menu {
+      &_link {
+        font-size: 20px;
+      }
+    }
+  }
+}
 
 @include if((width: 560px)) {
   .header {

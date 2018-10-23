@@ -1,59 +1,56 @@
-a.common
-{
-	color: #ddd;
-	cursor: pointer;
+$target : 'any';
+
+@import '../../basic/scss/mixins';
+
+a.common {
+  color: #ddd;
+  cursor: pointer;
 }
 
-a.common span
-{
-	color: #0073b9;
+a.common span {
+  color: #0073b9;
 }
-	
-a.common:hover, a.common:hover span
-{
-	color: #005aae;
+  
+a.common:hover, a.common:hover span {
+  color: #005aae;
 }
 
-h1.common,h2.common,h3.common,h4.common,h5.common,h6.common
-{
-	margin: 0px;
-	color: #000;
-	font-family: Georgia,"Book Antiqua", "Palatino",Times,serif;
-	font-weight: normal;
+
+.common_font {
+  font-family: Georgia,"Book Antiqua", "Palatino",Times,serif;
 }
 
-p.common, ul.common
-{
-	font-family: Georgia,"Book Antiqua", "Palatino",Times,serif;
-	font-size: 11pt;
-	line-height: 160%;
-	text-align: justify;
+.part_text {
+  font-size: 12pt;
 }
 
-.common_font
-{
-	font-family: Georgia,"Book Antiqua", "Palatino",Times,serif;
+.part_listing_first {
+  font-size: 12pt;
 }
 
-.part_text
-{
-	font-size: 11pt;
+.part_listing {
+  font-size: 10pt;
+  color: #333;
 }
 
-div.part_listing span.part_listing_first
-{
-	font-size: 11pt;
+.part_header {
+  color: #000;
+  font-family: 'Ovo',Georgia,"Book Antiqua", "Palatino",Times,serif;
+  font-weight: normal;
+  &-1 {
+    font-size: 24pt;
+    letter-spacing: -1px;
+  }
+  &-2, &-3, &-4, &-5, &-6 {
+    font-weight: bold;
+  }
 }
 
-div.part_listing, textarea.part_listing {
-	font-size: 10pt;
-	color: #333;
+@include if ((width: 720px)) {
+  .part_header {
+    &-1 {
+      font-size: 32pt;
+      letter-spacing: -1px;
+    }
+  }
 }
-
-.part_header
-{
-	color: #000;
-	font-family: Georgia,"Book Antiqua", "Palatino",Times,serif;
-	font-weight: normal;
-}
-
