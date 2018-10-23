@@ -3,7 +3,7 @@
   "description": "CMS",
   "version": "1.0.0",
   "license": "UNLICENSED",
-  "repository": "https://github.com/Humanise/onlineobjects",
+  "repository": "https://github.com/Humanise/editor",
   "devDependencies": {
     "grunt": "^1.0.3",
     "grunt-contrib-compass": "^1.1.1",

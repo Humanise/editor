@@ -1,0 +1,102 @@
+$target : 'any';
+
+@import '../../basic/scss/mixins';
+
+@import 'header';
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Georgia,Times,serif;
+  background: #fafafa;
+}
+
+.layout {
+  max-width: 980px;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 0 0 20px #ddd;
+
+  &_middle {
+    overflow: hidden;
+  }
+
+  &_content {
+    padding: 20px;
+  }
+  &_bottom {
+    padding-bottom: 20px;
+  }
+}
+
+.layout_humanise {
+  margin: 0;
+  opacity: .2;
+  &_link {
+    &:before {
+      content: '';
+      background: url('../gfx/humanise.svg') 50% no-repeat;
+      background-size: contain;
+      height: 60px;
+      display: block;
+      margin-bottom: 10px;
+    }
+    display: block;
+    text-decoration: none;
+    color: #000;
+    text-align: center;
+  }
+}
+
+
+@include if((width: 700px)) {
+  .layout_bottom {
+    height: 180px;
+    position: relative;
+
+    &:before {
+      content: '';
+      width: 235px;
+      height: 140px;
+      position: absolute;
+      background: url('../gfx/sprite.jpg') -277px -35px no-repeat;
+      left: 20px;
+      top: 20px;
+    }
+  }
+  .layout_humanise {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    &_link {
+      line-height: 40px;
+      &:before {
+        float: right;
+        width: 40px;
+        height: 40px;
+        margin: -10px 0 0 5px;
+      }
+    }
+  }
+}
+
+
+
+@media (max-width: 800px) {
+  .document_table {
+    display: block;
+    &_container {
+      margin: 0;
+    }
+    &_body {
+      display: block;
+    }
+    &_column {
+      display: block;
+      margin-bottom: 20px;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      width: auto !important;
+    }
+  }
+}

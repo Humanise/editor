@@ -37,19 +37,29 @@
 <body>
   <div class="layout">
     <div class="layout_top">
-      <p>Psykologisk Klinik ved Kenni Graversen - Cand. psych. aut. - Specialist i psykoterapi</p>
-      <div class="layout_navigation">
-        <ul class="layout_navigation">
-          <xsl:comment/>
-          <xsl:apply-templates select="f:frame/h:hierarchy/h:item"/>
-        </ul>
+      <div class="header">
+        <p class="header_logo">Psykologisk Klinik ved Kenni Graversen - Cand. psych. aut. - Specialist i psykoterapi</p>
+        <div class="header_menu">
+          <ul class="header_menu_items">
+            <xsl:comment/>
+            <xsl:apply-templates select="f:frame/h:hierarchy/h:item"/>
+          </ul>
+        </div>
       </div>
-      <xsl:call-template name="util:languages"/>
     </div>
-    <xsl:apply-templates select="p:content"/>
+    <div class="layout_middle">
+      <div class="layout_content">
+        <xsl:apply-templates select="p:content"/>
+        <xsl:comment/>
+      </div>
+    </div>
     <div class="layout_bottom">
       <div class="layout_bottom_effect"><xsl:comment/></div>
-      <p><a href="http://www.humanise.dk/" title="Humanise"><span>Designet og udviklet af Humanise</span></a></p>
+      <p class="layout_humanise">
+        <a href="https://www.humanise.dk/" title="Humanise" class="layout_humanise_link">
+          Designet og udviklet af Humanise
+        </a>
+      </p>
     </div>
   </div>
   <xsl:call-template name="util:googleanalytics"/>
@@ -59,10 +69,7 @@
 
 
 <xsl:template match="p:content">
-  <div class="layout_content">
-    <xsl:apply-templates/>
-    <xsl:comment/>
-  </div>
+  <xsl:apply-templates/>
 </xsl:template>
 
 
@@ -72,38 +79,19 @@
   <xsl:if test="not(@hidden='true')">
   <xsl:variable name="style">
   <xsl:choose>
-  <xsl:when test="//p:page/@id=@page"><xsl:text>selected</xsl:text></xsl:when>
-  <xsl:when test="descendant-or-self::*/@page=//p:page/@id"><xsl:text>highlighted</xsl:text></xsl:when>
-  <xsl:otherwise>normal</xsl:otherwise>
+    <xsl:when test="//p:page/@id=@page">
+      <xsl:text>is-selected</xsl:text>
+    </xsl:when>
+    <xsl:when test="descendant-or-self::*/@page=//p:page/@id">
+      <xsl:text>is-highlighted</xsl:text>
+    </xsl:when>
   </xsl:choose>
   </xsl:variable>
-  <li class="{$style}">
-  <a>
-  <xsl:call-template name="util:link"/>
-  <span><xsl:value-of select="@title"/></span>
-  </a>
-  </li>
-  </xsl:if>
-</xsl:template>
-
-
-<xsl:template match="h:item">
-  <xsl:variable name="style">
-  <xsl:choose>
-  <xsl:when test="//p:page/@id=@page"><xsl:text>selected</xsl:text></xsl:when>
-  <xsl:when test="descendant-or-self::*/@page=//p:page/@id"><xsl:text>highlighted</xsl:text></xsl:when>
-  <xsl:otherwise>standard</xsl:otherwise>
-  </xsl:choose>
-  </xsl:variable>
-  <xsl:if test="not(@hidden='true')">
-  <li>
-  <a class="{$style}">
-  <xsl:call-template name="util:link"/>
-  <span><xsl:value-of select="@title"/></span>
-  </a>
-  <xsl:if test="descendant-or-self::*/@page=//p:page/@id and h:item">
-  <ul><xsl:apply-templates/></ul>
-  </xsl:if>
+  <li class="header_menu_item {$style}">
+    <a class="header_menu_link">
+      <xsl:call-template name="util:link"/>
+      <xsl:value-of select="@title"/>
+    </a>
   </li>
   </xsl:if>
 </xsl:template>

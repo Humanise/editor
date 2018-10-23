@@ -30,7 +30,7 @@
       }
     }
   }
-  @elseif ($target=='async' or $target=='editor') {
+  @elseif ($target=='async' or $target=='editor' or $target=='any') {
     @if (map-has-key($params, width)) {
       @media screen and (min-width: #{map-get($params,'width')}) {
         @content;
