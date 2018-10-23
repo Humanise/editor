@@ -87,7 +87,7 @@ body {
   .document_table {
     display: block;
     &_container {
-      margin: 0;
+      margin: 0 !important;
     }
     &_body {
       display: block;
