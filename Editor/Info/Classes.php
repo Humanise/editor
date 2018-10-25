@@ -91,6 +91,7 @@ $HUMANISE_EDITOR_CLASSES = array (
     'WeblogTemplate' => 'Templates/WeblogTemplate.php',
     'CalendarTemplateController' => 'Templates/CalendarTemplateController.php',
     'AuthenticationTemplateController' => 'Templates/AuthenticationTemplateController.php',
+    'HtmlTemplate' => 'Templates/HtmlTemplate.php',
     'HtmlTemplateController' => 'Templates/HtmlTemplateController.php',
     'DocumentTemplateInspector' => 'Templates/DocumentTemplateInspector.php',
     'AuthenticationTemplate' => 'Templates/AuthenticationTemplate.php',
