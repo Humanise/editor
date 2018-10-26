@@ -122,14 +122,26 @@ class FileSystemService {
   }
 
   static function join() {
+    $args = func_get_args();
+    $prefix = '';
+    if (isset($args[0]) && is_string($args[0])) {
+      if (strpos($args[0], 'http://') === 0) {
+        $prefix = 'http://';
+        $args[0] = substr($args[0], 7);
+      }
+      if (strpos($args[0], 'https://') === 0) {
+        $prefix = 'https://';
+        $args[0] = substr($args[0], 8);
+      }
+    }
     $paths = array();
-    foreach (func_get_args() as $arg) {
+    foreach ($args as $arg) {
       if (is_string($arg)) {
         $arg = trim($arg);
         if ($arg !== '') { $paths[] = $arg; }
       }
     }
-    return preg_replace('#/+#','/',join('/', $paths));
+    return $prefix . preg_replace('#/+#','/', join('/', $paths));
   }
 
   static function remove($path) {

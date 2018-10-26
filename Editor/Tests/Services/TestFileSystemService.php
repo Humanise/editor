@@ -61,6 +61,8 @@ class TestFileSystemService extends UnitTestCase {
     $this->assertEqual(FileSystemService::join('a',null),'a');
     $this->assertEqual(FileSystemService::join(null,'b'),'b');
     $this->assertEqual(FileSystemService::join(null,'b','c','/d'),'b/c/d');
+    $this->assertEqual(FileSystemService::join('http://www.humanise.test/','/sitemap.xml'), 'http://www.humanise.test/sitemap.xml');
+    $this->assertEqual(FileSystemService::join('https://www.humanise.test/','/sitemap.xml'), 'https://www.humanise.test/sitemap.xml');
   }
 
   function testGetExtension() {
