@@ -291,12 +291,15 @@ class RenderingService {
         Response::redirectMoved(Strings::concatUrl(ConfigurationService::getBaseUrl(),$row['path']));
       } else if ($row['id'] > 0) {
         Response::redirectMoved(ConfigurationService::getBaseUrl() . '?id=' . $row['id']);
-      } else {
-        RenderingService::sendNotFound();
       }
-    } else {
-      RenderingService::sendNotFound();
     }
+    if (strpos($path, 'sitemap.xml') === 0) {
+      if (ConfigurationService::isEnableSiteMap()) {
+        RenderingService::sendSiteMap();
+        return;
+      }
+    }
+    RenderingService::sendNotFound();
   }
 
   static function buildPage($id, $path = null, $parameters = []) {
@@ -626,5 +629,29 @@ class RenderingService {
       return $twig->render($template, $data);
     }
     return null;
+  }
+
+  static function sendSiteMap() {
+    header('Content-Type: application/xml; charset=utf-8');
+    echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+    echo "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n";
+    $baseUrl = ConfigurationService::getBaseUrl();
+    $sql = "select id,path, date_format(page.changed,'%Y-%m-%d') as changed from page where secure=0 and disabled=0 order by id";
+    $result = Database::select($sql);
+    while ($row = Database::next($result)) {
+      if ($row['path']) {
+        $loc = FileSystemService::join($baseUrl, $row['path']);
+      } else {
+        $loc = FileSystemService::join($baseUrl, '/') . '?id=' . $row['id'];
+      }
+      echo "<url>\n";
+      echo "  <loc>" . $loc . "</loc>\n";
+      echo "  <lastmod>" . $row['changed'] . "</lastmod>\n";
+      //echo '<changefreq>monthly</changefreq>';
+      //echo '<priority>1.0</priority>';
+      echo "</url>\n";
+    }
+    Database::free($result);
+    echo "</urlset>";
   }
 }

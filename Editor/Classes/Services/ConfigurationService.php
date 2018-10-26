@@ -55,15 +55,19 @@ class ConfigurationService {
   }
 
   static function isCachePages() {
-    return ConfigurationService::_getConfig('cachepages',!true);
+    return ConfigurationService::_getConfig('cachepages', false);
   }
 
   static function isPublicSession() {
-    return ConfigurationService::_getConfig('publicsession',true);
+    return ConfigurationService::_getConfig('publicsession', true);
+  }
+
+  static function isEnableSiteMap() {
+    return ConfigurationService::_getConfig('sitemap', false);
   }
 
   static function getShellPath() {
-    return ConfigurationService::_getConfig('shellpath','');
+    return ConfigurationService::_getConfig('shellpath', '');
   }
 
   static function isUrlRewrite() {
