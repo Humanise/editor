@@ -11,20 +11,20 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestNewsPart extends UnitTestCase {
 
-    function testLoad() {
-        $this->assertNull(NewsPart::load(0));
-    }
+  function testLoad() {
+    $this->assertNull(NewsPart::load(0));
+  }
 
-    function testCreate() {
-        $obj = new NewsPart();
+  function testCreate() {
+    $obj = new NewsPart();
     $this->assertFalse($obj->isPersistent());
     $obj->save();
     $this->assertTrue($obj->isPersistent());
     $id = $obj->getId();
-        $this->assertNotNull(NewsPart::load($id));
+    $this->assertNotNull(NewsPart::load($id));
     $obj->remove();
-        $this->assertNull(NewsPart::load($id));
-    }
+    $this->assertNull(NewsPart::load($id));
+  }
 
   function testProperties() {
     $obj = new NewsPart();

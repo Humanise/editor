@@ -35,8 +35,12 @@ class PartService {
     $schema = PartService::getSchema($part->getType());
     if (isset($schema['relations']) && is_array($schema['relations'])) {
       foreach ($schema['relations'] as $field => $info) {
-        $sql = "delete from " . $info['table'] . " where " . $info['fromColumn'] . "=" . Database::int($part->getId());
-        Database::delete($sql);
+        $sql = "delete from @name(table) where @name(column) = @id";
+        Database::delete($sql, [
+          'table' => $info['table'],
+          'column' => $info['fromColumn'],
+          'id' => $part->getId()
+        ]);
       }
     }
   }
@@ -59,27 +63,20 @@ class PartService {
     } else {
       $schema = PartService::getSchema($part->getType());
 
-      $sql = "insert into part (type,style,dynamic,created,updated) values (" .
-      Database::text($part->getType()) . "," .
-      Database::text($part->getStyle()) . "," .
-      Database::boolean($part->isDynamic()) . "," .
-      "now(),now()" .
-      ")";
-      $part->setId(Database::insert($sql));
+      $sql = "insert into part (type,style,dynamic,created,updated) values (@text(type),@text(style),@boolean(dynamic),now(),now())";
+      $part->setId(Database::insert($sql, [
+        'type' => $part->getType(),
+        'style' => $part->getStyle(),
+        'dynamic' => $part->isDynamic()
+      ]));
 
-      $columns = SchemaService::buildSqlColumns($schema);
-      $values = SchemaService::buildSqlValues($part,$schema);
 
-      $sql = "insert into part_" . $part->getType() . " (part_id";
-      if (strlen($columns) > 0) {
-        $sql .= "," . $columns;
-      }
-      $sql .= ") values (" . $part->getId();
-      if (strlen($values) > 0) {
-        $sql .= "," . $values;
-      }
-      $sql .= ")";
-      Database::insert($sql);
+      $values = SchemaService::buildSqlValueStructure($part,$schema);
+      $values['part_id'] = ['int' => $part->getId()];
+      Database::insert([
+        'table' => 'part_' . $part->getType(),
+        'values' => $values
+      ]);
 
       if (isset($schema['relations']) && is_array($schema['relations'])) {
         foreach ($schema['relations'] as $field => $info) {
@@ -87,8 +84,13 @@ class PartService {
           $ids = $part->$getter();
           if ($ids !== null) {
             foreach ($ids as $id) {
-              $sql = "insert into " . $info['table'] . " (" . $info['fromColumn'] . "," . $info['toColumn'] . ") values (" . Database::int($part->getId()) . "," . Database::int($id) . ")";
-              Database::insert($sql);
+              Database::insert([
+                'table' => $info['table'],
+                'values' => [
+                  $info['fromColumn'] => ['int' => $part->getId()],
+                  $info['toColumn'] => ['int' => $id],
+                ]
+              ]);
             }
           }
         }
@@ -103,28 +105,38 @@ class PartService {
   }
 
   static function update($part) {
-    $sql = "update part set updated=now(),dynamic=@boolean(dynamic),style=@text(style) where id=@int(id)";
+    $sql = "update part set updated = now(), dynamic = @boolean(dynamic), style = @text(style) where id = @int(id)";
     Database::update($sql,['id' => $part->getId(), 'style' => $part->getStyle(), 'dynamic' => $part->isDynamic()]);
 
     $schema = PartService::getSchema($part->getType());
-    $setters = SchemaService::buildSqlSetters($part,$schema);
-
-    if (Strings::isNotBlank($setters)) {
-      $sql = "update part_" . $part->getType() . " set " . $setters . " where part_id=" . Database::int($part->getId());
-      Database::update($sql);
+    $values = SchemaService::buildSqlValueStructure($part,$schema);
+    if ($values) {
+      Database::update([
+        'table' => 'part_' . $part->getType(),
+        'values' => $values,
+        'where' => ['part_id' => ['int' => $part->getId()]]
+      ]);
     }
-
-      // Update relations
+    // Update relations
     if (isset($schema['relations']) && is_array($schema['relations'])) {
       foreach ($schema['relations'] as $field => $info) {
-        $sql = "delete from " . $info['table'] . " where " . $info['fromColumn'] . "=" . $part->getId();
-        Database::delete($sql);
+        $sql = "delete from @name(table) where @name(column) = @id";
+        Database::delete($sql, [
+          'table' => $info['table'],
+          'column' => $info['fromColumn'],
+          'id' => $part->getId()
+        ]);
         $getter = 'get' . ucfirst($field);
         $ids = $part->$getter();
         if ($ids !== null) {
           foreach ($ids as $id) {
-            $sql = "insert into " . $info['table'] . " (" . $info['fromColumn'] . "," . $info['toColumn'] . ") values (" . Database::int($part->getId()) . "," . Database::int($id) . ")";
-            Database::insert($sql);
+            Database::insert([
+              'table' => $info['table'],
+              'values' => [
+                $info['fromColumn'] => ['int' => $part->getId()],
+                $info['toColumn'] => ['int' => $id],
+              ]
+            ]);
           }
         }
       }
@@ -267,60 +279,33 @@ class PartService {
     return ($a < $b) ? -1 : 1;
   }
 
-
-  /** Get part info based on its unique ID */
-  static function getPartInfo($unique) {
-    global $basePath;
-    $file = $basePath . "Editor/Parts/" . $unique . "/info.xml";
-    if (file_exists($file)) {
-      $info = [];
-      $doc = new DOMDocument();
-      if ($doc->load($file)) {
-        $info['name'] = DOMUtils::getPathText($doc->documentElement,"/part/name");
-        $info['description'] = DOMUtils::getPathText($doc->documentElement,"/part/description");
-        $info['priority'] = DOMUtils::getPathText($doc->documentElement,"/part/priority");
-      }
-      else {
-        error_log('getPartInfo: ' . $doc->getErrorString());
-      }
-      return $info;
-    }
-    else {
-      return false;
-    }
-  }
-
   /** Get the possible link text for a certain part */
   static function getLinkText($partId) {
     $text = '';
-    $sql = "select text,document_section.part_id from part_text,document_section where document_section.part_id=part_text.part_id and document_section.part_id=" . Database::int($partId) . "
-union select text,document_section.part_id from part_header,document_section where document_section.part_id=part_header.part_id and document_section.part_id=" . Database::int($partId) . "
-union select text,document_section.part_id from part_listing,document_section where document_section.part_id=part_listing.part_id and document_section.part_id=" . Database::int($partId) . "
-union select html as text,document_section.part_id from part_table,document_section where document_section.part_id=part_table.part_id and document_section.part_id=" . Database::int($partId);
-    $result = Database::select($sql);
+    $sql = "select text from part_text where part_text.part_id = @id
+      union select text from part_header where part_header.part_id = @id
+      union select text from part_listing where part_listing.part_id = @id
+      union select html as text from part_table where part_table.part_id = @id";
+    $result = Database::select($sql, ['id' => $partId]);
     while ($row = Database::next($result)) {
       $text .= ' ' . $row['text'];
     }
     Database::free($result);
-    return $text;
+    return trim($text);
   }
 
   /** Get the first link for a part */
-  static function getSingleLink($part,$sourceType = null) {
-    $sql = "select part_link.*,page.path from part_link left join page on page.id=part_link.target_value and part_link.target_type='page' where part_id=" . Database::int($part->getId());
+  static function getSingleLink($part, $sourceType = null) {
+    $sql = "select part_link.*,page.path from part_link left join page on page.id=part_link.target_value and part_link.target_type='page' where part_id = @id";
     if (!is_null($sourceType)) {
-      $sql .= " and source_type=" . Database::text($sourceType);
+      $sql .= " and source_type = @text(type)";
     }
-    if ($row = Database::selectFirst($sql)) {
-      return $row;
-    } else {
-      return false;
-    }
+    return Database::selectFirst($sql, ['id' => $part->getId(), 'type' => $sourceType]);
   }
 
   /** Remove all existing links for a part */
   static function removeLinks($part) {
-    $sql = "delete from part_link where part_id=" . Database::int($part->getId());
-    Database::delete($sql);
+    $sql = "delete from part_link where part_id = @id";
+    Database::delete($sql, $part->getId());
   }
 }

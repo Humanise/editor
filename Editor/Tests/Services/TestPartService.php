@@ -17,6 +17,21 @@ class TestPartService extends UnitTestCase {
   }
 
   /** Test link functionality of part service */
+  function testLinkText() {
+    $text = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
+
+    $part = new TextPart();
+    $part->setText($text);
+    $part->save();
+
+    $linkText = PartService::getLinkText($part->getId());
+
+    $this->assertEqual($text, $linkText);
+
+    $part->remove();
+  }
+
+  /** Test link functionality of part service */
   function testLinks() {
     $part = new PosterPart();
     $part->save();
@@ -58,6 +73,10 @@ class TestPartService extends UnitTestCase {
     $this->assertEqual($loaded->getTargetType(),$link->getTargetType());
     $this->assertEqual($loaded->getTargetValue(),$link->getTargetValue());
     $this->assertEqual($loaded->getSourceText(),$link->getSourceText());
+
+    $this->assertEqual(PartService::getSingleLink($part)['id'], $link->getId());
+    $this->assertEqual(PartService::getSingleLink($part, 'X')['id'], $link->getId());
+    $this->assertNull(PartService::getSingleLink($part, 'NONE'));
 
 
     PartService::removeLinks($part);

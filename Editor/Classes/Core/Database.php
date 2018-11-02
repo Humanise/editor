@@ -141,21 +141,21 @@ class Database {
       $sql = Database::buildUpdateSql($sql);
     }
     if ($parameters !== null) {
-      $sql = Database::compile($sql,$parameters);
+      $sql = Database::compile($sql, $parameters);
     }
     $con = Database::getConnection();
-    mysqli_query($con,$sql);
+    mysqli_query($con, $sql);
     return Database::_checkError($sql,$con);
   }
 
   static function delete($sql,$parameters = null) {
     if ($parameters !== null) {
-      $sql = Database::compile($sql,$parameters);
+      $sql = Database::compile($sql, $parameters);
     }
     Database::debug($sql);
     $con = Database::getConnection();
-    mysqli_query($con,$sql);
-    Database::_checkError($sql,$con);
+    mysqli_query($con, $sql);
+    Database::_checkError($sql, $con);
     return mysqli_affected_rows($con);
   }
 
@@ -164,13 +164,13 @@ class Database {
       $sql = Database::buildInsertSql($sql);
     }
     if ($parameters !== null) {
-      $sql = Database::compile($sql,$parameters);
+      $sql = Database::compile($sql, $parameters);
     }
     Database::debug($sql);
     $con = Database::getConnection();
-    mysqli_query($con,$sql);
+    mysqli_query($con, $sql);
     $id = mysqli_insert_id($con);
-    if (Database::_checkError($sql,$con)) {
+    if (Database::_checkError($sql, $con)) {
       return $id;
     } else {
       return false;
@@ -437,6 +437,8 @@ class Database {
             $value = Database::datetime($value);
           } else if ($type == 'float') {
             $value = Database::float($value);
+          } else if ($type == 'name') {
+            $value = '`' . $value . '`';
           } else {
             continue;
           }

@@ -14,7 +14,7 @@ require_once(FileSystemService::getFullPath('Editor/Classes/Tests/AbstractObject
 class TestService {
 
   static function getResourceUrl($name) {
-    $url = ConfigurationService::getBaseUrl() . 'Editor/Tests/Resources/' . $name;
+    $url = FileSystemService::join(ConfigurationService::getBaseUrl(), 'Editor/Tests/Resources' , $name);
     if ($url[0] == '/') {
       $url = 'http://localhost' . $url;
     }
