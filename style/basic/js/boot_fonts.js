@@ -17,7 +17,6 @@
         dummy.innerHTML = 'Am-i#w^o';
         document.body.appendChild(dummy);
         var width = dummy.clientWidth;
-
         //console.log('Checking: '+weight);
         dummy.style.fontFamily = "'" + options.family + "',fantasy";
         var tester;
@@ -25,7 +24,8 @@
         tester = function() {
           timeout *= 1.5;
           var currentWidth = dummy.clientWidth;
-          if (width==0 || (width != currentWidth && !sizes[currentWidth])) {
+          //console.log('Testing: '+weight+' = '+currentWidth+"/"+width);
+          if (width==0 || (width != currentWidth && !sizes[weight])) {
             count--;
             //console.log('found: '+weight+','+width+'/'+dummy.clientWidth);
             if (count==0) {
@@ -33,7 +33,7 @@
               document.body.className += ' ' + options.cls;
               window.sessionStorage && sessionStorage.setItem(options.href,'1');
             }
-            sizes[currentWidth] = 1;
+            sizes[weight] = 1;
             dummy.parentNode.removeChild(dummy);
           } else {
             window.setTimeout(tester,timeout);
