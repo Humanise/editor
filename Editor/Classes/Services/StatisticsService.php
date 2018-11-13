@@ -43,7 +43,7 @@ class StatisticsService {
     $sql = 'SELECT count(distinct statistics.session) as sessions, count(distinct statistics.ip) as ips, count(statistics.id) as hits,date_format(statistics.time, "%Y%m%d") as `key`,date_format(statistics.time, "%d-%m-%Y") as label';
     $sql .= ' FROM statistics';
     $sql .= StatisticsService::_buildWhere($query);
-    $sql .= ' group by label order by `key` desc limit 500';
+    $sql .= ' group by label,`key` order by `key` desc limit 500';
     return Database::selectAll($sql);
   }
 
@@ -64,7 +64,7 @@ class StatisticsService {
   static function searchPaths($query) {
     $sql = "select UNIX_TIMESTAMP(max(statistics.time)) as lasttime,UNIX_TIMESTAMP(min(statistics.time)) as firsttime,count(distinct statistics.id) as visits,count(distinct statistics.session) as sessions,count(distinct statistics.ip) as ips,statistics.uri,page.title as page_title,page.id as page_id from statistics left join page on statistics.value=page.id where statistics.type='page'";
     $sql .= StatisticsService::_buildWhere($query,false);
-    $sql .= " group by statistics.uri order by visits desc limit 100";
+    $sql .= " group by statistics.uri,page_title,page_id order by visits desc limit 100";
     return Database::select($sql);
   }
 
@@ -96,7 +96,7 @@ class StatisticsService {
 
     $sql = 'SELECT count(distinct statistics.session) as sessions, count(distinct statistics.ip) as ips, count(statistics.id) as hits,date_format(statistics.time, "' . $patterns[$resolution]['sql'] . '") as `key`,date_format(statistics.time, "%e") as label FROM statistics';
     $sql .= StatisticsService::_buildWhere($query);
-    $sql .= '  group by `key` order by `key`';
+    $sql .= '  group by `key`,label order by `key`';
     $rows = Database::selectAllKeys($sql,'key');
 
     if ($query->getStartTime()) {
