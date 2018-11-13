@@ -11,6 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 class PageQuery {
 
   private $text;
+  private $contentText;
   private $ordering = [];
   private $direction = 'ascending';
   private $windowPage = 0;
@@ -28,6 +29,11 @@ class PageQuery {
 
   function withText($text) {
     $this->text = $text;
+    return $this;
+  }
+
+  function withContentText($text) {
+    $this->contentText = $text;
     return $this;
   }
 
@@ -65,6 +71,10 @@ class PageQuery {
 
   function getText() {
     return $this->text;
+  }
+
+  function getContentText() {
+    return $this->contentText;
   }
 
   function getWindowSize() {

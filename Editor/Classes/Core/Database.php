@@ -431,6 +431,8 @@ class Database {
             $value = Database::ints($value);
           } else if ($type == 'text') {
             $value = Database::text($value);
+          } else if ($type == 'fuzzy') {
+            $value = Database::search($value);
           } else if ($type == 'boolean') {
             $value = Database::boolean($value);
           } else if ($type == 'datetime') {

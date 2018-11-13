@@ -119,23 +119,23 @@ class DatabaseUtil {
     $commands = [];
     if (array_key_exists($table,$databaseTables)) {
       $expectedColumns = $databaseTables[$table];
-
+      $mods = [];
       // Search for unknown columns
       foreach ($columns as $col) {
         if(!DatabaseUtil::findColumnInColumns($col[0],$expectedColumns)) {
-          $commands[] = "alter table `" . $table . "` DROP `" . $col[0] . "`";
+          $mod[] = "DROP `" . $col[0] . "`";
         }
       }
 
       foreach ($expectedColumns as $col) {
         if ($fields = DatabaseUtil::findColumnInColumns($col[0],$columns)) {
           if ($fields['Type'] != $col[1] || ($fields['Null'] == 'YES' && $col[2] != 'YES') || $fields['Default'] != $col[4]) {
-            $sql = "ALTER TABLE `" . $table . "` CHANGE `" . $col[0] . "` `" . $col[0] . "` " . $col[1] . " " . ($col[2] == 'YES' ? "NULL" : "NOT NULL") . " DEFAULT " . ($col[4] == '' ? "NULL" : "'" . $col['4'] . "'");
-            $commands[] = $sql;
+            $sql = "CHANGE `" . $col[0] . "` `" . $col[0] . "` " . $col[1] . " " . ($col[2] == 'YES' ? "NULL" : "NOT NULL") . " DEFAULT " . ($col[4] == '' ? "NULL" : "'" . $col['4'] . "'");
+            $mods[] = $sql;
           }
         }
         else {
-          $sql = "alter table `" . $table . "` ADD `" . $col[0] . "` " . $col[1];
+          $sql = "ADD `" . $col[0] . "` " . $col[1];
           if ($col[2] == 'YES') {
             $sql .= " NULL";
           }
@@ -151,8 +151,11 @@ class DatabaseUtil {
           if ($col[3] != '') {
             $sql .= " PRIMARY KEY";
           }
-          $commands[] = $sql;
+          $mods[] = $sql;
         }
+      }
+      if ($mods) {
+        $commands[] = "alter table `" . $table . "` " . join($mods, ', ');
       }
     }
     else {
