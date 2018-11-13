@@ -1,0 +1,12 @@
+{
+  "super" : {
+    "username" : "peter",
+    "password" : "$u9er$ecr3t"
+  },
+  "database" : {
+    "binary" : "/opt/local/lib/mysql57/bin/mysql",
+    "name" : "editor_test",
+    "user" : "root",
+    "password" : "secret"
+  }
+}

@@ -38,15 +38,15 @@ $gui = '
         <header>{Access control; da:Adgangskontrol}</header>
         <fields>
           <field label="{Username; da:Brugernavn}:">
-            <text-input name="username" correction="false"/>
+            <text-input name="username" correction="false" test-name="username"/>
           </field>
           <field label="{Password; da:Kodeord}:">
-            <text-input name="password" secret="true"/>
+            <text-input name="password" secret="true" test-name="password"/>
           </field>
         </fields>
         <buttons>
           <button text="{Cancel; da:Annuller}" url="../"/>
-          <button name="login" text="{Log in; da:Log ind}" highlighted="true" submit="true"/>
+          <button name="login" text="{Log in; da:Log ind}" highlighted="true" submit="true" test-name="login"/>
         </buttons>
       </formula>
       <formula name="recoveryForm" state="recover">
@@ -96,7 +96,7 @@ $gui = '
           </text>
           <buttons align="center" top="5">
             <button text="{Ignore;da:Ignorér}" click="hui.ui.changeState(\'login\');formula.focus()"/>
-            <button text="{Update;da:Opdater}" name="updateDatabase" highlighted="true"/>
+            <button text="{Update;da:Opdater}" name="updateDatabase" highlighted="true" test-name="update-database"/>
           </buttons>
         </space>
       </fragment>
@@ -126,23 +126,23 @@ $gui = '
       </text>
       <fields>
         <field label="{Username;da:Brugernavn}">
-          <text-input key="username"/>
+          <text-input key="username" test-name="db-update-username"/>
         </field>
         <field label="{Password;da:Kodeord}">
-          <text-input key="password" secret="true"/>
+          <text-input key="password" secret="true" test-name="db-update-password"/>
         </field>
       </fields>
       <buttons>
-        <button text="{Update;da:Opdater}" submit="true" highlighted="true"/>
+        <button text="{Update;da:Opdater}" submit="true" highlighted="true" test-name="db-update-submit"/>
       </buttons>
     </formula>
   </window>
 
-  <window title="Log" name="databaseLogWindow" width="500">
+  <window title="Log" name="databaseLogWindow" width="500" test-name="database-log-window">
     <text-input adaptive="true" breaks="true" name="databaseLog"/>
   </window>
 
-  <window name="adminWindow" width="300" padding="10" title="{Create administrator; da: Opret administrator}">
+  <window name="adminWindow" width="300" padding="10" title="{Create administrator; da: Opret administrator}" test-name="new-user">
     <formula name="adminFormula">
       <text align="center">
         <p>{da:Log ind med super-brugeren for at oprette en ny administrator;en:Log in as the super-user in order to create a new administrator}</p>
@@ -150,10 +150,10 @@ $gui = '
       <fieldset legend="{Super user ; da: Super-bruger}">
         <fields>
           <field label="{Username;da:Brugernavn}">
-            <text-input key="superUsername"/>
+            <text-input key="superUsername" test-name="new-user-super-username"/>
           </field>
           <field label="{Password;da:Kodeord}">
-            <text-input key="superPassword" secret="true"/>
+            <text-input key="superPassword" secret="true" test-name="new-user-super-password"/>
           </field>
         </fields>
       </fieldset>
@@ -161,15 +161,15 @@ $gui = '
       <fieldset legend="Administrator">
         <fields>
           <field label="{Username;da:Brugernavn}">
-            <text-input key="adminUsername"/>
+            <text-input key="adminUsername" test-name="new-user-username"/>
           </field>
           <field label="{Password;da:Kodeord}">
-            <text-input key="adminPassword" secret="true"/>
+            <text-input key="adminPassword" secret="true" test-name="new-user-password"/>
           </field>
         </fields>
       </fieldset>
       <buttons top="10">
-        <button text="{Create;da:Opret}" submit="true" highlighted="true"/>
+        <button text="{Create;da:Opret}" submit="true" highlighted="true" test-name="new-user-submit"/>
       </buttons>
     </formula>
   </window>
