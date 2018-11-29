@@ -23,7 +23,7 @@ var controller = {
       }
     }
     if (hui.location.getBoolean('logout')) {
-      hui.ui.showMessage({text:{en:'Your have med logged out',da:'Du er nu logget ud'},icon:'common/success',duration:2000});
+      hui.ui.msg.success({text:{en:'You have been logged out',da:'Du er nu logget ud'}});
     }
     else if (hui.location.getBoolean('forgot')) {
       this.$click$forgot();
@@ -59,7 +59,7 @@ var controller = {
       password.focus();
       return;
     }
-    hui.ui.showMessage({text:{en:'Logging in...',da:'Logger ind...'},busy:true,delay:100});
+    hui.ui.msg({text:{en:'Logging in...',da:'Logger ind...'},busy:true,delay:100});
     this.loggingIn = true;
     login.disable();
     hui.ui.request({
@@ -67,14 +67,14 @@ var controller = {
       $success: 'login',
       parameters : values,
       $failure:function() {
-        hui.ui.showMessage({text:{en:'An internal error occurred',da:'Der skete en fejl internt i systemet'},icon:'common/warning',duration:4000});
+        hui.ui.msg.fail({text:{en:'An internal error occurred',da:'Der skete en fejl internt i systemet'}});
         this._enableLogin();
       }.bind(this)
     });
   },
   $success$login : function(data) {
     if (data.success) {
-      hui.ui.showMessage({text:{en:'You are now logged in, just a moment...',da:'Du er nu logget ind, øjeblik...'},icon:'common/success',delay:200});
+      hui.ui.msg.success({text:{en:'You are now logged in, just a moment...',da:'Du er nu logget ind, øjeblik...'},delay:200});
       if (hui.browser.ipad) {
         document.location = './Touch/';
       } else {
@@ -84,7 +84,7 @@ var controller = {
     } else {
       box.shake();
       //hui.ui.stress(box);
-      hui.ui.showMessage({text:{en:'The user was not found',da:'Brugeren blev ikke fundet'},icon:'common/warning',duration:2000});
+      hui.ui.msg.fail({text:{en:'The user was not found',da:'Brugeren blev ikke fundet'}});
       formula.focus();
     }
     this._enableLogin();
@@ -101,13 +101,13 @@ var controller = {
 
   $submit$recoveryForm : function() {
     var text = recoveryForm.getValues()['nameOrMail'];
-    hui.ui.showMessage({text:{en:'Looking for user and sending e-mail...',da:'Leder efter bruger, og sender e-mail...'},busy:true});
+    hui.ui.msg({text:{en:'Looking for user and sending e-mail...',da:'Leder efter bruger, og sender e-mail...'},busy:true});
     hui.ui.request({
       url : 'Services/Core/RecoverPassword.php',
     $success : 'recovery',
       parameters : {text:text},
       $failure : function() {
-        hui.ui.showMessage({text:{en:'An internal error occurred',da:'Der skete en fejl internt i systemet'},icon:'common/warning',duration:4000});
+        hui.ui.msg.fail({text:{en:'An internal error occurred',da:'Der skete en fejl internt i systemet'}});
       }
     });
   },
@@ -116,7 +116,7 @@ var controller = {
       hui.ui.hideMessage();
       hui.ui.changeState('recoveryMessage');
     } else {
-      hui.ui.showMessage({text:data.message,icon:'common/warning',duration:4000});
+      hui.ui.msg.fail({text:data.message});
     }
   },
 
@@ -133,25 +133,25 @@ var controller = {
       form.focus();
       return;
     }
-    hui.ui.showMessage({text:{en:'Updating database...',da:'Opdaterer database...'},busy:true});
+    hui.ui.msg({text:{en:'Updating database...',da:'Opdaterer database...'},busy:true});
     hui.ui.request({
       url : 'Services/Core/UpdateDatabase.php',
       parameters : values,
       $failure : function() {
-        hui.ui.showMessage({text:{en:'An internal error occurred',da:'Der skete en fejl internt i systemet'},icon:'common/warning',duration:4000});
+        hui.ui.msg.fail({text:{en:'An internal error occurred',da:'Der skete en fejl internt i systemet'}});
       },
       $forbidden : function() {
-        hui.ui.showMessage({text:{en:'The username or password is incorrect',da:'Bruger eller kode er ikke korrekt'},icon:'common/warning',duration:4000});
+        hui.ui.msg.fail({text:{en:'The username or password is incorrect',da:'Bruger eller kode er ikke korrekt'}});
         form.focus();
       },
       $object : function(response) {
         databaseLog.setValue(response.log);
         databaseLogWindow.show();
         if (!response.updated) {
-          hui.ui.showMessage({text:{en:'The database is not completely updated, please try again',da:'Databasen er endnu ikke fuldt opdateret, prøv igen'},icon:'common/warning',duration:4000});
+          hui.ui.msg.fail({text:{en:'The database is not completely updated, please try again',da:'Databasen er endnu ikke fuldt opdateret, prøv igen'}});
           return;
         }
-        hui.ui.showMessage({text:{en:'The database isupdated',da:'Databasen er nu opdateret'},icon:'common/success',duration:4000});
+        hui.ui.msg.success({text:{en:'The database isupdated',da:'Databasen er nu opdateret'}});
         databaseFormula.reset();
         databaseWindow.hide();
         hui.ui.changeState('login');
@@ -169,21 +169,21 @@ var controller = {
     var values = form.getValues();
     if (hui.isBlank(values.superUsername) || hui.isBlank(values.superPassword) || hui.isBlank(values.adminUsername) || hui.isBlank(values.adminPassword)) {
       form.focus();
-      hui.ui.showMessage({text:{en:'Please fill in all fields',da:'Udfyld venligst alle felter'},icon:'common/warning',duration:4000});
+      hui.ui.msg.fail({text:{en:'Please fill in all fields',da:'Udfyld venligst alle felter'}});
       return;
     }
     hui.ui.request({
       url : 'Services/Core/CreateAdministrator.php',
       parameters : values,
       $failure : function() {
-        hui.ui.showMessage({text:{en:'An internal error occurred',da:'Der skete en fejl internt i systemet'},icon:'common/warning',duration:4000});
+        hui.ui.msg.fail({text:{en:'An internal error occurred',da:'Der skete en fejl internt i systemet'}});
       },
       $forbidden : function() {
-        hui.ui.showMessage({text:{en:'The username or password is incorrect',da:'Bruger eller kode er ikke korrekt'},icon:'common/warning',duration:4000});
+        hui.ui.msg.fail({text:{en:'The username or password is incorrect',da:'Bruger eller kode er ikke korrekt'}});
         form.focus();
       },
       $success : function(response) {
-        hui.ui.showMessage({text:{en:'The administrator has been created',da:'Administratoren er nu oprettet'},icon:'common/success',duration:4000});
+        hui.ui.msg.success({text:{en:'The administrator has been created',da:'Administratoren er nu oprettet'}});
         form.reset();
         adminWindow.hide();
         hui.ui.changeState('login');

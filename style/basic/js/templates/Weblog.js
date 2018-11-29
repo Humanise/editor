@@ -39,11 +39,11 @@ op.WeblogTemplate = {
     hui.override(parms,this.newForm.getValues());
     parms.date = parseInt(parms.date.getTime()/1000);
     if (hui.isBlank(parms.title)) {
-      hui.ui.showMessage({text:'Der skal skrives en titel',duration:2000});
+      hui.ui.msg.fail({text:'Der skal skrives en titel'});
       this.editForm.focus();
       return;
     } else if (parms.groups.length<1) {
-      hui.ui.showMessage({text:'Der skal vælges mindst een gruppe',duration:2000});
+      hui.ui.msg.fail({text:'Der skal vælges mindst een gruppe'});
       return;
     }
     hui.ui.request({
@@ -118,11 +118,11 @@ op.WeblogTemplate = {
     hui.override(parms,this.editForm.getValues());
     parms.date = parseInt(parms.date.getTime()/1000);
     if (hui.isBlank(parms.title)) {
-      hui.ui.showMessage({text:'Der skal skrives en titel',duration:2000});
+      hui.ui.msg.fail({text:'Der skal skrives en titel'});
       this.editForm.focus();
       return;
     } else if (parms.groups.length<1) {
-      hui.ui.showMessage({text:'Der skal vælges mindst een gruppe',duration:2000});
+      hui.ui.msg.fail({text:'Der skal vælges mindst een gruppe'});
       return;
     }
     hui.ui.request({

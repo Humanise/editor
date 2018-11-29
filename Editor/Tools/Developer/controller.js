@@ -75,7 +75,7 @@ hui.ui.listen({
     })
   },
   $clickNode$graph : function(node) {
-    hui.ui.showMessage({text:node.label,duration:2000});
+    hui.ui.msg({text:node.label,duration:2000});
   },
   $click$playDiagram : function() {
     diagram.resume();

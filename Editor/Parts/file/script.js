@@ -45,7 +45,7 @@ var partController = {
           document.forms.PartForm.fileId.value = status.id;
           this.preview();
         } else {
-          hui.ui.showMessage({text:'Det lykkedes ikke at overføre filen, måske er den for stor',icon:'common/warning',duration:3000});
+          hui.ui.msg.fail({text:'Det lykkedes ikke at overføre filen, måske er den for stor'});
         }
       }.bind(this)
     });

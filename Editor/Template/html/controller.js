@@ -24,7 +24,7 @@ var controller = {
       parameters : values,
       $object : function(obj) {
         window.parent.frames[0].controller.markChanged();
-        hui.ui.showMessage({text:'Ændringerne er nu gemt'+(obj.valid ? ' (valid)' : ' (invalid)'),duration:2000});
+        hui.ui.msg.success({text:'Ændringerne er nu gemt'+(obj.valid ? ' (valid)' : ' (invalid)')});
       }
     });
   },

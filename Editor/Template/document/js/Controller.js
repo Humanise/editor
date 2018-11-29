@@ -241,7 +241,7 @@ var controller = {
           document.location = 'Editor.php';//'Editor.php?section='+obj.sectionId;
         },
         $failure : function() {
-          hui.ui.showMessage({icon:'common/warning',text:{en:'Pasting failed',da:'Kunne ikke indsætte'},duration:2000})
+          hui.ui.msg.fail({text:{en:'Pasting failed',da:'Kunne ikke indsætte'}})
         }
       })
       return;
@@ -319,10 +319,10 @@ var controller = {
       url : '../../Services/Clipboard/Copy.php',
       parameters : {sectionId : id},
       $success : function() {
-        hui.ui.showMessage({icon:'common/success',text:{en:'Copied',da:'Kopieret'},duration:2000});
+        hui.ui.msg.success({text:{en:'Copied',da:'Kopieret'}});
       },
       $failure : function() {
-        hui.ui.showMessage({icon:'common/warning',text:{en:'Unable to copy',da:'Kopieringen mislykkedes'},duration:2000});
+        hui.ui.msg.fail({text:{en:'Unable to copy',da:'Kopieringen mislykkedes'}});
       }
     })
   },
@@ -332,10 +332,10 @@ var controller = {
       url : '../../Services/Clipboard/Cut.php',
       parameters : {sectionId : id},
       $success : function() {
-        hui.ui.showMessage({icon:'common/success',text:{en:'Cutted',da:'Klippet'},duration:2000});
+        hui.ui.msg.success({text:{en:'Cutted',da:'Klippet'}});
       },
       $failure : function() {
-        hui.ui.showMessage({icon:'common/warning',text:{en:'Unable to cut',da:'Klipningen mislykkedes'},duration:2000});
+        hui.ui.msg.fail({text:{en:'Unable to cut',da:'Klipningen mislykkedes'}});
       }
     })
   },

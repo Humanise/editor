@@ -61,11 +61,9 @@ var partController = {
           document.forms.PartForm.imageId.value = status.id;
           this.preview();
         } else {
-          hui.ui.showMessage({
+          hui.ui.msg.fail({
             text: { en:'The image could not be added, it may be too large or of an unknown type',
-                da:'Billedet kunne ikke tilføjes, det kan være for stort eller af en ukendt type'},
-            icon:'common/warning',
-            duration:3000
+            da:'Billedet kunne ikke tilføjes, det kan være for stort eller af en ukendt type'}
           });
         }
       }.bind(this)
@@ -84,12 +82,12 @@ var partController = {
     var form = hui.ui.get('urlForm');
     var url = form.getValues()['url'];
     if (hui.isBlank(url)) {
-      hui.ui.showMessage({text:{en:'The address is required',da:'Adressen er krævet'},duration:3000});
+      hui.ui.msg.fail({text:{en:'The address is required',da:'Adressen er krævet'}});
       form.focus();
       return;
     }
     createFromUrl.disable();
-    hui.ui.showMessage({text:{en:'Fetching image...',da:'Henter billede...'},busy:true});
+    hui.ui.msg({text:{en:'Fetching image...',da:'Henter billede...'},busy:true});
     hui.ui.request({
       url : '../../Parts/image/Fetch.php',
       parameters : {url:url},
@@ -101,7 +99,7 @@ var partController = {
           document.forms.PartForm.imageId.value = status.object.id;
           this.preview();
         } else {
-          hui.ui.showMessage({text:{en:'It was not possible to fetch the image',da:'Det lykkedes ikke at hente billedet'},icon:'common/warning',duration:3000});
+          hui.ui.msg.fail({text:{en:'It was not possible to fetch the image',da:'Det lykkedes ikke at hente billedet'}});
         }
         createFromUrl.enable();
       }.bind(this)
@@ -117,13 +115,13 @@ var partController = {
     return hui.ui.ImagePaster.isSupported();
   },
   paste : function() {
-    hui.ui.showMessage({text:{en:'Pasting...',da:'Indsætter...'},busy:true});
+    hui.ui.msg({text:{en:'Pasting...',da:'Indsætter...'},busy:true});
     window.setTimeout(function() {
       if (!this.paster) {
         this.paster = hui.ui.ImagePaster.create({invisible:true});
         this.paster.listen({
           $imageWasPasted : function(data) {
-            hui.ui.showMessage({text:{en:'The image has been pasted',da:'Billedet er indsat'},icon:'common/success',duration:2000});
+            hui.ui.msg.success({text:{en:'The image has been pasted',da:'Billedet er indsat'}});
             this._updateWithData(data);
           }.bind(this),
           $imagePasteFailed : function(code) {
@@ -133,7 +131,7 @@ var partController = {
               invalid : {en:'The clipboard does not contain a valid image',da:'Der er ikke et validt billede i udklipsholderen'},
               busy : {en:'The clipboard is unavailable',da:'Udklipsholderen er ikke tilgængelig'}
             };
-            hui.ui.showMessage({text:msg[code] || msg['unknown'],icon:'common/warning',duration:5000});
+            hui.ui.msg.fail({text:msg[code] || msg['unknown']});
           }
         })
       }
@@ -148,10 +146,10 @@ var partController = {
       url : '../../Services/Images/Create.php',
       parameters : {data:data,title:hui.ui.language=='da' ? 'Udklipsholder' : 'Clipboard'},
       $failure : function() {
-        hui.ui.showMessage({text:{en:'It was not possible to create an image from the clipboard',da:'Det lykkedes ikke at lave et billede fra udklipsholderen'},icon:'common/warning',duration:2000});
+        hui.ui.msg.fail({text:{en:'It was not possible to create an image from the clipboard',da:'Det lykkedes ikke at lave et billede fra udklipsholderen'}});
       },
       $object : function(response) {
-        hui.ui.showMessage({text:{en:'The image has been inserted',da:'Billedet er nu indsat'},icon:'common/success',duration:2000});
+        hui.ui.msg.success({text:{en:'The image has been inserted',da:'Billedet er nu indsat'}});
         document.forms.PartForm.imageId.value = response.id;
         this.preview();
       }.bind(this)

@@ -154,7 +154,7 @@ var partController = {
     for (var i = nodes.length - 1; i >= 0; i--) {
       hui.dom.setText(nodes[i],hui.dom.getText(nodes[i]));
     };
-    hui.ui.showMessage({text:'Your royalty is now clean!',duration:3000});
+    hui.ui.msg.success({text:'Your royalty is now clean!'});
     this._syncValue();
     this._syncSource();
     this._syncInfo();

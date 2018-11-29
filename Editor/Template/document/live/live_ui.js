@@ -367,7 +367,7 @@ hui.ui.listen({
             this._buildDesignForm(parameters);
             this.designWindow.show();
           } else {
-            hui.ui.showMessage({text:'Dette design har ingen indstillinger',duration:3000})
+            hui.ui.msg({text:'Dette design har ingen indstillinger',duration:3000})
           }
         }.bind(this)
       })

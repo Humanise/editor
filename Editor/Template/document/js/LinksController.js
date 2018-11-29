@@ -84,12 +84,12 @@ var linkController = {
   $submit$linkFormula : function(form) {
     var values = form.getValues();
     if (hui.isBlank(values.text)) {
-      hui.ui.showMessage({text:{en:'Please fill in the text to link from',da:'Skriv den tekst hvor der skal linkes fra'},duration:2000});
+      hui.ui.msg.fail({text:{en:'Please fill in the text to link from',da:'Skriv den tekst hvor der skal linkes fra'}});
       form.focus();
       return;
     }
     if (hui.isBlank(values.email) && hui.isBlank(values.url) && values.page==null && values.file==null) {
-      hui.ui.showMessage({text:{en:'Please select the target of the link',da:'Du skal vælge et mål for linket'},duration:2000});
+      hui.ui.msg.fail({text:{en:'Please select the target of the link',da:'Du skal vælge et mål for linket'}});
       form.focus();
       return;
     }
