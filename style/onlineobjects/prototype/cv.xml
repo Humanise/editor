@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/page/1.0/" id="3" title="Curriculum Vitae">
+  <meta>
+    <keywords/>
+    <published unix="1481180865" day="08" weekday="08" yearday="342" month="12" year="2016" hour="08" minute="07" second="45" offset="3600" timezone="CET"/>
+    <language>en</language>
+    <analytics key="UA-420000-1"/>
+  </meta>
+  <context>
+    <home page="1" path="/"/>
+  </context>
+  <parameters/>
+  <design>
+    <parameter key="theme">cv</parameter>
+  </design>
+  <frame xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/frame/1.0/" title="Jonas Munk">
+    <hierarchy xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/hierarchy/1.0/">
+      <item title="Home" alternative="" page="1" path="/"/>
+      <item title="Calendar" alternative="" page="2" path="calendar/"/>
+      <item title="Recommendations" alternative="" page="7" path="recommendations.html"/>
+      <item title="Curriculum Vitae" alternative="" page-reference="3" path="cv/">
+        <item title="Profil" alternative="" page="3" path="cv/"/>
+        <item title="Design" alternative="" page="13" path="/cv/design/"/>
+        <item title="Software" alternative="" page="14" path="/cv/programmering/"/>
+        <item title="Teknologier" alternative="" page="9" path="cv/teknologi.html"/>
+        <item title="Historik" alternative="" page="12" path="/cv/historik/"/>
+      </item>
+    </hierarchy>
+    <text>
+      <bottom/>
+    </text>
+    <links>
+      <top/>
+      <bottom/>
+    </links>
+  </frame>
+  <content>
+    <content xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/document/1.0/">
+      <row id="27">
+        <column id="34">
+          <section id="69" left="40px" float="right">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="image" id="69">
+              <sub>
+                <image xmlns="http://uri.in2isoft.com/onlinepublisher/part/image/1.0/">
+                  <style adaptive="false"/>
+                  <transform display-width="250" display-height="250" scale-method="max" scale-width="250" scale-height="0" max-width="250"/>
+                  <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="116" type="image">
+                    <title>Untitled Artwork 2 (1)</title>
+                    <note/>
+                    <created unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <updated unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <published unix="" day="01" weekday="4" yearday="0" month="01" year="1970" hour="01" minute="00" second="00" offset="3600" timezone="CET"/>
+                    <sub>
+                      <image xmlns="http://uri.in2isoft.com/onlinepublisher/class/image/1.0/">
+                        <filename>Untitled_Artwork 2 (1).png</filename>
+                        <size>2636448</size>
+                        <width>2532</width>
+                        <height>2532</height>
+                        <mimetype>image/png</mimetype>
+                      </image>
+                    </sub>
+                  </object>
+                </image>
+              </sub>
+            </part>
+          </section>
+          <section id="135">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="header" id="135">
+              <sub>
+                <header xmlns="http://uri.in2isoft.com/onlinepublisher/part/header/1.0/" level="1"><style/>Curriculum Vitae</header>
+              </sub>
+            </part>
+          </section>
+          <section id="2">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="2">
+              <sub>
+                <text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">
+                  <style/>
+                  <p>Mit navn er <strong>Jonas Brinkmann Munk</strong> og jeg har en <link url="http://www.studieguide.aau.dk/uddannelser/bachelor/32609/" id="16" part-id="2">bachelor i Informatik</link> fra <strong>Aalborg Universitet</strong>. Før det var jeg ansat som <strong>webmaster på Aalborg Handelsskole</strong> og forsatte mit arbejde sideløbende med min uddannelse. Ved siden af studierne <strong>startede jeg en virksomhed</strong>, <link url="http://www.humanise.dk/" id="17" part-id="2">Humanise</link> I/S, hvor vi primært arbejder på et <link url="http://www.in2isoft.dk/produkter/onlinepublisher/" id="18" part-id="2">CMS-system</link>.</p>
+                  <p>Efter universitetet blev jeg ansat hos <strong>Cabo Communications</strong> i Århus og blev senere hentet til <link url="http://www.atira.dk/" id="19" part-id="2">Atira</link> i Aalborg. Jeg flyttede senere til København men fortsatte arbejdet hos <link url="http://www.atira.dk/" id="19" part-id="2">Atira</link> der nu er en del af <link url="http://www.elsevier.com/" id="20" part-id="2">Elsevier</link>.</p>
+                  <p>Jeg er nu ansat som <strong>frontend-udvikler</strong> hos <link url="http://www.peytz.dk/" id="41" part-id="2">Peytz &amp; co</link>.</p>
+                </text>
+              </sub>
+            </part>
+          </section>
+          <section id="138" top="20px" bottom="20px">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="horizontalrule" id="138">
+              <sub>
+                <horizontalrule xmlns="http://uri.in2isoft.com/onlinepublisher/part/horizontalrule/1.0/"/>
+              </sub>
+            </part>
+          </section>
+        </column>
+      </row>
+      <row id="28">
+        <column id="35">
+          <section id="137" top="0px" bottom="15px">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="header" id="137">
+              <sub>
+                <header xmlns="http://uri.in2isoft.com/onlinepublisher/part/header/1.0/" level="2"><style/>Jonas Brinkmann Munk</header>
+              </sub>
+            </part>
+          </section>
+          <section id="136">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="136">
+              <sub>
+                <text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">
+                  <style/>
+                  <p><strong>Adresse</strong>: H/f Sundbyvester 49, 2300 København S</p>
+                  <p><strong>Fødselsår</strong>: 1980 - 36 år</p>
+                  <p><strong>Telefon</strong>: 28 77 63 65<break/><strong>E-post</strong>: <link email="jonasmunk@mac.com">jonasmunk@mac.com</link><break/><strong>LinkedIn</strong>: <link url="http://linkedin.com/in/jonasmunk">http://linkedin.com/in/jonasmunk</link></p>
+                  <p>
+                    <link url="http://people.onlineobjects.com/jonasmunk/" id="34" part-id="136">Oversigt over alle online-profiler »</link>
+                  </p>
+                </text>
+              </sub>
+            </part>
+          </section>
+          <section id="124" top="20px">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="file" id="124">
+              <sub>
+                <file xmlns="http://uri.in2isoft.com/onlinepublisher/part/file/1.0/">
+                  <info type="PDF-dokument"/>
+                  <text>Download CV (overblik)</text>
+                  <object xmlns="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/" id="16" type="file">
+                    <title>CV</title>
+                    <note/>
+                    <created unix="1303846624" day="26" weekday="2" yearday="115" month="04" year="2011" hour="21" minute="37" second="04" offset="7200" timezone="CEST"/>
+                    <updated unix="1303846624" day="26" weekday="2" yearday="115" month="04" year="2011" hour="21" minute="37" second="04" offset="7200" timezone="CEST"/>
+                    <published unix="1303846624" day="26" weekday="2" yearday="115" month="04" year="2011" hour="21" minute="37" second="04" offset="7200" timezone="CEST"/>
+                    <sub>
+                      <file xmlns="http://uri.in2isoft.com/onlinepublisher/class/file/1.0/">
+                        <filename>CV1.pdf</filename>
+                        <size>175973</size>
+                        <mimetype>application/pdf</mimetype>
+                      </file>
+                    </sub>
+                  </object>
+                </file>
+              </sub>
+            </part>
+          </section>
+        </column>
+        <column id="36" width="min" left="30px">
+          <section id="134">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="map" id="134">
+              <sub>
+                <map xmlns="http://uri.in2isoft.com/onlinepublisher/part/map/1.0/" maptype="roadmap" zoom="11" provider="google-static" frame="shadow_slant" width="460" height="300" longitude="12.5878000259" latitude="55.6461146437">
+                  <text>H/f Sundbyvester 49, 2300 København S</text>
+                </map>
+              </sub>
+            </part>
+          </section>
+        </column>
+      </row>
+      <row id="1">
+        <column id="1">
+          <section id="139" top="20px" bottom="20px">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="horizontalrule" id="139">
+              <sub>
+                <horizontalrule xmlns="http://uri.in2isoft.com/onlinepublisher/part/horizontalrule/1.0/"/>
+              </sub>
+            </part>
+          </section>
+          <section id="43" top="0px">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="header" id="43">
+              <sub>
+                <header xmlns="http://uri.in2isoft.com/onlinepublisher/part/header/1.0/" level="2"><style/>Tidslinje</header>
+              </sub>
+            </part>
+          </section>
+          <section id="143" top="15px" bottom="15px">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="widget" id="143">
+              <sub>
+                <widget xmlns="http://uri.in2isoft.com/onlinepublisher/part/widget/1.0/">
+                  <bio>
+                    <event from="2013" to="2017">
+                      <title>Frontend developer</title>
+                      <text>Primært frontend udvikling i den kreative afdeling</text>
+                      <place link="http://www.peytz.dk/">Peytz &amp; Co</place>
+                      <point prefix="Udvikling">Drupal, Angular, Ionic, Patternlab, Wordpress</point>
+                      <point prefix="Design">Mindre projekter</point>
+                      <link href="http://www.tvsyd.dk/">TVSyd</link>
+                      <link href="http://www.filmcentralen.dk/">Filmcentralen</link>
+                    </event>
+                    <event from="2006" to="2013">
+                      <title>Softwareudvikler</title>
+                      <text>Primært frontend udvikling</text>
+                      <place link="http://www.atira.dk/">Atira A/S</place>
+                      <place link="http://www.elevier.com/">Elsevier</place>
+                      <point prefix="Udvikling">Implementering af brugergrænseflader og websites</point>
+                      <point prefix="Design">Visuelt design af brugerflade og interaktionsdesign af websites</point>
+                      <link href="http://vbn.aau.dk/">Forskningsportal</link>
+                    </event>
+                    <event from="2005" to="2014">
+                      <title>Co-founder / udvikler / designer</title>
+                      <place link="http://www.humanise.dk/">Humanise I/S</place>
+                      <point prefix="Udvikling">CMS-system, online service</point>
+                      <point prefix="Design">Brugergrænseflader, websites og identitet</point>
+                      <link href="http://www.lottemunk.dk/">Website</link>
+                    </event>
+                    <event from="2005" to="2006">
+                      <title>Softwareudvikler</title>
+                      <place link="http://www.cabo.dk/">Cabo Communications A/S</place>
+                      <point prefix="Udvikling">Tilpasning af et opensource framework</point>
+                      <link href="http://www.lottemunk.dk/">Website</link>
+                    </event>
+                    <event from="2001" to="2005">
+                      <title>Bachelor i Informatik</title>
+                      <place link="http://www.aau.dk/">Aalborg Universitet</place>
+                      <link href="http://www.studieguide.aau.dk/uddannelser/bachelor/32609/">Aalborg Universitets bacheloruddannelse i informatik</link>
+                    </event>
+                    <event from="2000" to="2004">
+                      <title>Webmaster / softwareudvikler</title>
+                      <place link="http://www.ah.dk/">Aalborg Handelsskole</place>
+                      <point prefix="Udvikling">Implementering af CMS og administrative systemer / portaler</point>
+                      <point prefix="Design">Brugerflader og websites</point>
+                    </event>
+                    <event from="1999" to="2000">
+                      <title>Medhjælper</title>
+                      <place link="http://www.ah.dk/">Aalborg Handelsskole</place>
+                    </event>
+                    <event from="1996" to="1999">
+                      <title>Matematisk student</title>
+                      <place link="http://www.dronninglundgymnasium.dk/">Dronninglund Gymnasium</place>
+                    </event>
+                  </bio>
+                </widget>
+              </sub>
+            </part>
+          </section>
+          <section id="108">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="108">
+              <sub>
+                <text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">
+                  <style/>
+                  <p>
+                    <link page="12" path="/cv/historik/" id="21" part-id="108">Se min fulde historie »</link>
+                  </p>
+                </text>
+              </sub>
+            </part>
+          </section>
+          <section id="140" top="20px" bottom="20px">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="horizontalrule" id="140">
+              <sub>
+                <horizontalrule xmlns="http://uri.in2isoft.com/onlinepublisher/part/horizontalrule/1.0/"/>
+              </sub>
+            </part>
+          </section>
+          <section id="4" top="0px">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="header" id="4">
+              <sub>
+                <header xmlns="http://uri.in2isoft.com/onlinepublisher/part/header/1.0/" level="2"><style/>Interesser</header>
+              </sub>
+            </part>
+          </section>
+          <section id="5">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="text" id="5">
+              <sub>
+                <text xmlns="http://uri.in2isoft.com/onlinepublisher/part/text/1.0/">
+                  <style/>
+                  <p>Min primære interesse ligger i <strong>design og udvikling af brugerflader</strong>. Jeg bestræber mig så vidt muligt på at finde den <strong>simpleste</strong> løsning på problemer. Desuden lægger jeg vægt på hele tiden at <strong>genbesøge</strong>, <strong>raffinere</strong> og <strong>omtænke</strong> alt der laves.</p>
+                  <p>For mig er design ikke et spørgsmål om at "kreere" noget visuelt ud af ingenting. Design er for mig <strong>processen i at forandre</strong> det eksisterende til det <strong>bedre</strong>. Det gælder både <strong>udseende</strong>, <strong>indhold</strong> og <strong>opførsel</strong>.</p>
+                  <p>Jeg er bevidst om at det er <strong>den sidste mil</strong> der er den <strong>afgørende</strong> og sværeste. Derfor er jeg meget <strong>ydmyg</strong> overfor det at "designe" og den <strong>dedikation</strong> der skal til.</p>
+                  <p>Jeg mener at en forståelse af <strong>brugerens verden</strong> er vigtig for at kunne designe en <strong>bedre løsning</strong>. Jeg vil derfor helst arbejde med problemer hvor der er et <strong>tæt samarbejde</strong> med de <strong>personer</strong> der skal bruge produktet.</p>
+                </text>
+              </sub>
+            </part>
+          </section>
+          <section id="141" top="20px" bottom="20px">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="horizontalrule" id="141">
+              <sub>
+                <horizontalrule xmlns="http://uri.in2isoft.com/onlinepublisher/part/horizontalrule/1.0/"/>
+              </sub>
+            </part>
+          </section>
+          <section id="90" top="0px">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="header" id="90">
+              <sub>
+                <header xmlns="http://uri.in2isoft.com/onlinepublisher/part/header/1.0/" level="2"><style/>Design</header>
+              </sub>
+            </part>
+          </section>
+          <section id="89">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="poster" id="89">
+              <sub>
+                <poster xmlns="http://uri.in2isoft.com/onlinepublisher/part/poster/1.0/">
+                  <recipe>
+                    <pages>
+                      <page>
+                        <image id="35" height="200"/>
+                        <title>Ikoner</title>
+                        <text>I forbindelse med Humanise User Interface har jeg designet dusinvis af vektor-ikoner. Jeg laver altid ikoner som vektor-grafik for nemt at kunne kombinere og skalere dem samt bruge dem i print.</text>
+                        <link page="13">Læs mere om design »</link>
+                      </page>
+                      <page>
+                        <title>Logoer</title>
+                        <text>En sjælden gang imellem bliver jeg bedt om at designe et logo.</text>
+                        <link page="13">Læs mere om design »</link>
+                        <image id="34" height="200"/>
+                      </page>
+                    </pages>
+                  </recipe>
+                </poster>
+              </sub>
+            </part>
+          </section>
+          <section id="142" top="20px" bottom="20px">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="horizontalrule" id="142">
+              <sub>
+                <horizontalrule xmlns="http://uri.in2isoft.com/onlinepublisher/part/horizontalrule/1.0/"/>
+              </sub>
+            </part>
+          </section>
+          <section id="133" top="0px">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="header" id="133">
+              <sub>
+                <header xmlns="http://uri.in2isoft.com/onlinepublisher/part/header/1.0/" level="2"><style/>Software</header>
+              </sub>
+            </part>
+          </section>
+          <section id="132">
+            <part xmlns="http://uri.in2isoft.com/onlinepublisher/part/1.0/" type="poster" id="132">
+              <sub>
+                <poster xmlns="http://uri.in2isoft.com/onlinepublisher/part/poster/1.0/">
+                  <recipe>
+                    <pages>
+                      <page>
+                        <image id="68" height="200"/>
+                        <title>OnlinePublisher</title>
+                        <text>Et simpelt system til redigering af websteder. Jeg har skrevet det fra bunden i PHP. Alt fra object-relation-mapping til brugerfladen.</text>
+                        <link page="14">Læs mere om software »</link>
+                      </page>
+                      <page>
+                        <title>OnlineObjects</title>
+                        <text>OnlineObjects er et grundsystem til webbaserede applikationer. Systemet gør op med den traditionelle hierarkiske organisering af information. I stedet benyttes en meget fleksibel datamodel hvor al information i princippet kan relateres til alt andet.</text>
+                        <link page="14">Læs mere om software »</link>
+                        <image id="63" height="200"/>
+                      </page>
+                      <page>
+                        <title>Humanise User Interface</title>
+                        <text>HUI er et bibliotek til opbygning af webbaserede brugergrænseflader. Det fungerer ved at man beskriver brugergrænsefladen i XML hvorefter det bliver konverteret til HTML.</text>
+                        <link page="14">Læs mere om software »</link>
+                        <image id="64" height="201"/>
+                      </page>
+                    </pages>
+                  </recipe>
+                </poster>
+              </sub>
+            </part>
+          </section>
+        </column>
+      </row>
+    </content>
+  </content>
+</page>

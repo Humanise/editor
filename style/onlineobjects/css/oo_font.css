@@ -1,0 +1,10 @@
+@font-face {
+	font-family: 'OnlineObjects';
+	src:url('../fonts/onlineobjects/fonts/OnlineObjects.eot?v2');
+	src:url('../fonts/onlineobjects/fonts/OnlineObjects.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/onlineobjects/fonts/OnlineObjects.woff?v2') format('woff'),
+		url('../fonts/onlineobjects/fonts/OnlineObjects.ttf?v2') format('truetype'),
+		url('../fonts/onlineobjects/fonts/OnlineObjects.svg?v2#OnlineObjects') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}

@@ -1,0 +1,9 @@
+.oo_link {
+  color: #ccc;
+  color: rgba(0, 0, 0, 0.1); }
+  .oo_link > span {
+    color: #07c; }
+  .oo_link:hover {
+    color: #7CACC3; }
+    .oo_link:hover > span {
+      color: #00476B; }
