@@ -24,7 +24,7 @@
         <xsl:call-template name="util:js"/>
         <xsl:call-template name="util:css"/>
         <xsl:call-template name="util:load-font">
-          <xsl:with-param name="href" select="'http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300'"/>
+          <xsl:with-param name="href" select="'https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300'"/>
           <xsl:with-param name="family" select="'Open Sans'"/>
         </xsl:call-template>
         <xsl:if test="//p:design/p:parameter[@key='background-color']">
