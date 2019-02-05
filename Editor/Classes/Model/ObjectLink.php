@@ -8,14 +8,19 @@ if (!isset($GLOBALS['basePath'])) {
   exit;
 }
 
-
 Entity::$schema['ObjectLink'] = [
   'table' => 'object_link',
   'properties' => [
-    'objectId' => ['type' => 'int', 'relation' => ['class' => 'Object', 'property' => 'id']],
-    'value' => ['type' => 'int', 'relations' => [
-      ['class' => 'Page', 'property' => 'id'],
-      ['class' => 'File', 'property' => 'id']
+    'id' => ['type' => 'int'],
+    'objectId' => ['type' => 'int', 'column' => 'object_id', 'relation' => ['class' => 'Object', 'property' => 'id']],
+    'text' => ['type' => 'string', 'column' => 'title'],
+    'alternative' => ['type' => 'string'],
+    'target' => ['type' => 'string'],
+    'type' => ['type' => 'string', 'column' => 'target_type'],
+    'position' => ['type' => 'int'],
+    'value' => ['type' => 'string', 'column' => 'target_value', 'relations' => [
+        ['class' => 'Page', 'property' => 'id'],
+        ['class' => 'File', 'property' => 'id']
       ]
     ]
   ]
@@ -23,6 +28,8 @@ Entity::$schema['ObjectLink'] = [
 class ObjectLink extends Entity {
 
   var $type;
+  var $alternative;
+  var $target;
   var $value;
   var $position;
   var $text;
@@ -36,7 +43,6 @@ class ObjectLink extends Entity {
   function getInfo() {
     return $this->info;
   }
-
 
   function setType($type) {
     $this->type = $type;
@@ -78,6 +84,24 @@ class ObjectLink extends Entity {
     return $this->objectId;
   }
 
+  function setAlternative($alternative) {
+    $this->alternative = $alternative;
+  }
+
+  function getAlternative() {
+    return $this->alternative;
+  }
+
+  function setTarget($target) {
+    $this->target = $target;
+  }
+
+  function getTarget() {
+    return $this->target;
+  }
+
+  // Special...
+
   static $icons = ['file' => 'monochrome/file', 'page' => 'common/page', 'url' => 'monochrome/globe', 'email' => 'monochrome/email'];
 
   function getIcon() {
@@ -86,5 +110,17 @@ class ObjectLink extends Entity {
 
   function search($query = []) {
     return ObjectLinkService::search($query);
+  }
+
+  function save() {
+    ModelService::save($this);
+  }
+
+  static function load($id) {
+    return ModelService::load('ObjectLink', $id);
+  }
+
+  function remove() {
+    ModelService::remove($this);
   }
 }
