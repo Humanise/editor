@@ -233,41 +233,41 @@ class Person extends ModelObject {
   }
 
   function getMailinglistIds() {
-    $sql = "select mailinglist_id as id from person_mailinglist where person_id=" . $this->id;
-    return Database::getIds($sql);
+    $sql = "select mailinglist_id as id from person_mailinglist where person_id = @id";
+    return Database::getIds($sql, $this->id);
   }
 
   function updateMailinglistIds($ids) {
     $ids = ObjectService::getValidIds($ids);
-    $sql = "delete from person_mailinglist where person_id=" . $this->id;
-    Database::delete($sql);
+    $sql = "delete from person_mailinglist where person_id = @id";
+    Database::delete($sql, $this->id);
     foreach ($ids as $id) {
-      $sql = "insert into person_mailinglist (mailinglist_id,person_id) values (" . $id . "," . $this->id . ")";
-      Database::insert($sql);
+      $sql = "insert into person_mailinglist (mailinglist_id,person_id) values (@int(mailinglistId),@int(personId))";
+      Database::insert($sql, ['mailinglistId' => $id, 'personId' => $this->id]);
     }
   }
 
   function getGroupIds() {
-    $sql = "select persongroup_id as id from persongroup_person where person_id=" . $this->id;
-    return Database::getIds($sql);
+    $sql = "select persongroup_id as id from persongroup_person where person_id = @id";
+    return Database::getIds($sql, $this->id);
   }
 
   function updateGroupIds($ids) {
     $ids = ObjectService::getValidIds($ids);
-    $sql = "delete from persongroup_person where person_id=" . $this->id;
-    Database::delete($sql);
+    $sql = "delete from persongroup_person where person_id = @id";
+    Database::delete($sql, $this->id);
     foreach ($ids as $id) {
-      $sql = "insert into persongroup_person (persongroup_id,person_id) values (" . $id . "," . $this->id . ")";
-      Database::insert($sql);
+      $sql = "insert into persongroup_person (persongroup_id,person_id) values (@int(persongroupId), @int(personId))";
+      Database::insert($sql, ['persongroupId' => $id, 'personId' => $this->id]);
     }
   }
 
   function addGroupId($id) {
 
-    $sql = "delete from persongroup_person where person_id=" . $this->id . " and persongroup_id=" . $id;
-    Database::delete($sql);
-    $sql = "insert into persongroup_person (persongroup_id,person_id) values (" . $id . "," . $this->id . ")";
-    Database::insert($sql);
+    $sql = "delete from persongroup_person where person_id = @int(personId) and persongroup_id=@int(persongroupId)";
+    Database::delete($sql, ['persongroupId' => $id, 'personId' => $this->id]);
+    $sql = "insert into persongroup_person (persongroup_id,person_id) values (@int(persongroupId), @int(personId))";
+    Database::insert($sql, ['persongroupId' => $id, 'personId' => $this->id]);
   }
 
   function addCustomSearch($query,&$parts) {
@@ -281,16 +281,6 @@ class Person extends ModelObject {
       $parts['tables'][] = 'person_mailinglist';
       $parts['limits'][] = 'person_mailinglist.person_id = object.id';
       $parts['limits'][] = 'person_mailinglist.mailinglist_id = ' . Database::int($custom['mailinglist']);
-    }
-  }
-
-  static function loadByEmail($email) {
-    $sql = "select object.id from emailaddress, object where emailaddress.containing_object_id=object.id and object.type='person' and emailaddress.address=" . Database::text($email);
-    $row = Database::selectFirst($sql);
-    if ($row) {
-      return Person::load($row['id']);
-    } else {
-      return null;
     }
   }
 
@@ -346,22 +336,22 @@ class Person extends ModelObject {
       $data .= '<webaddress>' . Strings::escapeEncodedXML($this->webaddress) . '</webaddress>';
     }
     if ($this->imageId > 0) {
-      $sql = "select * from object where id=" . Database::int($this->imageId);
-      if ($img = Database::selectFirst($sql)) {
+      $sql = "select * from object where id = @id";
+      if ($img = Database::selectFirst($sql, $this->imageId)) {
         $data .= '<image>' . $img['data'] . '</image>';
       }
     }
 
 
-    $sql = "select address from emailaddress where containing_object_id=" . Database::int($this->id);
-    $result = Database::select($sql);
+    $sql = "select address from emailaddress where containing_object_id = @id";
+    $result = Database::select($sql, $this->id);
       while ($row = Database::next($result)) {
       $data .= '<email>' . Strings::escapeEncodedXML($row['address']) . '</email>';
       }
     Database::free($result);
 
-    $sql = "select number,context from phonenumber where containing_object_id=" . Database::int($this->id);
-    $result = Database::select($sql);
+    $sql = "select number,context from phonenumber where containing_object_id = @id";
+    $result = Database::select($sql, $this->id);
       while ($row = Database::next($result)) {
       $data .= '<phone context="' . Strings::escapeEncodedXML($row['context']) . '">' . Strings::escapeEncodedXML($row['number']) . '</phone>';
       }
@@ -373,14 +363,14 @@ class Person extends ModelObject {
   }
 
   function removeMore() {
-    $sql = "delete from person_mailinglist where person_id=" . $this->id;
-    Database::delete($sql);
-    $sql = "delete from emailaddress where containing_object_id=" . $this->id;
-    Database::delete($sql);
-    $sql = "delete from phonenumber where containing_object_id=" . $this->id;
-    Database::delete($sql);
-    $sql = "delete from persongroup_person where person_id=" . $this->id;
-    Database::delete($sql);
+    $sql = "delete from person_mailinglist where person_id = @id";
+    Database::delete($sql, $this->id);
+    $sql = "delete from emailaddress where containing_object_id = @id";
+    Database::delete($sql, $this->id);
+    $sql = "delete from phonenumber where containing_object_id = @id";
+    Database::delete($sql, $this->id);
+    $sql = "delete from persongroup_person where person_id = @id";
+    Database::delete($sql, $this->id);
   }
 
   /////////////////////////// GUI /////////////////////////
