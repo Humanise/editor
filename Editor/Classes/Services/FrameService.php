@@ -18,15 +18,15 @@ class FrameService {
     $sql = [
       'table' => 'frame',
       'values' => [
-        'title' => Database::text($frame->getTitle()),
-        'name' => Database::text($frame->getName()),
-        'bottomtext' => Database::text($frame->getBottomText()),
-        'hierarchy_id' => Database::int($frame->getHierarchyId()),
-        'changed' => Database::datetime(time()),
-        'searchenabled' => Database::boolean($frame->getSearchEnabled()),
-        'searchpage_id' => Database::int($frame->getSearchPageId()),
-        'userstatusenabled' => Database::boolean($frame->getUserStatusEnabled()),
-        'userstatuspage_id' => Database::int($frame->getLoginPageId())
+        'title' => ['text' => $frame->getTitle()],
+        'name' => ['text' => $frame->getName()],
+        'bottomtext' => ['text' => $frame->getBottomText()],
+        'hierarchy_id' => ['int' => $frame->getHierarchyId()],
+        'changed' => ['datetime' => time()],
+        'searchenabled' => ['boolean' => $frame->getSearchEnabled()],
+        'searchpage_id' => ['int' => $frame->getSearchPageId()],
+        'userstatusenabled' => ['boolean' => $frame->getUserStatusEnabled()],
+        'userstatuspage_id' => ['int' => $frame->getLoginPageId()]
       ],
       'where' => [ 'id' => $frame->getId()]
     ];
@@ -40,8 +40,8 @@ class FrameService {
 
   static function getLinks($frame,$position) {
     $links = [];
-    $sql = "select frame_link.*,page.title as page_title,object.title as object_title from frame_link left join page on page.id=`frame_link`.`target_id` left join object on object.id=`frame_link`.`target_id` where frame_link.frame_id=" . Database::int($frame->getId()) . " and frame_link.position=" . Database::text($position) . " order by frame_link.`index`";
-    $result = Database::select($sql);
+    $sql = "select frame_link.*,page.title as page_title,object.title as object_title from frame_link left join page on page.id=`frame_link`.`target_id` left join object on object.id=`frame_link`.`target_id` where frame_link.frame_id = @id and frame_link.position = @text(position) order by frame_link.`index`";
+    $result = Database::select($sql, ['id' => $frame->getId(), 'position' => $position]);
     while ($row = Database::next($result)) {
       $link = [
         'text' => $row['title'],
@@ -74,8 +74,8 @@ class FrameService {
       Log::debug('No frame provided');
       return;
     }
-    $sql = "delete from frame_link where frame_id=" . Database::int($frame->getId());
-    Database::delete($sql);
+    $sql = "delete from frame_link where frame_id = @id";
+    Database::delete($sql, $frame->getId());
     FrameService::_createLinks($frame,$topLinks,'top');
     FrameService::_createLinks($frame,$bottomLinks,'bottom');
   }
@@ -102,13 +102,13 @@ class FrameService {
         $sql = [
           'table' => 'frame_link',
           'values' => [
-            'frame_id' => Database::int($frame->getId()),
-            'position' => Database::text($position),
-            'title' => Database::text($link->text),
-            'target_type' => Database::text($type),
-            'target_id' => Database::int($id),
-            'target_value' => Database::text($value),
-            'index' => Database::int($index)
+            'frame_id' => ['int' => $frame->getId()],
+            'position' => ['text' => $position],
+            'title' => ['text' => $link->text],
+            'target_type' => ['text' => $type],
+            'target_id' => ['int' => $id],
+            'target_value' => ['text' => $value],
+            'index' => ['int' => $index]
           ]
         ];
         Database::insert($sql);
@@ -118,34 +118,34 @@ class FrameService {
   }
 
   static function load($id) {
-        return ModelService::load('Frame',$id);
+    return ModelService::load('Frame',$id);
   }
 
-    static function canRemove($frame) {
-        $sql = "select count(id) as num from page where frame_id=" . Database::int($frame->getId());
-        if ($row = Database::selectFirst($sql)) {
-            return $row['num'] == 0;
-        }
-        return true;
+  static function canRemove($frame) {
+    $sql = "select count(id) as num from page where frame_id = @id";
+    if ($row = Database::selectFirst($sql, $frame->getId())) {
+      return $row['num'] == 0;
     }
+    return true;
+  }
 
   static function remove($frame) {
     if ($frame->getId() > 0 && FrameService::canRemove($frame)) {
-      $sql = "delete from frame where id=" . Database::int($frame->getId());
-      Database::delete($sql);
-      $sql = "delete from frame_link where frame_id=" . Database::int($frame->getId());
-      Database::delete($sql);
+      $sql = "delete from frame where id = @id";
+      Database::delete($sql, $frame->getId());
+      $sql = "delete from frame_link where frame_id = @id";
+      Database::delete($sql, $frame->getId());
 
-      $sql = "select * from frame_newsblock where frame_id=" . Database::int($frame->getId());
-      $result = Database::select($sql);
+      $sql = "select * from frame_newsblock where frame_id = @id";
+      $result = Database::select($sql, $frame->getId());
       while ($row = Database::next($result)) {
-        $sql = 'delete from frame_newsblock_newsgroup where frame_newsblock_id=' . Database::int($row['id']);
-        Database::delete($sql);
+        $sql = 'delete from frame_newsblock_newsgroup where frame_newsblock_id = @id';
+        Database::delete($sql, $row['id']);
       }
       Database::free($result);
 
-      $sql = "delete from frame_newsblock where frame_id=" . Database::int($frame->getId());
-      Database::delete($sql);
+      $sql = "delete from frame_newsblock where frame_id = @id";
+      Database::delete($sql, $frame->getId());
 
       return true;
     }
@@ -171,11 +171,11 @@ class FrameService {
   }
 
   static function getNewsBlocks($frame) {
-    $sql = "select id,`index`,title,sortby,sortdir,maxitems,timetype,timecount,UNIX_TIMESTAMP(startdate) as startdate,UNIX_TIMESTAMP(enddate) as enddate from frame_newsblock where frame_id=" . Database::int($frame->getId()) . " order by `index`";
-    $blocks = Database::selectAll($sql);
+    $sql = "select id,`index`,title,sortby,sortdir,maxitems,timetype,timecount,UNIX_TIMESTAMP(startdate) as startdate,UNIX_TIMESTAMP(enddate) as enddate from frame_newsblock where frame_id = @id order by `index`";
+    $blocks = Database::selectAll($sql, $frame->getId());
     foreach ($blocks as &$block) {
-      $sql = "select newsgroup_id from frame_newsblock_newsgroup where frame_newsblock_id=" . Database::int($block['id']);
-      $block['groups'] = Database::selectArray($sql);
+      $sql = "select newsgroup_id from frame_newsblock_newsgroup where frame_newsblock_id = @id";
+      $block['groups'] = Database::selectArray($sql, $block['id']);
     }
     return $blocks;
   }
@@ -187,8 +187,8 @@ class FrameService {
       return;
     }
     // Delete existing blocks
-    $sql = "delete from frame_newsblock where frame_id=" . Database::int($frame->getId());
-    Database::delete($sql);
+    $sql = "delete from frame_newsblock where frame_id = @id";
+    Database::delete($sql, $frame->getId());
     // Delete unassociated news groups
     $sql = "delete from frame_newsblock_newsgroup where frame_newsblock_id not in (select id from frame_newsblock)";
     Database::delete($sql);
@@ -199,22 +199,18 @@ class FrameService {
 
     for ($i = 0; $i < count($blocks); $i++) {
       $block = $blocks[$i];
-      if ($block->startdate) {
-        //$block->startdate = Dates::parseRFC3339($block->startdate);
-        //$block->enddate = Dates::parseRFC3339($block->enddate);
-      }
       $sql = [
         'table' => 'frame_newsblock',
         'values' => [
-          'frame_id' => Database::int($frame->getId()),
-          'title' => Database::text($block->title),
-          'sortby' => Database::text($block->sortby),
-          'sortdir' => Database::text($block->sortdir),
-          'maxitems' => Database::int($block->maxitems),
-          'timetype' => Database::text($block->timetype),
-          'timecount' => Database::int($block->timecount),
-          'startdate' => Database::datetime($block->startdate),
-          'enddate' => Database::datetime($block->enddate)
+          'frame_id' => ['int' => $frame->getId()],
+          'title' => ['text' => $block->title],
+          'sortby' => ['text' => $block->sortby],
+          'sortdir' => ['text' => $block->sortdir],
+          'maxitems' => ['int' => $block->maxitems],
+          'timetype' => ['text' => $block->timetype],
+          'timecount' => ['int' => $block->timecount],
+          'startdate' => ['datetime' => $block->startdate],
+          'enddate' => ['datetime' => $block->enddate]
         ]
       ];
       Database::insert($sql);

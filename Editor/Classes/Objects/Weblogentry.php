@@ -57,8 +57,8 @@ class Weblogentry extends ModelObject {
 
   function loadGroups() {
     $this->groups = [];
-    $sql = "select object.title,object.id from webloggroup_weblogentry,object where webloggroup_weblogentry.webloggroup_id=object.id and weblogentry_id=" . Database::int($this->id) . " order by object.title";
-    $subResult = Database::select($sql);
+    $sql = "select object.title,object.id from webloggroup_weblogentry,object where webloggroup_weblogentry.webloggroup_id=object.id and weblogentry_id = @id order by object.title";
+    $subResult = Database::select($sql, $this->id);
     while ($subRow = Database::next($subResult)) {
       $this->groups[] = $subRow['id'];
     }
@@ -77,25 +77,21 @@ class Weblogentry extends ModelObject {
   }
 
   function removeMore() {
-    $sql = "delete from webloggroup_weblogentry where weblogentry_id=" . Database::int($this->id);
-    Database::delete($sql);
+    $sql = "delete from webloggroup_weblogentry where weblogentry_id = @id";
+    Database::delete($sql, $this->id);
   }
 
   //////////////////////////// Convenience ///////////////////////////
 
-
-
   function changeGroups($groups) {
-    Log::debug($groups);
     if (!is_array($groups)) {
-      Log::debug('Not a group');
       return;
     }
-    $sql = "delete from webloggroup_weblogentry where weblogentry_id=" . Database::int($this->id);
-    Database::delete($sql);
+    $sql = "delete from webloggroup_weblogentry where weblogentry_id = @id";
+    Database::delete($sql, $this->id);
     foreach ($groups as $id) {
-      $sql = "insert into webloggroup_weblogentry (weblogentry_id,webloggroup_id) values (" . Database::int($this->id) . "," . Database::int($id) . ")";
-      Database::insert($sql);
+      $sql = "insert into webloggroup_weblogentry (weblogentry_id,webloggroup_id) values (@int(entryId),@int(groupId))";
+      Database::insert($sql, ['entryId' => $this->id, 'groupId' => $id]);
     }
   }
 }
