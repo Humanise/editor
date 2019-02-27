@@ -102,7 +102,7 @@ class Image extends ModelObject {
     $sql = "select imagegroup_id from imagegroup_image where image_id = @int(id)";
     $result = Database::select($sql, ['id' => $this->id]);
     while ($row = Database::next($result)) {
-      $ids[] = $row['imagegroup_id'];
+      $ids[] = intval($row['imagegroup_id']);
     }
     Database::free($result);
     return $ids;

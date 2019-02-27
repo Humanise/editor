@@ -408,6 +408,19 @@ class Database {
     return $sql;
   }
 
+  static function buildDeleteSql($arr) {
+    $sql = "delete from " . $arr['table'];
+    $sql .= " where ";
+    $num = 0;
+    foreach ($arr['where'] as $column => $value) {
+      if ($num > 0) {
+        $sql .= ' and ';
+      }
+      $sql .= "`" . $column . "`=" . Database::buildUpdateSqlValue($value);
+    }
+    return $sql;
+  }
+
   static function compile($sql, $vars) {
     if (!is_array($vars)) {
       $vars = ['id' => $vars];

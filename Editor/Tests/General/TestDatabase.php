@@ -44,6 +44,9 @@ class TestDatabase extends UnitTestCase {
     $sql = Database::buildUpdateSql($query);
     $this->assertEqual($sql,"update frame set `title`='my title',`name`='my name',`selected`=1,`hierarchy_id`=9 where `id`=89");
 
+    $sql = Database::buildDeleteSql($query);
+    $this->assertEqual($sql,"delete from frame where `id`=89");
+
     $sql = Database::buildInsertSql($query);
     $this->assertEqual($sql,"insert into frame (`title`,`name`,`selected`,`hierarchy_id`) values ('my title','my name',1,9)");
   }

@@ -52,8 +52,8 @@ class RenderingService {
     // Translations
     $sql = "select page.id,page.language,page.path from page_translation,page" .
     " where page.id=page_translation.translation_id and page.disabled=0" .
-    " and page_translation.page_id=" . Database::int($id) . " order by language";
-    $result = Database::select($sql);
+    " and page_translation.page_id = @id order by language";
+    $result = Database::select($sql, $id);
     while ($row = Database::next($result)) {
       $output .= '<translation page="' . $row['id'] . '"' . ($row['path'] != '' ? ' path="' . Strings::escapeEncodedXML($row['path']) . '"' : '') . ($row['language'] != '' ? ' language="' . Strings::escapeEncodedXML(strtolower($row['language'])) . '"' : '') . '/>';
     }
@@ -208,8 +208,8 @@ class RenderingService {
   }
 
   static function applyFrameDynamism($id,&$data) {
-    $sql = "select id,maxitems,sortdir,sortby,timetype,timecount,UNIX_TIMESTAMP(startdate) as startdate,UNIX_TIMESTAMP(enddate) as enddate from frame_newsblock where frame_id=" . Database::int($id);
-    $result = Database::select($sql);
+    $sql = "select id,maxitems,sortdir,sortby,timetype,timecount,UNIX_TIMESTAMP(startdate) as startdate,UNIX_TIMESTAMP(enddate) as enddate from frame_newsblock where frame_id = @id";
+    $result = Database::select($sql, $id);
     while ($row = Database::next($result)) {
       $blockId = $row['id'];
       $maxitems = $row['maxitems'];
@@ -272,7 +272,7 @@ class RenderingService {
     return $data;
   }
 
-  static function applyContentDynamism($id,$template,&$data) {
+  static function applyContentDynamism($id, $template, &$data) {
     $state = ['data' => $data, 'redirect' => false, 'override' => false];
     if ($controller = TemplateService::getController($template)) {
       if (method_exists($controller,'dynamic')) {
@@ -285,8 +285,8 @@ class RenderingService {
 
   static function handleMissingPage($path) {
     // See if there is a page redirect
-    $sql = "select page.id,page.path from path left join page on page.id=path.page_id where path.path=" . Database::text($path);
-    if ($row = Database::selectFirst($sql)) {
+    $sql = "select page.id,page.path from path left join page on page.id=path.page_id where path.path = @text(path)";
+    if ($row = Database::selectFirst($sql, ['path' => $path])) {
       if ($row['path'] != '') {
         Response::redirectMoved(Strings::concatUrl(ConfigurationService::getBaseUrl(),$row['path']));
       } else if ($row['id'] > 0) {
@@ -408,8 +408,8 @@ class RenderingService {
   }
 
   static function findPage($type) {
-    $sql = "select page_id from specialpage where type=" . Database::text($type) . " order by language asc";
-    $row = Database::selectFirst($sql);
+    $sql = "select page_id from specialpage where type = @text(type) order by language asc";
+    $row = Database::selectFirst($sql, ['type' => $type]);
     if ($row) {
       return intval($row['page_id']);
     }
@@ -422,8 +422,8 @@ class RenderingService {
 
   // Returns true if the user has access to the page
   static function userHasAccessToPage($user,$page) {
-    $sql = "select * from securityzone_page,securityzone_user where securityzone_page.securityzone_id=securityzone_user.securityzone_id and page_id=" . Database::int($page) . " and user_id=" . Database::int($user);
-    if ($row = Database::selectFirst($sql)) {
+    $sql = "select * from securityzone_page,securityzone_user where securityzone_page.securityzone_id=securityzone_user.securityzone_id and page_id = @int(page) and user_id = @int(user)";
+    if ($row = Database::selectFirst($sql, ['page' => $page, 'user' => $user])) {
       return true;
     }
     else {

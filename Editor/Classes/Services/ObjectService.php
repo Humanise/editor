@@ -67,8 +67,8 @@ class ObjectService {
   }
 
   static function addRelation($fromObject,$toObject,$kind = '') {
-    $sql = "insert into relation (from_object_id,to_object_id,kind) values (" . Database::int($fromObject->getId()) . "," . Database::int($toObject->getId()) . "," . Database::text($kind) . ")";
-    Database::insert($sql);
+    $sql = "insert into relation (from_object_id,to_object_id,kind) values (@int(from), @int(to), @text(kind))";
+    Database::insert($sql, ['from' => $fromObject->getId(), 'to' => $toObject->getId(), 'kind' => $kind]);
   }
 
   static function removeRelations($objectId) {
@@ -87,8 +87,8 @@ class ObjectService {
 
       $schema = ObjectService::_getSchemaProperties($object->getType());
       if (is_array($schema)) {
-        $sql = "delete from `" . $object->getType() . "` where object_id=" . Database::int($object->getId());
-        Database::delete($sql);
+        $sql = "delete from @name(table) where object_id = @id";
+        Database::delete($sql, ['table' => $object->getType(), 'id' => $object->getId()]);
         if (method_exists($object,'removeMore')) {
           $object->removeMore();
         }
