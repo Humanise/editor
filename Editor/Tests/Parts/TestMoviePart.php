@@ -11,20 +11,20 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestMoviePart extends UnitTestCase {
 
-    function testLoad() {
-        $this->assertNull(MoviePart::load(0));
-    }
+  function testLoad() {
+    $this->assertNull(MoviePart::load(0));
+  }
 
-    function testCreate() {
-        $obj = new MoviePart();
+  function testCreate() {
+    $obj = new MoviePart();
     $this->assertFalse($obj->isPersistent());
     $obj->save();
     $this->assertTrue($obj->isPersistent());
     $id = $obj->getId();
-        $this->assertNotNull(MoviePart::load($id));
+    $this->assertNotNull(MoviePart::load($id));
     $obj->remove();
-        $this->assertNull(MoviePart::load($id));
-    }
+    $this->assertNull(MoviePart::load($id));
+  }
 
   function testProperties() {
     $obj = new MoviePart();
@@ -32,11 +32,11 @@ class TestMoviePart extends UnitTestCase {
     $obj->setImageId(4);
     $obj->save();
 
-    $obj2 = MoviePart::load($obj->getId());
-    $this->assertEqual($obj2->getFileId(),10);
-    $this->assertEqual($obj2->getImageId(),4);
+    $loaded = MoviePart::load($obj->getId());
+    $this->assertEqual($loaded->getFileId(),10);
+    $this->assertEqual($loaded->getImageId(),4);
 
-    $obj2->remove();
+    $loaded->remove();
   }
 
   function testVimeo() {
@@ -48,6 +48,23 @@ class TestMoviePart extends UnitTestCase {
     $parsed = Strings::analyzeMovieURL('https://vimeo.com/94839196');
     $this->assertEqual('vimeo',$parsed['type']);
     $this->assertEqual('94839196',$parsed['id']);
+  }
+
+  function testBuildingFile() {
+    $file = new File();
+    $file->save();
+    $file->publish();
+
+    $obj = new MoviePart();
+    $obj->setFileId($file->getId());
+    $obj->save();
+
+    $ctrl = new MoviePartController();
+    $xml = $ctrl->build($obj,new PartContext());
+    echo $xml;
+
+    $file->remove();
+    $obj->remove();
   }
 
   function testImport() {
