@@ -61,7 +61,6 @@ class TestMoviePart extends UnitTestCase {
 
     $ctrl = new MoviePartController();
     $xml = $ctrl->build($obj,new PartContext());
-    echo $xml;
 
     $file->remove();
     $obj->remove();

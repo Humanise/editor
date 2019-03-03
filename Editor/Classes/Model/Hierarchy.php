@@ -7,7 +7,16 @@ if (!isset($GLOBALS['basePath'])) {
   header('HTTP/1.1 403 Forbidden');
   exit;
 }
-
+Entity::$schema['Hierarchy'] = [
+  'table' => 'hierarchy',
+  'properties' => [
+    'id' => ['type' => 'int'],
+    'name' => ['type' => 'string'],
+    'language' => ['type' => 'string'],
+    'changed' => ['type' => 'datetime'],
+    'published' => ['type' => 'datetime']
+  ]
+];
 class Hierarchy extends Entity implements Loadable {
 
   var $name;
@@ -58,12 +67,7 @@ class Hierarchy extends Entity implements Loadable {
     ////////////////// Persistence //////////////////
 
   static function load($id) {
-    $sql = "select id,name,language,UNIX_TIMESTAMP(changed) as changed,UNIX_TIMESTAMP(published) as published from hierarchy where id=@int(id)";
-    if ($row = Database::selectFirst($sql, ['id' => $id])) {
-      return Hierarchy::_populate($row);
-    } else {
-      return null;
-    }
+    return ModelService::load('Hierarchy', $id);
   }
 
   static function loadFromItemId($id) {
