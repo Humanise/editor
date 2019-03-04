@@ -54,21 +54,20 @@ class ImagePartController extends PartController
     if ($linkType == 'sameimage') {
       $linkValue = '';
     }
-    $sql = "select * from part_link where source_type='entireimage' and part_id=" . Database::int($part->getId());
-    if ($row = Database::selectFirst($sql)) {
+    $sql = "select * from part_link where source_type='entireimage' and part_id = @id";
+    if ($row = Database::selectFirst($sql, $part->getId())) {
       if ($linkType != "") {
-        $sql = "update part_link set target_type=" . Database::text($linkType) .
-          ",target_value=" . Database::text($linkValue) . " where source_type='entireimage'" .
-          " and part_id=" . Database::int($part->getId());
-          Database::update($sql);
+        $sql = "update part_link set target_type = @text(type),target_value = @text(value) where source_type='entireimage'" .
+          " and part_id = @id";
+          Database::update($sql, ['type' => $linkType, 'value' => $linkValue, 'id' => $part->getId()]);
       } else {
-        $sql = "delete from part_link where source_type='entireimage' and part_id=" . Database::int($part->getId());
-        Database::delete($sql);
+        $sql = "delete from part_link where source_type='entireimage' and part_id = @id";
+        Database::delete($sql, $part->getId());
       }
     } elseif ($linkType != "") {
       $sql = "insert into part_link (target_type,target_value,source_type,part_id)" .
-        " values (" . Database::text($linkType) . "," . Database::text($linkValue) . ",'entireimage'," . Database::int($part->getId()) . ")";
-      Database::insert($sql);
+        " values (@text(type),@text(value),'entireimage',@id)";
+      Database::insert($sql, ['type' => $linkType, 'value' => $linkValue, 'id' => $part->getId()]);
     }
   }
 
@@ -116,8 +115,8 @@ class ImagePartController extends PartController
     $xml .= ' adaptive="' . ($part->getAdaptive() ? 'true' : 'false') . '"';
     $xml .= '/>';
     if ($part->getImageId() > 0) {
-      $sql = "select object.data,image.* from object,image where image.object_id = object.id and object.id=" . Database::int($part->getImageId());
-      if ($image = Database::selectFirst($sql)) {
+      $sql = "select object.data,image.* from object,image where image.object_id = object.id and object.id = @id";
+      if ($image = Database::selectFirst($sql, $part->getImageId())) {
         $xml .= $this->buildTransformTag($image,$part);
         if ($link = $this->getSingleLink($part,'entireimage')) {
           $xml .= $this->_buildLinkTag($link,$part->getImageId());
