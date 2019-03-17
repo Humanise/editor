@@ -38,6 +38,7 @@
     background: #733392;
     color: #fff;
     border: none;
+    white-space: nowrap;
 
     &:hover {
       background: #572D6B;
@@ -219,6 +220,7 @@
 
   .about_button {
     padding: 0 15px;
+    font-size: 18px;
   }
 
   .about_text {
@@ -232,6 +234,7 @@
     margin: 0;
     text-align: right;
     margin-top: -43px;
+    margin-right: -10px;
   }
 
   .about_contact {

@@ -115,7 +115,8 @@
 .about_button {
   background: #733392;
   color: #fff;
-  border: none; }
+  border: none;
+  white-space: nowrap; }
   .about_button:hover {
     background: #572D6B;
     border: none; }
@@ -285,7 +286,8 @@
       font-size: 26px;
       line-height: 48px; }
   .about_button {
-    padding: 0 15px; }
+    padding: 0 15px;
+    font-size: 18px; }
   .about_text {
     padding: 0;
     font-size: 18px;
@@ -294,7 +296,8 @@
   .about_icons {
     margin: 0;
     text-align: right;
-    margin-top: -43px; }
+    margin-top: -43px;
+    margin-right: -10px; }
   .about_contact {
     width: 240px;
     font-size: .9em;
