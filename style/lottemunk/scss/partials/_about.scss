@@ -48,10 +48,11 @@
 
   .about_icons {
     text-align: center;
-    margin: 50px 0 0;
+    margin: 50px auto 0;
     list-style: none;
     padding: 0;
     font-size: 0;
+    max-width: 250px;
   }
 
   .about_icons_item {
@@ -60,7 +61,7 @@
   }
 
   .about_icon {
-    margin: 0 5px;
+    margin: 5px;
     display: inline-block;
     width: 54px;
     height: 54px;
@@ -83,19 +84,21 @@
       @include icon-before(facebook);
     }
     &-wikipedia {
-      @include icon-before(wikipedia);
+      @include icon-before(wikipedia) {
+        top: 0.05em;
+        position: relative;        
+      }
     }
     &-youtube {
       @include icon-before(youtube);
+    }
+    &-instagram {
+      @include icon-before(instagram);
     }
 
     &:before {
       font-size: 30px;
       line-height: 54px;
-    }
-
-    &-wikipedia:before {
-      line-height: 60px;
     }
 
     &-youtube:before {
@@ -159,6 +162,15 @@
   }
 }
 
+@include when(375px) {
+
+  .about {
+    &_icons {
+      max-width: none;
+    }    
+  }
+}
+
 @include when(600px) {
 
   .about_title {
@@ -197,6 +209,12 @@
 
   .about_icon {
     margin: 0 0 0 10px;
+    width: 48px;
+    height: 48px;
+    &:before {
+      font-size: 26px;
+      line-height: 48px;
+    }
   }
 
   .about_button {
@@ -213,7 +231,7 @@
   .about_icons {
     margin: 0;
     text-align: right;
-    margin-top: -48px;
+    margin-top: -45px;
   }
 
   .about_contact {
@@ -246,10 +264,6 @@
     &:before {
       font-size: 30px;
       line-height: 60px;
-    }
-
-    &-wikipedia:before {
-      line-height: 66px;
     }
 
     &-youtube:before {
