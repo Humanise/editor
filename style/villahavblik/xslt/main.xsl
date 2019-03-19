@@ -17,86 +17,86 @@
 <xsl:template match="p:page">
 <xsl:call-template name="util:doctype"/>
 <html>
-	<xsl:call-template name="util:html-attributes"/>
+  <xsl:call-template name="util:html-attributes"/>
 <head>
-	<title><xsl:if test="not(//p:page/@id=//p:context/p:home/@page)"><xsl:value-of select="@title"/> » </xsl:if><xsl:value-of select="f:frame/@title"/></title>
-	<meta name="google-site-verification" content="vagGQtrnVxxm4omlbXckjUkFqucyeVPmo-CE_LxQQ10" />
-	<xsl:call-template name="util:metatags"/>
-	<xsl:call-template name="util:css">
+  <title><xsl:if test="not(//p:page/@id=//p:context/p:home/@page)"><xsl:value-of select="@title"/> » </xsl:if><xsl:value-of select="f:frame/@title"/></title>
+  <meta name="google-site-verification" content="vagGQtrnVxxm4omlbXckjUkFqucyeVPmo-CE_LxQQ10" />
+  <xsl:call-template name="util:metatags"/>
+  <xsl:call-template name="util:css">
     <xsl:with-param name="ie-6" select="'true'"/>
   </xsl:call-template>
-	<xsl:call-template name="util:js"/>
+  <xsl:call-template name="util:js"/>
 </head>
 <body>
-	<div class="chrome">
-		<div class="chrome_frame">
-			<div class="chrome_header">
-				<xsl:comment/>
-			</div>
-			<div class="chrome_body">
-				<xsl:apply-templates select="f:frame/h:hierarchy"/>
-				<xsl:apply-templates select="p:content"/>
-			</div>
-			<div class="chrome_footer">
-				<xsl:comment/>
-				<a href="http://www.in2isoft.dk/" class="chrome_powered"><span>Designet og udviklet af In2iSoft</span></a>
-			</div>
-		</div>
-		<div class="chrome_frame_bottom"><xsl:comment/></div>
-	</div>
-	<div class="chrome_photos">
-		<div id="chrome_photos1">
-			<div class="chrome_photo1"><xsl:comment/></div>
-			<div class="chrome_photo2"><xsl:comment/></div>
-			<div class="chrome_photo3"><xsl:comment/></div>
-			<div class="chrome_photo4"><xsl:comment/></div>
-		</div>
-		<div id="chrome_photos2">
-			<div class="chrome_photo1"><xsl:comment/></div>
-			<div class="chrome_photo2"><xsl:comment/></div>
-			<div class="chrome_photo3"><xsl:comment/></div>
-			<div class="chrome_photo4"><xsl:comment/></div>
-		</div>
-	</div>
-	<div class="chrome_contact">
-		<h2>Adresse</h2>
-		<p>Nordlysvej 14</p>
-		<p>9840 Løkken</p>
-		<p>Danmark</p>
-		<hr/>
-		<h2>Kontakt</h2>
-		<p>Buster Munk</p>
-		<p>Tlf: 51 18 25 27</p>
-		<p><a href="mailto:bustermunk@gmail.com">bustermunk@gmail.com</a></p>
-	</div>
-	<script>
+  <div class="chrome">
+    <div class="chrome_frame">
+      <div class="chrome_header">
+        <xsl:comment/>
+      </div>
+      <div class="chrome_body">
+        <xsl:apply-templates select="f:frame/h:hierarchy"/>
+        <xsl:apply-templates select="p:content"/>
+      </div>
+      <div class="chrome_footer">
+        <xsl:comment/>
+        <a href="http://www.in2isoft.dk/" class="chrome_powered"><span>Designet og udviklet af In2iSoft</span></a>
+      </div>
+    </div>
+    <div class="chrome_frame_bottom"><xsl:comment/></div>
+  </div>
+  <div class="chrome_photos">
+    <div id="chrome_photos1">
+      <div class="chrome_photo1"><xsl:comment/></div>
+      <div class="chrome_photo2"><xsl:comment/></div>
+      <div class="chrome_photo3"><xsl:comment/></div>
+      <div class="chrome_photo4"><xsl:comment/></div>
+    </div>
+    <div id="chrome_photos2">
+      <div class="chrome_photo1"><xsl:comment/></div>
+      <div class="chrome_photo2"><xsl:comment/></div>
+      <div class="chrome_photo3"><xsl:comment/></div>
+      <div class="chrome_photo4"><xsl:comment/></div>
+    </div>
+  </div>
+  <div class="chrome_contact">
+    <h2>Adresse</h2>
+    <p>Nordlysvej 14</p>
+    <p>9840 Løkken</p>
+    <p>Danmark</p>
+    <hr/>
+    <h2>Kontakt</h2>
+    <p>Buster Munk</p>
+    <p>Tlf: 51 18 25 27</p>
+    <p><a href="mailto:bustermunk@gmail.com">bustermunk@gmail.com</a></p>
+  </div>
+  <script>
     hui.on(['op.Dissolver',], function() {
       var one = hui.get('chrome_photos2');
       var two = hui.get('chrome_photos1');
       new op.Dissolver({elements:one.getElementsByTagName('div'),wait:5000,transition:3000,delay:4500});
       new op.Dissolver({elements:two.getElementsByTagName('div'),wait:5000,transition:3000});
     })
-	</script>
-	<xsl:call-template name="util:googleanalytics"/>
+  </script>
+  <xsl:call-template name="util:googleanalytics"/>
 </body>
 </html>
 </xsl:template>
 
 
 <xsl:template match="p:content">
-	<xsl:call-template name="secondlevel"/>
-	<div class="chrome_content">
-		<xsl:choose>
-			<xsl:when test="../f:frame/h:hierarchy/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item">
-				<xsl:attribute name="class">chrome_content chrome_content_sidebar</xsl:attribute>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:attribute name="class">chrome_content</xsl:attribute>
-			</xsl:otherwise>
-		</xsl:choose>
-		<xsl:apply-templates/>
-		<xsl:comment/>
-	</div>
+  <xsl:call-template name="secondlevel"/>
+  <div class="chrome_content">
+    <xsl:choose>
+      <xsl:when test="../f:frame/h:hierarchy/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item">
+        <xsl:attribute name="class">chrome_content chrome_content_sidebar</xsl:attribute>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:attribute name="class">chrome_content</xsl:attribute>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:apply-templates/>
+    <xsl:comment/>
+  </div>
 </xsl:template>
 
 
@@ -107,46 +107,46 @@
 
 <xsl:template match="f:userstatus">
 <div>
-	<xsl:choose>
-	<xsl:when test="$userid>0">
-	<strong>Bruger: </strong><xsl:value-of select="$usertitle"/>
-	<xsl:text> </xsl:text>
-	<a href="./?id={@page}&amp;logout=true">log ud</a>
-	</xsl:when>
-	<xsl:otherwise>
-	<span>Ikke logget ind</span>
-	<xsl:text> </xsl:text>
-	<a href="./?id={@page}">log ind</a>
-	</xsl:otherwise>
-	</xsl:choose>
+  <xsl:choose>
+  <xsl:when test="$userid>0">
+  <strong>Bruger: </strong><xsl:value-of select="$usertitle"/>
+  <xsl:text> </xsl:text>
+  <a href="./?id={@page}&amp;logout=true">log ud</a>
+  </xsl:when>
+  <xsl:otherwise>
+  <span>Ikke logget ind</span>
+  <xsl:text> </xsl:text>
+  <a href="./?id={@page}">log ind</a>
+  </xsl:otherwise>
+  </xsl:choose>
 </div>
 </xsl:template>
 
 
 
 <xsl:template match="h:hierarchy">
-	<ul class="navigation">
+  <ul class="navigation">
     <xsl:comment/>
-		<xsl:apply-templates select="h:item"/>
-	</ul>
+    <xsl:apply-templates select="h:item"/>
+  </ul>
 </xsl:template>
 
 <xsl:template match="h:hierarchy/h:item">
-	<xsl:variable name="style">
-		<xsl:choose>
-			<xsl:when test="//p:page/@id=@page"><xsl:text>Selected</xsl:text></xsl:when>
-			<xsl:when test="descendant-or-self::*/@page=//p:page/@id"><xsl:text>Hilited</xsl:text></xsl:when>
-		<xsl:otherwise>Standard</xsl:otherwise>
-	</xsl:choose>
-	</xsl:variable>
-	<xsl:if test="not(@hidden='true')">
-		<li class="{$style}">
-			<a>
-				<xsl:call-template name="util:link"/>
-				<xsl:value-of select="@title"/>
-			</a>
-		</li>
-	</xsl:if>
+  <xsl:variable name="style">
+    <xsl:choose>
+      <xsl:when test="//p:page/@id=@page"><xsl:text>Selected</xsl:text></xsl:when>
+      <xsl:when test="descendant-or-self::*/@page=//p:page/@id"><xsl:text>Hilited</xsl:text></xsl:when>
+    <xsl:otherwise>Standard</xsl:otherwise>
+  </xsl:choose>
+  </xsl:variable>
+  <xsl:if test="not(@hidden='true')">
+    <li class="{$style}">
+      <a>
+        <xsl:call-template name="util:link"/>
+        <xsl:value-of select="@title"/>
+      </a>
+    </li>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template name="secondlevel">
