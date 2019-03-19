@@ -14,6 +14,6 @@
     "grunt-sass": "^3.0.2",
     "grunt-shell": "^2.1.0",
     "grunt-string-replace": "^1.0.0",
-    "node-sass": "^4.9.4"
+    "node-sass": "^4.11.0"
   }
 }
