@@ -39,7 +39,9 @@ class TestService {
   static function runTest($test,$reporter = null) {
     $path = FileSystemService::getFullPath('Editor/Tests/' . $test . '.php');
     $test = new TestSuite($test);
-    $test->addFile($path);
+    if (file_exists($path)) {
+      $test->addFile($path);
+    }
     if ($reporter == null) {
       $reporter = new HtmlReporter();
     }

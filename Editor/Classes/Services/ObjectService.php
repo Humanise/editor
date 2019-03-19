@@ -22,8 +22,8 @@ class ObjectService {
     if (count($ids) == 0) {
       return [];
     }
-    $sql = "select id from object where id in (" . implode(',',$ids) . ")";
-    return Database::getIds($sql);
+    $sql = "select id from object where id in (@ints(ids))";
+    return Database::getIds($sql, ['ids' => $ids]);
   }
 
   static function getInstance($type) {
@@ -263,8 +263,8 @@ class ObjectService {
 
     $links = '';
 
-    $sql = "select object_link.*,page.path from object_link left join page on page.id=object_link.target_value and object_link.target_type='page' where object_id=" . Database::int($object->id) . " order by position";
-    $result = Database::select($sql);
+    $sql = "select object_link.*,page.path from object_link left join page on page.id=object_link.target_value and object_link.target_type='page' where object_id = @id order by position";
+    $result = Database::select($sql, $object->id);
     while ($row = Database::next($result)) {
       $links .= '<link title="' . Strings::escapeEncodedXML($row['title']) . '"';
       if ($row['alternative'] != '') {
@@ -305,8 +305,8 @@ class ObjectService {
   }
 
   static function _getFilename($id) {
-    $sql = "select filename from file where object_id=" . Database::int($id);
-    if ($row = Database::selectFirst($sql)) {
+    $sql = "select filename from file where object_id = @id";
+    if ($row = Database::selectFirst($sql, $id)) {
       return $row['filename'];
     }
     return null;

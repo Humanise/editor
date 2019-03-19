@@ -54,11 +54,11 @@ class DatabaseUtil {
     $hash = md5_file($basePath . '/Editor/Info/Database.php');
     $sql = "select `value` from `setting` where `domain`='system' and `subdomain`='database' and `key`='database-hash'";
     if ($row = Database::selectFirst($sql)) {
-      $sql = "update `setting` set `value`=" . Database::text($hash) . " where `domain`='system' and `subdomain`='database' and `key`='database-hash'";
-      Database::update($sql);
+      $sql = "update `setting` set `value` = @text(value) where `domain`='system' and `subdomain`='database' and `key`='database-hash'";
+      Database::update($sql, ['value' => $hash]);
     } else {
-      $sql = "insert into `setting` (`domain`,`subdomain`,`key`,`value`) values ('system','database','database-hash'," . Database::text($hash) . ")";
-      Database::insert($sql);
+      $sql = "insert into `setting` (`domain`,`subdomain`,`key`,`value`) values ('system','database','database-hash',@text(value))";
+      Database::insert($sql, ['value' => $hash]);
     }
   }
 
