@@ -81,7 +81,7 @@ a.common {
 
 .part_movie_text_inner {
   background: none;
-  padding: 10px 0;
+  padding: 5% 0;
   display: block;
   font-size: 16px;
   line-height: 1;
@@ -89,6 +89,9 @@ a.common {
   bottom: 0;
   left: 0;
   right: 0; }
+
+.part_movie_poster:after {
+  background-image: url('data:image/svg+xml,<svg viewBox="0 0 144 144" xmlns="http://www.w3.org/2000/svg"><circle cx="72" cy="72" r="70" fill="rgba(0, 0, 0, .2)" stroke="rgba(255, 255, 255, .4)" stroke-width="1.5"/><path d="M48,36v74L109,74L48,36z" fill="rgba(255,255,255, .9)"/></svg>'); }
 
 @media screen and (min-width: 600px) {
   .part_header-1 {
