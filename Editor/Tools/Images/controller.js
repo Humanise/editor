@@ -53,7 +53,7 @@ hui.ui.listen({
 
   $select$selector : function(item) {
     list.resetState();
-    if (item.value=='pages' || item.value=='products' || item.value=='persons') {
+    if (item.value=='pages' || item.value=='products' || item.value=='persons' || item.value=='check') {
       hui.ui.changeState('list');
       viewSwitch.setValue('list');
     } else {
