@@ -20,7 +20,7 @@ a.common:hover, a.common:hover span
 
 body
 {
-	background: #FFFFF url('../gfx/color bg.gif') scroll center 0;
+	background: #FFFFF url('../gfx/color_bg.gif') scroll center 0;
 	margin: 0px;
 	height: 100%;
 	font-family: Georgia,Times,serif;
@@ -28,7 +28,7 @@ body
 
 div.chrome
 {
-	background: url('../gfx/color bg.gif') -220px bottom repeat-x;
+	background: url('../gfx/color_bg.gif') -220px bottom repeat-x;
 	min-height: 100%;
 }
 
@@ -67,7 +67,7 @@ div.chrome_top_header
 {
 	margin: 0px 9px;
 	height: 166px;
-	background: #fff url('../gfx/header - bg.png') 0px center no-repeat;
+	background: #fff url('../gfx/header-bg.png') 0px center no-repeat;
 }
 
 div.chrome_footer
