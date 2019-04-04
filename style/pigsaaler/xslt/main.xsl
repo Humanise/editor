@@ -16,51 +16,51 @@
 
 <xsl:template match="p:page">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<xsl:call-template name="util:html-attributes"/>
+  <xsl:call-template name="util:html-attributes"/>
 <head>
-	<title><xsl:value-of select="@title"/> » <xsl:value-of select="f:frame/@title"/></title>
-	<xsl:call-template name="util:metatags"/>
-	<xsl:call-template name="util:css"/>
-	<xsl:call-template name="util:js"/>
+  <title><xsl:value-of select="@title"/> » <xsl:value-of select="f:frame/@title"/></title>
+  <xsl:call-template name="util:metatags"/>
+  <xsl:call-template name="util:css"/>
+  <xsl:call-template name="util:js"/>
 </head>
 <body>
-	<div class="case">
-		<div class="case_head">
-			<div class="case_head_body">
-				<p style="position: absolute; margin: 0; font-size: 36px; font-weight: bold; top: 10px; left: 20px; color: #fff;">GB Pigsåler</p>
-				<ul class="case_navigation"><xsl:apply-templates select="f:frame/h:hierarchy/h:item"/></ul>
-			</div>
-		</div>
-		<div class="case_body">
-			<div class="case_sidebar">
-				<xsl:call-template name="thirdlevel"/>
-				<div class="case_contact">
-					<h2>GB Pigsåler</h2>
-					<p><em>Tlf:</em> 23 62 33 59 </p>
-					<p><em>E-post: </em> <a href="mailto:info@pigsaaler.dk"><span>gbpigsaaler@gbpigsaaler.dk</span></a></p>
-					<blockquote>
-						"Kontakt os venligst hvis du er interesseret."
-					</blockquote>
-				</div>
-			</div>
-			<div class="case_sidebar_content">
-				<xsl:call-template name="secondlevel"/><xsl:comment/>
-				<xsl:apply-templates select="p:content"/>
-			</div>
-		</div>
-	</div>
-	<div class="layout_footer"><xsl:comment/></div>
-	<xsl:call-template name="util:googleanalytics"/>
+  <div class="case">
+    <div class="case_head">
+      <div class="case_head_body">
+        <p style="position: absolute; margin: 0; font-size: 36px; font-weight: bold; top: 10px; left: 20px; color: #fff;">GB Pigsåler</p>
+        <ul class="case_navigation"><xsl:apply-templates select="f:frame/h:hierarchy/h:item"/></ul>
+      </div>
+    </div>
+    <div class="case_body">
+      <div class="case_sidebar">
+        <xsl:call-template name="thirdlevel"/>
+        <div class="case_contact">
+          <h2>GB Pigsåler</h2>
+          <p><em>Tlf:</em> 23 62 33 59 </p>
+          <p><em>E-post: </em> <a href="mailto:info@pigsaaler.dk"><span>gbpigsaaler@gbpigsaaler.dk</span></a></p>
+          <blockquote>
+            "Kontakt os venligst hvis du er interesseret."
+          </blockquote>
+        </div>
+      </div>
+      <div class="case_sidebar_content">
+        <xsl:call-template name="secondlevel"/><xsl:comment/>
+        <xsl:apply-templates select="p:content"/>
+      </div>
+    </div>
+  </div>
+  <div class="layout_footer"><xsl:comment/></div>
+  <xsl:call-template name="util:googleanalytics"/>
 </body>
 </html>
 </xsl:template>
 
 
 <xsl:template match="p:content">
-	<div class="case_content">
-		<xsl:apply-templates/>
-		<xsl:comment/>
-	</div>
+  <div class="case_content">
+    <xsl:apply-templates/>
+    <xsl:comment/>
+  </div>
 </xsl:template>
 
 
@@ -69,54 +69,54 @@
 
 
 <xsl:template match="f:userstatus">
-	<xsl:choose>
-		<xsl:when test="$userid>0">
-		<span class="userstatus">Bruger: <strong><xsl:value-of select="$usertitle"/></strong></span>
-		<xsl:text> · </xsl:text>
-		<a href="./?id={@page}&amp;logout=true" class="common">Log ud</a>
-		</xsl:when>
-		<xsl:otherwise>
-		<a href="./?id={@page}" class="common">Log ind</a>
-		</xsl:otherwise>
-	</xsl:choose>
+  <xsl:choose>
+    <xsl:when test="$userid>0">
+    <span class="userstatus">Bruger: <strong><xsl:value-of select="$usertitle"/></strong></span>
+    <xsl:text> · </xsl:text>
+    <a href="./?id={@page}&amp;logout=true" class="common">Log ud</a>
+    </xsl:when>
+    <xsl:otherwise>
+    <a href="./?id={@page}" class="common">Log ind</a>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 
 
 <xsl:template match="h:hierarchy/h:item">
-	<xsl:if test="not(@hidden='true')">
-		<xsl:variable name="style">
-			<xsl:choose>
-				<xsl:when test="position()=1 and (//p:page/@id=@page or descendant-or-self::*/@page=//p:page/@id)"><xsl:text>first_selected</xsl:text></xsl:when>
-				<xsl:when test="position()=last() and (//p:page/@id=@page or descendant-or-self::*/@page=//p:page/@id)"><xsl:text>last_selected</xsl:text></xsl:when>
-				<xsl:when test="//p:page/@id=@page or descendant-or-self::*/@page=//p:page/@id"><xsl:text>selected</xsl:text></xsl:when>
-				<xsl:when test="position()=1"><xsl:text>first</xsl:text></xsl:when>
-				<xsl:when test="position()=last()"><xsl:text>last</xsl:text></xsl:when>
-				<xsl:otherwise><xsl:text>middle</xsl:text></xsl:otherwise>
-			</xsl:choose>
-		</xsl:variable>
-		<li class="{$style}">
-			<a>
-			<xsl:call-template name="util:link"/>
-			<span><span><xsl:value-of select="@title"/></span></span>
-			</a>
-		</li>
-	</xsl:if>
+  <xsl:if test="not(@hidden='true')">
+    <xsl:variable name="style">
+      <xsl:choose>
+        <xsl:when test="position()=1 and (//p:page/@id=@page or descendant-or-self::*/@page=//p:page/@id)"><xsl:text>first_selected</xsl:text></xsl:when>
+        <xsl:when test="position()=last() and (//p:page/@id=@page or descendant-or-self::*/@page=//p:page/@id)"><xsl:text>last_selected</xsl:text></xsl:when>
+        <xsl:when test="//p:page/@id=@page or descendant-or-self::*/@page=//p:page/@id"><xsl:text>selected</xsl:text></xsl:when>
+        <xsl:when test="position()=1"><xsl:text>first</xsl:text></xsl:when>
+        <xsl:when test="position()=last()"><xsl:text>last</xsl:text></xsl:when>
+        <xsl:otherwise><xsl:text>middle</xsl:text></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <li class="{$style}">
+      <a>
+      <xsl:call-template name="util:link"/>
+      <span><span><xsl:value-of select="@title"/></span></span>
+      </a>
+    </li>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template name="secondlevel">
 <xsl:if test="//f:frame/h:hierarchy/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item">
-	<ul class="case_sub_navigation">
-		<xsl:apply-templates select="//f:frame/h:hierarchy/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item"/>
-	</ul>
+  <ul class="case_sub_navigation">
+    <xsl:apply-templates select="//f:frame/h:hierarchy/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item"/>
+  </ul>
 </xsl:if>
 </xsl:template>
 
 <xsl:template name="thirdlevel">
 <xsl:if test="//f:frame/h:hierarchy/h:item/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item">
-	<ul class="case_side_navigation">
-		<xsl:apply-templates select="//f:frame/h:hierarchy/h:item/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item"/>
-	</ul>
+  <ul class="case_side_navigation">
+    <xsl:apply-templates select="//f:frame/h:hierarchy/h:item/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item"/>
+  </ul>
 </xsl:if>
 </xsl:template>
 
@@ -209,13 +209,13 @@
 
 <xsl:template match="f:text/f:bottom">
 <span class="text">
-	<xsl:comment/>
+  <xsl:comment/>
 <xsl:apply-templates/>
 </span>
 </xsl:template>
 
 <xsl:template match="f:text/f:bottom/f:break">
-	<br/>
+  <br/>
 </xsl:template>
 
 
