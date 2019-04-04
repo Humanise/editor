@@ -17,7 +17,7 @@ $writer->item([
 
 $writer->item([
   'title' => ['Feedback', 'da' => 'Feedback'],
-  'value' => 'babbelab',
+  'value' => 'feedback',
   'kind' => 'feedback',
   'icon' => 'view/list'
 ]);
