@@ -20,14 +20,8 @@
 <head>
 	<title><xsl:value-of select="@title"/> » <xsl:value-of select="f:frame/@title"/></title>
 	<xsl:call-template name="util:metatags"/>
-	<xsl:call-template name="util:style"/>
-	<xsl:call-template name="util:style-ie6"/>
-	<xsl:call-template name="util:style-ie7"/>
-	<xsl:call-template name="util:style-ie8"/>
-	<xsl:call-template name="util:scripts"/>
-	<script type="text/javascript" src="{$path}style/{$design}/js/bestilling.js" charset="utf-8"><xsl:comment/></script>
-	<script type="text/javascript" src="{$path}hui/js/Alert.js"><xsl:comment/></script>
-	<script type="text/javascript" src="{$path}hui/js/Button.js"><xsl:comment/></script>
+	<xsl:call-template name="util:css"/>
+	<xsl:call-template name="util:js"/>
 </head>
 <body>
 	<div class="case">
