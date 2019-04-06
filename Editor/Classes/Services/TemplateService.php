@@ -23,7 +23,10 @@ class TemplateService {
 
   static function getController($type) {
     $class = ucfirst($type) . 'TemplateController';
-    return new $class;
+    if (class_exists($class)) {
+      return new $class;
+    }
+    return null;
   }
 
   static function getAvailableTemplates() {
