@@ -15,6 +15,8 @@ else if ($kind == 'object') {
   $object = ModelObject::load($id);
   if ($object) {
     $object->publish();
+  } else {
+    Log::warn("Not found: " . $kind . "=" . $id);
   }
 }
 else if ($kind == 'hierarchy') {

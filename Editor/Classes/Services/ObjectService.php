@@ -110,6 +110,7 @@ class ObjectService {
 
   static function publish($object) {
     if (!$object->isPersistent()) {
+      Log::warn('Try to publish something not persistent');
       return;
     }
     $index = $object->getIndex();
