@@ -308,7 +308,7 @@ class Database {
    */
   static function datetime($stamp) {
     if (is_numeric($stamp)) {
-      return "'" . date('Y-m-d H:i:s',intval($stamp)) . "'";
+      return "'" . gmdate('Y-m-d H:i:s',intval($stamp)) . "'";
     }
     else {
       return "NULL";
@@ -322,7 +322,7 @@ class Database {
    */
   static function date($stamp) {
     if (is_numeric($stamp)) {
-      return "'" . date('Y-m-d',intval($stamp)) . "'";
+      return "'" . gmdate('Y-m-d',intval($stamp)) . "'";
     }
     else {
       return "NULL";
