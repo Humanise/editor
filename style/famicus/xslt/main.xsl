@@ -17,13 +17,8 @@
 <html>
 <head>
 <title><xsl:if test="not(//p:page/@id=//p:context/p:home/@page)"><xsl:value-of select="@title"/> » </xsl:if><xsl:value-of select="f:frame/@title"/></title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8"></meta>
-<meta name="robots" content="index,follow"></meta>
-<link rel="stylesheet" type="text/css" href="{$path}style/{$design}/css/stylesheet.css"/>
-<link rel="stylesheet" type="text/css" href="{$path}style/{$design}/css/{$template}.css"/>
-<xsl:comment><![CDATA[[if lt IE 7]>
-<link rel="stylesheet" type="text/css" href="]]><xsl:value-of select="$path"/>style/<xsl:value-of select="$design"/><![CDATA[/css/msie6.css"> </link>
-<![endif]]]></xsl:comment>
+<xsl:call-template name="util:metatags"/>
+<xsl:call-template name="util:css"/>
 <xsl:call-template name="util:js"/>
 </head>
 <body>
