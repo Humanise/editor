@@ -67,6 +67,7 @@ class Database {
       if (mysqli_errno($con) > 0) {
         return false;
       }
+      //$con->query("SET timezone = 'UTC'");
       $GLOBALS['OP_CON'] = $con;
     }
     return $GLOBALS['OP_CON'];
@@ -308,7 +309,7 @@ class Database {
    */
   static function datetime($stamp) {
     if (is_numeric($stamp)) {
-      return "'" . gmdate('Y-m-d H:i:s',intval($stamp)) . "'";
+      return "FROM_UNIXTIME(" . intval($stamp) . ")";
     }
     else {
       return "NULL";
