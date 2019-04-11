@@ -141,7 +141,7 @@ $gui = '
       </right>
     </toolbar>
     <fragment name="pageInfoFragment">
-      <formula name="pageFormula" padding="5">
+      <formula name="pageFormula" padding="10">
         <fields labels="above">
           <field label="{Title ; da: Titel}:">
             <text-input key="title"/>
@@ -202,7 +202,7 @@ $gui = '
 
   <window name="pageFinder" width="400" title="{Choose page; da:Vælg side}">
     <searchfield adaptive="true" name="pageFinderSearch"/>
-    <overflow max-height="200">
+    <overflow height="200">
       <list source="pageFinderListSource" name="pageFinderList"/>
     </overflow>
   </window>
