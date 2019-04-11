@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
+ xmlns="http://www.w3.org/1999/xhtml"
  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
  xmlns:p="http://uri.in2isoft.com/onlinepublisher/publishing/page/1.0/"
  xmlns:f="http://uri.in2isoft.com/onlinepublisher/publishing/frame/1.0/"
@@ -7,14 +8,16 @@
  xmlns:n="http://uri.in2isoft.com/onlinepublisher/class/news/1.0/"
  xmlns:o="http://uri.in2isoft.com/onlinepublisher/class/object/1.0/"
  xmlns:util="http://uri.in2isoft.com/onlinepublisher/util/"
- exclude-result-prefixes="p f h n o"
+ exclude-result-prefixes="p f h n o util"
  >
-<xsl:output encoding="UTF-8" method="xml" doctype-public="-//W3C//DTD XHTML 1.1//EN" doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"/>
+ <xsl:output encoding="UTF-8" method="xml" omit-xml-declaration="yes"/>
 
 <xsl:include href="../../basic/xslt/util.xsl"/>
 
 <xsl:template match="p:page">
+<xsl:call-template name="util:doctype"/>
 <html>
+  <xsl:call-template name="util:html-attributes"/>
 <head>
 <title><xsl:if test="not(//p:page/@id=//p:context/p:home/@page)"><xsl:value-of select="@title"/> » </xsl:if><xsl:value-of select="f:frame/@title"/></title>
 <xsl:call-template name="util:metatags"/>
@@ -54,11 +57,9 @@
   </div>
   <div class="chrome_contact">
     <h2>FAMICUS</h2>
-    <center><p>bevare venskaber, skabe oplevelser i fællesskab og hyggeligt samkvem</p></center>
-    
-    
-      </div>
-  <script type="text/javascript">
+    <p>bevare venskaber, skabe oplevelser i fællesskab og hyggeligt samkvem</p>
+  </div>
+  <script>
     hui.on(['op.Dissolver','hui'], function() {
     new op.Dissolver({elements:hui.findAll('div#chrome_photos2 div'),wait:5000,transition:3000,delay:4500});
     new op.Dissolver({elements:hui.findAll('div#chrome_photos1 div'),wait:5000,transition:3000});
@@ -111,9 +112,11 @@
 
 
 <xsl:template match="h:hierarchy">
-<ul class="navigation">
-  <xsl:apply-templates select="h:item"/>
-</ul>
+  <xsl:if test="h:item">
+  <ul class="navigation">
+    <xsl:apply-templates select="h:item"/>
+  </ul>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="h:hierarchy/h:item">
