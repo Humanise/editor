@@ -11,20 +11,20 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestListPart extends UnitTestCase {
 
-    function testLoad() {
-        $this->assertNull(ListPart::load(0));
-    }
+  function testLoad() {
+    $this->assertNull(ListPart::load(0));
+  }
 
-    function testCreate() {
-        $obj = new ListPart();
+  function testCreate() {
+    $obj = new ListPart();
     $this->assertFalse($obj->isPersistent());
     $obj->save();
     $this->assertTrue($obj->isPersistent());
     $id = $obj->getId();
-        $this->assertNotNull(ListPart::load($id));
+    $this->assertNotNull(ListPart::load($id));
     $obj->remove();
-        $this->assertNull(ListPart::load($id));
-    }
+    $this->assertNull(ListPart::load($id));
+  }
 
   function testObjects() {
     $obj = new ListPart();

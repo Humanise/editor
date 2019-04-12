@@ -275,8 +275,8 @@ class FileService {
 
       // Add to group
       if ($group > 0) {
-        $sql = "insert into filegroup_file (file_id,filegroup_id) values (" . Database::int($fileId) . "," . Database::int($group) . ")";
-        Database::insert($sql);
+        $sql = "insert into filegroup_file (file_id,filegroup_id) values (@int(file), @int(group))";
+        Database::insert($sql, ['file' => $fileId, 'group' => $group]);
       }
       $result->setSuccess(true);
       $result->setObject($file);

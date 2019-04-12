@@ -37,8 +37,8 @@ class NewsService {
         }
       }
     }
-    $sql = 'update newssource set synchronized=now() where object_id=' . Database::int($id);
-    Database::update($sql);
+    $sql = 'update newssource set synchronized=now() where object_id = @id';
+    Database::update($sql, $id);
   }
 
   static function clearSource($id) {

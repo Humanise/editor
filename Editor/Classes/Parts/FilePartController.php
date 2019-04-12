@@ -43,8 +43,8 @@ class FilePartController extends PartController
 
   function buildSub($part,$context) {
     $xml = '<file xmlns="' . $this->getNamespace() . '">';
-    $sql = "select object.data,file.type from object,file where file.object_id = object.id and object.id=" . Database::int($part->getFileId());
-    if ($row = Database::selectFirst($sql)) {
+    $sql = "select object.data,file.type from object,file where file.object_id = object.id and object.id = @id";
+    if ($row = Database::selectFirst($sql, $part->getFileId())) {
       $xml .= '<info type="' . FileService::mimeTypeToLabel($row['type']) . '"/>';
       if (Strings::isNotBlank($part->getText())) {
         $xml .= '<text>' . Strings::escapeEncodedXML($part->getText()) . '</text>';

@@ -39,12 +39,10 @@ class TestFilePart extends UnitTestCase {
 
   function testImport() {
     $obj = new FilePart();
-    $latest = FileService::getLatestFileId();
-    if ($latest == null) {
-      Log::debug('This test can only run with at least one file present');
-      return;
-    }
-    $obj->setFileId($latest);
+    $file = new File();
+    $file->save();
+    $file->publish();
+    $obj->setFileId($file->getId());
     $obj->setText('Get me back!');
     $ctrl = new FilePartController();
 
@@ -57,6 +55,7 @@ class TestFilePart extends UnitTestCase {
     $this->assertNotNull($imported);
     $this->assertIdentical($imported->getFileId(),$obj->getFileId());
     $this->assertIdentical($imported->getText(),$obj->getText());
+    $file->remove();
   }
 
 }

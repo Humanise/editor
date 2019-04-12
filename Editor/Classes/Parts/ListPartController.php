@@ -164,14 +164,15 @@ class ListPartController extends PartController
   }
 
   function buildValues($type,$part) {
-    return Database::selectIntArray("select object.id from part_list_object,object where part_list_object.object_id=object.id and object.type=" . Database::text($type) . " and part_id=" . Database::int($part->getId()));
+    $sql = "select object.id from part_list_object,object where part_list_object.object_id=object.id and object.type = @text(type) and part_id = @id";
+    return Database::selectIntArray($sql,['id' => $part->getId(), 'type' => $type]);
   }
 
   function buildSub($part,$context) {
     $dirty = false;
     $items = [];
     if (count($part->getObjectIds()) > 0) {
-      $objects = Database::selectAll("select id,type from object where id in (" . implode($part->getObjectIds(),',') . ")");
+      $objects = Database::selectAll("select id,type from object where id in (@ints(ids))", ['ids' => $part->getObjectIds()]);
       $from = time();
       $to = Dates::addDays($from,$part->getTimeCount());
       foreach ($objects as $object) {
