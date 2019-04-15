@@ -223,7 +223,7 @@ function listPersons() {
         text($row['person_title'])->
         startIcons()->
           icon([
-            'icon' => 'monochrome/info_light',
+            'icon' => 'monochrome/info',
             'action' => true,
             'data' => ['action' => 'editPerson', 'id' => $row['person_id']],
             'revealing' => true]

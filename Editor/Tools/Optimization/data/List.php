@@ -64,7 +64,7 @@ function listWordCheck() {
       $writer->startCell(['icon' => 'common/page'])->
         text($count)->
         startIcons()->
-          icon(['icon' => 'monochrome/info_light', 'revealing' => true, 'action' => true, 'data' => ['action' => 'view']])->
+          icon(['icon' => 'monochrome/info', 'revealing' => true, 'action' => true, 'data' => ['action' => 'view']])->
         endIcons()->
       endCell();
     }
