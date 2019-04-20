@@ -197,6 +197,12 @@ class PageService {
     return null;
   }
 
+  static function getNumberOfPagesWithWord($word) {
+    $sql = "select count(id) as `count` from page where lower(`index`) like @fuzzy(word)";
+    $row = Database::selectFirst($sql, ['word' => strtolower($word)]);
+    return intval($row['count']);
+  }
+
   static function getLinkText($pageId) {
     $text = '';
     $sql = "SELECT text from part_text,document_section where document_section.part_id = part_text.part_id and page_id = @id
@@ -308,6 +314,11 @@ class PageService {
         " or page.description like " . Database::search($text) .
         " or page.keywords like " . Database::search($text) . ")"
       );
+    }
+    // Free text search...
+    $contentText = $query->getContentText();
+    if (Strings::isNotBlank($contentText)) {
+      $select->addLimit("page.`index` like " . Database::search($contentText));
     }
     // Relations...
     if (count($query->getRelationsFrom()) > 0) {

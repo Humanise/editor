@@ -37,6 +37,23 @@ Install node modules
 
 	npm install
 
+### PHP dependencies
+
+* XSL
+* OpenSSL
+* MySQL
+* Mbstring
+* GD
+* curl
+* iconv
+
+**Macports:**
+
+```
+sudo port install php72 php72-xsl php72-openssl php72-mysql php72-mbstring php72-gd php72-curl php72-iconv
+```
+
+
 ## Development
 
 Install minify CLI

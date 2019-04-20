@@ -67,6 +67,7 @@ class Database {
       if (mysqli_errno($con) > 0) {
         return false;
       }
+      //$con->query("SET timezone = 'UTC'");
       $GLOBALS['OP_CON'] = $con;
     }
     return $GLOBALS['OP_CON'];
@@ -141,21 +142,21 @@ class Database {
       $sql = Database::buildUpdateSql($sql);
     }
     if ($parameters !== null) {
-      $sql = Database::compile($sql,$parameters);
+      $sql = Database::compile($sql, $parameters);
     }
     $con = Database::getConnection();
-    mysqli_query($con,$sql);
+    mysqli_query($con, $sql);
     return Database::_checkError($sql,$con);
   }
 
   static function delete($sql,$parameters = null) {
     if ($parameters !== null) {
-      $sql = Database::compile($sql,$parameters);
+      $sql = Database::compile($sql, $parameters);
     }
     Database::debug($sql);
     $con = Database::getConnection();
-    mysqli_query($con,$sql);
-    Database::_checkError($sql,$con);
+    mysqli_query($con, $sql);
+    Database::_checkError($sql, $con);
     return mysqli_affected_rows($con);
   }
 
@@ -164,13 +165,13 @@ class Database {
       $sql = Database::buildInsertSql($sql);
     }
     if ($parameters !== null) {
-      $sql = Database::compile($sql,$parameters);
+      $sql = Database::compile($sql, $parameters);
     }
     Database::debug($sql);
     $con = Database::getConnection();
-    mysqli_query($con,$sql);
+    mysqli_query($con, $sql);
     $id = mysqli_insert_id($con);
-    if (Database::_checkError($sql,$con)) {
+    if (Database::_checkError($sql, $con)) {
       return $id;
     } else {
       return false;
@@ -308,7 +309,7 @@ class Database {
    */
   static function datetime($stamp) {
     if (is_numeric($stamp)) {
-      return "'" . date('Y-m-d H:i:s',intval($stamp)) . "'";
+      return "FROM_UNIXTIME(" . intval($stamp) . ")";
     }
     else {
       return "NULL";
@@ -322,7 +323,7 @@ class Database {
    */
   static function date($stamp) {
     if (is_numeric($stamp)) {
-      return "'" . date('Y-m-d',intval($stamp)) . "'";
+      return "'" . gmdate('Y-m-d',intval($stamp)) . "'";
     }
     else {
       return "NULL";
@@ -408,6 +409,19 @@ class Database {
     return $sql;
   }
 
+  static function buildDeleteSql($arr) {
+    $sql = "delete from " . $arr['table'];
+    $sql .= " where ";
+    $num = 0;
+    foreach ($arr['where'] as $column => $value) {
+      if ($num > 0) {
+        $sql .= ' and ';
+      }
+      $sql .= "`" . $column . "`=" . Database::buildUpdateSqlValue($value);
+    }
+    return $sql;
+  }
+
   static function compile($sql, $vars) {
     if (!is_array($vars)) {
       $vars = ['id' => $vars];
@@ -431,12 +445,16 @@ class Database {
             $value = Database::ints($value);
           } else if ($type == 'text') {
             $value = Database::text($value);
+          } else if ($type == 'fuzzy') {
+            $value = Database::search($value);
           } else if ($type == 'boolean') {
             $value = Database::boolean($value);
           } else if ($type == 'datetime') {
             $value = Database::datetime($value);
           } else if ($type == 'float') {
             $value = Database::float($value);
+          } else if ($type == 'name') {
+            $value = '`' . $value . '`';
           } else {
             continue;
           }

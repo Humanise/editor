@@ -19,6 +19,8 @@ if (!$doc) {
 $types = $doc->getElementsByTagName('type');
 for ($i = 0; $i < $types->length; $i++) {
   $type = $types->item($i);
-  echo 'select * from `' . $type->getAttribute('name') . '`;';
+  echo 'select * from `';
+  echo $type->getAttribute('name');
+  echo '`;';
 }
 ?>

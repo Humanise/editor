@@ -36,11 +36,11 @@ class ImageService {
     $image = Image::load($imageId);
     $group = Imagegroup::load($groupId);
     if ($image && $group) {
-      $sql = "delete from imagegroup_image where image_id=" . $imageId . " and imagegroup_id=" . $groupId;
-      Database::delete($sql);
+      $sql = "delete from imagegroup_image where image_id = @int(imageId) and imagegroup_id = @int(groupId)";
+      Database::delete($sql, ['imageId' => $imageId, 'groupId' => $groupId]);
 
-      $sql = "insert into imagegroup_image (image_id, imagegroup_id) values (" . $imageId . "," . $groupId . ")";
-      Database::insert($sql);
+      $sql = "insert into imagegroup_image (image_id, imagegroup_id) values (@int(imageId),@int(groupId))";
+      Database::insert($sql, ['imageId' => $imageId, 'groupId' => $groupId]);
       EventService::fireEvent('relation_change','object','imagegroup',$groupId);
     }
   }

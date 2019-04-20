@@ -17,10 +17,9 @@ $writer->startList()->
     header(['width' => 1])->
   endHeaders();
 
-$sql = "select id,title from page where lower(`index`) like " . Database::search(strtolower($phrase->getTitle()));
+$list = PageQuery::rows()->withContentText($phrase->getTitle())->asList();
 
-$result = Database::select($sql);
-while ($row = Database::next($result)) {
+foreach ($list as $row) {
   $writer->startRow(['id' => $row['id'], 'kind' => 'page'])->
     startCell(['icon' => 'common/page'])->
       text($row['title'])->
@@ -33,7 +32,6 @@ while ($row = Database::next($result)) {
     endCell()->
   endRow();
 }
-Database::free($result);
 
 $writer->endList();
 ?>

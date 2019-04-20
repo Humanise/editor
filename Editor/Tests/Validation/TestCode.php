@@ -42,6 +42,9 @@ class TestCode extends UnitTestCase {
     $files = $this->getPHPFiles();
     $statements = [];
     foreach ($files as $file) {
+      if (Strings::endsWith($file,'/Core/Database.php')) {
+        continue;
+      }
       $txt = file_get_contents($file);
       if (preg_match_all('/["\']((select|insert|update|delete) [^;]+)/uism', $txt, $found)) {
         foreach ($found[1] as $sql) {

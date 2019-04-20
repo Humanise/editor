@@ -71,6 +71,24 @@
   }
 }
 
+@include when (375px) {
+  .header {
+    &_menu_link {
+      padding: 0 7px;
+      font-size: 18px;
+    }
+  }
+}
+
+@include when (400px) {
+  .header {
+    &_menu_link {
+      padding: 0 10px;
+      font-size: 18px;
+    }
+  }
+}
+
 @include when (600px) {
 
   .header_title {

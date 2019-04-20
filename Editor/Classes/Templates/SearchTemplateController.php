@@ -24,7 +24,7 @@ class SearchTemplateController extends TemplateController
     Database::delete($sql, $page->getId());
   }
 
-    function build($id) {
+  function build($id) {
     $data = '<search xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/search/1.0/">';
 
     $sql = "select * from search where page_id = @id";

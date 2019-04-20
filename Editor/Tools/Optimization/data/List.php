@@ -55,16 +55,14 @@ function listWordCheck() {
   $writer->endHeaders();
 
   foreach ($list as $word) {
-    $sql = "select count(id) as `count` from page where lower(`index`) like " . Database::search(strtolower($word->getTitle()));
-    $row = Database::selectFirst($sql);
-
+    $count = PageService::getNumberOfPagesWithWord($word->getTitle());
     $writer->startRow(['id' => $word->getId()]);
     $writer->startCell(['icon' => 'monochrome/dot'])->text($word->getTitle())->endCell();
-    if ($row['count'] == 0) {
+    if ($count == 0) {
       $writer->startCell(['icon' => 'common/warning'])->text(['Not found', 'da' => 'Ikke findet'])->endCell();
     } else {
       $writer->startCell(['icon' => 'common/page'])->
-        text($row['count'])->
+        text($count)->
         startIcons()->
           icon(['icon' => 'monochrome/info_light', 'revealing' => true, 'action' => true, 'data' => ['action' => 'view']])->
         endIcons()->

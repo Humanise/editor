@@ -37,7 +37,7 @@ op.goToEditor = function() {
 
 op.showLogin = function() {
   op.showLogin = function(){};
-  hui.ui.showMessage({text:{en:'Loading...',da:'Indlæser...'},busy:true,delay:300});
+  hui.ui.msg({text:{en:'Loading...',da:'Indlæser...'},busy:true,delay:300});
   _editor.loadScript(hui.ui.getContext() + 'style/basic/js/utils/Login.js');
 }
 

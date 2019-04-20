@@ -34,7 +34,13 @@ class TestTextPart extends UnitTestCase {
     $obj2 = TextPart::load($obj->getId());
     $this->assertEqual($obj2->getText(),'This is the text');
 
-    $obj2->remove();
+    $obj2->setText('Modified text');
+    $obj2->save();
+
+    $obj3 = TextPart::load($obj->getId());
+    $this->assertEqual($obj3->getText(), 'Modified text');
+
+    $obj3->remove();
   }
 
   function testBuild() {

@@ -128,7 +128,7 @@ var columnsController = {
       parameters : p,
       message : {start : {en:'Saving column...',da:'Gemmer kolonne...'},delay:300},
       $success : function() {
-        hui.ui.showMessage({text:{en:'The column is saved',da:'Kolonnen er gemt'},duration:2000,icon:'common/success'});
+        hui.ui.msg.success({text:{en:'The column is saved',da:'Kolonnen er gemt'}});
         controller._markToolbarChanged();
       }.bind(this)
     });

@@ -68,7 +68,7 @@ var controller = {
       parameters : values,
       message : {start:{en:'Saving info...',da:'Gemmer info...'},delay:300},
       $success : function() {
-        hui.ui.showMessage({text:{en:'The information is saved', da: 'Informationen er gemt'},icon:'common/success',duration:2000});
+        hui.ui.msg.success({text:{en:'The information is saved', da: 'Informationen er gemt'}});
         pageFormula.reset()
         pageProperties.hide();
       }.bind(this),
@@ -123,7 +123,7 @@ var controller = {
       url : 'data/CreateNote.php',
       parameters : {pageId : this.pageId, text : values.text, kind : values.kind},
       $success : function() {
-        hui.ui.showMessage({text:'Noten er gemt',icon:'common/success',duration:2000});
+        hui.ui.msg.success({text:'Noten er gemt'});
         this._refreshBase();
       }.bind(this)
     });
@@ -152,7 +152,7 @@ var controller = {
       url : 'data/Review.php',
       parameters : {pageId : this.pageId, accepted : accepted},
       $success : function() {
-        hui.ui.showMessage({text:'Revisionen er gemt!',icon:'common/success',duration:2000});
+        hui.ui.msg.success({text:'Revisionen er gemt!'});
         reviewPanel.hide();
         this._updateState();
         this._refreshBase();

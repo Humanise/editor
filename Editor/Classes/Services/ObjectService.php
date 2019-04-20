@@ -22,8 +22,8 @@ class ObjectService {
     if (count($ids) == 0) {
       return [];
     }
-    $sql = "select id from object where id in (" . implode(',',$ids) . ")";
-    return Database::getIds($sql);
+    $sql = "select id from object where id in (@ints(ids))";
+    return Database::getIds($sql, ['ids' => $ids]);
   }
 
   static function getInstance($type) {
@@ -67,8 +67,8 @@ class ObjectService {
   }
 
   static function addRelation($fromObject,$toObject,$kind = '') {
-    $sql = "insert into relation (from_object_id,to_object_id,kind) values (" . Database::int($fromObject->getId()) . "," . Database::int($toObject->getId()) . "," . Database::text($kind) . ")";
-    Database::insert($sql);
+    $sql = "insert into relation (from_object_id,to_object_id,kind) values (@int(from), @int(to), @text(kind))";
+    Database::insert($sql, ['from' => $fromObject->getId(), 'to' => $toObject->getId(), 'kind' => $kind]);
   }
 
   static function removeRelations($objectId) {
@@ -87,8 +87,8 @@ class ObjectService {
 
       $schema = ObjectService::_getSchemaProperties($object->getType());
       if (is_array($schema)) {
-        $sql = "delete from `" . $object->getType() . "` where object_id=" . Database::int($object->getId());
-        Database::delete($sql);
+        $sql = "delete from @name(table) where object_id = @id";
+        Database::delete($sql, ['table' => $object->getType(), 'id' => $object->getId()]);
         if (method_exists($object,'removeMore')) {
           $object->removeMore();
         }
@@ -110,6 +110,7 @@ class ObjectService {
 
   static function publish($object) {
     if (!$object->isPersistent()) {
+      Log::warn('Try to publish something not persistent');
       return;
     }
     $index = $object->getIndex();
@@ -263,8 +264,8 @@ class ObjectService {
 
     $links = '';
 
-    $sql = "select object_link.*,page.path from object_link left join page on page.id=object_link.target_value and object_link.target_type='page' where object_id=" . Database::int($object->id) . " order by position";
-    $result = Database::select($sql);
+    $sql = "select object_link.*,page.path from object_link left join page on page.id=object_link.target_value and object_link.target_type='page' where object_id = @id order by position";
+    $result = Database::select($sql, $object->id);
     while ($row = Database::next($result)) {
       $links .= '<link title="' . Strings::escapeEncodedXML($row['title']) . '"';
       if ($row['alternative'] != '') {
@@ -305,8 +306,8 @@ class ObjectService {
   }
 
   static function _getFilename($id) {
-    $sql = "select filename from file where object_id=" . Database::int($id);
-    if ($row = Database::selectFirst($sql)) {
+    $sql = "select filename from file where object_id = @id";
+    if ($row = Database::selectFirst($sql, $id)) {
       return $row['filename'];
     }
     return null;

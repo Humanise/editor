@@ -12,7 +12,7 @@ if (!isset($GLOBALS['basePath'])) {
 class TestFeeds extends UnitTestCase {
 
   function testRSS() {
-    $url = ConfigurationService::getBaseUrl() . 'Editor/Tests/Resources/twitter.rss';
+    $url = FileSystemService::join(ConfigurationService::getBaseUrl(), 'Editor/Tests/Resources/twitter.rss');
     if ($url[0] == '/') {
       $url = 'http://localhost' . $url;
     }
@@ -31,7 +31,7 @@ class TestFeeds extends UnitTestCase {
   }
 
   function testAtom() {
-    $url = ConfigurationService::getBaseUrl() . 'Editor/Tests/Resources/github.atom';
+    $url = FileSystemService::join(ConfigurationService::getBaseUrl(), 'Editor/Tests/Resources/github.atom');
     if ($url[0] == '/') {
       $url = 'http://localhost' . $url;
     }
@@ -49,7 +49,7 @@ class TestFeeds extends UnitTestCase {
   }
 
   function testNewsService() {
-    $url = ConfigurationService::getBaseUrl() . 'Editor/Tests/Resources/twitter.rss';
+    $url = FileSystemService::join(ConfigurationService::getBaseUrl(), 'Editor/Tests/Resources/twitter.rss');
     if ($url[0] == '/') {
       $url = 'http://localhost' . $url;
     }

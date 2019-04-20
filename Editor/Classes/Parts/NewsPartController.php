@@ -244,7 +244,7 @@ class NewsPartController extends PartController
       } else {
         $groupSql = " and newsgroup_news.newsgroup_id=part_news_newsgroup.newsgroup_id and part_news_newsgroup.part_id=" . $this->id;
       }
-      $sql = "select distinct object.data from object,news, newsgroup_news, part_news_newsgroup where object.id=news.object_id and news.object_id=newsgroup_news.news_id" . $groupSql . $timeSql . " order by " . $sortBy . " " . $sortDir;
+      $sql = "select distinct object.data," . $sortBy . " from object,news, newsgroup_news, part_news_newsgroup where object.id=news.object_id and news.object_id=newsgroup_news.news_id" . $groupSql . $timeSql . " order by " . $sortBy . " " . $sortDir;
     }
     return $sql;
   }

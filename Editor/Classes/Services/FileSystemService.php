@@ -121,20 +121,27 @@ class FileSystemService {
     return $out;
   }
 
-  static function join($base,$end) {
-    $out = '';
-    if (substr($base,-1) == '/') {
-      $base = substr($base,0,-1);
+  static function join() {
+    $args = func_get_args();
+    $prefix = '';
+    if (isset($args[0]) && is_string($args[0])) {
+      if (strpos($args[0], 'http://') === 0) {
+        $prefix = 'http://';
+        $args[0] = substr($args[0], 7);
+      }
+      if (strpos($args[0], 'https://') === 0) {
+        $prefix = 'https://';
+        $args[0] = substr($args[0], 8);
+      }
     }
-    if (strlen($end) > 0 && $end{0} == '/') {
-      $end = substr($end,1);
+    $paths = array();
+    foreach ($args as $arg) {
+      if (is_string($arg)) {
+        $arg = trim($arg);
+        if ($arg !== '') { $paths[] = $arg; }
+      }
     }
-    $out = $base;
-    if ($out && $end) {
-      $out .= '/';
-    }
-    $out .= $end;
-    return $out;
+    return $prefix . preg_replace('#/+#','/', join('/', $paths));
   }
 
   static function remove($path) {

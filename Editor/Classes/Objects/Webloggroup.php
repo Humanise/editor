@@ -28,20 +28,21 @@ class Webloggroup extends ModelObject {
   }
 
   function removeMore() {
-    $sql = "delete from webloggroup_weblogentry where webloggroup_id=" . Database::int($this->id);
-    Database::delete($sql);
-    $sql = "delete from weblog_webloggroup where webloggroup_id=" . Database::int($this->id);
-    Database::delete($sql);
+    $sql = "delete from webloggroup_weblogentry where webloggroup_id = @id";
+    Database::delete($sql, $this->id);
+    $sql = "delete from weblog_webloggroup where webloggroup_id = @id";
+    Database::delete($sql, $this->id);
   }
 
   static function search($query = []) {
     $out = [];
     if (isset($out['page'])) {
-      $sql = "select webloggroup_id as id from weblog_webloggroup where page_id=" . Database::int($out['page']);
+      $sql = "select webloggroup_id as id from weblog_webloggroup where page_id = @id";
+      $result = Database::select($sql, $out['page']);
     } else {
       $sql = "select id from object,webloggroup where object.id=webloggroup.object_id order by object.title";
+      $result = Database::select($sql);
     }
-    $result = Database::select($sql);
     while ($row = Database::next($result)) {
       $out[] = WeblogGroup::load($row['id']);
     }

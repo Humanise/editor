@@ -55,15 +55,19 @@ class ConfigurationService {
   }
 
   static function isCachePages() {
-    return ConfigurationService::_getConfig('cachepages',!true);
+    return ConfigurationService::_getConfig('cachepages', false);
   }
 
   static function isPublicSession() {
-    return ConfigurationService::_getConfig('publicsession',true);
+    return ConfigurationService::_getConfig('publicsession', true);
+  }
+
+  static function isEnableSiteMap() {
+    return ConfigurationService::_getConfig('sitemap', false);
   }
 
   static function getShellPath() {
-    return ConfigurationService::_getConfig('shellpath','');
+    return ConfigurationService::_getConfig('shellpath', '');
   }
 
   static function isUrlRewrite() {
@@ -129,24 +133,32 @@ class ConfigurationService {
   static function getImagePath($filename) {
     global $CONFIG,$basePath;
     if (isset($CONFIG['dataDir'])) {
-      return $basePath . $CONFIG['dataDir'] . 'images/' . $filename;
+      return FileSystemService::join($basePath, $CONFIG['dataDir'], 'images', $filename);
     }
-    return $basePath . 'images/' . $filename;
+    return FileSystemService::join($basePath, 'images', $filename);
   }
 
   static function getDataPath($path) {
     global $CONFIG,$basePath;
     if (isset($CONFIG['dataDir'])) {
-      return FileSystemService::join($basePath . $CONFIG['dataDir'], $path);
+      return FileSystemService::join($basePath, $CONFIG['dataDir'], $path);
     }
     return FileSystemService::join($basePath, $path);
+  }
+
+  static function getCachePath($path) {
+    global $CONFIG, $basePath;
+    if (isset($CONFIG['dataDir'])) {
+      return FileSystemService::join($basePath, $CONFIG['dataDir'], 'cache', $path);
+    }
+    return FileSystemService::join($basePath, 'local/cache', $path);
   }
 
   static function getDataUrl() {
     global $CONFIG,$basePath;
     $base = ConfigurationService::getBaseUrl();
     if (isset($CONFIG['dataDir'])) {
-      return $base . $CONFIG['dataDir'];
+      return FileSystemService::join($base, $CONFIG['dataDir']);
     }
     return $base;
   }

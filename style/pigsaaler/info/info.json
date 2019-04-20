@@ -1,0 +1,20 @@
+{
+  "name" : "Pigsaaler",
+  "description" : "Design for pigsaaler.dk",
+  "owner" : "The design is the property of Green Benefit",
+  "css" : [
+    "style/basic/css/shared.css",
+    "style/basic/css/effects.css",
+    "@parts",
+    "style/pigsaaler/css/overwrite.css",
+    "style/pigsaaler/css/layout.css",
+    "style/pigsaaler/css/navigation.css",
+    "style/pigsaaler/css/main.css",
+    "style/pigsaaler/css/footer.css"
+  ],
+  "js" : [
+    "style/pigsaaler/js/bestilling.js",
+    "hui/js/Alert.js",
+    "hui/js/Button.js"
+  ]
+}

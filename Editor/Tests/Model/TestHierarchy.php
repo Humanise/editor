@@ -27,6 +27,8 @@ class TestHierarchy extends UnitTestCase {
     $this->assertNotNull($loaded);
     $this->assertEqual('My test hierarchy',$loaded->getName());
     $this->assertEqual('EN',$loaded->getLanguage());
+    $this->assertNotNull($loaded->getChanged());
+    $this->assertNotNull($loaded->getPublished());
 
     $this->assertFalse($loaded->createItem([]));
     $this->assertFalse($loaded->createItem(['title' => 'My item']));

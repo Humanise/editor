@@ -80,6 +80,11 @@
           <span class="about_icon_text">Facebook</span>
         </a>
       </li>
+      <li class="about_icons_item">
+        <a class="about_icon about_icon-instagram" href="https://www.instagram.com/lottemunk1/">
+          <span class="about_icon_text">Instagram</span>
+        </a>
+      </li>
     </ul>
     <div class="about_contact">
       <p class="about_contact_item">

@@ -21,7 +21,7 @@ class DocumentTemplateController extends TemplateController
     $sql = "insert into document_row (page_id,`index`) values (@id,1)";
     $rowId = Database::insert($sql, $page->getId());
 
-    $sql = "insert into document_column (page_id,`index`,row_id) values (@int(pageId), 1, @int(rowId))";
+    $sql = "insert into document_column (page_id,`index`,row_id,width) values (@int(pageId), 1, @int(rowId), '')";
     $columnId = Database::insert($sql, ['pageId' => $page->getId(), 'rowId' => $rowId]);
   }
 

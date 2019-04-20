@@ -90,10 +90,9 @@ class MoviePartController extends PartController
     if ($analyzed) {
       $xml .= '<source type="' . $analyzed['type'] . '" id="' . $analyzed['id'] . '"/>';
     }
-    $sql = "select object.data,file.type from object,file where file.object_id = object.id and object.id=" . Database::int($part->getFileId());
-    if ($row = Database::selectFirst($sql)) {
+    if ($data = ObjectService::getObjectData($part->getFileId())) {
       $xml .= '<source type="file">';
-      $xml .= $row['data'];
+      $xml .= $data;
       $xml .= '</source>';
     }
     $xml .= '</movie>';

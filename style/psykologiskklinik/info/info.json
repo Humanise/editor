@@ -1,0 +1,13 @@
+{
+	"name" : "Psykologiskklinik",
+	"description" : "Design for psykologiskklinik.biz",
+	"owner" : "Property of Kenni Graversen",
+  "css" : [
+    "style/basic/css/shared.css",
+    "@parts",
+    "style/psykologiskklinik/css/overwrite.css",
+    "style/psykologiskklinik/css/main.css"
+  ],
+  "js" : [
+  ]
+}

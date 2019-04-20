@@ -1,0 +1,56 @@
+$target : 'any';
+
+@import '../../basic/scss/mixins';
+
+a.common {
+  color: #ddd;
+  cursor: pointer;
+}
+
+a.common span {
+  color: #0073b9;
+}
+  
+a.common:hover, a.common:hover span {
+  color: #005aae;
+}
+
+
+.common_font {
+  font-family: Georgia,"Book Antiqua", "Palatino",Times,serif;
+}
+
+.part_text {
+  font-size: 12pt;
+}
+
+.part_listing_first {
+  font-size: 12pt;
+}
+
+.part_listing {
+  font-size: 10pt;
+  color: #333;
+}
+
+.part_header {
+  color: #000;
+  font-family: 'Ovo',Georgia,"Book Antiqua", "Palatino",Times,serif;
+  font-weight: normal;
+  &-1 {
+    font-size: 24pt;
+    letter-spacing: -1px;
+  }
+  &-2, &-3, &-4, &-5, &-6 {
+    font-weight: bold;
+  }
+}
+
+@include if ((width: 720px)) {
+  .part_header {
+    &-1 {
+      font-size: 32pt;
+      letter-spacing: -1px;
+    }
+  }
+}

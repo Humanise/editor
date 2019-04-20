@@ -99,7 +99,7 @@ hui.ui.listen({
       $success : function() {
         list.refresh();
         selectionSource.refresh();
-        hui.ui.showMessage({text:{en:'The hierarchy is saved', da:'Hierarkiet er gemt'},duration:2000,icon:'common/success'});
+        hui.ui.msg.success({text:{en:'The hierarchy is saved', da:'Hierarkiet er gemt'}});
       }
     });
     this.activeHierarchy = 0;
@@ -117,12 +117,12 @@ hui.ui.listen({
       url : 'actions/DeleteHierarchy.php',
       parameters : {id : this.activeHierarchy},
       $failure : function() {
-        hui.ui.showMessage({text : {en:'The hierarchy could not be deleted', da:'Hierarkiet kunne ikke slettes'},icon : 'common/warning',duration : 2000});
+        hui.ui.msg.fail({text : {en:'The hierarchy could not be deleted', da:'Hierarkiet kunne ikke slettes'}});
       },
       $success : function() {
         list.refresh();
         selectionSource.refresh();
-        hui.ui.showMessage({text : {en:'The hierarchy has been deleted', da:'Hierarkiet er slettet'},icon : 'common/success',duration : 2000});
+        hui.ui.msg.success({text : {en:'The hierarchy has been deleted', da:'Hierarkiet er slettet'}});
       }
     });
     this.activeHierarchy = 0;
@@ -147,9 +147,9 @@ hui.ui.listen({
         if (response.success) {
           list.refresh();
           selectionSource.refresh();
-          hui.ui.showMessage({text : {en:'The menu item has been moved', da:'Menupunktet er flyttet'},icon:'common/success',duration:3000});
+          hui.ui.msg.success({text : {en:'The menu item has been moved', da:'Menupunktet er flyttet'}});
         } else {
-          hui.ui.showMessage({text:response.message,icon:'common/warning',duration:3000});
+          hui.ui.msg.fail({text:response.message});
         }
       },
     });
@@ -224,7 +224,7 @@ hui.ui.listen({
       data.targetType = 'email';
       data.targetValue = values.email;
     } else {
-      hui.ui.showMessage({text:{en:'The link is required', da:'Der skal vælges et link'},duration:2000,icon:'common/warning'});
+      hui.ui.msg.fail({text:{en:'The link is required', da:'Der skal vælges et link'}});
       hierarchyItemPage.focus();
       return;
     }
@@ -235,7 +235,7 @@ hui.ui.listen({
       $success : function() {
         list.refresh();
         selectionSource.refresh();
-        hui.ui.showMessage({text:{en:'The menu item has been saved', da:'Menupunktet er gemt'},duration:2000,icon:'common/success'});
+        hui.ui.msg.success({text:{en:'The menu item has been saved', da:'Menupunktet er gemt'}});
       }
     });
     this.activeHierarchyItem = 0;
@@ -277,12 +277,12 @@ hui.ui.listen({
       url : 'actions/DeleteHierarchyItem.php',
       parameters : {id : id},
       $failure : function() {
-        hui.ui.showMessage({text : {en:'The menu item could not be deleted', da:'Menupunktet kunne ikke slettes'},icon : 'common/warning',duration : 2000});
+        hui.ui.msg.fail({text : {en:'The menu item could not be deleted', da:'Menupunktet kunne ikke slettes'}});
       },
       $success : function() {
         list.refresh();
         selectionSource.refresh();
-        hui.ui.showMessage({text : {en:'The menu item has been deleted', da:'Menupunktet er slettet'},icon : 'common/success',duration : 2000});
+        hui.ui.msg.success({text : {en:'The menu item has been deleted', da:'Menupunktet er slettet'}});
       }
     });
     if (id==this.activeHierarchyItem) {

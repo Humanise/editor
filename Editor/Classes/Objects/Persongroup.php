@@ -28,8 +28,8 @@ class Persongroup extends ModelObject {
   }
 
   function removeMore() {
-    $sql = "delete from persongroup_person where persongroup_id=" . Database::int($this->id);
-    Database::delete($sql);
+    $sql = "delete from persongroup_person where persongroup_id = @id";
+    Database::delete($sql, $this->id);
   }
 }
 ?>

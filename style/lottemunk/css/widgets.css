@@ -106,7 +106,7 @@
 
 .about_text {
   font-size: 18px;
-  line-height: 1.4em;
+  line-height: 1.5em;
   color: #777;
   padding: 0 20px;
   margin: 0 auto 20px;
@@ -115,24 +115,26 @@
 .about_button {
   background: #733392;
   color: #fff;
-  border: none; }
+  border: none;
+  white-space: nowrap; }
   .about_button:hover {
     background: #572D6B;
     border: none; }
 
 .about_icons {
   text-align: center;
-  margin: 50px 0 0;
+  margin: 50px auto 0;
   list-style: none;
   padding: 0;
-  font-size: 0; }
+  font-size: 0;
+  max-width: 250px; }
 
 .about_icons_item {
   display: inline-block;
   vertical-align: top; }
 
 .about_icon {
-  margin: 0 5px;
+  margin: 5px;
   display: inline-block;
   width: 54px;
   height: 54px;
@@ -174,7 +176,9 @@
     text-transform: none;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale; }
+    -moz-osx-font-smoothing: grayscale;
+    top: 0.05em;
+    position: relative; }
   .about_icon-youtube:before {
     font-family: 'Lotte-Munk';
     content: "";
@@ -185,11 +189,19 @@
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale; }
+  .about_icon-instagram:before {
+    font-family: 'Lotte-Munk';
+    content: "";
+    speak: none;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; }
   .about_icon:before {
     font-size: 30px;
     line-height: 54px; }
-  .about_icon-wikipedia:before {
-    line-height: 60px; }
   .about_icon-youtube:before {
     font-size: 32px;
     line-height: 52px; }
@@ -236,6 +248,10 @@
 .about_phone strong {
   color: #333; }
 
+@media screen and (min-width: 375px) {
+  .about_icons {
+    max-width: none; } }
+
 @media screen and (min-width: 600px) {
   .about_title {
     font-size: 36pt; }
@@ -263,18 +279,25 @@
       height: 200px;
       left: 40px; }
   .about_icon {
-    margin: 0 0 0 10px; }
+    margin: 0 0 0 10px;
+    width: 48px;
+    height: 48px; }
+    .about_icon:before {
+      font-size: 26px;
+      line-height: 48px; }
   .about_button {
-    padding: 0 15px; }
+    padding: 0 15px;
+    font-size: 18px; }
   .about_text {
     padding: 0;
     font-size: 18px;
     font-weight: 200;
-    margin-bottom: 30px; }
+    margin-bottom: 40px; }
   .about_icons {
     margin: 0;
     text-align: right;
-    margin-top: -48px; }
+    margin-top: -43px;
+    margin-right: -10px; }
   .about_contact {
     width: 240px;
     font-size: .9em;
@@ -296,8 +319,6 @@
     .about_icon:before {
       font-size: 30px;
       line-height: 60px; }
-    .about_icon-wikipedia:before {
-      line-height: 66px; }
     .about_icon-youtube:before {
       font-size: 36px;
       line-height: 58px; } }
@@ -319,7 +340,7 @@
     font-size: 1em; }
   .about_text {
     font-size: 24px;
-    margin-bottom: 30px; } }
+    margin-bottom: 40px; } }
 
 .photography {
   text-align: center;
@@ -451,10 +472,8 @@
   .movies_item:first-child .movies_video {
     padding-bottom: 55%; }
     .movies_item:first-child .movies_video:before {
-      background-position: 60% 50%;
-      background-size: 50%;
-      border-radius: 50%;
-      border: 2px solid rgba(255, 255, 255, 0.5);
+      background-image: url('data:image/svg+xml,<svg viewBox="0 0 144 144" xmlns="http://www.w3.org/2000/svg"><circle cx="72" cy="72" r="70" fill="rgba(0, 0, 0, .2)" stroke="rgba(255, 255, 255, .4)" stroke-width="1.5"/><path d="M48,36v74L109,74L48,36z" fill="rgba(255,255,255, .9)"/></svg>');
+      background-size: contain;
       width: 20%;
       height: auto;
       padding-bottom: 20%;
@@ -462,8 +481,7 @@
       right: auto;
       top: 50%;
       left: 50%;
-      margin: -10% 0 0 -10%;
-      opacity: .8; }
+      margin: -10% 0 0 -10%; }
 
 .movies_iframe {
   position: absolute;

@@ -12,7 +12,6 @@ if (!isset($GLOBALS['basePath'])) {
 class TestLogin extends UnitTestCase {
 
     function testNotAllowed() {
-        global $baseUrl, $basePath;
         $url = ConfigurationService::getCompleteBaseUrl() . 'Editor/Services/Core/Authentication.php';
         $response = HttpClient::send(new WebRequest($url));
         $this->assertEqual(200,$response->getStatusCode());
@@ -29,7 +28,6 @@ class TestLogin extends UnitTestCase {
     }
 
     function testSuccess() {
-        global $baseUrl, $basePath;
         $username = Strings::generate(30);
         $password = Strings::generate(30);
         $user = new User();
@@ -54,7 +52,6 @@ class TestLogin extends UnitTestCase {
         $this->assertNotNull($response->getHeader('Set-Cookie'));
         $cookie = $response->getHeader('Set-Cookie');
         $cookie = substr($cookie,0,strpos($cookie,';'));
-
         $url = ConfigurationService::getCompleteBaseUrl() . 'Editor/index.php';
         $request = new WebRequest($url);
         $request->addHeader('Cookie',$cookie);

@@ -81,7 +81,7 @@ hui.ui.listen({
   $click$synchronizeSource : function() {
     var item = list.getFirstSelection();
     if (item.kind=='source') {
-      hui.ui.showMessage({text:{en:'Synchronizing source...',da:'Synkroniserer kilde...'}});
+      hui.ui.msg({text:{en:'Synchronizing source...',da:'Synkroniserer kilde...'}, busy:true});
       hui.ui.request({
         url : 'actions/SynchronizeSource.php',
         parameters : {id:item.id},
@@ -90,9 +90,8 @@ hui.ui.listen({
           list.refresh();
         },
         $failure : function() {
-          hui.ui.showMessage({
-            text:{en:'Synchronization failed',da:'Synkronisering fejlede'},
-            duration:2000
+          hui.ui.msg.fail({
+            text:{en:'Synchronization failed',da:'Synkronisering fejlede'}
           });
         }
       });

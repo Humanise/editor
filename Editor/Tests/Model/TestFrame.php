@@ -36,6 +36,24 @@ class TestFrame extends UnitTestCase {
     $this->assertEqual($loaded->getHierarchyId(),$hierarchy->getId());
     $this->assertTrue($loaded->getChanged() <= time());
 
+    FrameService::replaceLinks($obj,[(object)['kind'=>'email','value'=>'test@mail.com','text'=>'Mail me']],[]);
+
+    $topLinks = FrameService::getLinks($obj, 'top');
+    $this->assertEqual(1, count($topLinks));
+    $this->assertEqual('test@mail.com', $topLinks[0]['value']);
+    $this->assertEqual('Mail me', $topLinks[0]['text']);
+
+    $this->assertEqual(0, count(FrameService::getLinks($obj, 'bottom')));
+
+    FrameService::replaceLinks($obj,[],[(object)['kind'=>'url','value'=>'http://domain.com/','text'=>'Visit me']]);
+
+    $bottomLinks = FrameService::getLinks($obj, 'bottom');
+    $this->assertEqual(1, count($bottomLinks));
+    $this->assertEqual('http://domain.com/', $bottomLinks[0]['value']);
+    $this->assertEqual('Visit me', $bottomLinks[0]['text']);
+
+    $this->assertEqual(0, count(FrameService::getLinks($obj, 'top')));
+
     $loaded->remove();
 
     $hierarchy->remove();

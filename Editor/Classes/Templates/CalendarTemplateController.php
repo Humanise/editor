@@ -26,6 +26,38 @@ class CalendarTemplateController extends TemplateController
     Database::delete($sql, $page->getId());
   }
 
+  function update($data) {
+    $sql = "update calendarviewer set title = @text(title), weekview_starthour = @text(hour) where page_id = @id";
+    Database::update($sql, ['id' => $data->id, 'title' => $data->title, 'hour' => $data->weekview_starthour]);
+
+    $sql = "delete from calendarviewer_object where page_id = @id";
+    Database::delete($sql, $data->id);
+    foreach ($data->calendar as $id) {
+      $sql = "insert into calendarviewer_object (page_id,object_id) values (@int(pageId), @int(objectId))";
+      Database::insert($sql, ['pageId' => $data->id, 'objectId' => $id]);
+    }
+    foreach ($data->calendarsource as $id) {
+      $sql = "insert into calendarviewer_object (page_id,object_id) values (@int(pageId), @int(objectId))";
+      Database::insert($sql, ['pageId' => $data->id, 'objectId' => $id]);
+    }
+  }
+
+  function load($id) {
+    $sql = "select * from calendarviewer where page_id = @id";
+    if ($row = Database::selectFirst($sql, $id)) {
+      $sql = "select object.id,object.type from calendarviewer_object,object where `calendarviewer_object`.`object_id`=object.`id` and calendarviewer_object.page_id = @id";
+      $all = Database::selectAll($sql, $id);
+      foreach ($all as $item) {
+        $type = $item['type'];
+        if (!isset($row[$type])) {
+          $row[$type] = [];
+        }
+        $row[$type][] = intval($item['id']);
+      }
+      return $row;
+    }
+  }
+
   function build($id) {
     $data = '<calendar xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/calendar/1.0/">';
     $data .= '<!--dynamic-->';

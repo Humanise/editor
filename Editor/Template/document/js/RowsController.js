@@ -67,7 +67,7 @@ var rowsController = {
       parameters : values,
       message : {start : {en:'Saving row...',da:'Gemmer række...'},delay:300},
       $success : function() {
-        hui.ui.showMessage({text:{en:'The row is saved',da:'Rækken er gemt'},duration:2000,icon:'common/success'});
+        hui.ui.msg.success({text:{en:'The row is saved',da:'Rækken er gemt'}});
         controller._markToolbarChanged();
       }.bind(this)
     });

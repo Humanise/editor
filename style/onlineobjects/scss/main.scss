@@ -1,0 +1,36 @@
+$target: async;
+@import 'shared';
+
+@import 'parts/header';
+@import 'parts/submenu';
+
+@include if {
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: $font;
+    font-weight: 300;
+  }
+
+  .layout {
+    margin: 0 auto;
+    max-width: 1004px;
+    padding: 0 20px;
+    text-align: left;
+
+    &_content {
+      padding: 20px 0 20px 0;
+      overflow: hidden;
+      min-height: 300px;
+    }
+  }
+}
+
+
+@include if (( width: 600px )) {
+
+  .layout {
+    padding: 0 20px;
+  }
+
+}

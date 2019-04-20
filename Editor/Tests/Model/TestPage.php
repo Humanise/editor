@@ -225,8 +225,15 @@ class TestPage extends UnitTestCase {
     $news = new News();
     $news->setTitle('Unit test news article');
     $news->save();
-    ObjectLinkService::addLink($news,'Read it','This is the alternative',null,'page',$toPage->getId());
+    ObjectLinkService::addLink($news,'Read it','This is the alternative','page',$toPage->getId());
     $news->publish();
+
+    $links = ObjectLinkService::search(['objectId' => $news->id]);
+    $this->assertEqual(count($links),1);
+    $this->assertEqual('Read it', $links[0]->getText());
+    $this->assertEqual('This is the alternative', $links[0]->getAlternative());
+    $this->assertEqual('page', $links[0]->getType());
+    $this->assertEqual($toPage->getId(), $links[0]->getValue());
 
     // Check that the news is not changed
     $this->assertFalse(ObjectService::isChanged($news->getId()));

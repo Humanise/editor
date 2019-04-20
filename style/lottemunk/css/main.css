@@ -58,6 +58,16 @@
     color: #733392;
     font-weight: 600; }
 
+@media screen and (min-width: 375px) {
+  .header_menu_link {
+    padding: 0 7px;
+    font-size: 18px; } }
+
+@media screen and (min-width: 400px) {
+  .header_menu_link {
+    padding: 0 10px;
+    font-size: 18px; } }
+
 @media screen and (min-width: 600px) {
   .header_title {
     font-size: 52px; }

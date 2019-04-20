@@ -54,11 +54,11 @@ class DatabaseUtil {
     $hash = md5_file($basePath . '/Editor/Info/Database.php');
     $sql = "select `value` from `setting` where `domain`='system' and `subdomain`='database' and `key`='database-hash'";
     if ($row = Database::selectFirst($sql)) {
-      $sql = "update `setting` set `value`=" . Database::text($hash) . " where `domain`='system' and `subdomain`='database' and `key`='database-hash'";
-      Database::update($sql);
+      $sql = "update `setting` set `value` = @text(value) where `domain`='system' and `subdomain`='database' and `key`='database-hash'";
+      Database::update($sql, ['value' => $hash]);
     } else {
-      $sql = "insert into `setting` (`domain`,`subdomain`,`key`,`value`) values ('system','database','database-hash'," . Database::text($hash) . ")";
-      Database::insert($sql);
+      $sql = "insert into `setting` (`domain`,`subdomain`,`key`,`value`) values ('system','database','database-hash',@text(value))";
+      Database::insert($sql, ['value' => $hash]);
     }
   }
 
@@ -119,23 +119,23 @@ class DatabaseUtil {
     $commands = [];
     if (array_key_exists($table,$databaseTables)) {
       $expectedColumns = $databaseTables[$table];
-
+      $mods = [];
       // Search for unknown columns
       foreach ($columns as $col) {
         if(!DatabaseUtil::findColumnInColumns($col[0],$expectedColumns)) {
-          $commands[] = "alter table `" . $table . "` DROP `" . $col[0] . "`";
+          $mod[] = "DROP `" . $col[0] . "`";
         }
       }
 
       foreach ($expectedColumns as $col) {
         if ($fields = DatabaseUtil::findColumnInColumns($col[0],$columns)) {
           if ($fields['Type'] != $col[1] || ($fields['Null'] == 'YES' && $col[2] != 'YES') || $fields['Default'] != $col[4]) {
-            $sql = "ALTER TABLE `" . $table . "` CHANGE `" . $col[0] . "` `" . $col[0] . "` " . $col[1] . " " . ($col[2] == 'YES' ? "NULL" : "NOT NULL") . " DEFAULT " . ($col[4] == '' ? "NULL" : "'" . $col['4'] . "'");
-            $commands[] = $sql;
+            $sql = "CHANGE `" . $col[0] . "` `" . $col[0] . "` " . $col[1] . " " . ($col[2] == 'YES' ? "NULL" : "NOT NULL") . " DEFAULT " . ($col[4] == '' ? "NULL" : "'" . $col['4'] . "'");
+            $mods[] = $sql;
           }
         }
         else {
-          $sql = "alter table `" . $table . "` ADD `" . $col[0] . "` " . $col[1];
+          $sql = "ADD `" . $col[0] . "` " . $col[1];
           if ($col[2] == 'YES') {
             $sql .= " NULL";
           }
@@ -151,8 +151,11 @@ class DatabaseUtil {
           if ($col[3] != '') {
             $sql .= " PRIMARY KEY";
           }
-          $commands[] = $sql;
+          $mods[] = $sql;
         }
+      }
+      if ($mods) {
+        $commands[] = "alter table `" . $table . "` " . join($mods, ', ');
       }
     }
     else {

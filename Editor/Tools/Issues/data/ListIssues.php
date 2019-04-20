@@ -28,18 +28,17 @@ function listFeedback() {
   $writer->startList(['checkboxes' => true]);
 
   $writer->startHeaders()->
-    header()->
-    header(['title' => 'Status', 'width' => 1])->
+    header('Name')->
+    header('Email')->
+    header('Message')->
     header(['title' => 'Oprettet', 'width' => 1])->
   endHeaders();
 
   foreach($list as $item) {
     $writer->startRow(['id' => $item->getId(), 'kind' => 'feedback'])->
-      startCell()->
-        startLine()->startStrong()->text($item->getTitle())->endStrong()->endLine()->
-        startLine(['top' => 3])->text($item->getNote())->endLine()->
-      endCell()->
-      startCell()->text('?')->endCell()->
+      startCell()->text($item->getName())->endCell()->
+      startCell()->text($item->getEmail())->endCell()->
+      startCell()->text($item->getMessage())->endCell()->
       startCell(['wrap' => false, 'dimmed' => true])->text(Dates::formatFuzzy($item->getCreated()))->endCell()->
     endRow();
   }

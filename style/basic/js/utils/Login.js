@@ -76,7 +76,7 @@ hui.on(function() {
 
   op.login = function(username,password) {
     if (hui.isBlank(username) || hui.isBlank(password)) {
-      hui.ui.showMessage({text:{en:'Please fill in both fields',da:'Udfyld venligst begge felter'},duration:3000});
+      hui.ui.msg.fail({text:{en:'Please fill in both fields',da:'Udfyld venligst begge felter'}});
       this.loginForm.focus();
       return;
     }
@@ -87,14 +87,14 @@ hui.on(function() {
       parameters : {username:username,password:password},
       $object : function(response) {
         if (response.success) {
-          hui.ui.showMessage({text:{en:'You are now logged in',da:'Du er nu logget ind'},icon:'common/success',duration:4000});
+          hui.ui.msg.success({text:{en:'You are now logged in',da:'Du er nu logget ind'}});
           op.goToEditor();
         } else {
-          hui.ui.showMessage({text:{en:'The user was not found',da:'Brugeren blev ikke fundet'},icon:'common/warning',duration:4000});
+          hui.ui.msg.fail({text:{en:'The user was not found',da:'Brugeren blev ikke fundet'}});
         }
       },
       $failure : function() {
-        hui.ui.showMessage({text:{en:'An internal error occurred',da:'Der skete en fejl internt i systemet'},icon:'common/warning',duration:4000});
+        hui.ui.msg.fail({text:{en:'An internal error occurred',da:'Der skete en fejl internt i systemet'}});
       }
     });
   }

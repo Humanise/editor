@@ -15,21 +15,21 @@ class SitemapTemplateController extends TemplateController
   }
 
   function create($page) {
-    $sql = "insert into sitemap (page_id,title) values (" . Database::int($page->getId()) . "," . Database::text($page->getTitle()) . ")";
-    Database::insert($sql);
+    $sql = "insert into sitemap (page_id,title) values (@id, @text(title))";
+    Database::insert($sql, ['id' => $page->getId(), 'title' => $page->getTitle()]);
   }
 
   function delete($page) {
-    $sql = "delete from sitemap where page_id=" . Database::int($page->getId());
-    Database::delete($sql);
-    $sql = "delete from sitemap_group where page_id=" . Database::int($page->getId());
-    Database::delete($sql);
+    $sql = "delete from sitemap where page_id = @id";
+    Database::delete($sql, $page->getId());
+    $sql = "delete from sitemap_group where page_id = @id";
+    Database::delete($sql, $page->getId());
   }
 
     function build($id) {
     $data = '<sitemap xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/sitemap/1.0/">';
-    $sql = "select * from sitemap where page_id=" . Database::int($this->id);
-    if ($row = Database::selectFirst($sql)) {
+    $sql = "select * from sitemap where page_id = @id";
+    if ($row = Database::selectFirst($sql, $this->id)) {
       if ($row['title'] != '') {
         $data .= '<title>' . Strings::escapeXML($row['title']) . '</title>';
       }
@@ -38,8 +38,8 @@ class SitemapTemplateController extends TemplateController
       }
     }
 
-    $sql = "select sitemap_group.title,hierarchy.data from sitemap_group left join hierarchy on sitemap_group.hierarchy_id=hierarchy.id where page_id=" . Database::int($this->id) . " order by sitemap_group.position";
-    $result = Database::select($sql);
+    $sql = "select sitemap_group.title,hierarchy.data from sitemap_group left join hierarchy on sitemap_group.hierarchy_id=hierarchy.id where page_id = @id order by sitemap_group.position";
+    $result = Database::select($sql, $this->id);
     while ($row = Database::next($result)) {
         $data .= '<group title="' . Strings::escapeXML($row['title']) . '">' .
         $row['data'] .

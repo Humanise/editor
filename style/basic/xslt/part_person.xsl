@@ -30,7 +30,7 @@
           <xsl:attribute name="href">
             <xsl:value-of select="$path"/><xsl:text>services/images/?id=</xsl:text><xsl:value-of select="p:image/o:object/@id"/>
           </xsl:attribute>
-          <img src="{$path}services/images/?id={p:image/o:object/@id}&amp;width=60&amp;height=80&amp;method=crop" alt="" id="{generate-id(p:image/o:object)}"/>
+          <img src="{$path}services/images/?id={p:image/o:object/@id}&amp;width=60&amp;height=80&amp;method=crop" alt=""/>
         </xsl:if>
         </a>
       </td>

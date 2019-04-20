@@ -292,7 +292,7 @@ class DocumentTemplateEditor
     }
     Database::free($result);
 
-    $sql = "insert into document_column (page_id,row_id,`index`) values (@int(pageId), @int(rowId), @int(index))";
+    $sql = "insert into document_column (page_id,row_id,`index`,width) values (@int(pageId), @int(rowId), @int(index),'')";
     $columnId = Database::insert($sql, ['pageId' => $pageId, 'rowId' => $rowId, 'index' => $index]);
 
     DocumentTemplateEditor::fixStructure($pageId);

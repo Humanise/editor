@@ -14,7 +14,7 @@ require_once(FileSystemService::getFullPath('Editor/Classes/Tests/AbstractObject
 class TestService {
 
   static function getResourceUrl($name) {
-    $url = ConfigurationService::getBaseUrl() . 'Editor/Tests/Resources/' . $name;
+    $url = FileSystemService::join(ConfigurationService::getBaseUrl(), 'Editor/Tests/Resources' , $name);
     if ($url[0] == '/') {
       $url = 'http://localhost' . $url;
     }
@@ -39,7 +39,9 @@ class TestService {
   static function runTest($test,$reporter = null) {
     $path = FileSystemService::getFullPath('Editor/Tests/' . $test . '.php');
     $test = new TestSuite($test);
-    $test->addFile($path);
+    if (file_exists($path)) {
+      $test->addFile($path);
+    }
     if ($reporter == null) {
       $reporter = new HtmlReporter();
     }

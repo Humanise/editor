@@ -18,7 +18,7 @@ hui.on(function() {
         var validation = info.validation;
         if (validation.required) {
           if (hui.isBlank(input.value)) {
-            hui.ui.showMessage({text : validation.message,duration:2000});
+            hui.ui.msg.fail({text : validation.message});
             input.focus();
             return;
           }
@@ -26,7 +26,7 @@ hui.on(function() {
         if (validation.syntax=='email' && !hui.isBlank(input.value)) {
           var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\\n".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA\n-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
           if (!re.test(input.value)) {
-            hui.ui.showMessage({text : validation.message ,duration:2000});
+            hui.ui.msg.fail({text : validation.message});
             input.focus();
             return;
           }
@@ -42,7 +42,7 @@ hui.on(function() {
         id : this.id,
         fields : fields
       }
-      hui.ui.showMessage({text:'Sender besked...',busy:true});
+      hui.ui.msg({text:'Sender besked...',busy:true});
       hui.ui.request({
         url : url,
         json : {data:data},
@@ -51,11 +51,11 @@ hui.on(function() {
       });
     },
     _success : function() {
-      hui.ui.showMessage({text:'Beskeden er nu sendt',icon:'common/success',duration:2000});
+      hui.ui.msg.success({text:'Beskeden er nu sendt'});
       this.element.reset();
     },
     _failure : function() {
-      hui.ui.showMessage({text:'Beskeden kunne desværre ikke afleveres',duration:5000});
+      hui.ui.msg.fail({text:'Beskeden kunne desværre ikke afleveres'});
     }
   }
   hui.define('op.part.Formula',op.part.Formula);

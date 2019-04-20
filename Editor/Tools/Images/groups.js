@@ -1,7 +1,7 @@
 hui.ui.listen({
   $click$groupInfo : function() {
     var item = selector.getValue();
-    this._openGroup(item.value);    
+    this._openGroup(item.value);
   },
   $click$newGroup : function() {
     this.groupId = null;
@@ -18,7 +18,7 @@ hui.ui.listen({
   $click$saveGroup : function() {
     var values = groupFormula.getValues();
     if (hui.isBlank(values.title)) {
-      hui.ui.showMessage({text:{en:'The title is required', da:'Titlen er krævet'},duration:2000});
+      hui.ui.msg.fail({text:{en:'The title is required', da:'Titlen er krævet'}});
       groupFormula.focus();
     } else {
       values.id = this.groupId;

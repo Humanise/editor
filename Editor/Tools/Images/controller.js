@@ -33,7 +33,7 @@ hui.ui.listen({
         imagesSource.refresh();
         listSource.refresh();
         groupSource.refresh();
-        hui.ui.showMessage({text:{en:'The image has been added to the group',da:'Billedet er blevet tilføjet til gruppen'},icon:'common/success',duration:2000})
+        hui.ui.msg.success({text:{en:'The image has been added to the group',da:'Billedet er blevet tilføjet til gruppen'}})
       }
     });
   },
@@ -53,7 +53,7 @@ hui.ui.listen({
 
   $select$selector : function(item) {
     list.resetState();
-    if (item.value=='pages' || item.value=='products' || item.value=='persons') {
+    if (item.value=='pages' || item.value=='products' || item.value=='persons' || item.value=='check') {
       hui.ui.changeState('list');
       viewSwitch.setValue('list');
     } else {
@@ -140,7 +140,7 @@ hui.ui.listen({
         listSource.refresh();
         groupSource.refresh();
         subsetSource.refresh();
-        hui.ui.showMessage({text:{en:'The image has been deleted', da:'Billedet er nu slettet'},icon:'common/success',duration:2000});
+        hui.ui.msg.success({text:{en:'The image has been deleted', da:'Billedet er nu slettet'}});
       }
     });
     return;
@@ -189,7 +189,7 @@ hui.ui.listen({
         imagesSource.refresh();
         listSource.refresh();
         groupSource.refresh();
-        hui.ui.showMessage({text:{en:'The image has been saved', da:'Billedet er gemt'},icon:'common/success',duration:2000});
+        hui.ui.msg.success({text:{en:'The image has been saved', da:'Billedet er gemt'}});
       }
     });
     self._cancelImage();
@@ -226,7 +226,7 @@ hui.ui.listen({
         listSource.refresh();
         groupSource.refresh();
         subsetSource.refresh();
-        hui.ui.showMessage({text:{en:'The image has been deleted',da:'Billedet er slettet'},icon:'common/success',duration:2000});
+        hui.ui.msg.success({text:{en:'The image has been deleted',da:'Billedet er slettet'}});
       }
     });
   },

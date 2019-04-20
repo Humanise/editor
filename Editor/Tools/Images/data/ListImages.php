@@ -14,6 +14,8 @@ if ($subset == 'pages') {
   listProducts();
 } else if ($subset == 'persons') {
   listPersons();
+} else if ($subset == 'check') {
+  listCheck();
 } else if ($group !== null && $group > 0) {
   listGroup($group);
 } else {
@@ -269,6 +271,45 @@ function listPages() {
       endCell()->
       startCell()->text($parts[$row['part']]['name']['da'])->endCell()->
     endRow();
+  }
+
+  $writer->endList();
+}
+
+function listCheck() {
+  $text = Request::getString('text');
+  $writer = new ListWriter();
+
+  $writer->
+  startList(['unicode' => true])->
+    startHeaders()->
+      header(['title' => ['Image', 'da' => 'Billede'], 'width' => 30])->
+      header(['title' => ['File', 'da' => 'Fil'], 'width' => 30])->
+      header(['title' => ['Problems', 'da' => 'Problemer']])->
+    endHeaders();
+
+  $query = Query::after('image')->withText($text)->orderBy('title')->withWindowSize(99999);
+  $result = $query->search()->getList();
+
+  foreach ($result as $row) {
+    $path = ConfigurationService::getImagePath($row->getFilename());
+    $writer->
+    startRow(['kind' => 'image', 'id' => $row->getId(), 'icon' => 'common/image', 'title' => $row->getTitle()])->
+      startCell(['icon' => 'common/image'])->
+        startLine()->startWrap()->text($row->getTitle())->endWrap()->endLine()->
+      endCell()->
+      startCell(['icon' => 'file/generic', 'wrap' => true])->startWrap()->text($row->getFilename())->endWrap()->
+      endCell()->
+      startCell();
+    $problems = [];
+    if (!file_exists($path)) {
+      $problems[] = 'File not found';
+    }
+    else if (filesize($path) !== $row->getSize()) {
+      $problems[] = 'Size is different';
+    }
+    $writer->text(join($problems, ', '));
+    $writer->endCell()->endRow();
   }
 
   $writer->endList();

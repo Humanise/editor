@@ -17,13 +17,13 @@ class HierarchyService {
     }
     $data = '<hierarchy xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/hierarchy/1.0/"/>';
 
-    $sql = "insert into hierarchy (name,language,data,changed,published) values (" .
-    Database::text($hierarchy->getName()) . "," .
-    Database::text($hierarchy->getLanguage()) . "," .
-    Database::text($data) . "," .
-    "now(),now()" .
-    ")";
-    $hierarchy->setId(Database::insert($sql));
+    $sql = "insert into hierarchy (name,language,data,changed,published)" .
+      " values (@text(name),@text(language),@text(data),now(),now())";
+    $hierarchy->setId(Database::insert($sql, [
+      'name' => $hierarchy->getName(),
+      'language' => $hierarchy->getLanguage(),
+      'data' => $data
+    ]));
   }
 
   static function getHierarchyItemForPage($page) {
@@ -37,10 +37,14 @@ class HierarchyService {
       return;
     }
     $sql = "update hierarchy set " .
-      "name=" . Database::text($hierarchy->getName()) .
-      ",language=" . Database::text($hierarchy->getLanguage()) .
-      " where id=" . Database::int($hierarchy->getId());
-    $result = Database::update($sql);
+      "name = @text(name)" .
+      ",language = @text(language)" .
+      " where id = @id";
+    $result = Database::update($sql, [
+      'name' => $hierarchy->getName(),
+      'language' => $hierarchy->getLanguage(),
+      'id' => $hierarchy->getId()
+    ]);
     EventService::fireEvent('update','hierarchy',null,$hierarchy->getId());
     return $result;
   }
@@ -117,8 +121,8 @@ class HierarchyService {
     }
 
   static function markHierarchyChanged($id) {
-    $sql = "update hierarchy set changed=now() where id=" . Database::int($id);
-    Database::update($sql);
+    $sql = "update hierarchy set changed=now() where id = @id";
+    Database::update($sql, $id);
   }
 
   static function createItem($options) {
@@ -146,14 +150,14 @@ class HierarchyService {
       Log::debug('hierarchyId not set');
       return false;
     }
-    $sql = "select id from hierarchy where id=" . Database::int($options['hierarchyId']);
-    if (!$row = Database::selectFirst($sql)) {
+    $sql = "select id from hierarchy where id = @id";
+    if (!$row = Database::selectFirst($sql, $options['hierarchyId'])) {
       Log::debug('hierarchy not found');
       return false;
     }
     if ($options['parent'] > 0) {
-      $sql = "select id from hierarchy_item where id=" . Database::int($options['parent']) . " and hierarchy_id=" . Database::int($options['hierarchyId']);
-      if (!$row = Database::selectFirst($sql)) {
+      $sql = "select id from hierarchy_item where id = @int(parent) and hierarchy_id = @int(hierarchy)";
+      if (!$row = Database::selectFirst($sql, ['parent' => $options['parent'], 'hierarchy' => $options['hierarchyId']])) {
         Log::debug('parent not found');
         return false;
       }
@@ -163,7 +167,8 @@ class HierarchyService {
       $sql = "select id, `index` from hierarchy_item where `index` >= @int(index) and parent = @int(parent) and hierarchy_id = @int(hierarchy) order by `index`";
       $result = Database::select($sql,['index' => $options['index'], 'parent' => $options['parent'], 'hierarchy' => $options['hierarchyId']]);
       while ($row = Database::next($result)) {
-        Database::update("update hierarchy_item set `index`=@int(index) where `id`=@int(id)",[
+        $sql = "update hierarchy_item set `index`=@int(index) where `id`=@int(id)";
+        Database::update($sql,[
           'id' => $row['id'],
           'index' => intval($row['index']) + 1
         ]);
@@ -171,8 +176,8 @@ class HierarchyService {
       Database::free($result);
       $index = $options['index'];
     } else {
-      $sql = "select max(`index`) as `index` from hierarchy_item where parent=" . Database::int($options['parent']) . " and hierarchy_id=" . Database::int($options['hierarchyId']);
-      if ($row = Database::selectFirst($sql)) {
+      $sql = "select max(`index`) as `index` from hierarchy_item where parent = @int(parent) and hierarchy_id = @int(hierarchy)";
+      if ($row = Database::selectFirst($sql, ['parent' => $options['parent'], 'hierarchy' => $options['hierarchyId']])) {
         $index = $row['index'] + 1;
       } else {
         $index = 1;
@@ -187,17 +192,20 @@ class HierarchyService {
       $target_value = $options['targetValue'];
     }
 
-    $sql = "insert into hierarchy_item (title,hidden,type,hierarchy_id,parent,`index`,target_type,target_id,target_value) values (" .
-    Database::text($options['title']) .
-    "," . Database::boolean($options['hidden']) .
-    ",'item'" .
-    "," . Database::int(@$options['hierarchyId']) .
-    "," . Database::int($options['parent']) .
-    "," . Database::int($index) .
-    "," . Database::text($options['targetType']) .
-    "," . Database::int($target_id) .
-    "," . Database::text($target_value) .
-    ")";
+    $sql = [
+      'table' => 'hierarchy_item',
+      'values' => [
+        'title' => ['text' => $options['title']],
+        'hidden' => ['boolean' => $options['hidden']],
+        'type' => ['text' => 'item'],
+        'hierarchy_id' => ['int' => $options['hierarchyId']],
+        'parent' => ['int' => $options['parent']],
+        'index' => ['int' => $index],
+        'target_type' => ['text' => $options['targetType']],
+        'target_id' => ['int' => $target_id],
+        'target_value' => ['text' => $target_value]
+      ]
+    ];
     $id = Database::insert($sql);
     HierarchyService::markHierarchyChanged($options['hierarchyId']);
     EventService::fireEvent('update','hierarchy',null,$options['hierarchyId']);
@@ -207,15 +215,15 @@ class HierarchyService {
   static function deleteItem($id) {
 
     // Load info about item
-    $sql = "select * from hierarchy_item where id=" . Database::int($id);
-    $row = Database::selectFirst($sql);
+    $sql = "select * from hierarchy_item where id = @id";
+    $row = Database::selectFirst($sql, $id);
     if (!$row) {
       Log::debug('Cannot find item');
       return null;
     }
     // Check that no children exists
-    $sql = "select * from hierarchy_item where parent=" . Database::int($id);
-    if (Database::selectFirst($sql)) {
+    $sql = "select * from hierarchy_item where parent = @id";
+    if (Database::selectFirst($sql, $id)) {
       Log::debug('Will not delete item with parents');
       return null;
     }
@@ -223,24 +231,24 @@ class HierarchyService {
     $hierarchyId = $row['hierarchy_id'];
 
     // Delete item
-    $sql = "delete from hierarchy_item where id=" . Database::int($id);
-    Database::delete($sql);
+    $sql = "delete from hierarchy_item where id = @id";
+    Database::delete($sql, $id);
 
     // Fix positions
-    $sql = "select id from hierarchy_item where parent=" . Database::int($parent) . " and hierarchy_id=" . Database::int($hierarchyId) . " order by `index`";
-    $result = Database::select($sql);
+    $sql = "select id from hierarchy_item where parent = @int(parent) and hierarchy_id = @int(hierarchy) order by `index`";
+    $result = Database::select($sql, ['parent' => $parent, 'hierarchy' => $hierarchyId]);
 
     $index = 1;
     while ($row = Database::next($result)) {
-      $sql = "update hierarchy_item set `index`=" . Database::int($index) . " where id=" . Database::int($row['id']);
-      Database::update($sql);
+      $sql = "update hierarchy_item set `index` = @int(index) where id = @int(id)";
+      Database::update($sql, ['index' => $index, 'id' => $row['id']]);
       $index++;
     }
     Database::free($result);
 
     // Mark hierarchy as changed
-    $sql = "update hierarchy set changed=now() where id=" . Database::int($hierarchyId);
-    Database::update($sql);
+    $sql = "update hierarchy set changed=now() where id = @id";
+    Database::update($sql, $hierarchyId);
 
     EventService::fireEvent('update','hierarchy',null,$hierarchyId);
     return $hierarchyId;
@@ -253,10 +261,10 @@ class HierarchyService {
     $output = "";
     $sql = "select hierarchy_item.*,page.disabled,page.path from hierarchy_item" .
       " left join page on page.id = hierarchy_item.target_id and (hierarchy_item.target_type='page' or hierarchy_item.target_type='pageref')" .
-      " where parent=" . Database::int($parent) .
-      " and hierarchy_id=" . Database::int($id) .
+      " where parent = @int(parent)" .
+      " and hierarchy_id = @id" .
       " order by `index`";
-    $result = Database::select($sql);
+    $result = Database::select($sql, ['parent' => $parent, 'id' => $id]);
     while ($row = Database::next($result)) {
       if ($row['disabled'] != 1 || $allowDisabled) {
         $output .= '<item title="' . Strings::escapeEncodedXML($row['title']) .

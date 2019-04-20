@@ -1,14 +1,14 @@
 var partController = {
     form : null,
-    
-	$ready : function() {
-		fileUpload.addDropTarget({
-			element : hui.get('part_movie_container'),
-			hoverClass : 'editor_drop',
-			$drop : function() {
-				fileUploadWindow.show();
-			}
-		});
+
+  $ready : function() {
+    fileUpload.addDropTarget({
+      element : hui.get('part_movie_container'),
+      hoverClass : 'editor_drop',
+      $drop : function() {
+        fileUploadWindow.show();
+      }
+    });
         this.form = document.forms.PartForm;
         movieInfoWindow.show();
         var values = hui.form.getValues(this.form);
@@ -20,53 +20,53 @@ var partController = {
         }
         hui.log(values);
         movieInfoFormula.setValues(values);
-	},
-	$resolveImageUrl : function(img,width,height) {
-		return '../../../services/images/?id='+img.id+'&width='+width+'&height='+height+'&format=jpg';
-	},
-	showFinder : function() {
-		if (!this.finder) {
-			this.finder = hui.ui.Finder.create({
+  },
+  $resolveImageUrl : function(img,width,height) {
+    return '../../../services/images/?id='+img.id+'&width='+width+'&height='+height+'&format=jpg';
+  },
+  showFinder : function() {
+    if (!this.finder) {
+      this.finder = hui.ui.Finder.create({
                 url : '../../Services/Finder/Files.php'
-			});
-			this.finder.listen({
-				$select : function(obj) {
-					this.form.fileId.value = obj.id;
-					this.preview();
+      });
+      this.finder.listen({
+        $select : function(obj) {
+          this.form.fileId.value = obj.id;
+          this.preview();
                     this.finder.hide();
-				}.bind(this)
-			})
-		}
-		this.finder.show();
-	},
-	preview : function(delayed) {
-		op.part.utils.updatePreview({
-			node : 'part_movie_container',
-			form : this.form,
-			type : 'movie',
-			delay : delayed ? 300 : 0
-		});
-	},
-	addFile : function() {
-		fileUploadWindow.show();
-	},
-	$uploadDidCompleteQueue$fileUpload : function() {
-		hui.ui.request({
-			'url' : '../../Parts/file/UploadStatus.php',
-			$object : function(status) {
-				if (status.id) {
-					document.forms.PartForm.fileId.value = status.id;
-					this.preview();
-				} else {
-					hui.ui.showMessage({text:'Det lykkedes ikke at overføre filen, måske er den for stor',icon:'common/warning',duration:3000});
-				}
-			}.bind(this)
-		});
-	},
-	$click$cancelUpload : function() {
-		fileUploadWindow.hide();
-	},
-  
+        }.bind(this)
+      })
+    }
+    this.finder.show();
+  },
+  preview : function(delayed) {
+    op.part.utils.updatePreview({
+      node : 'part_movie_container',
+      form : this.form,
+      type : 'movie',
+      delay : delayed ? 300 : 0
+    });
+  },
+  addFile : function() {
+    fileUploadWindow.show();
+  },
+  $uploadDidCompleteQueue$fileUpload : function() {
+    hui.ui.request({
+      'url' : '../../Parts/file/UploadStatus.php',
+      $object : function(status) {
+        if (status.id) {
+          document.forms.PartForm.fileId.value = status.id;
+          this.preview();
+        } else {
+          hui.ui.msg.fail({text:'Det lykkedes ikke at overføre filen, måske er den for stor'});
+        }
+      }.bind(this)
+    });
+  },
+  $click$cancelUpload : function() {
+    fileUploadWindow.hide();
+  },
+
     /////////////////// Info /////////////////////
 
     showInfo : function() {

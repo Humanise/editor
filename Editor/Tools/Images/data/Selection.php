@@ -14,9 +14,24 @@ $latest = Query::after('image')->withCustom('createdAfter',Dates::addDays(time()
 
 $writer->
 startItems()->
-  startItem(['title' => ['All images', 'da' => 'Alle billeder'], 'badge' => ImageService::getTotalImageCount(), 'icon' => 'common/image', 'value' => 'all'])->endItem()->
-  startItem(['title' => ['Latest 24 hours', 'da' => 'Seneste døgn'], 'icon' => 'common/time', 'value' => 'latest', 'badge' => $latest])->endItem()->
-  title(['Usage', 'da' => 'Anvendelse'])->
+  item([
+    'title' => ['All images', 'da' => 'Alle billeder'],
+    'badge' => ImageService::getTotalImageCount(),
+    'icon' => 'common/image',
+    'value' => 'all'
+  ])->
+  item([
+    'title' => ['Latest 24 hours', 'da' => 'Seneste døgn'],
+    'icon' => 'common/time',
+    'value' => 'latest',
+    'badge' => $latest
+  ])->
+  item([
+    'title' => ['Health check', 'da' => 'Sundhedstjek'],
+    'icon' => 'common/gauge',
+    'value' => 'check'
+  ]);
+$writer->title(['Usage', 'da' => 'Anvendelse'])->
   item([
     'title' => ['Unused', 'da' => 'Ikke anvendt'],
     'badge' => ImageService::getUnusedImagesCount(),
