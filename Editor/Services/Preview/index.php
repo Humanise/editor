@@ -36,7 +36,7 @@ $gui = '
         <toolbar>
           <icon icon="common/time" text="{History; da:Historik}" name="viewHistory"/>
           <divider/>
-          <icon icon="inset/stamp" text="{Revise; da:Revidér}" name="review"/>
+          <icon icon="common/rubberstamp" text="{Revise; da:Revidér}" name="review"/>
           <icon icon="common/note" text="{New note; da:Ny note}" name="addNote" overlay="new_monochrome"/>
           <divider/>
           <icon icon="common/settings" text="Design" name="design"/>

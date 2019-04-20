@@ -36,7 +36,7 @@ class Address extends ModelObject {
   }
 
   function getIcon() {
-    return "geo/map";
+    return "common/map";
   }
 
   function setStreet($street) {
