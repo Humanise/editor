@@ -112,7 +112,7 @@ function writeTemplates($writer,$obj) {
     $installed = $obj->templates->installed;
     $used = $obj->templates->used;
     foreach ($installed as $template) {
-      $writer->startLine()->object(['icon' => in_array($template,$used) ? 'common/success' : 'monochrome/round_question', 'text' => $template])->endLine();
+      $writer->startLine()->object(['icon' => in_array($template,$used) ? 'common/ok' : 'monochrome/round_question', 'text' => $template])->endLine();
     }
   } else {
     $writer->object(['icon' => 'monochrome/warning', 'text' => ['Not available', 'da' => 'Ikke tilgængelig']]);
@@ -128,7 +128,7 @@ function writeTools($writer,$obj) {
     }
     Log::debug($installed);
     foreach ($installed as $tool) {
-      $writer->startLine()->object(['icon' => 'common/success', 'text' => $tool])->endLine();
+      $writer->startLine()->object(['icon' => 'common/ok', 'text' => $tool])->endLine();
     }
   } else {
     $writer->object(['icon' => 'monochrome/warning', 'text' => ['Not available', 'da' => 'Ikke tilgængelig']]);
@@ -139,17 +139,17 @@ function writeEmail($writer,$obj) {
   if ($obj && property_exists($obj,'email')) {
     $email = $obj->email;
     if ($email->enabled) {
-      $writer->startLine()->object(['icon' => 'common/success', 'text' => ['Enabled', 'da' => 'Slået til']])->endLine();
+      $writer->startLine()->object(['icon' => 'common/ok', 'text' => ['Enabled', 'da' => 'Slået til']])->endLine();
     } else {
       $writer->startLine()->object(['icon' => 'common/stop', 'text' => ['Disabled', 'da' => 'Slået fra']])->endLine();
     }
-    $writer->startLine()->object(['icon' => $email->server ? 'common/success' : 'common/stop', 'text' => 'Server'])->endLine();
-    $writer->startLine()->object(['icon' => $email->username ? 'common/success' : 'common/stop', 'text' => ['Username', 'da' => 'Brugernavn']])->endLine();
-    $writer->startLine()->object(['icon' => $email->password ? 'common/success' : 'common/stop', 'text' => ['Password', 'da' => 'Kodeord']])->endLine();
-    $writer->startLine()->object(['icon' => $email->standardEmail ? 'common/success' : 'common/stop', 'text' => ['Standard e-email', 'da' => 'Standard e-post']])->endLine();
-    $writer->startLine()->object(['icon' => $email->standardName ? 'common/success' : 'common/stop', 'text' => ['Standard name', 'da' => 'Standard navn']])->endLine();
-    $writer->startLine()->object(['icon' => $email->feedbackEmail ? 'common/success' : 'common/stop', 'text' => ['Feedback e-email', 'da' => 'Feedback e-post']])->endLine();
-    $writer->startLine()->object(['icon' => $email->feedbackName ? 'common/success' : 'common/stop', 'text' => ['Feedback name', 'da' => 'Feedback navn']])->endLine();
+    $writer->startLine()->object(['icon' => $email->server ? 'common/ok' : 'common/stop', 'text' => 'Server'])->endLine();
+    $writer->startLine()->object(['icon' => $email->username ? 'common/ok' : 'common/stop', 'text' => ['Username', 'da' => 'Brugernavn']])->endLine();
+    $writer->startLine()->object(['icon' => $email->password ? 'common/ok' : 'common/stop', 'text' => ['Password', 'da' => 'Kodeord']])->endLine();
+    $writer->startLine()->object(['icon' => $email->standardEmail ? 'common/ok' : 'common/stop', 'text' => ['Standard e-email', 'da' => 'Standard e-post']])->endLine();
+    $writer->startLine()->object(['icon' => $email->standardName ? 'common/ok' : 'common/stop', 'text' => ['Standard name', 'da' => 'Standard navn']])->endLine();
+    $writer->startLine()->object(['icon' => $email->feedbackEmail ? 'common/ok' : 'common/stop', 'text' => ['Feedback e-email', 'da' => 'Feedback e-post']])->endLine();
+    $writer->startLine()->object(['icon' => $email->feedbackName ? 'common/ok' : 'common/stop', 'text' => ['Feedback name', 'da' => 'Feedback navn']])->endLine();
   } else {
     $writer->object(['icon' => 'monochrome/warning', 'text' => ['Not available', 'da' => 'Ikke tilgængelig']]);
   }

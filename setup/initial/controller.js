@@ -63,7 +63,7 @@ hui.ui.listen({
         } else if (!result.database) {
           hui.ui.showMessage({text:'Could connect to host but NOT the database',duration:4000,icon:'common/warning'});
         } else {
-          hui.ui.showMessage({text:'Database connection verified :-)',duration:2000,icon:'common/success'});
+          hui.ui.showMessage({text:'Database connection verified :-)',duration:2000,icon:'common/ok'});
         }
       },
       $failure:function() {
@@ -95,6 +95,5 @@ hui.ui.listen({
         this.previewing = false;
       }.bind(this)
     })
-    
   }
 })
