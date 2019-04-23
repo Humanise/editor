@@ -22,7 +22,7 @@ $gui = '
 
   <window name="frameWindow" width="500" title="{Setup; da:Opsætning}">
     <tabs small="true" centered="true">
-      <tab title="Info" padding="5">
+      <tab title="Info" padding="10">
         <formula name="frameFormula">
           <fields>
             <field label="{Name; da:Navn}:">
@@ -40,7 +40,7 @@ $gui = '
           </fields>
         </formula>
       </tab>
-      <tab title="{Search; da:Søgning}" padding="5">
+      <tab title="{Search; da:Søgning}" padding="10">
         <formula name="searchFormula">
           <fields>
             <field label="{Active; da:Aktiv}:">
@@ -52,7 +52,7 @@ $gui = '
           </fields>
         </formula>
       </tab>
-      <tab title="{User; da:Bruger}" padding="5">
+      <tab title="{User; da:Bruger}" padding="10">
         <formula name="userFormula">
           <fields>
             <field label="{Active; da:Aktiv}:">
@@ -85,7 +85,7 @@ $gui = '
         </list>
       </tab>
     </tabs>
-    <space all="5">
+    <space all="10">
     <buttons align="right">
       <button name="cancelFrame" title="{Cancel; da:Annuller}"/>
       <button name="deleteFrame" title="{Delete; da:Slet}">

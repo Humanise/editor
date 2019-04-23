@@ -94,14 +94,14 @@ $gui = '
     </bottom>
   </structure>
 
-  <window title="{Group; da:Gruppe}" name="groupWindow" icon="common/folder" width="300" padding="5">
+  <window title="{Group; da:Gruppe}" name="groupWindow" icon="common/folder" width="300" padding="10">
     <formula name="groupFormula">
       <fields labels="above">
         <field label="{Title; da:Titel}">
           <text-input key="title"/>
         </field>
       </fields>
-      <buttons>
+      <buttons top="5">
         <button name="cancelGroup" text="{Cancel; da:Annuller}"/>
         <button name="deleteGroup" text="{Delete; da:Slet}">
           <confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete group; da:Ja, slet gruppen}" cancel="{No; da:Nej}"/>
@@ -138,7 +138,7 @@ $gui = '
     </tabs>
   </window>
 
-  <window title="{Image; da:Billede}" name="imageWindow" icon="common/image" width="450" padding="5">
+  <window title="{Image; da:Billede}" name="imageWindow" icon="common/image" width="450" padding="10">
     <formula name="imageFormula">
       <columns flexible="true">
         <column width="180px">
@@ -157,7 +157,7 @@ $gui = '
           </fields>
         </column>
       </columns>
-      <buttons>
+      <buttons top="5">
         <button name="cancelImage" text="{Cancel; da:Annuller}"/>
         <button name="deleteImage" text="{Delete; da:Slet}">
           <confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete image; da:Ja, slet billedet}" cancel="{Cancel; da:Annuller}"/>

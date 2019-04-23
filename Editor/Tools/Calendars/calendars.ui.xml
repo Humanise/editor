@@ -1,157 +1,157 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gui xmlns="uri:hui" title="{Calendars; da:Kalendere}" padding="10" state="list">
 
-	<controller url="controller.js"/>
-	<controller url="sourceController.js"/>
-	<controller url="calendarController.js"/>
-	<controller url="eventController.js"/>
+  <controller url="controller.js"/>
+  <controller url="sourceController.js"/>
+  <controller url="calendarController.js"/>
+  <controller url="eventController.js"/>
 
-	<source name="calendarItemsSource" url="../../Services/Model/Items.php?type=calendar"/>
+  <source name="calendarItemsSource" url="../../Services/Model/Items.php?type=calendar"/>
 
-	<source name="sourcesItemsSource" url="../../Services/Model/Items.php?type=calendarsource"/>
+  <source name="sourcesItemsSource" url="../../Services/Model/Items.php?type=calendarsource"/>
 
-	<source name="sourcesListSource" url="data/ListSources.php"/>
+  <source name="sourcesListSource" url="data/ListSources.php"/>
 
-	<source name="sourceEventsListSource" url="data/ListSourceEvents.php">
-		<parameter key="windowPage" value="@list.window.page"/>
-		<parameter key="query" value="@search.value"/>
-		<parameter key="sourceId" value="@sourceSelection.value"/>
-	</source>
+  <source name="sourceEventsListSource" url="data/ListSourceEvents.php">
+    <parameter key="windowPage" value="@list.window.page"/>
+    <parameter key="query" value="@search.value"/>
+    <parameter key="sourceId" value="@sourceSelection.value"/>
+  </source>
 
-	<source name="calendarEventsListSource" url="data/ListCalendarEvents.php">
-		<parameter key="windowPage" value="@list.window.page"/>
-		<parameter key="query" value="@search.value"/>
-		<parameter key="calendarId" value="@calendarSelection.value"/>
-	</source>
+  <source name="calendarEventsListSource" url="data/ListCalendarEvents.php">
+    <parameter key="windowPage" value="@list.window.page"/>
+    <parameter key="query" value="@search.value"/>
+    <parameter key="calendarId" value="@calendarSelection.value"/>
+  </source>
 
-	<source name="calendarViewSource" url="data/CalendarViewEvents.php" lazy="true">
-		<parameter key="query" value="@search.value"/>
-		<parameter key="sourceId" value="@sourceSelection.value"/>
-		<parameter key="startTime" value="@calendarView.startTime"/>
-		<parameter key="endTime" value="@calendarView.endTime"/>
-	</source>
+  <source name="calendarViewSource" url="data/CalendarViewEvents.php" lazy="true">
+    <parameter key="query" value="@search.value"/>
+    <parameter key="sourceId" value="@sourceSelection.value"/>
+    <parameter key="startTime" value="@calendarView.startTime"/>
+    <parameter key="endTime" value="@calendarView.endTime"/>
+  </source>
 
-	<structure>
-		<top>
-			<toolbar>
-				<icon icon="common/calendar" text="{New calendar; da:Ny kalender}" overlay="new" name="newCalendar"/>
-				<icon icon="common/internet" text="{New source; da:Ny kilde}" overlay="new" name="newSource"/>
-				<icon icon="common/time" text="{New event; da:Ny begivenhed}" overlay="new" name="newEvent"/>
-				<divider/>
-				<icon icon="common/refresh" text="{Synchronize; da:Synkroniser}" name="synchronizeSource" disabled="true"/>
-				<icon icon="common/delete" text="{Delete; da:Slet}" disabled="true" name="deleteItem">
-					<confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete; da:Ja, slet}" cancel="{Cancel; da:Annuller}"/>
-				</icon>
-				<icon icon="common/edit" text="{Edit; da:Rediger}" disabled="true" name="editItem"/>
-				<divider/>
-				<item label="{View; da:Visning}">
-					<segmented value="list" name="viewSelection">
-						<option icon="view/list" value="list"/>
-						<option icon="view/calendar" value="calendar"/>
-					</segmented>
-				</item>
-				<right>
-					<item label="{Search; da:Søgning}">
-						<searchfield name="search" expanded-width="200"/>
-					</item>
-				</right>
-			</toolbar>
-		</top>
-		<middle>
-			<left>
-				<overflow>
-				<selection value="overview" name="selector" top="5">
-					<option icon="common/files" text="{Overview; da:Oversigt}" value="overview"/>
-					<options source="calendarItemsSource" name="calendarSelection" title="{Calendars; da:Kalendere}"/>
-					<options source="sourcesItemsSource" name="sourceSelection" title="{Sources; da:Kilder}"/>
-				</selection>
-				</overflow>
-			</left>
-			<center>
-				<overflow>
-					<list name="list" source="sourcesListSource" state="list"/>
-					<calendar state="calendar" source="calendarViewSource" name="calendarView"/>
-				</overflow>
-			</center>
-		</middle>
-		<bottom/>
-	</structure>
+  <structure>
+    <top>
+      <toolbar>
+        <icon icon="common/calendar" text="{New calendar; da:Ny kalender}" overlay="new" name="newCalendar"/>
+        <icon icon="common/internet" text="{New source; da:Ny kilde}" overlay="new" name="newSource"/>
+        <icon icon="common/time" text="{New event; da:Ny begivenhed}" overlay="new" name="newEvent"/>
+        <divider/>
+        <icon icon="common/refresh" text="{Synchronize; da:Synkroniser}" name="synchronizeSource" disabled="true"/>
+        <icon icon="common/delete" text="{Delete; da:Slet}" disabled="true" name="deleteItem">
+          <confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete; da:Ja, slet}" cancel="{Cancel; da:Annuller}"/>
+        </icon>
+        <icon icon="common/edit" text="{Edit; da:Rediger}" disabled="true" name="editItem"/>
+        <divider/>
+        <item label="{View; da:Visning}">
+          <segmented value="list" name="viewSelection">
+            <option icon="view/list" value="list"/>
+            <option icon="view/calendar" value="calendar"/>
+          </segmented>
+        </item>
+        <right>
+          <item label="{Search; da:Søgning}">
+            <searchfield name="search" expanded-width="200"/>
+          </item>
+        </right>
+      </toolbar>
+    </top>
+    <middle>
+      <left>
+        <overflow>
+        <selection value="overview" name="selector" top="5">
+          <option icon="common/files" text="{Overview; da:Oversigt}" value="overview"/>
+          <options source="calendarItemsSource" name="calendarSelection" title="{Calendars; da:Kalendere}"/>
+          <options source="sourcesItemsSource" name="sourceSelection" title="{Sources; da:Kilder}"/>
+        </selection>
+        </overflow>
+      </left>
+      <center>
+        <overflow>
+          <list name="list" source="sourcesListSource" state="list"/>
+          <calendar state="calendar" source="calendarViewSource" name="calendarView"/>
+        </overflow>
+      </center>
+    </middle>
+    <bottom/>
+  </structure>
 
-	<window title="{Source; da:Kilde}" name="sourceWindow" width="300" padding="5">
-		<formula name="sourceFormula">
-			<fields labels="above">
-				<field label="{Title; da:Titel}">
-					<text-input key="title"/>
-				</field>
-				<field label="{Title (display); da:Titel (visning)}">
-					<text-input key="displayTitle"/>
-				</field>
-				<field label="{Address; da:Adresse}">
-					<text-input key="url" breaks="true"/>
-				</field>
-				<field label="Filter">
-					<text-input key="filter"/>
-				</field>
-				<field label="{Interval (seconds); da:Interval (sekunder)}">
-					<number-input key="syncInterval"/>
-				</field>
-			</fields>
-			<buttons>
-				<button name="cancelSource" text="{Cancel; da:Annuller}"/>
-				<button name="deleteSource" text="{Delete; da:Slet}">
-					<confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete; da:Ja, slet}" cancel="{Cancel; da:Annuller}"/>
-				</button>
-				<button name="saveSource" text="{Save; da:Gem}" highlighted="true"/>
-			</buttons>
-		</formula>
-	</window>
+  <window title="{Source; da:Kilde}" name="sourceWindow" width="300" padding="10">
+    <formula name="sourceFormula">
+      <fields labels="above">
+        <field label="{Title; da:Titel}">
+          <text-input key="title"/>
+        </field>
+        <field label="{Title (display); da:Titel (visning)}">
+          <text-input key="displayTitle"/>
+        </field>
+        <field label="{Address; da:Adresse}">
+          <text-input key="url" breaks="true"/>
+        </field>
+        <field label="Filter">
+          <text-input key="filter"/>
+        </field>
+        <field label="{Interval (seconds); da:Interval (sekunder)}">
+          <number-input key="syncInterval"/>
+        </field>
+      </fields>
+      <buttons top="5">
+        <button name="cancelSource" text="{Cancel; da:Annuller}"/>
+        <button name="deleteSource" text="{Delete; da:Slet}">
+          <confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete; da:Ja, slet}" cancel="{Cancel; da:Annuller}"/>
+        </button>
+        <button name="saveSource" text="{Save; da:Gem}" highlighted="true"/>
+      </buttons>
+    </formula>
+  </window>
 
-	<window title="{Calendar; da:Kalender}" name="calendarWindow" width="300" padding="5">
-		<formula name="calendarFormula">
-			<fields labels="above">
-				<field label="{Title; da:Titel}">
-					<text-input key="title"/>
-				</field>
-			</fields>
-			<buttons>
-				<button name="cancelCalendar" text="{Cancel; da:Annuller}"/>
-				<button name="deleteCalendar" text="{Delete; da:Slet}">
-					<confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete; da:Ja, slet}" cancel="{Cancel; da:Annuller}"/>
-				</button>
-				<button name="saveCalendar" text="{Save; da:Gem}" highlighted="true" submit="true"/>
-			</buttons>
-		</formula>
-	</window>
+  <window title="{Calendar; da:Kalender}" name="calendarWindow" width="300" padding="10">
+    <formula name="calendarFormula">
+      <fields labels="above">
+        <field label="{Title; da:Titel}">
+          <text-input key="title"/>
+        </field>
+      </fields>
+      <buttons top="5">
+        <button name="cancelCalendar" text="{Cancel; da:Annuller}"/>
+        <button name="deleteCalendar" text="{Delete; da:Slet}">
+          <confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete; da:Ja, slet}" cancel="{Cancel; da:Annuller}"/>
+        </button>
+        <button name="saveCalendar" text="{Save; da:Gem}" highlighted="true" submit="true"/>
+      </buttons>
+    </formula>
+  </window>
 
-	<window title="{Event; da:Begivenhed}" icon="common/time" name="eventWindow" width="300" padding="5">
-		<formula name="eventFormula">
-			<fields labels="above">
-				<field label="{Title; da:Titel}">
-					<text-input key="title"/>
-				</field>
-				<field label="{Location; da:Lokation}">
-					<text-input key="location"/>
-				</field>
-				<field label="{From; da:Fra}">
-					<datetime-input key="startdate"/>
-				</field>
-				<field label="{To; da:Til}">
-					<datetime-input key="enddate"/>
-				</field>
-				<field label="{Calendars; da:Kalendere}">
-					<checkboxes key="calendars" name="eventCalendars">
-						<options source="calendarItemsSource"/>
-					</checkboxes>
-				</field>
-			</fields>
-			<buttons>
-				<button name="cancelEvent" text="{Cancel; da:Annuller}"/>
-				<button name="deleteEvent" text="{Delete; da:Slet}">
-					<confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete; da:Ja, slet}" cancel="{Cancel; da:Annuller}"/>
-				</button>
-				<button name="saveEvent" text="{Save; da:Gem}" highlighted="true" submit="true"/>
-			</buttons>
-		</formula>
-	</window>
+  <window title="{Event; da:Begivenhed}" icon="common/time" name="eventWindow" width="300" padding="10">
+    <formula name="eventFormula">
+      <fields labels="above">
+        <field label="{Title; da:Titel}">
+          <text-input key="title"/>
+        </field>
+        <field label="{Location; da:Lokation}">
+          <text-input key="location"/>
+        </field>
+        <field label="{From; da:Fra}">
+          <datetime-input key="startdate"/>
+        </field>
+        <field label="{To; da:Til}">
+          <datetime-input key="enddate"/>
+        </field>
+        <field label="{Calendars; da:Kalendere}">
+          <checkboxes key="calendars" name="eventCalendars">
+            <options source="calendarItemsSource"/>
+          </checkboxes>
+        </field>
+      </fields>
+      <buttons top="5">
+        <button name="cancelEvent" text="{Cancel; da:Annuller}"/>
+        <button name="deleteEvent" text="{Delete; da:Slet}">
+          <confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete; da:Ja, slet}" cancel="{Cancel; da:Annuller}"/>
+        </button>
+        <button name="saveEvent" text="{Save; da:Gem}" highlighted="true" submit="true"/>
+      </buttons>
+    </formula>
+  </window>
 
 </gui>

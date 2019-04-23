@@ -204,7 +204,7 @@
     </formula>
   </window>
 
-  <window name="mailinglistEditor" width="300" title="{Mailing list; da:Postliste}" padding="5">
+  <window name="mailinglistEditor" width="300" title="{Mailing list; da:Postliste}" padding="10">
     <formula name="mailinglistFormula">
       <fields>
         <field label="{Title; da:Titel}:">
@@ -224,7 +224,7 @@
     </formula>
   </window>
 
-  <window name="groupEditor" width="300" title="{Group; da:Gruppe}" padding="5">
+  <window name="groupEditor" width="300" title="{Group; da:Gruppe}" padding="10">
     <formula name="groupFormula">
       <fields>
         <field label="{Title; da:Titel}:">
@@ -234,7 +234,7 @@
           <text-input name="groupNote" breaks="true"/>
         </field>
       </fields>
-      <buttons>
+      <buttons top="5">
         <button name="cancelGroup" text="{Cancel; da:Annuller}"/>
         <button name="deleteGroup" text="{Delete; da:Slet}">
           <confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete group; da: Ja, slet gruppe}" cancel="{No; da:Nej}"/>

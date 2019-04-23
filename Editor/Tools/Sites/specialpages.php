@@ -17,7 +17,7 @@ $gui = '
   <list name="list" source="listSource"/>
   </overflow>
 
-  <window name="specialPageWindow" width="300" title="Speciel side" padding="5">
+  <window name="specialPageWindow" width="300" title="Speciel side" padding="10">
     <formula name="specialPageFormula">
       <fields>
         <field label="Side:">
@@ -35,14 +35,14 @@ $gui = '
             <item value="home" title="Forside"/>
           </dropdown>
         </field>
-        <buttons>
-          <button name="cancelSpecialPage" title="Annuller"/>
-          <button name="deleteSpecialPage" title="Slet">
-            <confirm text="Er du sikker?" ok="Ja, slet speciel side" cancel="Nej"/>
-          </button>
-          <button name="saveSpecialPage" title="Gem" highlighted="true" submit="true"/>
-        </buttons>
       </fields>
+      <buttons top="10">
+        <button name="cancelSpecialPage" title="Annuller"/>
+        <button name="deleteSpecialPage" title="Slet">
+          <confirm text="Er du sikker?" ok="Ja, slet speciel side" cancel="Nej"/>
+        </button>
+        <button name="saveSpecialPage" title="Gem" highlighted="true" submit="true"/>
+      </buttons>
     </formula>
   </window>
 

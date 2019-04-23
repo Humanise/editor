@@ -191,13 +191,10 @@ $gui = '
         <button icon="common/new" text="Tilføj oversættelse" name="addTranslation"/>
       </bar>-->
       <list name="pageTranslationList" selectable="false"/>
-      <buttons top="5">
+      <buttons top="5" left="5" bottom="5">
         <button text="{Add translation; da:Tilføj oversættelse}" highlighted="true" small="true" name="addTranslation"/>
       </buttons>
     </fragment>
-    <back>
-      <button text="Back" click="pageEditor.flip()"/>
-    </back>
   </window>
 
   <window name="pageFinder" width="400" title="{Choose page; da:Vælg side}">
@@ -207,7 +204,7 @@ $gui = '
     </overflow>
   </window>
 
-  <window name="hierarchyEditor" width="300" title="{Hierarchy; da:Hierarki}" padding="5" icon="common/hierarchy">
+  <window name="hierarchyEditor" width="300" title="{Hierarchy; da:Hierarki}" padding="10" icon="common/hierarchy">
     <formula name="hierarchyFormula">
       <fields>
         <field label="{Title; da:Titel}:">
@@ -229,7 +226,7 @@ $gui = '
     </formula>
   </window>
 
-  <window name="hierarchyItemEditor" width="300" title="{Menu item; da:Menupunkt}" padding="5">
+  <window name="hierarchyItemEditor" width="300" title="{Menu item; da:Menupunkt}" padding="10">
     <formula name="hierarchyItemFormula">
       <fields>
         <field label="{Title; da:Titel}:">
@@ -239,6 +236,7 @@ $gui = '
           <checkbox key="hidden"/>
         </field>
       </fields>
+      <space height="10"/>
       <fieldset legend="Link">
         <fields>
           <field label="{Page; da:Side}:">
@@ -258,7 +256,7 @@ $gui = '
           </field>
         </fields>
       </fieldset>
-      <buttons>
+      <buttons top="10">
         <button name="cancelHierarchyItem" text="{Cancel; da:Annuller}"/>
         <button name="deleteHierarchyItem" text="{Delete; da:Slet}">
           <confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete item; da:Ja, slet punkt}" cancel="{Cancel; da:Annuller}"/>
@@ -298,7 +296,7 @@ $gui = '
         </buttons>
       </step>
       <step title="{Properties; da:Egenskaber}" padding="10" frame="true" icon="common/info">
-        <overflow max-height="200" min-height="160">
+        <overflow max-height="300" min-height="260">
         <formula name="newPageFormula">
           <fields labels="above">
             <field label="{Title; da:Titel}:">

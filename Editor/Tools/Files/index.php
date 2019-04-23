@@ -97,14 +97,14 @@ $gui = '
     </buttons>
   </window>
 
-  <window title="{Group; da:Gruppe}" name="groupWindow" icon="common/folder" width="300" padding="5">
+  <window title="{Group; da:Gruppe}" name="groupWindow" icon="common/folder" width="300" padding="10">
     <formula name="groupFormula">
       <fields labels="above">
         <field label="{Title; da:Titel}">
           <text-input key="title"/>
         </field>
       </fields>
-      <buttons>
+      <buttons top="5">
         <button name="cancelGroup" text="{Cancel; da:Annuller}"/>
         <button name="deleteGroup" text="{Delete; da:Slet}">
           <confirm text="{Are yu sure?; da:Er du sikker?}" ok="{Yes, delete group; da:Ja, slet gruppen}" cancel="{No; da:Nej}"/>
@@ -114,7 +114,7 @@ $gui = '
     </formula>
   </window>
 
-  <window title="{File; da:Fil}" name="fileWindow" icon="file/generic" width="300" padding="5">
+  <window title="{File; da:Fil}" name="fileWindow" icon="file/generic" width="300" padding="10">
     <formula name="fileFormula">
       <fields labels="above">
         <field label="{Title; da:Titel}">
@@ -126,7 +126,7 @@ $gui = '
           </checkboxes>
         </field>
       </fields>
-      <buttons>
+      <buttons top="5">
         <button name="cancelFile" text="{Cancel; da:Annuller}"/>
         <button name="deleteFile" text="{Delete; da:Slet}">
           <confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete file; da:Ja, slet filen}" cancel="{Cancel; da:Annuller}"/>

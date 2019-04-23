@@ -19,7 +19,7 @@ $gui = '
   <list name="list" source="listSource"/>
   </overflow>
 
-  <window name="blueprintWindow" width="300" title="{Template; da:Skabelon}" padding="5">
+  <window name="blueprintWindow" width="300" title="{Template; da:Skabelon}" padding="10">
     <formula name="blueprintFormula">
       <fields>
         <field label="{Title; da:Titel}:">

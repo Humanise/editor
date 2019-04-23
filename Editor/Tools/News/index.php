@@ -90,26 +90,24 @@ $gui = '
     <bottom/>
   </structure>
 
-  <window title="{Group; da:Gruppe}" name="groupWindow" icon="common/folder" width="300" padding="5">
-    <space left="5" right="5" bottom="3">
-      <formula name="groupFormula">
-        <fields labels="above">
-          <field label="{Title; da:Titel}">
-            <text-input key="title"/>
-          </field>
-        </fields>
-        <buttons>
-          <button name="cancelGroup" text="{Cancel; da:Annuller}"/>
-          <button name="deleteGroup" text="{Delete; da:Slet}">
-            <confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete group; da:Ja, slet gruppen}" cancel="{No; da:Nej}"/>
-          </button>
-          <button name="saveGroup" text="{Save; da:Gem}" highlighted="true"/>
-        </buttons>
-      </formula>
-    </space>
+  <window title="{Group; da:Gruppe}" name="groupWindow" icon="common/folder" width="300" padding="10">
+    <formula name="groupFormula">
+      <fields labels="above">
+        <field label="{Title; da:Titel}">
+          <text-input key="title"/>
+        </field>
+      </fields>
+      <buttons top="5">
+        <button name="cancelGroup" text="{Cancel; da:Annuller}"/>
+        <button name="deleteGroup" text="{Delete; da:Slet}">
+          <confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete group; da:Ja, slet gruppen}" cancel="{No; da:Nej}"/>
+        </button>
+        <button name="saveGroup" text="{Save; da:Gem}" highlighted="true"/>
+      </buttons>
+    </formula>
   </window>
 
-  <window title="{Source; da:Kilde}" name="sourceWindow" icon="common/internet" width="300" padding="5">
+  <window title="{Source; da:Kilde}" name="sourceWindow" icon="common/internet" width="300" padding="10">
     <formula name="sourceFormula">
       <fields labels="above">
         <field label="{Title; da:Titel}">
@@ -122,7 +120,7 @@ $gui = '
           <number-input key="syncInterval"/>
         </field>
       </fields>
-      <buttons>
+      <buttons top="5">
         <button name="cancelSource" text="{Cancel; da:Annuller}"/>
         <button name="deleteSource" text="{Delete; da:Slet}">
           <confirm text="{Are you sure? da:Er du sikker?}" ok="{Yes, delete source; da:Ja, slet kilden}" cancel="{No; da:Nej}"/>
@@ -138,7 +136,6 @@ $gui = '
     <tabs small="true" centered="true">
 
       <tab title="{News; da:Nyhed}" padding="10">
-        <space left="5" right="5">
         <formula name="newsFormula">
           <fields labels="above">
             <field label="{Title; da:Titel}">
@@ -168,21 +165,20 @@ $gui = '
             </field>
           </fields>
         </formula>
-        </space>
       </tab>
 
       <tab title="Links">
         <toolbar centered="true">
           <icon text="{New link; da:Nyt link}" icon="common/link" overlay="new" click="newsLinks.addLink()"/>
         </toolbar>
-        <space right="10" left="10" bottom="10">
-        <links name="newsLinks" page-source="pageItems" file-source="fileItems"/>
+        <space bottom="10">
+          <links name="newsLinks" page-source="pageItems" file-source="fileItems"/>
         </space>
       </tab>
 
     </tabs>
 
-    <buttons right="16" bottom="10" align="right">
+    <buttons right="10" bottom="10" align="right">
       <button name="cancelNews" text="{Cancel; da:Annuller}"/>
       <button name="deleteNews" text="{Delete; da:Slet}">
         <confirm text="{Are you sure?; da:Er du sikker?}" ok="{Yes, delete news; da:Ja, slet nyheden}" cancel="{Cancel; da:Annuller}"/>
