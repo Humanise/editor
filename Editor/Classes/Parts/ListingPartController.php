@@ -179,14 +179,14 @@ class ListingPartController extends PartController
       '
       <item label="{Bullet; da:Symbol}">
         <segmented name="listStyle">
-          <option icon="style/list-style-disc" value="disc"/>
-          <option icon="style/list-style-square" value="square"/>
-          <option icon="style/list-style-circle" value="circle"/>
-          <option icon="style/list-style-decimal" value="decimal"/>
-          <option icon="style/list-style-lower-alpha" value="lower-alpha"/>
-          <option icon="style/list-style-upper-alpha" value="upper-alpha"/>
-          <option icon="style/list-style-lower-roman" value="lower-roman"/>
-          <option icon="style/list-style-upper-roman" value="upper-roman"/>
+          <option icon="style/list_style_disc" value="disc"/>
+          <option icon="style/list_style_square" value="square"/>
+          <option icon="style/list_style_circle" value="circle"/>
+          <option icon="style/list_style_decimal" value="decimal"/>
+          <option icon="style/list_style_lower_alpha" value="lower-alpha"/>
+          <option icon="style/list_style_upper_alpha" value="upper-alpha"/>
+          <option icon="style/list_style_lower_roman" value="lower-roman"/>
+          <option icon="style/list_style_upper_roman" value="upper-roman"/>
         </segmented>
       </item>
       <item label="{Size; da:Størrelse}">
