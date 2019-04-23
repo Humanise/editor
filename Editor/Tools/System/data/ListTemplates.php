@@ -30,7 +30,7 @@ foreach ($available as $key) {
     endCell()->
     startCell()->text($key)->endCell();
     if (in_array($key,$installed)) {
-      $writer->startCell()->icon(['icon' => in_array($key,$used) ? 'common/success' : 'common/stop'])->endCell();
+      $writer->startCell()->icon(['icon' => in_array($key,$used) ? 'common/ok' : 'common/stop'])->endCell();
       if (!in_array($key,$used)) {
         $writer->startCell()->
           button(['text' => ['Uninstall', 'da' => 'Afinstallér'], 'data' => ['action' => 'uninstallTemplate', 'key' => $key]])->

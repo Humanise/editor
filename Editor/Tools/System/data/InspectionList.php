@@ -22,7 +22,7 @@ $inspections = InspectionService::performInspection([
 
 $icons = [
   'warning' => 'common/warning',
-  'ok' => 'common/success',
+  'ok' => 'common/ok',
   'error' => 'common/stop'
 ];
 

@@ -21,7 +21,7 @@ $writer->startList()->
 foreach ($list as $review) {
   $user = Query::after('user')->withRelationFrom($review,'reviewer')->first();
   $writer->startRow()->
-    startCell()->icon(['icon' => $review->getAccepted() ? 'common/success' : 'common/stop'])->endCell()->
+    startCell()->icon(['icon' => $review->getAccepted() ? 'common/ok' : 'common/stop'])->endCell()->
     startCell()->text($user ? $user->getTitle() : 'Ukendt')->endCell()->
     startCell()->text(Dates::formatFuzzy($review->getDate()))->endCell()->
   endRow();

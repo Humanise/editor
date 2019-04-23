@@ -86,7 +86,7 @@ hui.on(function() {
         url : '/services/feedback/',
         parameters : parameters,
         $success:function() {
-          hui.ui.msg({text:'Bestillingen er afsendt',icon:'common/success',duration:4000});
+          hui.ui.msg({text:'Bestillingen er afsendt',icon:'common/ok',duration:4000});
           hui.ui.alert({title:'Bestillingen er modtaget',text:'Vi kontakter dig hurtigst muligt med yderligere information '});
         },
         $failure:function() {

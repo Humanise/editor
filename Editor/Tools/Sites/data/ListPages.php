@@ -112,7 +112,7 @@ and review_user.to_type='object' and review_user.to_object_id=user.id";
       $writer->startCell()->text(Dates::formatFuzzy($row['date']))->endCell()->
       startCell();
       if ($row['accepted'] != -1) {
-        $writer->icon(['icon' => $row['accepted'] ? 'common/success' : 'common/stop']);
+        $writer->icon(['icon' => $row['accepted'] ? 'common/ok' : 'common/stop']);
       }
       $writer->endCell()->
     endRow();
