@@ -73,8 +73,13 @@ class ModelService {
         if (isset($info['relations']) && is_array($info['relations'])) {
           foreach ($info['relations'] as $field => $info) {
             $setter = 'set' . ucfirst($field);
-            $sql = "select `" . $info['toColumn'] . "` as id from `" . $info['table'] . "` where `" . $info['fromColumn'] . "`=@int(id)";
-            $ids = Database::getIds($sql,['id' => $id]);
+            $sql = "select @name(to) as id from @name(table) where @name(from) = @int(id)";
+            $ids = Database::getIds($sql, [
+              'id' => $id,
+              'table' => $info['table'],
+              'to' => $info['toColumn'],
+              'from' => $info['fromColumn']
+            ]);
             $obj->$setter($ids);
           }
         }
@@ -132,8 +137,9 @@ class ModelService {
       $info = Entity::$schema[$hierarchy[$i]];
       $idColumn = isset($info['identity']) ? $info['identity'] : 'id';
       // TODO return if successfull
-      $sql = 'delete from `' . $info['table'] . '` where `' . $idColumn . '` = @int(id)';
-      $success = $success && Database::delete($sql,['id' => $object->getId()]) > 0;
+      $sql = 'delete from @name(table) where @name(column) = @int(id)';
+      $params = ['id' => $object->getId(), 'table' => $info['table'], 'column' => $idColumn];
+      $success = $success && Database::delete($sql, $params) > 0;
     }
     return $success;
   }

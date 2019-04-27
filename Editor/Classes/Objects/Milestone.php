@@ -71,7 +71,7 @@ class Milestone extends ModelObject {
     if ($options['project'] > 0) {
       $sql .= " and containing_object_id = @int(project)";
     } elseif (count($options['projects']) > 0) {
-      $sql .= " and containing_object_id in (@ints(projects))";
+      $sql .= " and containing_object_id in @ints(projects)";
     }
     if (isset($options['completed'])) {
       $sql .= " and milestone.completed = @boolean(completed)";

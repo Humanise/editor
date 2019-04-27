@@ -71,7 +71,7 @@ class ObjectLinkService {
       $ids[] = $object->getId();
     }
     $counts = [];
-    $sql = "select object_id as id,count(object_id) as count from object_link where object_id in (@ints(ids)) group by object_id";
+    $sql = "select object_id as id,count(object_id) as count from object_link where object_id in @ints(ids) group by object_id";
     foreach (Database::selectAll($sql, ['ids' => $ids]) as $row) {
       $counts[$row['id']] = $row['count'];
     }

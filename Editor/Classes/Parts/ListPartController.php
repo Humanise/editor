@@ -172,7 +172,7 @@ class ListPartController extends PartController
     $dirty = false;
     $items = [];
     if (count($part->getObjectIds()) > 0) {
-      $objects = Database::selectAll("select id,type from object where id in (@ints(ids))", ['ids' => $part->getObjectIds()]);
+      $objects = Database::selectAll("select id,type from object where id in @ints(ids)", ['ids' => $part->getObjectIds()]);
       $from = time();
       $to = Dates::addDays($from,$part->getTimeCount());
       foreach ($objects as $object) {

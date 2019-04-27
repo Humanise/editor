@@ -370,6 +370,43 @@ class Strings {
     return $extracted;
   }
 
+  static function replace($str, $replacements) {
+    if (!is_string($str) || $str == '') return '';
+    $positions = [];
+    foreach ($replacements as $original => $replacement) {
+      $lastPos = 0;
+      if (strlen($original) < 1) continue;
+      while (($lastPos = mb_strpos($str, $original, $lastPos)) !== false) {
+        $positions[] = [
+          'from' => $lastPos,
+          'length' => mb_strlen($original),
+          'text' => $replacement,
+          'diff' => mb_strlen($replacement) - mb_strlen($original)
+        ];
+        $lastPos = $lastPos + mb_strlen($original);
+      }
+    }
+    uasort($positions, function ($a,$b) {
+      if ($a['from'] == $b['from']) {
+        return $a['length'] < $b['length'] ? 1 : -1;
+      }
+      $a = $a['from']; $b = $b['from'];
+      return $a == $b ? 0 : ($a < $b) ? -1 : 1;
+    });
+    //Log::debug($positions);
+    $diff = 0;
+    $curr = 0;
+    foreach ($positions as $position) {
+      if ($position['from'] < $curr) {
+        continue;
+      }
+      $str = substr_replace($str, $position['text'], $position['from'] + $diff, $position['length']);
+      $diff += $position['diff'];
+      $curr = $position['from'] + $position['length'];
+    }
+    return $str;
+  }
+
   static function generate($length = 10) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $randomString = '';

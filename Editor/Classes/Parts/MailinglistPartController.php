@@ -114,6 +114,8 @@ class MailinglistPartController extends PartController
   }
 
   function subscribe($part,$name,$address) {
+    // TODO: Re-use existing person
+    // Check that lists are non-empty
     $person = new Person();
     $person->setFullName($name);
     $person->save();
@@ -127,21 +129,18 @@ class MailinglistPartController extends PartController
 
     $lists = $part->getMailinglistIds();
     foreach ($lists as $list) {
-      $sql = "insert into person_mailinglist (person_id,mailinglist_id) values (" . Database::int($person->getId()) . "," . Database::int($list) . ")";
-      Database::insert($sql);
+      $sql = "insert into person_mailinglist (person_id,mailinglist_id) values (@int(person),@int(list))";
+      Database::insert($sql, ['person' => $person->getId(), 'list' => $list]);
     }
   }
 
-  function unsubscribe($part,$address) {
+  function unsubscribe($part, $address) {
     $lists = $part->getMailingListIds();
-
-    $sql = "delete from person_mailinglist using person_mailinglist,emailaddress where emailaddress.containing_object_id=person_mailinglist.person_id and emailaddress.address=" . Database::text($address) . " and (";
-    for ($i = 0; $i < count($lists); $i++) {
-      if ($i > 0) $sql .= ' or ';
-      $sql .= 'person_mailinglist.mailinglist_id=' . $lists[$i];
+    if (count($lists) == 0) {
+      return false;
     }
-    $sql .= ")";
-    $rows = Database::delete($sql);
+    $sql = "delete from person_mailinglist using person_mailinglist,emailaddress where emailaddress.containing_object_id=person_mailinglist.person_id and emailaddress.address=@text(address) and person_mailinglist.mailinglist_id in @ints(lists)";
+    $rows = Database::delete($sql, ['address' => $address, 'lists' => $lists]);
     return $rows > 0;
   }
 

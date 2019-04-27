@@ -96,7 +96,7 @@ class Project extends ModelObject {
     }
     $ids[] = $this->id;
 
-    $sql = "select object_id from project,object where project.object_id=object.id and parent_project_id in (@ints(ids)) order by object.title";
+    $sql = "select object_id from project,object where project.object_id=object.id and parent_project_id in @ints(ids) order by object.title";
     $result = Database::select($sql, ['ids' => $ids]);
     while ($row = Database::next($result)) {
       $output[] = Project::load($row['object_id']);
@@ -112,7 +112,7 @@ class Project extends ModelObject {
     }
     $ids[] = $this->id;
 
-    $sql = "select object_id from task,object where task.object_id = object.id and containing_object_id in (@ints(ids))" .
+    $sql = "select object_id from task,object where task.object_id = object.id and containing_object_id in @ints(ids)" .
     (isset($filter['completed']) ? " and task.completed = @boolean(completed)" : "") .
     " order by object.title";
     $result = Database::select($sql, ['completed' => $filter['completed'], 'ids' => $ids]);
@@ -131,7 +131,7 @@ class Project extends ModelObject {
     }
     $ids[] = $this->id;
 
-    $sql = "select object_id from problem,object where problem.object_id = object.id and containing_object_id in (@ints(ids))" .
+    $sql = "select object_id from problem,object where problem.object_id = object.id and containing_object_id in @ints(ids)" .
     (isset($filter['completed']) ? " and problem.completed = @boolean(completed)" : "") .
     " order by object.title";
     $result = Database::select($sql, ['completed' => $filter['completed'], 'ids' => $ids]);

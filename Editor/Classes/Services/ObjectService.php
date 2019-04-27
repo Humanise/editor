@@ -22,7 +22,7 @@ class ObjectService {
     if (count($ids) == 0) {
       return [];
     }
-    $sql = "select id from object where id in (@ints(ids))";
+    $sql = "select id from object where id in @ints(ids)";
     return Database::getIds($sql, ['ids' => $ids]);
   }
 

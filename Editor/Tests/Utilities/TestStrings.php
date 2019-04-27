@@ -149,6 +149,60 @@ class TestStrings extends UnitTestCase {
     $this->assertEqual($extracted[2],'<table border="1">--</table>');
   }
 
+  function testReplace() {
+    $tests = [
+      [
+        'in' => 'abcabc',
+        'out' => 'bcdbcd',
+        'replacements' => ['a' => 'b', 'b' => 'c', 'c' => 'd']
+      ],
+      [
+        'in' => 'abcabc',
+        'out' => 'XX',
+        'replacements' => ['abc' => 'X', 'a' => 'b', 'b' => 'c', 'c' => 'd']
+      ],
+      [
+        'in' => 'abcabc',
+        'out' => 'XX',
+        'replacements' => ['a' => 'b', 'b' => 'c', 'c' => 'd', 'abc' => 'X']
+      ],
+      [
+        'in' => 'abcabc',
+        'out' => 'YcYc',
+        'replacements' => ['bc' => 'X', 'ab' => 'Y']
+      ],
+      [
+        'in' => '',
+        'out' => '',
+        'replacements' => ['' => 'X']
+      ],
+      [
+        'in' => 1,
+        'out' => '',
+        'replacements' => ['' => 'X']
+      ],
+      [
+        'in' => null,
+        'out' => '',
+        'replacements' => ['' => 'X']
+      ],
+      [
+        'in' => [],
+        'out' => '',
+        'replacements' => ['' => 'X']
+      ],
+      [
+        'in' => ' ',
+        'out' => ' ',
+        'replacements' => ['' => 'X']
+      ]
+    ];
+    foreach ($tests as $test) {
+      $result = Strings::replace($test['in'], $test['replacements']);
+      $this->assertEqual($result, $test['out']);
+    }
+  }
+
   function testConcatUrl() {
     $this->assertEqual(Strings::concatUrl(null,null),'');
     $this->assertEqual(Strings::concatUrl('http://www.humanize.dk/',null),'http://www.humanize.dk/');

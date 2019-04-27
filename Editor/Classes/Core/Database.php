@@ -268,15 +268,16 @@ class Database {
   }
 
   static function ints($value) {
-    $out = "";
+    $out = "(";
     if (is_array($value)) {
       for ($i=0; $i < count($value); $i++) {
         if (is_numeric($value[$i])) {
-          if ($out !== "") $out .= ',';
+          if ($out !== "(") $out .= ',';
           $out .= intval($value[$i]);
         }
       }
     }
+    $out .= ")";
     return $out;
   }
 
@@ -434,8 +435,8 @@ class Database {
           $name = 'id';
         } else {
           $pos = strpos($expression,'(');
-          $type = substr($expression,1,$pos - 1);
-          $name = substr($expression,$pos + 1,-1);
+          $type = substr($expression, 1, $pos - 1);
+          $name = substr($expression, $pos + 1, -1);
         }
         if (array_key_exists($name,$vars)) {
           $value = $vars[$name];
@@ -462,8 +463,7 @@ class Database {
         }
       }
     }
-    $sql = str_replace(array_keys($replacements),$replacements,$sql);
-    return $sql;
+    return Strings::replace($sql, $replacements);
   }
 }
 ?>

@@ -34,9 +34,9 @@ class NewsPartController extends PartController
         $data .= '<title>' . Strings::escapeEncodedXML($part->getTitle()) . '</title>';
       }
       $maxitems = $part->getMaxItems(); // TODO: Build this into sql PERFORMANCE!
-      $sql = $this->buildSql($part);
-      if ($sql != '') {
-        $result = Database::select($sql);
+      $query = $this->buildQuery($part);
+      if ($query['sql'] != '') {
+        $result = Database::select($query['sql'], $query['params']);
         while ($newsRow = Database::next($result)) {
           $data .= $newsRow['data'];
           $maxitems--;
@@ -188,10 +188,12 @@ class NewsPartController extends PartController
     ';
   }
 
-  function buildSql($part) {
+  function buildQuery($part) {
     $sql = '';
+    $params = [];
     if ($part->getMode() == 'single' && $part->getNewsId() != '') {
-      $sql = "select * from object where id=" . $part->getNewsId();
+      $sql = "select * from object where id = @int(news)";
+      $params['news'] = $part->getNewsId();
     }
     else if ($part->getMode() == 'groups') {
       $sortBy = $part->getSortBy();
@@ -236,17 +238,22 @@ class NewsPartController extends PartController
           $start = mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y") - $count);
           $end = time();
         }
-        $timeSql = " and ((news.startdate is null and news.enddate is null) or (news.startdate>=" . Database::datetime($start) . " and news.startdate<=" . Database::datetime($end) . ") or (news.enddate>=" . Database::datetime($start) . " and news.enddate<=" . Database::datetime($end) . ") or (news.enddate>=" . Database::datetime($start) . " and news.startdate is null) or (news.startdate<=" . Database::datetime($end) . " and news.enddate is null))";
+        $timeSql = " and ((news.startdate is null and news.enddate is null) or (news.startdate >= @datetime(start) and news.startdate <= @datetime(end)) or (news.enddate >= @datetime(start) and news.enddate <= @datetime(end)) or (news.enddate >= @datetime(start) and news.startdate is null) or (news.startdate <= @datetime(end) and news.enddate is null))";
+        $params['start'] = $start;
+        $params['end'] = $end;
       }
       $groups = $part->getNewsGroupIds();
       if (isset($groups) && count($groups) > 0) {
-        $groupSql = " and newsgroup_news.newsgroup_id in (" . implode($groups,',') . ")";
+        $groupSql = " and newsgroup_news.newsgroup_id in @ints(groups)";
+        $params['groups'] = $groups;
       } else {
-        $groupSql = " and newsgroup_news.newsgroup_id=part_news_newsgroup.newsgroup_id and part_news_newsgroup.part_id=" . $this->id;
+        $groupSql = " and newsgroup_news.newsgroup_id=part_news_newsgroup.newsgroup_id and part_news_newsgroup.part_id = @int(part)";
+        $params['part'] = $this->id;
       }
-      $sql = "select distinct object.data," . $sortBy . " from object,news, newsgroup_news, part_news_newsgroup where object.id=news.object_id and news.object_id=newsgroup_news.news_id" . $groupSql . $timeSql . " order by " . $sortBy . " " . $sortDir;
+      $sql = "select distinct object.data,@name(sortBy) from object,news, newsgroup_news, part_news_newsgroup where object.id=news.object_id and news.object_id=newsgroup_news.news_id" . $groupSql . $timeSql . " order by @name(sortBy) " . $sortDir;
+      $params['sortBy'] = $sortBy;
     }
-    return $sql;
+    return ['sql' => $sql, 'params' => $params];
   }
 }
 ?>

@@ -60,6 +60,15 @@ class TestDatabase extends UnitTestCase {
     $this->assertEqual($expected,$compiled);
   }
 
+  function testCompilingRecursive() {
+    $sql = "update x set y=@text(text) where id = @id";
+    $parameters = ['text' => '@id','id' => 5355];
+    $expected = "update x set y='@id' where id = 5355";
+
+    $compiled = Database::compile($sql,$parameters);
+    $this->assertEqual($expected,$compiled);
+  }
+
   function testIdCompiling() {
     $sql = "SELECT * from table where id = @id";
     $parameters = ['id' => 5355];
@@ -70,7 +79,7 @@ class TestDatabase extends UnitTestCase {
   }
 
   function testIdArrayCompiling() {
-    $sql = "SELECT * from table where id in (@ints(ids))";
+    $sql = "SELECT * from table where id in @ints(ids)";
     $parameters = ['ids' => [1,-1,"0", NULL, "", "a", "45"]];
     $expected = "SELECT * from table where id in (1,-1,0,45)";
 
