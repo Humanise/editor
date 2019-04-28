@@ -13,7 +13,7 @@ div.part_list h2 {
   margin: 0;
   font-size: 12pt;
   font-weight: normal;
-  padding-bottom: 3px;
+  padding: 5px 0;
 }
 
 div.part_list h3 {

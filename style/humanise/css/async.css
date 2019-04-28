@@ -33,12 +33,6 @@
 .part_section_header-3 {
   padding-bottom: 5px; }
 
-.windows .part_header {
-  font-weight: normal; }
-
-.windows .part_header-1 {
-  font-weight: 300; }
-
 /************** Poster ************/
 .part_poster_text {
   font-size: 14px; }
@@ -61,16 +55,14 @@
 /** Listing **/
 .part_listing {
   font-size: 11pt;
-  font-weight: 300;
   word-spacing: 1px;
-  color: #ddd; }
+  color: #999; }
 
 .part_listing_text {
   color: #333; }
 
 .part_listing_first {
-  font-size: 12pt;
-  font-weight: normal; }
+  font-size: 12pt; }
 
 .part_list h3 {
   font-weight: normal; }
@@ -295,7 +287,6 @@
   color: #666; }
 
 .layout_info_about p {
-  font-weight: 300;
   font-size: 12pt;
   line-height: 16pt;
   margin-top: 11px;

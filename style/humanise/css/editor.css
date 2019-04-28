@@ -391,7 +391,6 @@ p.common, ul.common {
   word-spacing: 1px;
   line-height: 1.4;
   color: #333;
-  font-weight: 400;
   word-spacing: 1px; }
 
 /************ Headers ***********/
@@ -417,12 +416,6 @@ p.common, ul.common {
 .part_section_header-3 {
   padding-bottom: 5px; }
 
-.windows .part_header {
-  font-weight: normal; }
-
-.windows .part_header-1 {
-  font-weight: 300; }
-
 /************** Poster ************/
 .part_poster_text {
   font-size: 14px; }
@@ -445,16 +438,14 @@ p.common, ul.common {
 /** Listing **/
 .part_listing {
   font-size: 11pt;
-  font-weight: 300;
   word-spacing: 1px;
-  color: #ddd; }
+  color: #999; }
 
 .part_listing_text {
   color: #333; }
 
 .part_listing_first {
-  font-size: 12pt;
-  font-weight: normal; }
+  font-size: 12pt; }
 
 .part_list h3 {
   font-weight: normal; }
