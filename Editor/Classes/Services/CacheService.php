@@ -67,7 +67,7 @@ class CacheService {
     if (strlen($path) > 0) {
       $sql .= " and page_cache.path = @text(path)";
     }
-    Database::delete($sql, ['id' => $id, 'paht' => $path]);
+    Database::delete($sql, ['id' => $id, 'path' => $path]);
     $sql = "insert into page_cache (page_id,path,html,stamp,version) values (@int(id), @text(path), @text(html), now(), @int(version))";
     Database::insert($sql, ['id' => $id, 'path' => $_SERVER['REQUEST_URI'], 'html' => $html, 'version' => ConfigurationService::getDeploymentTime()]);
   }

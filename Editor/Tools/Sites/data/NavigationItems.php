@@ -59,7 +59,7 @@ $counts = PageService::getLanguageCounts();
 
 foreach ($counts as $row) {
   $options = ['kind' => 'language'];
-  if ($row['language'] == null || count($row['language']) == 0) {
+  if ($row['language'] == null || strlen($row['language']) == 0) {
     $options['icon'] = 'monochrome/round_question';
     $options['title'] = ['No language', 'da' => 'Intet sprog'];
   } else {
