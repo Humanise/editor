@@ -76,7 +76,9 @@ class CalendarTemplateController extends TemplateController
 
     $view = Request::getString('view');
     if (!$view) $view = $setup['standard_view'];
-
+    if (!in_array($view, ['week','list','month','agenda'])) {
+      $view = 'week';
+    }
 
     if ($view == 'week') {
       $info = $this->buildWeekView($date,$id,$refresh,$setup);

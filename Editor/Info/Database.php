@@ -321,7 +321,7 @@ $databaseTables = [
       ["category", "varchar(50)", "YES", "", "", ""],
       ["event", "varchar(50)", "YES", "", "", ""],
       ["entity", "int(11)", "YES", "", "", ""],
-      ["message", "varchar(255)", "YES", "", "", ""],
+      ["message", "text", "YES", "", "", ""],
       ["user_id", "int(11)", "YES", "", "", ""],
       ["ip", "varchar(255)", "YES", "", "", ""],
       ["session", "varchar(255)", "YES", "", "", ""]
