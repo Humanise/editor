@@ -2055,7 +2055,7 @@
                     "extra": ""
                 },
                 "message": {
-                    "type": "varchar(255)",
+                    "type": "text",
                     "collation": "utf8_danish_ci",
                     "null": "YES",
                     "default": null,
