@@ -11,7 +11,7 @@ if (Request::getBoolean('logout')) {
 if (!Database::testConnection()) {
   $state = 'noConnection';
 }
-else if (!DatabaseUtil::isUpToDate()) {
+else if (SchemaService::hasSchemaChanges()) {
   $state = 'databaseWarning';
 } else {
   $state = 'login';

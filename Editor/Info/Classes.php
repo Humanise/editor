@@ -172,7 +172,6 @@ $HUMANISE_EDITOR_CLASSES = array (
     'Console' => 'Utilities/Console.php',
     'StringBuilder' => 'Utilities/StringBuilder.php',
     'TextDecorator' => 'Utilities/TextDecorator.php',
-    'DatabaseUtil' => 'Utilities/DatabaseUtil.php',
     'GuiUtils' => 'Utilities/GuiUtils.php',
     'News' => 'Objects/News.php',
     'Design' => 'Objects/Design.php',

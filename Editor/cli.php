@@ -66,7 +66,7 @@ class Commander {
     global $basePath;
     $schema = SchemaService::getDatabaseSchema();
 
-    $schema = var_export(SchemaService::getDatabaseSchema(),true);
+    $schema_code = var_export($schema,true);
 
     $file = $basePath . "Editor/Info/Schema.php";
 
@@ -80,10 +80,11 @@ if (!isset(\$GLOBALS['basePath'])) {
   header('HTTP/1.1 403 Forbidden');
   exit;
 }
-\$HUMANISE_EDITOR_SCHEMA = " . $schema . "
+\$HUMANISE_EDITOR_SCHEMA = " . $schema_code . "
 ?>";
     FileSystemService::writeStringToFile($data,$file);
-    echo $schema . PHP_EOL;
+    FileSystemService::writeStringToFile(json_encode($schema, JSON_PRETTY_PRINT),$basePath . "Editor/Info/Schema.json");
+    echo json_encode($schema, JSON_PRETTY_PRINT) . PHP_EOL;
   }
 
   static function classes() {
@@ -92,13 +93,28 @@ if (!isset(\$GLOBALS['basePath'])) {
     echo PHP_EOL;
   }
 
-  static function check() {
-    if (DatabaseUtil::isCorrect()) {
-      echo "The database schema is correct" . PHP_EOL;
-    } else {
-      echo "The database schema is NOT correct" . PHP_EOL;
+  static function diff() {
+    $diff = SchemaService::getSchemaDiff();
+    //echo Strings::toJSON($diff) . "\n";
+    $statements = SchemaService::statementsForDiff($diff);
+    foreach ($statements as $sql) {
+      echo $sql . "\n";
     }
-    echo join(PHP_EOL,DatabaseUtil::buildUpdateSQL()) . PHP_EOL;
+  }
+
+  static function migrate() {
+    $result = SchemaService::migrate();
+    foreach ($result['log'] as $line) {
+      echo $line . "\n";
+    }
+  }
+
+  static function check() {
+    if (SchemaService::hasSchemaChanges()) {
+      echo "The database schema may need correction" . PHP_EOL;
+    } else {
+      echo "The database schema is probably correct" . PHP_EOL;
+    }
   }
 
   static function full() {
