@@ -207,71 +207,6 @@ class RenderingService {
     return XslService::transform($xml,$xsl);
   }
 
-  static function applyFrameDynamism($id,&$data) {
-    $sql = "select id,maxitems,sortdir,sortby,timetype,timecount,UNIX_TIMESTAMP(startdate) as startdate,UNIX_TIMESTAMP(enddate) as enddate from frame_newsblock where frame_id = @id";
-    $result = Database::select($sql, $id);
-    while ($row = Database::next($result)) {
-      $blockId = $row['id'];
-      $maxitems = $row['maxitems'];
-      $sortBy = 'news.' . $row['sortby'];
-      // Find sort direction
-      if ($row['sortdir'] == 'descending') {
-        $sortDir = 'DESC';
-      }
-      else {
-        $sortDir = 'ASC';
-      }
-      $timetype = $row['timetype'];
-      if ($timetype == 'always') {
-        $timeSql = ''; // no time managing for always
-      }
-      else if ($timetype == 'now') {
-        // Create sql for active news
-        $timeSql = " and ((news.startdate is null and news.enddate is null) or (news.startdate<=now() and news.enddate>=now()) or (news.startdate<=now() and news.enddate is null) or (news.startdate is null and news.enddate>=now()))";
-      }
-      else {
-        $count = $row['timecount'];
-        if ($timetype == 'interval') {
-          $start = intval($row['startdate']);
-          $end = intval($row['enddate']);
-        }
-        else if ($timetype == 'hours') {
-          $start = mktime(date("H") - $count,date("i"),date("s"),date("m"),date("d"),date("Y"));
-          $end = time();
-        }
-        else if ($timetype == 'days') {
-          $start = mktime(date("H"),date("i"),date("s"),date("m"),date("d") - $count,date("Y"));
-          $end = time();
-        }
-        else if ($timetype == 'weeks') {
-          $start = mktime(date("H"),date("i"),date("s"),date("m"),date("d") - ($count * 7),date("Y"));
-          $end = time();
-        }
-        else if ($timetype == 'months') {
-          $start = mktime(date("H"),date("i"),date("s"),date("m") - $count,date("d"),date("Y"));
-          $end = time();
-        }
-        else if ($timetype == 'years') {
-          $start = mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y") - $count);
-          $end = time();
-        }
-        $timeSql = " and ((news.startdate is null and news.enddate is null) or (news.startdate>=" . Database::datetime($start) . " and news.startdate<=" . Database::datetime($end) . ") or (news.enddate>=" . Database::datetime($start) . " and news.enddate<=" . Database::datetime($end) . ") or (news.enddate>=" . Database::datetime($start) . " and news.startdate is null) or (news.startdate<=" . Database::datetime($end) . " and news.enddate is null))";
-      }
-      $newsData = '';
-      $sql = "select distinct object.data from object, news, newsgroup_news, frame_newsblock_newsgroup, frame_newsblock where object.id = news.object_id and news.object_id=newsgroup_news.news_id and newsgroup_news.newsgroup_id=frame_newsblock_newsgroup.newsgroup_id and frame_newsblock_newsgroup.frame_newsblock_id=" . Database::int($blockId) . $timeSql . " order by " . $sortBy . " " . $sortDir;
-      $resultNews = Database::select($sql);
-      while ($rowNews = Database::next($resultNews)) {
-        $newsData .= $rowNews['data'];
-        $maxitems--;
-        if ($maxitems == 0) break;
-      }
-      Database::free($resultNews);
-      $data = str_replace("<!--newsblock#" . $blockId . "-->", $newsData, $data);
-    }
-    Database::free($result);
-    return $data;
-  }
-
   static function applyContentDynamism($id, $template, &$data) {
     $state = ['data' => $data, 'redirect' => false, 'override' => false];
     if ($controller = TemplateService::getController($template)) {
@@ -306,7 +241,7 @@ class RenderingService {
     $sql = "select page.id,page.path,page.secure,UNIX_TIMESTAMP(page.published) as published," .
       " page.title,page.description,page.language,page.keywords,page.data,page.dynamic,page.next_page,page.previous_page," .
       " template.unique as template,frame.id as frameid,frame.title as frametitle," .
-      " frame.data as framedata,frame.dynamic as framedynamic,design.`unique` as design," .
+      " frame.data as framedata,design.`unique` as design," .
       " design.parameters," .
       " hierarchy.data as hierarchy, " .
       " setting.value as analytics_key" .
@@ -361,9 +296,6 @@ class RenderingService {
         $redirect = $content['redirect'];
       }
       $framedata = $row['framedata'];
-      if ($row['framedynamic']) {
-        $framedata = RenderingService::applyFrameDynamism($row['frameid'],$framedata);
-      }
       $xml = RenderingService::buildXML([
         'id' => $row['id'],
         'title' => $row['title'],
@@ -389,8 +321,7 @@ class RenderingService {
         'secure' => $row['secure'],
         'language' => strtolower($row['language']),
         'redirect' => $redirect,
-        'dynamic' => $row['dynamic'],
-        'framedynamic' => $row['framedynamic']
+        'dynamic' => $row['dynamic']
       ];
     }
     else {
@@ -519,7 +450,7 @@ class RenderingService {
         header('Link: </version' . ConfigurationService::getDeploymentTime() . '/api/style/humanise.css>; rel=preload; as=style');
       }
       echo $output;
-      if (!$page['secure'] && !$page['dynamic'] && !$page['framedynamic']) {
+      if (!$page['secure'] && !$page['dynamic']) {
         CacheService::createPageCache($page['id'],$path,$html);
       }
     }
@@ -533,7 +464,7 @@ class RenderingService {
 
     $sql = "select page.id,UNIX_TIMESTAMP(page.published) as published, page.description,page.language,page.keywords," .
     "page.title,page.dynamic,page.next_page,page.previous_page," .
-    "template.unique,frame.id as frameid,frame.title as frametitle,frame.data as framedata,frame.dynamic as framedynamic," .
+    "template.unique,frame.id as frameid,frame.title as frametitle,frame.data as framedata," .
     " design.parameters," .
     "design.`unique` as design, hierarchy.id as hierarchy" .
     " from page,template,frame,design,hierarchy" .
@@ -557,9 +488,6 @@ class RenderingService {
       $data = $stuff['data'];
 
       $framedata = $row['framedata'];
-      if ($row['framedynamic']) {
-        $framedata = RenderingService::applyFrameDynamism($row['frameid'],$framedata);
-      }
       $design = $row['design'];
       if (Request::exists('design')) {
         $design = Request::getString('design');

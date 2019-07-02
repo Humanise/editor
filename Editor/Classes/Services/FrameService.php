@@ -135,18 +135,6 @@ class FrameService {
       Database::delete($sql, $frame->getId());
       $sql = "delete from frame_link where frame_id = @id";
       Database::delete($sql, $frame->getId());
-
-      $sql = "select * from frame_newsblock where frame_id = @id";
-      $result = Database::select($sql, $frame->getId());
-      while ($row = Database::next($result)) {
-        $sql = 'delete from frame_newsblock_newsgroup where frame_newsblock_id = @id';
-        Database::delete($sql, $row['id']);
-      }
-      Database::free($result);
-
-      $sql = "delete from frame_newsblock where frame_id = @id";
-      Database::delete($sql, $frame->getId());
-
       return true;
     }
     return false;
@@ -170,51 +158,5 @@ class FrameService {
     return $list;
   }
 
-  static function getNewsBlocks($frame) {
-    $sql = "select id,`index`,title,sortby,sortdir,maxitems,timetype,timecount,UNIX_TIMESTAMP(startdate) as startdate,UNIX_TIMESTAMP(enddate) as enddate from frame_newsblock where frame_id = @id order by `index`";
-    $blocks = Database::selectAll($sql, $frame->getId());
-    foreach ($blocks as &$block) {
-      $sql = "select newsgroup_id from frame_newsblock_newsgroup where frame_newsblock_id = @id";
-      $block['groups'] = Database::selectArray($sql, $block['id']);
-    }
-    return $blocks;
-  }
-
-  static function replaceNewsBlocks($frame,$blocks) {
-
-    if (!is_object($frame)) {
-      Log::debug('No frame provided');
-      return;
-    }
-    // Delete existing blocks
-    $sql = "delete from frame_newsblock where frame_id = @id";
-    Database::delete($sql, $frame->getId());
-    // Delete unassociated news groups
-    $sql = "delete from frame_newsblock_newsgroup where frame_newsblock_id not in (select id from frame_newsblock)";
-    Database::delete($sql);
-
-    if (!is_array($blocks)) {
-      return;
-    }
-
-    for ($i = 0; $i < count($blocks); $i++) {
-      $block = $blocks[$i];
-      $sql = [
-        'table' => 'frame_newsblock',
-        'values' => [
-          'frame_id' => ['int' => $frame->getId()],
-          'title' => ['text' => $block->title],
-          'sortby' => ['text' => $block->sortby],
-          'sortdir' => ['text' => $block->sortdir],
-          'maxitems' => ['int' => $block->maxitems],
-          'timetype' => ['text' => $block->timetype],
-          'timecount' => ['int' => $block->timecount],
-          'startdate' => ['datetime' => $block->startdate],
-          'enddate' => ['datetime' => $block->enddate]
-        ]
-      ];
-      Database::insert($sql);
-    }
-  }
 }
 ?>

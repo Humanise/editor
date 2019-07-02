@@ -85,7 +85,6 @@ class ApiService {
           'published' => 0,
           'secure' => false,
           'dynamic' => false,
-          'framedynamic' => false,
           'id' => 0
         ];
         $id = 0;
