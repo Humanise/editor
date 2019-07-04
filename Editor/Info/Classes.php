@@ -62,6 +62,7 @@ $HUMANISE_EDITOR_CLASSES = array (
     'NewsArticle' => 'Modules/News/NewsArticle.php',
     'ConsoleReporter' => 'Modules/Testing/ConsoleReporter.php',
     'Inspection' => 'Modules/Inspection/Inspection.php',
+    'ImageInspector' => 'Modules/Inspection/ImageInspector.php',
     'Inspector' => 'Modules/Inspection/Inspector.php',
     'InspectionService' => 'Modules/Inspection/InspectionService.php',
     'FetchStage' => 'Modules/Workflows/FetchStage.php',
@@ -276,7 +277,8 @@ $HUMANISE_EDITOR_CLASSES = array (
   array (
     'Inspector' =>
     array (
-      0 => 'DocumentTemplateInspector',
+      0 => 'ImageInspector',
+      1 => 'DocumentTemplateInspector',
     ),
     'Loadable' =>
     array (

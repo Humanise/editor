@@ -190,12 +190,6 @@ class UI {
     return UI::renderFragment($gui);
   }
 
-  static function compile() {
-    global $basePath;
-    $cmd = $basePath . "hui/tools/compile.sh";
-    return ShellService::execute($cmd);
-  }
-
   static function toLinks($links) {
     $out = [];
     foreach ($links as $link) {

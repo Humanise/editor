@@ -16,12 +16,12 @@ echo "base : " . $basePath . "\n";
 
 $args = Console::getArguments();
 
-if (method_exists('Commander',$args[1])) {
-  $method = $args[1];
-  Commander::$method($args);
+$method = $args[1];
+if (method_exists('Commander', $method)) {
+  Commander::$method(array_slice($args, 2));
 } else {
   $methods = get_class_methods('Commander');
-  echo "Tell me what to do: " . join(', ',$methods);
+  echo "Tell me what to do: " . join(', ', $methods);
   echo "\n: ";
   $handle = fopen ("php://stdin","r");
   $cmd = trim(fgets($handle));
@@ -41,8 +41,8 @@ class Commander {
       exit;
     }
 
-    if (isset($args[2])) {
-      $name = $args[2];
+    if (isset($args[0])) {
+      $name = $args[0];
       if (strpos($name,'/') !== false) {
         TestService::runTest($name,new ConsoleReporter());
       } else {
@@ -117,9 +117,20 @@ if (!isset(\$GLOBALS['basePath'])) {
     }
   }
 
-  static function full() {
-    Commander::classes();
-    Commander::hui();
+  static function inspect($args) {
+    $query = [];
+    if (isset($args[0])) {
+      $query['status'] = $args[0];
+    }
+    $results = InspectionService::performInspection($query);
+    foreach ($results as $inspection) {
+      //echo Strings::toJSON($inspection) . "\n";
+      echo $inspection->getStatus() . " : " . $inspection->getCategory() . " : " . GuiUtils::getTranslated($inspection->getText());
+      if ($entity = $inspection->getEntity()) {
+        echo " : " . $entity['type'] . "(".$entity['id'].") - " . $entity['title'];
+      }
+      echo "\n";
+    }
   }
 }
 ?>

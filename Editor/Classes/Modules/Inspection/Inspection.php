@@ -15,55 +15,54 @@ class Inspection {
   var $entity;
   var $status;
   var $category;
-    var $info;
+  var $info;
 
   function setStatus($status) {
-      $this->status = $status;
+    $this->status = $status;
   }
 
   function getStatus() {
-      return $this->status;
+    return $this->status;
   }
 
   function setCategory($category) {
-      $this->category = $category;
+    $this->category = $category;
   }
 
   function getCategory() {
-      return $this->category;
+    return $this->category;
   }
 
-
   function setText($text) {
-      $this->text = $text;
+    $this->text = $text;
   }
 
   function getText() {
-      return $this->text;
+    return $this->text;
   }
 
   function setKey($key) {
-      $this->key = $key;
+    $this->key = $key;
   }
 
   function getKey() {
-      return $this->key;
+    return $this->key;
   }
 
   function setEntity($entity) {
-      $this->entity = $entity;
+    $this->entity = $entity;
   }
 
   function getEntity() {
-      return $this->entity;
+    return $this->entity;
   }
 
-    function setInfo($info) {
-        $this->info = $info;
-    }
+  function setInfo($info) {
+    $this->info = $info;
+  }
 
-    function getInfo() {
-        return $this->info;
-    }
+  function getInfo() {
+    return $this->info;
+  }
 
 }
