@@ -10,7 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 class InspectionService {
 
-  static function performInspection(array $query) {
+  static function performInspection(array $query = []) {
     $inspections = [];
 
     InspectionService::checkFolders($inspections);
@@ -36,6 +36,20 @@ class InspectionService {
     }
 
     return $filtered;
+  }
+
+  static function getStatus() {
+    $result = InspectionService::performInspection();
+    $status = [];
+    foreach ($result as $inspection) {
+      $s = $inspection->getStatus();
+      if (isset($status[$s])) {
+        $status[$s]++;
+      } else {
+        $status[$s] = 1;
+      }
+    }
+    return $status;
   }
 
   static function checkEnvironment(&$inspections) {

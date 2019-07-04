@@ -111,9 +111,13 @@ if (!isset(\$GLOBALS['basePath'])) {
 
   static function check() {
     if (SchemaService::hasSchemaChanges()) {
-      echo "The database schema may need correction" . PHP_EOL;
+      echo "error : The database schema may need correction" . PHP_EOL;
     } else {
-      echo "The database schema is probably correct" . PHP_EOL;
+      echo "ok : The database schema is probably correct" . PHP_EOL;
+    }
+    $status = InspectionService::getStatus();
+    foreach ($status as $state => $count) {
+      echo $state . " : " . $count . " inspections" . PHP_EOL;
     }
   }
 
