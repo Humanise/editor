@@ -5,7 +5,7 @@
  */
 require_once '../../Include/Private.php';
 
-$maxUploadSize = GuiUtils::bytesToString(FileSystemService::getMaxUploadSize());
+$maxUploadSize = UI::formatBytes(FileSystemService::getMaxUploadSize());
 
 $blueprints = PageService::getBlueprintsByTemplate('document');
 $blueprintItems = UI::buildOptions($blueprints);

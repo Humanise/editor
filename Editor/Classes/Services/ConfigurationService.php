@@ -138,6 +138,14 @@ class ConfigurationService {
     return FileSystemService::join($basePath, 'images', $filename);
   }
 
+  static function getFilePath($filename) {
+    global $CONFIG,$basePath;
+    if (isset($CONFIG['dataDir'])) {
+      return FileSystemService::join($basePath, $CONFIG['dataDir'], 'files', $filename);
+    }
+    return FileSystemService::join($basePath, 'files', $filename);
+  }
+
   static function getDataPath($path) {
     global $CONFIG,$basePath;
     if (isset($CONFIG['dataDir'])) {

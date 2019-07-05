@@ -79,7 +79,7 @@ class LinkService {
   }
 
   static function translateLinkType($type) {
-    return GuiUtils::getTranslated(LinkService::$types[$type]);
+    return UI::translate(LinkService::$types[$type]);
   }
 
   // TODO (jm) This is should maybe be in UI

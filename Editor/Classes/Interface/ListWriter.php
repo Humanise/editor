@@ -59,7 +59,7 @@ class ListWriter {
     }
     else if (is_array($options)) {
       if (isset($options['title'])) {
-        echo ' title="' . Strings::escapeEncodedXML(GuiUtils::getTranslated($options['title'])) . '"';
+        echo ' title="' . Strings::escapeEncodedXML(UI::translate($options['title'])) . '"';
       }
       if (isset($options['width'])) {
         echo ' width="' . $options['width'] . '"';
@@ -187,7 +187,7 @@ class ListWriter {
   }
 
   function text($text) {
-    $text = GuiUtils::getTranslated($text);
+    $text = UI::translate($text);
     echo Strings::escapeXMLBreak($text,'<break/>');
     return $this;
   }
@@ -225,7 +225,7 @@ class ListWriter {
       echo ' action="true"';
     }
     if (isset($options['hint'])) {
-      echo ' hint="' . Strings::escapeXML(GuiUtils::getTranslated($options['hint'])) . '"';
+      echo ' hint="' . Strings::escapeXML(UI::translate($options['hint'])) . '"';
     }
     if (isset($options['size'])) {
       echo ' size="' . Strings::escapeXML($options['size']) . '"';
@@ -235,7 +235,7 @@ class ListWriter {
   }
 
   function button($options = []) {
-    echo '<button text="' . Strings::escapeEncodedXML(GuiUtils::getTranslated($options['text'])) . '"';
+    echo '<button text="' . Strings::escapeEncodedXML(UI::translate($options['text'])) . '"';
     if (isset($options['data'])) {
       echo ' data="' . Strings::escapeXML(Strings::toJSON($options['data'])) . '"';
     }

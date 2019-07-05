@@ -12,7 +12,7 @@ class HeartBeatService {
       HeartBeatService::run();
       return;
     }
-    $duration = time() - intval($latest);
+    $duration = time() - $latest;
     if ($duration > 60 * 5) {
       HeartBeatService::run();
     } else {

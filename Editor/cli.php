@@ -3,6 +3,13 @@
  * @package OnlinePublisher
  * @subpackage Public
  */
+foreach ($argv as $arg) {
+  if (preg_match('/-domain=([a-z]+(\.[a-z]+)+)/', $arg, $matches)) {
+    echo 'using domain: ' . $matches[1] . PHP_EOL;
+    $_SERVER['SERVER_NAME'] = $matches[1];
+  }
+}
+
 require_once 'Include/Public.php';
 
 error_reporting(E_ALL);
@@ -15,8 +22,10 @@ Console::exitIfNotConsole();
 echo "base : " . $basePath . "\n";
 
 $args = Console::getArguments();
+$args = array_filter($args, function($val) { return $val[0] !== '-'; });
 
 $method = $args[1];
+
 if (method_exists('Commander', $method)) {
   Commander::$method(array_slice($args, 2));
 } else {
@@ -109,6 +118,10 @@ if (!isset(\$GLOBALS['basePath'])) {
     }
   }
 
+  static function beat() {
+    HeartBeatService::beat();
+  }
+
   static function check() {
     if (SchemaService::hasSchemaChanges()) {
       echo "error : The database schema may need correction" . PHP_EOL;
@@ -129,7 +142,7 @@ if (!isset(\$GLOBALS['basePath'])) {
     $results = InspectionService::performInspection($query);
     foreach ($results as $inspection) {
       //echo Strings::toJSON($inspection) . "\n";
-      echo $inspection->getStatus() . " : " . $inspection->getCategory() . " : " . GuiUtils::getTranslated($inspection->getText());
+      echo $inspection->getStatus() . " : " . $inspection->getCategory() . " : " . UI::translate($inspection->getText());
       if ($entity = $inspection->getEntity()) {
         echo " : " . $entity['type'] . "(".$entity['id'].") - " . $entity['title'];
       }

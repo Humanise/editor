@@ -66,6 +66,7 @@ $writer->startList(['unicode' => true])->
   header(['title' => ['Title', 'da' => 'Titel'], 'key' => 'title', 'sortable' => true])->
   header(['title' => ['Address', 'da' => 'Adresse'], 'key' => 'url', 'sortable' => true]);
 $writer->header(['title' => 'Version', 'key' => 'version', 'sortable' => true]);
+$writer->header(['title' => 'Heartbeat', 'key' => 'heartbeat', 'sortable' => true]);
 $writer->header(['title' => 'Inspection', 'key' => 'inspection']);
 if ($showTools) {
   $writer->header(['title' => ['Tools', 'da' => 'Værktøjer']]);
@@ -86,6 +87,7 @@ foreach ($sites as $row) {
     startCell(['wrap' => false])->text($site->getTitle())->endCell()->
     startCell()->text($site->getUrl())->endCell()->
     startCell(['wrap' => false])->text($version)->endCell()->
+    startCell(['wrap' => false])->text(isset($obj->heartbeat) ? Dates::formatLongDate($obj->heartbeat) : '-')->endCell()->
     startCell();
   if (isset($obj->inspection)) writeInspection($writer, $obj->inspection);
   $writer->endCell();

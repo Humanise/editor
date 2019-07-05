@@ -20,6 +20,7 @@ Response::sendObject([
     'feedbackEmail' => Strings::isNotBlank(MailService::getFeedbackEmail()),
     'feedbackName' => Strings::isNotBlank(MailService::getFeedbackName())
   ],
-  'inspection' => InspectionService::getStatus()
+  'inspection' => InspectionService::getStatus(),
+  'heartbeat' => SettingService::getLatestHeartBeat()
 ]);
 ?>

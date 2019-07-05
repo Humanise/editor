@@ -16,7 +16,7 @@ class NewsPartController extends PartController
 
   function createPart() {
     $part = new NewsPart();
-    $part->setTitle(GuiUtils::getTranslated(['Seneste nyt', 'da' => 'Latest news']));
+    $part->setTitle(UI::translate(['Seneste nyt', 'da' => 'Latest news']));
     $part->setVariant('box');
     $part->setMode('single');
     $part->setSortDir('ascending');

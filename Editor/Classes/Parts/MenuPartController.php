@@ -98,7 +98,7 @@ class MenuPartController extends PartController
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['Menu', 'da' => 'Menu']) => '
+      UI::translate(['Menu', 'da' => 'Menu']) => '
       <icon icon="common/info" text="{Info; da:Info}" name="info"/>
       <divider/>
       <item label="{Variant; da:Variant}">

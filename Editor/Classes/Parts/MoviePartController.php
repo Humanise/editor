@@ -128,7 +128,7 @@ class MoviePartController extends PartController
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['Movie', 'da' => 'Film']) => '
+      UI::translate(['Movie', 'da' => 'Film']) => '
         <icon icon="common/new" text="{Add file; da:Tilføj fil}" name="addFile"/>
         <icon icon="common/search" text="{Select file; da:Vælg fil}" name="chooseFile"/>
         <divider/>
@@ -143,7 +143,7 @@ class MoviePartController extends PartController
       <upload name="fileUpload" url="../../Parts/file/Upload.php" widget="upload">
         <placeholder
           title="{Select a file on your computer; da:Vælg en fil på din computer...}"
-          text="{The file size can at most be; da:Filens størrelse må højest være} ' . GuiUtils::bytesToString(FileSystemService::getMaxUploadSize()) . '."
+          text="{The file size can at most be; da:Filens størrelse må højest være} ' . UI::formatBytes(FileSystemService::getMaxUploadSize()) . '."
         />
       </upload>
       <buttons align="center" top="10">

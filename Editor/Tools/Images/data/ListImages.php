@@ -52,7 +52,7 @@ function listGroup($group) {
         startLine()->text($row['title'])->endLine()->
       endCell()->
       startCell()->
-        text(GuiUtils::bytesToString($row['size']))->
+        text(UI::formatBytes($row['size']))->
       endCell()->
       startCell()->
         text($row['height'])->
@@ -138,7 +138,7 @@ function listImages() {
         startLine()->text($image->getTitle())->endLine()->
       endCell()->
       startCell()->
-        text(GuiUtils::bytesToString($image->getSize()))->
+        text(UI::formatBytes($image->getSize()))->
       endCell()->
       startCell()->
         text($image->getHeight())->
@@ -285,33 +285,23 @@ function listCheck() {
     startHeaders()->
       header(['title' => ['Image', 'da' => 'Billede'], 'width' => 30])->
       header(['title' => ['File', 'da' => 'Fil'], 'width' => 30])->
-      header(['title' => ['Problems', 'da' => 'Problemer']])->
+      header(['title' => ['Problem', 'da' => 'Problem']])->
     endHeaders();
 
-  $query = Query::after('image')->withText($text)->orderBy('title')->withWindowSize(99999);
-  $result = $query->search()->getList();
-
-  foreach ($result as $row) {
-    $path = ConfigurationService::getImagePath($row->getFilename());
+  $inspections = (new ImageInspector())->inspect();
+  foreach ($inspections as $inspection) {
+    $entity = $inspection->getEntity();
     $writer->
-    startRow(['kind' => 'image', 'id' => $row->getId(), 'icon' => 'common/image', 'title' => $row->getTitle()])->
+    startRow(['kind' => 'image', 'id' => $entity['id'], 'icon' => 'common/image', 'title' => $entity['title']])->
       startCell(['icon' => 'common/image'])->
-        startLine()->startWrap()->text($row->getTitle())->endWrap()->endLine()->
+        startLine()->startWrap()->text($entity['title'])->endWrap()->endLine()->
       endCell()->
-      startCell(['icon' => 'file/generic', 'wrap' => true])->startWrap()->text($row->getFilename())->endWrap()->
+      startCell()->text($entity['filename'])->endCell()->
+      startCell()->
+        text($inspection->getText())->
       endCell()->
-      startCell();
-    $problems = [];
-    if (!file_exists($path)) {
-      $problems[] = 'File not found';
-    }
-    else if (filesize($path) !== $row->getSize()) {
-      $problems[] = 'Size is different';
-    }
-    $writer->text(join($problems, ', '));
-    $writer->endCell()->endRow();
+    endRow();
   }
-
   $writer->endList();
 }
 ?>

@@ -142,6 +142,28 @@ class UI {
     return $xml;
   }
 
+  static function translate($value) {
+    if (is_array($value)) {
+      $lang = InternalSession::getLanguage();
+      if (isset($value[$lang])) {
+        return $value[$lang];
+      }
+      if (count($value)) {
+        return $value[0];
+      } else {
+        return '';
+      }
+    } else if (is_object($value)) {
+      $lang = InternalSession::getLanguage();
+      if (isset($value->$lang)) {
+        return $value->$lang;
+      }
+      return $value->en;
+
+    }
+    return $value;
+  }
+
   static function extract($str) {
     $parsed = [];
     $str = substr($str,1,-1);
@@ -254,5 +276,25 @@ class UI {
     }
 
     return $output;
+  }
+
+  /**
+   * Formats a number of bytes to abreviated human readable string
+   * @param int $input The bytes to format
+   * @return string Human readable bytes
+   */
+  static function formatBytes($input) {
+    if ($input < 1024) {
+      return $input . ' b';
+    }
+    else if ($input < (1024 * 1024)) {
+      return round(($input / 1024),1) . ' Kb';
+    }
+    else if ($input < (1024 * 1024 * 1024)) {
+      return round(($input / 1024 / 1024),1) . ' Mb';
+    }
+    else {
+      return $input;
+    }
   }
 }

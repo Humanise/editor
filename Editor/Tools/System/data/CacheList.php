@@ -27,19 +27,19 @@ $writer->endRow();
 
 $writer->startRow();
 $writer->startCell(['icon' => 'common/image'])->text('Billeder')->endCell();
-$writer->startCell()->text($imageCache['count'] . ' billeder (' . GuiUtils::bytesToString($imageCache['size']) . ')')->endCell();
+$writer->startCell()->text($imageCache['count'] . ' billeder (' . UI::formatBytes($imageCache['size']) . ')')->endCell();
 $writer->startCell()->button(['text' => 'Ryd', 'data' => ['type' => 'images']])->endCell();
 $writer->endRow();
 
 $writer->startRow();
 $writer->startCell(['icon' => 'file/generic'])->text('Midlertidige filer')->endCell();
-$writer->startCell()->text($tempCache['count'] . ' filer (' . GuiUtils::bytesToString($tempCache['size']) . ')')->endCell();
+$writer->startCell()->text($tempCache['count'] . ' filer (' . UI::formatBytes($tempCache['size']) . ')')->endCell();
 $writer->startCell()->button(['text' => 'Ryd', 'data' => ['type' => 'temp']])->endCell();
 $writer->endRow();
 
 $writer->startRow();
 $writer->startCell(['icon' => 'common/internet'])->text('Internet adresser')->endCell();
-$writer->startCell()->text($urlCache['count'] . ' filer (' . GuiUtils::bytesToString($urlCache['size']) . ')')->endCell();
+$writer->startCell()->text($urlCache['count'] . ' filer (' . UI::formatBytes($urlCache['size']) . ')')->endCell();
 $writer->startCell()->button(['text' => 'Ryd', 'data' => ['type' => 'urls']])->endCell();
 $writer->endRow();
 

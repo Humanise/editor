@@ -201,7 +201,7 @@ class HeaderPartController extends PartController
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['Header', 'da' => 'Overskrift']) =>
+      UI::translate(['Header', 'da' => 'Overskrift']) =>
       '
       <item label="{Level; da:Niveau}">
         <segmented name="level">
@@ -247,7 +247,7 @@ class HeaderPartController extends PartController
         </segmented>
       </item>
       ',
-    GuiUtils::getTranslated(['Advanced', 'da' => 'Avanceret']) =>
+    UI::translate(['Advanced', 'da' => 'Avanceret']) =>
       '
       <item label="{Word spacing; da:Ord-mellemrum}">
         <style-length-input name="wordSpacing" width="90"/>

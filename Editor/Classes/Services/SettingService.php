@@ -81,7 +81,11 @@ class SettingService {
   }
 
   static function getLatestHeartBeat() {
-    return SettingService::getSetting('system','heartbeat','latest');
+    $value = SettingService::getSetting('system','heartbeat','latest');
+    if (is_numeric($value)) {
+      return intval($value);
+    }
+    return null;
   }
 
   static function setLatestHeartBeat($value) {
