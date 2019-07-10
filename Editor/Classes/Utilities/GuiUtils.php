@@ -145,24 +145,6 @@ class GuiUtils {
       'ZU' => ['Zulu']
     ];
 
-  static function getTranslated($value) {
-    if (is_array($value)) {
-      $lang = InternalSession::getLanguage();
-      if (isset($value[$lang])) {
-        return $value[$lang];
-      }
-      return $value[0];
-    } else if (is_object($value)) {
-      $lang = InternalSession::getLanguage();
-      if (isset($value->$lang)) {
-        return $value->$lang;
-      }
-      return $value->en;
-
-    }
-    return $value;
-  }
-
   static function buildTranslatedItems($items) {
     $output = '';
 
@@ -185,55 +167,16 @@ class GuiUtils {
   }
 
   static function getLanguageName($lang) {
-    return @GuiUtils::getTranslated(GuiUtils::$languages[$lang]);
+    return @UI::translate(GuiUtils::$languages[$lang]);
   }
 
   static function getLanguages() {
     $out = [];
     foreach (GuiUtils::$languages as $key => $value) {
-      $out[$key] = GuiUtils::getTranslated($value);
+      $out[$key] = UI::translate($value);
     }
     return $out;
   }
 
-  /**
-   * Formats a number of bytes to abreviated human readable string
-   * @param int $input The bytes to format
-   * @return string Human readable bytes
-   */
-  static function bytesToString($input) {
-    if ($input < 1024) {
-      return $input . ' b';
-    }
-    else if ($input < (1024 * 1024)) {
-      return round(($input / 1024),1) . ' Kb';
-    }
-    else if ($input < (1024 * 1024 * 1024)) {
-      return round(($input / 1024 / 1024),1) . ' Mb';
-    }
-    else {
-      return $input;
-    }
-  }
-
-  /**
-   * Formats a number of bytes to full human readable string
-   * @param int $input The bytes to format
-   * @return string Human readable bytes
-   */
-  static function bytesToLongString($input) {
-    if ($input < 1024) {
-      return $input . ' bytes';
-    }
-    else if ($input < (1024 * 1024)) {
-      return round(($input / 1024),1) . ' kilobytes';
-    }
-    else if ($input < (1024 * 1024 * 1024)) {
-      return round(($input / 1024 / 1024),1) . ' Megabytes';
-    }
-    else {
-      return $input;
-    }
-  }
 }
 ?>

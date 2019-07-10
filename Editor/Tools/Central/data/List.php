@@ -21,8 +21,6 @@ if ($order !== 'version') {
 }
 $objects = $query->get();
 
-
-
 $sites = [];
 
 $time = 60 * 60;
@@ -68,6 +66,8 @@ $writer->startList(['unicode' => true])->
   header(['title' => ['Title', 'da' => 'Titel'], 'key' => 'title', 'sortable' => true])->
   header(['title' => ['Address', 'da' => 'Adresse'], 'key' => 'url', 'sortable' => true]);
 $writer->header(['title' => 'Version', 'key' => 'version', 'sortable' => true]);
+$writer->header(['title' => 'Heartbeat', 'key' => 'heartbeat', 'sortable' => true]);
+$writer->header(['title' => 'Inspection', 'key' => 'inspection']);
 if ($showTools) {
   $writer->header(['title' => ['Tools', 'da' => 'Værktøjer']]);
 }
@@ -86,7 +86,11 @@ foreach ($sites as $row) {
   $writer->startRow(['kind' => 'remotepublisher', 'id' => $site->getId()])->
     startCell(['wrap' => false])->text($site->getTitle())->endCell()->
     startCell()->text($site->getUrl())->endCell()->
-    startCell(['wrap' => false])->text($version)->endCell();
+    startCell(['wrap' => false])->text($version)->endCell()->
+    startCell(['wrap' => false])->text(isset($obj->heartbeat) ? Dates::formatLongDate($obj->heartbeat) : '-')->endCell()->
+    startCell();
+  if (isset($obj->inspection)) writeInspection($writer, $obj->inspection);
+  $writer->endCell();
   if ($showTools) {
     $writer->startCell(['wrap' => false]);
     writeTools($writer,$obj);
@@ -99,7 +103,7 @@ foreach ($sites as $row) {
   }
   if ($showEmail) {
     $writer->startCell(['wrap' => false]);
-    writeEmail($writer,$obj);
+    writeEmail($writer, $obj);
     $writer->endCell();
   }
   $writer->endRow();
@@ -107,7 +111,21 @@ foreach ($sites as $row) {
 
 $writer->endList();
 
-function writeTemplates($writer,$obj) {
+function writeInspection(ListWriter $writer, stdClass $ins = null) {
+  if ($ins) {
+    if (isset($ins->ok)) {
+      $writer->object(['icon' => 'common/ok', 'text' => $ins->ok]);
+    }
+    if (isset($ins->warning)) {
+      $writer->object(['icon' => 'common/warning', 'text' => $ins->warning]);
+    }
+    if (isset($ins->error)) {
+      $writer->object(['icon' => 'common/stop', 'text' => $ins->error]);
+    }
+  }
+}
+
+function writeTemplates(ListWriter $writer, stdClass $obj = null) {
   if ($obj && property_exists($obj,'templates')) {
     $installed = $obj->templates->installed;
     $used = $obj->templates->used;
@@ -119,14 +137,13 @@ function writeTemplates($writer,$obj) {
   }
 }
 
-function writeTools($writer,$obj) {
+function writeTools(ListWriter $writer, stdClass $obj = null) {
   if ($obj && property_exists($obj,'tools')) {
     $installed = $obj->tools->installed;
     if (!$installed || !is_array($installed)) {
       $writer->text('not an array');
       return;
     }
-    Log::debug($installed);
     foreach ($installed as $tool) {
       $writer->startLine()->object(['icon' => 'common/ok', 'text' => $tool])->endLine();
     }
@@ -135,7 +152,7 @@ function writeTools($writer,$obj) {
   }
 }
 
-function writeEmail($writer,$obj) {
+function writeEmail(ListWriter $writer, stdClass $obj = null) {
   if ($obj && property_exists($obj,'email')) {
     $email = $obj->email;
     if ($email->enabled) {

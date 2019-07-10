@@ -122,7 +122,7 @@ class CustomPartController extends PartController
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['Custom', 'da' => 'Speciel']) => '
+      UI::translate(['Custom', 'da' => 'Speciel']) => '
       <item label="{Workflow; da:Arbejdsgang}">
         <dropdown name="workflow" width="200">' . UI::buildOptions('workflow') . '</dropdown>
       </item>

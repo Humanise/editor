@@ -77,7 +77,7 @@ class PosterPartController extends PartController
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['Poster', 'da' => 'Plakat']) => '
+      UI::translate(['Poster', 'da' => 'Plakat']) => '
         <icon icon="common/previous" text="{Previous ; da:Forrige}" name="goPrevious"/>
         <icon icon="common/next" text="{Next ; da:Næste}" name="goNext"/>
         <divider/>

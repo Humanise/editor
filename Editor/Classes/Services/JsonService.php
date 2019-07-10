@@ -14,10 +14,10 @@ class JsonService {
     return Strings::fromJSON($data);
   }
 
-  static function readFile($path) {
+  static function readFile($path, $asArray = false) {
     if (file_exists($path)) {
       $json = file_get_contents($path);
-      $obj = JsonService::decode($json);
+      $obj = Strings::fromJSON($json, $asArray);
       $obj = Strings::fromUnicode($obj);
       return $obj;
     }

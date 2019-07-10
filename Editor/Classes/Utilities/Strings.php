@@ -300,8 +300,8 @@ class Strings {
     return json_encode($obj);
   }
 
-  static function fromJSON($str) {
-    return json_decode($str);
+  static function fromJSON($str, $asArray = false) {
+    return json_decode($str, $asArray);
   }
 
   static function toString($val) {

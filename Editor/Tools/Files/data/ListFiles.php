@@ -59,7 +59,7 @@ foreach ($objects as $object) {
       startLine(['dimmed' => true])->text(FileService::mimeTypeToLabel($object->getMimeType()))->endLine()->
       //startLine(array('dimmed'=>true))->text($object->getFilename())->endLine()->
     endCell()->
-    startCell()->startLine(['dimmed' => true])->text(GuiUtils::bytesToString($object->getSize()))->endLine()->endCell()->
+    startCell()->startLine(['dimmed' => true])->text(UI::formatBytes($object->getSize()))->endLine()->endCell()->
     startCell()->startLine(['dimmed' => true])->text(Dates::formatDateTime($object->getUpdated()))->endLine()->endCell()->
   endRow();
 }

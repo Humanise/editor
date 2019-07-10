@@ -267,7 +267,7 @@ if ($editedSection == null) {
 
     <window width="300" name="importWindow" padding="5" title="{Import; da:Importering}">
       <upload name="importUpload" url="actions/ImportUpload.php" widget="upload">
-        <placeholder title="{Select an file on you computer...; da:Vælg en fil på din computer...}" text="{Image can be in the format JPEG, PNG or GIF. The file size can at most be; da: Billeders format skal være JPEG, PNG eller GIF. Filens størrelse må højest være} ' . GuiUtils::bytesToString(FileSystemService::getMaxUploadSize()) . '."/>
+        <placeholder title="{Select an file on you computer...; da:Vælg en fil på din computer...}" text="{Image can be in the format JPEG, PNG or GIF. The file size can at most be; da: Billeders format skal være JPEG, PNG eller GIF. Filens størrelse må højest være} ' . UI::formatBytes(FileSystemService::getMaxUploadSize()) . '."/>
       </upload>
       <buttons align="center" top="10">
         <button name="cancelImport" text="{Close; da:Luk}"/>
@@ -403,11 +403,11 @@ function displaySections(&$column,&$row) {
       '</div>';
     echo '<div style="padding: 5px;">' .
     '<a onclick="controller.showNewPartMenu({element:this,event:event,columnId:' . $column['id'] . ',sectionIndex:' . ($lastIndex + 1) . '}); return false" href="javascript://" class="hui_button hui_button_light hui_button_small">' .
-    GuiUtils::getTranslated(['Add section', 'da' => 'Tilføj afsnit']) .
+    UI::translate(['Add section', 'da' => 'Tilføj afsnit']) .
     '</a>' .
     '</div>';
   } else {
-    echo '<div style="padding: 5px;"><a class="hui_button hui_button_light hui_button_small ' . ($editedSection != null ? 'hui_is_disabled' : '') . '">' . GuiUtils::getTranslated(['Add section', 'da' => 'Tilføj afsnit']) . '</a></div>';
+    echo '<div style="padding: 5px;"><a class="hui_button hui_button_light hui_button_small ' . ($editedSection != null ? 'hui_is_disabled' : '') . '">' . UI::translate(['Add section', 'da' => 'Tilføj afsnit']) . '</a></div>';
   }
 }
 

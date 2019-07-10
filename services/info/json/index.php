@@ -19,6 +19,8 @@ Response::sendObject([
     'standardName' => Strings::isNotBlank(MailService::getStandardName()),
     'feedbackEmail' => Strings::isNotBlank(MailService::getFeedbackEmail()),
     'feedbackName' => Strings::isNotBlank(MailService::getFeedbackName())
-  ]
+  ],
+  'inspection' => InspectionService::getStatus(),
+  'heartbeat' => SettingService::getLatestHeartBeat()
 ]);
 ?>

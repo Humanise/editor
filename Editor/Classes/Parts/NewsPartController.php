@@ -16,7 +16,7 @@ class NewsPartController extends PartController
 
   function createPart() {
     $part = new NewsPart();
-    $part->setTitle(GuiUtils::getTranslated(['Seneste nyt', 'da' => 'Latest news']));
+    $part->setTitle(UI::translate(['Seneste nyt', 'da' => 'Latest news']));
     $part->setVariant('box');
     $part->setMode('single');
     $part->setSortDir('ascending');
@@ -248,7 +248,7 @@ class NewsPartController extends PartController
         $params['groups'] = $groups;
       } else {
         $groupSql = " and newsgroup_news.newsgroup_id=part_news_newsgroup.newsgroup_id and part_news_newsgroup.part_id = @int(part)";
-        $params['part'] = $this->id;
+        $params['part'] = $part->id;
       }
       $sql = "select distinct object.data,@name(sortBy) from object,news, newsgroup_news, part_news_newsgroup where object.id=news.object_id and news.object_id=newsgroup_news.news_id" . $groupSql . $timeSql . " order by @name(sortBy) " . $sortDir;
       $params['sortBy'] = $sortBy;

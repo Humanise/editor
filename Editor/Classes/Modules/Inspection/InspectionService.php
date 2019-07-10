@@ -10,7 +10,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 class InspectionService {
 
-  static function performInspection($query) {
+  static function performInspection(array $query = []) {
     $inspections = [];
 
     InspectionService::checkFolders($inspections);
@@ -20,7 +20,6 @@ class InspectionService {
     InspectionService::checkEnvironment($inspections);
     InspectionService::checkLinks($inspections);
     InspectionService::checkObjects($inspections);
-    InspectionService::checkImages($inspections);
 
     $inspectors = ClassService::getByInterface('Inspector');
     foreach ($inspectors as $inspectorClass) {
@@ -37,6 +36,20 @@ class InspectionService {
     }
 
     return $filtered;
+  }
+
+  static function getStatus() {
+    $result = InspectionService::performInspection();
+    $status = [];
+    foreach ($result as $inspection) {
+      $s = $inspection->getStatus();
+      if (isset($status[$s])) {
+        $status[$s]++;
+      } else {
+        $status[$s] = 1;
+      }
+    }
+    return $status;
   }
 
   static function checkEnvironment(&$inspections) {
@@ -150,21 +163,6 @@ class InspectionService {
       $inspection->setEntity($entity);
       $inspection->setStatus('error');
       $inspection->setText('Siden har intet design');
-      $inspections[] = $inspection;
-    }
-    Database::free($result);
-  }
-
-  static function checkImages(&$inspections) {
-    $sql = "select object.title,object.id from image, object where object.id=image.object_id and image.type not in ('image/png','image/jpeg','image/gif')";
-    $result = Database::select($sql);
-    while ($row = Database::next($result)) {
-      $entity = ['type' => 'image', 'title' => $row['title'], 'id' => $row['id'], 'icon' => 'common/image'];
-      $inspection = new Inspection();
-      $inspection->setCategory('model');
-      $inspection->setEntity($entity);
-      $inspection->setStatus('error');
-      $inspection->setText('The image has an unknown type');
       $inspections[] = $inspection;
     }
     Database::free($result);

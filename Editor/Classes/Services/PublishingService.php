@@ -162,11 +162,8 @@ class PublishingService {
     PublishingService::buildFrameLinks($id,'bottom') .
     '</bottom>' .
     '</links>';
-    $news = PublishingService::buildFrameNews($id);
-    $data .= $news;
-    $dynamic = strlen($news) > 0;
-    $sql = "update frame set data = @text(data), published = now(), dynamic = @boolean(dynamic) where id = @id";
-    Database::update($sql, ['dynamic' => $dynamic, 'data' => $data, 'id' => $id]);
+    $sql = "update frame set data = @text(data), published = now() where id = @id";
+    Database::update($sql, ['data' => $data, 'id' => $id]);
 
     EventService::fireEvent('publish','frame',null,$id);
   }
@@ -190,19 +187,6 @@ class PublishingService {
         $out .= ' email="' . Strings::escapeEncodedXML($row['target_value']) . '"';
       }
       $out .= '/>';
-    }
-    Database::free($result);
-    return $out;
-  }
-
-  static function buildFrameNews($id) {
-    $out = '';
-    $sql = "select * from frame_newsblock where frame_id = @id order by `index`";
-    $result = Database::select($sql, $id);
-    while ($row = Database::next($result)) {
-      $out .= '<newsblock title="' . Strings::escapeEncodedXML($row['title']) . '">' .
-      '<!--newsblock#' . $row['id'] . '-->' .
-      '</newsblock>';
     }
     Database::free($result);
     return $out;

@@ -5,7 +5,7 @@
  */
 require_once '../../Include/Private.php';
 
-$maxUploadSize = GuiUtils::bytesToString(FileSystemService::getMaxUploadSize());
+$maxUploadSize = UI::formatBytes(FileSystemService::getMaxUploadSize());
 
 Response::sendObject([
   'title' => ['en' => 'Select image', 'da' => 'Vælg billede' ],

@@ -5,7 +5,7 @@
  */
 require_once '../../Include/Private.php';
 
-$maxUploadSize = GuiUtils::bytesToString(FileSystemService::getMaxUploadSize());
+$maxUploadSize = UI::formatBytes(FileSystemService::getMaxUploadSize());
 $gui = '
 <gui xmlns="uri:hui" title="Filer" padding="10">
   <controller url="controller.js"/>

@@ -30,8 +30,8 @@ $gui = '
     <space all="15">
     ' . ($error ? '
       <text>
-        <h>' . GuiUtils::getTranslated($error['title']) . '</h>
-        <p>' . GuiUtils::getTranslated($error['text']) . '</p>
+        <h>' . UI::translate($error['title']) . '</h>
+        <p>' . UI::translate($error['text']) . '</p>
       </text>
       <buttons align="right" top="5">
         <button highlighted="true" title="OK" url="Authentication.php"/>

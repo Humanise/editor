@@ -3,6 +3,13 @@
  * @package OnlinePublisher
  * @subpackage Public
  */
+foreach ($argv as $arg) {
+  if (preg_match('/-domain=([a-z]+(\.[a-z]+)+)/', $arg, $matches)) {
+    echo 'using domain: ' . $matches[1] . PHP_EOL;
+    $_SERVER['SERVER_NAME'] = $matches[1];
+  }
+}
+
 require_once 'Include/Public.php';
 
 error_reporting(E_ALL);
@@ -15,13 +22,15 @@ Console::exitIfNotConsole();
 echo "base : " . $basePath . "\n";
 
 $args = Console::getArguments();
+$args = array_filter($args, function($val) { return $val[0] !== '-'; });
 
-if (method_exists('Commander',$args[1])) {
-  $method = $args[1];
-  Commander::$method($args);
+$method = $args[1];
+
+if (method_exists('Commander', $method)) {
+  Commander::$method(array_slice($args, 2));
 } else {
   $methods = get_class_methods('Commander');
-  echo "Tell me what to do: " . join(', ',$methods);
+  echo "Tell me what to do: " . join(', ', $methods);
   echo "\n: ";
   $handle = fopen ("php://stdin","r");
   $cmd = trim(fgets($handle));
@@ -41,8 +50,8 @@ class Commander {
       exit;
     }
 
-    if (isset($args[2])) {
-      $name = $args[2];
+    if (isset($args[0])) {
+      $name = $args[0];
       if (strpos($name,'/') !== false) {
         TestService::runTest($name,new ConsoleReporter());
       } else {
@@ -66,7 +75,7 @@ class Commander {
     global $basePath;
     $schema = SchemaService::getDatabaseSchema();
 
-    $schema = var_export(SchemaService::getDatabaseSchema(),true);
+    $schema_code = var_export($schema,true);
 
     $file = $basePath . "Editor/Info/Schema.php";
 
@@ -80,10 +89,11 @@ if (!isset(\$GLOBALS['basePath'])) {
   header('HTTP/1.1 403 Forbidden');
   exit;
 }
-\$HUMANISE_EDITOR_SCHEMA = " . $schema . "
+\$HUMANISE_EDITOR_SCHEMA = " . $schema_code . "
 ?>";
     FileSystemService::writeStringToFile($data,$file);
-    echo $schema . PHP_EOL;
+    FileSystemService::writeStringToFile(json_encode($schema, JSON_PRETTY_PRINT),$basePath . "Editor/Info/Schema.json");
+    echo json_encode($schema, JSON_PRETTY_PRINT) . PHP_EOL;
   }
 
   static function classes() {
@@ -92,18 +102,52 @@ if (!isset(\$GLOBALS['basePath'])) {
     echo PHP_EOL;
   }
 
-  static function check() {
-    if (DatabaseUtil::isCorrect()) {
-      echo "The database schema is correct" . PHP_EOL;
-    } else {
-      echo "The database schema is NOT correct" . PHP_EOL;
+  static function diff() {
+    $diff = SchemaService::getSchemaDiff();
+    //echo Strings::toJSON($diff) . "\n";
+    $statements = SchemaService::statementsForDiff($diff);
+    foreach ($statements as $sql) {
+      echo $sql . "\n";
     }
-    echo join(PHP_EOL,DatabaseUtil::buildUpdateSQL()) . PHP_EOL;
   }
 
-  static function full() {
-    Commander::classes();
-    Commander::hui();
+  static function migrate() {
+    $result = SchemaService::migrate();
+    foreach ($result['log'] as $line) {
+      echo $line . "\n";
+    }
+  }
+
+  static function beat() {
+    HeartBeatService::beat();
+  }
+
+  static function check() {
+    if (SchemaService::hasSchemaChanges()) {
+      echo "error : The database schema may need correction" . PHP_EOL;
+    } else {
+      echo "ok : The database schema is probably correct" . PHP_EOL;
+    }
+    $status = InspectionService::getStatus();
+    foreach ($status as $state => $count) {
+      echo $state . " : " . $count . " inspections" . PHP_EOL;
+    }
+  }
+
+  static function inspect($args) {
+    $query = [];
+    if (isset($args[0])) {
+      $query['status'] = $args[0];
+    }
+    $results = InspectionService::performInspection($query);
+    foreach ($results as $inspection) {
+      //echo Strings::toJSON($inspection) . "\n";
+      echo $inspection->getStatus() . " : " . $inspection->getCategory() . " : " . UI::translate($inspection->getText());
+      if ($entity = $inspection->getEntity()) {
+        echo " : " . $entity['type'] . "(".$entity['id'].") - " . $entity['title'];
+      }
+      echo "\n";
+    }
   }
 }
 ?>

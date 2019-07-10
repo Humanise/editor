@@ -80,7 +80,7 @@ class FormulaPartController extends PartController
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['Formula', 'da' => 'Formular']) => '
+      UI::translate(['Formula', 'da' => 'Formular']) => '
       <icon icon="file/text" overlay="edit" text="{Show source;da:Vis kilde}" name="showSource"/>
       <divider/>
       <grid>

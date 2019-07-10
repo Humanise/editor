@@ -33,7 +33,7 @@ class CacheService {
     if (Request::getBoolean('viewsource') || Request::getBoolean('mini') || Request::getString('design') || @$_SESSION['debug.design']) {
       return false;
     }
-    $sql = "select page_cache.html,UNIX_TIMESTAMP(page.published) as published from page_cache,page,frame where page.secure=0 and page.dynamic=0 and page.id=page_cache.page_id and page.frame_id=frame.id and frame.dynamic=0";
+    $sql = "select page_cache.html,UNIX_TIMESTAMP(page.published) as published from page_cache,page where page.secure=0 and page.dynamic=0 and page.id=page_cache.page_id";
     $sql .= " and page_cache.version = @int(version)";
     if ($id > 0) {
       $sql .= " and page.id = @int(id)";

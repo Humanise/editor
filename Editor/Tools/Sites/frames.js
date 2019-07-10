@@ -1,13 +1,11 @@
 hui.ui.listen({
-  
+
   frameId : null,
-  
+
   $click$newFrame : function() {
     this.frameId = null;
     frameWindow.show();
     frameFormula.reset();
-    newsList.setObjects();
-    this._clearNews();
     deleteFrame.setEnabled(false);
     frameFormula.focus();
   },
@@ -18,7 +16,6 @@ hui.ui.listen({
     frameFormula.reset();
     deleteFrame.setEnabled(false);
     saveFrame.setEnabled(false);
-    this._clearNews();
     hui.ui.request({
       parameters : {id:id},
       url : 'data/LoadFrame.php',
@@ -38,7 +35,6 @@ hui.ui.listen({
         frameWindow.show();
         deleteFrame.setEnabled(data.canRemove);
         saveFrame.setEnabled(true);
-        newsList.setObjects(data.newsBlocks);
         this.frameId = data.frame.id;
         frameFormula.focus();
       }.bind(this)
@@ -70,8 +66,7 @@ hui.ui.listen({
         search : searchFormula.getValues(),
         user : userFormula.getValues(),
         topLinks : topLinks.getValue(),
-        bottomLinks : bottomLinks.getValue(),
-        newsBlocks : newsList.getRows()
+        bottomLinks : bottomLinks.getValue()
       },
       url : 'actions/SaveFrame.php',
       message : {start:{en:'Saving setup', da:'Gemmer opsætning...'},delay:300},
@@ -82,7 +77,6 @@ hui.ui.listen({
     this.frameId = null;
     frameFormula.reset();
     frameWindow.hide();
-    this._clearNews();
   },
   $click$deleteFrame : function() {
     deleteFrame.setEnabled(false);
@@ -97,63 +91,5 @@ hui.ui.listen({
     this.frameId = null;
     frameFormula.reset();
     frameWindow.hide();
-    this._clearNews();
-  },
-  
-  ///////////// News //////////
-  
-  _newsList : [],
-  _editedNews : null,
-  
-  $click$addNewsBlock : function() {
-    this._editedNews = null;
-    newsFormula.reset()
-    newsFormula.setValues({
-      sortdir : 'ascending',
-      sortby : 'startdate',
-      maxitems : 0,
-      timetype : 'always',
-      timecount : 0
-    });
-    newsWindow.show();
-    newsFormula.focus();
-    deleteNews.disable();
-  },
-  $submit$newsFormula :function() {
-    var values = newsFormula.getValues();
-    var rows = newsList.getRows();
-    if (this._editedNews) {
-      for (var i=0; i < rows.length; i++) {
-        if (rows[i]==this._editedNews) {
-          hui.override(rows[i],values);
-        }
-      };
-    } else {
-      rows.push(values);
-    }
-    newsList.setObjects(rows);
-    newsWindow.hide();
-  },
-  $open$newsList : function(row) {
-    this._editedNews = row;
-    newsFormula.setValues(row);
-    newsWindow.show();
-    deleteNews.enable();
-  },
-  $click$deleteNews : function() {
-    var rows = newsList.getRows();
-    hui.array.remove(rows,this._editedNews);
-    newsList.setObjects(rows);
-    newsFormula.reset();
-    newsWindow.hide();
-    this._editedNews = null;
-  },
-  _clearNews : function() {
-    newsFormula.reset();
-    newsWindow.hide();
-    this._editedNews = null;        
-  },
-  $click$cancelNews : function() {
-    this._clearNews();
   }
 });

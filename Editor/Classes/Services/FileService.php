@@ -181,12 +181,10 @@ class FileService {
    * @return array An array describing the success of the procedure
    */
   static function replaceUploadedFile($id) {
-    global $basePath;
     $fileName = FileSystemService::safeFilename($_FILES['file']['name']);
     $fileType = $_FILES["file"]["type"];
     $tempFile = $_FILES['file']['tmp_name'];
-    $uploadDir = $basePath . 'files/';
-    $filePath = $uploadDir . $fileName;
+    $filePath = ConfigurationService::getFilePath($fileName);
     $fileSize = $_FILES["file"]["size"];
 
     $filePath = FileSystemService::findFreeFilePath($filePath);
@@ -209,8 +207,8 @@ class FileService {
         // Delete old file
         $oldFilename = $file->getFilename();
 
-        if (!unlink ($basePath . 'files/' . $oldFilename)) {
-          $errorMessage = 'Kunne ikke slette alt fra serveren';
+        if (!unlink (ConfigurationService::getFilePath($oldFilename))) {
+          //$errorMessage = 'Kunne ikke slette alt fra serveren';
         }
         $file->setFilename($fileName);
         $file->setSize($fileSize);
@@ -231,7 +229,6 @@ class FileService {
    * @return array An array describing the success of the procedure
    */
   static function createUploadedFile($title = '',$group = 0) {
-    global $basePath;
     $fileName = $_FILES['file']['name'];
     $fileType = $_FILES["file"]["type"];
     $tempFile = $_FILES['file']['tmp_name'];
@@ -241,8 +238,7 @@ class FileService {
       $fileType = FileService::fileNameToMimeType($fileName);
     }
     $fileName = FileSystemService::safeFilename($fileName);
-    $uploadDir = $basePath . 'files/';
-    $filePath = $uploadDir . $fileName;
+    $filePath = ConfigurationService::getFilePath($fileName);
 
     $filePath = FileSystemService::findFreeFilePath($filePath);
     $fileName = FileSystemService::getFileBaseName($filePath);
@@ -285,7 +281,6 @@ class FileService {
   }
 
   static function createFromUrl($url) {
-    global $basePath;
     $remote = new RemoteFile($url);
     $path = $remote->writeToTempFile();
     if (!$remote->isSuccess()) {
@@ -305,7 +300,8 @@ class FileService {
       }
     }
     $filename = FileSystemService::safeFilename($filename);
-    $newPath = FileSystemService::findFreeFilePath($basePath . 'files/' . $filename);
+    $filePath = ConfigurationService::getFilePath($fileName);
+    $newPath = FileSystemService::findFreeFilePath($filePath);
     if (!@rename($path,$newPath)) {
       return ['success' => false, 'message' => 'Der skete en uventet fejl '];
     }

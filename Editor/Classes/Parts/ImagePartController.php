@@ -292,7 +292,7 @@ class ImagePartController extends PartController
       <tabs small="true" centered="true">
         <tab title="{Upload; da:Overførsel}" padding="10">
           <upload name="imageUpload" url="../../Parts/image/Upload.php" widget="upload">
-            <placeholder title="{Select an image on you computer...; da:Vælg et billede på din computer...}" text="{The image format can be JPEG, PNG or GIF. The file size can at most be; da: Billedets format skal være JPEG, PNG eller GIF. Filens størrelse må højest være} ' . GuiUtils::bytesToString(FileSystemService::getMaxUploadSize()) . '."/>
+            <placeholder title="{Select an image on you computer...; da:Vælg et billede på din computer...}" text="{The image format can be JPEG, PNG or GIF. The file size can at most be; da: Billedets format skal være JPEG, PNG eller GIF. Filens størrelse må højest være} ' . UI::formatBytes(FileSystemService::getMaxUploadSize()) . '."/>
           </upload>
           <buttons align="center" top="10">
             <button name="cancelUpload" text="{Close; da:Luk}"/>
@@ -384,7 +384,7 @@ class ImagePartController extends PartController
 
   function getToolbars() {
     return [
-      GuiUtils::getTranslated(['Image', 'da' => 'Billede']) =>
+      UI::translate(['Image', 'da' => 'Billede']) =>
       '
       <icon icon="common/new" text="{Add image; da:Tilføj billede}" name="addImage"/>
       <icon icon="common/search" text="{Select image; da:Vælg billede}" name="chooseImage"/>

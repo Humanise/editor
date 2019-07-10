@@ -62,6 +62,8 @@ $HUMANISE_EDITOR_CLASSES = array (
     'NewsArticle' => 'Modules/News/NewsArticle.php',
     'ConsoleReporter' => 'Modules/Testing/ConsoleReporter.php',
     'Inspection' => 'Modules/Inspection/Inspection.php',
+    'FileInspector' => 'Modules/Inspection/FileInspector.php',
+    'ImageInspector' => 'Modules/Inspection/ImageInspector.php',
     'Inspector' => 'Modules/Inspection/Inspector.php',
     'InspectionService' => 'Modules/Inspection/InspectionService.php',
     'FetchStage' => 'Modules/Workflows/FetchStage.php',
@@ -172,7 +174,6 @@ $HUMANISE_EDITOR_CLASSES = array (
     'Console' => 'Utilities/Console.php',
     'StringBuilder' => 'Utilities/StringBuilder.php',
     'TextDecorator' => 'Utilities/TextDecorator.php',
-    'DatabaseUtil' => 'Utilities/DatabaseUtil.php',
     'GuiUtils' => 'Utilities/GuiUtils.php',
     'News' => 'Objects/News.php',
     'Design' => 'Objects/Design.php',
@@ -277,7 +278,9 @@ $HUMANISE_EDITOR_CLASSES = array (
   array (
     'Inspector' =>
     array (
-      0 => 'DocumentTemplateInspector',
+      0 => 'FileInspector',
+      1 => 'ImageInspector',
+      2 => 'DocumentTemplateInspector',
     ),
     'Loadable' =>
     array (

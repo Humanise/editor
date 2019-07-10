@@ -30,15 +30,6 @@ class Newsgroup extends ModelObject {
     Database::delete($sql, $this->id);
   }
 
-  function canDelete() {
-    $sql = "select id from frame_newsblock_newsgroup where newsgroup_id = @id";
-    if (Database::selectFirst($sql, $this->id)) {
-      return FALSE;
-    } else {
-      return TRUE;
-    }
-  }
-
   function getIcon() {
     return "common/folder";
   }

@@ -21,10 +21,10 @@ class ItemsWriter {
       echo ' value="' . Strings::escapeEncodedXML($options['value']) . '"';
     }
     if (isset($options['title'])) {
-      echo ' title="' . Strings::escapeEncodedXML(GuiUtils::getTranslated($options['title'])) . '"';
+      echo ' title="' . Strings::escapeEncodedXML(UI::translate($options['title'])) . '"';
     }
     if (isset($options['text'])) {
-      echo ' text="' . Strings::escapeEncodedXML(GuiUtils::getTranslated($options['text'])) . '"';
+      echo ' text="' . Strings::escapeEncodedXML(UI::translate($options['text'])) . '"';
     }
     if (isset($options['icon'])) {
       echo ' icon="' . $options['icon'] . '"';
@@ -54,7 +54,7 @@ class ItemsWriter {
   }
 
   function title($title = null) {
-    echo '<title title="' . Strings::escapeEncodedXML(GuiUtils::getTranslated($title)) . '"/>';
+    echo '<title title="' . Strings::escapeEncodedXML(UI::translate($title)) . '"/>';
     return $this;
   }
 

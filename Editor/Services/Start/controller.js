@@ -72,10 +72,10 @@ hui.ui.listen({
     contact.setSize(info.tile.isFullScreen() ? 128 : 64);
   },
   $click$userManual : function() {
-    window.open('http://www.in2isoft.dk/support/onlinepublisher/');
+    window.open('https://www.humanise.dk/support/onlinepublisher/');
   },
   $click$contact : function() {
-    window.open('http://www.in2isoft.dk/kontakt/');
+    window.open('https://www.humanise.dk/kontakt/');
   },
 
   // Password...

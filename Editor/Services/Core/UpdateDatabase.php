@@ -13,10 +13,11 @@ if (!AuthenticationService::isSuperUser($username,$password)) {
   exit;
 }
 
-$log = DatabaseUtil::update();
+$result = SchemaService::migrate();
 
 Response::sendObject([
-  'log' => join("\n",$log),
-  'updated' => DatabaseUtil::isUpToDate()
+  'log' => join("\n", $result['log']),
+  'success' => $result['success'],
+  'updated' => !SchemaService::hasSchemaChanges()
 ]);
 ?>
