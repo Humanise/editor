@@ -1,0 +1,41 @@
+@include if {
+
+  .layout {
+    margin: 0 auto;
+    max-width: 1004px;
+    padding: 0 15px;
+    text-align: left;
+
+    &_content {
+      padding: 20px 0 20px 0;
+      overflow: hidden;
+      min-height: 300px;
+    }
+  }
+
+}
+
+@include if (( width: 600px )) {
+
+  .layout {
+    padding: 0 20px;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    margin-top: 20px;
+
+    &_middle {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+
+    &_content {
+      flex-grow: 1;
+    }
+
+    &_aside {
+      flex-basis: 200px;
+    }
+  }
+
+}
