@@ -39,11 +39,13 @@
         <xsl:call-template name="top"/>
         <div class="layout">
           <xsl:call-template name="navigation-first-level"/>
-          <div class="layout_content">
+          <div class="layout_middle">
             <xsl:call-template name="navigation-second-level"/>
-            <xsl:apply-templates select="p:content"/>
-            <xsl:comment/>
-          </div>
+            <div class="layout_content">
+              <xsl:apply-templates select="p:content"/>
+              <xsl:comment/>
+            </div>
+            </div>
         </div>
         <xsl:call-template name="footer"/>
         <xsl:call-template name="util:googleanalytics"/>
@@ -75,32 +77,9 @@
     </xsl:if>
   </xsl:template>
 
-  <xsl:template name="vitae-menu">
-    <xsl:if test="//f:frame/h:hierarchy/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item[not(@hidden='true')]">
-      <ul class="vitae_menu">
-        <xsl:for-each select="//f:frame/h:hierarchy/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item">
-          <xsl:if test="not(@hidden='true')">
-            <li class="vitae_menu_item">
-              <a>
-                <xsl:attribute name="class">
-                  <xsl:text>vitae_menu_link</xsl:text>
-                  <xsl:choose>
-                    <xsl:when test="//p:page/@id=@page"><xsl:text> is-selected</xsl:text></xsl:when>
-                    <xsl:when test="descendant-or-self::*/@page=//p:page/@id"><xsl:text> is-active</xsl:text></xsl:when>
-                  </xsl:choose>
-                </xsl:attribute>
-                <xsl:call-template name="util:link"/>
-                <xsl:value-of select="@title"/>
-              </a>
-            </li>
-          </xsl:if>
-        </xsl:for-each>
-      </ul>
-    </xsl:if>
-  </xsl:template>
-
   <xsl:template name="navigation-second-level">
     <xsl:if test="//f:frame/h:hierarchy/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item[not(@hidden='true')]">
+      <div class="layout_aside">
       <ul class="submenu">
         <xsl:for-each select="//f:frame/h:hierarchy/h:item[descendant-or-self::*/@page=//p:page/@id]/h:item">
           <xsl:if test="not(@hidden='true')">
@@ -120,6 +99,7 @@
           </xsl:if>
         </xsl:for-each>
       </ul>
+      </div>
     </xsl:if>
   </xsl:template>
 
