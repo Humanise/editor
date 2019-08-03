@@ -14,10 +14,10 @@ op.WeblogTemplate = {
       var box = this.newBox = hui.ui.Box.create({modal:true,width:600,absolute:true,padding:10,title:'Nyt indlæg',closable:true});
       var form = this.newForm = hui.ui.Formula.create();
       var group = form.buildGroup({above:true},[
-        {type:'TextInput',options:{label:'Titel',key:'title'}},
-        {type:'DateTimeInput',options:{label:'Dato',name:'newEntryDate',key:'date',allowNull:false}},
-        {type:'TextInput',options:{label:'Text',key:'text',lines:8}},
-        {type:'Checkboxes',options:{label:'Grupper',items:this.groups,key:'groups'}}
+        {type:'TextInput',label:'Titel',options:{key:'title'}},
+        {type:'DateTimeInput',label:'Dato',options:{name:'newEntryDate',key:'date',allowNull:false}},
+        {type:'TextInput',label:'Text',options:{key:'text',lines:8}},
+        {type:'Checkboxes',label:'Grupper',options:{items:this.groups,key:'groups'}}
       ]);
       var buttons = group.createButtons();
       var cancel = hui.ui.Button.create({title:'Annuller',name:'cancelNewEntry'});
@@ -92,10 +92,10 @@ op.WeblogTemplate = {
       var box = this.editBox = hui.ui.Box.create({modal:true,width:600,absolute:true,padding:10,title:'Rediger indlæg',closable:true});
       var form = this.editForm = hui.ui.Formula.create();
       var group = form.buildGroup({above:true},[
-        {type:'TextInput',options:{label:'Titel',key:'title'}},
-        {type:'DateTimeInput',options:{label:'Dato',name:'editEntryDate',key:'date',allowNull:false}},
-        {type:'TextInput',options:{label:'Text',key:'text',lines:8}},
-        {type:'Checkboxes',options:{label:'Grupper',items:this.groups,key:'groups',name:'editEntryGroups'}}
+        {type:'TextInput',label:'Titel',options:{key:'title'}},
+        {type:'DateTimeInput',label:'Dato',options:{name:'editEntryDate',key:'date',allowNull:false}},
+        {type:'TextInput',label:'Text',options:{key:'text',lines:8}},
+        {type:'Checkboxes',label:'Grupper',options:{items:this.groups,key:'groups',name:'editEntryGroups'}}
       ]);
       var buttons = group.createButtons();
       var cancel = hui.ui.Button.create({title:'Annuller',name:'cancelEditEntry'});

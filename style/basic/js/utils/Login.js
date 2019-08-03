@@ -23,8 +23,8 @@ hui.on(function() {
             }
           });
           var g = form.buildGroup(null,[
-            {type:'TextInput',options:{label:{en:'Username',da:'Brugernavn'},key:'username'}},
-            {type:'TextInput',options:{label:{en:'Password',da:'Kodeord'},key:'password',secret:true}}
+            {type:'TextInput',label:{en:'Username',da:'Brugernavn'},options:{key:'username'}},
+            {type:'TextInput',label:{en:'Password',da:'Kodeord'},options:{key:'password',secret:true}}
           ]);
           var b = g.createButtons();
 

@@ -83,14 +83,12 @@ op.Editor.Richtext.LinkDelegate.prototype = {
     }});
     win.add(form);
     var group = form.buildGroup({},[
-      {type : 'TextInput', options : {key:'url',label:'Address:',name:'linkAddress'}},
-      {type : 'DropDown', options : {
-        label : 'Page:',
+      {type : 'TextInput', label:'Address:', options : {key:'url',name:'linkAddress'}},
+      {type : 'DropDown', label : 'Page:', options : {
         key : 'page',
         url : '../../Model/Items.php?type=page'
       }},
-      {type : 'DropDown', options : {
-        label : 'File:',
+      {type : 'DropDown', label : 'File:', options : {
         key : 'file',
         url : '../../Model/Items.php?type=file'
       }}
