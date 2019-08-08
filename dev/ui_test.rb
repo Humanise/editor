@@ -44,6 +44,8 @@ class Tester
     create_admin_user
     log_in
     install_tools
+    install_templates
+    create_front_page
 
     sleep 60
   end
@@ -94,7 +96,34 @@ class Tester
     @wait.until { @driver.find_element(link_text: "System") }
     @driver.find_element(link_text: "System").click
     @driver.switch_to.frame @driver.find_element(:class, 'hui_dock_frame')
-    @driver.find_by_text("Værktøjer").click
+    @driver.find_by_text("Tools").click
+    ['Sites','Images','Files'].each do |key|
+      @wait.until { @driver.find_element(xpath:"//tr[td[text()='#{key}']]/td/a") }
+      sleep 1
+      @driver.find_element(xpath:"//tr[td[text()='#{key}']]/td/a").click
+    end
+    @driver.navigate.to "http://www.editor.test/Editor/"
+  end
+
+  def install_templates
+    @driver.find_element(link_text: "Setup").click
+    @driver.find_element(link_text: "System").click
+    @driver.switch_to.frame @driver.find_element(:class, 'hui_dock_frame')
+    @driver.find_by_text("Templates").click
+    ['document'].each do |key|
+      @wait.until { @driver.find_element(xpath:"//tr[td[text()='#{key}']]/td/a") }
+      sleep 1
+      @driver.find_element(xpath:"//tr[td[text()='#{key}']]/td/a").click
+    end
+  end
+
+  def create_front_page
+    @driver.navigate.to "http://www.editor.test/Editor/"
+    @wait.until { @driver.find_element(link_text: "Pages") }
+    @driver.find_element(link_text: "Pages").click
+    @driver.switch_to.frame @driver.find_element(:class, 'hui_dock_frame')
+    @wait.until { @driver.find_element(link_text: "New page") }
+    @driver.find_element(link_text: "New page").click
   end
 
   def reset_database
