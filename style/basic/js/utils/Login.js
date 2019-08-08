@@ -22,11 +22,11 @@ hui.on(function() {
               op.login(values.username,values.password);
             }
           });
-          var g = form.buildGroup(null,[
+          form.buildGroup(null,[
             {type:'TextInput',label:{en:'Username',da:'Brugernavn'},options:{key:'username'}},
             {type:'TextInput',label:{en:'Password',da:'Kodeord'},options:{key:'password',secret:true}}
           ]);
-          var b = g.createButtons();
+          var b = form.createButtons();
 
           var forgot = hui.ui.Button.create({text:{en:'Forgot password?',da:'Glemt kode?'}})
           forgot.listen({$click:function() {

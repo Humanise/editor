@@ -394,8 +394,7 @@ hui.ui.listen({
     })
     this.designGroup = this.designFormula.createGroup();
 
-    var group = this.designFormula.createGroup();
-    var buttons = group.createButtons();
+    var buttons = form.createButtons();
     var btn = hui.ui.Button.create({text:'Opdater',submit:true});
     buttons.add(btn);
 
@@ -404,26 +403,25 @@ hui.ui.listen({
     for (var i=0; i < parameters.length; i++) {
       var parm = parameters[i];
       if (parm.type=='text') {
-        var field = hui.ui.TextInput.create({key:parm.key,label:parm.label,value:parm.value});
-        this.designGroup.add(field);
+        var field = hui.ui.TextInput.create({key:parm.key,value:parm.value});
+        this.designGroup.add(field, parm.label);
       }
       else if (parm.type=='color') {
         var field = hui.ui.ColorInput.create({key:parm.key,value:parm.value});
-        this.designGroup.add(field,parm.label);
+        this.designGroup.add(field, parm.label);
       }
       else if (parm.type=='selection') {
         parm.options.unshift({});
-        var field = hui.ui.DropDown.create({key:parm.key,label:parm.label,value:parm.value,items:parm.options});
-        this.designGroup.add(field);
+        var field = hui.ui.DropDown.create({key:parm.key, value:parm.value, items:parm.options});
+        this.designGroup.add(field, parm.label);
       }
       else if (parm.type=='image') {
         var field = hui.ui.DropDown.create({
           key : parm.key,
-          label : parm.label,
           value : parm.value,
           url : '../Model/Items.php?type=image&includeEmpty=true'
         });
-        this.designGroup.add(field);
+        this.designGroup.add(field, parm.label);
       }
     };
   }

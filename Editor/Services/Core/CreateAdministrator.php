@@ -26,6 +26,7 @@ $user->setTitle($adminUsername);
 AuthenticationService::setPassword($user,$adminPassword);
 $user->setInternal(true);
 $user->setAdministrator(true);
+$user->setLanguage('en');
 $user->create();
 $user->publish();
 ?>

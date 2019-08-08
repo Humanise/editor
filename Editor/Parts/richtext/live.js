@@ -82,7 +82,7 @@ op.Editor.Richtext.LinkDelegate.prototype = {
       $submit : this._submitForm.bind(this)
     }});
     win.add(form);
-    var group = form.buildGroup({},[
+    form.buildGroup({},[
       {type : 'TextInput', label:'Address:', options : {key:'url',name:'linkAddress'}},
       {type : 'DropDown', label : 'Page:', options : {
         key : 'page',
@@ -93,7 +93,7 @@ op.Editor.Richtext.LinkDelegate.prototype = {
         url : '../../Model/Items.php?type=file'
       }}
     ]);
-    var buttons = group.createButtons();
+    var buttons = form.createButtons();
     buttons.add(hui.ui.Button.create({text:'Remove', listener : {
       $click : this._clickRemove.bind(this)
     }}));

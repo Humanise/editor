@@ -169,11 +169,9 @@ $gui = '
           <field label="{Path; da:Sti}:">
             <text-input key="path"/>
           </field>
-          <field label="{Searchable; da:Søgbar}:">
-            <checkbox key="searchable"/>
-          </field>
-          <field label="{Inactive; da:Inaktiv}:">
-            <checkbox key="disabled"/>
+          <field>
+            <checkbox key="searchable" label="{Searchable; da:Søgbar}"/>
+            <checkbox key="disabled" label="{Inactive; da:Inaktiv}"/>
           </field>
         </fields>
         <buttons>

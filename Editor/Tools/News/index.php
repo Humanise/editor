@@ -145,6 +145,7 @@ $gui = '
               <text-input key="note" breaks="true"/>
             </field>
           </fields>
+          <space height="5"/>
           <columns flexible="true" space="10">
             <column>
               <field label="{From; da:Fra}">
@@ -157,6 +158,7 @@ $gui = '
               </field>
             </column>
           </columns>
+          <space height="5"/>
           <fields labels="above">
             <field label="{Groups; da:Grupper}:">
               <checkboxes name="newsGroups">

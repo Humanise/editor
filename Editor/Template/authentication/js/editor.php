@@ -13,10 +13,10 @@ var templateController = {
       this.win = hui.ui.Window.create({title:'Adgangskontrol',width:250,padding:5});
       var form = this.form = hui.ui.Formula.create({name:'templateForm'});
       this.win.add(form);
-      var group = form.buildGroup({labels:'above'},[
+      form.buildGroup({labels:'above'},[
         {type:'TextInput',label:'Titel:',options:{key:'title'}}
       ]);
-      var buttons = group.createButtons();
+      var buttons = form.createButtons();
       buttons.add(hui.ui.Button.create({text:'Opdater',highlighted:true,submit:true}));
     }
     this.win.show();

@@ -19,7 +19,7 @@ op.WeblogTemplate = {
         {type:'TextInput',label:'Text',options:{key:'text',lines:8}},
         {type:'Checkboxes',label:'Grupper',options:{items:this.groups,key:'groups'}}
       ]);
-      var buttons = group.createButtons();
+      var buttons = form.createButtons();
       var cancel = hui.ui.Button.create({title:'Annuller',name:'cancelNewEntry'});
       var create = hui.ui.Button.create({title:'Opret',highlighted:true,name:'createNewEntry'});
       buttons.add(cancel);
@@ -97,7 +97,7 @@ op.WeblogTemplate = {
         {type:'TextInput',label:'Text',options:{key:'text',lines:8}},
         {type:'Checkboxes',label:'Grupper',options:{items:this.groups,key:'groups',name:'editEntryGroups'}}
       ]);
-      var buttons = group.createButtons();
+      var buttons = form.createButtons();
       var cancel = hui.ui.Button.create({title:'Annuller',name:'cancelEditEntry'});
       var create = hui.ui.Button.create({title:'Opdater',highlighted:true,name:'updateEditEntry'});
       buttons.add(cancel);
