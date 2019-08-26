@@ -195,6 +195,11 @@ class TestStrings extends UnitTestCase {
         'in' => ' ',
         'out' => ' ',
         'replacements' => ['' => 'X']
+      ],
+      [
+        'in' => 'xyz',
+        'out' => 'æble🍎1ø🏝',
+        'replacements' => ['x' => 'æble🍎','y' => '1', 'z' => 'ø🏝']
       ]
     ];
     foreach ($tests as $test) {

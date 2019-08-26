@@ -95,4 +95,13 @@ class TestDatabase extends UnitTestCase {
     $compiled = Database::compile($sql,$parameters);
     $this->assertEqual($expected,$compiled);
   }
+
+  function testCompileOfUnicode() {
+    $sql = "UPDATE table set something=@text(something) where id = @id";
+    $parameters = ['something' => 'æbleø 🍎🏝', 'id' => 5355];
+    $expected = "UPDATE table set something='æbleø 🍎🏝' where id = 5355";
+
+    $compiled = Database::compile($sql,$parameters);
+    $this->assertEqual($expected,$compiled);
+  }
 }
