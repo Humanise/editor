@@ -68,6 +68,9 @@ class Tester
   end
 
   def create_admin_user
+    # The message may obscure something
+    @wait.until { not @driver.find_element(css: ".hui_message").displayed? }
+
     @driver.find_element(link_text: "Glemt kodeord?").click
 
     @driver.find_element(link_text: "Ny bruger").click

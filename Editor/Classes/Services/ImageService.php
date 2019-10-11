@@ -47,7 +47,17 @@ class ImageService {
 
   static function getGroupCounts() {
     $out = [];
-    $sql = "select distinct object.id,object.title,count(image.object_id) as imagecount from imagegroup, imagegroup_image, image,object  where imagegroup_image.imagegroup_id=imagegroup.object_id and imagegroup_image.image_id = image.object_id and object.id=imagegroup.object_id group by imagegroup.object_id union select object.id,object.title,'0' from object left join imagegroup_image on imagegroup_image.imagegroup_id=object.id where object.type='imagegroup' and imagegroup_image.image_id is null order by title";
+    $sql = "select distinct object.id,object.title,count(image.object_id) as imagecount
+      from imagegroup, imagegroup_image, image,object
+      where imagegroup_image.imagegroup_id=imagegroup.object_id
+      and imagegroup_image.image_id = image.object_id
+      and object.id=imagegroup.object_id
+      group by imagegroup.object_id
+      union
+      select object.id,object.title,'0'
+      from object left join imagegroup_image on imagegroup_image.imagegroup_id=object.id
+      where object.type='imagegroup' and imagegroup_image.image_id is null
+      order by title";
     $result = Database::select($sql);
     while ($row = Database::next($result)) {
       $out[] = [
@@ -72,11 +82,21 @@ class ImageService {
 
   static function getNumberOfPagesWithImages() {
     $count = 0;
-    $sql = "select count(distinct page.id) as num from `part_image`,object,document_section,page where part_image.part_id=document_section.part_id and page.id=document_section.page_id and `part_image`.`image_id`=object.`id`";
+    $sql = "select count(distinct page.id) as num
+      from `part_image`,object,document_section,page
+      where part_image.part_id=document_section.part_id
+      and page.id=document_section.page_id
+      and `part_image`.`image_id`=object.`id`";
     if ($row = Database::selectFirst($sql)) {
       $count += intval($row['num']);
     }
-    $sql = "select distinct page.id as num from part_imagegallery,imagegroup,object,`imagegroup_image`,document_section,page where part_imagegallery.part_id=document_section.part_id and page.id=document_section.page_id and `part_imagegallery`.`imagegroup_id`=imagegroup.`object_id` and `imagegroup_image`.`imagegroup_id`=imagegroup.`object_id` and imagegroup.`object_id`=object.id";
+    $sql = "select distinct page.id as num
+      from part_imagegallery,imagegroup,object,`imagegroup_image`,document_section,page
+      where part_imagegallery.part_id=document_section.part_id
+      and page.id=document_section.page_id
+      and `part_imagegallery`.`imagegroup_id`=imagegroup.`object_id`
+      and `imagegroup_image`.`imagegroup_id`=imagegroup.`object_id`
+      and imagegroup.`object_id`=object.id";
     if ($row = Database::selectFirst($sql)) {
       $count += intval($row['num']);
     }
@@ -103,7 +123,13 @@ class ImageService {
 
   static function search($query) {
     $parameters = [];
-    $sql = "select object.id, object.title, imagegroup_image.position, image.size, image.width, image.height, image.type from image,object,imagegroup_image where object.id = image.object_id and imagegroup_image.image_id = object.id and imagegroup_image.imagegroup_id = @int(group)";
+    $sql = "select
+      object.id, object.title,
+      imagegroup_image.position, image.size, image.width, image.height, image.type
+      from image,object,imagegroup_image
+      where object.id = image.object_id
+      and imagegroup_image.image_id = object.id
+      and imagegroup_image.imagegroup_id = @int(group)";
     if (isset($query['group'])) {
       $parameters['group'] = $query['group'];
     }
@@ -158,24 +184,40 @@ class ImageService {
   }
 
   static function getProductImageRelations() {
-    $sql = "select image_object.id as image_id, image_object.title as image_title, product_object.id as product_id, product_object.title as product_title from product,object as image_object,object as product_object where image_object.id=product.image_id and product_object.id=product.object_id";
+    $sql = "select
+      image_object.id as image_id,
+      image_object.title as image_title,
+      product_object.id as product_id,
+      product_object.title as product_title
+      from product,
+      object as image_object,
+      object as product_object
+      where image_object.id = product.image_id
+      and product_object.id = product.object_id";
     return Database::selectAll($sql);
   }
 
   static function getPersonImageRelations() {
-    $sql = "select image_object.id as image_id, image_object.title as image_title, person_object.id as person_id, person_object.title as person_title from person,object as image_object,object as person_object where image_object.id=person.image_id and person_object.id=person.object_id";
+    $sql = "select
+      image_object.id as image_id,
+      image_object.title as image_title,
+      person_object.id as person_id,
+      person_object.title as person_title
+      from person,
+      object as image_object,
+      object as person_object
+      where image_object.id = person.image_id
+      and person_object.id = person.object_id";
     return Database::selectAll($sql);
   }
 
   static function moveImageInGroup($groupId, $imageId, $up) {
-    $result = Database::select(
-      "select imagegroup_image.image_id, imagegroup_image.imagegroup_id
+    $sql = "select imagegroup_image.image_id, imagegroup_image.imagegroup_id
         from imagegroup_image, object
         where object.id = imagegroup_image.image_id
         and imagegroup_image.imagegroup_id = @int(group)
-        order by imagegroup_image.position asc, object.title asc",
-      ['group' => $groupId]
-    );
+        order by imagegroup_image.position asc, object.title asc";
+    $result = Database::select($sql, ['group' => $groupId]);
     $rows = [];
     $currentIndex = -1;
     $i = 0;
@@ -352,7 +394,7 @@ class ImageService {
     $path = $_FILES[$name]['tmp_name'];
     $info = ImageTransformationService::getImageInfo($path);
     if ($info) {
-      if (in_array($info['mime'],ImageService::$validTypes)) {
+      if (in_array($info['mime'], ImageService::$validTypes)) {
         return true;
       }
     }
@@ -364,13 +406,19 @@ class ImageService {
 
     if (!file_exists($tempPath)) {
       Log::debug('File not found: ' . $tempPath);
-      return ImportResult::fail(['en' => 'The file could not be found', 'da' => 'Filen findes ikke']);
+      return ImportResult::fail([
+        'en' => 'The file could not be found',
+        'da' => 'Filen findes ikke'
+      ]);
     }
 
     $info = ImageTransformationService::getImageInfo($tempPath);
     if (!$info) {
       Log::debug('Unable to get image info: ' . $tempPath);
-      return ImportResult::fail(['en' => 'The file is not a valid image', 'da' => 'Filen er ikke et validt billede']);
+      return ImportResult::fail([
+        'en' => 'The file is not a valid image',
+        'da' => 'Filen er ikke et validt billede'
+      ]);
     }
 
     // If no file name then extract it from the path
@@ -394,11 +442,17 @@ class ImageService {
 
     if (!in_array($info['mime'],ImageService::$validTypes)) {
       Log::debug('Unsupported: ' . $info['mime']);
-      return ImportResult::fail(['en' => 'The file format is not supported', 'da' => 'Filens format er ikke understøttet']);
+      return ImportResult::fail([
+        'en' => 'The file format is not supported',
+        'da' => 'Filens format er ikke understøttet'
+      ]);
     }
     else if (!@copy($tempPath, $filePath)) {
       Log::debug('Could not copy: ' . $tempPath . ' -> ' . $filePath);
-      return ImportResult::fail(['en' => 'Unable to copy file', 'da' => 'Kunne ikke kopiere filen']);
+      return ImportResult::fail([
+        'en' => 'Unable to copy file',
+        'da' => 'Kunne ikke kopiere filen'
+      ]);
     }
 
     ImageTransformationService::optimizeFile($filePath);
