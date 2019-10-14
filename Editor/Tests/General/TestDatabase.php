@@ -53,8 +53,8 @@ class TestDatabase extends UnitTestCase {
 
   function testCompiling() {
     $sql = "SELECT * from table where id=@int(id) or id>@int(id) and index=@text(query) and yes=@boolean(question) and date>@datetime(date) and something=@fuzzy(search)";
-    $parameters = ['id' => 5355, 'query' => 'lorem', 'date' => 123456, 'question' => true, 'search' => 'find me'];
-    $expected = "SELECT * from table where id=5355 or id>5355 and index='lorem' and yes=1 and date>FROM_UNIXTIME(123456) and something='%find me%'";
+    $parameters = ['id' => 5355, 'query' => 'lorem', 'date' => 123456, 'question' => true, 'search' => 'find%me'];
+    $expected = "SELECT * from table where id=5355 or id>5355 and index='lorem' and yes=1 and date>FROM_UNIXTIME(123456) and something='%find\%me%'";
 
     $compiled = Database::compile($sql,$parameters);
     $this->assertEqual($expected,$compiled);

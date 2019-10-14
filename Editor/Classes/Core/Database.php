@@ -337,7 +337,7 @@ class Database {
    * @return string The formattet string
    */
   static function search($text) {
-    return "'%" . mysqli_real_escape_string(Database::getConnection(),str_replace('%',$text,'\%')) . "%'";
+    return "'%" . str_replace('%','\%',mysqli_real_escape_string(Database::getConnection(),$text)) . "%'";
   }
 
   static function buildUpdateSql($arr) {
