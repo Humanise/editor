@@ -6,10 +6,27 @@
   .common_link:hover, .common_link_text:hover {
     color: #2D8BE0; }
 
+.part_section_header {
+  padding: 0; }
+  .part_section_header-1 {
+    margin-bottom: 20px; }
+  .part_section_header-2 {
+    margin: 20px 0 5px; }
+  .part_section_header-3, .part_section_header-4, .part_section_header-5, .part_section_header-6 {
+    margin: 10px 0 0; }
+
+.part_section_listing {
+  padding: 0;
+  margin: 5px 0; }
+
+.part_section_text {
+  padding: 0;
+  margin: 5px 0; }
+
 .part_header {
   color: #333;
   font-weight: normal;
-  font-family: "Hind Vadodara", "Helvetica Neue", "Helvetica", Arial, sans-serif; }
+  font-family: "myriad-pro", "Helvetica Neue", "Helvetica", Arial, sans-serif; }
   .part_header-1 {
     font-size: 28px;
     font-weight: 600; }
@@ -35,12 +52,16 @@
   margin: 10px -20px; }
 
 .part_text {
-  font-family: "Hind Vadodara", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-family: "myriad-pro", "Helvetica Neue", "Helvetica", Arial, sans-serif;
   font-size: 16px; }
+  .part_text p {
+    margin: 5px 0; }
 
 .part_listing {
-  font-family: "Hind Vadodara", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-family: "myriad-pro", "Helvetica Neue", "Helvetica", Arial, sans-serif;
   font-size: 16px; }
+  .part_listing_first {
+    font-weight: inherit; }
   .part_listing_item {
     color: #ccc; }
   .part_listing_text {
@@ -50,7 +71,7 @@
   .part_header-1 {
     font-size: 42px; }
   .part_header-2 {
-    font-size: 32px; }
+    font-size: 24px; }
   .part_header-3 {
     font-size: 16px;
     font-weight: bold; }

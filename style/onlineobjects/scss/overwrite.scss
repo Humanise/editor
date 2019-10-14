@@ -16,6 +16,29 @@ $target: async;
     }
   }
 
+  .part_section {
+    &_header {
+      padding: 0;
+      &-1 {
+        margin-bottom: 20px;
+      }
+      &-2 {
+        margin: 20px 0 5px;
+      }
+      &-3, &-4, &-5, &-6 {
+        margin: 10px 0 0;
+      }
+    }
+    &_listing {
+      padding: 0;
+      margin: 5px 0;
+    }
+    &_text {
+      padding: 0;
+      margin: 5px 0;
+    }
+  }
+
   .part_header {
     color: #333;
     font-weight: normal;
@@ -56,11 +79,18 @@ $target: async;
   .part_text {
     font-family: $font;
     font-size: 16px;
+    p {
+      margin: 5px 0;
+    }
   }
 
   .part_listing {
     font-family: $font;
     font-size: 16px;
+
+    &_first {
+      font-weight: inherit;
+    }
 
     &_item {
       color: #ccc;
@@ -81,7 +111,7 @@ $target: async;
       font-size: 42px;
     }
     &-2 {
-      font-size: 32px;
+      font-size: 24px;
     }
     &-3 {
       font-size: 16px;

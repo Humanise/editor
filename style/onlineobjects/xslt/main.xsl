@@ -32,7 +32,7 @@
         <xsl:call-template name="util:viewport"/>
         <xsl:call-template name="util:metatags"/>
         <xsl:call-template name="util:js"/>
-        <link href="https://fonts.googleapis.com/css?family=Hind+Vadodara:300,400,500,600,700" rel="stylesheet"/>
+        <link href="https://use.typekit.net/dqs7hkt.css" rel="stylesheet" type="text/css"/>
         <xsl:call-template name="util:css"/>
       </head>
       <body>
@@ -135,9 +135,31 @@
   <xsl:template name="footer">
     <div class="oo_footer">
       <p class="oo_footer_links">
-        <strong>English</strong>
+        <xsl:choose>
+          <xsl:when test="$language='en'"><strong>English</strong></xsl:when>
+          <xsl:when test="//p:page/p:context/p:translation[@language='en']">
+            <xsl:for-each select="//p:page/p:context/p:translation[@language='en']">
+              <a class="oo_link">
+                <xsl:call-template name="util:link"/>
+                <span>English</span>
+              </a>
+            </xsl:for-each>
+          </xsl:when>
+          <xsl:otherwise><del>English</del></xsl:otherwise>
+        </xsl:choose>
         <span class="oo_footer_separator"> · </span>
-        <a class="oo_link" href="/da/intro"><span>Dansk</span></a>
+        <xsl:choose>
+          <xsl:when test="$language='da'"><strong>Dansk</strong></xsl:when>
+          <xsl:when test="//p:page/p:context/p:translation[@language='da']">
+            <xsl:for-each select="//p:page/p:context/p:translation[@language='da']">
+              <a class="oo_link">
+                <xsl:call-template name="util:link"/>
+                <span>Dansk</span>
+              </a>
+            </xsl:for-each>
+          </xsl:when>
+          <xsl:otherwise><del>Dansk</del></xsl:otherwise>
+        </xsl:choose>
         <span class="oo_footer_separator"> · </span>
         <a class="oo_link js-signup" href="https://account.onlineobjects.com/en/signup" data-test="footerSignup"><span>Sign up</span></a>
         <span class="oo_footer_separator"> · </span>
