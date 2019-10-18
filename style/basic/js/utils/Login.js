@@ -6,7 +6,7 @@ hui.on(function() {
         return;
       }
       this.loadingLogin = true;
-      hui.ui.require(['Formula','Button','TextInput','Box'],
+      hui.ui.require(['Form','Button','TextInput','Box'],
         function() {
           hui.ui.hideMessage();
           var box = this.loginBox = hui.ui.Box.create({width:300,title:{en:'Access control',da:'Adgangskontrol'},modal:true,absolute:true,closable:true,curtainCloses:true,padding:10});
