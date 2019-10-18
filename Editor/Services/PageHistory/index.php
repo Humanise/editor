@@ -53,7 +53,7 @@ $gui = '
   </structure>
 
   <boundpanel name="messagePanel" width="300">
-    <formula name="messageFormula">
+    <form name="messageFormula">
       <fields labels="above">
         <field>
           <text-input breaks="true" key="message" value="animate-value-change"/>
@@ -63,7 +63,7 @@ $gui = '
         <button text="{Cancel; da:Annuller}" name="cancelMessage"/>
         <button text="{Save; da:Gem}" submit="true" highlighted="true"/>
       </buttons>
-    </formula>
+    </form>
   </boundpanel>
 
 </gui>';

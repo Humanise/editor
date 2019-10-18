@@ -11,7 +11,7 @@ hui.on(function() {
           hui.ui.hideMessage();
           var box = this.loginBox = hui.ui.Box.create({width:300,title:{en:'Access control',da:'Adgangskontrol'},modal:true,absolute:true,closable:true,curtainCloses:true,padding:10});
           this.loginBox.addToDocument();
-          var form = this.loginForm = hui.ui.Formula.create();
+          var form = this.loginForm = hui.ui.Form.create();
           form.listen({
             $submit : function() {
               if (!box.isVisible()) {

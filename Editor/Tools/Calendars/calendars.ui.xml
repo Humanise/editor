@@ -78,7 +78,7 @@
   </structure>
 
   <window title="{Source; da:Kilde}" name="sourceWindow" width="300" padding="10">
-    <formula name="sourceFormula">
+    <form name="sourceFormula">
       <fields labels="above">
         <field label="{Title; da:Titel}">
           <text-input key="title"/>
@@ -103,11 +103,11 @@
         </button>
         <button name="saveSource" text="{Save; da:Gem}" highlighted="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
   <window title="{Calendar; da:Kalender}" name="calendarWindow" width="300" padding="10">
-    <formula name="calendarFormula">
+    <form name="calendarFormula">
       <fields labels="above">
         <field label="{Title; da:Titel}">
           <text-input key="title"/>
@@ -120,11 +120,11 @@
         </button>
         <button name="saveCalendar" text="{Save; da:Gem}" highlighted="true" submit="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
   <window title="{Event; da:Begivenhed}" icon="common/time" name="eventWindow" width="300" padding="10">
-    <formula name="eventFormula">
+    <form name="eventFormula">
       <fields labels="above">
         <field label="{Title; da:Titel}">
           <text-input key="title"/>
@@ -151,7 +151,7 @@
         </button>
         <button name="saveEvent" text="{Save; da:Gem}" highlighted="true" submit="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
 </gui>

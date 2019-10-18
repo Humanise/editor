@@ -78,7 +78,7 @@ op.Editor.Richtext.LinkDelegate.prototype = {
     var win = this.window = hui.ui.Window.create({title:'Link',padding:5,width:300,listener:{
       $userClosedWindow : this._closeWindow.bind(this)
     }});
-    var form = this.form = hui.ui.Formula.create({listener : {
+    var form = this.form = hui.ui.Form.create({listener : {
       $submit : this._submitForm.bind(this)
     }});
     win.add(form);

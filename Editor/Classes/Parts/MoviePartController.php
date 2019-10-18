@@ -153,7 +153,7 @@ class MoviePartController extends PartController
     </window>
 
     <window title="{Info; da:Info}" icon="common/info" name="movieInfoWindow" width="300" padding="10">
-      <formula name="movieInfoFormula">
+      <form name="movieInfoFormula">
         <fields>
           <field label="Poster">
             <image-input key="image">
@@ -171,7 +171,7 @@ class MoviePartController extends PartController
           <field label="Height"><style-length-input key="movieHeight"/></field>
           <field label="Text"><text-input breaks="true" key="text"/></field>
         </fields>
-      </formula>
+      </form>
     </window>
     ';
   }

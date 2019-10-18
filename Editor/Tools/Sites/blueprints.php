@@ -20,7 +20,7 @@ $gui = '
   </overflow>
 
   <window name="blueprintWindow" width="300" title="{Template; da:Skabelon}" padding="10">
-    <formula name="blueprintFormula">
+    <form name="blueprintFormula">
       <fields>
         <field label="{Title; da:Titel}:">
           <text-input key="title"/>
@@ -42,7 +42,7 @@ $gui = '
           <button name="saveBlueprint" title="{Save; da:Gem}" highlighted="true" submit="true"/>
         </buttons>
       </fields>
-    </formula>
+    </form>
   </window>
 
 </gui>';

@@ -151,7 +151,7 @@ class HeaderPartController extends PartController
         'icon' => 'monochrome/text',
         'key' => 'text',
         'body' => '
-          <formula name="textFormula" padding="10">
+          <form name="textFormula" padding="10">
             <fields>
             <field label="Level">
               <segmented key="level">
@@ -193,7 +193,7 @@ class HeaderPartController extends PartController
               </segmented>
             </field>
             </fields>
-          </formula>
+          </form>
         '
       ]
     ];

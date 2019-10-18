@@ -34,7 +34,7 @@ $gui = '
 
   <box width="300" top="100" variant="rounded" name="box">
     <space all="10">
-      <formula name="formula" state="login">
+      <form name="formula" state="login">
         <header>{Access control; da:Adgangskontrol}</header>
         <fields>
           <field label="{Username; da:Brugernavn}:">
@@ -48,8 +48,8 @@ $gui = '
           <button text="{Cancel; da:Annuller}" url="../"/>
           <button name="login" text="{Log in; da:Log ind}" highlighted="true" submit="true" test-name="login"/>
         </buttons>
-      </formula>
-      <formula name="recoveryForm" state="recover">
+      </form>
+      <form name="recoveryForm" state="recover">
         ' . ($mailEnabled ? '
         <header>{Recover password; da:Genfind kodeord}</header>
         <text><p>{Please provide your username or e-mail and we will send you an e-mail describing how you can change your password...; da:Skriv dit brugernavn eller e-mail, så sender vi dig en e-mail om hvordan du kan ændre din kode...}</p></text>
@@ -75,7 +75,7 @@ $gui = '
         </buttons>
         '
         ) . '
-      </formula>
+      </form>
       <fragment state="recoveryMessage">
         <space all="5">
           <text align="center">
@@ -120,7 +120,7 @@ $gui = '
     </text>
 
   <window name="databaseWindow" width="300" padding="5" title="{Update database;da:Opdatér databasen}">
-    <formula name="databaseFormula">
+    <form name="databaseFormula">
       <text align="center">
         <p>{da:Log ind med super-bruger for at opdatere databasen;en:Log in as super-user in order to update the database}</p>
       </text>
@@ -135,7 +135,7 @@ $gui = '
       <buttons>
         <button text="{Update;da:Opdater}" submit="true" highlighted="true" test-name="db-update-submit"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
   <window title="Log" name="databaseLogWindow" width="500" test-name="database-log-window">
@@ -143,7 +143,7 @@ $gui = '
   </window>
 
   <window name="adminWindow" width="300" padding="10" title="{Create administrator; da: Opret administrator}" test-name="new-user">
-    <formula name="adminFormula">
+    <form name="adminFormula">
       <text align="center">
         <p>{da:Log ind med super-brugeren for at oprette en ny administrator;en:Log in as the super-user in order to create a new administrator}</p>
       </text>
@@ -171,7 +171,7 @@ $gui = '
       <buttons top="10">
         <button text="{Create;da:Opret}" submit="true" highlighted="true" test-name="new-user-submit"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 </gui>';
 

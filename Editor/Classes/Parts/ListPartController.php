@@ -76,7 +76,7 @@ class ListPartController extends PartController
     <window title="Liste" name="listWindow" width="300" closable="false">
       <tabs small="true" centered="true">
         <tab title="{Settings; da:Indstillinger}" padding="10">
-          <formula name="formula">
+          <form name="formula">
             <fields labels="above">
               <field label="{Title; da:Titel}">
                 <text-input value="' . Strings::escapeEncodedXML($part->getTitle()) . '" key="title"/>
@@ -121,11 +121,11 @@ class ListPartController extends PartController
                 </field>
               </fields>
             </fieldset>
-          </formula>
+          </form>
         </tab>
         <tab title="Data">
           <overflow max-height="300">
-          <formula padding="10" name="dataFormula">
+          <form padding="10" name="dataFormula">
             <fieldset legend="{News; da:Nyheder}">
               <fields labels="above">
                 <field label="{Groups; da:Grupper}">
@@ -147,7 +147,7 @@ class ListPartController extends PartController
                 </field>
               </fields>
             </fieldset>
-          </formula>
+          </form>
           </overflow>
         </tab>
       </tabs>

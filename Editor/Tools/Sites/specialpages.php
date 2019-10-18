@@ -18,7 +18,7 @@ $gui = '
   </overflow>
 
   <window name="specialPageWindow" width="300" title="Speciel side" padding="10">
-    <formula name="specialPageFormula">
+    <form name="specialPageFormula">
       <fields>
         <field label="Side:">
           <dropdown key="pageId" source="pageItems"/>
@@ -43,7 +43,7 @@ $gui = '
         </button>
         <button name="saveSpecialPage" title="Gem" highlighted="true" submit="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
 </gui>';

@@ -300,13 +300,13 @@ class ImagePartController extends PartController
           </buttons>
         </tab>
         <tab title="{Fetch from the net; da:Hent fra nettet}" padding="10">
-          <formula name="urlForm">
+          <form name="urlForm">
             <fields labels="above">
               <field label="{Address; da:Adresse}:">
                 <text-input key="url"/>
               </field>
             </fields>
-          </formula>
+          </form>
           <buttons align="center">
             <button name="cancelFetch" text="{Close; da:Luk}"/>
             <button name="createFromUrl" submit="true" text="{Fetch; da:Hent}" highlighted="true"/>
@@ -316,7 +316,7 @@ class ImagePartController extends PartController
     </window>
 
     <window title="{Advanced; da:Avanceret}" name="imageAdvancedWindow" width="300" padding="5">
-      <formula name="imageAdvancedFormula">
+      <form name="imageAdvancedFormula">
         <fields>
           <field label="{Text; da:Tekst}:">
             <text-input breaks="true" key="text"/>
@@ -334,7 +334,7 @@ class ImagePartController extends PartController
         <buttons>
           <button name="pasteImage" text="{Insert from clipboard; da:Indsæt fra udklipsholder}"/>
         </buttons>
-      </formula>
+      </form>
     </window>
 
     <source name="gallerySource" url="../../Services/ImageChooser/GallerySource.php">

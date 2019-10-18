@@ -74,14 +74,14 @@ $gui = '
         </buttons>
       </tab>
       <tab title="{Fetch from the net; da:Hent fra nettet}" padding="10">
-        <formula name="fetchFormula">
+        <form name="fetchFormula">
           <field label="{Address; da:Adresse}:">
             <text-input key="url"/>
           </field>
           <buttons>
             <button name="fetchFile" text="{Fetch; da:Hent}" highlighted="true"/>
           </buttons>
-        </formula>
+        </form>
       </tab>
     </tabs>
   </window>
@@ -98,7 +98,7 @@ $gui = '
   </window>
 
   <window title="{Group; da:Gruppe}" name="groupWindow" icon="common/folder" width="300" padding="10">
-    <formula name="groupFormula">
+    <form name="groupFormula">
       <fields labels="above">
         <field label="{Title; da:Titel}">
           <text-input key="title"/>
@@ -111,11 +111,11 @@ $gui = '
         </button>
         <button name="saveGroup" text="{Save; da:Gem}" highlighted="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
   <window title="{File; da:Fil}" name="fileWindow" icon="file/generic" width="300" padding="10">
-    <formula name="fileFormula">
+    <form name="fileFormula">
       <fields labels="above">
         <field label="{Title; da:Titel}">
           <text-input key="title"/>
@@ -133,7 +133,7 @@ $gui = '
         </button>
         <button name="updateFile" text="{Save; da:Gem}" highlighted="true" submit="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 </gui>';
 

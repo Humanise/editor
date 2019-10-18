@@ -125,7 +125,7 @@ class MenuPartController extends PartController
 
   function _getFormula() {
     return '
-      <formula name="partMenuFormula">
+      <form name="partMenuFormula">
         <fields>
           <field label="{Header;da:Overskrift}">
             <text-input key="header"/>
@@ -137,7 +137,7 @@ class MenuPartController extends PartController
             </dropdown>
           </field>
         </fields>
-      </formula>
+      </form>
     ';
   }
 

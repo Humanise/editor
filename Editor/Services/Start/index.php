@@ -128,7 +128,7 @@ $gui = '
           <overflow height="full" shadow-variant="white">
             <pages name="feedbackPages">
               <page>
-                <formula padding="10" name="feedbackForm">
+                <form padding="10" name="feedbackForm">
                   <fields labels="above">
                     <field label="{Write us with improvements and questions ; da: Skriv til os med ris, ros eller spørgsmål }">
                       <text-input breaks="true" key="message"/>
@@ -137,7 +137,7 @@ $gui = '
                   <buttons>
                     <button text="Send" submit="true" name="sendFeedback"/>
                   </buttons>
-                </formula>
+                </form>
               </page>
               <page>
                 <text align="center" top="20">
@@ -172,7 +172,7 @@ $gui = '
   </div>
 
   <boundpanel name="settingsPanel" variant="light" width="200" padding="10" modal="true">
-    <formula name="settingsFormula">
+    <form name="settingsFormula">
       <fields>
         <field label="{Language; da: Sprog}">
           <dropdown key="language" value="' . InternalSession::getLanguage() . '">
@@ -181,7 +181,7 @@ $gui = '
           </dropdown>
         </field>
       </fields>
-    </formula>
+    </form>
     <buttons align="right" small="true">
       <button text="{Change password; da:Skift kodeord}" variant="light" name="changePassword"/>
       <button variant="light" text="OK" name="saveSettings" highlighted="true"/>
@@ -189,7 +189,7 @@ $gui = '
   </boundpanel>
 
   <box title="{Change password; da:Skift kode}" closable="true" name="passwordBox" absolute="true" width="400" modal="true" padding="10">
-    <formula name="passwordFormula">
+    <form name="passwordFormula">
       <fields>
         <field label="{Existing password; da: Nuværende kode}">
           <text-input key="old" secret="true"/>
@@ -205,7 +205,7 @@ $gui = '
         <button text="{Cancel; da: Annuller}" name="cancelPassword"/>
         <button text="{Change; da : Skift}" highlighted="true" submit="true" name="submitPassword"/>
       </buttons>
-    </formula>
+    </form>
   </box>
 </gui>';
 

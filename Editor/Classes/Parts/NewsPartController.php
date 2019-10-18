@@ -105,7 +105,7 @@ class NewsPartController extends PartController
     <window title="{News; da:Nyheder}" name="newsWindow" width="300">
       <tabs small="true" centered="true">
         <tab title="{Settings; da:Indstillinger}" padding="10">
-          <formula>
+          <form>
             <fields labels="above">
               <field label="{Title; da:Titel}">
                 <text-input value="' . Strings::escapeEncodedXML($part->getTitle()) . '" name="newsTitle"/>
@@ -145,10 +145,10 @@ class NewsPartController extends PartController
                 </field>
               </fields>
             </fieldset>
-          </formula>
+          </form>
         </tab>
         <tab title="{Appearance; da:Visning}" padding="10">
-          <formula>
+          <form>
             <fields labels="above">
               <field label="{Direction; da:Retning}">
                 <radiobuttons value="' . $part->getSortDir() . '" name="newsSortDir">
@@ -181,7 +181,7 @@ class NewsPartController extends PartController
                 <number-input name="newsTimeCount" value="' . $part->getTimeCount() . '"/>
               </field>
             </fields>
-          </formula>
+          </form>
         </tab>
       </tabs>
     </window>

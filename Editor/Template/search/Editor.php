@@ -15,7 +15,7 @@ $gui = '
     <toolbar>
       <icon icon="common/save" text="Gem" name="save" disabled="true"/>
     </toolbar>
-    <formula padding="10" name="formula">
+    <form padding="10" name="formula">
       <fields>
         <field label="Titel">
           <text-input key="title"/>
@@ -48,7 +48,7 @@ $gui = '
       }
       $gui .= '
       </overflow>
-    </formula>
+    </form>
   </box>
 </gui>
 ';

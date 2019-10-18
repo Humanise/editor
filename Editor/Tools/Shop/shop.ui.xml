@@ -34,7 +34,7 @@
   </structure>
 
   <window name="offerEditor" width="300" title="{Offer; da:Bud}" padding="10">
-    <formula name="offerFormula">
+    <form name="offerFormula">
       <fields>
         <field label="{Offer; da:Bud}:">
           <text-input name="offerOffer"/>
@@ -53,11 +53,11 @@
         </button>
         <button name="saveOffer" text="{Save; da:Gem}" highlighted="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
   <window name="groupEditor" width="300" title="{Group; da:Gruppe}" padding="10">
-    <formula name="groupFormula">
+    <form name="groupFormula">
       <fields>
         <field label="{Title; da:Titel}:">
           <text-input key="title"/>
@@ -73,11 +73,11 @@
         </button>
         <button name="saveGroup" text="{Save; da:Gem}" highlighted="true" submit="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
   <window name="typeEditor" width="300" title="Type" padding="10">
-    <formula name="typeFormula">
+    <form name="typeFormula">
       <fields>
         <field label="{Title; da:Titel}:">
           <text-input name="typeTitle"/>
@@ -93,11 +93,11 @@
         </button>
         <button name="saveType" text="{Save; da:Gem}" highlighted="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
   <window name="productEditor" width="500" title="{Product; da:Produkt}">
-    <formula name="productFormula">
+    <form name="productFormula">
       <tabs small="true" centered="true">
         <tab title="{Product; da:Produkt}" padding="10">
           <columns space="10" flexible="true">
@@ -193,6 +193,6 @@
         </button>
         <button name="saveProduct" text="{Save; da:Gem}" highlighted="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 </gui>

@@ -91,7 +91,7 @@ class PosterPartController extends PartController
   function getEditorUI($part,$context) {
     return '
       <window title="{Poster;da:Plakat}" name="posterWindow" width="300">
-        <formula name="posterFormula" padding="10">
+        <form name="posterFormula" padding="10">
           <fields labels="above">
             <field label="{Højde; da:Height}">
               <number-input key="height" allow-null="true" min="20" max="500"/>
@@ -104,7 +104,7 @@ class PosterPartController extends PartController
               </dropdown>
             </field>
           </fields>
-        </formula>
+        </form>
       </window>
 
       <window title="{Page; da:Side}" name="pageWindow" width="300">
@@ -118,7 +118,7 @@ class PosterPartController extends PartController
             <icon icon="common/new" text="{Add; da:Tilføj}" name="addPage"/>
           </right>
         </toolbar>
-        <formula name="pageFormula" padding="10">
+        <form name="pageFormula" padding="10">
           <fields labels="above">
             <field label="{Title; da:Titel}">
               <text-input key="title"/>
@@ -160,13 +160,13 @@ class PosterPartController extends PartController
             </field>
 
           </fields>
-        </formula>
+        </form>
       </window>
 
       <window title="{Source; da:Kilde}" name="sourceWindow" width="600">
-        <formula name="sourceFormula">
+        <form name="sourceFormula">
           <fields labels="above"><field><code-input key="recipe"/></field></fields>
-        </formula>
+        </form>
       </window>
       ';
   }

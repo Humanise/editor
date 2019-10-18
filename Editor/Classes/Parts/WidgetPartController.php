@@ -76,13 +76,13 @@ class WidgetPartController extends PartController
   function getEditorUI($part,$context) {
     return '
     <window title="{Widget; da:Widget}" icon="common/info" name="widgetDataWindow" width="400" padding="5" closable="false">
-      <formula name="widgetDataFormula">
+      <form name="widgetDataFormula">
         <fields labels="above">
           <field>
             <code-input key="data"/>
           </field>
         </fields>
-      </formula>
+      </form>
     </window>
     ';
   }

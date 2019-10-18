@@ -20,7 +20,7 @@
       </left>
       <center>
         <overflow>
-          <formula name="userFormula" padding="20">
+          <form name="userFormula" padding="20">
             <fields>
               <field label="Image:">
                 <image-input key="title">
@@ -40,7 +40,7 @@
                 </object-input>
               </field>
             </fields>
-          </formula>
+          </form>
           <code-input name="log"/>
         </overflow>
       </center>

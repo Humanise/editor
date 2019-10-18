@@ -39,17 +39,17 @@ class TablePartController extends PartController
   function getEditorUI($part,$context) {
     return '
     <window title="{Source; da:Kilde}" name="sourceWindow" width="500">
-      <formula name="sourceFormula">
+      <form name="sourceFormula">
         <fields labels="above">
         <field>
           <code-input key="source"/>
         </field>
         </fields>
-      </formula>
+      </form>
     </window>
 
     <window title="{Properties; da:Egenskaber}" name="propertiesWindow" icon="monochrome/info" width="300" padding="10">
-      <formula name="propertiesFormula">
+      <form name="propertiesFormula">
         <fieldset legend="{Table; da:Tabel}">
           <fields labels="before">
             <field label="{Head; da:Hoved}">
@@ -77,7 +77,7 @@ class TablePartController extends PartController
             </field>
           </fields>
         </fieldset>
-      </formula>
+      </form>
     </window>
 
     <menu name="tableMenu">

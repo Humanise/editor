@@ -12,7 +12,7 @@ op.WeblogTemplate = {
   showNewEntry : function() {
     if (!this.newBox) {
       var box = this.newBox = hui.ui.Box.create({modal:true,width:600,absolute:true,padding:10,title:'Nyt indlæg',closable:true});
-      var form = this.newForm = hui.ui.Formula.create();
+      var form = this.newForm = hui.ui.Form.create();
       var group = form.buildGroup({above:true},[
         {type:'TextInput',label:'Titel',options:{key:'title'}},
         {type:'DateTimeInput',label:'Dato',options:{name:'newEntryDate',key:'date',allowNull:false}},
@@ -90,7 +90,7 @@ op.WeblogTemplate = {
   editEntry : function(obj) {
     if (!this.editBox) {
       var box = this.editBox = hui.ui.Box.create({modal:true,width:600,absolute:true,padding:10,title:'Rediger indlæg',closable:true});
-      var form = this.editForm = hui.ui.Formula.create();
+      var form = this.editForm = hui.ui.Form.create();
       var group = form.buildGroup({above:true},[
         {type:'TextInput',label:'Titel',options:{key:'title'}},
         {type:'DateTimeInput',label:'Dato',options:{name:'editEntryDate',key:'date',allowNull:false}},

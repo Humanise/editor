@@ -84,7 +84,7 @@ $gui = '
   </structure>
 
   <window title="{Issue; da:Sag}" name="issueWindow" icon="common/folder" width="300" padding="10">
-    <formula name="issueFormula">
+    <form name="issueFormula">
       <fields labels="above">
         <field label="{Title; da:Titel}">
           <text-input key="title"/>
@@ -108,11 +108,11 @@ $gui = '
         </button>
         <button name="saveIssue" text="{Save; da:Gem}" highlighted="true" submit="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
   <window title="{Status; da:Status}" name="statusWindow" icon="common/folder" width="300" padding="10">
-    <formula name="statusFormula">
+    <form name="statusFormula">
       <fields labels="above">
         <field label="{Title; da:Titel}">
           <text-input key="title"/>
@@ -125,7 +125,7 @@ $gui = '
         </button>
         <button name="saveStatus" text="{Save; da:Gem}" highlighted="true" submit="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
 </gui>';

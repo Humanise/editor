@@ -141,7 +141,7 @@ $gui = '
       </right>
     </toolbar>
     <fragment name="pageInfoFragment">
-      <formula name="pageFormula" padding="10">
+      <form name="pageFormula" padding="10">
         <fields labels="above">
           <field label="{Title ; da: Titel}:">
             <text-input key="title"/>
@@ -181,7 +181,7 @@ $gui = '
           </button>
           <button name="savePage" text="{Save; da:Gem}" highlighted="true"/>
         </buttons>
-      </formula>
+      </form>
     </fragment>
     <fragment name="pageTranslationFragment" visible="false">
     <!--
@@ -203,7 +203,7 @@ $gui = '
   </window>
 
   <window name="hierarchyEditor" width="300" title="{Hierarchy; da:Hierarki}" padding="10" icon="common/hierarchy">
-    <formula name="hierarchyFormula">
+    <form name="hierarchyFormula">
       <fields>
         <field label="{Title; da:Titel}:">
           <text-input key="name"/>
@@ -221,11 +221,11 @@ $gui = '
         </button>
         <button name="saveHierarchy" text="{Save; da:Gem}" highlighted="true" submit="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
   <window name="hierarchyItemEditor" width="300" title="{Menu item; da:Menupunkt}" padding="10">
-    <formula name="hierarchyItemFormula">
+    <form name="hierarchyItemFormula">
       <fields>
         <field label="{Title; da:Titel}:">
           <text-input key="title"/>
@@ -261,7 +261,7 @@ $gui = '
         </button>
         <button name="saveHierarchyItem" text="{Save; da:Gem}" highlighted="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
   <box absolute="true" name="newPageBox" padding="10" modal="true" width="636" variant="textured" title="{Creation of new page; da:Oprettelse af ny side}" closable="true">
@@ -295,7 +295,7 @@ $gui = '
       </step>
       <step title="{Properties; da:Egenskaber}" padding="10" frame="true" icon="common/info">
         <overflow max-height="300" min-height="260">
-        <formula name="newPageFormula">
+        <form name="newPageFormula">
           <fields labels="above">
             <field label="{Title; da:Titel}:">
               <text-input name="newPageTitle" key="title"/>
@@ -315,7 +315,7 @@ $gui = '
               <text-input breaks="true" key="description"/>
             </field>
           </fields>
-        </formula>
+        </form>
         </overflow>
       </step>
     </wizard>

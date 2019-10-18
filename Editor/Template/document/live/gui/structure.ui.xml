@@ -4,7 +4,7 @@
   <window width="500" name="rowWindow" title="Row" icon="monochrome/info_light" variant="light">
     <pages name="rowPages">
       <page key="layout">
-        <formula name="rowFormula" padding="10">
+        <form name="rowFormula" padding="10">
           <fields>
             <field label="Layout">
               <dropdown key="layout" value="">
@@ -19,7 +19,7 @@
               <code-input key="style"/>
             </field>
           </fields>
-        </formula>
+        </form>
         <style-editor name="rowStyleEditor">
           <component key="row" description="{Row; da: Række}"/>
           <component key="column" description="{Column; da: Kolonne}"/>
@@ -39,7 +39,7 @@
   <window width="500" name="columnWindow" title="Column" icon="monochrome/info_light" variant="light">
     <pages name="columnPages">
       <page key="layout">
-        <formula name="columnFormula" padding="10">
+        <form name="columnFormula" padding="10">
           <fields>
             <field label="Class">
               <text-input key="class"/>
@@ -51,7 +51,7 @@
               </buttons>
             </field>
           </fields>
-        </formula>
+        </form>
         <style-editor name="columnStyleEditor">
           <component key="column" description="{Column; da: Kolonne}"/>
         </style-editor>

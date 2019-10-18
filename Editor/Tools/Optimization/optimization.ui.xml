@@ -50,7 +50,7 @@
 							<toolbar>
 								<icon icon="common/save" text="{Save; da:Gem}" name="saveSettings"/>
 							</toolbar>
-							<formula name="settingsFormula">
+							<form name="settingsFormula">
 								<fields labels="above">
 									<field label="{What is the purpose of the website?; da:Hvad er hjemmesidens formål}:">
 										<text-input breaks="true" key="purpose"/>
@@ -62,7 +62,7 @@
 										<text-input breaks="true" key="successcriteria"/>
 									</field>
 								</fields>
-							</formula>
+							</form>
 							<list variant="light" name="profilesList" selectable="false" source="profilesSource"/>
 							<buttons top="10">
 								<button variant="light" small="true" text="{Add profile;da:Tilføj profil}" name="newSite" click="profilePanel.show(); profileFormula.focus()"/>
@@ -77,7 +77,7 @@
 	</structure>
 
 	<boundpanel target="newSite" name="profilePanel" width="200" variant="light" modal="true">
-		<formula name="profileFormula" padding="5">
+		<form name="profileFormula" padding="5">
 			<fields labels="above">
 				<field label="{Title; da:Titel}:">
 					<text-input key="name"/>
@@ -90,12 +90,12 @@
 				<button text="{Close; da:Luk}" click="profileFormula.reset();profilePanel.hide()" small="true"/>
 				<button text="{Add; da:Tilføj}" highlighted="true" submit="true" small="true"/>
 			</buttons>
-		</formula>
+		</form>
 
 	</boundpanel>
 
 	<boundpanel target="newWord" name="newWordPanel" width="200">
-		<formula name="wordFormula">
+		<form name="wordFormula">
 			<fields labels="above">
 				<field label="{Word; da:Ord}:">
 					<text-input key="word"/>
@@ -105,7 +105,7 @@
 				<button text="{Close; da:Luk}" click="newWordPanel.hide()" small="true"/>
 				<button text="{Add; da:Tilføj}" highlighted="true" submit="true" small="true"/>
 			</buttons>
-		</formula>
+		</form>
 	</boundpanel>
 
 	<boundpanel name="wordPanel" width="300" title="Sider med ordet" modal="true" variant="light">

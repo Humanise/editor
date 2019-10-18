@@ -95,7 +95,7 @@ $gui = '
   </structure>
 
   <window title="{Group; da:Gruppe}" name="groupWindow" icon="common/folder" width="300" padding="10">
-    <formula name="groupFormula">
+    <form name="groupFormula">
       <fields labels="above">
         <field label="{Title; da:Titel}">
           <text-input key="title"/>
@@ -108,7 +108,7 @@ $gui = '
         </button>
         <button name="saveGroup" text="{Save; da:Gem}" highlighted="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
   <window title="{Addition of images; da:Tilføjelse af billeder}" name="uploadWindow" width="300">
@@ -123,13 +123,13 @@ $gui = '
         </buttons>
       </tab>
       <tab title="{Fetch from the net; da:Hent fra nettet}" padding="10">
-        <formula name="fetchFormula">
+        <form name="fetchFormula">
           <fields labels="above">
             <field label="{Address; da:Adresse}:">
               <text-input key="url"/>
             </field>
           </fields>
-        </formula>
+        </form>
         <buttons align="center">
           <button name="cancelFetch" text="{Cancel; da:Annuller}"/>
           <button name="fetchImage" text="{Fetch; da:Hent}" highlighted="true"/>
@@ -139,7 +139,7 @@ $gui = '
   </window>
 
   <window title="{Image; da:Billede}" name="imageWindow" icon="common/image" width="450" padding="10">
-    <formula name="imageFormula">
+    <form name="imageFormula">
       <columns flexible="true">
         <column width="180px">
           <div id="photo"></div>
@@ -164,7 +164,7 @@ $gui = '
         </button>
         <button name="saveImage" text="{Save; da:Gem}" highlighted="true" submit="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 </gui>';
 

@@ -70,7 +70,7 @@ if ($editedSection == null) {
     <source name="fileSource" url="../../Services/Model/Items.php?type=file"/>
 
     <window width="400" name="linkWindow" padding="5" title="Link">
-      <formula name="linkFormula">
+      <form name="linkFormula">
         <fields labels="above">
           <field label="{Text; da:Tekst}">
             <text-input key="text" breaks="true"/>
@@ -109,7 +109,7 @@ if ($editedSection == null) {
           <button text="{Cancel; da:Annuller}" name="cancelLink"/>
           <button text="{Create; da:Opret}" submit="true" highlighted="true" name="saveLink"/>
         </buttons>
-      </formula>
+      </form>
     </window>
 
     <boundpanel name="linkPanel" variant="light">
@@ -195,7 +195,7 @@ if ($editedSection == null) {
     </menu>
 
     <window width="300" name="rowWindow" padding="5" title="{Row; da:Række}">
-      <formula name="rowFormula">
+      <form name="rowFormula">
         <fields>
           <field label="{Top; da:Top}">
             <style-length-input key="top"/>
@@ -217,11 +217,11 @@ if ($editedSection == null) {
           <button text="{Cancel; da:Annuller}" name="cancelRow"/>
           <button text="{Update; da:Opdater}" submit="true" highlighted="true" name="saveRow"/>
         </buttons>
-      </formula>
+      </form>
     </window>
 
     <window width="300" name="columnWindow" padding="5" title="{Column; da:Kolonne}">
-      <formula name="columnFormula">
+      <form name="columnFormula">
         <space all="5">
         <fields labels="above">
           <field label="{Width...; da:Bredde...}">
@@ -262,7 +262,7 @@ if ($editedSection == null) {
           <button text="{Cancel; da:Annuller}" name="cancelColumn"/>
           <button text="{Update; da:Opdater}" submit="true" highlighted="true" name="saveColumn"/>
         </buttons>
-      </formula>
+      </form>
     </window>
 
     <window width="300" name="importWindow" padding="5" title="{Import; da:Importering}">

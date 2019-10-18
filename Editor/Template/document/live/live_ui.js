@@ -378,7 +378,7 @@ hui.ui.listen({
 
   _buildDesignForm : function(parameters) {
     var win = this.designWindow = hui.ui.Window.create({width:300,title:'Design',icon:'common/info',padding:10});
-    var form = this.designFormula = hui.ui.Formula.create();
+    var form = this.designFormula = hui.ui.Form.create();
     form.listen({
       $submit : function() {
         var values = form.getValues();

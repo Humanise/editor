@@ -66,9 +66,9 @@ class FormulaPartController extends PartController
 
   function buildSub($part,$context) {
     $valid = DOMUtils::isValidFragment(Strings::toUnicode($part->getRecipe()));
-    return '<formula xmlns="' . $this->getNamespace() . '">' .
+    return '<form xmlns="' . $this->getNamespace() . '">' .
       ($valid ? '<recipe>' . $part->getRecipe() . '</recipe>' : '<invalid/>') .
-      '</formula>';
+      '</form>';
   }
 
   function importSub($node,$part) {
@@ -101,13 +101,13 @@ class FormulaPartController extends PartController
   function getEditorUI($part,$context) {
     return '
       <window title="{Source; da:Kilde}" name="sourceWindow" width="600">
-        <formula name="sourceFormula">
+        <form name="sourceFormula">
           <fields labels="above">
             <field>
               <code-input key="recipe"/>
             </field>
           </fields>
-        </formula>
+        </form>
       </window>
     ';
   }

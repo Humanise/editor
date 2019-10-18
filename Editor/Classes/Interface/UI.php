@@ -188,7 +188,7 @@ class UI {
 
     $children = DOMUtils::getChildElements($root);
 
-    $gui = '<formula><group>';
+    $gui = '<form><group>';
 
     foreach ($children as $child) {
       if ($child->tagName == 'text') {
@@ -208,7 +208,7 @@ class UI {
       }
     }
 
-    $gui .= '</group></formula>';
+    $gui .= '</group></form>';
     return UI::renderFragment($gui);
   }
 

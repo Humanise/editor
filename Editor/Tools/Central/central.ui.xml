@@ -43,7 +43,7 @@
   </structure>
 
   <window title="Site" name="siteWindow" width="300" padding="5">
-    <formula name="siteFormula">
+    <form name="siteFormula">
       <fields labels="above">
         <field label="{Title; da:Titel}">
           <text-input key="title"/>
@@ -59,6 +59,6 @@
         </button>
         <button name="saveSite" text="{Save; da:Gem}" highlighted="true" submit="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 </gui>

@@ -101,7 +101,7 @@
               <tabs small="true" centered="true">
                 <tab title="{User interface; da:Brugergrænseflade}">
                   <space all="10" bottom="5">
-                    <formula name="uiFormula">
+                    <form name="uiFormula">
                       <fields>
                         <field label="{Modern rich text editor; da:Moderne rig tekst editor}:">
                           <checkbox key="experimentalRichText"/>
@@ -113,12 +113,12 @@
                       <buttons>
                         <button text="{Update; da:Opdater}" name="saveUI" highlighted="true"/>
                       </buttons>
-                    </formula>
+                    </form>
                   </space>
                 </tab>
                 <tab title="{E-post; da:E-mail}">
                   <space all="10" bottom="5">
-                    <formula name="emailFormula">
+                    <form name="emailFormula">
                       <fields>
                         <field label="{Active; da:Aktiv}:">
                           <checkbox key="enabled"/>
@@ -156,12 +156,12 @@
                         <button text="{Test; da:Afprøv}" name="showEmailTest"/>
                         <button text="{Update; da:Opdater}" name="saveEmail" highlighted="true"/>
                       </buttons>
-                    </formula>
+                    </form>
                   </space>
                 </tab>
                 <tab title="Google Analytics">
                   <space all="10" bottom="5">
-                    <formula name="analyticsFormula">
+                    <form name="analyticsFormula">
                       <fields>
                         <field label="{Username; da:Brugernavn}:">
                           <text-input key="username"/>
@@ -180,12 +180,12 @@
                         <button name="testAnalytics" text="{Test; da:Afprøv}"/>
                         <button name="saveAnalytics" text="{Update; da:Opdater}" highlighted="true"/>
                       </buttons>
-                    </formula>
+                    </form>
                   </space>
                 </tab>
                 <tab title="OnlineObjects">
                   <space all="10" bottom="5">
-                    <formula name="onlineobjectsFormula">
+                    <form name="onlineobjectsFormula">
                       <fields>
                         <field label="{Address; da:Adresse}:">
                           <text-input key="url"/>
@@ -195,12 +195,12 @@
                         <button name="testOnlineObjects" text="{Afprøv; da:Test}"/>
                         <button name="saveOnlineObjects" text="{Update; da:Opdater}" highlighted="true"/>
                       </buttons>
-                    </formula>
+                    </form>
                   </space>
                 </tab>
                 <tab title="Rapport">
                   <space all="10" bottom="5">
-                    <formula name="reportsFormula">
+                    <form name="reportsFormula">
                       <fields>
                         <field label="{Interval; da:Interval}:" hint="{Hours: 1 week = 168;da:Timer: 1 uge = 168}">
                           <number-input key="interval" min="0"/>
@@ -213,7 +213,7 @@
                         <button name="testReports" text="{Afprøv; da:Test}"/>
                         <button name="saveReports" text="{Update; da:Opdater}" submit="true" highlighted="true"/>
                       </buttons>
-                    </formula>
+                    </form>
                   </space>
                 </tab>
               </tabs>
@@ -226,7 +226,7 @@
   </structure>
 
   <window name="pathEditor" width="300" title="{Path; da:Sti}" padding="5">
-    <formula name="pathFormula">
+    <form name="pathFormula">
       <fields>
         <field label="{Path; da:Sti}:">
           <text-input key="path"/>
@@ -240,11 +240,11 @@
         <button name="deletePath" text="{Delete; da:Slet}"/>
         <button name="savePath" text="{Save; da:Gem}" highlighted="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
   <window name="weblogGroupEditor" width="300" title="{Weblog group; da:Weblog gruppe}" padding="5">
-    <formula name="weblogGroupFormula">
+    <form name="weblogGroupFormula">
       <fields>
         <field label="{Title; da:Titel}:">
           <text-input key="title"/>
@@ -258,11 +258,11 @@
         <button name="deleteWeblogGroup" text="{Delete; da:Slet}"/>
         <button name="saveWeblogGroup" text="{Save; da:Gem}" highlighted="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
   <window name="designEditor" width="300" title="Design" padding="5">
-    <formula name="designFormula">
+    <form name="designFormula">
       <fields>
         <field label="{Title; da:Titel}:">
           <text-input key="title"/>
@@ -278,11 +278,11 @@
         </button>
         <button name="saveDesign" text="{Save; da:Gem}" highlighted="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
   <window name="emailTestWindow" width="300" title="{Test of e-mail; da:Test af e-post}" padding="5">
-    <formula name="emailTestFormula">
+    <form name="emailTestFormula">
       <fields labels="above">
         <field label="{Name; da:Navn}:">
           <text-input key="name"/>
@@ -300,6 +300,6 @@
       <buttons>
         <button name="testEmail" text="Test" highlighted="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 </gui>

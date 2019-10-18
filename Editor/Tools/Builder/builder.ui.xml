@@ -86,7 +86,7 @@ xsi:noNamespaceSchemaLocation="../../../hui/xslt/schema.xsd">
   </structure>
 
   <window title="{Source; da:Kilde}" name="sourceWindow" width="300" padding="5">
-    <formula name="sourceFormula">
+    <form name="sourceFormula">
       <fields labels="above">
         <field label="{Title; da:Titel}">
           <text-input key="title"/>
@@ -105,11 +105,11 @@ xsi:noNamespaceSchemaLocation="../../../hui/xslt/schema.xsd">
         </button>
         <button name="saveSource" text="{Save; da:Gem}" highlighted="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
   <window title="{Workflow; da:Arbejdsgang}" name="workflowWindow" width="400" padding="5">
-    <formula name="workflowFormula">
+    <form name="workflowFormula">
       <fields labels="above">
         <field label="{Title; da:Titel}">
           <text-input key="title"/>
@@ -122,7 +122,7 @@ xsi:noNamespaceSchemaLocation="../../../hui/xslt/schema.xsd">
         </button>
         <button name="saveWorkflow" text="{Save; da:Gem}" highlighted="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
   <managed name="streamEditor"
@@ -131,7 +131,7 @@ xsi:noNamespaceSchemaLocation="../../../hui/xslt/schema.xsd">
     delete-url="../../Services/Model/DeleteObject.php"
   >
     <window title="{Stream; da:Strøm}" width="400" padding="5">
-      <formula>
+      <form>
         <fields labels="above">
           <field label="{Title; da:Titel}">
             <text-input key="title"/>
@@ -144,7 +144,7 @@ xsi:noNamespaceSchemaLocation="../../../hui/xslt/schema.xsd">
           </button>
           <button text="{Save; da:Gem}" highlighted="true" role="save" submit="true"/>
         </buttons>
-      </formula>
+      </form>
     </window>
   </managed>
 
@@ -154,7 +154,7 @@ xsi:noNamespaceSchemaLocation="../../../hui/xslt/schema.xsd">
     delete-url="../../Services/Model/DeleteObject.php"
   >
     <window title="{View; da:Visning}" width="400" padding="5">
-      <formula>
+      <form>
         <fields labels="above">
           <field label="{Title; da:Titel}">
             <text-input key="title"/>
@@ -170,7 +170,7 @@ xsi:noNamespaceSchemaLocation="../../../hui/xslt/schema.xsd">
           </button>
           <button text="{Save; da:Gem}" highlighted="true" role="save" submit="true"/>
         </buttons>
-      </formula>
+      </form>
     </window>
   </managed>
 
@@ -180,7 +180,7 @@ xsi:noNamespaceSchemaLocation="../../../hui/xslt/schema.xsd">
     delete-url="../../Services/Model/DeleteObject.php"
   >
     <window title="{Listener; da:Observatør}" width="300" padding="5">
-      <formula>
+      <form>
         <fields labels="above">
           <field label="{Title; da:Titel}">
             <text-input key="title"/>
@@ -202,7 +202,7 @@ xsi:noNamespaceSchemaLocation="../../../hui/xslt/schema.xsd">
           </button>
           <button text="{Save; da:Gem}" highlighted="true" role="save" submit="true"/>
         </buttons>
-      </formula>
+      </form>
     </window>
   </managed>
 
@@ -211,7 +211,7 @@ xsi:noNamespaceSchemaLocation="../../../hui/xslt/schema.xsd">
     delete-url="../../Services/Model/DeleteObject.php"
   >
     <window title="{Stream item; da:Emne i strøm}" width="300" padding="5">
-      <formula>
+      <form>
         <fields labels="above">
           <field label="{Data; da:Data}">
             <text-input key="data" breaks="true"/>
@@ -224,7 +224,7 @@ xsi:noNamespaceSchemaLocation="../../../hui/xslt/schema.xsd">
           </button>
           <button text="{Save; da:Gem}" highlighted="true" role="save" submit="true"/>
         </buttons>
-      </formula>
+      </form>
     </window>
   </managed>
 

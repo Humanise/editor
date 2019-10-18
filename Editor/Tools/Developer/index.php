@@ -46,7 +46,7 @@ $gui = '
         <overflow state="settings">
           <fragment height="full" background="wood">
             <box width="300" top="30" title="Settings" padding="10">
-              <formula name="settingsFormula">
+              <form name="settingsFormula">
                 <button text="Rebuild classes" name="rebuildClasses"/>
                 <fields>
                   <field label="Simulate network latency:">
@@ -56,7 +56,7 @@ $gui = '
                     <checkbox key="logDatabaseQueries" value="' . (@$_SESSION['core.debug.logDatabaseQueries'] ? 'true' : 'false') . '"/>
                   </field>
                 </fields>
-              </formula>
+              </form>
             </box>
           </fragment>
         </overflow>

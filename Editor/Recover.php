@@ -37,7 +37,7 @@ $gui = '
         <button highlighted="true" title="OK" url="Authentication.php"/>
       </buttons>
     ' : '
-      <formula name="formula" state="login">
+      <form name="formula" state="login">
         <header>{Provide new password; da:Angiv ny kode}</header>
         <fields labels="above">
           <field label="{Password; da:Kodeord}:">
@@ -51,7 +51,7 @@ $gui = '
           <button name="cancel" title="{Cancel; da:Annuller}" url="Authentication.php"/>
           <button name="change" title="{Change password; da:Skift kode}" highlighted="true" submit="true"/>
         </buttons>
-      </formula>
+      </form>
       <fragment state="success">
         <text>
           <h>{Your password has been changed; da:Dit kodeord er nu ændret}</h>

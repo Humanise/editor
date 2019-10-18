@@ -12,7 +12,7 @@ $gui = '
     controller.id = ' . Request::getId() . ';
   </script>
   <box width="360" top="30" padding="10" title="Indstillinger til weblog">
-    <formula name="formula">
+    <form name="formula">
       <fields labels="above">
         <field label="Titel:">
           <text-input key="title"/>
@@ -32,7 +32,7 @@ $gui = '
       <buttons>
         <button text="Opdater" name="save" highlighted="true" disabled="true"/>
       </buttons>
-    </formula>
+    </form>
   </box>
 </gui>
 ';

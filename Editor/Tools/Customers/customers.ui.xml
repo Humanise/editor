@@ -64,7 +64,7 @@
   </structure>
 
   <window name="personEditor" width="460" title="Person">
-    <formula name="personFormula">
+    <form name="personFormula">
       <tabs small="true" centered="true">
         <tab title="Person" padding="10">
           <columns flexible="true" space="10">
@@ -201,11 +201,11 @@
         </button>
         <button name="savePerson" text="{Save; da:Gem}" highlighted="true" submit="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
   <window name="mailinglistEditor" width="300" title="{Mailing list; da:Postliste}" padding="10">
-    <formula name="mailinglistFormula">
+    <form name="mailinglistFormula">
       <fields>
         <field label="{Title; da:Titel}:">
           <text-input name="mailinglistTitle"/>
@@ -221,11 +221,11 @@
         </button>
         <button name="saveMailinglist" text="{Save; da:Gem}" highlighted="true" submit="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
   <window name="groupEditor" width="300" title="{Group; da:Gruppe}" padding="10">
-    <formula name="groupFormula">
+    <form name="groupFormula">
       <fields>
         <field label="{Title; da:Titel}:">
           <text-input name="groupTitle"/>
@@ -241,7 +241,7 @@
         </button>
         <button name="saveGroup" text="{Save; da:Gem}" highlighted="true" submit="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
 </gui>

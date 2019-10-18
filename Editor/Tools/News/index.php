@@ -91,7 +91,7 @@ $gui = '
   </structure>
 
   <window title="{Group; da:Gruppe}" name="groupWindow" icon="common/folder" width="300" padding="10">
-    <formula name="groupFormula">
+    <form name="groupFormula">
       <fields labels="above">
         <field label="{Title; da:Titel}">
           <text-input key="title"/>
@@ -104,11 +104,11 @@ $gui = '
         </button>
         <button name="saveGroup" text="{Save; da:Gem}" highlighted="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
   <window title="{Source; da:Kilde}" name="sourceWindow" icon="common/internet" width="300" padding="10">
-    <formula name="sourceFormula">
+    <form name="sourceFormula">
       <fields labels="above">
         <field label="{Title; da:Titel}">
           <text-input key="title"/>
@@ -127,7 +127,7 @@ $gui = '
         </button>
         <button submit="true" text="{Save; da:Gem}" highlighted="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
 
@@ -136,7 +136,7 @@ $gui = '
     <tabs small="true" centered="true">
 
       <tab title="{News; da:Nyhed}" padding="10">
-        <formula name="newsFormula">
+        <form name="newsFormula">
           <fields labels="above">
             <field label="{Title; da:Titel}">
               <text-input key="title"/>
@@ -166,7 +166,7 @@ $gui = '
               </checkboxes>
             </field>
           </fields>
-        </formula>
+        </form>
       </tab>
 
       <tab title="Links">
@@ -192,7 +192,7 @@ $gui = '
 
 
   <box title="{New article; da:Ny artikel}" name="newArticleBox" absolute="true" padding="10" modal="true" width="636" variant="textured" closable="true">
-    <formula name="articleFormula">
+    <form name="articleFormula">
       <fields labels="above">
         <field label="{Title; da:Titel}">
           <text-input key="title"/>
@@ -233,7 +233,7 @@ $gui = '
         <button name="cancelNewArticle" text="{Cancle; da:Annuller}" click="newNewsBox.hide()"/>
         <button name="createNewArticle" text="{Create; da:Opret}" highlighted="true" submit="true"/>
       </buttons>
-    </formula>
+    </form>
   </box>
 </gui>';
 

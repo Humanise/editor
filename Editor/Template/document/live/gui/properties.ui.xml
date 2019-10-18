@@ -10,7 +10,7 @@
 		<pages name="pages">
 			<!--pages-->
 			<page key="layout">
-				<formula name="layoutFormula" padding="10">
+				<form name="layoutFormula" padding="10">
 					<fields>
 						<field label="Width:">
 							<style-length-input adaptive="true" key="width"/>
@@ -51,13 +51,13 @@
 							</columns>
 						</field>
 					</fields>
-				</formula>
+				</form>
 			</page>
 			<page key="info">
 				<space height="200"/>
 			</page>
 			<page key="advanced">
-				<formula name="advancedFormula" padding="10">
+				<form name="advancedFormula" padding="10">
 					<fields labels="above">
 						<field label="Class">
 							<text-input key="class"/>
@@ -69,7 +69,7 @@
 							<code-input key="partStyle" height="120"/>
 						</field>
 					</fields>
-				</formula>
+				</form>
 			</page>
 		</pages>
 	</window>

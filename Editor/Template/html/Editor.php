@@ -12,7 +12,7 @@ $gui = '
     controller.id = ' . Request::getId() . ';
   </script>
   <box width="800" top="10" padding="10" title="HTML">
-    <formula name="formula">
+    <form name="formula">
       <fields labels="above">
         <field label="Titel:">
           <text-input key="title"/>
@@ -25,7 +25,7 @@ $gui = '
         <button text="{Convert to document; da:Konverter til dokument}" name="convert"/>
         <button text="{Update; da:Opdater}" name="save" highlighted="true" disabled="true" submit="true"/>
       </buttons>
-    </formula>
+    </form>
   </box>
 </gui>
 ';

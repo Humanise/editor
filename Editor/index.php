@@ -102,7 +102,7 @@ $gui = '
   </dock>
 
   <boundpanel name="issuePanel" width="250">
-    <formula name="issueFormula">
+    <form name="issueFormula">
       <fields labels="above">
         <field label="Note:">
           <text-input key="text" breaks="true"/>
@@ -122,7 +122,7 @@ $gui = '
         <button text="{Cancel; da:Annuller}" name="cancelIssue" small="true"/>
         <button text="{Save; da:Gem}" highlighted="true" submit="true" small="true" name="saveIssue"/>
       </buttons>
-    </formula>
+    </form>
   </boundpanel>
 </gui>';
 

@@ -47,7 +47,7 @@
         <overflow state="settings">
           <fragment height="full" background="wood">
             <box width="300" top="30" title="Settings" padding="10">
-              <formula name="settingsFormula">
+              <form name="settingsFormula">
                 <fields>
                   <field label="Simulate network latency:">
                     <checkbox key="simulateLatency"/>
@@ -59,7 +59,7 @@
                 <buttons>
                   <button text="Rebuild classes" name="rebuildClasses"/>
                 </buttons>
-              </formula>
+              </form>
             </box>
           </fragment>
         </overflow>

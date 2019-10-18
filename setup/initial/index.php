@@ -28,7 +28,7 @@ $gui = '
       ) . '
     </text>
     </space>
-    <formula name="formula">
+    <form name="formula">
       <fields>
         <field label="Base address:">
           <text-input name="baseUrl" value="' . Strings::escapeXML($baseUrl) . '"/>
@@ -52,7 +52,7 @@ $gui = '
           <text-input name="superPassword" secret="true"/>
         </field>
       </fields>
-    </formula>
+    </form>
     <field label="Configuration file:" hint="Put the text above into the file: Config/Setup.php">
       <code-input name="preview"/>
     </field>

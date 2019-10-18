@@ -85,7 +85,7 @@
   />
 
   <window name="userWindow" width="300" title="{User; da:Bruger}" padding="5">
-    <formula name="userFormula">
+    <form name="userFormula">
       <fields>
         <field label="{Title; da:Titel}:">
           <text-input key="title"/>
@@ -125,11 +125,11 @@
         </button>
         <button name="saveUser" text="{Save; da:Gem}" highlighted="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
   <window name="zoneWindow" width="300" title="{Zone; da:Zone}" padding="5">
-    <formula name="zoneFormula">
+    <form name="zoneFormula">
       <fields>
         <field label="{Title; da:Titel}:">
           <text-input key="title"/>
@@ -145,7 +145,7 @@
         </button>
         <button name="saveZone" text="{Save; da:Gem}" highlighted="true" submit="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
 </gui>

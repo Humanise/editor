@@ -54,7 +54,7 @@ $gui = '
   </rows>
 
   <boundpanel target="addNote" name="notePanel" width="200">
-    <formula name="noteFormula">
+    <form name="noteFormula">
       <fields labels="above">
         <field label="Note:">
           <text-input key="text" breaks="true"/>
@@ -70,7 +70,7 @@ $gui = '
         <button text="{Cancel; da:Annuller}" name="cancelNote" small="true"/>
         <button text="{Create; da:Opret}" highlighted="true" submit="true" small="true"/>
       </buttons>
-    </formula>
+    </form>
   </boundpanel>
 
   <boundpanel target="review" name="reviewPanel" width="300">
@@ -83,7 +83,7 @@ $gui = '
   </boundpanel>
 
   <boundpanel target="newPage" name="newPagePanel" width="300">
-    <formula name="newPageFormula">
+    <form name="newPageFormula">
       <fields labels="above">
         <field label="{Title; da:Titel}:">
           <text-input key="title" value="{New page; da:Ny side}"/>
@@ -100,11 +100,11 @@ $gui = '
         <button text="{Cancel; da:Annuller}" name="cancelNewPage" small="true"/>
         <button text="{Create; da:Opret}" highlighted="true" submit="true" small="true"/>
       </buttons>
-    </formula>
+    </form>
   </boundpanel>
 
   <window name="pageProperties" width="300" padding="10" title="Info" icon="common/info">
-    <formula name="pageFormula">
+    <form name="pageFormula">
       <fields labels="above">
         <field label="{Title; da:Titel}:">
           <text-input key="title"/>
@@ -127,7 +127,7 @@ $gui = '
         <button text="{Cancel; da:Annuller}" name="cancelPageProperties"/>
         <button text="{Update; da:Opdater}" highlighted="true" submit="true"/>
       </buttons>
-    </formula>
+    </form>
   </window>
 
 </gui>';

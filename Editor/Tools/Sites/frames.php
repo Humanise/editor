@@ -23,7 +23,7 @@ $gui = '
   <window name="frameWindow" width="500" title="{Setup; da:Opsætning}">
     <tabs small="true" centered="true">
       <tab title="Info" padding="10">
-        <formula name="frameFormula">
+        <form name="frameFormula">
           <fields>
             <field label="{Name; da:Navn}:">
               <text-input key="name"/>
@@ -38,10 +38,10 @@ $gui = '
               <dropdown key="hierarchyId" source="hierarchyItems" placeholder="{Choose hierarchy; da:Vælg hierarki...}"/>
             </field>
           </fields>
-        </formula>
+        </form>
       </tab>
       <tab title="{Search; da:Søgning}" padding="10">
-        <formula name="searchFormula">
+        <form name="searchFormula">
           <fields>
             <field label="{Active; da:Aktiv}:">
               <checkbox key="enabled"/>
@@ -50,10 +50,10 @@ $gui = '
               <dropdown key="pageId" source="pageItems" placeholder="{Choose search page...; da:Vælg søgeside...}"/>
             </field>
           </fields>
-        </formula>
+        </form>
       </tab>
       <tab title="{User; da:Bruger}" padding="10">
-        <formula name="userFormula">
+        <form name="userFormula">
           <fields>
             <field label="{Active; da:Aktiv}:">
               <checkbox key="enabled"/>
@@ -62,7 +62,7 @@ $gui = '
               <dropdown key="pageId" source="pageItems" placeholder="{Choose login page...; da:Vælg login-side...}"/>
             </field>
           </fields>
-        </formula>
+        </form>
       </tab>
       <tab title="{Top links; da:Top-links}">
         <toolbar centered="true">

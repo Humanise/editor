@@ -132,7 +132,7 @@ class MapPartController extends PartController
   function getEditorUI($part,$context) {
     return '
     <window title="Indstillinger" name="mapWindow" width="300" padding="10">
-      <formula name="mapFormula">
+      <form name="mapFormula">
         <fields labels="above">
           <field label="Text">
             <text-input breaks="true" key="text"/>
@@ -174,7 +174,7 @@ class MapPartController extends PartController
         <buttons>
           <button name="currentLocation" text="Min lokation"/>
         </buttons>
-      </formula>
+      </form>
     </window>
     ';
   }

@@ -11,7 +11,7 @@ var templateController = {
   edit : function() {
     if (!this.win) {
       this.win = hui.ui.Window.create({title:'Adgangskontrol',width:250,padding:5});
-      var form = this.form = hui.ui.Formula.create({name:'templateForm'});
+      var form = this.form = hui.ui.Form.create({name:'templateForm'});
       this.win.add(form);
       form.buildGroup({labels:'above'},[
         {type:'TextInput',label:'Titel:',options:{key:'title'}}
