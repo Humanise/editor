@@ -431,6 +431,9 @@
   .layout_placards_text {
     margin-left: 0; } }
 
+.layout_middle {
+  background: #fff; }
+
 .layout_design {
   background: url("../gfx/footer.png") 50% no-repeat;
   text-indent: -10000px;
@@ -462,7 +465,8 @@
       fill: #333; }
   @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
     .layout_head {
-      -webkit-backdrop-filter: blur(8px); }
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px); }
     .scroll .layout_head {
       background: rgba(255, 255, 255, 0.6); }
     .scroll .layout_menu_link {

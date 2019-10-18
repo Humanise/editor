@@ -85,6 +85,10 @@
 }
 
 @include if {
+  .layout_middle {
+    background: #fff;
+  }
+
   .layout_design {
     background: url('../gfx/footer.png') 50% no-repeat;
     text-indent: -10000px;
@@ -173,6 +177,7 @@
   @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
     .layout_head {
       -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
       //-webkit-backdrop-filter: blur(8px) brightness(1.15);
     }
     .scroll {
