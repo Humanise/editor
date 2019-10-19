@@ -97,9 +97,9 @@ class TestDatabase extends UnitTestCase {
   }
 
   function testCompileOfUnicode() {
-    $sql = "UPDATE table set something=@text(something) where id = @id";
-    $parameters = ['something' => 'æbleø 🍎🏝', 'id' => 5355];
-    $expected = "UPDATE table set something='æbleø 🍎🏝' where id = 5355";
+    $sql = "UPDATE table set something=@text(something), other=@text(other) where id = @id";
+    $parameters = ['something' => 'æbleø 🍎🏝', 'other' => '–🧠💁🏽‍♂️👨‍👨‍👧‍👦☯︎', 'id' => 5355];
+    $expected = "UPDATE table set something='æbleø 🍎🏝', other='–🧠💁🏽‍♂️👨‍👨‍👧‍👦☯︎' where id = 5355";
 
     $compiled = Database::compile($sql,$parameters);
     $this->assertEqual($expected,$compiled);
