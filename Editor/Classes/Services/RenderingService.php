@@ -220,8 +220,8 @@ class RenderingService {
 
   static function handleMissingPage($path) {
     // See if there is a page redirect
-    $sql = "select page.id,page.path from path left join page on page.id=path.page_id where path.path = @text(path)";
-    if ($row = Database::selectFirst($sql, ['path' => $path])) {
+    $sql = "select page.id,page.path from path left join page on page.id=path.page_id where path.path = @text(path) or path.path = @text(pathSlash) or path.path = @text(pathSlashSlash)";
+    if ($row = Database::selectFirst($sql, ['path' => $path, 'pathSlash' => '/' . $path, 'pathSlashSlash' => '/' . $path . '/'])) {
       if ($row['path'] != '') {
         Response::redirectMoved(Strings::concatUrl(ConfigurationService::getBaseUrl(),$row['path']));
       } else if ($row['id'] > 0) {
