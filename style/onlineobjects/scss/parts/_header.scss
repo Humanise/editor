@@ -1,15 +1,11 @@
 @include if {
-  .header {
-    padding-top: 10px;
-  }
-
 
   .header_menu {
     list-style: none;
-    margin: 0 0 0 -5px;
-    padding: 5px 0 7px;
+    padding: 5px 0;
     display: block;
     text-align: left;
+    margin: 0 -5px;
 
     &_item {
       display: inline-block;
@@ -17,9 +13,9 @@
 
     &_link {
       display: inline-block;
-      font-size: 14px;
+      font-size: 16px;
       line-height: 20px;
-      padding: 5px 5px;
+      padding: 3px 5px;
       color: #333;
       text-decoration: none;
       font-weight: 400;
@@ -35,14 +31,9 @@
 }
 
 @include if (( width: 760px )){
-  .header {
-    height: 80px;
-    padding: 0;
-  }
 
   .header_menu {
-    margin: 0 0 0 -10px;
-    padding: 5px 0 0 0;
+    padding: 20px;
     text-align: left;
 
     &_link {

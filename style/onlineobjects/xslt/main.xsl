@@ -38,7 +38,9 @@
       <body>
         <xsl:call-template name="top"/>
         <div class="layout">
-          <xsl:call-template name="navigation-first-level"/>
+          <div class="layout_top">
+            <xsl:call-template name="navigation-first-level"/>
+          </div>
           <div class="layout_middle">
             <xsl:call-template name="navigation-second-level"/>
             <div class="layout_content">

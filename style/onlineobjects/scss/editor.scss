@@ -1,1 +1,6 @@
+@import 'shared';
+@import url('https://use.typekit.net/dqs7hkt.css');
 @import 'overwrite';
+.common_font {
+  font-family: $font;
+}

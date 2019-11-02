@@ -3,11 +3,20 @@
   .layout {
     margin: 0 auto;
     max-width: 1004px;
-    padding: 0 15px;
     text-align: left;
 
+    &_top {
+      border-bottom: 1px solid #eee;
+      padding: 0 15px;
+    }
+
+    &_aside {
+      border-bottom: 1px solid #eee;
+      padding: 0 15px;
+    }
+
     &_content {
-      padding: 20px 0 20px 0;
+      padding: 15px;
       overflow: hidden;
       min-height: 300px;
     }
@@ -18,7 +27,6 @@
 @include if (( width: 600px )) {
 
   .layout {
-    padding: 0 20px;
     background: #fff;
     border-radius: 3px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.2);
@@ -29,13 +37,33 @@
       flex-direction: row-reverse;
     }
 
+    &_top {
+      padding: 0 20px;
+    }
+
     &_content {
       flex-grow: 1;
+      padding: 15px 20px;
     }
 
     &_aside {
-      flex-basis: 200px;
+      flex-basis: 20%;
+      flex-shrink: 0;
+      border-left: 1px solid #eee;
+      padding-left: 20px;
+      padding-top: 15px;
+      margin-left: 20px;
     }
   }
 
+}
+
+@include if (( width: 760px )) {
+  .layout {
+
+    &_content {
+      padding: 35px 40px;
+    }
+    
+  }
 }
