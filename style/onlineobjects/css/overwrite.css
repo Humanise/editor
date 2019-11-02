@@ -3,8 +3,10 @@
   color: rgba(0, 0, 0, 0.1); }
   .common_link_text {
     color: #07c; }
-  .common_link:hover, .common_link_text:hover {
+  .common_link:hover {
     color: #7cacc3; }
+  .common_link_text:hover {
+    color: #00476b; }
 
 .part_section_header {
   padding: 0; }

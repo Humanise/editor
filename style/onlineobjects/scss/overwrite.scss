@@ -10,9 +10,12 @@ $target: async;
       color: #07c;
     }
 
-    &:hover,
+    &:hover {
+      color: #7cacc3
+    }
+
     &_text:hover {
-      color: #7cacc3;
+      color: #00476b
     }
   }
 
