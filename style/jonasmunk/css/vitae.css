@@ -199,12 +199,15 @@
   font-weight: 400; }
 
 .vitae .part_poster_title {
-  font-weight: 200;
+  font-weight: 600;
   font-size: 18pt; }
 
 .vitae .part_poster_text {
-  font-weight: 200;
-  font-size: 12pt; }
+  font-weight: 300;
+  font-size: 16px; }
+
+.vitae .part_poster_link {
+  font-size: 16px; }
 
 .vitae .part_text, .vitae .part_listing {
   font-weight: 300;

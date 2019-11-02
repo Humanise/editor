@@ -183,13 +183,17 @@ $target : async;
       &_poster {
 
         &_title {
-          font-weight: 200;
+          font-weight: 600;
           font-size: 18pt;
         }
 
         &_text {
-          font-weight: 200;
-          font-size: 12pt;
+          font-weight: 300;
+          font-size: 16px;
+        }
+
+        &_link {
+          font-size: 16px;
         }
 
       }
