@@ -101,6 +101,7 @@
 
 <xsl:template name="img:buildimage">
   <xsl:variable name="src"><xsl:call-template name="img:buildsrc"/></xsl:variable>
+  <xsl:variable name="srcset"><xsl:call-template name="img:build-src-set"/></xsl:variable>
   <xsl:variable name="width"><xsl:call-template name="img:buildwidth"/></xsl:variable>
   <xsl:variable name="height"><xsl:call-template name="img:buildheight"/></xsl:variable>
   <xsl:variable name="ratio"><xsl:value-of select="$height div $width * 100"/></xsl:variable>
@@ -124,12 +125,12 @@
                 </xsl:if>
               </xsl:attribute>
               <span class="part_image_adaptive_inner" style="padding-bottom: {$ratio}%;">
-              <img src="{$src}" width="{round($width)}"  height="{round($height)}" alt="" class="part_image_image part_image_adaptive" id="part_image_{generate-id()}"/>
+              <img src="{$src}" srcset="{$srcset}" width="{round($width)}"  height="{round($height)}" alt="" class="part_image_image part_image_adaptive" id="part_image_{generate-id()}"/>
               </span>
             </span>
           </xsl:when>
           <xsl:otherwise>
-              <img src="{$src}" width="{round($width)}"  height="{round($height)}" alt="" class="part_image_image" id="part_image_{generate-id()}"/>
+              <img src="{$src}" srcset="{$srcset}" width="{round($width)}"  height="{round($height)}" alt="" class="part_image_image" id="part_image_{generate-id()}"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:with-param>
@@ -212,6 +213,38 @@
     <xsl:if test="img:transform/@greyscale='true'">
       <xsl:text>&amp;greyscale=true</xsl:text>
     </xsl:if>
+  </xsl:when>
+  <xsl:otherwise>
+    <xsl:value-of select="$data-path"/>images/<xsl:value-of select="o:object/o:sub/i:image/i:filename"/>
+  </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="img:build-src-set">
+  <!-- TODO: It looks like transform is always present, so this does not make sense -->
+  <xsl:choose>
+  <xsl:when test="img:transform">
+    <xsl:value-of select="$path"/><xsl:text>services/images/?id=</xsl:text>
+    <xsl:value-of select="o:object/@id"/>
+    <xsl:if test="img:transform/@scale-percent">
+      <xsl:text>&amp;scale=</xsl:text><xsl:value-of select="img:transform/@scale-percent * 2"/>
+    </xsl:if>
+    <xsl:if test="img:transform/@width">
+      <xsl:text>&amp;width=</xsl:text><xsl:value-of select="img:transform/@width * 2"/>
+    </xsl:if>
+    <xsl:if test="img:transform/@height">
+      <xsl:text>&amp;height=</xsl:text><xsl:value-of select="img:transform/@height * 2"/>
+    </xsl:if>
+    <xsl:if test="img:transform/@max-width">
+      <xsl:text>&amp;width=</xsl:text><xsl:value-of select="img:transform/@max-width * 2"/>
+    </xsl:if>
+    <xsl:if test="img:transform/@max-height">
+      <xsl:text>&amp;height=</xsl:text><xsl:value-of select="img:transform/@max-height * 2"/>
+    </xsl:if>
+    <xsl:if test="img:transform/@greyscale='true'">
+      <xsl:text>&amp;greyscale=true</xsl:text>
+    </xsl:if>
+    <xsl:text> 2x</xsl:text>
   </xsl:when>
   <xsl:otherwise>
     <xsl:value-of select="$data-path"/>images/<xsl:value-of select="o:object/o:sub/i:image/i:filename"/>
