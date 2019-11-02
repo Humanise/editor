@@ -239,19 +239,19 @@ class InspectionService {
   }
 
   static function checkFolders(&$inspections) {
-    global $basePath;
-    $folders = ["files", "images", "local/cache/images", "local/cache/urls", "local/cache/temp"];
+    $folders = [ConfigurationService::getDataPath("files"), ConfigurationService::getDataPath("images"), ConfigurationService::getCachePath("images"), ConfigurationService::getCachePath("urls"), ConfigurationService::getCachePath("temp")];
     foreach ($folders as $folder) {
       $inspection = new Inspection();
       $inspection->setCategory('system');
-      $inspection->setEntity(['title' => $folder, 'icon' => 'common/folder']);
-      $path = $basePath . $folder;
-      if (!file_exists($path)) {
+      $baseLength = strlen(ConfigurationService::getBasePath());
+      $title = substr($folder, $baseLength);
+      $inspection->setEntity(['title' => $title, 'icon' => 'common/folder']);
+      if (!file_exists($folder)) {
         $inspection->setStatus('error');
         $inspection->setText('Mappen findes ikke');
-      } else if (!is_writable($path)) {
+      } else if (!is_writable($folder)) {
         $inspection->setStatus('error');
-        $inspection->setText('Mappen er ikke skrivbar (' . FileSystemService::getPermissionString($path) . ')');
+        $inspection->setText('Mappen er ikke skrivbar (' . FileSystemService::getPermissionString($folder) . ')');
       } else {
         $inspection->setStatus('ok');
         $inspection->setText('Mappen findes og er skrivbar');

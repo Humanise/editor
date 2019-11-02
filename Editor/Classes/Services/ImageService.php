@@ -309,7 +309,6 @@ class ImageService {
    * @return array An array describing the success of the procedure
    */
   static function createUploadedImage($title = "",$group = 0) {
-    global $basePath;
 
     $fileName = $_FILES['file']['name'];
     //$fileName = FileSystemService::safeFilename($fileName);
@@ -361,7 +360,7 @@ class ImageService {
       $extension = FileService::mimeTypeToExtension($mimeType);
       $fileName .= '.' . $extension;
     }
-    $path = $basePath . 'images/' . $fileName;
+    $path = ConfigurationService::getDataPath('images') . '/' . $fileName;
     $path = FileSystemService::findFreeFilePath($path);
 
     if (!@rename($tempPath, $path)) {

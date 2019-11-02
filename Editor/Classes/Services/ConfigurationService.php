@@ -130,6 +130,11 @@ class ConfigurationService {
     return $url;
   }
 
+  static function getBasePath() {
+    global $basePath;
+    return $basePath;
+  }
+
   static function getImagePath($filename) {
     global $CONFIG,$basePath;
     if (isset($CONFIG['dataDir'])) {
