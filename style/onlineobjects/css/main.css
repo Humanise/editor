@@ -20,7 +20,7 @@
 
 @media screen and (min-width: 760px) {
   .header_menu {
-    padding: 20px;
+    padding: 20px 10px;
     text-align: left;
     margin: 0 -10px; }
     .header_menu_link {
@@ -112,7 +112,7 @@
 
 @media screen and (min-width: 760px) {
   .layout_content {
-    padding: 35px 40px; } }
+    padding: 25px 30px; } }
 
 body {
   margin: 0;
