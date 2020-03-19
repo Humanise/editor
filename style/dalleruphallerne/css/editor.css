@@ -682,3 +682,25 @@ a {
     position: absolute;
     bottom: 20px;
     left: 20px; } }
+
+@keyframes warning-blink {
+  30% {
+    background: yellow; }
+  50% {
+    background: #fff; }
+  70% {
+    background: yellow; } }
+
+.warning {
+  padding: 10px 15px;
+  margin-left: -15px;
+  margin-right: -15px;
+  background: yellow;
+  animation: warning-blink 2s infinite;
+  border-radius: 3px;
+  font-size: 18px;
+  text-align: center; }
+
+@media screen and (min-width: 700px) {
+  .warning {
+    text-align: left; } }
