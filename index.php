@@ -88,7 +88,6 @@ if (!CacheService::sendCachedPage($id, $path)) {
   // echo $id;
   $page = RenderingService::buildPage($id, $path, Request::getParameters());
   if (!$page && !(Strings::isNotBlank($path) || $id > 0)) {
-    // Log::debug('No page : '.$path);
     $id = RenderingService::findPage('home');
     if ($id == null) {
       RenderingService::displayMessage([
@@ -99,8 +98,17 @@ if (!CacheService::sendCachedPage($id, $path)) {
     }
     $page = RenderingService::buildPage($id);
   }
-
   if (!$page) {
+    if (Strings::isNotBlank($path)) {
+      $sql = "select path from page where path = @text(pathA) or path = @text(pathB)";
+      if ($row = Database::selectFirst($sql,['pathA' => $path . '/','pathB' => '/' . $path . '/'])) {
+        $location = $row['path'];
+        if (strpos($location,'/') !== 0) {
+          $location = '/' . $location;
+        }
+        Response::redirect($location);
+      }
+    }
     RenderingService::handleMissingPage($path);
   } // If the page has redirect
   else if ($page['redirect'] !== false) {
