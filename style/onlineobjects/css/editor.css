@@ -1,13 +1,11 @@
 @import url("https://use.typekit.net/dqs7hkt.css");
 .common_link {
-  color: #ddd;
+  color: #ccc;
   color: rgba(0, 0, 0, 0.1); }
   .common_link_text {
-    color: #07c; }
-  .common_link:hover {
-    color: #7cacc3; }
-  .common_link_text:hover {
-    color: #00476b; }
+    color: #07d; }
+  .common_link:hover, .common_link_text:hover {
+    color: #41a7ff; }
 
 .part_section_header {
   padding: 0; }
@@ -29,7 +27,7 @@
 .part_header {
   color: #333;
   font-weight: normal;
-  font-family: "myriad-pro", "Helvetica Neue", "Helvetica", Arial, sans-serif; }
+  font-family: "Hind Siliguri"; }
   .part_header-1 {
     font-size: 28px;
     font-weight: 600;
@@ -57,14 +55,14 @@
   margin: 20px 0; }
 
 .part_text, .part_richtext {
-  font-family: "myriad-pro", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-family: "Hind Siliguri";
   font-size: 16px;
   line-height: 1.4em; }
   .part_text p, .part_richtext p {
     margin: 5px 0; }
 
 .part_listing {
-  font-family: "myriad-pro", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-family: "Hind Siliguri";
   font-size: 16px; }
   .part_listing_first {
     font-weight: inherit; }
@@ -92,4 +90,4 @@
     font-weight: bold; } }
 
 .common_font {
-  font-family: "myriad-pro", "Helvetica Neue", "Helvetica", Arial, sans-serif; }
+  font-family: "Hind Siliguri"; }

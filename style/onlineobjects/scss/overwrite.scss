@@ -3,19 +3,15 @@ $target: async;
 
 @include if {
   .common_link {
-    color: #ddd;
+    color: #ccc;
     color: rgba(0,0,0,.1);
 
     &_text {
-      color: #07c;
+      color: #07d;
     }
 
-    &:hover {
-      color: #7cacc3
-    }
-
-    &_text:hover {
-      color: #00476b
+    &:hover, &_text:hover {
+      color: #41a7ff
     }
   }
 

@@ -16,6 +16,8 @@
 
   <xsl:include href="../../basic/xslt/util.xsl"/>
 
+  <xsl:variable name="onlineobjects_domain" select="'onlineobjects.com'" />
+
   <xsl:template match="p:page">
     <xsl:variable name="theme" select="//p:design/p:parameter[@key='theme']" />
     <xsl:call-template name="util:doctype"/>
@@ -32,8 +34,10 @@
         <xsl:call-template name="util:viewport"/>
         <xsl:call-template name="util:metatags"/>
         <xsl:call-template name="util:js"/>
-        <link href="https://use.typekit.net/dqs7hkt.css" rel="stylesheet" type="text/css"/>
+        <link href="https://account.{$onlineobjects_domain}/status.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css?family=Inter:100,200,300,400,500,600,700%7CHind+Siliguri:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
         <xsl:call-template name="util:css"/>
+        <script src="https://account.{$onlineobjects_domain}/status.js" async="async" defer="defer"><xsl:comment/></script>
       </head>
       <body>
         <xsl:call-template name="top"/>
@@ -50,7 +54,9 @@
             </div>
         </div>
         <xsl:call-template name="footer"/>
-        <xsl:call-template name="util:googleanalytics"/>
+        <xsl:call-template name="util:googleanalytics">
+          <xsl:with-param name="cookies" select="'false'"/>
+        </xsl:call-template>
       </body>
     </html>
   </xsl:template>
@@ -106,31 +112,32 @@
   </xsl:template>
 
   <xsl:template name="top">
-    <div class="oo_topbar oo_faded" id="j_idt7">
+    <div class="oo_topbar oo_faded">
       <a class="oo_topbar_logo" href="https://www.onlineobjects.com/en/">
         <em class="oo_topbar_logo_icon oo_icon_onlineobjects"><xsl:comment/></em>
         <span class="oo_topbar_logo_text"><span class="oo_topbar_logo_part">Online</span>Objects</span>
       </a>
       <ul class="oo_topbar_menu oo_topbar_left">
         <li class="oo_topbar_menu_item oo_topbar_words">
-          <a class="oo_topbar_item oo_topbar_menu_link" data-icon="app_words" href="https://words.onlineobjects.com/en/">Words</a>
+          <a class="oo_topbar_item oo_topbar_menu_link" data-icon="app_words" href="https://words.{$onlineobjects_domain}/en/">Words</a>
         </li>
         <li class="oo_topbar_menu_item oo_topbar_photos">
-          <a class="oo_topbar_item oo_topbar_menu_link" data-icon="app_photos" href="https://photos.onlineobjects.com/en/">Photos</a>
+          <a class="oo_topbar_item oo_topbar_menu_link" data-icon="app_photos" href="https://photos.{$onlineobjects_domain}/en/">Photos</a>
         </li>
         <li class="oo_topbar_menu_item oo_topbar_people">
-          <a class="oo_topbar_item oo_topbar_menu_link" data-icon="app_people" href="https://people.onlineobjects.com/en/">People</a>
+          <a class="oo_topbar_item oo_topbar_menu_link" data-icon="app_people" href="https://people.{$onlineobjects_domain}/en/">People</a>
         </li>
         <li class="oo_topbar_menu_item oo_topbar_knowledge">
-          <a class="oo_topbar_item oo_topbar_menu_link" data-icon="app_knowledge" href="https://knowledge.onlineobjects.com/en/">Knowledge</a></li>
+          <a class="oo_topbar_item oo_topbar_menu_link" data-icon="app_knowledge" href="https://knowledge.{$onlineobjects_domain}/en/">Knowledge</a></li>
         </ul>
-        <!--
         <ul class="oo_topbar_right">
+          <xsl:comment/>
+          <!--
           <li class="oo_topbar_right_item">
             <a href="javascript://" class="oo_topbar_item oo_topbar_login" data="login">Log in</a>
           </li>
+            -->
         </ul>
-        -->
       </div>
   </xsl:template>
 
@@ -163,11 +170,11 @@
           <xsl:otherwise><del>Dansk</del></xsl:otherwise>
         </xsl:choose>
         <span class="oo_footer_separator"> · </span>
-        <a class="oo_link js-signup" href="https://account.onlineobjects.com/en/signup" data-test="footerSignup"><span>Sign up</span></a>
+        <a class="oo_link js-signup" href="https://account.{$onlineobjects_domain}/en/signup" data-test="footerSignup"><span>Sign up</span></a>
         <span class="oo_footer_separator"> · </span>
-        <a class="oo_link" href="https://www.onlineobjects.com/en/about"><span>About OnlineObjects</span></a>
+        <a class="oo_link" href="https://www.{$onlineobjects_domain}/en/about"><span>About OnlineObjects</span></a>
         <span class="oo_footer_separator"> · </span>
-        <a class="oo_link js-agreements" href="https://account.onlineobjects.com/en/agreements" data-test="footerAgreements"><span>Terms and privacy policy</span></a>
+        <a class="oo_link js-agreements" href="https://account.{$onlineobjects_domain}/en/agreements" data-test="footerAgreements"><span>Terms and privacy policy</span></a>
       </p>
       <p class="oo_footer_logo">
         <a href="http://www.humanise.dk/"><span class="oo_icon oo_icon_humanise"><xsl:comment/></span><strong>Humanise</strong></a>

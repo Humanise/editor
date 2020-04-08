@@ -6,13 +6,9 @@
     "style/basic/css/shared.css",
     "style/basic/css/effects.css",
     "@parts",
-    "style/onlineobjects/css/oo_font.css",
-    "style/onlineobjects/css/oo_footer.css",
-    "style/onlineobjects/css/oo_icon.css",
-    "style/onlineobjects/css/oo_link.css",
-    "style/onlineobjects/css/oo_topbar.css",
     "style/onlineobjects/css/overwrite.css",
-    "style/onlineobjects/css/main.css"
+    "style/onlineobjects/css/main.css",
+    "hui/css/panel.css"
   ],
   "js" : [
     "style/basic/js/effects.js"
