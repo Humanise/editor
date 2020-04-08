@@ -171,4 +171,11 @@
   <strong><xsl:apply-templates/></strong>
 </xsl:template>
 
+<xsl:template match="widget:warning">
+  <p class="warning">
+    <xsl:value-of select="."/>
+    <xsl:comment/>
+  </p>
+</xsl:template>
+
 </xsl:stylesheet>
