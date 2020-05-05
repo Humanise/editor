@@ -253,13 +253,10 @@ class RenderingService {
     if ($id > 0) {
       $sql .= " and page.id = @id";
     } else {
-      $sql .= " and (page.path = @text(path)";
-      if (Strings::isNotBlank($path)) {
-        $sql .= " or page.path = @text(pathA) or page.path = @text(pathB)";
-      }
-      $sql .= ") order by page.path desc";
+      $sql .= " and (page.path = @text(path) or page.path = @text(altPath))";
+      $sql .= " order by page.path desc";
     }
-    if ($row = Database::selectFirst($sql, ['id' => $id, 'path' => $path, 'pathA' => $path . '/', 'pathB' => '/' . $path])) {
+    if ($row = Database::selectFirst($sql, ['id' => $id, 'path' => $path, 'altPath' => '/' . $path])) {
       if (Request::getBoolean('ajax')) {
         if ($controller = TemplateService::getController($row['template'])) {
           if (method_exists($controller,'ajax')) {
