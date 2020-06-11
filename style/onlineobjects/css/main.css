@@ -70,6 +70,8 @@
   .submenu {
     margin: -5px 0;
     text-align: left; }
+    .submenu_item {
+      display: block; }
     .submenu_link {
       padding: 5px 0; } }
 
@@ -108,7 +110,8 @@
       border-left: 1px solid #eee;
       padding-left: 20px;
       padding-top: 15px;
-      margin-left: 20px; } }
+      margin-left: 20px;
+      border-bottom: none; } }
 
 @media screen and (min-width: 760px) {
   .layout_content {
@@ -117,7 +120,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Hind Siliguri"; }
+  font-family: "Hind Siliguri", "Helvetica Neue", "Helvetica", Arial, sans-serif; }
 
 @media screen and (min-width: 600px) {
   body {

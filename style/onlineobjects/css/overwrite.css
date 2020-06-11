@@ -26,7 +26,7 @@
 .part_header {
   color: #333;
   font-weight: normal;
-  font-family: "Hind Siliguri"; }
+  font-family: "Hind Siliguri", "Helvetica Neue", "Helvetica", Arial, sans-serif; }
   .part_header-1 {
     font-size: 28px;
     font-weight: 600;
@@ -54,14 +54,14 @@
   margin: 20px 0; }
 
 .part_text, .part_richtext {
-  font-family: "Hind Siliguri";
+  font-family: "Hind Siliguri", "Helvetica Neue", "Helvetica", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.4em; }
   .part_text p, .part_richtext p {
     margin: 5px 0; }
 
 .part_listing {
-  font-family: "Hind Siliguri";
+  font-family: "Hind Siliguri", "Helvetica Neue", "Helvetica", Arial, sans-serif;
   font-size: 16px; }
   .part_listing_first {
     font-weight: inherit; }
