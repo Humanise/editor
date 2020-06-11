@@ -34,12 +34,12 @@
     <xsl:call-template name="util:metatags"/>
     <xsl:call-template name="util:js"/>
     <xsl:call-template name="util:load-font">
-      <xsl:with-param name="href" select="'//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic,900'"/>
+      <xsl:with-param name="href" select="concat($protocol,'://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic,900')"/>
       <xsl:with-param name="family" select="'Lato'"/>
       <xsl:with-param name="class" select="'font_lato'"/>
     </xsl:call-template>
     <xsl:call-template name="util:load-font">
-      <xsl:with-param name="href" select="'//fonts.googleapis.com/css?family=Lora:400italic'"/>
+      <xsl:with-param name="href" select="concat($protocol,'://fonts.googleapis.com/css?family=Lora:400italic')"/>
       <xsl:with-param name="family" select="'Lora'"/>
       <xsl:with-param name="class" select="'font_lora'"/>
     </xsl:call-template>
