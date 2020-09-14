@@ -43,6 +43,7 @@
         <xsl:call-template name="top"/>
         <div class="layout">
           <div class="layout_top">
+            <xsl:comment/>
             <xsl:call-template name="navigation-first-level"/>
           </div>
           <div class="layout_middle">
