@@ -28,12 +28,12 @@ $target: async;
 
   &_text {
     font-size: 18px;
-    font-weight: 300;
+    font-weight: 200;
 
     > p {
       margin: 10px 0;
       > strong {
-        font-weight: 400;
+        font-weight: 500;
       }
     }
   }
@@ -75,7 +75,6 @@ $target: async;
       vertical-align: middle;
       width: 70%;
       font-size: 24px;
-      font-weight: 300;
     }
   }
 }
@@ -91,7 +90,6 @@ $target: async;
 
     &_text {
       font-size: 32px;
-      font-weight: 300;
     }
   }
 }

@@ -19,11 +19,11 @@
     animation-timing-function: linear; }
   .focus_text {
     font-size: 18px;
-    font-weight: 300; }
+    font-weight: 200; }
     .focus_text > p {
       margin: 10px 0; }
       .focus_text > p > strong {
-        font-weight: 400; }
+        font-weight: 500; }
 
 @-webkit-keyframes hue {
   0% {
@@ -52,8 +52,7 @@
       display: inline-block;
       vertical-align: middle;
       width: 70%;
-      font-size: 24px;
-      font-weight: 300; } }
+      font-size: 24px; } }
 
 @media screen and (min-width: 900px) {
   .focus {
@@ -62,5 +61,4 @@
     .focus_hand {
       height: 240px; }
     .focus_text {
-      font-size: 32px;
-      font-weight: 300; } }
+      font-size: 32px; } }

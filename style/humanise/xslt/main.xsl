@@ -35,6 +35,7 @@
     </title>
     <xsl:call-template name="util:viewport"/>
     <link rel="shortcut icon" href="{$path}style/humanise/gfx/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css2?family=Lato:wght@200;300;400;500;700&amp;display=swap"/>
     <xsl:call-template name="util:metatags"/>
     <xsl:call-template name="util:js"/>
 
@@ -62,12 +63,12 @@
         <xsl:with-param name="file" select="'style/humanise/css/knowledgeintro.css'"/>
       </xsl:call-template>
     </xsl:if>
-
+    <!--
     <xsl:call-template name="util:load-font">
       <xsl:with-param name="href" select="'//fonts.googleapis.com/css?family=Lato:300,400,700,900'"/>
       <xsl:with-param name="family" select="'Lato'"/>
       <xsl:with-param name="weights" select="'300,400,700'"/>
-    </xsl:call-template>
+    </xsl:call-template>-->
   </head>
   <body>
     <div class="layout">
