@@ -130,7 +130,7 @@
       </div>
     </xsl:for-each>
     </div>
-    <p style="text-align: center; margin-top: 25px;"><strong>Bemærk:</strong> Autocampere opbevares ikke.</p>
+    <p style="text-align: center; margin-top: 25px;"><strong>Bemærk:</strong> Autocampere og campingvogne med boogiehjul opbevares ikke.</p>
   </div>
 </xsl:template>
 
