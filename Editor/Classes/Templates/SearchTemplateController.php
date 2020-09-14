@@ -157,9 +157,10 @@ class SearchTemplateController extends TemplateController
 
   function searchObjects($type,$query,$method) {
     $words = explode(' ',$query);
-    $sql = "select object.data,object.index from object where searchable=1 and type=" . Database::text($type) . $this->buildObjectSearchSql($query,$method) . " order by object.title";
-    $result = Database::select($sql);
-    $num = mysql_num_rows($result);
+    $sql = "select object.data,object.index from object where searchable=1 and type = @text(type)";
+    $sql .= $this->buildObjectSearchSql($query,$method) . " order by object.title";
+    $result = Database::select($sql, ['type' => $type]);
+    $num = Database::size($result);
     $xml = '<group type="' . $type . '" count="' . $num . '">';
     while ($row = Database::next($result)) {
       $xml .=
@@ -180,10 +181,10 @@ class SearchTemplateController extends TemplateController
       $sql .= " and `index` like " . Database::search($query);
     }
     else {
-      $words = explode(' ',$query);
+      $words = explode(' ', $query);
       //$highlight = $words;
       $first = true;
-      if (count($words > 0)) {
+      if (count($words) > 0) {
         $sql .= " and (";
         for ($i = 0; $i < count($words); $i++) {
           if (strlen($words[$i]) > 0) {

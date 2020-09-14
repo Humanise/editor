@@ -46,7 +46,7 @@ class TestCode extends UnitTestCase {
         continue;
       }
       $txt = file_get_contents($file);
-      if (preg_match_all('/["\']((select|insert|update|delete) [^;]+)/uism', $txt, $found)) {
+      if (preg_match_all('/=[\s]*["\']((select|insert|update|delete) [^;]+)/uism', $txt, $found)) {
         foreach ($found[1] as $sql) {
           $statements[] = ['file' => $file, 'sql' => $sql];
         }

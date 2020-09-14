@@ -16,9 +16,15 @@ class TestImageService extends UnitTestCase {
     $this->assertFalse($result['success']);
     $this->assertNull($result['image']);
 
+    $countBefore = ImageService::getUnusedImagesCount();
+
     $data = "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAHUlEQVR42mNgoAewJg5QpoEkNlkaRp1EfScNMgAAFZU9ipnkh/gAAAAASUVORK5CYII=";
     $result = ImageService::createImageFromBase64($data,'myfile.png','My file');
     $this->assertTrue($result['success']);
+
+    $countAfter = ImageService::getUnusedImagesCount();
+    $this->assertEqual($countBefore + 1, $countAfter);
+
     if (!$result['success']) {
       Log::debug($result);
     }

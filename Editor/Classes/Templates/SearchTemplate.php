@@ -74,30 +74,29 @@ class SearchTemplate {
 
 
   function save() {
-    $sql = "update search set " .
-      "title=" . Database::text($this->title) . ",`text`=" . Database::text($this->text);
+    $query = [
+      'table' => 'search',
+      'values' => [
+        'title' => ['text' => $this->title],
+        'text' => ['text' => $this->text]
+      ],
+      'where' => [ 'page_id' => ['int' => $this->id] ]
+    ];
 
     foreach (SearchTemplate::$TYPES as $type => $label) {
       foreach (SearchTemplate::$PARTS as $part => $kind) {
         $method = $type . ucfirst($part);
-        $sql .= "," . $type . $part . "=";
-        if ($kind == 'boolean') {
-          $sql .= Database::boolean($this->$method);
-        } else {
-          $sql .= Database::text($this->$method);
-        }
+        $query['values'][$type . $part] = [$kind => $this->$method];
       }
     }
-
-    $sql .= " where page_id=" . Database::int($this->id);
-    Database::update($sql);
+    Database::update($query);
 
     PageService::markChanged($this->id);
   }
 
   static function load($id) {
-    $sql = "select * from search where page_id=" . Database::int($id);
-    if ($row = Database::selectFirst($sql)) {
+    $sql = "select * from search where page_id = @id";
+    if ($row = Database::selectFirst($sql, $id)) {
       $obj = new SearchTemplate();
       $obj->setId(intval($row['page_id']));
       $obj->setTitle($row['title']);

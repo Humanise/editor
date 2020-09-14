@@ -264,10 +264,12 @@ class ImageService {
   static function getUnusedImagesCount() {
     $used = ImageService::getUsedImageIds();
     $sql = "SELECT count(object.id) as num FROM object,image" .
-      " where image.object_id=object.id" .
-      (count($used) > 0 ? " and object.id not in (" . implode(",",$used) . ")" : "") .
-      " order by title";
-    if ($row = Database::selectFirst($sql)) {
+      " where image.object_id=object.id";
+    if (count($used) > 0) {
+      $sql .= " and object.id not in @ints(used)";
+    }
+    $sql .= " order by title";
+    if ($row = Database::selectFirst($sql, ['used' => $used])) {
       return $row['num'];
     } else {
       return 0;

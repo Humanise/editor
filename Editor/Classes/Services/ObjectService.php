@@ -179,28 +179,26 @@ class ObjectService {
     $object->id = Database::insert($sql);
     $schema = ObjectService::_getSchemaProperties($object->getType());
     if (is_array($schema)) {
-      $sql = "insert into `" . $object->type . "` (object_id";
+      $sql = [
+        'table' => $object->type,
+        'values' => [
+          'object_id' => ['int' => $object->id]
+        ]
+      ];
       foreach ($schema as $property => $info) {
         $column = SchemaService::getColumn($property,$info);
-        $sql .= ",`$column`";
-      }
-      $sql .= ") values (" . $object->id;
-      foreach ($schema as $property => $info) {
-        $column = SchemaService::getColumn($property,$info);
-        $sql .= ",";
         if (@$info['type'] == 'int') {
-          $sql .= Database::int($object->$property);
+          $sql['values'][$column] = ['int' => $object->$property];
         } else if (@$info['type'] == 'float') {
-          $sql .= Database::float($object->$property);
+          $sql['values'][$column] = ['float' => $object->$property];
         } else if (@$info['type'] == 'datetime') {
-          $sql .= Database::datetime($object->$property);
+          $sql['values'][$column] = ['datetime' => $object->$property];
         } else if (@$info['type'] == 'boolean') {
-          $sql .= Database::boolean($object->$property);
+          $sql['values'][$column] = ['boolean' => $object->$property];
         } else {
-          $sql .= Database::text($object->$property);
+          $sql['values'][$column] = ['text' => $object->$property];
         }
       }
-      $sql .= ")";
       Database::insert($sql);
     }
     else if (method_exists($object,'sub_create')) {

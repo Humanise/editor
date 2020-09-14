@@ -112,9 +112,11 @@ class Project extends ModelObject {
     }
     $ids[] = $this->id;
 
-    $sql = "select object_id from task,object where task.object_id = object.id and containing_object_id in @ints(ids)" .
-    (isset($filter['completed']) ? " and task.completed = @boolean(completed)" : "") .
-    " order by object.title";
+    $sql = "select object_id from task,object where task.object_id = object.id and containing_object_id in @ints(ids)";
+    if (isset($filter['completed'])) {
+      $sql .= " and task.completed = @boolean(completed)";
+    }
+    $sql .= " order by object.title";
     $result = Database::select($sql, ['completed' => $filter['completed'], 'ids' => $ids]);
     while ($row = Database::next($result)) {
       $output[] = Task::load($row['object_id']);
@@ -131,9 +133,11 @@ class Project extends ModelObject {
     }
     $ids[] = $this->id;
 
-    $sql = "select object_id from problem,object where problem.object_id = object.id and containing_object_id in @ints(ids)" .
-    (isset($filter['completed']) ? " and problem.completed = @boolean(completed)" : "") .
-    " order by object.title";
+    $sql = "select object_id from problem,object where problem.object_id = object.id and containing_object_id in @ints(ids)";
+    if (isset($filter['completed'])) {
+      $sql .= " and problem.completed = @boolean(completed)";
+    }
+    $sql .= " order by object.title";
     $result = Database::select($sql, ['completed' => $filter['completed'], 'ids' => $ids]);
     while ($row = Database::next($result)) {
       $output[] = Problem::load($row['object_id']);
