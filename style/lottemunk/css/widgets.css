@@ -93,7 +93,7 @@
     width: 200px;
     height: 200px;
     position: absolute;
-    background: url("../gfx/avatar2.jpg") 50% 0 no-repeat;
+    background: url("../gfx/avatar1x.jpg") 50% 0 no-repeat;
     background-size: contain;
     left: 50%;
     margin-left: -100px;
@@ -247,6 +247,10 @@
 
 .about_phone strong {
   color: #333; }
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  .about:before {
+    background-image: url("../gfx/avatar2x.jpg"); } }
 
 @media screen and (min-width: 375px) {
   .about_icons {

@@ -11,7 +11,7 @@
       width: 200px;
       height: 200px;
       position: absolute;
-      background: url('../gfx/avatar2.jpg') 50% 0 no-repeat;
+      background: url('../gfx/avatar1x.jpg') 50% 0 no-repeat;
       background-size: contain;
       left: 50%;
       margin-left: (200px/-2);
@@ -161,6 +161,16 @@
   .about_phone strong {
     color: #333;
   }
+}
+
+@include retina {
+
+  .about {        
+    &:before {
+      background-image: url('../gfx/avatar2x.jpg');
+    }
+  }
+
 }
 
 @include when(375px) {
