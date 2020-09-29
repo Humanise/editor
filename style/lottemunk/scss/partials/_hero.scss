@@ -1,0 +1,96 @@
+.hero {
+  height: 80vh;
+  min-height: 450px;
+  background: #8f898f;
+  position: relative;
+  font-family: $header-font;
+  background-image: url('../gfx/hero_bg.jpg');
+  background-position: 50% 50%;
+  background-size: cover;
+  /*
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url('../gfx/hero_bg_color.jpg');
+    background-position: 50% 50%;
+    background-size: cover;
+
+    animation-name: hue;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  };*/
+
+  &:after {
+    content: '';
+    background-image: url('../gfx/hero_head.png');
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
+    background-size: cover;
+    position: absolute;
+    left: 0;
+    right: 55%;
+    top: 0;
+    bottom: 0;
+  }
+
+  &_body {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 5%;
+    max-width: 480px;
+    bottom: 0;
+    text-align: center;
+    color: #0b212e;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &_name {
+    font-family: 'Unna';
+    font-weight: normal;
+    margin: 0;
+    color: transparent;
+    background-image: url('../gfx/hero_name.svg');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    height: 70px;
+    background-size: contain;
+  }
+
+  &_title {
+    margin: 20px 0 0;
+    font-weight: normal;
+    font-size: 18px;
+    font-family: Arial;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+  }
+
+  &_menu {
+    display: flex;
+    font-family: 'Lora';
+    justify-content: center;
+    font-size: 24px;
+    margin-top: 40px;
+
+    &_link {
+      padding: 5px 10px;
+      color: #0b212e;
+      text-decoration: none;
+    }
+  }
+
+}
+
+@keyframes hue {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}

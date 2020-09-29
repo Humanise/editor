@@ -20,10 +20,15 @@
     text-decoration: none;
     font-size: 12pt;
     display: inline-block;
-    background: url('../gfx/flags.png') 0 0 no-repeat;
+    background: 0 0 no-repeat;
     line-height: 39px;
     height: 39px;
     padding-left: 39px;
+    opacity: .5;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 
   .layout_language_text {
@@ -31,7 +36,11 @@
   }
 
   .layout_language_da {
-    background-position: 0 -39px;
+    background-image: url('../gfx/flag_da.svg');
+  }
+
+  .layout_language_en {
+    background-image: url('../gfx/flag_en.svg');
   }
 
 }
