@@ -35,13 +35,13 @@
   }
 
   .about_button {
-    background: #733392;
+    background: $main-color;
     color: #fff;
     border: none;
     white-space: nowrap;
 
     &:hover {
-      background: #572D6B;
+      background: darken($main-color, 10%);
       border: none;
     }
   }

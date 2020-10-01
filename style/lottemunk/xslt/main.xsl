@@ -38,6 +38,7 @@
     <xsl:call-template name="util:metatags"/>
     <xsl:call-template name="util:css"/>
     <xsl:call-template name="util:js"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400&amp;display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Unna:400%7CLora:400,400italic,700%7CMerriweather:400,700,300,200%7CCinzel:400%7CGloria+Hallelujah"/>
   </head>
 </xsl:template>

@@ -9,7 +9,7 @@
 
   .intro_title {
     font-size: 28pt;
-    color: #733392;
+    color: $main-color;
     margin: 0 0 15px;
   }
 
@@ -22,13 +22,13 @@
   }
 
   .intro_button {
-    background: #733392;
+    background: $main-color;
     color: #fff;
     border: none;
     white-space: nowrap;
 
     &:hover {
-      background: #572D6B;
+      background: darken($main-color, 10%);
       border: none;
     }
   }

@@ -5,7 +5,7 @@
   background: #8f898f;
   position: relative;
   font-family: "Lora", Georgia, "Book Antiqua", "Palatino", Times, serif;
-  background-image: url("../gfx/hero_bg.jpg");
+  background-image: url("../gfx/hero_bg3.jpg");
   background-position: 50% 50%;
   background-size: cover;
   /*
@@ -22,6 +22,18 @@
     animation-iteration-count: infinite;
     animation-timing-function: linear;
   };*/ }
+  .hero:before {
+    content: '';
+    background-image: url("../gfx/hero_head_fallback.png");
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
+    background-size: cover;
+    position: absolute;
+    left: 0;
+    right: 55%;
+    top: 0;
+    bottom: 0;
+    opacity: .2; }
   .hero:after {
     content: '';
     background-image: url("../gfx/hero_head.png");
@@ -52,9 +64,10 @@
     color: transparent;
     background-image: url("../gfx/hero_name.svg");
     background-repeat: no-repeat;
-    background-position: 50% 50%;
+    background-position: 50% 100%;
     height: 70px;
-    background-size: contain; }
+    background-size: contain;
+    margin-top: -70px; }
   .hero_title {
     margin: 20px 0 0;
     font-weight: normal;
@@ -73,12 +86,21 @@
       color: #0b212e;
       text-decoration: none; }
 
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  .hero {
+    background-image: url("../gfx/hero_bg3_2x.jpg"); }
+    .hero:after {
+      background-image: url("../gfx/hero_head_2x.png"); } }
+
+/*
 @keyframes hue {
   0% {
-    filter: hue-rotate(0deg); }
+    filter: hue-rotate(0deg);
+  }
   100% {
-    filter: hue-rotate(360deg); } }
-
+    filter: hue-rotate(360deg);
+  }
+}*/
 .button {
   display: inline-block;
   height: 36px;
@@ -88,7 +110,7 @@
   text-decoration: none;
   text-decoration: none;
   border: 1px solid #eee;
-  color: #36a;
+  color: #443f86;
   font-size: 16px;
   font-weight: 400;
   cursor: pointer; }
@@ -171,7 +193,7 @@
 
 .intro_title {
   font-size: 28pt;
-  color: #733392;
+  color: #443f86;
   margin: 0 0 15px; }
 
 .intro_text {
@@ -182,12 +204,12 @@
   margin: 0 auto 20px; }
 
 .intro_button {
-  background: #733392;
+  background: #443f86;
   color: #fff;
   border: none;
   white-space: nowrap; }
   .intro_button:hover {
-    background: #572D6B;
+    background: #322f63;
     border: none; }
 
 .intro_icons {
@@ -211,7 +233,7 @@
   border: 1px solid #ccc;
   text-align: center;
   text-decoration: none;
-  color: #733392;
+  color: #443f86;
   cursor: pointer;
   position: relative; }
   .intro_icon:hover {
@@ -393,12 +415,12 @@
   max-width: 700px; }
 
 .about_button {
-  background: #733392;
+  background: #443f86;
   color: #fff;
   border: none;
   white-space: nowrap; }
   .about_button:hover {
-    background: #572D6B;
+    background: #322f63;
     border: none; }
 
 .about_icons {
@@ -422,7 +444,7 @@
   border: 1px solid #ccc;
   text-align: center;
   text-decoration: none;
-  color: #733392;
+  color: #443f86;
   cursor: pointer;
   position: relative; }
   .about_icon:hover {
@@ -813,7 +835,7 @@
 .movies_button {
   border-color: #d6d6cd;
   background: #F3F5F1;
-  color: #01507b;
+  color: #443f86;
   margin: 0 5px; }
 
 @media screen and (min-width: 400px) {
