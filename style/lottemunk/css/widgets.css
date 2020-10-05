@@ -7,6 +7,8 @@
   background-size: cover;
   position: relative;
   margin-bottom: 80px; }
+  .hero-en {
+    background-image: url("../gfx/hero_mobile_en.jpg"); }
   .hero_name, .hero_title {
     position: absolute;
     top: -100px;

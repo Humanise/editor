@@ -36,7 +36,7 @@
 </xsl:template>
 
 <xsl:template match="widget:hero">
-  <section class="hero">
+  <section class="hero hero-{$language}">
     <div class="hero_body">
       <h1 class="hero_name">Lotte Munk</h1>
       <h2 class="hero_title"><xsl:value-of select="widget:title"/></h2>

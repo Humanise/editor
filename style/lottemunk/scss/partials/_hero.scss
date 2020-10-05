@@ -8,6 +8,10 @@
     position: relative;
     margin-bottom: 80px;
 
+    &-en {
+      background-image: url('../gfx/hero_mobile_en.jpg');
+    }
+
     &_name, &_title {
       position: absolute;
       top: -100px;
