@@ -65,6 +65,7 @@
     background-image: url('../gfx/hero_bg3.jpg');
     background-position: 50% 50%;
     background-size: cover;
+    margin-bottom: 0;
     /*
     &:before {
       content: '';
@@ -91,7 +92,7 @@
       right: 50%;
       top: 0;
       bottom: 0;
-      opacity: .2;
+      opacity: 0.6;
     }
 
     &:after {
