@@ -25,6 +25,10 @@
       color: #0b212e;
       text-decoration: none; }
 
+@media screen and (min-width: 375px) {
+  .hero_menu {
+    font-size: 22px; } }
+
 @media screen and (min-width: 700px) {
   .hero {
     height: 50vw;
@@ -430,7 +434,7 @@
 
 .about_title {
   font-size: 28pt;
-  color: #733392;
+  color: #443f86;
   margin: 0 0 15px; }
 
 .about_text {
@@ -542,7 +546,7 @@
   top: 100%;
   width: 90px;
   margin: 5px 0 0 -45px;
-  background: #77687D;
+  background: #443f86;
   color: #fff;
   border-radius: 30px;
   line-height: 24px;
@@ -564,7 +568,7 @@
   margin-bottom: .7em; }
 
 .about_contact_link {
-  color: #0076a3;
+  color: #443f86;
   text-decoration: none; }
 
 .about_email,

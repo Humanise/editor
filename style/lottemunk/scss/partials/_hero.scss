@@ -38,6 +38,18 @@
   }
 }
 
+@include if ((width: 375px)) {
+
+  .hero {
+
+    &_menu {
+      font-size: 22px;
+    }
+
+  }
+
+}
+
 @include if((width: 700px)) {
 
   .hero {

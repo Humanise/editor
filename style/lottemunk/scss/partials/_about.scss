@@ -21,7 +21,7 @@
 
   .about_title {
     font-size: 28pt;
-    color: #733392;
+    color: $main-color;
     margin: 0 0 15px;
   }
 
@@ -117,8 +117,8 @@
     margin: 5px 0 0 -45px;
     //color: #666;
     //border: 1px solid #ddd;
-    //background: #733392;
-    background: #77687D;
+    //background: $main-color;
+    background: $main-color;
     color: #fff;
     border-radius: 30px;
     line-height: 24px;
@@ -145,7 +145,7 @@
   }
 
   .about_contact_link {
-    color: #0076a3;
+    color: $main-color;
     text-decoration: none;
   }
 
