@@ -38,19 +38,19 @@
     <xsl:call-template name="util:metatags"/>
     <xsl:call-template name="util:css"/>
     <xsl:call-template name="util:js"/>
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,400italic,700%7CMerriweather:400,700,300,200%7CCinzel:400%7CGloria+Hallelujah"/>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,400italic,700%7CMerriweather:400,700,300,200%7CCinzel:400%7CGloria+Hallelujah&amp;display=swap"/>
   </head>
 </xsl:template>
 
 <xsl:template name="body">
   <body>
-    <xsl:call-template name="header"/>
     <xsl:call-template name="util:languages"><xsl:with-param name="tag" select="'p'"/></xsl:call-template>
     <xsl:choose>
       <xsl:when test="//p:page/p:context/p:home[@page=//p:page/@id]">
         <xsl:call-template name="front"/>
       </xsl:when>
       <xsl:otherwise>
+        <xsl:call-template name="header"/>
         <xsl:call-template name="page"/>
       </xsl:otherwise>
     </xsl:choose>
@@ -80,7 +80,7 @@
       </p>
     </a>
     <nav class="header_navigation">
-      <ul class="header_menu">
+      <ul class="header_menu js-menu">
         <xsl:comment/>
         <xsl:apply-templates select="f:frame/h:hierarchy/h:item"/>
       </ul>

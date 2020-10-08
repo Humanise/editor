@@ -1,9 +1,11 @@
-$target : 'screen';
+$target : 'any';
 
 @import 'tools';
 
+@import 'partials/hero';
 @import 'partials/button';
 @import 'partials/block';
+@import 'partials/intro';
 @import 'partials/about';
 @import 'partials/photography';
 @import 'partials/movies';

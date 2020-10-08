@@ -35,6 +35,77 @@
   </section>
 </xsl:template>
 
+<xsl:template match="widget:hero">
+  <section class="hero hero-{$language}">
+    <div class="hero_body">
+      <h1 class="hero_name">Lotte Munk</h1>
+      <h2 class="hero_title"><xsl:value-of select="widget:title"/></h2>
+    <div class="hero_menu js-menu">
+      <xsl:comment/>
+      <xsl:for-each select="//f:frame/h:hierarchy/h:item[not(@hidden='true') and position() > 1]">
+        <a class="hero_menu_link">
+          <xsl:attribute name="data-path"><xsl:value-of select="@path"/></xsl:attribute>
+          <xsl:call-template name="util:link"/>
+          <xsl:value-of select="@title"/>
+        </a>
+      </xsl:for-each>
+    </div>
+    </div>
+  </section>
+</xsl:template>
+
+<xsl:template match="widget:intro">
+  <section id="intro" class="intro block">
+    <h2 class="block_title intro_title"><xsl:value-of select="widget:title"/><xsl:comment/></h2>
+    <div class="intro_body">
+      <p class="intro_text"><xsl:value-of select="widget:text"/><xsl:comment/></p>
+      <div>
+        <xsl:choose>
+          <xsl:when test="//p:page/p:meta/p:language='en'">
+            <a class="button button-right intro_button" href="{$path}en/cv/">View my CV</a>
+          </xsl:when>
+          <xsl:otherwise>
+            <a class="button button-right intro_button" href="{$path}cv/">Se mit CV</a>
+          </xsl:otherwise>
+        </xsl:choose>
+      </div>
+    </div>
+    <ul class="intro_icons">
+      <li class="intro_icons_item">
+        <a class="intro_icon intro_icon-youtube" href="https://www.youtube.com/channel/UCkyzyp5M68jcfZ-phZdPX4Q/videos">
+          <span class="intro_icon_text">YouTube</span>
+        </a>
+      </li>
+      <li class="intro_icons_item">
+        <a class="intro_icon intro_icon-linkedin" href="http://dk.linkedin.com/pub/lotte-munk/18/473/554">
+          <span class="intro_icon_text">LinkedIn</span>
+        </a>
+      </li>
+      <xsl:choose>
+        <xsl:when test="//p:page/p:meta/p:language='en'">
+          <li class="intro_icons_item"><a class="intro_icon intro_icon-wikipedia" href="http://en.wikipedia.org/wiki/Lotte_Munk">
+            <span class="intro_icon_text">Wikipedia</span>
+        </a></li>
+        </xsl:when>
+        <xsl:otherwise>
+          <li class="intro_icons_item"><a class="intro_icon intro_icon-wikipedia" href="http://da.wikipedia.org/wiki/Lotte_Munk">
+            <span class="intro_icon_text">Wikipedia</span>
+          </a></li>
+        </xsl:otherwise>
+      </xsl:choose>
+      <li class="intro_icons_item">
+        <a class="intro_icon intro_icon-facebook" href="https://www.facebook.com/Lottemunk69">
+          <span class="intro_icon_text">Facebook</span>
+        </a>
+      </li>
+      <li class="intro_icons_item">
+        <a class="intro_icon intro_icon-instagram" href="https://www.instagram.com/lottemunk1/">
+          <span class="intro_icon_text">Instagram</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+</xsl:template>
 
 <xsl:template match="widget:about">
   <section id="about" class="about block">

@@ -55,7 +55,7 @@
   .header_menu_link:hover {
     color: #AF74CC; }
   .header_menu_link-selected {
-    color: #733392;
+    color: #443f86;
     font-weight: 600; }
 
 @media screen and (min-width: 375px) {
@@ -110,7 +110,7 @@
         left: 50%;
         bottom: 0;
         position: absolute;
-        background: #733392;
+        background: #443f86;
         margin: 0 0 -8px -3px; } }
 
 @media screen and (min-width: 960px) {
@@ -136,7 +136,7 @@
 
 .layout_languages {
   position: absolute;
-  right: 10px;
+  right: 15px;
   margin-top: 15px;
   z-index: 1; }
 
@@ -145,16 +145,22 @@
   text-decoration: none;
   font-size: 12pt;
   display: inline-block;
-  background: url("../gfx/flags.png") 0 0 no-repeat;
+  background: 0 0 no-repeat;
   line-height: 39px;
   height: 39px;
-  padding-left: 39px; }
+  padding-left: 39px;
+  opacity: .5; }
+  .layout_language:hover {
+    opacity: 1; }
 
 .layout_language_text {
   display: none; }
 
 .layout_language_da {
-  background-position: 0 -39px; }
+  background-image: url("../gfx/flag_da.svg"); }
+
+.layout_language_en {
+  background-image: url("../gfx/flag_en.svg"); }
 
 @media screen and (min-width: 500px) {
   .layout_languages {

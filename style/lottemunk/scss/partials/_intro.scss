@@ -1,40 +1,27 @@
 @include when {
 
-  .about {
-    margin: 20px 0;
+  .intro {
+    margin: 20px auto;
     text-align: center;
     position: relative;
-    padding-top: 210px;
-
-    &:before {
-      content: '';
-      width: 200px;
-      height: 200px;
-      position: absolute;
-      background: url('../gfx/avatar1x.jpg') 50% 0 no-repeat;
-      background-size: contain;
-      left: 50%;
-      margin-left: (200px/-2);
-      top: 0;
-    };
+    max-width: 700px
   }
 
-  .about_title {
+  .intro_title {
     font-size: 28pt;
     color: $main-color;
     margin: 0 0 15px;
   }
 
-  .about_text {
+  .intro_text {
     font-size: 18px;
     line-height: 1.5em;
     color: #777;
     padding: 0 20px;
     margin: 0 auto 20px;
-    max-width: 700px
   }
 
-  .about_button {
+  .intro_button {
     background: $main-color;
     color: #fff;
     border: none;
@@ -47,7 +34,7 @@
   }
 
 
-  .about_icons {
+  .intro_icons {
     text-align: center;
     margin: 50px auto 0;
     list-style: none;
@@ -56,12 +43,12 @@
     max-width: 250px;
   }
 
-  .about_icons_item {
+  .intro_icons_item {
     display: inline-block;
     vertical-align: top;
   }
 
-  .about_icon {
+  .intro_icon {
     margin: 5px;
     display: inline-block;
     width: 54px;
@@ -108,7 +95,7 @@
     }
   }
 
-  .about_icon_text {
+  .intro_icon_text {
     font-size: 14px;
     position: absolute;
     left: 50%;
@@ -117,8 +104,8 @@
     margin: 5px 0 0 -45px;
     //color: #666;
     //border: 1px solid #ddd;
-    //background: $main-color;
-    background: $main-color;
+    //background: #733392;
+    background: #77687D;
     color: #fff;
     border-radius: 30px;
     line-height: 24px;
@@ -127,55 +114,15 @@
     font-weight: 400;
     transition: opacity .3s;
 
-    .about_icon:hover & {
+    .intro_icon:hover & {
       opacity: 1;
     }
   }
-
-  .about_contact {
-    margin-top: 40px;
-    padding: 0 20px;
-  }
-
-  .about_contact_item {
-    vertical-align: middle;
-    position: relative;
-    line-height: 1.3;
-    margin-bottom: .7em;
-  }
-
-  .about_contact_link {
-    color: $main-color;
-    text-decoration: none;
-  }
-
-  .about_email,
-  .about_phone {
-    font-size: 1.6em;
-  }
-
-  .about_phone {
-    color: #999;
-  }
-
-  .about_phone strong {
-    color: #333;
-  }
-}
-
-@include retina {
-
-  .about {        
-    &:before {
-      background-image: url('../gfx/avatar2x.jpg');
-    }
-  }
-
 }
 
 @include when(375px) {
 
-  .about {
+  .intro {
     &_icons {
       max-width: none;
     }    
@@ -184,41 +131,25 @@
 
 @include when(600px) {
 
-  .about_title {
+  .intro_title {
     font-size: 36pt;
   }
 
-  .about {
+  .intro {
     margin: 40px 0;
-    padding-top: 270px;
-
-    &:before {
-      width: 254px;
-      height: 254px;
-      margin-left: (254px/-2);
-    };
   }
 }
 
 @include when(760px) {
-  .about {
-    padding: 0 40px 0 280px;
-    max-width: 960px;
+  .intro {
+    padding: 0 40px;
     margin: 60px auto;
     @include border-box;
     text-align: left;
     position: relative;
-    min-height: 320px;
-
-    &:before {
-      margin: 0;
-      width: 200px;
-      height: 200px;
-      left: 40px;
-    }
   }
 
-  .about_icon {
+  .intro_icon {
     margin: 0 0 0 10px;
     width: 48px;
     height: 48px;
@@ -228,26 +159,26 @@
     }
   }
 
-  .about_button {
+  .intro_button {
     padding: 0 15px;
     font-size: 18px;
   }
 
-  .about_text {
+  .intro_text {
     padding: 0;
     font-size: 18px;
     font-weight: 200;
     margin-bottom: 40px;
   }
 
-  .about_icons {
+  .intro_icons {
     margin: 0;
     text-align: right;
     margin-top: -43px;
     margin-right: -10px;
   }
 
-  .about_contact {
+  .intro_contact {
     width: 240px;
     font-size: .9em;
     margin: 20px 0 0;
@@ -262,15 +193,15 @@
 @include when(860px) {
 
 
-  .about_button {
+  .intro_button {
     padding: 0 20px;
   }
 
-  .about_icons {
+  .intro_icons {
       margin-top: -52px;
   }
 
-  .about_icon {
+  .intro_icon {
     width: 60px;
     height: 60px;
 
@@ -289,27 +220,11 @@
 
 @include when(960px) {
 
-  .about {
-    padding: 0 20px 0 320px;
-    min-height: 400px;
-
-    &:before {
-      margin: 0;
-      width: 254px;
-      height: 254px;
-      left: 20px;
-    }
+  .intro {
+    padding: 0 20px;
   }
 
-  .about_contact {
-    width: 254px;
-    margin: 20px 0 0;
-    left: 20px;
-    top: 254px;
-    font-size: 1em;
-  }
-
-  .about_text {
+  .intro_text {
     font-size: 24px;
     margin-bottom: 40px;
   }

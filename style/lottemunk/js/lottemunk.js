@@ -17,7 +17,7 @@ hui.on(['hui'],function(hui) {
     '/en/movie-clips/' : 'movies'
   };
 
-  var nav = hui.find('nav');
+  var nav = hui.find('.js-menu');
   hui.listen(nav,'click',function(e) {
     e = hui.event(e);
     var a = e.findByTag('a');

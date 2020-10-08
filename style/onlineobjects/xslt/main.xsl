@@ -35,6 +35,7 @@
         <xsl:call-template name="util:metatags"/>
         <xsl:call-template name="util:js"/>
         <link href="https://account.{$onlineobjects_domain}/status.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@100;300;400;500;700;800&amp;display=swap" rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css?family=Inter:100,200,300,400,500,600,700%7CHind+Siliguri:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
         <xsl:call-template name="util:css"/>
         <script src="https://account.{$onlineobjects_domain}/status.js" async="async" defer="defer"><xsl:comment/></script>
