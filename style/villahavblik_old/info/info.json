@@ -1,0 +1,14 @@
+{
+  "name" : "Villa Havblik",
+  "description" : "Design for villahavblik.dk",
+  "owner" : "Property of Buster Munk",
+  "css" : [
+    "style/basic/css/shared.css",
+    "@parts",
+    "style/villahavblik_old/css/overwrite.css",
+    "style/villahavblik_old/css/stylesheet.css"
+  ],
+  "js" : [
+    "style/basic/js/utils/Dissolver.js"
+  ]
+}
