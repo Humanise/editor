@@ -34,9 +34,9 @@
         <xsl:call-template name="util:viewport"/>
         <xsl:call-template name="util:metatags"/>
         <xsl:call-template name="util:js"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com"/>
         <link href="https://account.{$onlineobjects_domain}/status.css" rel="stylesheet" type="text/css"/>
-        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@100;300;400;500;700;800&amp;display=swap" rel="stylesheet"/>
-        <link href="https://fonts.googleapis.com/css?family=Inter:100,200,300,400,500,600,700%7CHind+Siliguri:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&amp;family=Inter:wght@100;200;300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
         <xsl:call-template name="util:css"/>
         <script src="https://account.{$onlineobjects_domain}/status.js" async="async" defer="defer"><xsl:comment/></script>
       </head>
@@ -114,7 +114,7 @@
   </xsl:template>
 
   <xsl:template name="top">
-    <div class="oo_topbar oo_faded">
+    <div class="oo_topbar">
       <a class="oo_topbar_logo" href="https://www.onlineobjects.com/en/">
         <em class="oo_topbar_logo_icon oo_icon_onlineobjects"><xsl:comment/></em>
         <span class="oo_topbar_logo_text"><span class="oo_topbar_logo_part">Online</span>Objects</span>
