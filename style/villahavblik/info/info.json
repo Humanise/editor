@@ -6,9 +6,9 @@
     "style/basic/css/shared.css",
     "@parts",
     "style/villahavblik/css/overwrite.css",
-    "style/villahavblik/css/stylesheet.css"
+    "style/villahavblik/css/main.css"
   ],
   "js" : [
-    "style/basic/js/utils/Dissolver.js"
+    "style/villahavblik/js/villahavblik.js"
   ]
 }

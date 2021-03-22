@@ -434,9 +434,6 @@ ga('create', '<xsl:value-of select="$code"/>', {siteSpeedSampleRate : 20<xsl:if 
 
   <xsl:call-template name="util:_style-dynamic"/>
 
-  <xsl:comment><![CDATA[[if lt IE 7]><link rel="stylesheet" type="text/css" href="]]><xsl:value-of select="$path"/><xsl:value-of select="$timestamp-url"/>hui/css/msie6.css<xsl:value-of select="$timestamp-query"/><![CDATA["></link><![endif]]]></xsl:comment>
-  <xsl:comment><![CDATA[[if IE 7]><link rel="stylesheet" type="text/css" href="]]><xsl:value-of select="$path"/><xsl:value-of select="$timestamp-url"/>hui/css/msie7.css<xsl:value-of select="$timestamp-query"/><![CDATA["></link><![endif]]]></xsl:comment>
-
   <xsl:if test="$ie-lt-9='true'">
     <xsl:comment><![CDATA[[if lt IE 9]><link rel="stylesheet" type="text/css" href="]]><xsl:value-of select="$path"/><xsl:value-of select="$timestamp-url"/>style/<xsl:value-of select="$design"/><![CDATA[/css/msie_lt9.css"> </link><![endif]]]></xsl:comment>
   </xsl:if>

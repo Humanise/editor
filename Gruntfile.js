@@ -78,7 +78,8 @@ module.exports = function(grunt) {
     {name: 'jonasmunk'},
     {name: 'janemunk'},
     {name: 'psykologiskklinik'},
-    {name: 'onlineobjects'}
+    {name: 'onlineobjects'},
+    {name: 'villahavblik'}
   ];
 
   designs.forEach(function(design) {

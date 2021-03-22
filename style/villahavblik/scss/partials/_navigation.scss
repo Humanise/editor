@@ -1,0 +1,24 @@
+.navigation {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  list-style: none;
+  font-family: $header-font;
+  
+  &_item {
+    display: block;
+    padding: 0 15px;
+    line-height: 30px;
+    text-decoration: none;
+    color: inherit;
+    &:first-child {
+      padding-left: 0;
+    }
+    
+    &-selected {
+      font-weight: 600;
+    }
+  }
+}
