@@ -22,3 +22,18 @@
     }
   }
 }
+
+@media (min-width: 600px) {
+  .navigation {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 800px) {
+  .navigation {
+    font-size: 16px;
+  }
+}

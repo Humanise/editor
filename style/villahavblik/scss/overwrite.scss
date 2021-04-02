@@ -1,0 +1,22 @@
+$target : 'screen';
+
+@import 'tools';
+
+.common_header {
+  font-family: $header-font;
+  font-weight: 400;
+  
+  &-1 {
+    font-size: 38px;
+  }
+}
+
+.common_link {
+  color: #06d;
+  border-bottom: 1px solid #eee;
+  text-decoration: none;
+}
+
+.part_text {
+  line-height: $line-height;
+}

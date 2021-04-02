@@ -24,7 +24,7 @@
     <xsl:value-of select="f:frame/@title"/>
   </title>
   <link rel="preconnect" href="https://fonts.gstatic.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
   <xsl:call-template name="util:viewport"/>
   <meta name="google-site-verification" content="vagGQtrnVxxm4omlbXckjUkFqucyeVPmo-CE_LxQQ10" />
   <xsl:call-template name="util:metatags"/>
@@ -46,20 +46,41 @@
       <xsl:apply-templates select="p:content"/>
     </div>
   </div>
-  <div class="layout_footer">
-    <div class="layout_contact">
-      <h2>Adresse</h2>
-      <p>Nordlysvej 14</p>
-      <p>9840 Løkken</p>
-      <p>Danmark</p>
-      <hr/>
-      <h2>Kontakt</h2>
-      <p>Buster Munk</p>
-      <p>Tlf: 91 11 21 58</p>
-      <p><a href="mailto:bustermunk@gmail.com">bustermunk@gmail.com</a></p>
+  <div class="footer">
+    <div class="footer_body">
+      <div class="footer_part">
+        <h2 class="common_header">Menu</h2>
+        <ul class="footer_menu">
+        <xsl:for-each select="f:frame/h:hierarchy/h:item">
+          <xsl:if test="not(@hidden='true')">
+            <li>
+              <a class="common_link">
+                <xsl:call-template name="util:link"/>
+                <xsl:value-of select="@title"/>
+              </a>
+              <xsl:if test="descendant-or-self::*/@page=//p:page/@id and h:item">
+              <ul><xsl:apply-templates select="h:item"/></ul>
+              </xsl:if>
+            </li>
+          </xsl:if>
+        </xsl:for-each>
+        </ul>
+      </div>
+      <div class="footer_part layout_contact">
+        <h2 class="common_header">Adresse</h2>
+        <p>Nordlysvej 14</p>
+        <p>9840 Løkken</p>
+        <p>Danmark</p>
+      </div>
+      <div class="footer_part layout_contact">
+        <h2 class="common_header">Kontakt</h2>
+        <p>Buster Munk</p>
+        <p>Tlf: 91 11 21 58</p>
+        <p><a href="mailto:bustermunk@gmail.com" class="common_link"><span class="common_link_text">bustermunk@gmail.com</span></a></p>
+      </div>
     </div>
-    <p>
-      <a href="https://www.humanise.dk/" class="layout_powered">Designet og udviklet af Humanise</a>
+    <p class="footer_powered">
+      <a href="https://www.humanise.dk/">Designet og udviklet af Humanise</a>
     </p>
   </div>
   <xsl:call-template name="util:googleanalytics"/>

@@ -1,0 +1,44 @@
+.footer {
+  background: #fafafa;
+  padding: 20px 0 40px;
+  color: #555;
+  line-height: $line-height;
+
+  &_body {
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+  
+  &_menu {
+    list-style: none;
+    padding: 0;
+    
+    li {
+      margin: 5px 0;
+    }
+  }
+
+  &_powered {
+    margin: 40px 0;
+    text-align: center;
+    > a {
+      display: inline-block;
+      text-decoration: none;
+      padding: 10px;
+      color: #777;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .footer {
+    &_body {
+      display: flex;
+    }
+    &_part {
+      flex: 1 0 auto;
+    }
+  }
+}
