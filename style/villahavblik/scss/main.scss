@@ -6,6 +6,7 @@ $target : 'screen';
 @import 'partials/hero';
 @import 'partials/navigation';
 @import 'partials/footer';
+@import 'partials/poster';
 
 section,header,p,header,footer,figure
 {
@@ -44,6 +45,13 @@ body
     display: block;
   }
 
+  .document_row {
+    padding: 0 20px;
+    &.wide {
+      padding: 0;
+    }
+  }
+
   .document_column {
     width: auto !important;
     padding: 0 !important;
@@ -69,6 +77,10 @@ body
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 20px;
+    &.wide {
+      max-width: none;
+    }
   }
 
   .document_row_body {

@@ -1,5 +1,5 @@
 .layout_body {
-  padding: 20px; }
+  padding: 20px 0; }
 
 .hero {
   background: #ddd url("../gfx/hero.jpg");
@@ -143,6 +143,28 @@
   .footer_part {
     flex: 1 0 auto; } }
 
+.poster {
+  background: #666 50% no-repeat;
+  padding: 20px 0;
+  height: 80vh;
+  margin: 20px 0;
+  max-height: 400px;
+  background-size: cover;
+  display: flex;
+  background-image: url("../gfx/poster_beach.jpg");
+  color: #fff; }
+  .poster_body {
+    max-width: 800px;
+    padding: 0 20px;
+    margin: 0 auto; }
+  .poster_title {
+    text-align: center;
+    font-size: 42px;
+    display: flex;
+    height: 30%;
+    justify-content: center;
+    align-items: center; }
+
 section, header, p, header, footer, figure {
   display: block;
   margin: 0; }
@@ -171,6 +193,10 @@ body {
   .document_row_body,
   .document_column {
     display: block; }
+  .document_row {
+    padding: 0 20px; }
+    .document_row.wide {
+      padding: 0; }
   .document_column {
     width: auto !important;
     padding: 0 !important; }
@@ -188,7 +214,10 @@ body {
     width: 100%;
     max-width: 800px;
     margin-left: auto;
-    margin-right: auto; }
+    margin-right: auto;
+    padding: 0 20px; }
+    .document_row.wide {
+      max-width: none; }
   .document_row_body {
     display: table-row; }
   div.document_column {
