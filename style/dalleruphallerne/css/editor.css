@@ -110,9 +110,13 @@ a {
   border: none;
   border-bottom: 1px solid #ddd; }
 
-.part_section_header {
+.part_section_header-2 {
   padding: 0;
   margin: 40px 0 15px; }
+
+.part_section_header-3 {
+  padding: 0;
+  margin: 10px 0 5px; }
 
 .part_section_text:last-child {
   padding: 0; }
