@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
 body.editor,
 body.editor .common_font,
 body.editor p.common,
@@ -7,7 +7,7 @@ body.editor h1.common, body.editor .editor h2.common, body.editor .editor h3.com
 body.editor .part_header,
 body.editor .part_text,
 body.editor div.part_richtext {
-  font-family: 'Lato', serif; }
+  font-family: 'Lato', Arial, serif; }
 
 form, p {
   margin: 0px; }
