@@ -25,7 +25,7 @@
         </div>
       </xsl:when>
       <xsl:otherwise>
-        <div id="part_imagegallery_{generate-id()}">
+        <div id="part_imagegallery_{../../@id}">
           <xsl:attribute name="class">
             <xsl:text>part_imagegallery</xsl:text>
             <xsl:if test="ig:display/@framed='true'"><xsl:text> part_imagegallery_framed</xsl:text></xsl:if>
@@ -44,7 +44,7 @@
 
           <xsl:for-each select="o:object"><xsl:if test="position()>1">,</xsl:if>{id:<xsl:value-of select="@id"/>,width:<xsl:value-of select="o:sub/i:image/i:width"/>,height:<xsl:value-of select="o:sub/i:image/i:height"/>,text:'<xsl:value-of select="o:note"/>'}</xsl:for-each>
         <xsl:text>];</xsl:text>
-        <xsl:text>var part = new op.part.ImageGallery({</xsl:text>element : 'part_imagegallery_<xsl:value-of select="generate-id()"/>',variant : '<xsl:value-of select="ig:display/@variant"/>',editor : <xsl:value-of select="$editor='true'"/>,images : images,height:'<xsl:value-of select="ig:display/@height"/>'});}});</script>
+        <xsl:text>var part = new op.part.ImageGallery({</xsl:text>element : 'part_imagegallery_<xsl:value-of select="../../@id"/>',variant : '<xsl:value-of select="ig:display/@variant"/>',editor : <xsl:value-of select="$editor='true'"/>,images : images,height:'<xsl:value-of select="ig:display/@height"/>'});}});</script>
   </xsl:template>
 
   <xsl:template match="o:object[@type='image']">
