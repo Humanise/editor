@@ -46,7 +46,7 @@ $target : async;
         right: 10px;
         text-align: center;
         color: #fff;
-        font-family: 'Raleway';
+        font-family: 'Raleway','Inter','Helvetica Neue',Helvetica, Arial, sans-serif;
         font-size: 10vw;
         font-weight: 300;
         text-transform: uppercase;
@@ -110,7 +110,7 @@ $target : async;
       position: sticky;
       top: -1px;
       background: rgba(255,255,255,.8);
-      -webkit-backdrop-filter: blur(3px);
+      backdrop-filter: blur(3px);
       z-index: 9;
       -webkit-mask-image: linear-gradient(rgba(0, 0, 0, 1) 85%, transparent);
       font-size: 0;
@@ -155,7 +155,7 @@ $target : async;
     .part_text,
     .part_listing,
     .part_poster {
-      font-family: 'Open Sans','Helvetica Neue','Helvetica',Arial,sans-serif;
+      font-family: 'Inter','Helvetica Neue','Helvetica',Arial,sans-serif;
     }
 
     .part {
@@ -206,7 +206,7 @@ $target : async;
         color: #333;
 
         strong {
-          font-weight: 400;
+          font-weight: 500;
         }
       }
 

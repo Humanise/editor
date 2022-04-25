@@ -1,8 +1,7 @@
 @include if {
 .bio
 {
-  font-family: 'Open Sans',sans-serif;
-  font-weight: 200;
+  font-weight: 300;
   list-style: none;
   color: #999;
   margin: 0;
@@ -25,12 +24,10 @@
   }
 
   &_time {
-    font-weight: 200;
     float: left;
     font-size: 13px;
 
     &_divider {
-      font-weight: 200;
       color: #aaa;
       font-size: 12px
     }
@@ -71,7 +68,7 @@
 @include if (( width: 460px )) {
   .bio {
     &_time {
-      font-size: 16px;
+      font-size: 14px;
     }
 
     &_content {

@@ -1,6 +1,5 @@
 .bio {
-  font-family: 'Open Sans',sans-serif;
-  font-weight: 200;
+  font-weight: 300;
   list-style: none;
   color: #999;
   margin: 0;
@@ -18,11 +17,9 @@
       bottom: -5px;
       position: absolute; }
   .bio_time {
-    font-weight: 200;
     float: left;
     font-size: 13px; }
     .bio_time_divider {
-      font-weight: 200;
       color: #aaa;
       font-size: 12px; }
   .bio_content {
@@ -46,7 +43,7 @@
 
 @media screen and (min-width: 460px) {
   .bio_time {
-    font-size: 16px; }
+    font-size: 14px; }
   .bio_content {
     margin-left: 120px; }
   .bio_event:before {
@@ -87,7 +84,7 @@
     right: 10px;
     text-align: center;
     color: #fff;
-    font-family: 'Raleway';
+    font-family: 'Raleway','Inter','Helvetica Neue',Helvetica, Arial, sans-serif;
     font-size: 10vw;
     font-weight: 300;
     text-transform: uppercase;
@@ -136,7 +133,7 @@
   opacity: .2; }
 
 .vitae_menu {
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-family: "Inter", "Helvetica Neue", "Helvetica", Arial, sans-serif;
   margin: 0 -10px 20px;
   padding: 5px 0 15px 5px;
   text-align: left;
@@ -144,7 +141,7 @@
   position: sticky;
   top: -1px;
   background: rgba(255, 255, 255, 0.8);
-  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
   z-index: 9;
   -webkit-mask-image: linear-gradient(black 85%, transparent);
   font-size: 0; }
@@ -180,7 +177,7 @@
 .vitae .part_text,
 .vitae .part_listing,
 .vitae .part_poster {
-  font-family: 'Open Sans','Helvetica Neue','Helvetica',Arial,sans-serif; }
+  font-family: 'Inter','Helvetica Neue','Helvetica',Arial,sans-serif; }
 
 .vitae .part_header-1, .vitae .part_header-2 {
   color: #333;
@@ -215,7 +212,7 @@
   line-height: 1.4em;
   color: #333; }
   .vitae .part_text strong, .vitae .part_listing strong {
-    font-weight: 400; }
+    font-weight: 500; }
 
 .vitae .part_horizontalrule {
   margin: 10px 0px; }

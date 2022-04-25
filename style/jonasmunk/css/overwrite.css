@@ -9,7 +9,7 @@
 .part_header {
   color: #333;
   font-weight: normal;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif; }
+  font-family: "Inter", "Helvetica Neue", "Helvetica", Arial, sans-serif; }
   .part_header-1 {
     font-size: 28px;
     font-weight: 100; }
@@ -35,11 +35,11 @@
   margin: 10px -20px; }
 
 .part_text {
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-family: "Inter", "Helvetica Neue", "Helvetica", Arial, sans-serif;
   font-size: 16px; }
 
 .part_listing {
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-family: "Inter", "Helvetica Neue", "Helvetica", Arial, sans-serif;
   font-size: 16px; }
   .part_listing_item {
     color: #ccc; }

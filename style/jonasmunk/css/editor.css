@@ -9,7 +9,7 @@
 .part_header {
   color: #333;
   font-weight: normal;
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif; }
+  font-family: "Inter", "Helvetica Neue", "Helvetica", Arial, sans-serif; }
   .part_header-1 {
     font-size: 28px;
     font-weight: 100; }
@@ -35,11 +35,11 @@
   margin: 10px -20px; }
 
 .part_text {
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-family: "Inter", "Helvetica Neue", "Helvetica", Arial, sans-serif;
   font-size: 16px; }
 
 .part_listing {
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-family: "Inter", "Helvetica Neue", "Helvetica", Arial, sans-serif;
   font-size: 16px; }
   .part_listing_item {
     color: #ccc; }
@@ -67,8 +67,7 @@
     font-weight: bold; } }
 
 .bio {
-  font-family: 'Open Sans',sans-serif;
-  font-weight: 200;
+  font-weight: 300;
   list-style: none;
   color: #999;
   margin: 0;
@@ -86,11 +85,9 @@
       bottom: -5px;
       position: absolute; }
   .bio_time {
-    font-weight: 200;
     float: left;
     font-size: 13px; }
     .bio_time_divider {
-      font-weight: 200;
       color: #aaa;
       font-size: 12px; }
   .bio_content {
@@ -114,7 +111,7 @@
 
 @media screen and (min-width: 460px) {
   .bio_time {
-    font-size: 16px; }
+    font-size: 14px; }
   .bio_content {
     margin-left: 120px; }
   .bio_event:before {

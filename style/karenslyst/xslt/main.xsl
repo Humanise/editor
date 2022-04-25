@@ -40,13 +40,13 @@
     <xsl:call-template name="util:js"/>
 
     <xsl:call-template name="util:load-font">
-      <xsl:with-param name="href" select="'http://fonts.googleapis.com/css?family=Playfair+Display:400,400italic'"/>
+      <xsl:with-param name="href" select="'https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic'"/>
       <xsl:with-param name="family" select="'Playfair Display'"/>
       <xsl:with-param name="class" select="'font_playfair'"/>
     </xsl:call-template>
 
     <xsl:call-template name="util:load-font">
-      <xsl:with-param name="href" select="'http://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope'"/>
+      <xsl:with-param name="href" select="'https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope'"/>
       <xsl:with-param name="family" select="'Annie Use Your Telescope'"/>
       <xsl:with-param name="class" select="'font_annie'"/>
     </xsl:call-template>
