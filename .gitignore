@@ -3,6 +3,7 @@ Config/dev.json
 CVS
 .DS_Store
 .project
+.nova
 .settings
 .cvsignore
 .php_cs.cache
