@@ -15,7 +15,7 @@ hui.on(['op'],function(op) {
           // TODO listen for event when ayc style is loaded (or make css inline)
           window.setTimeout(function() {
             var x = window.devicePixelRatio || 1;
-            var url = hui.ui.getContext() + 'services/images/?id=' + id + '&width=' + (poster.clientWidth * x) + '&height=' + (poster.clientHeight * x);
+            var url = _editor.path('services/images/?id=' + id + '&width=' + (poster.clientWidth * x) + '&height=' + (poster.clientHeight * x));
               poster.style.backgroundImage = 'url(' + url + ')';
           },200)
         } else {

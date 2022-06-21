@@ -31,11 +31,11 @@ op.part.Authentication.prototype = {
     var target = hui.location.getInt('page');
     var redirect = document.location.href;
     if (target) {
-      redirect = hui.ui.getContext() + '?id=' + target;
+      redirect = _editor.path('?id=' + target);
     }
     hui.cls.add(this.element,'part_authentication_busy');
     hui.ui.request({
-      url : hui.ui.getContext() + 'services/authentication/',
+      url : _editor.path('services/authentication/'),
       parameters : values,
       $success : function() {
         document.location.href = redirect;

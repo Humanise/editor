@@ -58,7 +58,7 @@ op.Editor.Widget.prototype = {
     window.clearTimeout(this._timer);
     var self = this;
     this._timer = window.setTimeout(function() {
-      var url = hui.ui.getContext() + 'Editor/Services/Parts/Preview.php';
+      var url = _editor.path('Editor/Services/Parts/Preview.php');
       hui.ui.request({
         url : url,
         parameters : {

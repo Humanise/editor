@@ -117,7 +117,7 @@ class UI {
     '<xsl:variable name="profile">' . $profile . '</xsl:variable>' .
     '<xsl:variable name="version">' . ConfigurationService::getDeploymentTime() . '</xsl:variable>' .
     '<xsl:variable name="pathVersion">' . $pathVersion . '</xsl:variable>' .
-    '<xsl:variable name="context">' . $context . '</xsl:variable>' .
+    '<xsl:variable name="context">' . $context . '/hui</xsl:variable>' .
     '<xsl:variable name="unique">uuid' . time() . '</xsl:variable>' .
     '<xsl:variable name="language">' . InternalSession::getLanguage() . '</xsl:variable>';
   }

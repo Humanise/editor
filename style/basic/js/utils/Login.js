@@ -30,7 +30,7 @@ hui.on(function() {
 
           var forgot = hui.ui.Button.create({text:{en:'Forgot password?',da:'Glemt kode?'}})
           forgot.listen({$click:function() {
-            document.location = hui.ui.getContext() + 'Editor/Authentication.php?forgot=true';
+            document.location = _editor.path('Editor/Authentication.php?forgot=true');
           }});
           b.add(forgot);
 
@@ -83,7 +83,7 @@ hui.on(function() {
 
     hui.ui.request({
       message : {start:{en:'Logging in...',da:'Logger ind...'},delay:300},
-      url : hui.ui.getContext() + 'Editor/Services/Core/Authentication.php',
+      url : _editor.path('Editor/Services/Core/Authentication.php'),
       parameters : {username:username,password:password},
       $object : function(response) {
         if (response.success) {

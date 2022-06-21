@@ -322,7 +322,7 @@ ga('create', '<xsl:value-of select="$code"/>', {siteSpeedSampleRate : 20<xsl:if 
 <!-- Scripts -->
 
 <xsl:template name="util:js">
-  <noscript data-hui-context="{$path}" data-page-id="{@id}"><xsl:text> </xsl:text></noscript>
+  <noscript data-hui-context="{$path}hui" data-page-id="{@id}"><xsl:text> </xsl:text></noscript>
   <xsl:comment><![CDATA[[if lt IE 9]>
   <script src="]]><xsl:value-of select="$path"/><xsl:value-of select="$timestamp-url"/>hui/bin/compatibility.min.js<xsl:value-of select="$timestamp-query"/><![CDATA[" data-movable="false"></script>
   <![endif]]]></xsl:comment>

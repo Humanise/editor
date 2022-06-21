@@ -16,7 +16,7 @@ hui.on(function() {
     this.rightPos = -1;
     var self = this;
     this.poster.onclick = function() {
-      document.location=hui.ui.getContext()+self.links[self.leftPos];
+      document.location = _editor.path(self.links[self.leftPos]);
     }
       this.preload();
   }
@@ -24,7 +24,7 @@ hui.on(function() {
   Poster.prototype.start = function() {
     this.left.scrollLeft = 495;
     var self = this;
-    var base = hui.ui.getContext()+this.context;
+    var base = _editor.path(this.context);
     new hui.animation.Loop([
       function() {
         self.leftPos++;
@@ -47,7 +47,7 @@ hui.on(function() {
   }
 
   Poster.prototype.preload = function() {
-    var loader = new hui.Preloader({context:hui.ui.getContext()+this.context});
+    var loader = new hui.Preloader({context:_editor.path(this.context)});
     loader.setDelegate({
       allImagesDidLoad : function() {
         this.progress.style.display='none';

@@ -37,7 +37,7 @@ hui.on(function() {
         })
       };
 
-      var url = hui.ui.getContext() + 'services/parts/formula/';
+      var url = _editor.path('services/parts/formula/');
       var data = {
         id : this.id,
         fields : fields

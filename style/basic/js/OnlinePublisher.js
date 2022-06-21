@@ -25,20 +25,20 @@ op.ignite = function(loggedIn) {
   })
   hui.on(function() {
     hui.request({
-      url : hui.ui.getContext() + 'services/statistics/',
+      url : _editor.path('services/statistics/'),
       parameters : {page : _editor.getPageId(), referrer : document.referrer, uri : document.location.href}
     });
   })
 }
 
 op.goToEditor = function() {
-  window.location=(hui.ui.getContext() + "Editor/index.php?page=" + _editor.getPageId());
+  window.location=_editor.path("Editor/index.php?page=" + _editor.getPageId());
 }
 
 op.showLogin = function() {
   op.showLogin = function(){};
   hui.ui.msg({text:{en:'Loading...',da:'Indlæser...'},busy:true,delay:300});
-  _editor.loadScript(hui.ui.getContext() + 'style/basic/js/utils/Login.js');
+  _editor.loadScript(_editor.path('style/basic/js/utils/Login.js'));
 }
 
 op.getImageUrl = function(img,width,height) {
@@ -47,7 +47,7 @@ op.getImageUrl = function(img,width,height) {
   var precision = 50;
   w = Math.ceil(w / precision) * precision;
   h = Math.ceil(h / precision) * precision;
-  return hui.ui.getContext() + 'services/images/?id='+img.id+'&width='+w+'&height='+h+'&format=jpg&quality=90';
+  return _editor.path('services/images/?id='+img.id+'&width='+w+'&height='+h+'&format=jpg&quality=90');
 }
 
 if (op.part===undefined) {
@@ -58,7 +58,7 @@ if (op.part===undefined) {
 /************* Feedback *************/
 
 op.feedback = function(a) {
-  hui.require(hui.ui.getContext() + 'style/basic/js/Feedback.js',function() {
+  hui.require(_editor.path('style/basic/js/Feedback.js'),function() {
     op.feedback.Controller.init(a);
   })
 }

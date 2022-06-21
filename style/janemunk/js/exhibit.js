@@ -219,11 +219,11 @@ hui.on(['hui'], function(hui) {
       var ratio = Math.min(2,window.devicePixelRatio || 1);
       width = width * ratio;
       height = height * ratio;
-      var url = hui.ui.getContext() + 'services/images/?id=' + id;
+      var url = 'services/images/?id=' + id;
       if (width && height) {
         url += '&width=' + width + '&height=' + height + '&background=transparent&format=png';
       }
-      return url;
+      return _editor.path(url);
     },
 
     updateImage : function(options) {

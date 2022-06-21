@@ -53,7 +53,7 @@ hui.on(function() {
               position : new google.maps.LatLng(this.options.center.latitude, this.options.center.longitude),
               map : this.map,
               icon : new google.maps.MarkerImage(
-            hui.ui.getContext() + 'style/basic/gfx/part_map_pin.png',
+            _editor.path('style/basic/gfx/part_map_pin.png'),
                 new google.maps.Size(29, 30), // Size
                 new google.maps.Point(0,0), // Location (sprite)
                 new google.maps.Point(8, 26)) // anchor

@@ -219,7 +219,7 @@ op.part.ImageGallery.Masonry.prototype = {
   },
   _getUrl : function(item,info) {
     var ratio = window.devicePixelRatio > 1 ? 2 : 1;
-    return hui.ui.getContext() + 'services/images/?id=' + item.id + '&width=' + (info.width * ratio) + '&height=' + (info.height * ratio) + '&method=crop';
+    return _editor.path('services/images/?id=' + item.id + '&width=' + (info.width * ratio) + '&height=' + (info.height * ratio) + '&method=crop');
   },
   _reveal : function() {
     var min = hui.window.getScrollTop();

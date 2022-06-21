@@ -24,7 +24,7 @@ op.ImageGallery.prototype = {
         $resolveImageUrl : function(img,width,height) {
           var w = img.width ? Math.min(width,img.width) : width;
           var h = img.height ? Math.min(height,img.height) : height;
-          return hui.ui.getContext() + 'services/images/?id='+img.id+'&width='+w+'&height='+h+'&format=jpg&quality=70';
+          return _editor.path('services/images/?id='+img.id+'&width='+w+'&height='+h+'&format=jpg&quality=70');
         }
       });
     }

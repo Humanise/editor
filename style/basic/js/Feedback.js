@@ -34,7 +34,7 @@ op.feedback.Controller = {
     }
     this.busy = true;
     hui.ui.request({
-      url : hui.ui.getContext() + 'services/issues/feedback/',
+      url : _editor.path('services/issues/feedback/'),
       parameters : params,
       $success : function() {
         this.busy = false;

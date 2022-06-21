@@ -25,9 +25,12 @@ hui = window.hui || {_:[],on:function() {this._.push(arguments)}};
       }
       hui.on(func);
     },
+    path : function(pathFromRoot) {
+      return hui.ui.getContext().replace(/hui$/,'') + pathFromRoot;
+    },
     loadPart : function(info) {
       hui.on(['hui','hui.ui','op'],function() {
-        _editor.loadScript(hui.ui.getContext()+'style/basic/js/parts/' + info.name + '.js');
+        _editor.loadScript(_editor.path('style/basic/js/parts/' + info.name + '.js'));
       });
       hui.on(['op.part.'+info.name],info.$ready);
     },
