@@ -140,17 +140,15 @@
       -webkit-overflow-scrolling: touch;
       -webkit-user-select: none;
 
-      scroll-snap-type: mandatory;
-      -webkit-scroll-snap-type: mandatory;
-
-      scroll-snap-points-x: repeat(33.333333%);
-      -webkit-scroll-snap-points-x: repeat(33.333333%);
+      scroll-snap-type: x mandatory;
 
       &_page {
         width: 100%;
         position: relative;
         height: 100%;
         display: inline-block;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
       }
     }
 
