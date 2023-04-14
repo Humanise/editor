@@ -318,14 +318,12 @@ body.exhibit {
 
 @media screen and (min-width: 600px) {
   .exhibit_paintings_page {
-    scroll-snap-align: none;
-    scroll-snap-stop: unset; }
+    scroll-snap-align: none; }
   .exhibit_painting {
     top: 0;
     bottom: 0;
     width: 24%;
-    scroll-snap-align: center;
-    scroll-snap-stop: always; }
+    scroll-snap-align: center; }
     .exhibit_painting-left {
       left: 5%;
       right: auto; }

@@ -193,7 +193,6 @@
     &_paintings {
       &_page {
         scroll-snap-align: none;
-        scroll-snap-stop: unset;
       }
     }
     &_painting {
@@ -201,7 +200,6 @@
       bottom: 0;
       width: 24%;
       scroll-snap-align: center;
-      scroll-snap-stop: always;
 
       &-left {
         left: 5%;
