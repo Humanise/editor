@@ -148,7 +148,6 @@
         height: 100%;
         display: inline-block;
         scroll-snap-align: center;
-        scroll-snap-stop: always;
       }
     }
 
@@ -191,10 +190,18 @@
 
 @include if (( width: 600px )) {
   .exhibit {
+    &_paintings {
+      &_page {
+        scroll-snap-align: none;
+        scroll-snap-stop: unset;
+      }
+    }
     &_painting {
       top: 0;
       bottom: 0;
       width: 24%;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
 
       &-left {
         left: 5%;

@@ -287,8 +287,7 @@ body.exhibit {
     position: relative;
     height: 100%;
     display: inline-block;
-    scroll-snap-align: center;
-    scroll-snap-stop: always; }
+    scroll-snap-align: center; }
 
 .exhibit_painting {
   background-size: contain;
@@ -318,10 +317,15 @@ body.exhibit {
     bottom: 0; }
 
 @media screen and (min-width: 600px) {
+  .exhibit_paintings_page {
+    scroll-snap-align: none;
+    scroll-snap-stop: unset; }
   .exhibit_painting {
     top: 0;
     bottom: 0;
-    width: 24%; }
+    width: 24%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always; }
     .exhibit_painting-left {
       left: 5%;
       right: auto; }
