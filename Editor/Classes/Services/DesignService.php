@@ -287,11 +287,12 @@ class DesignService {
     $key = sha1($file . '|' . ConfigurationService::getDeploymentTime());
     $cacheFile = FileSystemService::getFullPath('local/cache/temp/' . $key . '.css');
     if (!file_exists($cacheFile)) {
+      $tempFile = FileSystemService::getFullPath('local/cache/temp/' . $key . '.temp.css');
       $folder = FileSystemService::folderOfPath($file);
       $str = DesignService::_read($file);
       $css = DesignService::fixUrls($str, $folder, '/');
-      FileSystemService::writeStringToFile($css,$cacheFile);
-      DesignService::_compress($cacheFile,$cacheFile);
+      FileSystemService::writeStringToFile($css,$tempFile);
+      DesignService::_compress($tempFile,$cacheFile);
     }
     return file_get_contents($cacheFile);
   }
@@ -304,8 +305,9 @@ class DesignService {
     $cacheFile = FileSystemService::getFullPath('local/cache/temp/' . $key . '.js');
     if (!file_exists($cacheFile)) {
       $str = DesignService::_read($file);
-      FileSystemService::writeStringToFile($str,$cacheFile);
-      DesignService::_compress($cacheFile,$cacheFile);
+      $tempFile = FileSystemService::getFullPath('local/cache/temp/' . $key . '.temp.js');
+      FileSystemService::writeStringToFile($str,$tempFile);
+      DesignService::_compress($tempFile,$cacheFile);
     }
     return file_get_contents($cacheFile);
   }
@@ -318,9 +320,10 @@ class DesignService {
     $key = $design . '_inline_' . ConfigurationService::getDeploymentTime();
     $cacheFile = FileSystemService::getFullPath('local/cache/temp/' . $key . '.css');
     if (!file_exists($cacheFile)) {
+      $tempFile = FileSystemService::getFullPath('local/cache/temp/' . $key . '.temp.css');
       $css = DesignService::loadInlineCSS($design);
-      FileSystemService::writeStringToFile($css,$cacheFile);
-      DesignService::_compress($cacheFile,$cacheFile);
+      FileSystemService::writeStringToFile($css, $tempFile);
+      DesignService::_compress($tempFile, $cacheFile);
     }
     return file_get_contents($cacheFile);
   }
@@ -333,9 +336,10 @@ class DesignService {
     $key = $design . '_inline_' . ConfigurationService::getDeploymentTime();
     $cacheFile = FileSystemService::getFullPath('local/cache/temp/' . $key . '.js');
     if (!file_exists($cacheFile)) {
-      $css = DesignService::loadInlineJS($design);
-      FileSystemService::writeStringToFile($css,$cacheFile);
-      DesignService::_compress($cacheFile,$cacheFile);
+      $tempFile = FileSystemService::getFullPath('local/cache/temp/' . $key . '.temp.js');
+      $js = DesignService::loadInlineJS($design);
+      FileSystemService::writeStringToFile($js, $tempFile);
+      DesignService::_compress($tempFile, $cacheFile);
     }
     return file_get_contents($cacheFile);
   }
