@@ -73,7 +73,7 @@ class MarkupUtils {
 
     $moved = array_merge($moved, $filtered);
 
-    $html = substr($html,0,$pos) . join($moved,'') . substr($html,$pos);
+    $html = substr($html, 0, $pos) . join('', $moved) . substr($html, $pos);
     return $html;
   }
 
@@ -98,7 +98,7 @@ class MarkupUtils {
     $html = str_replace($filtered, '', $html);
     $pos = strpos($html, '</head>');
 
-    $html = substr($html,0,$pos) . join($filtered,'') . substr($html,$pos);
+    $html = substr($html, 0, $pos) . join('', $filtered) . substr($html, $pos);
     return $html;
   }
 }

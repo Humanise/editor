@@ -190,7 +190,7 @@ class FileSystemService {
               continue;
             }
           }
-          if ($file{0} == '.') {
+          if ($file[0] == '.') {
             continue;
           }
           if (is_file($path)) {
@@ -339,7 +339,7 @@ class FileSystemService {
 
   static function parseBytes($val) {
     $val = trim($val);
-    $last = strtolower($val{strlen($val) - 1});
+    $last = strtolower($val[strlen($val) - 1]);
     $val = intval($val);
     switch($last) {
       // The 'G' modifier is available since PHP 5.1.0

@@ -38,9 +38,9 @@ class ModelService {
       $sqlWhere[] = $sqlTables[$i - 1] . '.id = ' . $sqlTables[$i] . '.' . $sqlTables[$i - 1] . '_id';
     }
     $sqlWhere[] = '`' . $sqlTables[0] . '`.`id` = @int(id)';
-    $sql = 'select ' . join($sqlColumns,',') . ' from `' . join($sqlTables,'`,`') . '`';
+    $sql = 'select ' . join(',', $sqlColumns) . ' from `' . join('`,`', $sqlTables) . '`';
     if (count($sqlWhere) > 0) {
-      $sql .= ' where ' . join($sqlWhere,' and ');
+      $sql .= ' where ' . join(' and ', $sqlWhere);
     }
     return $sql;
   }

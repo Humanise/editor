@@ -74,7 +74,7 @@ class TestRichtextPart extends UnitTestCase {
     $imported = $ctrl->importFromString($xml);
 
     $this->assertNotNull($imported);
-    $this->assertIdentical('Im in<alid>&gt;</alid>',$imported->getHtml());
+    $this->assertIdentical('Im in<alid>&gt;&lt;</alid>',$imported->getHtml());
   }
 
   function testLinkSynchronization() {

@@ -48,11 +48,11 @@
       </div>
       <div class="footer">
         <div class="footer_body">
+          <xsl:if test="f:frame/h:hierarchy/h:item[not(@hidden='true')]">
           <div class="footer_part">
             <h2 class="common_header">Menu</h2>
             <ul class="footer_menu">
-            <xsl:for-each select="f:frame/h:hierarchy/h:item">
-              <xsl:if test="not(@hidden='true')">
+              <xsl:for-each select="f:frame/h:hierarchy/h:item[not(@hidden='true')]">
                 <li>
                   <a class="common_link">
                     <xsl:call-template name="util:link"/>
@@ -62,10 +62,10 @@
                   <ul><xsl:apply-templates select="h:item"/></ul>
                   </xsl:if>
                 </li>
-              </xsl:if>
             </xsl:for-each>
             </ul>
           </div>
+          </xsl:if>
           <div class="footer_part layout_contact">
             <h2 class="common_header">Adresse</h2>
             <p>Nordlysvej 14</p>

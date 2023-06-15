@@ -30,7 +30,7 @@ class StatisticsService {
       $ids[] = $row['id'];
     }
     if (count($ids) > 0) {
-      $sql = "select count(id) as hits,value as id from statistics where type='page' and value in (" . join($ids,',') . ") group by value";
+      $sql = "select count(id) as hits,value as id from statistics where type='page' and value in (" . join(',', $ids) . ") group by value";
       $result = Database::selectAll($sql);
       foreach ($result as $row) {
         $counts[$row['id']] = $row['hits'];

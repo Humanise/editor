@@ -108,7 +108,7 @@ class DesignService {
     $files[] = 'style/basic/js/OnlinePublisher.js';
     $files = array_merge($files, DesignService::getJavaScriptFiles($design, 'async'));
 
-    $key = sha1(join($files,'|') . '|' . ConfigurationService::getDeploymentTime());
+    $key = sha1(join('|', $files) . '|' . ConfigurationService::getDeploymentTime());
     $cachedFile = FileSystemService::getFullPath('local/cache/temp/' . $key . '.js');
     header('Content-type: text/javascript');
     if (!$dev && file_exists($cachedFile)) {
@@ -179,7 +179,7 @@ class DesignService {
     $dev = Request::getBoolean('development');
     $preview = Request::getBoolean('preview');
     $files = DesignService::getCSSFiles($design, $preview);
-    $key = sha1(join($files,'|') . '|' . ConfigurationService::getDeploymentTime());
+    $key = sha1(join('|', $files) . '|' . ConfigurationService::getDeploymentTime());
     $cachedFile = FileSystemService::getFullPath('local/cache/temp/' . $key . '.css');
     header('Content-type: text/css');
     if (file_exists($cachedFile) && !$dev) {
@@ -365,7 +365,7 @@ class DesignService {
     if (DesignService::$useYUI) {
       $cmd = "java -jar " . $basePath . "hui/tools/yuicompressor-2.4.8.jar " . $in . " --charset UTF-8 -o " . $out;
     } else {
-      $cmd = "minify --no-comments " . $in . " -o " . $out;
+      $cmd = "minify " . $in . " > " . $out;
     }
     ShellService::execute($cmd);
     if (!file_exists($out)) {

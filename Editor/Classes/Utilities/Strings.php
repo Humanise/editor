@@ -313,7 +313,7 @@ class Strings {
     $ret = "";
     $length = strlen($value);
     for ($i = 0; $i < $length; $i++) {
-      $current = ord($value{$i});
+      $current = ord($value[$i]);
       if (($current == 0x9) ||
           ($current == 0xA) ||
           ($current == 0xD) ||
@@ -391,7 +391,7 @@ class Strings {
         return $a['length'] < $b['length'] ? 1 : -1;
       }
       $a = $a['from']; $b = $b['from'];
-      return $a == $b ? 0 : ($a < $b) ? -1 : 1;
+      return $a == $b ? 0 : ($a < $b ? -1 : 1);
     });
     //Log::debug($positions);
     $diff = 0;

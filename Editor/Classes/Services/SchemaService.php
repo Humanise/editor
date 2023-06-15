@@ -363,7 +363,7 @@ class SchemaService {
       foreach ($modifications['modified'] as $name => $properties) {
         $parts[] = 'CHANGE `' . $name . '` ' . SchemaService::buildColumnSQL($name, $properties);
       }
-      $statements[] = 'ALTER TABLE `' . $modifications['name'] . '` ' . join($parts,', ') . ';';
+      $statements[] = 'ALTER TABLE `' . $modifications['name'] . '` ' . join(', ', $parts) . ';';
     }
     return $statements;
   }
@@ -377,7 +377,7 @@ class SchemaService {
         $columnSql[] = 'PRIMARY KEY (`' . $columnName . '`)';
       }
     }
-    $sql = 'CREATE TABLE `' . $table['name'] . '` (' . join($columnSql,', ') . ');';
+    $sql = 'CREATE TABLE `' . $table['name'] . '` (' . join(', ', $columnSql) . ');';
     return $sql;
   }
 
@@ -400,7 +400,7 @@ class SchemaService {
     if ($properties['extra'] == 'auto_increment') {
       $sql[] = 'AUTO_INCREMENT';
     }
-    return join($sql,' ');
+    return join(' ', $sql);
   }
 
 }

@@ -122,7 +122,7 @@ class PublishingService {
 
     }
     if ($notFound) {
-      Log::debug('Not found:' . join($notFound,','));
+      Log::debug('Not found:' . join(',', $notFound));
     }
     return $result;
   }
