@@ -77,7 +77,7 @@ class StatisticsService {
       $where[] = 'statistics.time<=' . Database::datetime($query->getEndTime());
     }
     if ($where) {
-      return ($prepend ? ' where ' : ' and ') . implode($where,' and ');
+      return ($prepend ? ' where ' : ' and ') . implode(' and ', $where);
     }
     return '';
   }

@@ -13,8 +13,8 @@ $list = Query::after('issue')->get();
 $feed = new Feed();
 $feed->setTitle('Issues');
 $feed->setDescription('Issues');
-$feed->setPubDate(gmmktime());
-$feed->setLastBuildDate(gmmktime());
+$feed->setPubDate(time());
+$feed->setLastBuildDate(time());
 $feed->setLink(ConfigurationService::getBaseUrl());
 
 foreach ($list as $issue) {

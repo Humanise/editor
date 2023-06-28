@@ -255,6 +255,9 @@ class Database {
    * @return string The formattet string
    */
   static function text($text) {
+    if ($text == NULL) {
+      $text = '';
+    }
     return "'" . mysqli_real_escape_string(Database::getConnection(),$text) . "'";
   }
 
@@ -337,6 +340,9 @@ class Database {
    * @return string The formattet string
    */
   static function search($text) {
+    if ($text == NULL) {
+      $text = '';
+    }
     return "'%" . str_replace('%','\%',mysqli_real_escape_string(Database::getConnection(),$text)) . "%'";
   }
 

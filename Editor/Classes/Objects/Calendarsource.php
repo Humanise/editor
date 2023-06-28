@@ -204,19 +204,19 @@ class Calendarsource extends ModelObject {
           $count = $rule->getCount();
           $weekstart = $rule->getWeekStart();
           if ($rule->getByMonth() != null) {
-            $bymonth = implode($rule->getByMonth(),',');
+            $bymonth = implode(',', $rule->getByMonth());
           }
           if ($rule->getByMonthDay() != null) {
-            $bymonthday = implode($rule->getByMonthDay(),',');
+            $bymonthday = implode(',', $rule->getByMonthDay());
           }
           if ($rule->getByDay() != null) {
-            $byday = implode($rule->getByDay(),',');
+            $byday = implode(',', $rule->getByDay());
           }
           if ($rule->getByYearDay() != null) {
-            $byyearday = implode($rule->getByYearDay(),',');
+            $byyearday = implode(',', $rule->getByYearDay());
           }
           if ($rule->getByWeekNumber() != null) {
-            $byweeknumber = implode($rule->getByWeekNumber(),',');
+            $byweeknumber = implode(',', $rule->getByWeekNumber());
           }
         }
 
