@@ -20,7 +20,7 @@ a.common:hover, a.common:hover span
 
 body
 {
-	background: #FFFFF url('../gfx/color_bg.gif') scroll center 0;
+	background: #FFFFF url('../gfx/color_bg2.gif') scroll center 0;
 	margin: 0px;
 	height: 100%;
 	font-family: Georgia,Times,serif;
@@ -28,7 +28,7 @@ body
 
 div.chrome
 {
-	background: url('../gfx/color_bg.gif') -220px bottom repeat-x;
+	background: url('../gfx/color_bg2.gif') -220px bottom repeat-x;
 	min-height: 100%;
 }
 
@@ -60,7 +60,7 @@ div.chrome_header
 {
 	margin: 0px 9px;
 	height: 60px;
-	background: #D2DAA5 url('../gfx/logo4.png') 15px center no-repeat;
+	background: #d5e2ee url('../gfx/logo5.png') 15px center no-repeat;
 }
 
 div.chrome_top_header
@@ -74,7 +74,7 @@ div.chrome_footer
 {
 	margin: 0px 9px;
 	height: 130px;
-	background: url('../gfx/sygesikring.png') 15px center no-repeat;	
+	background: url('../gfx/lsygesikring.png') 15px center no-repeat;	
 
 }
 
@@ -93,7 +93,7 @@ div.chrome_insurance
 	float: right;
 	width: 241px;
 	height: 40px;
-	background: url('../gfx/sygesikring.png') no-repeat;
+	background: url('../gfx/lsygesikring.pngl') no-repeat;
 	margin-right: 20px;
 	margin-top: 90px;
 }
@@ -146,7 +146,7 @@ ul.navigation
 	margin: 0px;
 	padding: 0px 5px;
 	list-style: none;
-	background: #D2DAA5;
+	background: #d5e2ee;
 	overflow: hidden;
 	height: 30px;
 	margin: 0px 0px;

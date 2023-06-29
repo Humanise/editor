@@ -51,14 +51,12 @@
       </div>
       <div class="chrome_contact">
         <h2>Kontakt</h2>
-        <p>Hedensted</p>
         <p>Horsens</p>
         <p>Struer</p>
-        <p>Aarhus</p>
         <p>Tlf.: 61 26 50 49</p>
         <hr/>
         <h2>Mail</h2>
-        <p><a href="rie_karnoe@yahoo.dk">rie_karnoe@yahoo.dk</a></p>
+        <p style="font-size:80%;">rie_karnoe@yahoo.dk</p>
         <hr/>
       </div>
     </body>
