@@ -127,8 +127,12 @@ class TemplateService {
     else {
       $out = ['unique' => $unique, 'icon' => null, 'name' => null, 'description' => null];
       $filename = $basePath . "Editor/Template/" . $unique . "/info.xml";
-
-      $data = implode("", file($filename));
+      $file = file($filename);
+      if ($file === false) {
+        error_log('Not found: ' . $filename);
+        return $out;
+      }
+      $data = implode("", $file);
 
       $parser = xml_parser_create('UTF-8');
       xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, 0);
