@@ -40,8 +40,8 @@
         <xsl:call-template name="thirdlevel"/>
         <div class="case_contact">
           <h2>GB Pigsåler</h2>
-          <p><em>Tlf:</em> 23 62 33 59 </p>
-          <p><em>E-post: </em> <a href="mailto:info@pigsaaler.dk"><span>gbpigsaaler@gbpigsaaler.dk</span></a></p>
+          <p><em>Tlf:</em> 40 11 54 00 </p>
+          <p><em>E-post: </em> <a href="mailto:info@alphaprint.dk"><span>info@alphaprint.dk</span></a></p>
           <blockquote>
             "Kontakt os venligst hvis du er interesseret."
           </blockquote>
