@@ -75,7 +75,7 @@
           <div class="footer_part layout_contact">
             <h2 class="common_header">Kontakt</h2>
             <p>Buster Munk</p>
-            <p>Tlf: 91 11 21 58</p>
+            <p>Tlf: 29 12 19 20</p>
             <p><a href="mailto:bustermunk@gmail.com" class="common_link"><span class="common_link_text">bustermunk@gmail.com</span></a></p>
           </div>
         </div>
