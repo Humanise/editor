@@ -10,7 +10,7 @@ hui.on(['hui'],function(hui) {
     _click : function() {
       this._moveTop();
       MoviePoster.active && MoviePoster.active.disable();
-      var src = 'http://www.youtube.com/embed/' +this.key;
+      var src = 'https://www.youtube.com/embed/' +this.key;
       var html = '<iframe class="movies_iframe" width="640" height="480" src="' + src + '?autoplay=1" frameborder="0" allowfullscreen="allowfullscreen"></iframe>'
       hui.build('div',{'class' : 'movies_player', html : html, parent : this.element});
       MoviePoster.active = this;
