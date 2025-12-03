@@ -64,7 +64,7 @@ class MoviePartController extends PartController
     }
     $xml .= '/>';
     if (Strings::isNotBlank($part->getText())) {
-      $xml .= '<text>' . Strings::escapeXML($part->getText()) . '</text>';
+      $xml .= '<text>' . Strings::escapeEncodedXML($part->getText()) . '</text>';
     }
     if (Strings::isNotBlank($part->getUrl())) {
       $xml .= '<url>' . Strings::escapeXML($part->getUrl()) . '</url>';
