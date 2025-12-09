@@ -35,7 +35,7 @@ if (method_exists('Commander', $method)) {
   $handle = fopen ("php://stdin","r");
   $cmd = trim(fgets($handle));
   if (method_exists('Commander',$cmd)) {
-    Commander::$cmd();
+    Commander::$cmd(0);
   } else {
     echo "No action: " . $cmd;
   }

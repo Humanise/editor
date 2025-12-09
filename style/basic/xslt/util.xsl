@@ -378,7 +378,9 @@ ga('create', '<xsl:value-of select="$code"/>', {siteSpeedSampleRate : 20<xsl:if 
 <xsl:template name="util:inline-css">
   <xsl:param name="file"/>
   <style>
+    <xsl:comment>
     <xsl:value-of select="php:function('DesignService::getCustomInlineCSS',$design,$file,$development)" disable-output-escaping="yes"/>
+    </xsl:comment>
   </style>
 </xsl:template>
 
@@ -394,8 +396,10 @@ ga('create', '<xsl:value-of select="$code"/>', {siteSpeedSampleRate : 20<xsl:if 
 
   <xsl:if test="$inline='true'">
     <style>
+      <xsl:comment>
       <xsl:value-of select="php:function('DesignService::getInlineCSS',$design,$development)" disable-output-escaping="yes"/>
       <xsl:text>/**/</xsl:text>
+      </xsl:comment>
     </style>
   </xsl:if>
 

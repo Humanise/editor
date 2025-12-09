@@ -11,10 +11,15 @@ if (!isset($GLOBALS['basePath'])) {
 class Database {
 
   static function testConnection() {
-    if (!function_exists('mysqli_connect')) {
+    try {
+      if (!function_exists('mysqli_connect')) {
+        return false;
+      }
+      return Database::getConnection() !== false;
+    } catch (mysqli_sql_exception $e) {
+      error_log($e);
       return false;
     }
-    return Database::getConnection() !== false;
   }
 
   static function testServerConnection($host,$user,$password) {

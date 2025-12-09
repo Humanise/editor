@@ -50,7 +50,7 @@ Install node modules
 **Macports:**
 
 ```
-sudo port install php72 php72-xsl php72-openssl php72-mysql php72-mbstring php72-gd php72-curl php72-iconv
+sudo port install php81 php81-xsl php81-openssl php81-mysql php81-mbstring php81-gd php81-curl php81-iconv
 ```
 
 

@@ -1,40 +1,57 @@
 .common_link {
   color: rgba(0, 0, 0, 0.2);
-  cursor: pointer; }
-  .common_link_text {
-    color: #e44800; }
-  .common_link:hover, .common_link:hover .common_link_text {
-    color: #3c69ff; }
+  cursor: pointer;
+}
+.common_link_text {
+  color: #e44800;
+}
+.common_link:hover, .common_link:hover .common_link_text {
+  color: #3c69ff;
+}
 
 .common_header {
   color: #3D494C;
   font-family: "Amatic SC", sans-serif;
   font-weight: normal;
   margin: 0;
-  text-align: center; }
-  .common_header-1 {
-    font-size: 50pt; }
-  .common_header-2 {
-    font-size: 32pt; }
-  .common_header-3 {
-    font-size: 28pt; }
-  .common_header-4 {
-    font-size: 24pt; }
-  .common_header-5 {
-    font-size: 20pt; }
-  .common_header-6 {
-    font-size: 16pt; }
+  text-align: center;
+}
+.common_header-1 {
+  font-size: 50pt;
+}
+.common_header-2 {
+  font-size: 32pt;
+}
+.common_header-3 {
+  font-size: 28pt;
+}
+.common_header-4 {
+  font-size: 24pt;
+}
+.common_header-5 {
+  font-size: 20pt;
+}
+.common_header-6 {
+  font-size: 16pt;
+}
 
 @media screen and (min-width: 700px) {
   .common_header-1 {
-    font-size: 70pt; }
+    font-size: 70pt;
+  }
   .common_header-2 {
-    font-size: 32pt; }
+    font-size: 32pt;
+  }
   .common_header-3 {
-    font-size: 28pt; }
+    font-size: 28pt;
+  }
   .common_header-4 {
-    font-size: 24pt; }
+    font-size: 24pt;
+  }
   .common_header-5 {
-    font-size: 20pt; }
+    font-size: 20pt;
+  }
   .common_header-6 {
-    font-size: 16pt; } }
+    font-size: 16pt;
+  }
+}

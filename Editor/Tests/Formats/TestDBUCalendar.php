@@ -11,7 +11,7 @@ if (!isset($GLOBALS['basePath'])) {
 
 class TestDBUCalendar extends UnitTestCase {
 
-  function testIt() {
+  public function testIt() {
     $url = TestService::getResourceUrl('Kampprogram.xls');
     $calendar = DBUCalendarParser::parseUrl($url);
     $this->assertTrue($calendar != false);

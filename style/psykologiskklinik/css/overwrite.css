@@ -1,37 +1,49 @@
 a.common {
   color: #ddd;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 a.common span {
-  color: #0073b9; }
+  color: #0073b9;
+}
 
 a.common:hover, a.common:hover span {
-  color: #005aae; }
+  color: #005aae;
+}
 
 .common_font {
-  font-family: Georgia,"Book Antiqua", "Palatino",Times,serif; }
+  font-family: Georgia, "Book Antiqua", "Palatino", Times, serif;
+}
 
 .part_text {
-  font-size: 12pt; }
+  font-size: 12pt;
+}
 
 .part_listing_first {
-  font-size: 12pt; }
+  font-size: 12pt;
+}
 
 .part_listing {
   font-size: 10pt;
-  color: #333; }
+  color: #333;
+}
 
 .part_header {
   color: #000;
-  font-family: 'Ovo',Georgia,"Book Antiqua", "Palatino",Times,serif;
-  font-weight: normal; }
-  .part_header-1 {
-    font-size: 24pt;
-    letter-spacing: -1px; }
-  .part_header-2, .part_header-3, .part_header-4, .part_header-5, .part_header-6 {
-    font-weight: bold; }
+  font-family: "Ovo", Georgia, "Book Antiqua", "Palatino", Times, serif;
+  font-weight: normal;
+}
+.part_header-1 {
+  font-size: 24pt;
+  letter-spacing: -1px;
+}
+.part_header-2, .part_header-3, .part_header-4, .part_header-5, .part_header-6 {
+  font-weight: bold;
+}
 
 @media screen and (min-width: 720px) {
   .part_header-1 {
     font-size: 32pt;
-    letter-spacing: -1px; } }
+    letter-spacing: -1px;
+  }
+}

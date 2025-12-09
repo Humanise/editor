@@ -53,7 +53,7 @@ class TestCode extends UnitTestCase {
       }
     }
     foreach ($statements as $statement) {
-      $this->assertTrue(strpos($statement['sql'], "$") === false, 'Has var in sql: ' . $statement['file'] . " : " . $statement['sql']);
+      $this->assertTrue(strpos($statement['sql'], "$") === false, 'Has var in sql: ' . $statement['file'] . " : " . Strings::replace($statement['sql'], ['%' => '%%']));
     }
   }
 

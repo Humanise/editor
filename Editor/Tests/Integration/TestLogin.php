@@ -30,6 +30,8 @@ class TestLogin extends UnitTestCase {
     function testSuccess() {
         $username = Strings::generate(30);
         $password = Strings::generate(30);
+        $this->assertTrue(AuthenticationService::isValidUsername($username));
+
         $user = new User();
         $user->setTitle('Test user');
         $user->setUsername($username);
@@ -38,6 +40,8 @@ class TestLogin extends UnitTestCase {
         $user->setSecure(true);
         $user->save();
 
+        $this->assertNotNull(AuthenticationService::getInternalUser($username, $password));
+
         $url = ConfigurationService::getCompleteBaseUrl() . 'Editor/Services/Core/Authentication.php';
         $request = new WebRequest($url);
         $request->addParameter('username',$username);
@@ -45,7 +49,7 @@ class TestLogin extends UnitTestCase {
 
         $response = HttpClient::send($request);
 
-        $this->assertEqual(200,$response->getStatusCode());
+        $this->assertEqual(200, $response->getStatusCode());
         $obj = Strings::fromJSON($response->getBody());
         $this->assertTrue($obj->success);
 

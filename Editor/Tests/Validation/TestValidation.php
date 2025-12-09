@@ -69,7 +69,7 @@ class TestValidation extends UnitTestCase {
       unlink($tmp);
 
       $html = $file->getData();
-      $this->assertTrue(strpos($html, '<!DOCTYPE html>') !== false,'The design "' . $name . '" has wrong doctype');
+      $this->assertTrue(strpos($html, '<!DOCTYPE html>') !== false, 'The design "' . $name . '" has wrong doctype');
       $this->assertTrue(strpos($html, '<meta http-equiv="content-type" content="text/html; charset=utf-8"/>') !== false,'The design "' . $name . '" has no content-type');
       $this->assertTrue(strpos($html, '<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">') !== false,'The design "' . $name . '" does not have correct html tag');
       $this->assertFalse(strpos($html, 'http://uri.in2isoft.com') !== false,'The design "' . $name . '" may contain xml namespaces');

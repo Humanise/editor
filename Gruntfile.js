@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 
-  const sass = require('node-sass');
+  const sass = require('sass');
 
   var clients = {};
 
@@ -95,7 +95,7 @@ module.exports = function(grunt) {
       options: {
         implementation: sass,
         sourceMap: false,
-        outputStyle: 'nested'
+        api: 'modern'
       },
       files: [{
         expand: true,
@@ -114,7 +114,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-sass-modern');
 
   grunt.registerTask('default', 'Standard tasks', ['sass','watch']);
 

@@ -1,93 +1,121 @@
 @import url("https://fonts.googleapis.com/css?family=Inter:100,200,300,400,500,600,700%7CHind+Siliguri:400,500,600,700");
 .common_link {
   color: #ccc;
-  color: rgba(0, 0, 0, 0.1); }
-  .common_link_text {
-    color: #07d; }
-  .common_link:hover, .common_link_text:hover {
-    color: #41a7ff; }
+  color: rgba(0, 0, 0, 0.1);
+}
+.common_link_text {
+  color: #07d;
+}
+.common_link:hover, .common_link_text:hover {
+  color: #41a7ff;
+}
 
 .part_section_header {
-  padding: 0; }
-  .part_section_header-1 {
-    margin-bottom: 20px; }
-  .part_section_header-2 {
-    margin: 20px 0 5px; }
-  .part_section_header-3, .part_section_header-4, .part_section_header-5, .part_section_header-6 {
-    margin: 10px 0 0; }
-
+  padding: 0;
+}
+.part_section_header-1 {
+  margin-bottom: 20px;
+}
+.part_section_header-2 {
+  margin: 20px 0 5px;
+}
+.part_section_header-3, .part_section_header-4, .part_section_header-5, .part_section_header-6 {
+  margin: 10px 0 0;
+}
 .part_section_listing {
   padding: 0;
-  margin: 5px 0; }
-
+  margin: 5px 0;
+}
 .part_section_text {
   padding: 0;
-  margin: 5px 0; }
+  margin: 5px 0;
+}
 
 .part_header {
   color: #333;
   font-weight: normal;
-  font-family: "Hind Siliguri", "Helvetica Neue", "Helvetica", Arial, sans-serif; }
-  .part_header-1 {
-    font-size: 28px;
-    font-weight: 600;
-    line-height: 1; }
-  .part_header-2 {
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 1.1; }
-  .part_header-3 {
-    font-size: 16px;
-    font-weight: bold; }
-  .part_header-4 {
-    font-size: 16px;
-    font-weight: bold; }
-  .part_header-5 {
-    font-size: 16px;
-    font-weight: bold; }
-  .part_header-6 {
-    font-size: 16px;
-    font-weight: bold; }
+  font-family: "Hind Siliguri", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+}
+.part_header-1 {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1;
+}
+.part_header-2 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+.part_header-3 {
+  font-size: 16px;
+  font-weight: bold;
+}
+.part_header-4 {
+  font-size: 16px;
+  font-weight: bold;
+}
+.part_header-5 {
+  font-size: 16px;
+  font-weight: bold;
+}
+.part_header-6 {
+  font-size: 16px;
+  font-weight: bold;
+}
 
 .part_horizontalrule {
   border: none;
   border-bottom: solid 1px #eee;
-  margin: 20px 0; }
+  margin: 20px 0;
+}
 
 .part_text, .part_richtext {
   font-family: "Hind Siliguri", "Helvetica Neue", "Helvetica", Arial, sans-serif;
   font-size: 16px;
-  line-height: 1.4em; }
-  .part_text p, .part_richtext p {
-    margin: 5px 0; }
+  line-height: 1.4em;
+}
+.part_text p, .part_richtext p {
+  margin: 5px 0;
+}
 
 .part_listing {
   font-family: "Hind Siliguri", "Helvetica Neue", "Helvetica", Arial, sans-serif;
-  font-size: 16px; }
-  .part_listing_first {
-    font-weight: inherit; }
-  .part_listing_item {
-    color: #ccc; }
-  .part_listing_text {
-    color: #333; }
+  font-size: 16px;
+}
+.part_listing_first {
+  font-weight: inherit;
+}
+.part_listing_item {
+  color: #ccc;
+}
+.part_listing_text {
+  color: #333;
+}
 
 @media screen and (min-width: 600px) {
   .part_header-1 {
-    font-size: 42px; }
+    font-size: 42px;
+  }
   .part_header-2 {
-    font-size: 24px; }
+    font-size: 24px;
+  }
   .part_header-3 {
     font-size: 16px;
-    font-weight: bold; }
+    font-weight: bold;
+  }
   .part_header-4 {
     font-size: 16px;
-    font-weight: bold; }
+    font-weight: bold;
+  }
   .part_header-5 {
     font-size: 16px;
-    font-weight: bold; }
+    font-weight: bold;
+  }
   .part_header-6 {
     font-size: 16px;
-    font-weight: bold; } }
-
+    font-weight: bold;
+  }
+}
 .common_font {
-  font-family: "Hind Siliguri", "Helvetica Neue", "Helvetica", Arial, sans-serif; }
+  font-family: "Hind Siliguri", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+}

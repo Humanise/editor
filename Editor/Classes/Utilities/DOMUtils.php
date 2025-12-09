@@ -77,8 +77,11 @@ class DOMUtils {
     $str = htmLawed($str);
     $doc = new DOMDocument();
     $doc->recover = TRUE;
+    if ($str === null || trim($str) === '') {
+      return $doc;
+    }
     try {
-      $success = @$doc->loadXML($str,LIBXML_NOERROR);
+      @$doc->loadXML($str, LIBXML_NOERROR);
     } catch (Exception $e) {
       Log::debug($e);
       Log::debug($str);
@@ -86,8 +89,12 @@ class DOMUtils {
     return $doc;
   }
 
-  static function parse($str,$encoding = "ISO-8859-15") {
-    $doc = new DOMDocument("1.0",$encoding);
+  public static function parse($str, $encoding = "ISO-8859-15"): DOMDocument|null
+  {
+    if ($str === null || trim($str) === '') {
+      return null;
+    }
+    $doc = new DOMDocument("1.0", $encoding);
     $success = @$doc->loadXML($str);
     if ($success) {
       return $doc;

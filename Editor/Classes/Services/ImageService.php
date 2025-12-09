@@ -403,7 +403,6 @@ class ImageService {
   }
 
   static function createImageFromFile($tempPath,$fileName = null,$title = null,$group = null) {
-    global $basePath;
 
     if (!file_exists($tempPath)) {
       Log::debug('File not found: ' . $tempPath);

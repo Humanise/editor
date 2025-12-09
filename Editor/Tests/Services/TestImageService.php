@@ -48,6 +48,7 @@ class TestImageService extends UnitTestCase {
     $this->assertNotNull($result);
 
     $image = $result->getObject();
+    $this->assertNotNull($image);
 
     $this->assertEqual($image->getWidth(),548);
     $this->assertEqual($image->getHeight(),448);

@@ -19,6 +19,9 @@ class Strings {
   }
 
   static function escapeSimpleXML($input) {
+    if (Strings::isBlank($input)) {
+      return $input;
+    }
     $output = $input;
     $output = str_replace('&', '&amp;', $output);
     $output = str_replace('<', '&lt;', $output);
@@ -113,6 +116,9 @@ class Strings {
   }
 
   static function escapeXMLBreak($input,$break) {
+    if (Strings::isBlank($input)) {
+      return $input;
+    }
     $output = Strings::escapeEncodedXML($input);
     $output = str_replace("&#13;&#10;", $break, $output);
     $output = str_replace("&#13;", $break, $output);

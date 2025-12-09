@@ -331,12 +331,12 @@ class FileService {
     return Strings::concatUrl($basePath,$path);
   }
 
-  static function getFileFilename($id) {
-    $sql = "select filename from file where object_id=" . Database::int($id);
-    if ($row = Database::selectFirst($sql)) {
-      return $row['filename'];
+  static function getFileFilename($id) : string|null {
+    $file = File::load($id);
+    if ($file) {
+      return $file->getFilename();
     }
-    return NULL;
+    return null;
   }
 
   static function getGroupCounts() {
