@@ -10,6 +10,8 @@ if (!isset($GLOBALS['basePath'])) {
 }
 class Database {
 
+  private static ?mysqli $connection = null;
+
   static function testConnection() {
     try {
       if (!function_exists('mysqli_connect')) {
@@ -55,27 +57,58 @@ class Database {
     }
   }
 
-  static function getConnection() {
-    if (!isset($GLOBALS['OP_CON'])) {
-      $config = ConfigurationService::getDatabase();
-      $con = mysqli_connect($config['host'], $config['user'],$config['password'],false);
-      if (!$con) {
-        return false;
-      }
-      // TODO mysqli_set_charset is expensive - and sometimes it has no effect (it is correct already)
-      if (ConfigurationService::isUnicode()) {
-        mysqli_set_charset($con,'utf8');
-      } else {
-        mysqli_set_charset($con,'latin1');
-      }
-      mysqli_select_db($con,$config['database']);
-      if (mysqli_errno($con) > 0) {
-        return false;
-      }
-      //$con->query("SET timezone = 'UTC'");
-      $GLOBALS['OP_CON'] = $con;
+  /**
+   * Get database connection (singleton pattern)
+   */
+  public static function getConnection(): mysqli {
+    if (self::$connection === null) {
+      self::connect();
     }
-    return $GLOBALS['OP_CON'];
+
+    // Check if connection is still alive
+    if (!self::$connection->ping()) {
+      self::connect();
+    }
+
+    return self::$connection;
+  }
+
+  /**
+   * Establish database connection
+   */
+  private static function connect(): void {
+
+    // Enable exception mode for better error handling
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+    try {
+      $config = ConfigurationService::getDatabase();
+        self::$connection = new mysqli(
+          $config['host'],
+          $config['user'],
+          $config['password'],
+          $config['database']
+        );
+
+        // Set character set (utf8mb4 for full Unicode support)
+        self::$connection->set_charset('utf8mb4');
+
+        self::$connection->options(MYSQLI_OPT_CONNECT_TIMEOUT, 5);
+
+        // Optional: Set timezone
+        // self::$connection->query("SET time_zone = '+00:00'");
+
+    } catch (mysqli_sql_exception $e) {
+        error_log("Database connection failed: " . $e->getMessage());
+        throw new RuntimeException("Unable to connect to database", 0, $e);
+    }
+  }
+
+  public static function closeConnection(): void {
+    if (self::$connection !== null) {
+      self::$connection->close();
+      self::$connection = null;
+    }
   }
 
   static function select($sql,$parameters = null) {
