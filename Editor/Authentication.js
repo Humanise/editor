@@ -32,7 +32,7 @@ var controller = {
       method : 'GET',
       url : '../hui/info/preload.json',
       $object : function(obj) {
-        var p = new hui.Preloader({context:hui.ui.context+'/hui'});
+        var p = new hui.Preloader({context:hui.ui.context});
         p.addImages(obj);
         p.load();
       }
