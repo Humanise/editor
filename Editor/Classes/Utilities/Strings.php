@@ -307,6 +307,7 @@ class Strings {
   }
 
   static function fromJSON($str, $asArray = false) {
+    if ($str == null) return null;
     return json_decode($str, $asArray);
   }
 

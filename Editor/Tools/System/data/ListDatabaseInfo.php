@@ -6,11 +6,11 @@
 require_once '../../../Include/Private.php';
 
 $con = Database::getConnection();
-$status = mysql_stat($con);
-$server = mysql_get_server_info($con);
-$host = mysql_get_host_info($con);
-$protocol = mysql_get_proto_info($con);
-$client = mysql_get_client_info();
+$status = mysqli_stat($con);
+$server = mysqli_get_server_info($con);
+$host = mysqli_get_host_info($con);
+$protocol = mysqli_get_proto_info($con);
+$client = mysqli_get_client_info();
 
 $writer = new ListWriter();
 
