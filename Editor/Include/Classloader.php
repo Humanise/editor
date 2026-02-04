@@ -5,20 +5,20 @@ if (!isset($GLOBALS['basePath'])) {
 }
 require_once $basePath . 'Editor/Info/Classes.php';
 spl_autoload_register(function ($class_name) {
-  global $basePath,$HUMANISE_EDITOR_CLASSES;
+  global $basePath, $HUMANISE_EDITOR_CLASSES;
 
   if (is_array($HUMANISE_EDITOR_CLASSES) && is_array($HUMANISE_EDITOR_CLASSES['all'])) {
-    if (array_key_exists($class_name,$HUMANISE_EDITOR_CLASSES['all'])) {
+    if (array_key_exists($class_name, $HUMANISE_EDITOR_CLASSES['all'])) {
       require_once $basePath . 'Editor/Classes/' . $HUMANISE_EDITOR_CLASSES['all'][$class_name];
       return;
     }
   }
 
   // Special Twig handling
-  if (Strings::startsWith($class_name,'Twig_')) {
-    $parts = explode('_',$class_name);
+  if (Strings::startsWith($class_name, 'Twig_')) {
+    $parts = explode('_', $class_name);
     array_shift($parts);
-    $path = $basePath . 'Editor/Libraries/twig/' . implode('/',$parts) . '.php';
+    $path = $basePath . 'Editor/Libraries/twig/' . implode('/', $parts) . '.php';
     if (file_exists($path)) {
       require_once $path;
       return;
@@ -38,4 +38,3 @@ spl_autoload_register(function ($class_name) {
     }
   }
 });
-?>

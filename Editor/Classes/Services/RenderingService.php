@@ -326,7 +326,7 @@ class RenderingService {
     }
   }
 
-  static function _getAgent() {
+  static function _getAgent(): string {
     if (isset($_SERVER['HTTP_USER_AGENT'])) {
       $str = $_SERVER['HTTP_USER_AGENT'];
       $analyzer = new UserAgentAnalyzer($str);
@@ -335,7 +335,7 @@ class RenderingService {
     return '';
   }
 
-  static function findPage($type) {
+  static function findPage($type): int|null {
     $sql = "select page_id from specialpage where type = @text(type) order by language asc";
     $row = Database::selectFirst($sql, ['type' => $type]);
     if ($row) {

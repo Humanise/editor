@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package OnlinePublisher
  * @subpackage Public
@@ -44,11 +45,9 @@ if (Strings::isBlank($path)) {
 if (strpos($path, 'api/') === 0) {
   if (preg_match('/api\/style\/([a-zA-Z0-9_]+)\.css/', $path, $matches)) {
     DesignService::writeCSS($matches[1]);
-  }
-  else if (preg_match('/api\/style\/([a-zA-Z0-9_]+)\.js/', $path, $matches)) {
+  } else if (preg_match('/api\/style\/([a-zA-Z0-9_]+)\.js/', $path, $matches)) {
     DesignService::writeJS($matches[1]);
-  }
-  else {
+  } else {
     ApiService::handle();
   }
   exit();
@@ -73,8 +72,7 @@ if (!CacheService::sendCachedPage($id, $path)) {
   if (strlen($path) > 1) {
     $relative = str_repeat('../', substr_count($path, '/'));
     $samePageBaseUrl = $relative . $path . '?';
-  }
-  else {
+  } else {
     $relative = '';
     $samePageBaseUrl = '?id=' . $id . '&amp;';
   }
@@ -83,7 +81,7 @@ if (!CacheService::sendCachedPage($id, $path)) {
   }
 
   if ($id == -1 && Strings::isBlank($path)) {
-    $id = RenderingService::findPage('home');
+    $id = RenderingService::findPage(type: 'home');
   }
   // echo $id;
   $page = RenderingService::buildPage($id, $path, Request::getParameters());
@@ -101,9 +99,9 @@ if (!CacheService::sendCachedPage($id, $path)) {
   if (!$page) {
     if (Strings::isNotBlank($path)) {
       $sql = "select path from page where path = @text(pathA) or path = @text(pathB)";
-      if ($row = Database::selectFirst($sql,['pathA' => $path . '/','pathB' => '/' . $path . '/'])) {
+      if ($row = Database::selectFirst($sql, ['pathA' => "{$path}/", 'pathB' => "/{$path}/"])) {
         $location = $row['path'];
-        if (strpos($location,'/') !== 0) {
+        if (strpos($location, '/') !== 0) {
           $location = '/' . $location;
         }
         Response::redirect($location);
@@ -119,19 +117,15 @@ if (!CacheService::sendCachedPage($id, $path)) {
   else if ($page['secure']) {
     if ($user = ExternalSession::getUser()) {
       if (RenderingService::userHasAccessToPage($user['id'], $page['id'])) {
-        RenderingService::writePage($id, $path, $page, $relative, $samePageBaseUrl);
+        RenderingService::writePage(id: $id, path: $path, page: $page, relative: $relative, samePageBaseUrl: $samePageBaseUrl);
+      } else {
+        RenderingService::goToAuthenticationPage(id: $page['id'], path: $path);
       }
-      else {
-        RenderingService::goToAuthenticationPage($page['id'], $path);
-      }
-    }
-    else {
-      RenderingService::goToAuthenticationPage($page['id'], $path);
+    } else {
+      RenderingService::goToAuthenticationPage(id: $page['id'], path: $path);
     }
   } // If nothing special about page
   else {
-    RenderingService::writePage($id, $path, $page, $relative, $samePageBaseUrl);
+    RenderingService::writePage(id: $id, path: $path, page: $page, relative: $relative, samePageBaseUrl: $samePageBaseUrl);
   }
 }
-
-?>
