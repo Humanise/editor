@@ -309,16 +309,18 @@ class PageService {
     $text = $query->getText();
     if (Strings::isNotBlank($text)) {
       $select->addLimit(
-        "(page.title like " . Database::search($text) .
-        " or page.`index` like " . Database::search($text) .
-        " or page.description like " . Database::search($text) .
-        " or page.keywords like " . Database::search($text) . ")"
+        "(page.title like @fuzzy(text)" .
+        " or page.`index` like @fuzzy(text)" .
+        " or page.description like @fuzzy(text)" .
+        " or page.keywords like @fuzzy(text) )"
       );
+      $select->addParameter('text', $text);
     }
     // Free text search...
     $contentText = $query->getContentText();
     if (Strings::isNotBlank($contentText)) {
-      $select->addLimit("page.`index` like " . Database::search($contentText));
+      $select->addLimit("page.`index` like @fuzzy(contentText)");
+      $select->addParamater('contentText', $contentText);
     }
     // Relations...
     if (count($query->getRelationsFrom()) > 0) {
@@ -326,12 +328,15 @@ class PageService {
       for ($i = 0; $i < count($relations); $i++) {
         $relation = $relations[$i];
         $select->addTable('relation as relation_from_' . $i);
-        $select->addLimit('relation_from_' . $i . '.to_object_id=page.id');
-        $select->addLimit("relation_from_" . $i . ".to_type='page'");
-        $select->addLimit("relation_from_" . $i . ".from_type=" . Database::text($relation['fromType']));
-        $select->addLimit('relation_from_' . $i . '.from_object_id=' . Database::int($relation['id']));
+        $select->addLimit('relation_from_' . $i . '.to_object_id = page.id');
+        $select->addLimit("relation_from_" . $i . ".to_type = 'page'");
+        $select->addLimit("relation_from_" . $i . ".from_type = @text(relation_type" . $i . ")");
+        $select->addParameter('relation_type' . $i, $relation['fromType']);
+        $select->addLimit('relation_from_' . $i . '.from_object_id = @int(relation_id' . $i . ')');
+        $select->addParameter('relation_id' . $i, $relation['id']);
         if ($relation['kind']) {
-          $select->addLimit("relation_from_" . $i . ".kind=" . Database::text($relation['kind']));
+          $select->addLimit("relation_from_" . $i . ".kind = @text(relation_kind" . $i . ")");
+          $select->addParameter('relation_kind' . $i, $relation['kind']);
         }
       }
     }
@@ -347,13 +352,13 @@ class PageService {
 
     $result = new SearchResult();
 
-    $list = Database::selectAll($select->toSQL());
+    $list = Database::selectAll($select->toSQL(), $select->getParameters());
     $result->setList($list);
 
     $select->clearFromAndTo()->clearColumns();
     $select->addColumn("count(page.id) as total");
 
-    $count = Database::selectFirst($select->toSQL());
+    $count = Database::selectFirst($select->toSQL(), $select->getParameters());
     $result->setTotal(intval($count['total']));
 
     return $result;

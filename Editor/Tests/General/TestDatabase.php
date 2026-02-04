@@ -87,6 +87,15 @@ class TestDatabase extends UnitTestCase {
     $this->assertEqual($expected,$compiled);
   }
 
+  function testUnderscore() {
+    $sql = "SELECT * from table where id = @int(relation_id0)";
+    $parameters = ['relation_id0' => 5];
+    $expected = "SELECT * from table where id = 5";
+
+    $compiled = Database::compile($sql, $parameters);
+    $this->assertEqual($expected, $compiled);
+  }
+
   function testIdCompilingSimple() {
     $sql = "SELECT * from table where id = @id";
     $parameters = 5355;

@@ -16,6 +16,7 @@ class SelectBuilder {
   private $orderings = [];
   private $from = null;
   private $to = null;
+  private array $parameters = [];
 
   function addColumn($column) {
     $this->columns[] = $column;
@@ -39,7 +40,12 @@ class SelectBuilder {
     return $this;
   }
 
-  function addOrdering($column,$descending = false) {
+  function addParameter(string $name, $value) {
+    $this->parameters[$name] = $value;
+    return $this;
+  }
+
+  function addOrdering($column, $descending = false) {
     $this->orderings[] = ['column' => $column, 'descending' => $descending];
     return $this;
   }
@@ -63,6 +69,10 @@ class SelectBuilder {
     $this->from = null;
     $this->to = null;
     return $this;
+  }
+
+  function getParameters() {
+    return $this->parameters;
   }
 
   function toSQL() {

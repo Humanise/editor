@@ -131,7 +131,7 @@ $gui = '
   </window>
 
 
-  <window title="{News; da:Nyhed}" name="newsWindow" variant="news" icon="common/news" width="450">
+  <window title="{News; da:Nyhed}" name="newsWindow" icon="common/news" width="450">
 
     <tabs small="true" centered="true">
 

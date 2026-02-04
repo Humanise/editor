@@ -12,13 +12,16 @@ class ReviewService {
 
   static function search($query) {
     $sql = '';
-    if ($query['unreviewed']) {
+    $unreviewed = isset($query['unreviewed']) && !!$query['unreviewed'];
+    $accepted = isset($query['accepted']) && !!$query['accepted'];
+    $rejected = isset($query['rejected']) && !!$query['rejected'];
+    if ($unreviewed) {
       $sql = "select page.id as page_id, page.title as page_title,'' as user_title, null as date, -1 as accepted
         from page where page.id not in (select relation.from_object_id from relation,review
         where relation.to_type='object' and relation.to_object_id=review.object_id)
         order by date desc,page_title";
     }
-    if ($query['accepted'] || $query['rejected']) {
+    if ($accepted || $rejected) {
       if ($sql) {
         $sql .= ' union ';
       }
@@ -28,16 +31,18 @@ class ReviewService {
         and page_review.to_type='object' and page_review.to_object_id=review.object_id
         and review_user.from_type='object' and review_user.from_object_id=review.object_id
         and review_user.to_type='object' and review_user.to_object_id=user.id";
-      if ($query['accepted'] && !$query['rejected']) {
+      if ($accepted && !$rejected) {
         $sql .= ' and review.accepted=1';
       }
-      if (!$query['accepted'] && $query['rejected']) {
+      if (!$accepted && $rejected) {
         $sql .= ' and review.accepted=0';
       }
-      if ($span == 'day') {
-        $sql .= ' and review.date < @datetime(day)';
-      } else if ($span == 'week') {
-        $sql .= ' and review.date < @datetime(week)';
+      if (isset($query['span'])) {
+        if ($query['span'] == 'day') {
+          $sql .= ' and review.date < @datetime(day)';
+        } else if ($query['span'] == 'week') {
+          $sql .= ' and review.date < @datetime(week)';
+        }
       }
 
     }

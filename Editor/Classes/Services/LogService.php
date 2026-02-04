@@ -19,23 +19,26 @@ class LogService {
     if (isset($query['size'])) {
       $size = $query['size'];
     }
-
+    $params = [];
     $sql = "select UNIX_TIMESTAMP(`time`) as `time`,`category`,`event`,`entity`,`message`,`user_id`,`ip`,`session`,user.username from log left join `user` on object_id=log.user_id";
     $where = '';
     if (isset($query['category']) && $query['category'] != 'all') {
-      $where .= " `category`=" . Database::text($query['category']);
+      $where .= " `category` = @text(category)";
+      $params['category'] = $query['category'];
     }
     if (isset($query['event']) && $query['event'] != 'all') {
       if ($where) {
         $where .= ' and ';
       }
-      $where .= " `event`=" . Database::text($query['event']);
+      $where .= " `event` = @text(event)";
+      $params['event'] = $query['event'];
     }
     if (isset($query['text']) && Strings::isNotBlank($query['text'])) {
       if ($where) {
         $where .= ' and ';
       }
-      $where .= " `message` like " . Database::search($query['text']);
+      $where .= " `message` like @fuzzy(text)";
+      $params['text'] = $query['text'];
     }
     if ($where != '') {
       $sql .= ' where ' . $where;
@@ -47,8 +50,8 @@ class LogService {
     $result = new SearchResult();
     $result->setWindowSize($size);
     $result->setWindowPage($page);
-    $result->setList(Database::selectAll($sql));
-    $row = Database::selectFirst($countSql);
+    $result->setList(Database::selectAll($sql, $params));
+    $row = Database::selectFirst($countSql, $params);
     $result->setTotal(intval($row['num']));
 
     return $result;

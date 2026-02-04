@@ -121,7 +121,7 @@ class Database {
       $sql = Database::compile($sql,$parameters);
     }
     Database::debug($sql);
-    $result = mysqli_query($con,$sql);
+    $result = mysqli_query($con, $sql);
     if (mysqli_errno($con) > 0) {
       error_log(mysqli_error($con) . ': ' . $sql);
       return false;
@@ -472,7 +472,7 @@ class Database {
       $vars = ['id' => $vars];
     }
     $replacements = [];
-    if (preg_match_all("/@[a-z]+\\([a-zA-Z]+\\)|@id/u", $sql,$matches) > 0) {
+    if (preg_match_all("/@[a-z]+\\([a-zA-Z_0-9]+\\)|@id/u", $sql, $matches) > 0) {
       foreach ($matches[0] as $expression) {
         if ($expression == '@id') {
           $type = 'int';

@@ -122,7 +122,7 @@ class UI {
     '<xsl:variable name="language">' . InternalSession::getLanguage() . '</xsl:variable>';
   }
 
-  static function localize($xml,$language = 'en') {
+  static function localize($xml, $language = 'en') {
 
     $pattern = "/({[^}]+})/mi";
     preg_match_all($pattern, $xml, $matches,PREG_OFFSET_CAPTURE);
@@ -134,7 +134,7 @@ class UI {
       }
       $old = $matches[0][$i][0];
       $parts = UI::extract($old);
-      $new = array_key_exists($language,$parts) ? $parts[$language] : @$parts['any'];
+      $new = array_key_exists($language, $parts) ? $parts[$language] : (@$parts['any'] || '');
       $xml = substr_replace ( $xml , $new , $pos + $diff ,strlen($old));
 
       $diff = $diff + strlen($new) - strlen($old);

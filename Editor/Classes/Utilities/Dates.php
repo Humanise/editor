@@ -71,7 +71,7 @@ class Dates {
   static function formatLongDateTime($timestamp,$locale = "da_DK") {
     if ($timestamp) {
       setlocale(LC_TIME, $locale);
-      return strftime("%e. %b %Y kl. %H:%M",$timestamp);
+      return date("j\. M Y \k\l\. H\:i",$timestamp);
     } else {
       return '';
     }
@@ -80,14 +80,14 @@ class Dates {
   static function formatShortDate($timestamp) {
     if ($timestamp) {
       setlocale(LC_TIME, "da_DK");
-      return strftime("%e. %b",$timestamp);
+      return date("j\. M", $timestamp);
     }
   }
 
   static function formatLongDate($timestamp,$locale = "da_DK") {
     if ($timestamp) {
       setlocale(LC_TIME, $locale);
-      return strftime("%e. %b %Y",$timestamp);
+      return date("j\. M Y", $timestamp);
     } else {
       return '';
     }
@@ -95,21 +95,21 @@ class Dates {
 
   static function formatDate($timestamp,$options = []) {
     if ($timestamp == null) return '';
-    $format = "%e. %B";
+    $format = "j\. F";
     if (isset($options['shortWeekday'])) {
-      $format = "%a " . $format;
+      $format = "D " . $format;
     }
     if (!isset($options['year']) || $options['year']) {
-      $format .= ' %Y';
+      $format .= ' Y';
     }
     setlocale(LC_TIME, "da_DK");
-    return strftime($format,$timestamp);
+    return date($format, $timestamp);
   }
 
   static function formatDateTime($timestamp,$locale = "da_DK") {
     if ($timestamp) {
       setlocale(LC_TIME, $locale);
-      return strftime("%e. %b kl. %H:%M",$timestamp);
+      return date("j\. M \k\l\. H\:i", $timestamp);
     } else {
       return '';
     }
@@ -118,14 +118,14 @@ class Dates {
   static function formatShortTime($timestamp,$locale = "da_DK") {
     if ($timestamp) {
       setlocale(LC_TIME, $locale);
-      return strftime("%H:%M",$timestamp);
+      return date("H\:i", $timestamp);
     }
   }
 
   static function formatLongDateTimeGM($timestamp,$locale = "da_DK") {
     if ($timestamp) {
       setlocale(LC_TIME, $locale);
-      return gmstrftime("%e. %b %Y kl. %H:%M",$timestamp);
+      return gmdate("j\. M Y \k\l\. H\:i", $timestamp);
     } else {
       return '';
     }
@@ -174,7 +174,7 @@ class Dates {
           }
         }
       }
-      if (strftime('%Y',time()) !== strftime('%Y',$timestamp)) {
+      if (date('Y',time()) !== date('Y',$timestamp)) {
         return Dates::formatLongDateTime($timestamp,$locale);
       } else {
         return Dates::formatDateTime($timestamp,$locale);

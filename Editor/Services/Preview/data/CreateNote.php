@@ -24,7 +24,7 @@ $issue->setKind($kind);
 $issue->save();
 $issue->publish();
 
-RelationsService::relateObjectToPage($issue,$page,'subject');
-RelationsService::relateObjectToObject($isuse,$user,'reporter');
+RelationsService::relateObjectToPage($issue, $page, 'subject');
+RelationsService::relateObjectToObject($issue, $user, 'reporter');
 
 ?>
