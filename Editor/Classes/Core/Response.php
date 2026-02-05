@@ -6,13 +6,13 @@ if (!isset($GLOBALS['basePath'])) {
 
 class Response {
 
-  static $OK = 200;
-  static $FORBIDDEN = 403;
-  static $NOT_FOUND = 404;
-  static $UNAUTHORIZED = 401;
-  static $UNAVAILABLE = 503;
+  public static $OK = 200;
+  public static $FORBIDDEN = 403;
+  public static $NOT_FOUND = 404;
+  public static $UNAUTHORIZED = 401;
+  public static $UNAVAILABLE = 503;
 
-  static function sendObject($obj) {
+  public static function sendObject($obj): void {
     if (!ConfigurationService::isUnicode()) {
       $obj = Strings::toUnicode($obj);
     }
@@ -27,11 +27,11 @@ class Response {
     echo $str;
   }
 
-  static function setExpiresInDays($days = 0) {
+  public static function setExpiresInDays($days = 0): void {
     Response::setExpiresInHours($days * 24);
   }
 
-  static function setExpiresInHours($hours = 0) {
+  public static function setExpiresInHours($hours = 0): void {
     $offset = 60 * 60 * $hours;
 
     $modified = ConfigurationService::getDeploymentTime();
@@ -41,67 +41,75 @@ class Response {
     header("Pragma: hack");
   }
 
-  static function noCache() {
+  public static function noCache(): void {
     header('Cache-Control: no-cache, no-store, must-revalidate');
     header("Expires: " . gmdate("D, d M Y H:i:s", 0) . " GMT");
   }
 
-  static function redirect($url) {
+  public static function redirect($url): void {
     session_write_close();
     header('Location: ' . $url);
     exit();
   }
 
-  static function redirectMoved($url) {
+  public static function redirectMoved($url): void {
     session_write_close();
-    header('HTTP/1.1 301 Moved Permanently',true,301);
+    header('HTTP/1.1 301 Moved Permanently', replace: true, response_code: 301);
     header('Location: ' . $url);
     exit();
   }
 
-  static function contentDisposition($filename) {
+  public static function contentDisposition($filename): void {
     header("Content-Disposition: attachment; filename=\"$filename\"");
   }
 
-  static function internalServerError($text = null) {
+  public static function internalServerError($text = null): void {
     Response::sendStatus(500,$text);
   }
 
-  static function badGateway($text = null) {
+  public static function badGateway($text = null): void {
     Response::sendStatus(502,$text);
   }
 
-  static function badRequest($text = null) {
+  public static function badRequest($text = null): void {
     Response::sendStatus(400,$text);
   }
 
-  static function notFound($text = null) {
+  public static function notFound($text = null): void {
     Response::sendStatus(404,$text);
   }
 
-  static function unauthorized($text = null) {
+  public static function unauthorized($text = null): void {
     Response::sendStatus(Response::$UNAUTHORIZED,$text);
   }
 
-  static function forbidden($text = null) {
+  public static function forbidden($text = null): void {
     Response::sendStatus(Response::$FORBIDDEN,$text);
   }
 
-  static function uploadSuccess() {
-    header('Content-Type: text/plain');
-    echo 'SUCCESS';
+  public static function uploadSuccess(): void {
+    Response::text('SUCCESS');
   }
 
-  static function uploadFailure() {
+  public static function uploadFailure(): void {
     Response::badRequest();
-    header('Content-Type: text/plain');
-    echo 'FAILURE';
+    Response::text('FAILURE');
   }
 
-  static function sendStatus($number,$text = null) {
+  public static function text(string $text): void {
+    header("Content-Type: text/plain; charset=UTF-8");
+    echo $text;
+  }
+
+  public static function html(string $html): void {
+    header("Content-Type: text/html; charset=UTF-8");
+    echo $html;
+  }
+
+  public static function sendStatus($number, $text = null): void {
     http_response_code($number);
     if ($text) {
-      echo '<!DOCTYPE html><html><head><title>' . $text . '</title></head><body><h1>' . $text . '</h1></body><p>' . $number . '</p></html>';
+      echo '<!DOCTYPE html><html><head><title>' . $text . '</title></head><body><h1>' . $text . '</h1><p>' . $number . '</p></body></html>';
     }
   }
 }

@@ -122,11 +122,11 @@ op.DocumentEditor = {
       float : info.section.float
     };
     var parameters = hui.override({
-      id : options.part.id,
+      partId : options.part.id,
       pageId : _editor.getPageId(),
-      type : options.part.type,
-      style : info.part.style,
-      section : hui.string.toJSON(section)
+      partType : options.part.type,
+      partStyle : info.part.style,
+      partSection : hui.string.toJSON(section)
     },options.parameters);
     hui.ui.request({
       url : _editor.path('Editor/Template/document/live/SavePart.php'),

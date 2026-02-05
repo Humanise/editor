@@ -187,7 +187,7 @@ function listProducts() {
         text($row['product_title'])->
         /*startIcons()->
           icon(array(
-            'icon' => 'monochrome/info_light',
+            'icon' => 'monochrome/info',
             'action' => true,
             'data' => array('action' => 'editProduct','id' => $row['product_id']),
             'revealing' => true)

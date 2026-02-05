@@ -5,11 +5,11 @@
  */
 require_once '../../../Include/Private.php';
 
-$id = Request::getInt('id');
+$id = Request::getInt('partId');
 $pageId = Request::getInt('pageId');
-$type = Request::getString('type');
+$type = Request::getString('partType');
 
-$sectionData = Request::getObject('section');
+$sectionData = Request::getObject('partSection');
 
 if ($section = DocumentSection::load($id)) {
 
@@ -24,14 +24,13 @@ if ($section = DocumentSection::load($id)) {
       $section->setClass($sectionData->class);
       $section->setStyle($sectionData->style);
       $section->save();
-      $part->setStyle(Request::getString('style'));
+      $part->setStyle(Request::getString('partStyle'));
       $part->save();
 
       PageService::markChanged($pageId);
 
-      header("Content-Type: text/html; charset=UTF-8");
       $context = DocumentTemplateController::buildPartContext($pageId);
-      echo $ctrl->render($part,$context);
+      Response::html($ctrl->render($part, $context));
       exit;
     }
   }

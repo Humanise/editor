@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <subgui xmlns="uri:hui" globals="false">
 
-  <window width="500" name="rowWindow" title="Row" icon="monochrome/info_light" variant="light">
+  <window width="500" name="rowWindow" title="Row" variant="light">
     <pages name="rowPages">
       <page key="layout">
         <form name="rowFormula" padding="10">
@@ -36,7 +36,7 @@
     </buttons>
   </window>
 
-  <window width="500" name="columnWindow" title="Column" icon="monochrome/info_light" variant="light">
+  <window width="500" name="columnWindow" title="Column" variant="light">
     <pages name="columnPages">
       <page key="layout">
         <form name="columnFormula" padding="10">
