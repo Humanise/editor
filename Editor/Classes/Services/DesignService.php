@@ -369,7 +369,11 @@ class DesignService {
     if (DesignService::$useYUI) {
       $cmd = "java -jar " . $basePath . "hui/tools/yuicompressor-2.4.8.jar " . $in . " --charset UTF-8 -o " . $out;
     } else {
-      $cmd = "minify " . $in . " > " . $out;
+      if (Strings::endsWith($in, '.js')) {
+        $cmd = "uglifyjs " . $in . " > " . $out;
+      } else {
+        $cmd = "minify " . $in . " > " . $out;
+      }
     }
     ShellService::execute($cmd);
     if (!file_exists($out)) {

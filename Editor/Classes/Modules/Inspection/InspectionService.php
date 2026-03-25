@@ -125,9 +125,20 @@ class InspectionService {
       $ok = Strings::isNotBlank($text);
       $inspection = new Inspection();
       $inspection->setCategory('environment');
-      $inspection->setEntity(['type' => 'api', 'title' => 'CSS/JS minification', 'id' => 'optipng', 'icon' => 'common/object']);
+      $inspection->setEntity(['type' => 'api', 'title' => 'CSS/JS minification', 'id' => 'minify', 'icon' => 'common/object']);
       $inspection->setStatus($ok ? 'ok' : 'error');
       $inspection->setText($ok ? 'CSS/JS minification available' : 'CSS/JS minification is missing (minify from CLI)');
+      $inspection->setInfo($text);
+      $inspections[] = $inspection;
+    }
+    {
+      $text = ShellService::execute('uglifyjs -v');
+      $ok = Strings::isNotBlank($text);
+      $inspection = new Inspection();
+      $inspection->setCategory('environment');
+      $inspection->setEntity(['type' => 'api', 'title' => 'CSS/JS minification', 'id' => 'uglifyjs', 'icon' => 'common/object']);
+      $inspection->setStatus($ok ? 'ok' : 'error');
+      $inspection->setText($ok ? 'CSS/JS minification available' : 'CSS/JS minification is missing (uglifyjs from CLI)');
       $inspection->setInfo($text);
       $inspections[] = $inspection;
     }
