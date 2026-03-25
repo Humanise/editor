@@ -5,6 +5,7 @@
     padding: 0 5px 10px;
     list-style: none;
     text-align: center;
+    font-family: $special-font-family;
   }
 
   .layout_menu_item {
@@ -78,10 +79,12 @@
   }
 
   .layout_menu_link {
-    font-size: 22px;
-    line-height: 44px;
+    font-size: 24px;
+    line-height: 48px;
     padding: 0 10px;
     font-weight: 300;
+    letter-spacing: .5px;
+    color: #333;
   }
 
   .layout_menu_item-first {
@@ -95,14 +98,6 @@
 
   .layout_menu {
     //padding: 5px 0;
-  }
-
-}
-
-@include if((target: msie_lt8)) {
-
-  .layout_menu_item {
-    display: inline;
   }
 
 }

@@ -6,6 +6,9 @@
     border: 1px solid #eee;
     border-width: 1px 0;
     background: #fff;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    
 
     .common_link_text {
       color: #666;
@@ -15,29 +18,25 @@
   .layout_info_header {
     font-weight: 300;
     font-size: 28px;
-    margin: 0px 20px 10px 0;
-    height: 28px;
+    margin: 5px 20px 10px 0;
+    line-height: 1;
     color: #666;
   }
 
   .layout_info_about {
 
     p {
-      font-size: 12pt;
-      line-height: 16pt;
       margin-top: 11px;
       color: #666;
     }
   }
 
   .layout_info_more {
-    line-height: 11px;
-    font-size: 11pt;
     margin-top: 24px;
   }
 
   .layout_info_contact {
-    font-size: 9pt;
+    //font-size: 9pt;
     color: #666;
 
     p {
@@ -48,7 +47,7 @@
 
   .layout_info_name {
     color: #999;
-    font-size: 12pt;
+    //font-size: 12pt;
     font-weight: normal;
     display: block;
     margin-top: 10px;

@@ -1,6 +1,19 @@
 @import '../../basic/scss/mixins';
 
-$font-family: 'Lato','Helvetica Neue','Helvetica','Arial','Lucida Grande','Lucida Sans Unicode', sans-serif;
+//$font-family: 'Lato','Helvetica Neue','Helvetica','Arial','Lucida Grande','Lucida Sans Unicode', sans-serif;
+//$font-family: 'myriad-devanagari','Helvetica Neue','Helvetica','Arial','Lucida Grande','Lucida Sans Unicode', sans-serif;
+//$font-family: 'hind siliguri';
+//$font-family: 'Noto Sans HK';
+//$font-family: 'Mukta';
+//$font-family: 'Noto Sans Bengali';
+//$font-family: 'Figtree';
+$font-family: 'hind siliguri','Helvetica Neue','Helvetica','Arial','Lucida Grande','Lucida Sans Unicode', sans-serif;
+$special-font-family: 'myriad-devanagari','hind siliguri','Helvetica Neue','Helvetica','Arial','Lucida Grande','Lucida Sans Unicode', sans-serif;
+
+$base-font-size: 17px;
+$base-line-height: 1.3;
+$base-text-color: #333;
+$subtle-text-color: #666;
 
 $color: #324d60;
 
@@ -19,5 +32,5 @@ $link-color: #028CE0;
 
 $link-visited-color: #934DE0;
 
-
+$hover-background-color: #f6f6f6;
 $line-color: #eee;

@@ -5,6 +5,7 @@ $target: async;
 .focus {
   text-align: center;
   margin: 20px 0;
+  font-family: $special-font-family;
 
   &_hand {
     display: inline-block;
@@ -28,6 +29,7 @@ $target: async;
 
   &_text {
     font-size: 18px;
+    line-height: 1.2;
     font-weight: 200;
 
     > p {

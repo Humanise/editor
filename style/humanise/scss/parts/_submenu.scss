@@ -17,15 +17,20 @@
     line-height: 32px;
     text-decoration: none;
     color: #333;
+    border-radius: 3px;
+    &:hover {
+      background: $hover-background-color;
+    };
   }
 
   .submenu_link-highlighted {
-    color: $highlight-color;
+    //color: $highlight-color;
+    font-weight: 600;
   }
 
   .submenu_link-selected {
-    color: $highlight-color;
-    font-weight: bold;
+    //color: $highlight-color;
+    font-weight: 600;
   }
 }
 

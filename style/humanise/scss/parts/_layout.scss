@@ -109,13 +109,17 @@
 @include if((width: 760px, target:inline)) {
 
   .layout_inner_content-sidebar {
-    margin-right: 30%;
+    margin-right: 25%;
     overflow: hidden;
     padding-right: 0;
   }
 
+  .layout_inner_content {
+    padding-top: 40px;
+  }
+
   .layout_sidebar {
-    width: 30%;
+    width: 25%;
     float: right;
   }
 
@@ -133,6 +137,7 @@
     position: fixed;
     width: 100%;
     z-index: 10;
+    height: 54px;
 
     &_logo {
       left: 15px;
@@ -217,13 +222,5 @@
 
   .layout_footer {
     margin-top: -230px;
-  }
-}
-
-@include if((target: msie_lt9)) {
-  .layout_head_body, .layout_base {
-    width: 980px;
-    padding-left: 20px;
-    padding-right: 20px;
   }
 }

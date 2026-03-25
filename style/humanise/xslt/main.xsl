@@ -35,15 +35,28 @@
     </title>
     <xsl:call-template name="util:viewport"/>
     <link rel="shortcut icon" href="{$path}style/humanise/gfx/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://use.typekit.net/qzg1lcf.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&amp;family=Inter:wght@100;200;300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <!--
     <link rel="stylesheet" href="//fonts.googleapis.com/css2?family=Lato:wght@200;300;400;500;700&amp;display=swap"/>
+
+    <link href="https://fonts.googleapis.com/css2?family=Menbere:wght@100..700&amp;family=Noto+Sans+TC:wght@100..900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Palanquin:wght@100;200;300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@100..900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@100..900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet"/>
+      -->
     <xsl:call-template name="util:metatags"/>
     <xsl:call-template name="util:js"/>
 
     <xsl:call-template name="util:css">
+      <!--
       <xsl:with-param name="async" select="'true'"/>
+        -->
       <xsl:with-param name="inline" select="'true'"/>
-      <xsl:with-param name="ie-lt-9" select="'true'"/>
-      <xsl:with-param name="ie-lt-8" select="'true'"/>
     </xsl:call-template>
 
     <xsl:if test="//widget:hero">
@@ -133,10 +146,12 @@
             </xsl:choose>
           </div>
           <div class="layout_info_contact">
+            <h2 class="layout_info_header">
             <xsl:choose>
-              <xsl:when test="//p:page/p:meta/p:language='en'"><h2>Contact</h2></xsl:when>
-              <xsl:otherwise><h2 class="layout_info_header">Kontakt</h2></xsl:otherwise>
+              <xsl:when test="//p:page/p:meta/p:language='en'">Contact</xsl:when>
+              <xsl:otherwise>Kontakt</xsl:otherwise>
             </xsl:choose>
+            </h2>
             <xsl:call-template name="util:parameter">
               <xsl:with-param name="name" select="'contact'"/>
               <xsl:with-param name="default">
@@ -537,7 +552,7 @@
             <xsl:apply-templates select="widget:text"/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:text>Simpel redigering af websites</xsl:text>
+            <xsl:text>Enkel redigering af websites</xsl:text>
           </xsl:otherwise>
         </xsl:choose>
       </div>

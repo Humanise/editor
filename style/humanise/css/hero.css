@@ -11,6 +11,7 @@
   overflow: hidden;
   margin: -20px 0 20px;
   color: rgb(58, 41, 18);
+  font-family: "myriad-devanagari", "hind siliguri", "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
 }
 
 .hero_rays {
@@ -69,7 +70,7 @@
 }
 .hero_title_suffix {
   display: block;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 2em;
   text-indent: -0.07em;
 }
@@ -92,7 +93,7 @@
 .hero_button {
   display: inline-block;
   height: 2.5em;
-  line-height: 2.5em;
+  line-height: 2.8em;
   border: 1px solid rgba(255, 255, 255, 0.5);
   padding: 0 1em;
   text-decoration: none;
@@ -197,6 +198,11 @@
   }
   .hero_button {
     font-size: 18px;
+  }
+}
+@media screen and (min-width: 700px) {
+  .hero {
+    margin-top: -40px;
   }
 }
 @media screen and (min-width: 768px) {
