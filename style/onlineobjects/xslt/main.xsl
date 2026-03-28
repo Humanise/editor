@@ -16,7 +16,7 @@
 
   <xsl:include href="../../basic/xslt/util.xsl"/>
 
-  <xsl:variable name="onlineobjects_domain" select="'onlineobjects.com'" />
+  <xsl:variable name="onlineobjects_domain" select="'onlineobjects.local'" />
 
   <xsl:template match="p:page">
     <xsl:variable name="theme" select="//p:design/p:parameter[@key='theme']" />
@@ -116,7 +116,7 @@
   <xsl:template name="top">
     <div class="oo_topbar">
       <a class="oo_topbar_logo" href="https://www.onlineobjects.com/en/">
-        <em class="oo_topbar_logo_icon oo_icon_onlineobjects"><xsl:comment/></em>
+        <em class="oo_topbar_logo_icon oo_icon-onlineobjects"><xsl:comment/></em>
         <span class="oo_topbar_logo_text"><span class="oo_topbar_logo_part">Online</span>Objects</span>
       </a>
       <ul class="oo_topbar_menu oo_topbar_left">
@@ -179,7 +179,7 @@
         <a class="oo_link js-agreements" href="https://account.{$onlineobjects_domain}/en/agreements" data-test="footerAgreements"><span>Terms and privacy policy</span></a>
       </p>
       <p class="oo_footer_logo">
-        <a href="http://www.humanise.dk/"><span class="oo_icon oo_icon_humanise"><xsl:comment/></span><strong>Humanise</strong></a>
+        <a href="http://www.humanise.dk/"><span class="oo_icon oo_icon-humanise"><xsl:comment/></span><strong>Humanise</strong></a>
       </p>
     </div>
   </xsl:template>
