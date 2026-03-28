@@ -16,7 +16,7 @@
 
   <xsl:include href="../../basic/xslt/util.xsl"/>
 
-  <xsl:variable name="onlineobjects_domain" select="'onlineobjects.local'" />
+  <xsl:variable name="onlineobjects_domain" select="'onlineobjects.com'" />
 
   <xsl:template match="p:page">
     <xsl:variable name="theme" select="//p:design/p:parameter[@key='theme']" />
