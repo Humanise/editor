@@ -324,7 +324,7 @@ class Calendarsource extends ModelObject {
       if ($row['byday']) {
         $dayNums = ['MO' => 0, 'TU' => 1, 'WE' => 2, 'TH' => 3, 'FR' => 4, 'SA' => 5, 'SU' => 6];
         $weekday = Dates::getWeekDay($row['startdate']);
-        $byDays = @split(",",$row['byday']);
+        $byDays = explode(",", $row['byday']);
         foreach ($byDays as $day) {
           $new = $row;
           $extra = $dayNums[$day] - $weekday;
