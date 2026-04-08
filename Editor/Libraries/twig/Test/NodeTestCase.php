@@ -8,51 +8,135 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-abstract class Twig_Test_NodeTestCase extends PHPUnit_Framework_TestCase
+
+namespace Twig\Test;
+
+use PHPUnit\Framework\Attributes\BeforeClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
+use Twig\Compiler;
+use Twig\Environment;
+use Twig\Loader\ArrayLoader;
+use Twig\Node\Node;
+
+abstract class NodeTestCase extends TestCase
 {
-    abstract public function getTests();
+    /**
+     * @var Environment
+     */
+    private $currentEnv;
+
+    /**
+     * @return iterable<array{0: Node, 1: string, 2?: Environment|null, 3?: bool}>
+     */
+    public function getTests()
+    {
+        return [];
+    }
+
+    /**
+     * @return iterable<array{0: Node, 1: string, 2?: Environment|null, 3?: bool}>
+     */
+    public static function provideTests(): iterable
+    {
+        trigger_deprecation('twig/twig', '3.13', 'Not implementing "%s()" in "%s" is deprecated. This method will be abstract in 4.0.', __METHOD__, static::class);
+
+        return [];
+    }
 
     /**
      * @dataProvider getTests
+     * @dataProvider provideTests
+     *
+     * @return void
      */
-    public function testCompile($node, $source, $environment = null)
+    #[DataProvider('getTests'), DataProvider('provideTests')]
+    public function testCompile($node, $source, $environment = null, $isPattern = false)
     {
-        $this->assertNodeCompilation($source, $node, $environment);
+        $this->assertNodeCompilation($source, $node, $environment, $isPattern);
     }
 
-    public function assertNodeCompilation($source, Twig_Node $node, Twig_Environment $environment = null)
+    /**
+     * @return void
+     */
+    public function assertNodeCompilation($source, Node $node, ?Environment $environment = null, $isPattern = false)
     {
         $compiler = $this->getCompiler($environment);
         $compiler->compile($node);
 
-        $this->assertEquals($source, trim($compiler->getSource()));
+        if ($isPattern) {
+            $this->assertStringMatchesFormat($source, trim($compiler->getSource()));
+        } else {
+            $this->assertEquals($source, trim($compiler->getSource()));
+        }
     }
 
-    protected function getCompiler(Twig_Environment $environment = null)
+    /**
+     * @return Compiler
+     */
+    protected function getCompiler(?Environment $environment = null)
     {
-        return new Twig_Compiler(null === $environment ? $this->getEnvironment() : $environment);
+        return new Compiler($environment ?? $this->getEnvironment());
     }
 
+    /**
+     * @return Environment
+     *
+     * @final since Twig 3.13
+     */
     protected function getEnvironment()
     {
-        return new Twig_Environment();
+        return $this->currentEnv ??= static::createEnvironment();
     }
 
-    protected function getVariableGetter($name)
+    protected static function createEnvironment(): Environment
     {
-        if (version_compare(phpversion(), '5.4.0RC1', '>=')) {
-            return sprintf('(isset($context["%s"]) ? $context["%s"] : null)', $name, $name);
-        }
-
-        return sprintf('$this->getContext($context, "%s")', $name);
+        return new Environment(new ArrayLoader());
     }
 
+    /**
+     * @return string
+     *
+     * @deprecated since Twig 3.13, use createVariableGetter() instead.
+     */
+    protected function getVariableGetter($name, $line = false)
+    {
+        trigger_deprecation('twig/twig', '3.13', 'Method "%s()" is deprecated, use "createVariableGetter()" instead.', __METHOD__);
+
+        return self::createVariableGetter($name, $line);
+    }
+
+    final protected static function createVariableGetter(string $name, bool $line = false): string
+    {
+        $line = $line > 0 ? "// line $line\n" : '';
+
+        return \sprintf('%s($context["%s"] ?? null)', $line, $name);
+    }
+
+    /**
+     * @return string
+     *
+     * @deprecated since Twig 3.13, use createAttributeGetter() instead.
+     */
     protected function getAttributeGetter()
     {
-        if (function_exists('twig_template_get_attributes')) {
-            return 'twig_template_get_attributes($this, ';
-        }
+        trigger_deprecation('twig/twig', '3.13', 'Method "%s()" is deprecated, use "createAttributeGetter()" instead.', __METHOD__);
 
-        return '$this->getAttribute(';
+        return self::createAttributeGetter();
+    }
+
+    final protected static function createAttributeGetter(): string
+    {
+        return 'CoreExtension::getAttribute($this->env, $this->source, ';
+    }
+
+    /** @beforeClass */
+    #[BeforeClass]
+    final public static function checkDataProvider(): void
+    {
+        $r = new \ReflectionMethod(static::class, 'getTests');
+        if (self::class !== $r->getDeclaringClass()->getName()) {
+            trigger_deprecation('twig/twig', '3.13', 'Implementing "%s::getTests()" in "%s" is deprecated, implement "provideTests()" instead.', self::class, static::class);
+        }
     }
 }

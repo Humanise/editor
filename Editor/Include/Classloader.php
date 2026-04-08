@@ -13,10 +13,9 @@ spl_autoload_register(function ($class_name) {
       return;
     }
   }
-
   // Special Twig handling
-  if (Strings::startsWith($class_name, 'Twig_')) {
-    $parts = explode('_', $class_name);
+  if (Strings::startsWith($class_name, 'Twig\\')) {
+    $parts = explode('\\', $class_name);
     array_shift($parts);
     $path = $basePath . 'Editor/Libraries/twig/' . implode('/', $parts) . '.php';
     if (file_exists($path)) {

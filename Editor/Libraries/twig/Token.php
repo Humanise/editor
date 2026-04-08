@@ -3,129 +3,148 @@
 /*
  * This file is part of Twig.
  *
- * (c) 2009 Fabien Potencier
- * (c) 2009 Armin Ronacher
+ * (c) Fabien Potencier
+ * (c) Armin Ronacher
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
+namespace Twig;
+
 /**
- * Represents a Token.
- *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-class Twig_Token
+final class Token
 {
-    protected $value;
-    protected $type;
-    protected $lineno;
-
-    const EOF_TYPE                  = -1;
-    const TEXT_TYPE                 = 0;
-    const BLOCK_START_TYPE          = 1;
-    const VAR_START_TYPE            = 2;
-    const BLOCK_END_TYPE            = 3;
-    const VAR_END_TYPE              = 4;
-    const NAME_TYPE                 = 5;
-    const NUMBER_TYPE               = 6;
-    const STRING_TYPE               = 7;
-    const OPERATOR_TYPE             = 8;
-    const PUNCTUATION_TYPE          = 9;
-    const INTERPOLATION_START_TYPE  = 10;
-    const INTERPOLATION_END_TYPE    = 11;
-
+    public const EOF_TYPE = -1;
+    public const TEXT_TYPE = 0;
+    public const BLOCK_START_TYPE = 1;
+    public const VAR_START_TYPE = 2;
+    public const BLOCK_END_TYPE = 3;
+    public const VAR_END_TYPE = 4;
+    public const NAME_TYPE = 5;
+    public const NUMBER_TYPE = 6;
+    public const STRING_TYPE = 7;
+    public const OPERATOR_TYPE = 8;
+    public const PUNCTUATION_TYPE = 9;
+    public const INTERPOLATION_START_TYPE = 10;
+    public const INTERPOLATION_END_TYPE = 11;
     /**
-     * Constructor.
-     *
-     * @param integer $type   The type of the token
-     * @param string  $value  The token value
-     * @param integer $lineno The line position in the source
+     * @deprecated since Twig 3.21, "arrow" is now an operator
      */
-    public function __construct($type, $value, $lineno)
-    {
-        $this->type   = $type;
-        $this->value  = $value;
-        $this->lineno = $lineno;
+    public const ARROW_TYPE = 12;
+    /**
+     * @deprecated since Twig 3.21, "spread" is now an operator
+     */
+    public const SPREAD_TYPE = 13;
+
+    public function __construct(
+        private int $type,
+        private $value,
+        private int $lineno,
+    ) {
+        if (self::ARROW_TYPE === $type) {
+            trigger_deprecation('twig/twig', '3.21', 'The "%s" token type is deprecated, "arrow" is now an operator.', self::ARROW_TYPE);
+        }
+        if (self::SPREAD_TYPE === $type) {
+            trigger_deprecation('twig/twig', '3.21', 'The "%s" token type is deprecated, "spread" is now an operator.', self::SPREAD_TYPE);
+        }
     }
 
-    /**
-     * Returns a string representation of the token.
-     *
-     * @return string A string representation of the token
-     */
-    public function __toString()
+    public function __toString(): string
     {
-        return sprintf('%s(%s)', self::typeToString($this->type, true, $this->lineno), $this->value);
+        return \sprintf('%s(%s)', self::typeToString($this->type, true), $this->value);
     }
 
     /**
      * Tests the current token for a type and/or a value.
      *
      * Parameters may be:
-     * * just type
-     * * type and value (or array of possible values)
-     * * just value (or array of possible values) (NAME_TYPE is used as type)
+     *  * just type
+     *  * type and value (or array of possible values)
+     *  * just value (or array of possible values) (NAME_TYPE is used as type)
      *
-     * @param array|integer     $type   The type to test
+     * @param array|string|int  $type   The type to test
      * @param array|string|null $values The token value
-     *
-     * @return Boolean
      */
-    public function test($type, $values = null)
+    public function test($type, $values = null): bool
     {
-        if (null === $values && !is_int($type)) {
+        if (null === $values && !\is_int($type)) {
             $values = $type;
             $type = self::NAME_TYPE;
         }
 
-        return ($this->type === $type) && (
-            null === $values ||
-            (is_array($values) && in_array($this->value, $values)) ||
-            $this->value == $values
+        if (self::ARROW_TYPE === $type) {
+            trigger_deprecation('twig/twig', '3.21', 'The "%s" token type is deprecated, "arrow" is now an operator.', self::typeToEnglish(self::ARROW_TYPE));
+
+            return self::OPERATOR_TYPE === $this->type && '=>' === $this->value;
+        }
+        if (self::SPREAD_TYPE === $type) {
+            trigger_deprecation('twig/twig', '3.21', 'The "%s" token type is deprecated, "spread" is now an operator.', self::typeToEnglish(self::SPREAD_TYPE));
+
+            return self::OPERATOR_TYPE === $this->type && '...' === $this->value;
+        }
+
+        $typeMatches = $this->type === $type;
+        if ($typeMatches && self::PUNCTUATION_TYPE === $type && \in_array($this->value, ['(', '[', '|', '.', '?', '?:'], true) && $values) {
+            foreach ((array) $values as $value) {
+                if (\in_array($value, ['(', '[', '|', '.', '?', '?:'], true)) {
+                    trigger_deprecation('twig/twig', '3.21', 'The "%s" token is now an "%s" token instead of a "%s" one.', $this->value, self::typeToEnglish(self::OPERATOR_TYPE), $this->toEnglish());
+
+                    break;
+                }
+            }
+        }
+        if (!$typeMatches) {
+            if (self::OPERATOR_TYPE === $type && self::PUNCTUATION_TYPE === $this->type) {
+                if ($values) {
+                    foreach ((array) $values as $value) {
+                        if (\in_array($value, ['(', '[', '|', '.', '?', '?:'], true)) {
+                            $typeMatches = true;
+
+                            break;
+                        }
+                    }
+                } else {
+                    $typeMatches = true;
+                }
+            }
+        }
+
+        return $typeMatches && (
+            null === $values
+            || (\is_array($values) && \in_array($this->value, $values, true))
+            || $this->value == $values
         );
     }
 
-    /**
-     * Gets the line.
-     *
-     * @return integer The source line
-     */
-    public function getLine()
+    public function getLine(): int
     {
         return $this->lineno;
     }
 
     /**
-     * Gets the token type.
-     *
-     * @return integer The token type
+     * @deprecated since Twig 3.19
      */
-    public function getType()
+    public function getType(): int
     {
+        trigger_deprecation('twig/twig', '3.19', \sprintf('The "%s()" method is deprecated.', __METHOD__));
+
         return $this->type;
     }
 
-    /**
-     * Gets the token value.
-     *
-     * @return string The token value
-     */
     public function getValue()
     {
         return $this->value;
     }
 
-    /**
-     * Returns the constant representation (internal) of a given type.
-     *
-     * @param integer $type  The type as an integer
-     * @param Boolean $short Whether to return a short representation or not
-     * @param integer $line  The code line
-     *
-     * @return string The string representation
-     */
-    public static function typeToString($type, $short = false, $line = -1)
+    public function toEnglish(): string
+    {
+        return self::typeToEnglish($this->type);
+    }
+
+    public static function typeToString(int $type, bool $short = false): string
     {
         switch ($type) {
             case self::EOF_TYPE:
@@ -167,22 +186,20 @@ class Twig_Token
             case self::INTERPOLATION_END_TYPE:
                 $name = 'INTERPOLATION_END_TYPE';
                 break;
+            case self::ARROW_TYPE:
+                $name = 'ARROW_TYPE';
+                break;
+            case self::SPREAD_TYPE:
+                $name = 'SPREAD_TYPE';
+                break;
             default:
-                throw new LogicException(sprintf('Token of type "%s" does not exist.', $type));
+                throw new \LogicException(\sprintf('Token of type "%s" does not exist.', $type));
         }
 
-        return $short ? $name : 'Twig_Token::'.$name;
+        return $short ? $name : 'Twig\Token::'.$name;
     }
 
-    /**
-     * Returns the english representation of a given type.
-     *
-     * @param integer $type The type as an integer
-     * @param integer $line The code line
-     *
-     * @return string The string representation
-     */
-    public static function typeToEnglish($type, $line = -1)
+    public static function typeToEnglish(int $type): string
     {
         switch ($type) {
             case self::EOF_TYPE:
@@ -211,8 +228,12 @@ class Twig_Token
                 return 'begin of string interpolation';
             case self::INTERPOLATION_END_TYPE:
                 return 'end of string interpolation';
+            case self::ARROW_TYPE:
+                return 'arrow function';
+            case self::SPREAD_TYPE:
+                return 'spread operator';
             default:
-                throw new LogicException(sprintf('Token of type "%s" does not exist.', $type));
+                throw new \LogicException(\sprintf('Token of type "%s" does not exist.', $type));
         }
     }
 }

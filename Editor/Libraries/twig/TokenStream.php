@@ -3,82 +3,87 @@
 /*
  * This file is part of Twig.
  *
- * (c) 2009 Fabien Potencier
- * (c) 2009 Armin Ronacher
+ * (c) Fabien Potencier
+ * (c) Armin Ronacher
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Twig;
+
+use Twig\Error\SyntaxError;
 
 /**
  * Represents a token stream.
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-class Twig_TokenStream
+final class TokenStream
 {
-    protected $tokens;
-    protected $current;
-    protected $filename;
+    private $current = 0;
 
-    /**
-     * Constructor.
-     *
-     * @param array  $tokens   An array of tokens
-     * @param string $filename The name of the filename which tokens are associated with
-     */
-    public function __construct(array $tokens, $filename = null)
-    {
-        $this->tokens     = $tokens;
-        $this->current    = 0;
-        $this->filename   = $filename;
+    public function __construct(
+        private array $tokens,
+        private ?Source $source = null,
+    ) {
+        if (null === $this->source) {
+            trigger_deprecation('twig/twig', '3.16', \sprintf('Not passing a "%s" object to "%s" constructor is deprecated.', Source::class, __CLASS__));
+
+            $this->source = new Source('', '');
+        }
     }
 
-    /**
-     * Returns a string representation of the token stream.
-     *
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
         return implode("\n", $this->tokens);
     }
 
+    /**
+     * @return void
+     */
     public function injectTokens(array $tokens)
     {
-        $this->tokens = array_merge(array_slice($this->tokens, 0, $this->current), $tokens, array_slice($this->tokens, $this->current));
+        $this->tokens = array_merge(\array_slice($this->tokens, 0, $this->current), $tokens, \array_slice($this->tokens, $this->current));
     }
 
     /**
      * Sets the pointer to the next token and returns the old one.
-     *
-     * @return Twig_Token
      */
-    public function next()
+    public function next(): Token
     {
         if (!isset($this->tokens[++$this->current])) {
-            throw new Twig_Error_Syntax('Unexpected end of template', $this->tokens[$this->current - 1]->getLine(), $this->filename);
+            throw new SyntaxError('Unexpected end of template.', $this->tokens[$this->current - 1]->getLine(), $this->source);
         }
 
         return $this->tokens[$this->current - 1];
     }
 
     /**
-     * Tests a token and returns it or throws a syntax error.
+     * Tests a token, sets the pointer to the next one and returns it or throws a syntax error.
      *
-     * @return Twig_Token
+     * @return Token|null The next token if the condition is true, null otherwise
      */
-    public function expect($type, $value = null, $message = null)
+    public function nextIf($primary, $secondary = null)
+    {
+        return $this->tokens[$this->current]->test($primary, $secondary) ? $this->next() : null;
+    }
+
+    /**
+     * Tests a token and returns it or throws a syntax error.
+     */
+    public function expect($type, $value = null, ?string $message = null): Token
     {
         $token = $this->tokens[$this->current];
         if (!$token->test($type, $value)) {
             $line = $token->getLine();
-            throw new Twig_Error_Syntax(sprintf('%sUnexpected token "%s" of value "%s" ("%s" expected%s)',
+            throw new SyntaxError(\sprintf('%sUnexpected token "%s"%s ("%s" expected%s).',
                 $message ? $message.'. ' : '',
-                Twig_Token::typeToEnglish($token->getType(), $line), $token->getValue(),
-                Twig_Token::typeToEnglish($type, $line), $value ? sprintf(' with value "%s"', $value) : ''),
+                $token->toEnglish(),
+                $token->getValue() ? \sprintf(' of value "%s"', $token->getValue()) : '',
+                Token::typeToEnglish($type), $value ? \sprintf(' with value "%s"', $value) : ''),
                 $line,
-                $this->filename
+                $this->source
             );
         }
         $this->next();
@@ -88,57 +93,39 @@ class Twig_TokenStream
 
     /**
      * Looks at the next token.
-     *
-     * @param integer $number
-     *
-     * @return Twig_Token
      */
-    public function look($number = 1)
+    public function look(int $number = 1): Token
     {
         if (!isset($this->tokens[$this->current + $number])) {
-            throw new Twig_Error_Syntax('Unexpected end of template', $this->tokens[$this->current + $number - 1]->getLine(), $this->filename);
+            throw new SyntaxError('Unexpected end of template.', $this->tokens[$this->current + $number - 1]->getLine(), $this->source);
         }
 
         return $this->tokens[$this->current + $number];
     }
 
     /**
-     * Tests the current token
-     *
-     * @return bool
+     * Tests the current token.
      */
-    public function test($primary, $secondary = null)
+    public function test($primary, $secondary = null): bool
     {
         return $this->tokens[$this->current]->test($primary, $secondary);
     }
 
     /**
-     * Checks if end of stream was reached
-     *
-     * @return bool
+     * Checks if end of stream was reached.
      */
-    public function isEOF()
+    public function isEOF(): bool
     {
-        return $this->tokens[$this->current]->getType() === Twig_Token::EOF_TYPE;
+        return $this->tokens[$this->current]->test(Token::EOF_TYPE);
     }
 
-    /**
-     * Gets the current token
-     *
-     * @return Twig_Token
-     */
-    public function getCurrent()
+    public function getCurrent(): Token
     {
         return $this->tokens[$this->current];
     }
 
-    /**
-     * Gets the filename associated with this stream
-     *
-     * @return string
-     */
-    public function getFilename()
+    public function getSourceContext(): Source
     {
-        return $this->filename;
+        return $this->source;
     }
 }

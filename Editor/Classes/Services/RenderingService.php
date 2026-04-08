@@ -546,12 +546,15 @@ class RenderingService {
 
   static function applyTwigTemplate($vars = []) {
     if (isset($vars['path'])) {
-      $loader = new Twig_Loader_String();
-      $twig = new Twig_Environment($loader);
       $path = FileSystemService::getFullPath($vars['path']);
       $template = file_get_contents($path);
+      
+      $loader = new \Twig\Loader\ArrayLoader([
+          'index' => $template,
+      ]);
+      $twig = new \Twig\Environment($loader);
       $data = isset($vars['variables']) ? $vars['variables'] : [];
-      return $twig->render($template, $data);
+      return $twig->render('index', $data);
     }
     return null;
   }

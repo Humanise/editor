@@ -2,7 +2,7 @@
   <ul class="blog_items">
   {% for item in data %}
     <li class="blog_item">
-      <div class="blog_badge {% if loop.index is divisibleby(2) %}blog_badge-1{% else %}blog_badge-2{% endif %}">
+      <div class="blog_badge {% if loop.index is divisible by(2) %}blog_badge-1{% else %}blog_badge-2{% endif %}">
         <span class="blog_badge_date">{{item.timestamp|date("d","Europe/Paris")}}</span>
         <span class="blog_badge_month">{{item.timestamp|date("F","Europe/Paris")}}</span>
       </div>
