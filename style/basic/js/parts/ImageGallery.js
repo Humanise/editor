@@ -179,9 +179,6 @@ op.part.ImageGallery.Masonry.prototype = {
         pos+=percent;
         if (last) {
           percent+=100-pos;
-          if (hui.browser.msie7 || hui.browser.msie6) {
-            percent -= 0.1;
-          }
         }
         info.percent = percent;
         rowHeight = Math.min(rowHeight, (percent/100 * fullWidth) * item.height/item.width );

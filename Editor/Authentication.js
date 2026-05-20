@@ -7,21 +7,6 @@ var controller = {
     } else {
       username.focus();
     }
-    if (hui.browser.msie && (!hui.browser.msie8 && !hui.browser.msie9 && !hui.browser.msie10 && !hui.browser.msie11)) {
-      if (hui.browser.msie9compat) {
-        hui.ui.alert({
-          emotion : 'gasp',
-          title : {en:'"Compatibility View" is turned on',da:'"Compatibility View" er slået til'},
-          text : {en:'It looks like you have turned "Compatibility View" on. Please turn it off for a more stable experience. It is done by clicking the blue icon next to the address field above',da:'Det ser ud til at du har slået "Compatibility View" til. Slå det venligst fra for en mere stabil oplevelse. Det gøres ved at klikke på det blå dokument-ikon i adresse linjen øverst.'}
-        });
-      } else {
-        hui.ui.alert({
-          emotion : 'gasp',
-          title : {en:'Your software is too old',da:'Din software er forældet'},
-          text : {en:'The system does not support versions of Internet Explorer less than 8. Please upgrade to the latest version or continue at your own risk',da:'Systemet understøtter ikke Internet Explorer tidligere end version 8. Opgrader venligst til en nyere version eller fortsæt på eget ansvar.'}
-        });
-      }
-    }
     if (hui.location.getBoolean('logout')) {
       hui.ui.msg.success({text:{en:'You have been logged out',da:'Du er nu logget ud'}});
     }
@@ -75,12 +60,8 @@ var controller = {
   $success$login : function(data) {
     if (data.success) {
       hui.ui.msg.success({text:{en:'You are now logged in, just a moment...',da:'Du er nu logget ind, øjeblik...'},delay:200});
-      if (hui.browser.ipad) {
-        document.location = './Touch/';
-      } else {
-        var page = hui.location.getParameter('page');
-        document.location = page===null ? './index.php' : '.?page='+page;
-      }
+      var page = hui.location.getParameter('page');
+      document.location = page===null ? './index.php' : '.?page='+page;
     } else {
       box.shake();
       //hui.ui.stress(box);
