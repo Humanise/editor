@@ -12,7 +12,7 @@ op.ignite = function(loggedIn) {
         e = hui.event(e);
         if (e.returnKey) {
           hui.unListen(document,'keyup',temp);
-          if (!hui.browser.msie && !loggedIn) {
+          if (!loggedIn) {
             e.stop();
             op.showLogin();
           } else {
