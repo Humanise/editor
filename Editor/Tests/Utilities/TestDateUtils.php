@@ -49,7 +49,7 @@ class TestDates extends UnitTestCase {
     $this->assertEqual(Dates::formatLongDateTime($stamp, 'en_US'), '6. Dec 2010 kl. 17:12');
     $this->assertEqual(Dates::formatShortTime($stamp, 'en_US'), '17:12');
     $this->assertEqual(Dates::formatLongDate($stamp, 'en_US'), '6. Dec 2010');
-    $this->assertEqual(Dates::formatShortDate($stamp, 'en_US'), '6. Dec');
+    $this->assertEqual(Dates::formatShortDate($stamp), '6. Dec');
     $this->assertEqual(Dates::formatDate($stamp, 'en_US'), '6. December 2010');
   }
 

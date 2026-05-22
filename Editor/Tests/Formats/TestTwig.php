@@ -13,12 +13,15 @@ class TestTwig extends UnitTestCase {
 
   function testSimple() {
 
-        $loader = new Twig_Loader_String();
-        $twig = new Twig_Environment($loader);
-        $person = new Person();
-        $person->setFirstname('John');
-        $person->setSurname('Lennon');
-        $result = $twig->render('Hello {{ person.firstname }} {{ person.surname }}!', ['person' => $person]);
-        $this->assertEqual('Hello John Lennon!',$result);
+    $loader = new \Twig\Loader\ArrayLoader([
+        'index' => 'Hello {{ person.firstname }} {{ person.surname }}!'
+    ]);
+    $twig = new \Twig\Environment($loader);
+
+    $person = new Person();
+    $person->setFirstname('John');
+    $person->setSurname('Lennon');
+    $result = $twig->render('index', ['person' => $person]);
+    $this->assertEqual('Hello John Lennon!',$result);
   }
 }
