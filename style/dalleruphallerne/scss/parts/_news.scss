@@ -1,4 +1,21 @@
 @include if {
+  @keyframes news-blink {
+    30% {
+      //color: #fffbc7;
+    }
+    50% {
+      //color: #000;
+      opacity: 1;
+    }
+    70% {
+      //color: #fffbc7;
+      opacity: 0;
+    }
+    90% {
+      //color: #fffbc7;
+      opacity: 1;
+    }
+  }
   .news {
     padding: 10px 15px;
     margin-left: -15px;
@@ -11,6 +28,7 @@
     h2 {
       margin: 0;
       font-size: 24px;
+      animation: news-blink 2s infinite;
     }
     p {
       margin: 10px 0 0;

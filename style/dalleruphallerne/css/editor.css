@@ -860,6 +860,17 @@ a {
     text-align: left;
   }
 }
+@keyframes news-blink {
+  50% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 1;
+  }
+}
 .news {
   padding: 10px 15px;
   margin-left: -15px;
@@ -872,6 +883,7 @@ a {
 .news h2 {
   margin: 0;
   font-size: 24px;
+  animation: news-blink 2s infinite;
 }
 .news p {
   margin: 10px 0 0;
