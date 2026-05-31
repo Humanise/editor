@@ -1,0 +1,25 @@
+@include if {
+  .news {
+    padding: 10px 15px;
+    margin-left: -15px;
+    margin-right: -15px;
+    background: #fffbc7;
+    border-radius: 3px;
+    font-size: 18px;
+    text-align: center;
+    
+    h2 {
+      margin: 0;
+      font-size: 24px;
+    }
+    p {
+      margin: 10px 0 0;
+    }
+  }
+}
+
+@include if((width: 700px)) {
+  .news {
+    text-align: left;
+  }
+}

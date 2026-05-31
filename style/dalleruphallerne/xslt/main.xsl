@@ -180,4 +180,17 @@
 
 <xsl:template match="widget:warning/widget:break"><br/></xsl:template>
 
+<xsl:template match="widget:news">
+  <div class="news">
+    <xsl:apply-templates/>
+    <xsl:comment/>
+  </div>
+</xsl:template>
+
+<xsl:template match="widget:news/widget:break"><br/></xsl:template>
+
+<xsl:template match="widget:news/widget:title"><h2><xsl:apply-templates/><xsl:comment/></h2></xsl:template>
+
+<xsl:template match="widget:news/widget:line"><p><xsl:apply-templates/><xsl:comment/></p></xsl:template>
+
 </xsl:stylesheet>
