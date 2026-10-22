@@ -10,8 +10,6 @@ if (!isset($GLOBALS['basePath'])) {
 
 class PartContext {
 
-  //var $displayLinks;
-  //var $buildLinks;
   var $template;
   var $design;
   var $buildDecorator;
@@ -20,8 +18,6 @@ class PartContext {
   var $language;
 
   function __construct() {
-    $this->displayLinks = [];
-    //$this->buildLinks = array();
     $this->template = 'document';
     $this->design = 'basic';
     $this->buildDecorator = new TextDecorator();

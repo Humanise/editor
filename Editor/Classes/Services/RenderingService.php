@@ -281,7 +281,7 @@ class RenderingService {
             }
           }
           if (count($query) > 0) {
-            $redirect .= '?' . join($query,'&');
+            $redirect .= '?' . join('&', $query);
           }
           //Log::debug('Redirect::: '.$redirect);
           //Log::debug($row);
@@ -547,8 +547,12 @@ class RenderingService {
   static function applyTwigTemplate($vars = []) {
     if (isset($vars['path'])) {
       $path = FileSystemService::getFullPath($vars['path']);
+      if (!file_exists($path)) {
+        Log::warn('Twig template not found: ' . $path);
+        return null;
+      }
       $template = file_get_contents($path);
-      
+
       $loader = new \Twig\Loader\ArrayLoader([
           'index' => $template,
       ]);

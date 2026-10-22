@@ -138,7 +138,6 @@ class TemplateService {
       xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, 0);
       xml_parser_set_option($parser, XML_OPTION_SKIP_WHITE, 1);
       xml_parse_into_struct($parser, $data, $values, $tags);
-      xml_parser_free($parser);
       foreach ($values as $key) {
         switch($key['tag']) {
           case 'icon' : $out['icon'] = $key['value']; break;

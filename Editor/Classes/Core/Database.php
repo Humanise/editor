@@ -64,12 +64,6 @@ class Database {
     if (self::$connection === null) {
       self::connect();
     }
-
-    // Check if connection is still alive
-    if (!self::$connection->ping()) {
-      self::connect();
-    }
-
     return self::$connection;
   }
 

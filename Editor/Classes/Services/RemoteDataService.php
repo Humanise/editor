@@ -71,7 +71,6 @@ class RemoteDataService {
       } else {
         Log::debug('Unable to open file path: ' . $path);
       }
-      curl_close($ch);
     }
     return $success;
   }
