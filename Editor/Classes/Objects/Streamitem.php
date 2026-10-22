@@ -25,7 +25,7 @@ Entity::$schema['Streamitem'] = [
 class Streamitem extends ModelObject {
 
   var $streamId;
-  var $dataId;
+  var $data;
   var $hash;
   var $identity;
   var $originalDate;

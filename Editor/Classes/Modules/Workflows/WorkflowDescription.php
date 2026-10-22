@@ -27,7 +27,7 @@ class WorkflowDescription {
     return $description;
   }
 
-  public function run(WorkflowState $state = null) {
+  public function run(?WorkflowState $state = null) {
     if (!$state) {
       $state = new WorkflowState();
     }
