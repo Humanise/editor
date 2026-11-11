@@ -28,11 +28,11 @@ if (ConfigurationService::isPublicSession()) {
 }
 
 if (!Database::testConnection()) {
-  RenderingService::displayMessage([
-    'status' => Response::$UNAVAILABLE,
-    'title' => 'The page is not available at the moment',
-    'note' => 'Please try again later'
-  ]);
+  RenderingService::displayMessage(
+    status: Response::$UNAVAILABLE,
+    title: 'The page is not available at the moment',
+    note: 'Please try again later'
+  );
   exit();
 }
 
@@ -88,10 +88,11 @@ if (!CacheService::sendCachedPage($id, $path)) {
   if (!$page && !(Strings::isNotBlank($path) || $id > 0)) {
     $id = RenderingService::findPage('home');
     if ($id == null) {
-      RenderingService::displayMessage([
-        'title' => 'No front page',
-        'note' => 'This website has no front page. If you are the editor you probably should log in and fix the issue'
-      ]);
+      RenderingService::displayMessage(
+        status: Response::$NOT_FOUND,
+        title: 'No front page',
+        note: 'This website has no front page. If you are the editor you probably should log in and fix the issue'
+      );
       exit();
     }
     $page = RenderingService::buildPage($id);

@@ -11,28 +11,28 @@ class RenderingService {
     if ($uri != '/favicon.ico' && $uri != '/robots.txt' && $uri != '/apple-touch-icon.png' && $uri != '/apple-touch-icon-precomposed.png') {
       Log::logPublic('pagenotfound','uri=' . $_SERVER['REQUEST_URI']);
     }
-    RenderingService::displayMessage([
-      'status' => Response::$NOT_FOUND,
-      'title' => 'Page not found',
-      'note' => 'The requested page was not found on this website'
-    ]);
+    RenderingService::displayMessage(
+      status: Response::$NOT_FOUND,
+      title: 'Page not found',
+      note: 'The requested page was not found on this website'
+    );
   }
 
-  static function displayMessage($options,$path = "") {
-    if (!isset($options['status'])) {
-      $options['status'] = Response::$NOT_FOUND;
+  static function displayMessage(int $status, string $title = null, ?string $note = null, string $path = "") {
+    if ($status === null) {
+      $status = Response::$NOT_FOUND;
     }
     $xml = '<?xml version="1.0" encoding="UTF-8"?>';
     $xml .= '<message xmlns="http://uri.in2isoft.com/onlinepublisher/publishing/error/1.0/">';
-    if (isset($options['title'])) {
-      $xml .= '<title>' . Strings::escapeXML($options['title']) . '</title>';
+    if ($title !== null) {
+      $xml .= '<title>' . Strings::escapeXML($title) . '</title>';
     }
-    if (isset($options['note'])) {
-      $xml .= '<note>' . Strings::escapeXML($options['note']) . '</note>';
+    if ($note !== null) {
+      $xml .= '<note>' . Strings::escapeXML($note) . '</note>';
     }
     $xml .= '</message>';
     header("Content-Type: text/html; charset=UTF-8");
-    Response::sendStatus($options['status']);
+    Response::sendStatus($status);
     echo RenderingService::applyStylesheet($xml,"basic","error",$path,$path,$path,'',false,'en');
   }
 
@@ -366,11 +366,11 @@ class RenderingService {
       Response::redirect('/?id=' . $authId . '&page=' . $id);
     }
     else {
-      RenderingService::displayMessage([
-        'status' => Response::$FORBIDDEN,
-        'title' => 'You do not have access to this page',
-        'note' => 'Also, there is not specified a way to gain access'
-      ]);
+      RenderingService::displayMessage(
+        status: Response::$FORBIDDEN,
+        title: 'You do not have access to this page',
+        note: 'Also, there is not specified a way to gain access'
+      );
     }
   }
 
@@ -396,11 +396,11 @@ class RenderingService {
       Response::redirect('files/' . $row['filename']);
     } else {
       Log::logPublic('filenotfound','File-id:' . $id);
-      RenderingService::displayMessage([
-        'status' => Response::$NOT_FOUND,
-        'title' => 'The file could not be found',
-        'note' => 'The file may be removed or renamed'
-      ]);
+      RenderingService::displayMessage(
+        status: Response::$NOT_FOUND,
+        title: 'The file could not be found',
+        note: 'The file may be removed or renamed'
+      );
     }
   }
 
